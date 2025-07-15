@@ -56,6 +56,7 @@ function MainArticle({ article }) {
 
             <Link
                href={`/archive/${article.id}`}
+               aria-label="Article link"
                className="self-start md:self-center mt-7 lg:mt-4 md:mt-5 rounded-full bg-gradient-to-r from-accent-300/80 to-accent-600/70 hover:from-white hover:to-white dark:hover:from-primary dark:hover:to-primary border-2 border-transparent hover:border-accent/80 shadow-btn hover:shadow-none dark:shadow-none transition-[box-shadow,border,--tw-gradient-from,--tw-gradient-to] duration-300 bg-origin-border group"
             >
                <span

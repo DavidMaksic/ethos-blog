@@ -98,7 +98,7 @@ function Comment({
 
    return (
       <>
-         <li
+         <div
             id={`comment-${commentID}`}
             className="flex flex-col gap-5 bg-secondary dark:bg-primary-200 box-shadow rounded-3xl px-14 sm:px-12 py-10 sm:py-8 scroll-mt-28! transition duration-300"
          >
@@ -210,9 +210,9 @@ function Comment({
                   </Modal>
                )}
             </AnimatePresence>
-         </li>
+         </div>
 
-         <ul className="relative">
+         <div className="relative">
             <div
                className={`absolute w-0.5 bg-quaternary dark:bg-tertiary rounded-full ${
                   !optimisticReplies?.length || !showReplies ? 'hidden' : ''
@@ -250,7 +250,7 @@ function Comment({
                      onDelete={handleDelete}
                   />
                ))}
-         </ul>
+         </div>
       </>
    );
 }

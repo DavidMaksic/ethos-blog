@@ -42,7 +42,7 @@ function Reply({
 
    return (
       <>
-         <li className="relative last:mb-12" ref={lastItemRef}>
+         <div className="relative last:mb-12" ref={lastItemRef}>
             <div className="absolute left-10 top-1/2 w-10 h-8 -translate-x-full -translate-y-[100%]">
                <div className="w-full h-full border-l-2 border-b-2 border-quaternary dark:border-tertiary rounded-bl-full"></div>
             </div>
@@ -159,7 +159,7 @@ function Reply({
                   )}
                </AnimatePresence>
             </motion.div>
-         </li>
+         </div>
 
          {replyIsOpen && (
             <div className="mt-4">

@@ -7,7 +7,7 @@ function HeaderItem({ to, children }) {
    const isActive = pathname === to ? true : false;
 
    return (
-      <li className="relative">
+      <div className="relative">
          <Link
             href={to}
             className={`hover:text-accent dark:hover:text-accent-200 px-4 py-2 underlined-nav lg:no-underline transition md:hidden ${
@@ -23,7 +23,7 @@ function HeaderItem({ to, children }) {
                <div className="absolute above-xl:hidden top-[44px] xl:top-[40px] lg:top-[46px] left-1/2 size-4 dark:size-4 rounded-[4px] blur-sm bg-accent-200 dark:bg-accent -translate-x-1/2" />
             </>
          )}
-      </li>
+      </div>
    );
 }
 

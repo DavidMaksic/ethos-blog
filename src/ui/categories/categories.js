@@ -29,7 +29,7 @@ function Categories({ categories, currentCategory, param, isArchive = false }) {
             <h1>{t('categories')}</h1>
          </div>
 
-         <ul className="flex md:justify-center gap-4 xl:gap-3 lg:gap-2.5 flex-wrap">
+         <div className="flex md:justify-center gap-4 xl:gap-3 lg:gap-2.5 flex-wrap">
             {filteredCategories?.map((item) => (
                <Category
                   category={item}
@@ -37,7 +37,7 @@ function Categories({ categories, currentCategory, param, isArchive = false }) {
                   currentCategory={currentCategory}
                />
             ))}
-         </ul>
+         </div>
       </motion.div>
    );
 }

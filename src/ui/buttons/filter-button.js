@@ -62,7 +62,7 @@ function FilterButton({
                   active && 'border-accent-800/80'
                }`}
                imageUrl={lang === 'Српски' ? srbFlag : enFlag}
-               alt={lang}
+               alt="Language image"
             />
          </div>
          <p className={`md:text-2xl 2xs:text-[1.65rem] ${styles}`}>

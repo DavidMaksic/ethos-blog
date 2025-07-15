@@ -57,7 +57,7 @@ function CommentList({
                   />
                </div>
 
-               <ul className="space-y-5">
+               <div className="space-y-5">
                   {sortedComments
                      ? sortedComments.map((item) => (
                           <Comment
@@ -83,7 +83,7 @@ function CommentList({
                              newUser={newUser}
                           />
                        ))}
-               </ul>
+               </div>
             </>
          ) : null}
       </>

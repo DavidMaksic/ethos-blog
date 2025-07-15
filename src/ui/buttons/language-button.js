@@ -1,4 +1,4 @@
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { AnimatePresence, motion } from 'motion/react';
 import { useOutsideClick } from '@/src/hooks/use-outside-click';
 import { useSetParams } from '@/src/hooks/use-set-params';
@@ -29,20 +29,6 @@ function LanguageButton() {
    const router = useRouter();
    const handler = useSetParams();
    const pathname = usePathname();
-   // const searchParams = useSearchParams();
-
-   // const switchLocale = (lang) => {
-   //    const locales = ['en', 'sr-cyrl'];
-   //    const segments = pathname.split('/').filter(Boolean);
-
-   //    if (locales.includes(segments[0])) segments.shift();
-   //    const newPathname = '/' + lang + '/' + segments.join('/');
-
-   //    const search = searchParams.toString();
-   //    const url = newPathname + (search ? '?' + search : '');
-
-   //    router.push(url);
-   // };
 
    // - Old way
    const switchLocale = (lang) => {

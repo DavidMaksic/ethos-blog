@@ -28,7 +28,11 @@ function Toggle({ id }) {
    }
 
    return (
-      <button className="w-min" onClick={handleClick}>
+      <button
+         className="w-min"
+         onClick={handleClick}
+         aria-label="Comment options"
+      >
          <BsThreeDots className=" text-[2.5rem] md:text-[2.8rem] p-2.5 rounded-xl transition-[background-color] hover:bg-primary-100 hover:dark:bg-primary-300/20 cursor-pointer" />
       </button>
    );
@@ -74,6 +78,7 @@ function Button({ icon, handler, children }) {
                   : ''
             } [&_svg]:size-5 md:[&_svg]:size-7`}
             onClick={handleClick}
+            aria-label="Comment option"
          >
             {icon}
             {children}
