@@ -41,6 +41,9 @@ export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));
 }
 
+// TODO: Fix images showing up late
+// TODO: Fix slow search
+
 // TODO: Implement:
 // TODO: 'Edit' option to comments
 // TODO: 'Author' flag to author's comments

@@ -1,4 +1,4 @@
-import { getLocale, getTranslations } from 'next-intl/server';
+import { useLocale, useTranslations } from 'next-intl';
 import { HiOutlineUserCircle } from 'react-icons/hi2';
 import { Parisienne } from 'next/font/google';
 import RemoteImage from '@/src/ui/remote-image';
@@ -9,9 +9,9 @@ const parisienne = Parisienne({
    weight: ['400'],
 });
 
-async function Author({ author }) {
-   const t = await getTranslations('Article');
-   const locale = await getLocale();
+function Author({ author }) {
+   const t = useTranslations('Article');
+   const locale = useLocale();
 
    const { full_name, profile_image, description_en, description_srb } = author;
 

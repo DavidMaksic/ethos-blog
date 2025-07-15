@@ -42,7 +42,7 @@ function MainArticle({ article }) {
          className={`grid grid-cols-2 md:flex! md:flex-col! gap-10 md:gap-4 mt-24 xl:mt-22 lg:mt-24 sm:mt-14 mb-38 xl:mb-33 sm:mb-20 ${cormorantSC.className}`}
          initial={{ opacity: 0 }}
          animate={{ opacity: 1 }}
-         transition={{ duration: 0.4 }}
+         transition={{ duration: 0.3 }}
       >
          <div className="space-y-2 md:space-y-3 self-center flex flex-col  md:items-center md:order-2 md:w-full md:px-10 md:bg-white md:dark:bg-primary-300/15 md:py-6 md:pb-7 md:rounded-3xl md:box-shadow md:border md:border-quaternary md:dark:border-primary-300/15">
             <h2 className="relative md:text-center md:font-semibold styled_text text-6xl xl:text-[3.5rem] lg:text-[2.8rem] md:text-[2.8rem] pb-2 lg:pb-0 bg-gradient-to-r from-gray-600 to-gray-500/90 dark:from-slate-300 dark:to-slate-300/80 select-none leading-16 lg:leading-13">

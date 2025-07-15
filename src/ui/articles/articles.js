@@ -96,9 +96,9 @@ function Articles({
          ) : (
             <div className="flex flex-col mt-[-1.2px] md:w-full animate-skeleton">
                <div className="space-y-6 lg:space-y-4">
-                  <div className="h-50.5 xl:h-55 lg:h-53 md:h-61 sm:h-50 xs:h-58 2xs:h-50 bg-primary-300/25 dark:bg-primary-300/18 rounded-3xl" />
-                  <div className="h-50.5 xl:h-55 lg:h-53 md:h-61 sm:h-50 xs:h-58 2xs:h-50 bg-primary-300/25 dark:bg-primary-300/18 rounded-3xl" />
-                  <div className="h-50.5 xl:h-55 lg:h-53 md:h-61 sm:h-50 xs:h-58 2xs:h-50 bg-primary-300/25 dark:bg-primary-300/18 rounded-3xl" />
+                  <div className="h-50.5 xl:h-55 lg:h-53 md:h-61 sm:h-50 xs:h-58 2xs:h-50 bg-primary-300/35 dark:bg-primary-300/18 rounded-3xl" />
+                  <div className="h-50.5 xl:h-55 lg:h-53 md:h-61 sm:h-50 xs:h-58 2xs:h-50 bg-primary-300/35 dark:bg-primary-300/18 rounded-3xl" />
+                  <div className="h-50.5 xl:h-55 lg:h-53 md:h-61 sm:h-50 xs:h-58 2xs:h-50 bg-primary-300/35 dark:bg-primary-300/18 rounded-3xl" />
                </div>
             </div>
          )}

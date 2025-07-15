@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { AnimatePresence } from 'motion/react';
 import { EB_Garamond } from 'next/font/google';
+import { motion } from 'motion/react';
 
 import useFilterCategory from '@/src/hooks/use-filter-category';
 import FeaturedItem from '@/src/ui/articles/featured-item';
@@ -50,7 +51,12 @@ function FeaturedArticles({ articles, categories, authors }) {
    const t = useTranslations('HomePage');
 
    return (
-      <div className={`flex flex-col gap-10 my-14 ${ebGaramond.variable}`}>
+      <motion.div
+         className={`flex flex-col gap-10 my-14 ${ebGaramond.variable}`}
+         initial={{ opacity: 0 }}
+         animate={{ opacity: 1 }}
+         transition={{ duration: 0.3 }}
+      >
          <h1 className="flex items-center gap-2 self-center text-4xl lg:text-3xl md:text-4xl">
             <span>{t('featuring')}</span>
             <span className="text-accent/75 dark:text-accent-300/90 italic font-medium font-headers">
@@ -60,16 +66,24 @@ function FeaturedArticles({ articles, categories, authors }) {
 
          <div className="grid grid-cols-3 md:flex md:flex-col gap-6 lg:gap-4 md:gap-6">
             <AnimatePresence mode="wait">
-               {featuredArticles.map((item) => (
-                  <FeaturedItem
-                     article={item}
-                     authors={authors}
-                     key={item.id}
-                  />
-               ))}
+               {featuredArticles.length ? (
+                  featuredArticles.map((item) => (
+                     <FeaturedItem
+                        article={item}
+                        authors={authors}
+                        key={item.id}
+                     />
+                  ))
+               ) : (
+                  <>
+                     <div className="h-[30rem] lg:h-[25rem] md:h-[20rem] bg-primary-300/35 dark:bg-primary-300/18 rounded-2xl animate-skeleton" />
+                     <div className="h-[30rem] lg:h-[25rem] md:h-[20rem] bg-primary-300/35 dark:bg-primary-300/18 rounded-2xl animate-skeleton" />
+                     <div className="h-[30rem] lg:h-[25rem] md:h-[20rem] bg-primary-300/35 dark:bg-primary-300/18 rounded-2xl animate-skeleton" />
+                  </>
+               )}
             </AnimatePresence>
          </div>
-      </div>
+      </motion.div>
    );
 }
 
