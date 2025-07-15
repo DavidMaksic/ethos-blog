@@ -1,0 +1,113 @@
+{
+   "Logo": "Ethos",
+   "HomePage": {
+      "nav-link-1": "Home",
+      "nav-link-2": "Archive",
+      "nav-link-3": "About",
+      "nav-link-4": "Profile",
+      "read-btn": "Read More",
+      "featuring": "Featuring from",
+      "latest": "Latest articles",
+      "categories": "Categories",
+      "latest-btn": "See all",
+      "copyright": "Copyright ©2024 Ethos, All rights reserved",
+      "pages-label": "Pages"
+   },
+   "Article": {
+      "read-next-label": "Read Next",
+      "share": "Share",
+      "toc": "Table of contents",
+      "bookmark-added": "Article bookmarked",
+      "bookmark-removed": "Article removed from bookmarks",
+      "description": "Is an author writing for Ethos blog."
+   },
+   "Archive": {
+      "label": "Articles",
+      "placeholder": "Search...",
+      "lang-label": "Language",
+      "no-articles": "No articles found!"
+   },
+   "About": {
+      "label": "About this blog",
+      "label-2": "Ethos",
+      "description": "David Maksic is a programmer based in Serbia who likes to write about history. He's most interested in learning about military history, since its inception to modern times. David writes primarily about the 19th century. He currently writes about the Russian Empire, its culture and figures that shaped history.",
+      "etymology": "Late 17th century from Latin <em>character, depiction of character</em>. From Greek ēthos <em>disposition, character, customs</em>.",
+      "ipa": "/'i:θɒs/"
+   },
+   "Profile": {
+      "nav-link-1": "Overview",
+      "nav-link-2": "Comments",
+      "nav-link-3": "Bookmarks",
+      "nav-link-4": "Settings",
+      "nav-link-5": "Sign out",
+      "user-stat-1": "Likes",
+      "user-stat-2": "Comments",
+      "user-stat-3": "Bookmarks",
+      "bookmark-label": "Bookmarks",
+      "joined-label": "Joined",
+      "username": "Current username",
+      "new-username": "New username",
+      "username-updated": "Username succesfully updated",
+      "pfp": "Profile image",
+      "update": "Update",
+      "pfp-updated": "Profile image succesfully updated",
+      "pfp-warning": "Only images are allowed",
+      "email": "Email address",
+      "no-bookmarks": "No bookmarks found"
+   },
+   "Comment": {
+      "label": "Comments",
+      "placeholder": "Leave a comment...",
+      "reply-placeholder": "Leave a reply...",
+      "post-btn": "Post",
+      "cancel-btn": "Cancel",
+      "copy-link-btn": "Copy link",
+      "link": "Link copied to clipboard",
+      "delete-btn": "Delete",
+      "warning": "*Comment must have a minimum of 2 characters",
+      "reply-btn": "Reply",
+      "reply-posted": "Reply posted",
+      "reply-deleted": "Reply deleted",
+      "user-label": "Your comments",
+      "user-commented": "commented on",
+      "user-replied": "replied",
+      "user-replied-to-himself": "to himself on",
+      "user-to": "to",
+      "user-on": "on",
+      "posted": "Comment posted",
+      "delete-label": "Are you sure you want to delete your comment?",
+      "delete": "Delete",
+      "deleting": "Deleting",
+      "deleted": "Comment deleted",
+      "cancel": "Cancel",
+      "no-comments": "No comments found!"
+   },
+   "Sort": {
+      "latest": "Latest",
+      "oldest": "Oldest",
+      "a-z": "A-Z",
+      "z-a": "Z-A"
+   },
+   "Pagination": {
+      "showing": "Showing",
+      "to": "to",
+      "of": "of",
+      "results": "results",
+      "prev-btn": "Previous",
+      "next-btn": "Next"
+   },
+   "Auth": {
+      "join": "Join",
+      "comment-label": "community to access more features!",
+      "bookmark-label": "community to access more features!",
+      "sign-in": "Sign in",
+      "google": "Continue with Google",
+      "close": "Close"
+   },
+   "Error": {
+      "message": "Something went wrong...",
+      "no-page": "This page could not be found!",
+      "back-btn": "Go back"
+   },
+   "Search-placeholder": "Search..."
+}

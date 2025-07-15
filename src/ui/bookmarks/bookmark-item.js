@@ -1,0 +1,83 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { Cormorant_SC } from 'next/font/google';
+import { useTheme } from 'next-themes';
+import { format } from 'date-fns';
+import { motion } from 'motion/react';
+import { Link } from '@/src/i18n/navigation';
+import RemoteImage from '@/src/ui/remote-image';
+
+const cormorantSC = Cormorant_SC({
+   subsets: ['latin'],
+   display: 'swap',
+   weight: ['300', '400', '500', '600', '700'],
+});
+
+function BookmarkItem({ article, categories }) {
+   const date = format(new Date(article.created_at), 'MMM dd, yyyy');
+   const category = categories?.find((item) => item.id === article?.categoryID);
+
+   const [bgColor, setBgColor] = useState('');
+   const [textColor, setTextColor] = useState('');
+   const { resolvedTheme } = useTheme();
+
+   useEffect(() => {
+      if (!category) return;
+      if (resolvedTheme === 'dark') {
+         setBgColor(category.bgDark);
+         setTextColor(category.textDark);
+      } else {
+         setBgColor(category.bgLight);
+         setTextColor(category.textLight);
+      }
+   }, [resolvedTheme, category]);
+
+   return (
+      <motion.div
+         initial={{ opacity: 0 }}
+         animate={{ opacity: 1 }}
+         transition={{ duration: 0.3 }}
+      >
+         <Link
+            href={`/archive/${article.id}`}
+            className="relative grid grid-cols-[2fr_0.8fr] min-h-45.5 xl:min-h-46 lg:min-h-38 md:min-h-52 sm:min-h-[18vh] rounded-2xl group cursor-pointer overflow-hidden border border-quaternary dark:border-primary-300/15 bg-white dark:bg-primary-300/15 hover:translate-x-1.5 transition-[translate] duration-200 select-none box-shadow"
+         >
+            <div className="self-center py-2 px-12 md:pr-0 space-y-5 lg:space-y-4 z-20">
+               <h2
+                  className={`text-primary-500 dark:text-primary-600/85 text-3xl lg:text-[2rem] font-medium dark:font-normal lg:font-semibold lg:dark:font-normal md:dark:font-medium lg:leading-10 ${
+                     cormorantSC.className
+                  } leading-8.5 ${
+                     article.title.length >= 48 &&
+                     'text-[1.8rem]! lg:text-[1.7rem]! md:text-[1.6rem]! sm:text-[1.4rem]! leading-[2.5rem]! lg:leading-[2.3rem]! md:leading-[2.1rem]! sm:leading-[2rem]!'
+                  }`}
+               >
+                  {article.title}
+               </h2>
+
+               <div className="space-x-2 text-primary-400 dark:text-primary-600/60">
+                  <span
+                     className="bg-accent-400/15 text-accent/75 px-3 pl-3.5 py-1 pb-1.5 rounded-full font-semibold text-[1.2rem]"
+                     style={{
+                        backgroundColor: `${bgColor}`,
+                        color: `${textColor}`,
+                     }}
+                  >
+                     {category.category}
+                  </span>
+                  <span className="text-lg">•</span>
+                  <span>{date}</span>
+               </div>
+            </div>
+
+            <RemoteImage
+               imageUrl={article.image}
+               alt="Article image"
+               styles="rounded-xl absolute translate-x-[30%] object-cover opacity-100 dark:opacity-70 [mask-image:linear-gradient(to_right,transparent,black)] [mask-mode:alpha] [mask-size:100%_100%] [mask-repeat:no-repeat]"
+            />
+         </Link>
+      </motion.div>
+   );
+}
+
+export default BookmarkItem;

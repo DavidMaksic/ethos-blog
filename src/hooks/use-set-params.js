@@ -1,0 +1,16 @@
+import { usePathname, useRouter } from '@/src/i18n/navigation';
+import { useSearchParams } from 'next/navigation';
+
+export function useSetParams() {
+   const searchParams = useSearchParams();
+   const pathname = usePathname();
+   const router = useRouter();
+
+   function handler(fieldName, value) {
+      const params = new URLSearchParams(searchParams);
+      params.set(fieldName, value);
+      router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+   }
+
+   return handler;
+}

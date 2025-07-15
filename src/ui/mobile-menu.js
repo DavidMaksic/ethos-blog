@@ -1,0 +1,164 @@
+import { AnimatePresence, motion } from 'motion/react';
+import { LuLibrary, LuLogIn } from 'react-icons/lu';
+import { IoDocumentOutline } from 'react-icons/io5';
+import { HiOutlineMenuAlt3 } from 'react-icons/hi';
+import { useOutsideClick } from '@/src/hooks/use-outside-click';
+import { useTranslations } from 'next-intl';
+import { HiOutlineUser } from 'react-icons/hi2';
+import { Parisienne } from 'next/font/google';
+import { BiHomeAlt2 } from 'react-icons/bi';
+import { useParams } from 'next/navigation';
+import { useState } from 'react';
+import { Link } from '@/src/i18n/navigation';
+
+import FilterButton from '@/src/ui/buttons/filter-button';
+import Image from 'next/image';
+
+const parisienne = Parisienne({
+   subsets: ['latin'],
+   display: 'swap',
+   weight: ['400'],
+});
+
+function MobileMenu({ newUser, oldUser }) {
+   const [openMenu, setOpenMenu] = useState(false);
+   const ref = useOutsideClick(() => setOpenMenu((isOpen) => !isOpen), false);
+
+   const options = ['Српски', 'English'];
+   const param = useParams();
+   const t = useTranslations();
+
+   return (
+      <>
+         <HiOutlineMenuAlt3
+            className="hidden md:block size-8 mx-2"
+            onClick={(e) => {
+               e.stopPropagation();
+               setOpenMenu((isOpen) => !isOpen);
+            }}
+         />
+
+         <AnimatePresence>
+            {openMenu && (
+               <motion.div
+                  className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-70%] flex gap-2 py-8 pb-8.5 pr-6 pl-4 text-2xl rounded-3xl bg-white dark:bg-primary/80 backdrop-blur-3xl border border-quaternary dark:border-primary-300/15 shadow-article dark:shadow-none overflow-auto transition-bg_border z-40"
+                  ref={ref}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+               >
+                  <div className="pl-10 pr-16 py-2 pb-4 space-y-7">
+                     <h2 className="uppercase tracking-wide font-semibold text-accent dark:text-accent-200">
+                        {t('HomePage.pages-label')}
+                     </h2>
+
+                     <ul className="space-y-7 text-4xl">
+                        <Link
+                           href="/"
+                           className="flex items-center gap-3.5"
+                           onClick={() => setOpenMenu((isOpen) => !isOpen)}
+                        >
+                           <BiHomeAlt2 className="size-7" />
+                           <span>{t('HomePage.nav-link-1')}</span>
+                        </Link>
+                        <Link
+                           href="/archive"
+                           className="flex items-center gap-3.5"
+                           onClick={() => setOpenMenu((isOpen) => !isOpen)}
+                        >
+                           <LuLibrary className="size-7" />
+                           <span>{t('HomePage.nav-link-2')}</span>
+                        </Link>
+                        <Link
+                           href="/about"
+                           className="flex items-center gap-3.5"
+                           onClick={() => setOpenMenu((isOpen) => !isOpen)}
+                        >
+                           <IoDocumentOutline className="size-7" />
+                           <span>{t('HomePage.nav-link-3')}</span>
+                        </Link>
+                        <Link
+                           href="/user/home"
+                           className="flex items-center gap-3.5"
+                           onClick={() => setOpenMenu((isOpen) => !isOpen)}
+                        >
+                           <HiOutlineUser className="size-7" />
+                           <span>{t('HomePage.nav-link-4')}</span>
+                        </Link>
+                     </ul>
+                  </div>
+
+                  <span className="w-px bg-primary-300 dark:bg-primary-300/40" />
+
+                  <div className="flex flex-col gap-2 items-center">
+                     {newUser?.image || oldUser?.image ? (
+                        <div className="min-w-50 flex flex-col gap-3 items-center mx-4 py-2 pb-6 border-b border-b-primary-300 dark:border-b-primary-300/40">
+                           <Link
+                              href="/user/home"
+                              className="relative size-20"
+                              onClick={() => setOpenMenu((isOpen) => !isOpen)}
+                           >
+                              <Image
+                                 className="rounded-full block aspect-square object-cover object-center opacity-80 border border-primary-300 transition-200"
+                                 fill
+                                 src={
+                                    newUser?.image
+                                       ? newUser?.image
+                                       : oldUser?.image
+                                 }
+                                 alt="Profile image"
+                                 referrerPolicy="no-referrer"
+                              />
+                           </Link>
+                           <span
+                              className={`text-accent-400 dark:text-accent text-5xl w-fit self-center pr-1.5 ${parisienne.className}`}
+                           >
+                              {newUser?.username
+                                 ? newUser?.username.split(' ')[0]
+                                 : oldUser?.name.split(' ')[0]}
+                           </span>
+                        </div>
+                     ) : (
+                        <Link
+                           href="/user/home"
+                           className="min-w-50 flex gap-2 items-center justify-center mx-4 py-12 border-b border-b-primary-300 dark:border-b-primary-300/40"
+                           onClick={() => setOpenMenu((isOpen) => !isOpen)}
+                        >
+                           <span className="text-3xl">{t('Auth.sign-in')}</span>
+                           <LuLogIn className="size-7 text-accent/90 dark:text-accent-200" />
+                        </Link>
+                     )}
+
+                     <div className="py-7 px-4 flex flex-col gap-2 items-center">
+                        {options.map((item) => (
+                           <FilterButton
+                              key={item}
+                              lang={item}
+                              param={param}
+                              styles="md:text-[2rem]! ml-1!"
+                              imageStyle="size-10!"
+                              activeStyle="py-1.5! px-3.5! rounded-2xl!"
+                              isMobile={true}
+                           >
+                              {item}
+                           </FilterButton>
+                        ))}
+                     </div>
+                  </div>
+               </motion.div>
+            )}
+         </AnimatePresence>
+
+         <span
+            className={`fixed top-0 left-0 h-screen w-full z-30 dark:bg-[#41455334] backdrop-blur-2xl transition-opacity duration-200  hidden md:block ${
+               openMenu
+                  ? 'opacity-100 pointer-events-auto'
+                  : 'opacity-0 pointer-events-none'
+            }`}
+         />
+      </>
+   );
+}
+
+export default MobileMenu;

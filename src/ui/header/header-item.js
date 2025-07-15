@@ -1,0 +1,30 @@
+'use client';
+
+import { Link, usePathname } from '@/src/i18n/navigation';
+
+function HeaderItem({ to, children }) {
+   const pathname = usePathname();
+   const isActive = pathname === to ? true : false;
+
+   return (
+      <li className="relative">
+         <Link
+            href={to}
+            className={`hover:text-accent dark:hover:text-accent-200 px-4 py-2 underlined-nav lg:no-underline transition md:hidden ${
+               isActive && 'text-accent dark:text-accent-200'
+            }`}
+         >
+            {children}
+         </Link>
+
+         {isActive && (
+            <>
+               <div className="bg-active-link absolute above-xl:hidden top-[44.5px] xl:top-[38.5px] lg:top-[44.5px] left-1/2 h-px w-14 dark:w-12 -translate-x-1/2" />
+               <div className="absolute above-xl:hidden top-[44px] xl:top-[40px] lg:top-[46px] left-1/2 size-4 dark:size-4 rounded-[4px] blur-sm bg-accent-200 dark:bg-accent -translate-x-1/2" />
+            </>
+         )}
+      </li>
+   );
+}
+
+export default HeaderItem;
