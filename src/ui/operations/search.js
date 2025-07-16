@@ -5,24 +5,39 @@ import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useSetParams } from '@/src/hooks/use-set-params';
 import { CgSearch } from 'react-icons/cg';
+import useDebounce from '@/src/hooks/use-debounce';
 
 function Search({ isArchive = false }) {
    const t = useTranslations();
    const [open, setOpen] = useState(false);
-   const ref = useRef(null);
+   const inputRef = useRef(null);
 
    const searchParams = useSearchParams();
-   const query = searchParams.get('search') || '';
-
-   useEffect(() => {
-      if (query) setOpen(true);
-   }, []); // eslint-disable-line
+   const initialQuery = searchParams.get('search') || '';
+   const [inputValue, setInputValue] = useState(initialQuery);
 
    const handler = useSetParams();
+   const debouncedInput = useDebounce(inputValue, 400);
 
+   // - Open search if there's an existing query
    useEffect(() => {
-      if (open) ref.current.focus();
+      if (initialQuery) setOpen(true);
+   }, []); // eslint-disable-line
 
+   // - Set focus when search opens
+   useEffect(() => {
+      if (open && inputRef.current) {
+         inputRef.current.focus();
+      }
+   }, [open]);
+
+   // - Update URL param only when debounced input changes
+   useEffect(() => {
+      handler('search', debouncedInput);
+   }, [debouncedInput]); // eslint-disable-line
+
+   // - Toggle open on Enter key
+   useEffect(() => {
       const handleEnter = ({ key }) => {
          if (key === 'Enter') {
             setOpen((isOpen) => !isOpen);
@@ -33,7 +48,7 @@ function Search({ isArchive = false }) {
       return () => {
          document.removeEventListener('keydown', handleEnter, true);
       };
-   }, [open]);
+   }, []);
 
    return (
       <div className="flex items-center">
@@ -48,13 +63,13 @@ function Search({ isArchive = false }) {
 
          {open && (
             <input
-               ref={ref}
+               ref={inputRef}
                id="search"
                type="text"
-               value={query}
+               value={inputValue}
                placeholder={t('Search-placeholder')}
                autoComplete="one-time-code"
-               onChange={(e) => handler('search', e.target.value)}
+               onChange={(e) => setInputValue(e.target.value)}
                className={`h-11 md:h-12 py-4 px-1 w-[22rem] lg:w-[14rem] bg-white/60 md:bg-white dark:bg-primary-300/18 md:dark:bg-primary-300/18 border border-quaternary dark:border-transparent rounded-full text-xl md:text-2xl font-medium font-article outline-none transition-bg_border ${
                   open && 'rounded-l-none border-l-transparent'
                } ${

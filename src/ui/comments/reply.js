@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence } from 'motion/react';
 import { BiLike, BiSolidLike } from 'react-icons/bi';
 import { useLocalStorage } from '@/src/hooks/use-local-storage';
 import { useTranslations } from 'next-intl';
@@ -37,7 +37,8 @@ function Reply({
 
    const isLiked = useCommentLike(replyID, likedReplies);
 
-   const count = reply.likes;
+   const [replyCount, setReplyCount] = useState(reply.likes);
+
    const currentUser = users.find((item) => item.id === reply.user_id);
 
    return (
@@ -47,13 +48,9 @@ function Reply({
                <div className="w-full h-full border-l-2 border-b-2 border-quaternary dark:border-tertiary rounded-bl-full"></div>
             </div>
 
-            <motion.div
+            <div
                id={`comment-${replyID}`}
                className="flex flex-col gap-5 bg-secondary/65 dark:bg-primary-200/49 box-shadow dark:border-tertiary/50 rounded-3xl px-14 sm:px-12 py-10 sm:py-8 ml-14 mb-4 scroll-mt-28! transition duration-300"
-               initial={{ opacity: 0 }}
-               animate={{ opacity: 1 }}
-               exit={{ opacity: 0 }}
-               transition={{ duration: 0.15 }}
             >
                <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
@@ -99,21 +96,25 @@ function Reply({
                <div className="flex items-center gap-2 md:gap-2.5 mt-2 md:mt-3">
                   <div
                      className={`flex items-center gap-2 h-9 md:h-11 w-fit rounded-xl px-3 py-1.5 bg-primary-300/20 dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75 ${
-                        count === 0 && 'gap-0!'
+                        replyCount === 0 && 'gap-0!'
                      }`}
                      onClick={() => {
                         if (isLiked) {
                            setLikedReplies((items) =>
                               items.filter((item) => item.id !== replyID)
                            );
-                           const newCount = count - 1;
+                           const newCount = replyCount - 1;
+                           setReplyCount(() => replyCount - 1);
+
                            replyLikes(replyID, articleID, newCount);
                         } else {
                            setLikedReplies((items) => [
                               ...items,
                               { id: replyID, isLiked: true },
                            ]);
-                           const newCount = count + 1;
+                           const newCount = replyCount + 1;
+                           setReplyCount(() => replyCount + 1);
+
                            replyLikes(replyID, articleID, newCount);
                         }
                      }}
@@ -127,7 +128,7 @@ function Reply({
                      <span
                         className={`tracking-wide font-semibold text-base select-none ${font}`}
                      >
-                        {count > 0 && count}
+                        {replyCount > 0 && replyCount}
                      </span>
                   </div>
 
@@ -158,7 +159,7 @@ function Reply({
                      </Modal>
                   )}
                </AnimatePresence>
-            </motion.div>
+            </div>
          </div>
 
          {replyIsOpen && (

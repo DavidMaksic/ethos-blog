@@ -6,9 +6,12 @@ const LikeContext = createContext();
 
 function LikeProvider({ children }) {
    const [isLiked, setIsLiked] = useState(false);
+   const [likesCount, setLikesCount] = useState();
 
    return (
-      <LikeContext.Provider value={{ isLiked, setIsLiked }}>
+      <LikeContext.Provider
+         value={{ isLiked, setIsLiked, likesCount, setLikesCount }}
+      >
          {children}
       </LikeContext.Provider>
    );

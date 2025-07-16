@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import { getSortedItems } from '@/src/utils/helpers';
 import { useLanguage } from '@/src/context/language-context';
@@ -17,68 +17,63 @@ function Articles({
    authors,
    style,
 }) {
-   const [allArticles, setAllArticles] = useState();
-   const [finalArticles, setFinalArticles] = useState();
    const { language } = useLanguage();
    const t = useTranslations('Archive');
 
-   useEffect(() => {
-      if (!isArchive) return setFinalArticles(articles?.slice(0, 3));
+   // Derive filtered & paginated articles
+   const { filteredArticles, paginatedArticles } = useMemo(() => {
+      if (!isArchive) {
+         return {
+            filteredArticles: articles,
+            paginatedArticles: articles?.slice(0, 3),
+         };
+      }
 
-      let sortedItems = articles;
-      let searchedItems = articles;
-      let filteredArticles = articles;
-      let paginatedItems = articles;
+      let result = [...articles];
 
       // 1. Sort
       if (param.sort) {
-         sortedItems = getSortedItems(param, articles);
+         result = getSortedItems(param, result);
       }
 
       // 2. Search
       if (param.search) {
-         const query = param.search;
-         searchedItems = sortedItems.filter(
-            (item) =>
-               item.title?.toLowerCase().includes(query) ||
-               item.title?.includes(query)
+         const query = param.search.toLowerCase();
+         result = result.filter((item) =>
+            item.title?.toLowerCase().includes(query)
          );
       }
 
-      // 3. Filter
-      filteredArticles = searchedItems
-         .filter((item) => {
-            if (!currentCategory) return true;
-            return item.categoryID === currentCategory?.id;
-         })
-         .filter((item) => {
-            if (!param.lang) return item.language === language.language;
-            return (
-               item.language ===
-               param.lang?.charAt(0).toUpperCase() + param.lang?.slice(1)
-            );
-         });
-
-      setAllArticles(filteredArticles);
+      // 3. Filter (category + language)
+      result = result.filter((item) => {
+         const matchesCategory =
+            !currentCategory || item.categoryID === currentCategory.id;
+         const matchesLanguage = !param.lang
+            ? item.language === language.language
+            : item.language ===
+              param.lang.charAt(0).toUpperCase() + param.lang.slice(1);
+         return matchesCategory && matchesLanguage;
+      });
 
       // 4. Pagination
-      const page = !param.page ? 1 : param.page;
+      const page = Number(param.page || 1);
+      const pageSize = Number(process.env.NEXT_PUBLIC_PAGE_SIZE || 10);
+      const from = (page - 1) * pageSize;
+      const to = from + pageSize;
+      const paginated = result.slice(from, to);
 
-      const from = (page - 1) * Number(process.env.NEXT_PUBLIC_PAGE_SIZE);
-      const to = from + Number(process.env.NEXT_PUBLIC_PAGE_SIZE);
-
-      paginatedItems = filteredArticles.slice(from, to);
-
-      // 5. Set state
-      setFinalArticles(paginatedItems);
-   }, [isArchive, param, currentCategory, articles, language]);
+      return {
+         filteredArticles: result,
+         paginatedArticles: paginated,
+      };
+   }, [articles, param, currentCategory, language.language, isArchive]);
 
    return (
       <>
-         {finalArticles ? (
+         {paginatedArticles ? (
             <div className="grid grid-rows-3 sm:flex sm:flex-col gap-6 lg:gap-4 md:gap-5">
-               {finalArticles.length ? (
-                  finalArticles.map((item) => (
+               {paginatedArticles.length ? (
+                  paginatedArticles.map((item) => (
                      <ArticleItem
                         article={item}
                         categories={categories}
@@ -96,20 +91,21 @@ function Articles({
          ) : (
             <div className="flex flex-col mt-[-1.2px] md:w-full animate-skeleton">
                <div className="space-y-6 lg:space-y-4">
-                  <div className="h-50.5 xl:h-55 lg:h-53 md:h-61 sm:h-50 xs:h-58 2xs:h-50 bg-primary-300/35 dark:bg-primary-300/18 rounded-3xl" />
-                  <div className="h-50.5 xl:h-55 lg:h-53 md:h-61 sm:h-50 xs:h-58 2xs:h-50 bg-primary-300/35 dark:bg-primary-300/18 rounded-3xl" />
-                  <div className="h-50.5 xl:h-55 lg:h-53 md:h-61 sm:h-50 xs:h-58 2xs:h-50 bg-primary-300/35 dark:bg-primary-300/18 rounded-3xl" />
+                  {[...Array(3)].map((_, i) => (
+                     <div
+                        key={i}
+                        className="h-50.5 xl:h-55 lg:h-53 md:h-61 sm:h-50 xs:h-58 2xs:h-50 bg-primary-300/35 dark:bg-primary-300/18 rounded-3xl"
+                     />
+                  ))}
                </div>
             </div>
          )}
 
-         {isArchive ? (
-            allArticles?.length <= process.env.NEXT_PUBLIC_PAGE_SIZE ? (
-               <div className="h-24" />
-            ) : (
-               <Pagination count={allArticles?.length} />
-            )
-         ) : null}
+         {isArchive &&
+            filteredArticles.length >
+               Number(process.env.NEXT_PUBLIC_PAGE_SIZE || 10) && (
+               <Pagination count={filteredArticles.length} />
+            )}
       </>
    );
 }

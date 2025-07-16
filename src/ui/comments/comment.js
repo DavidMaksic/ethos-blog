@@ -45,7 +45,7 @@ function Comment({
    const date = format(new Date(comment.created_at), 'MMM dd, yyyy');
    const user = users.find((item) => item.id === comment.user_id);
 
-   const count = comment.likes;
+   const [commentCount, setCommentCount] = useState(comment.likes);
    const router = useRouter();
 
    // - Copy link logic
@@ -141,21 +141,25 @@ function Comment({
             <div className="flex items-center gap-2 md:gap-2.5 mt-2 md:mt-3">
                <div
                   className={`flex items-center gap-2 h-9 md:h-11 w-fit rounded-xl px-3 py-1.5 bg-primary-300/20 dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75 ${
-                     count === 0 && 'gap-0!'
+                     commentCount === 0 && 'gap-0!'
                   }`}
                   onClick={() => {
                      if (isLiked) {
                         setLikedComments((items) =>
                            items.filter((item) => item.id !== commentID)
                         );
-                        const newCount = count - 1;
+                        const newCount = commentCount - 1;
+                        setCommentCount(() => commentCount - 1);
+
                         commentLikes(commentID, articleID, newCount);
                      } else {
                         setLikedComments((items) => [
                            ...items,
                            { id: commentID, isLiked: true },
                         ]);
-                        const newCount = count + 1;
+                        const newCount = commentCount + 1;
+                        setCommentCount(() => commentCount + 1);
+
                         commentLikes(commentID, articleID, newCount);
                      }
                   }}
@@ -169,7 +173,7 @@ function Comment({
                   <span
                      className={`tracking-wide font-semibold text-base md:text-xl select-none ${ebGaramond.className}`}
                   >
-                     {count > 0 && count}
+                     {commentCount > 0 && commentCount}
                   </span>
                </div>
 

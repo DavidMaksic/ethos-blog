@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { getSortedItems } from '@/src/utils/helpers';
+import { useMemo } from 'react';
 import UserComment from '@/src/ui/comments/user-comment';
 
 function UserCommentList({
@@ -12,10 +12,8 @@ function UserCommentList({
    users,
    user,
 }) {
-   const [sortedComments, setSortedComments] = useState();
-
-   useEffect(() => {
-      setSortedComments(() => getSortedItems(param, comments));
+   const sortedComments = useMemo(() => {
+      return getSortedItems(param, comments);
    }, [param, comments]);
 
    return (

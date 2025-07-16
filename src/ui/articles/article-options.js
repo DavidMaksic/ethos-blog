@@ -13,10 +13,11 @@ import {
    updateLikes,
    addLiked,
 } from '@/src/lib/actions';
+import { useEffect, useState } from 'react';
 import { useLocalStorage } from '@/src/hooks/use-local-storage';
 import { AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { useLikeContext } from '@/src/context/like-context';
 
 import useBookmark from '@/src/hooks/use-bookmark';
 import BackButton from '@/src/ui/buttons/back-button';
@@ -38,7 +39,29 @@ function ArticleOptions({
    const t = useTranslations('Article');
    const [isOpen, setIsOpen] = useState();
 
-   const isBookmarked = useBookmark(articleID, session, user);
+   const isBookmarkedDB = useBookmark(articleID, session, user);
+   const [isBookmarked, setIsBookmarked] = useState(isBookmarkedDB);
+
+   function handleBookmarkClick() {
+      if (!session) {
+         setIsOpen(true);
+         return;
+      }
+
+      if (isBookmarked) {
+         removeBookmark(session.user, articleID);
+         toast.success(t('bookmark-removed'));
+      } else {
+         addBookmark(session.user, articleID);
+         toast.success(t('bookmark-added'));
+      }
+
+      setIsBookmarked(!isBookmarked);
+   }
+
+   useEffect(() => {
+      setIsBookmarked(isBookmarkedDB);
+   }, [isBookmarkedDB]);
 
    // Likes logic
    const [likedArticles, setLikedArticles] = useLocalStorage(
@@ -47,6 +70,7 @@ function ArticleOptions({
    );
 
    const isLiked = useLike(articleID, likedArticles);
+   const { likesCount, setLikesCount } = useLikeContext();
 
    return (
       <>
@@ -68,7 +92,8 @@ function ArticleOptions({
                         items.filter((item) => item.articleID !== articleID)
                      );
                      if (count === 0) return;
-                     const newCount = count - 1;
+                     const newCount = likesCount - 1;
+                     setLikesCount(() => likesCount - 1);
 
                      removeLiked(session.user, articleID);
                      updateLikes(articleID, newCount);
@@ -77,7 +102,8 @@ function ArticleOptions({
                         ...items,
                         { articleID, isLiked: true },
                      ]);
-                     const newCount = count + 1;
+                     const newCount = likesCount + 1;
+                     setLikesCount(() => likesCount + 1);
 
                      addLiked(session.user, articleID);
                      updateLikes(articleID, newCount);
@@ -115,24 +141,12 @@ function ArticleOptions({
                {isBookmarked ? (
                   <FaBookmark
                      className="size-9.5 md:size-10.5 p-2 text-cyan-600/45 dark:text-cyan-300/50 transition-color"
-                     onClick={() => {
-                        if (!session) setIsOpen(true);
-                        if (session) {
-                           removeBookmark(session.user, articleID);
-                           toast.success(t('bookmark-removed'));
-                        }
-                     }}
+                     onClick={handleBookmarkClick}
                   />
                ) : (
                   <FaRegBookmark
                      className="size-9.5 md:size-10.5 p-2 text-primary-400 dark:text-primary-400 group-hover:text-cyan-600/60 dark:group-hover:text-cyan-400/60 transition-color"
-                     onClick={() => {
-                        if (!session) setIsOpen(true);
-                        if (session) {
-                           addBookmark(session.user, articleID);
-                           toast.success(t('bookmark-added'));
-                        }
-                     }}
+                     onClick={handleBookmarkClick}
                   />
                )}
             </Button>

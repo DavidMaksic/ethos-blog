@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { useTranslations } from 'use-intl';
 import { getSortedItems } from '@/src/utils/helpers';
+import { useMemo } from 'react';
 
 import Comment from '@/src/ui/comments/comment';
 import SortBy from '@/src/ui/operations/sort-by';
@@ -19,13 +19,12 @@ function CommentList({
    newUser,
    commentsNum,
 }) {
-   const [sortedComments, setSortedComments] = useState();
    const t = useTranslations();
 
-   useEffect(() => {
-      if (param.sort) {
-         setSortedComments(() => getSortedItems(param, comments));
-      }
+   const sortedComments = useMemo(() => {
+      if (!param?.sort) return comments;
+
+      return getSortedItems(param, comments);
    }, [param, comments]);
 
    return (

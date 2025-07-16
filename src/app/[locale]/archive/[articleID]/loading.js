@@ -1,6 +1,16 @@
+'use client';
+
+import { motion } from 'motion/react';
+
 function Loading() {
    return (
-      <div className="relative flex flex-col justify-self-center w-[52rem] xl:w-[46rem] lg:w-[44rem] md:w-full space-y-7 xl:space-y-13 lg:space-y-15 sm:space-y-7 py-2 md:pt-0 [&_div]:rounded-full animate-skeleton transition-200">
+      <motion.div
+         className="relative flex flex-col justify-self-center w-[52rem] xl:w-[46rem] lg:w-[44rem] md:w-full space-y-7 xl:space-y-13 lg:space-y-15 sm:space-y-7 py-2 md:pt-0 [&_div]:rounded-full animate-skeleton transition-200"
+         initial={{ opacity: 0 }}
+         animate={{ opacity: 1 }}
+         exit={{ opacity: 0 }}
+         transition={{ duration: 0.3 }}
+      >
          <span className="absolute inset-0 m-0 bg-gradient-to-t from-primary-100 dark:from-primary-50 lg:dark:from-transparent" />
 
          <div className="flex flex-col gap-8 md:mt-7">
@@ -28,7 +38,7 @@ function Loading() {
             <div className="h-8 bg-primary-300 dark:bg-primary-400/10" />
             <div className="h-8 bg-primary-300 dark:bg-primary-400/5" />
          </div>
-      </div>
+      </motion.div>
    );
 }
 

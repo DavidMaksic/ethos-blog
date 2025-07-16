@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import { getSortedItems } from '@/src/utils/helpers';
 
@@ -9,49 +9,45 @@ import BookmarkItem from '@/src/ui/bookmarks/bookmark-item';
 import Pagination from '@/src/ui/pagination';
 
 function BookmarkList({ bookmarkIDs, articles, categories, param }) {
-   const [bookmarkedArticles, setBookmarkedArticles] = useState();
-   const [sortedArticles, setSortedArticles] = useState();
+   const [bookmarkedArticles, setBookmarkedArticles] = useState([]);
+   const [loading, setLoading] = useState(true);
    const t = useTranslations('Profile');
 
    useEffect(() => {
-      setBookmarkedArticles(() =>
-         bookmarkIDs.map((bookmarkID) =>
-            articles.find((item) => item.id === bookmarkID)
-         )
-      );
+      const bookmarked = bookmarkIDs
+         .map((bookmarkID) => articles.find((item) => item.id === bookmarkID))
+         .filter(Boolean);
+
+      setBookmarkedArticles(bookmarked);
+      setLoading(false);
    }, [bookmarkIDs, articles]);
 
-   useEffect(() => {
-      // - 1. Sort
-      setSortedArticles(() => getSortedItems(param, bookmarkedArticles));
+   const displayedArticles = useMemo(() => {
+      if (!bookmarkedArticles || bookmarkedArticles.length === 0) return [];
 
-      // - 2. Pagination
-      setSortedArticles(() => {
-         const page = !param.page ? 1 : param.page;
+      let filtered = [...bookmarkedArticles];
 
-         const from = (page - 1) * 3;
-         const to = from + 3;
-
-         return bookmarkedArticles?.slice(from, to);
-      });
-
-      // - 3. Search
+      // 1. Search filtering
       if (param.search) {
-         const query = param.search;
-
-         setSortedArticles(() =>
-            bookmarkedArticles
-               ?.filter(
-                  (item) =>
-                     item.title?.toLowerCase().includes(query) ||
-                     item.title?.includes(query)
-               )
-               .slice(0, 3)
+         const query = param.search.toLowerCase();
+         filtered = filtered.filter((item) =>
+            item.title?.toLowerCase().includes(query)
          );
       }
+
+      // 2. Sorting
+      filtered = getSortedItems(param, filtered);
+
+      // 3. Pagination
+      const page = param.page ? Number(param.page) : 1;
+      const itemsPerPage = 3;
+      const from = (page - 1) * itemsPerPage;
+      const to = from + itemsPerPage;
+
+      return filtered.slice(from, to);
    }, [param, bookmarkedArticles]);
 
-   if (!sortedArticles)
+   if (loading)
       return (
          <div className="relative h-[44rem] xl:h-[37.5rem] lg:h-[35rem] md:h-[51.5rem] max-w-full space-y-10.5 xl:space-y-9 lg:space-y-7 md:space-y-8 animate-skeleton">
             <div className="flex justify-between items-center">
@@ -75,8 +71,8 @@ function BookmarkList({ bookmarkIDs, articles, categories, param }) {
             </div>
 
             <div className="flex flex-col gap-4 lg:gap-3">
-               {sortedArticles?.length ? (
-                  sortedArticles?.map((item) => (
+               {displayedArticles.length ? (
+                  displayedArticles.map((item) => (
                      <BookmarkItem
                         article={item}
                         categories={categories}
@@ -91,10 +87,10 @@ function BookmarkList({ bookmarkIDs, articles, categories, param }) {
             </div>
          </div>
 
-         {bookmarkedArticles?.length <= 3 ? (
+         {bookmarkedArticles.length <= 3 ? (
             <div className="h-24" />
          ) : (
-            <Pagination count={bookmarkedArticles?.length} isArchive={false} />
+            <Pagination count={bookmarkedArticles.length} isArchive={false} />
          )}
       </>
    );

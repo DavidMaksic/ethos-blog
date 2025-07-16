@@ -147,7 +147,6 @@ async function Page({ params, searchParams }) {
                   session={session}
                   allUsers={allUsers}
                   user={user}
-                  count={article.likes}
                   comments={filteredComments}
                   hasCommented={hasCommented}
                   hasReplied={hasReplied}
@@ -155,7 +154,7 @@ async function Page({ params, searchParams }) {
                />
 
                <div className="size-full flex flex-col items-center self-center gap-4 bg-secondary dark:bg-primary-200 rounded-3xl px-12 xl:px-16! md:px-12! sm:px-11! py-12 pb-14 text-3xl box-shadow transition-bg_border">
-                  <div className="relative size-28 md:size-30">
+                  <div className="relative size-28 md:size-30 select-none">
                      {author?.profile_image ? (
                         <RemoteImage
                            imageUrl={author.profile_image}
