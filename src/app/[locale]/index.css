@@ -31,7 +31,7 @@
 
 @media screen and (max-width: 550px) {
    html {
-      font-size: 10px;
+      font-size: 11px;
    }
 }
 
@@ -1702,6 +1702,10 @@ h3 {
 }
 
 @media screen and (max-width: 550px) {
+   .inter-padding {
+      padding-inline: 28px;
+   }
+
    .swiper-pagination {
       margin-bottom: 0px !important;
    }

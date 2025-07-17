@@ -62,7 +62,7 @@ export default async function RootLayout({ children, params }) {
    return (
       <html lang={locale} suppressHydrationWarning>
          <body
-            className={`min-h-screen flex flex-col text-xl xl:px-78 inter-padding md:px-8 short:px-24 text-text selection:bg-accent-500/50 dark:selection:bg-accent-200/50 selection:text-white caret-primary-400 antialiased bg-primary dark:bg-primary transition-200 background-gradient ${cormorantGaramond.className}`}
+            className={`min-h-screen flex flex-col text-xl xl:px-78 inter-padding text-text selection:bg-accent-500/50 dark:selection:bg-accent-200/50 selection:text-white caret-primary-400 antialiased bg-primary dark:bg-primary transition-200 background-gradient ${cormorantGaramond.className}`}
          >
             <NextIntlClientProvider>
                <LanguageProvider>
