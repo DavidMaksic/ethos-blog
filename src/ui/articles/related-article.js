@@ -14,7 +14,7 @@ function RelatedArticle({ article, author }) {
 
    return (
       <Link
-         href={`/archive/${article.id}`}
+         href={`/${article.id}`}
          className="relative flex flex-col rounded-2xl group cursor-pointer overflow-hidden bg-secondary dark:bg-primary-200 border border-primary-200 hover:scale-102 transition-[scale] duration-200 select-none box-shadow group"
       >
          <div className="relative h-48 xl:h-44 md:h-80 sm:h-60">

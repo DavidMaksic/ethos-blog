@@ -27,7 +27,7 @@ function UserComment({ comment, users, user, articles, allComments }) {
    const repliedTo = users.find((item) => item.id === repliedToID);
 
    const title = commentedArticle.title;
-   const fullUrl = `/archive/${commentedArticle.id}/#comment-${comment.id}`;
+   const fullUrl = `/${commentedArticle.id}/#comment-${comment.id}`;
 
    return (
       <Link

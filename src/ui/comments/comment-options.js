@@ -45,7 +45,7 @@ function CommentOptions({
                   <>
                      {/* <Menus.Button
                      icon={<LuPencilLine className="stroke-[1.7px]" />}
-                     // handler={() => navigate(`/archive/edit/:${id}`)}
+                     // handler={() => navigate(`/edit/:${id}`)}
                      >
                         Edit
                      </Menus.Button> */}

@@ -80,7 +80,7 @@ export async function updateLikes(articleID, count) {
       .eq('id', articleID);
 
    if (error) throw new Error('Article could not be liked');
-   revalidatePath(`/archive/${articleID}`);
+   revalidatePath(`/${articleID}`);
 }
 
 export async function addBookmark(user, articleID) {
@@ -103,7 +103,7 @@ export async function addBookmark(user, articleID) {
       .eq('id', user.userID);
 
    if (error1) throw new Error('Article could not be bookmarked');
-   revalidatePath(`/archive/${articleID}`);
+   revalidatePath(`/${articleID}`);
 }
 
 export async function removeBookmark(user, articleID) {
@@ -126,7 +126,7 @@ export async function removeBookmark(user, articleID) {
       .eq('id', user.userID);
 
    if (error1) throw new Error('Bookmark could not be removed');
-   revalidatePath(`/archive/${articleID}`);
+   revalidatePath(`/${articleID}`);
 }
 
 export async function addComment(previousState, formData) {
@@ -143,7 +143,7 @@ export async function addComment(previousState, formData) {
 
    if (error) throw new Error('Comment could not be posted');
 
-   revalidatePath(`/archive/${articleID}`);
+   revalidatePath(`/${articleID}`);
    return { success: true };
 }
 
@@ -155,7 +155,7 @@ export async function deleteComment(commentID, articleID) {
 
    if (error) throw new Error('Comment could not be deleted');
 
-   revalidatePath(`/archive/${articleID}`);
+   revalidatePath(`/${articleID}`);
    return { success: true };
 }
 
@@ -166,7 +166,7 @@ export async function commentLikes(commentID, articleID, count) {
       .eq('id', commentID);
 
    if (error) throw new Error('Comment could not be liked');
-   revalidatePath(`/archive/${articleID}`);
+   revalidatePath(`/${articleID}`);
 }
 
 export async function replyLikes(replyID, articleID, count) {
@@ -176,7 +176,7 @@ export async function replyLikes(replyID, articleID, count) {
       .eq('id', replyID);
 
    if (error) throw new Error('Reply could not be liked');
-   revalidatePath(`/archive/${articleID}`);
+   revalidatePath(`/${articleID}`);
 }
 
 export async function addReply(previousState, formData) {
@@ -194,7 +194,7 @@ export async function addReply(previousState, formData) {
 
    if (error) throw new Error('Reply could not be posted');
 
-   revalidatePath(`/archive/${articleID}`);
+   revalidatePath(`/${articleID}`);
    return { success: true };
 }
 
@@ -203,7 +203,7 @@ export async function deleteReply(replyID, articleID) {
 
    if (error) throw new Error('Reply could not be deleted');
 
-   revalidatePath(`/archive/${articleID}`);
+   revalidatePath(`/${articleID}`);
    return { success: true };
 }
 

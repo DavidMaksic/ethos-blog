@@ -42,7 +42,7 @@ function ArticleItem({ article, categories, style, authors }) {
          transition={{ duration: 0.3 }}
       >
          <Link
-            href={`/archive/${article.id}`}
+            href={`/${article.id}`}
             className={`relative grid grid-cols-[0.4fr_1fr] lg:grid-cols-[0.3fr_1fr] sm:grid-cols-1 rounded-2xl group cursor-pointer overflow-hidden border border-quaternary dark:border-primary-300/10 bg-white ${style} hover:translate-x-1.5 transition-[translate] duration-200 select-none box-shadow sm:h-fit`}
          >
             <div className="relative h-50 xl:h-54 lg:h-52 md:h-auto sm:hidden">

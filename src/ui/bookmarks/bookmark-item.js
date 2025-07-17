@@ -40,7 +40,7 @@ function BookmarkItem({ article, categories }) {
          transition={{ duration: 0.3 }}
       >
          <Link
-            href={`/archive/${article.id}`}
+            href={`/${article.id}`}
             className="relative grid grid-cols-[2fr_0.8fr] min-h-45.5 xl:min-h-46 lg:min-h-38 md:min-h-52 sm:min-h-[18vh] rounded-2xl group cursor-pointer overflow-hidden border border-quaternary dark:border-primary-300/15 bg-white dark:bg-primary-300/15 hover:translate-x-1.5 transition-[translate] duration-200 select-none box-shadow"
          >
             <div className="self-center py-2 px-12 md:pr-0 space-y-5 lg:space-y-4 z-20">
