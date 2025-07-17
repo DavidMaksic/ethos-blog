@@ -1,12 +1,4 @@
 import {
-   Cormorant_Garamond,
-   Gentium_Book_Plus,
-   Cormorant_SC,
-   Crimson_Text,
-   EB_Garamond,
-   Parisienne,
-} from 'next/font/google';
-import {
    getArticles,
    getCategories,
    getComments,
@@ -17,25 +9,19 @@ import {
    getUsers,
    getUser,
 } from '@/src/lib/data-service';
-import { HiOutlineUserCircle } from 'react-icons/hi2';
+import { Cormorant_Garamond, EB_Garamond } from 'next/font/google';
 import { format } from 'date-fns';
 import { auth } from '@/src/lib/auth';
 
 import OtherArticleOptions from '@/src/ui/articles/other-article-options';
+import ArticleAuthorInfo from '@/src/ui/articles/article-author-info';
 import RelatedArticles from '@/src/ui/articles/related-articles';
 import ArticleContent from '@/src/ui/articles/article-content';
 import ArticleHeading from '@/src/ui/articles/article-heading';
 import CommentInput from '@/src/ui/comments/comment-input';
 import ArticleImage from '@/src/ui/articles/article-image';
 import CommentList from '@/src/ui/comments/comment-list';
-import RemoteImage from '@/src/ui/remote-image';
 import Options from '@/src/ui/options';
-
-const cormorantSC = Cormorant_SC({
-   subsets: ['latin'],
-   display: 'swap',
-   weight: ['300', '400', '500', '600', '700'],
-});
 
 const ebGaramond = EB_Garamond({
    subsets: ['latin'],
@@ -50,26 +36,6 @@ const cormorantGaramond = Cormorant_Garamond({
    display: 'swap',
    weight: ['400', '500', '600', '700'],
    variable: '--font-cormorant-garamond',
-});
-
-const parisienne = Parisienne({
-   subsets: ['latin'],
-   display: 'swap',
-   weight: ['400'],
-});
-
-const gentium = Gentium_Book_Plus({
-   subsets: ['cyrillic'],
-   display: 'swap',
-   style: ['normal', 'italic'],
-   weight: ['400', '700'],
-});
-
-const crimsonText = Crimson_Text({
-   subsets: ['latin'],
-   display: 'swap',
-   style: ['normal', 'italic'],
-   weight: ['400', '600', '700'],
 });
 
 async function Page({ params, searchParams }) {
@@ -145,14 +111,9 @@ async function Page({ params, searchParams }) {
                date={date}
             />
 
-            <ArticleContent
-               content={article?.content}
-               srbFont={gentium.className}
-               engFont={crimsonText.className}
-               article={article}
-            />
+            <ArticleContent content={article?.content} article={article} />
 
-            <div className="flex sm:flex-col gap-6 mt-12">
+            <ArticleAuthorInfo article={article} author={author} date={date}>
                <OtherArticleOptions
                   article={article}
                   session={session}
@@ -163,50 +124,7 @@ async function Page({ params, searchParams }) {
                   hasReplied={hasReplied}
                   commentsNum={commentsNum}
                />
-
-               <div className="size-full flex flex-col items-center self-center gap-4 bg-secondary dark:bg-primary-200 rounded-3xl px-12 xl:px-16! md:px-12! sm:px-11! py-12 pb-14 text-3xl box-shadow transition-bg_border">
-                  <div className="relative size-28 md:size-30 select-none">
-                     {author?.profile_image ? (
-                        <RemoteImage
-                           imageUrl={author.profile_image}
-                           alt="User image"
-                           styles="block aspect-square object-cover object-center rounded-full dark:opacity-90"
-                        />
-                     ) : (
-                        <HiOutlineUserCircle className="size-30 stroke-[0.5px] text-primary-400/70 dark:text-primary-300" />
-                     )}
-                  </div>
-
-                  <div className="flex flex-col gap-6 self-center text-center">
-                     <div className="flex flex-col md:gap-1">
-                        <span
-                           className={`text-accent-400 dark:text-accent text-[2.5rem] md:text-5xl w-fit self-center ${parisienne.className}`}
-                        >
-                           {author.full_name}
-                        </span>
-                        <span
-                           className={`text-xl text-primary-400 ${cormorantSC.className}`}
-                        >
-                           {date}
-                        </span>
-                     </div>
-
-                     {author?.description_en || author?.description_srb ? (
-                        <p className="text-xl md:text-2xl">
-                           {article.language === 'English'
-                              ? author.description_en
-                              : author.description_srb}
-                        </p>
-                     ) : (
-                        <p className="text-xl md:text-2xl">
-                           {article.language === 'English'
-                              ? 'Is an author writing for Ethos blog.'
-                              : 'Је аутор који пише за Етос блог.'}
-                        </p>
-                     )}
-                  </div>
-               </div>
-            </div>
+            </ArticleAuthorInfo>
 
             <CommentInput
                session={session}
@@ -235,6 +153,7 @@ async function Page({ params, searchParams }) {
                title={article.title}
                author={author}
             />
+
             <Options />
          </article>
       </main>
