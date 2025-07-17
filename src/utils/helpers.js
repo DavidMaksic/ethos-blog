@@ -42,15 +42,10 @@ export function getSortedItems(param, items) {
 }
 
 export function getMainArticles(array) {
-   const mainArticles = array.filter((item) => item.main_feature);
+   console.log('array: ', array);
+   const englishArticles = array.filter((item) => item.language === 'English');
 
-   const englishArticles = mainArticles.filter(
-      (item) => item.language === 'English'
-   );
-
-   const serbianArticles = mainArticles.filter(
-      (item) => item.language === 'Српски'
-   );
+   const serbianArticles = array.filter((item) => item.language === 'Српски');
 
    return { englishArticles, serbianArticles };
 }

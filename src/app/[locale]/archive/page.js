@@ -1,4 +1,8 @@
-import { getArticles, getAuthors, getCategories } from '@/src/lib/data-service';
+import {
+   getArticlePreviews,
+   getAuthors,
+   getCategories,
+} from '@/src/lib/data-service';
 import { getTranslations } from 'next-intl/server';
 
 import Categories from '@/src/ui/categories/categories';
@@ -14,7 +18,7 @@ export async function generateMetadata({ params }) {
 
 async function Page({ searchParams }) {
    const param = await searchParams;
-   const articles = await getArticles();
+   const articles = await getArticlePreviews();
    const categories = await getCategories();
    const authors = await getAuthors();
    const t = await getTranslations();

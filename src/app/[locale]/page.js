@@ -1,7 +1,7 @@
 import {
+   getArticlePreviews,
    getMainArticles,
    getCategories,
-   getArticles,
    getAuthors,
 } from '@/src/lib/data-service';
 import FeaturedArticles from '@/src/ui/articles/featured-articles';
@@ -10,7 +10,7 @@ import MainArticles from '@/src/ui/articles/main-articles';
 
 export default async function Home({ searchParams }) {
    const param = await searchParams;
-   const articles = await getArticles();
+   const articles = await getArticlePreviews();
    const categories = await getCategories();
    const mainArticles = await getMainArticles();
    const authors = await getAuthors();

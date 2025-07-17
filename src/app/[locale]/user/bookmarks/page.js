@@ -1,4 +1,8 @@
-import { getArticles, getCategories, getUser } from '@/src/lib/data-service';
+import {
+   getArticlePreviews,
+   getCategories,
+   getUser,
+} from '@/src/lib/data-service';
 import { auth } from '@/src/lib/auth';
 import BookmarkList from '@/src/ui/bookmarks/bookmark-list';
 
@@ -12,7 +16,7 @@ async function Page({ searchParams }) {
    const { bookmarks } = await getUser(user.email);
 
    const searchParam = await searchParams;
-   const articles = await getArticles();
+   const articles = await getArticlePreviews();
    const categories = await getCategories();
    const bookmarkIDs = JSON.parse(bookmarks).flat();
 

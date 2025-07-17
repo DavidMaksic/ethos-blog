@@ -34,6 +34,7 @@ function Articles({
       // 1. Sort
       if (param.sort) {
          result = getSortedItems(param, result);
+         console.log('result: ', result);
       }
 
       // 2. Search

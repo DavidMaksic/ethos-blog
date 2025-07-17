@@ -1,7 +1,7 @@
 'use client';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { getMainArticles } from '@/src/utils/helpers';
 import { useLocale } from 'next-intl';
 import MainArticle from '@/src/ui/articles/main-article';

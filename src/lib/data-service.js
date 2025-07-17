@@ -12,6 +12,20 @@ export async function getArticles() {
    return data;
 }
 
+export async function getArticlePreviews() {
+   const { data, error } = await supabase
+      .from('articles')
+      .select(
+         'id, categoryID, created_at, title, image, description, author_id, featured, language'
+      )
+      .eq('status', 'published')
+      .order('id', { ascending: false });
+
+   if (error) throw new Error('Articles could not be loaded');
+
+   return data;
+}
+
 export async function getArticle(id) {
    const { data, error } = await supabase
       .from('articles')
@@ -27,8 +41,9 @@ export async function getArticle(id) {
 export async function getMainArticles() {
    const { data, error } = await supabase
       .from('articles')
-      .select()
+      .select('id, title, image, description, language')
       .eq('status', 'published')
+      .eq('main_feature', 'true')
       .order('index');
 
    if (error) throw new Error('Articles could not be loaded');
