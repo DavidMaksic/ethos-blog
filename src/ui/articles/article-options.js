@@ -120,7 +120,7 @@ function ArticleOptions({
             </Button>
 
             <Button
-               styles="ml-px"
+               styles="ml-px xs:hidden"
                handler={(e) => {
                   e.preventDefault();
                   document.querySelector('.comment-section').scrollIntoView({
@@ -163,7 +163,9 @@ function ArticleOptions({
             </AnimatePresence>
          </div>
 
-         <div className="text-primary-300 text-2xl select-none">|</div>
+         <div className="text-primary-300 text-2xl select-none xs:hidden">
+            |
+         </div>
       </>
    );
 }
