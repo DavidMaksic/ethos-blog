@@ -14,11 +14,15 @@ export async function generateMetadata({ params }) {
 }
 
 async function Page() {
-   const { user } = await auth();
+   const [session, comments, replies, t] = await Promise.all([
+      auth(),
+      getComments(),
+      getReplies(),
+      getTranslations('Profile'),
+   ]);
+
+   const { user } = session;
    const newUser = await getUser(user.email);
-   const comments = await getComments();
-   const replies = await getReplies();
-   const t = await getTranslations('Profile');
 
    const likesLength = JSON.parse(newUser?.liked).flat().length;
    const bookmarksLength = JSON.parse(newUser?.bookmarks).flat().length;

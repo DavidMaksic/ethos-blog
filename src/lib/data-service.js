@@ -3,18 +3,6 @@ import { supabase } from '@/src/lib/supabase';
 export async function getArticles() {
    const { data, error } = await supabase
       .from('articles')
-      .select()
-      .eq('status', 'published')
-      .order('id', { ascending: false });
-
-   if (error) throw new Error('Articles could not be loaded');
-
-   return data;
-}
-
-export async function getArticlePreviews() {
-   const { data, error } = await supabase
-      .from('articles')
       .select(
          'id, categoryID, created_at, title, image, description, author_id, featured, language'
       )

@@ -11,9 +11,9 @@ export async function generateMetadata({ params }) {
 }
 
 async function Page() {
-   const t = await getTranslations('Profile');
-   const { user } = await auth();
-   const { username, image } = await getUser(user.email);
+   const [session, t] = await Promise.all([auth(), getTranslations('Profile')]);
+
+   const { username, image } = await getUser(session.user.email);
 
    return (
       <div className="space-y-4 md:flex md:flex-col md:gap-4">

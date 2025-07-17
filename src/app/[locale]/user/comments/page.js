@@ -17,15 +17,18 @@ export async function generateMetadata({ params }) {
 }
 
 async function Page({ searchParams }) {
-   const t = await getTranslations();
-   const searchParam = await searchParams;
-   const articles = await getArticles();
+   const [searchParam, session, articles, users, replies, t] =
+      await Promise.all([
+         searchParams,
+         auth(),
+         getArticles(),
+         getUsers(),
+         getReplies(),
+         getTranslations(),
+      ]);
 
-   const session = await auth();
-   const users = await getUsers();
    const user = await getUser(session?.user.email);
 
-   const replies = await getReplies();
    const updatedReplies = replies.map((item) => ({
       ...item,
       isReply: true,

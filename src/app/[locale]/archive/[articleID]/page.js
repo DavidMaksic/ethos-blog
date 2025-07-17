@@ -7,8 +7,8 @@ import {
    Parisienne,
 } from 'next/font/google';
 import {
-   getCategories,
    getArticles,
+   getCategories,
    getComments,
    getSettings,
    getAuthors,
@@ -73,22 +73,36 @@ const crimsonText = Crimson_Text({
 });
 
 async function Page({ params, searchParams }) {
-   const param = await params;
-   const searchParam = await searchParams;
+   const [
+      param,
+      searchParam,
+      session,
+      articles,
+      allUsers,
+      authors,
+      comments,
+      replies,
+      categories,
+      comment_length,
+   ] = await Promise.all([
+      params,
+      searchParams,
+      auth(),
+      getArticles(),
+      getUsers(),
+      getAuthors(),
+      getComments(),
+      getReplies(),
+      getCategories(),
+      getSettings(),
+   ]);
 
    // - Users and authors logic
-   const session = await auth();
-   const allUsers = await getUsers();
    const user = await getUser(session?.user?.email);
-
-   const articles = await getArticles();
    const article = await getArticle(param?.articleID);
-
-   const authors = await getAuthors();
    const author = authors?.find((item) => item.id === article.author_id);
 
    // - Comment logic
-   const comments = await getComments();
    const filteredComments = comments.filter(
       (item) => item.article_id === article.id
    );
@@ -97,7 +111,6 @@ async function Page({ params, searchParams }) {
    hasCommented = !!filteredComments.find((item) => item.user_id === user?.id);
 
    // - Reply logic
-   const replies = await getReplies();
    const repliesInThisArticle = replies?.filter(
       (item) => item.article_id === article.id
    );
@@ -108,11 +121,9 @@ async function Page({ params, searchParams }) {
    );
 
    // - Categories logic
-   const categories = await getCategories();
    const category = categories?.find((item) => item.id === article?.categoryID);
 
    // - Other logic
-   const { comment_length: commentLength } = await getSettings();
    const date = format(new Date(article.created_at), 'MMM dd, yyyy');
    const commentsNum = repliesInThisArticle?.length + filteredComments?.length;
 
@@ -202,7 +213,7 @@ async function Page({ params, searchParams }) {
                oldUser={session?.user}
                newUser={user}
                article={article}
-               commentLength={commentLength}
+               commentLength={comment_length.commentLength}
             />
 
             <CommentList

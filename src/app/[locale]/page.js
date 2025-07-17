@@ -1,5 +1,5 @@
 import {
-   getArticlePreviews,
+   getArticles,
    getMainArticles,
    getCategories,
    getAuthors,
@@ -9,11 +9,14 @@ import LatestArticles from '@/src/ui/articles/latest-articles';
 import MainArticles from '@/src/ui/articles/main-articles';
 
 export default async function Home({ searchParams }) {
-   const param = await searchParams;
-   const articles = await getArticlePreviews();
-   const categories = await getCategories();
-   const mainArticles = await getMainArticles();
-   const authors = await getAuthors();
+   const [param, articles, categories, mainArticles, authors] =
+      await Promise.all([
+         searchParams,
+         getArticles(),
+         getCategories(),
+         getMainArticles(),
+         getAuthors(),
+      ]);
 
    return (
       <>
