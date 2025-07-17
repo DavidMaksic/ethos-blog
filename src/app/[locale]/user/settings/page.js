@@ -24,21 +24,21 @@ async function Page() {
                      {t('username')}
                   </label>
                   <span className="text-3xl">
-                     {username ? username : user.name}
+                     {username ? username : session.user.name}
                   </span>
                </div>
 
                <UsernameInput />
             </div>
 
-            <ProfileImage user={user} image={image} />
+            <ProfileImage user={session.user} image={image} />
          </div>
 
          <div className="size-fit md:w-full md:order-1 flex flex-col gap-3 bg-white dark:bg-primary-300/10 rounded-3xl border border-quaternary dark:border-primary-300/15 text-lg text-[#4d525c] dark:text-slate-300/80 px-17 lg:px-14 py-8 box-shadow transition-200">
             <label className="text-sm uppercase font-semibold text-primary-400 tracking-wider">
                {t('email')}
             </label>
-            <span className="text-2xl">{user.email}</span>
+            <span className="text-2xl">{session.user.email}</span>
          </div>
       </div>
    );
