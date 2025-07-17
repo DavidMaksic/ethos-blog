@@ -49,3 +49,27 @@ export function getMainArticles(array) {
 
    return { englishArticles, serbianArticles };
 }
+
+export function applyPagination(parsedParam, result) {
+   const page = Number(parsedParam.page || 1);
+   const pageSize = Number(process.env.NEXT_PUBLIC_PAGE_SIZE || 10);
+   const from = (page - 1) * pageSize;
+   const to = from + pageSize;
+   const paginatedResult = result.slice(from, to);
+
+   return paginatedResult;
+}
+
+export function applyFilter(result, parsedParam, currentCategoryID) {
+   const filteredResult = result.filter((item) => {
+      const matchesCategory =
+         !currentCategory || item.categoryID === currentCategoryID;
+      const matchesLanguage = !parsedParam.lang
+         ? item.language === language
+         : item.language ===
+           parsedParam.lang.charAt(0).toUpperCase() + parsedParam.lang.slice(1);
+      return matchesCategory && matchesLanguage;
+   });
+
+   return filteredResult;
+}

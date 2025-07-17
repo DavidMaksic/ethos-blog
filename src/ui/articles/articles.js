@@ -1,9 +1,9 @@
 'use client';
 
-import { useMemo } from 'react';
+import { applyPagination, getSortedItems } from '@/src/utils/helpers';
 import { useTranslations } from 'next-intl';
-import { getSortedItems } from '@/src/utils/helpers';
 import { useLanguage } from '@/src/context/language-context';
+import { useMemo } from 'react';
 
 import ArticleItem from '@/src/ui/articles/article-item';
 import Pagination from '@/src/ui/pagination';
@@ -17,11 +17,15 @@ function Articles({
    authors,
    style,
 }) {
-   const { language } = useLanguage();
+   const {
+      language: { language },
+   } = useLanguage();
    const t = useTranslations('Archive');
 
    // Derive filtered & paginated articles
    const { filteredArticles, paginatedArticles } = useMemo(() => {
+      const start = performance.now();
+
       if (!isArchive) {
          return {
             filteredArticles: articles,
@@ -34,7 +38,6 @@ function Articles({
       // 1. Sort
       if (param.sort) {
          result = getSortedItems(param, result);
-         console.log('result: ', result);
       }
 
       // 2. Search
@@ -46,28 +49,26 @@ function Articles({
       }
 
       // 3. Filter (category + language)
+      const currentCategoryID = currentCategory?.id;
+
       result = result.filter((item) => {
          const matchesCategory =
-            !currentCategory || item.categoryID === currentCategory.id;
+            !currentCategory || item.categoryID === currentCategoryID;
          const matchesLanguage = !param.lang
-            ? item.language === language.language
+            ? item.language === language
             : item.language ===
               param.lang.charAt(0).toUpperCase() + param.lang.slice(1);
          return matchesCategory && matchesLanguage;
       });
 
       // 4. Pagination
-      const page = Number(param.page || 1);
-      const pageSize = Number(process.env.NEXT_PUBLIC_PAGE_SIZE || 10);
-      const from = (page - 1) * pageSize;
-      const to = from + pageSize;
-      const paginated = result.slice(from, to);
+      const paginatedResult = applyPagination(param, result);
 
       return {
          filteredArticles: result,
-         paginatedArticles: paginated,
+         paginatedArticles: paginatedResult,
       };
-   }, [articles, param, currentCategory, language.language, isArchive]);
+   }, [articles, param, currentCategory, language, isArchive]);
 
    return (
       <>

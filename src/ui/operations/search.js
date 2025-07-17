@@ -17,7 +17,7 @@ function Search({ isArchive = false }) {
    const [inputValue, setInputValue] = useState(initialQuery);
 
    const handler = useSetParams();
-   const debouncedInput = useDebounce(inputValue, 400);
+   const debouncedInput = useDebounce(inputValue, 200);
 
    // - Open search if there's an existing query
    useEffect(() => {
