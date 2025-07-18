@@ -61,6 +61,14 @@ export default async function RootLayout({ children, params }) {
 
    return (
       <html lang={locale} suppressHydrationWarning>
+         <head>
+            <script
+               defer
+               src={UMAMI_SRC}
+               data-website-id={UMAMI_WEBSITE_ID}
+            ></script>
+         </head>
+
          <body
             className={`min-h-screen flex flex-col text-xl xl:px-78 inter-padding text-text selection:bg-accent-500/50 dark:selection:bg-accent-200/50 selection:text-white caret-primary-400 antialiased bg-primary dark:bg-primary transition-200 background-gradient ${cormorantGaramond.className}`}
          >

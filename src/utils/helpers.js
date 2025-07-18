@@ -42,7 +42,6 @@ export function getSortedItems(param, items) {
 }
 
 export function getMainArticles(array) {
-   console.log('array: ', array);
    const englishArticles = array.filter((item) => item.language === 'English');
 
    const serbianArticles = array.filter((item) => item.language === 'Српски');
