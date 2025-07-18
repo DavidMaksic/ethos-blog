@@ -49,7 +49,7 @@
 
 @media screen and (max-width: 390px) {
    html {
-      font-size: 8px;
+      font-size: 10px;
    }
 }
 
@@ -1731,8 +1731,8 @@ h3 {
    }
 
    .alert {
-      font-size: 14px !important;
-      line-height: 2.2rem;
+      font-size: 17px !important;
+      line-height: 2.1rem;
       padding: 14px 26px 15px 26px !important;
    }
 
@@ -1802,8 +1802,8 @@ h3 {
    }
 
    .alert {
-      font-size: 11px !important;
-      line-height: 2rem;
+      font-size: 15px !important;
+      line-height: 2.1rem;
    }
 
    .bn-inline-content:empty {
