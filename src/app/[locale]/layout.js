@@ -64,7 +64,7 @@ export default async function RootLayout({ children, params }) {
          <head>
             <script
                defer
-               src={UMAMI_SRC}
+               src="https://cloud.umami.is/script.js"
                data-website-id={UMAMI_WEBSITE_ID}
             ></script>
          </head>
