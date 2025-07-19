@@ -1685,7 +1685,9 @@ h3 {
       padding: 0 0 0 32px !important;
    }
 
-   .bn-block-column-list:has([data-content-type='bulletListItem']) {
+   .bn-block-column-list:has([data-content-type='bulletListItem']):not(
+         :has([data-content-type='image'])
+      ) {
       gap: 0 !important;
    }
 
@@ -1733,7 +1735,7 @@ h3 {
    }
 
    .alert {
-      font-size: 18px !important;
+      font-size: 18.5px !important;
       line-height: 2.1rem;
       padding: 18px 26px 19px 26px !important;
    }
