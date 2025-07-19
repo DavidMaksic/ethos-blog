@@ -95,7 +95,7 @@ function Reply({
 
                <div className="flex items-center gap-2 md:gap-2.5 mt-2 md:mt-3">
                   <div
-                     className={`flex items-center gap-2 h-9 md:h-11 w-fit rounded-xl px-3 py-1.5 bg-primary-300/20 dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75 ${
+                     className={`flex items-center gap-2 h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-3 py-1.5 bg-primary-300/20 dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75 ${
                         replyCount === 0 && 'gap-0!'
                      }`}
                      onClick={() => {
@@ -120,9 +120,9 @@ function Reply({
                      }}
                   >
                      {isLiked ? (
-                        <BiSolidLike className="size-4 md:size-6 xs:size-5" />
+                        <BiSolidLike className="size-4 md:size-6 xs:size-[1.35rem]" />
                      ) : (
-                        <BiLike className="size-4 md:size-6 xs:size-5" />
+                        <BiLike className="size-4 md:size-6 xs:size-[1.35rem]" />
                      )}
 
                      <span
@@ -133,7 +133,7 @@ function Reply({
                   </div>
 
                   <div
-                     className="flex items-center gap-2 h-9 md:h-11 w-fit rounded-xl px-3 md:px-4 py-1.5 bg-primary-300/20 dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75"
+                     className="flex items-center gap-2 h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-3 md:px-4 py-1.5 bg-primary-300/20 dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75"
                      onClick={() => {
                         if (!session) setIsOpen(true);
                         if (session) {
@@ -142,8 +142,8 @@ function Reply({
                         }
                      }}
                   >
-                     <LuReply className="size-4 md:size-6 xs:size-5" />
-                     <span className="tracking-wide font-bold text-base md:text-xl xs:text-lg select-none">
+                     <LuReply className="size-4 md:size-6 xs:size-[1.35rem]" />
+                     <span className="tracking-wide font-bold text-base md:text-xl xs:text-[1.2rem] select-none">
                         {t('reply-btn')}
                      </span>
                   </div>
