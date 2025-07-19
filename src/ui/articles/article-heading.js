@@ -12,7 +12,7 @@ const cormorantSC = Cormorant_SC({
 function ArticleHeading({ article }) {
    return (
       <motion.div
-         className="flex flex-col gap-2 text-center"
+         className="flex flex-col gap-2 xs:gap-1 text-center"
          initial={{ opacity: 0 }}
          animate={{ opacity: 1 }}
          transition={{ duration: 0.3 }}

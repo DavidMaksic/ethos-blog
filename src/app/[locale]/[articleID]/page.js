@@ -96,7 +96,7 @@ async function Page({ params, searchParams }) {
    return (
       <main className="flex flex-col">
          <article
-            className={`relative max-w-5xl xl:max-w-[46rem] md:max-w-full self-center flex flex-col gap-6 py-2 px-24 xl:px-0 pb-22 xl:pt-4 md:pt-6 sm:pt-4 transition-200 ${cormorantGaramond.variable} ${ebGaramond.variable}`}
+            className={`relative max-w-5xl xl:max-w-[46rem] md:max-w-full self-center flex flex-col gap-6 xs:gap-4 py-2 px-24 xl:px-0 pb-22 xl:pt-4 md:pt-6 sm:pt-4 transition-200 ${cormorantGaramond.variable} ${ebGaramond.variable}`}
          >
             <ArticleHeading article={article} />
 
