@@ -71,7 +71,7 @@ function Options() {
                   />
 
                   <RxChatBubble
-                     className="py-3.5 px-[16px] xl:px-3 size-[54px] xl:size-13.5 lg:size-13 md:size-14.5 sm:size-15 hover:bg-primary-200/40 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-2xl transition-bg mt-0.5"
+                     className="py-3.5 px-[16px] xl:px-3 size-[54px] xl:size-13.5 lg:size-13 md:size-14.5 sm:size-15 xs:size-14 hover:bg-primary-200/40 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-2xl transition-bg mt-0.5"
                      onClick={(e) => {
                         e.preventDefault();
                         document
@@ -108,7 +108,7 @@ function Options() {
 
                   {openTable && (
                      <motion.div
-                        className="absolute bottom-0 font-headers max-h-[32.5rem] md:max-h-[37rem] right-20 md:right-24.5 flex flex-col py-4 pb-2 px-2 md:px-2.5 border border-primary-300/50 lg:border-primary-300/80 dark:border-tertiary lg:dark:border-primary-300/35 rounded-2xl bg-primary/80 xl:bg-white/90 lg:bg-white dark:bg-transparent xl:dark:bg-transparent lg:dark:bg-primary/90 backdrop-blur-3xl overflow-y-auto scrollbar shadow-article xl:shadow-none md:shadow-menu dark:shadow-none md:dark:shadow-none md:text-2xl"
+                        className="absolute bottom-0 font-headers max-h-[32.5rem] md:max-h-[37rem] xs:max-h-[41rem] right-20 md:right-24.5 flex flex-col py-4 pb-2 px-2 md:px-2.5 border border-primary-300/50 lg:border-primary-300/80 dark:border-tertiary lg:dark:border-primary-300/35 rounded-2xl xs:rounded-3xl bg-primary/80 xl:bg-white/90 lg:bg-white dark:bg-transparent xl:dark:bg-transparent lg:dark:bg-primary/90 backdrop-blur-3xl overflow-y-auto scrollbar shadow-article xl:shadow-none md:shadow-menu dark:shadow-none md:dark:shadow-none md:text-2xl"
                         ref={tableRef}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -121,9 +121,9 @@ function Options() {
 
                         {headings.map((item) => (
                            <a
-                              className={`w-[19rem] md:w-[22rem] sm:w-[23rem] leading-7 py-1.5 lg:py-1.5 md:py-2 hover:text-accent! transition duration-75 px-6 md:px-8 mb-[4.5px] hover:bg-primary-300/10 dark:hover:bg-primary-300/8 lg:leading-7 md:leading-9 rounded-xl sm:font-semibold ${
+                              className={`w-[19rem] md:w-[22rem] sm:w-[23rem] leading-7 py-1.5 lg:py-1.5 md:py-2 hover:text-accent! transition duration-75 px-6 md:px-8 mb-[4.5px] hover:bg-primary-300/10 dark:hover:bg-primary-300/8 lg:leading-7 md:leading-9 rounded-xl sm:font-semibold xs:font-medium ${
                                  item.localName === 'h3' &&
-                                 'sm:font-medium! pl-12 md:pl-14 text-primary-500/90 dark:text-primary-500/80'
+                                 'sm:font-medium! xs:font-normal! pl-12 md:pl-14 text-primary-500/90 dark:text-primary-500/80'
                               } ${item.localName} ${
                                  item.id === activeId &&
                                  'text-accent! bg-primary-300/10 dark:bg-primary-300/8'
