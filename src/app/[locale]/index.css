@@ -1707,7 +1707,7 @@ h3 {
 
 @media screen and (max-width: 550px) {
    .inter-padding {
-      padding-inline: 24px;
+      padding-inline: 22px;
    }
 
    .swiper-pagination {
@@ -1779,7 +1779,7 @@ h3 {
 
 @media (max-width: 400px) {
    .inter-padding {
-      padding-inline: 20px;
+      padding-inline: 18px;
    }
 
    .bn-block-content > h1 {
