@@ -121,7 +121,7 @@ function Options() {
 
                         {headings.map((item) => (
                            <a
-                              className={`w-[19rem] md:w-[22rem] sm:w-[23rem] leading-7 py-1.5 lg:py-1.5 md:py-2 hover:text-accent! transition duration-75 px-6 md:px-8 mb-[4.5px] xs:mb-0.5 hover:bg-primary-300/10 dark:hover:bg-primary-300/8 lg:leading-7 md:leading-9 xs:leading-8 rounded-xl sm:font-semibold xs:font-medium ${
+                              className={`w-[19rem] md:w-[22rem] sm:w-[23rem] leading-7 py-1.5 lg:py-1.5 md:py-2 hover:text-accent! transition duration-75 px-6 md:px-8 mb-[4.5px] xs:mb-0.5 hover:bg-primary-300/10 dark:hover:bg-primary-300/8 lg:leading-7 md:leading-9 xs:leading-7.5 rounded-xl sm:font-semibold xs:font-medium ${
                                  item.localName === 'h3' &&
                                  'sm:font-medium! xs:font-normal! pl-12 md:pl-14 text-primary-500/90 dark:text-primary-500/80'
                               } ${item.localName} ${
