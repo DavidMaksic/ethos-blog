@@ -88,7 +88,7 @@ function Reply({
                </div>
 
                <p
-                  className={`${font} text-[1.4rem] xl:text-[1.3rem] md:text-[1.6rem] xs:text-[1.55rem] md:leading-9 whitespace-pre-line`}
+                  className={`${font} text-[1.4rem] xl:text-[1.3rem] md:text-[1.6rem] xs:text-[1.5rem] md:leading-9 xs:leading-[1.4] whitespace-pre-line`}
                >
                   {reply.content}
                </p>
@@ -120,9 +120,9 @@ function Reply({
                      }}
                   >
                      {isLiked ? (
-                        <BiSolidLike className="size-4 md:size-6" />
+                        <BiSolidLike className="size-4 md:size-6 xs:size-5" />
                      ) : (
-                        <BiLike className="size-4 md:size-6" />
+                        <BiLike className="size-4 md:size-6 xs:size-5" />
                      )}
 
                      <span
@@ -142,8 +142,8 @@ function Reply({
                         }
                      }}
                   >
-                     <LuReply className="size-4 md:size-6" />
-                     <span className="tracking-wide font-bold text-base md:text-xl select-none">
+                     <LuReply className="size-4 md:size-6 xs:size-5" />
+                     <span className="tracking-wide font-bold text-base md:text-xl xs:text-lg select-none">
                         {t('reply-btn')}
                      </span>
                   </div>
