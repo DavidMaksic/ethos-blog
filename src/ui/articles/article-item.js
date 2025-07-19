@@ -55,7 +55,7 @@ function ArticleItem({ article, categories, style, authors }) {
 
             <div className="self-center py-2 md:py-10 sm:py-8 px-12 sm:px-13 space-y-1 md:space-y-1">
                <h2
-                  className={`text-primary-500 dark:text-primary-600/85 text-[1.7rem] lg:text-[1.65rem] md:text-[2rem] leading-8.5 lg:leading-8.5 md:leading-10 sm:leading-10.5 font-semibold dark:font-normal ${
+                  className={`text-primary-500 dark:text-primary-600/85 text-[1.7rem] lg:text-[1.65rem] md:text-[2rem] leading-8.5 lg:leading-8.5 md:leading-10 sm:leading-10.5 xs:leading-10 font-semibold dark:font-normal ${
                      cormorantSC.className
                   } ${
                      article.title.length >= 48 &&
