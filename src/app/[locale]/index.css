@@ -1768,7 +1768,7 @@ h3 {
 
    [data-content-type='quote'] blockquote {
       padding: 0 0 0 20px !important;
-      border-left-width: 1px !important;
+      /* border-left-width: 1px !important; */
       margin-top: 0 !important;
       margin-bottom: 6px !important;
    }
