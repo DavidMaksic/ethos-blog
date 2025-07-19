@@ -18,7 +18,8 @@ function Categories({ categories, currentCategory, param, isArchive = false }) {
    return (
       <motion.div
          className={`md:flex md:flex-col md:items-center space-y-10 lg:space-y-7 md:order-1 md:mb-4 md:px-10 sm:px-6 ${
-            isArchive && 'space-y-[32px]! xl:space-y-[29px]! xl:mb-15!'
+            isArchive &&
+            'space-y-[32px]! xs:space-y-6! xl:space-y-[29px]! xl:mb-15! md:mb-6! xs:mb-4!'
          }`}
          initial={{ opacity: 0 }}
          animate={{ opacity: 1 }}

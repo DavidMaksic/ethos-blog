@@ -46,7 +46,7 @@ function Pagination({ count, isArchive = true }) {
 
    return (
       <div
-         className={`flex justify-between items-center py-3 lg:py-2.5 md:py-3 px-6 pl-9 md:pr-4 bg-transparent border border-quaternary dark:border-primary-300/25 rounded-2xl text-lg md:text-xl transition-bg font-medium ${
+         className={`flex justify-between items-center py-3 lg:py-2.5 md:py-3 px-6 pl-9 xs:pl-6 md:pr-4 xs:pr-3 bg-transparent border border-quaternary dark:border-primary-300/25 rounded-2xl text-lg md:text-xl transition-bg font-medium ${
             isArchive && 'mb-6'
          }`}
       >
@@ -66,7 +66,7 @@ function Pagination({ count, isArchive = true }) {
             <span>{t('results')}</span>
          </div>
 
-         <div className="flex gap-2 font-medium">
+         <div className="flex gap-2 xs:gap-1.5 font-medium">
             <PaginationButton
                type={t('prev-btn')}
                handler={() => prevPage()}

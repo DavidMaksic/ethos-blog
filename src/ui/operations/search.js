@@ -1,14 +1,16 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
-import { useTranslations } from 'next-intl';
 import { useSetParams } from '@/src/hooks/use-set-params';
 import { CgSearch } from 'react-icons/cg';
 import useDebounce from '@/src/hooks/use-debounce';
 
 function Search({ isArchive = false }) {
    const t = useTranslations();
+   const locale = useLocale();
+
    const [open, setOpen] = useState(false);
    const inputRef = useRef(null);
 
@@ -70,11 +72,13 @@ function Search({ isArchive = false }) {
                placeholder={t('Search-placeholder')}
                autoComplete="one-time-code"
                onChange={(e) => setInputValue(e.target.value)}
-               className={`h-11 md:h-12 py-4 px-1 w-[22rem] lg:w-[14rem] bg-white/60 md:bg-white dark:bg-primary-300/18 md:dark:bg-primary-300/18 border border-quaternary dark:border-transparent rounded-full text-xl md:text-2xl font-medium font-article outline-none transition-bg_border ${
+               className={`xs:placeholder-transparent h-11 md:h-12 py-4 px-1 w-[22rem] lg:w-[14rem] bg-white/60 md:bg-white dark:bg-primary-300/18 md:dark:bg-primary-300/18 border border-quaternary dark:border-transparent rounded-full text-xl md:text-2xl font-medium font-article outline-none transition-bg_border ${
                   open && 'rounded-l-none border-l-transparent'
                } ${
                   isArchive
-                     ? 'md:w-[18rem] sm:w-[10.5rem]'
+                     ? `md:w-[18rem] sm:w-[10.5rem] ${
+                          locale === 'en' ? 'xs:w-[8rem]' : 'xs:w-[6.5rem]'
+                       }`
                      : 'md:w-[9.5rem] sm:w-[7rem]'
                }`}
             />
