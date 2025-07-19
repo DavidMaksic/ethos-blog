@@ -71,7 +71,7 @@ function Options() {
                   />
 
                   <RxChatBubble
-                     className="py-3.5 px-[16px] xl:px-3 size-[54px] xl:size-13.5 lg:size-13 md:size-14.5 sm:size-15 xs:size-14 hover:bg-primary-200/40 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-2xl transition-bg mt-0.5"
+                     className="py-3.5 px-[16px] xl:px-3 xs:px-4 size-[54px] xl:size-13.5 lg:size-13 md:size-14.5 sm:size-15 xs:size-15 hover:bg-primary-200/40 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-2xl transition-bg mt-0.5"
                      onClick={(e) => {
                         e.preventDefault();
                         document

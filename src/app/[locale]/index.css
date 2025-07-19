@@ -787,18 +787,18 @@
 /* Style first letter of an article */
 
 .bn-block-group:first-child > div:first-child .bn-inline-content {
-   @apply first-letter:font-creator first-letter:text-[8rem] xl:first-letter:text-[7rem]! md:first-letter:text-[8rem]! first-letter:leading-24 xl:first-letter:leading-20.5 first-letter:float-left first-letter:pr-4 first-letter:pt-1.5 md:first-letter:pt-3.5 first-letter:font-medium first-letter:text-accent-600/60 dark:first-letter:text-accent-200/70;
+   @apply first-letter:font-creator first-letter:text-[8rem] xl:first-letter:text-[7rem]! md:first-letter:text-[8rem]! first-letter:leading-24 xl:first-letter:leading-20.5 first-letter:float-left first-letter:pr-4 xs:first-letter:pr-3 first-letter:pt-1.5 md:first-letter:pt-3.5 xs:first-letter:pt-3! first-letter:font-medium first-letter:text-accent-600/60 dark:first-letter:text-accent-200/70;
 }
 
 [lang='en'] .bn-block-group:first-child > div:first-child .bn-inline-content {
-   @apply xs:first-letter:text-[7.8rem]! xs:first-letter:pt-3! xs:first-letter:pr-3;
+   @apply xs:first-letter:text-[7.8rem]!;
 }
 
 [lang='sr-cyrl']
    .bn-block-group:first-child
    > div:first-child
    .bn-inline-content {
-   @apply xs:first-letter:text-[8.2rem]! xs:first-letter:pt-3! xs:first-letter:pr-3;
+   @apply xs:first-letter:text-[8.2rem]!;
 }
 
 /* Editor styles */
