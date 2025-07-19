@@ -18,7 +18,7 @@ function ArticleHeading({ article }) {
          transition={{ duration: 0.3 }}
       >
          <h2
-            className={`relative styled_text font-normal! md:font-medium! sm:font-semibold! text-6xl xl:text-[3.4rem] md:text-6xl sm:text-5xl sm:leading-13 pb-2 bg-gradient-to-r from-gray-600 to-gray-500/90 dark:from-slate-300 dark:to-slate-300/80 ${cormorantSC.className}`}
+            className={`relative styled_text font-normal! md:font-medium! sm:font-semibold! text-6xl xl:text-[3.4rem] md:text-6xl sm:text-5xl sm:leading-13 xs:leading-12 pb-2 bg-gradient-to-r from-gray-600 to-gray-500/90 dark:from-slate-300 dark:to-slate-300/80 ${cormorantSC.className}`}
          >
             {article.title}
          </h2>
