@@ -1703,7 +1703,7 @@ h3 {
 
 @media screen and (max-width: 550px) {
    .inter-padding {
-      padding-inline: 26px;
+      padding-inline: 24px;
    }
 
    .swiper-pagination {

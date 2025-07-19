@@ -22,7 +22,7 @@ function ArticleHeading({ article }) {
          >
             {article.title}
          </h2>
-         <h3 className="font-creator font-medium! text-2xl xl:text-[1.4rem] text-primary-500/80 w-5/6 self-center">
+         <h3 className="font-creator font-medium! text-2xl xl:text-[1.4rem] xs:text-[1.45rem] text-primary-500/80 w-5/6 self-center">
             {article.description}
          </h3>
       </motion.div>
