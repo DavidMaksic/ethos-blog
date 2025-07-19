@@ -798,7 +798,7 @@
    .bn-block-group:first-child
    > div:first-child
    .bn-inline-content {
-   @apply xs:first-letter:text-[8.2rem]! xs:first-letter:pt-[12px]!;
+   @apply xs:first-letter:text-[8.2rem]! xs:first-letter:pt-[13px]!;
 }
 
 /* Editor styles */
