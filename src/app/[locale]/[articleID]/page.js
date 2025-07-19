@@ -131,7 +131,7 @@ async function Page({ params, searchParams }) {
                oldUser={session?.user}
                newUser={user}
                article={article}
-               commentLength={comment_length.commentLength}
+               commentLength={comment_length.comment_length}
             />
 
             <CommentList

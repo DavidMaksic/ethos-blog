@@ -33,7 +33,7 @@ function CommentList({
          {comments.length ? (
             <>
                <motion.div
-                  className="flex items-center justify-between mt-[-10px]"
+                  className="flex items-center justify-between mt-[-10px] xs:mt-0"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
