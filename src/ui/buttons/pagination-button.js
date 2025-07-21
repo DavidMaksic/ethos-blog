@@ -14,7 +14,7 @@ function PaginationButton({ type, handler, disabled, children }) {
 
          <button
             className={`flex items-center gap-1 xs:gap-px hover:bg-accent-400 dark:hover:bg-accent-300/60 hover:border-accent-400 hover:text-white rounded-full p-2 px-3 xs:px-3 xs:py-2 pr-4 cursor-pointer hover:shadow-link-btn dark:hover:shadow-link-btn-dark transition ${
-               prev ? 'pr-4.5 xs:pr-2' : 'pl-4.5 xs:pr-2'
+               prev ? 'pr-4.5' : 'pl-4.5'
             } disabled:pointer-events-none disabled:opacity-50`}
             onClick={() => {
                setScroll(true);
