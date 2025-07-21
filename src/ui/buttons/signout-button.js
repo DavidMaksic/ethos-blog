@@ -7,9 +7,11 @@ function SignOutButton() {
 
    return (
       <form action={signOutAction}>
-         <button className="nav-link w-full sm:flex sm:flex-col font-semibold group transition-bg_color cursor-pointer">
+         <button className="nav-link xs:px-2.5 w-full sm:flex sm:flex-col font-semibold group transition-bg_color cursor-pointer">
             <LuLogOut className="md:size-6" />
-            <span className="lg:hidden sm:block">{t('nav-link-5')}</span>
+            <span className="lg:hidden sm:block xs:text-lg">
+               {t('nav-link-5')}
+            </span>
          </button>
       </form>
    );

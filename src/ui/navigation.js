@@ -17,11 +17,7 @@ async function Navigation() {
             <HeaderItem to="/archive">{t('nav-link-2')}</HeaderItem>
             <HeaderItem to="/about">{t('nav-link-3')}</HeaderItem>
 
-            <HeaderOptions
-               session={session}
-               oldUser={session?.user}
-               newUser={userData}
-            />
+            <HeaderOptions oldUser={session?.user} newUser={userData} />
          </div>
       </nav>
    );

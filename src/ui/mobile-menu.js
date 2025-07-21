@@ -20,7 +20,7 @@ const parisienne = Parisienne({
    weight: ['400'],
 });
 
-function MobileMenu({ session, newUser, oldUser }) {
+function MobileMenu({ newUser, oldUser }) {
    const [openMenu, setOpenMenu] = useState(false);
    const ref = useOutsideClick(() => setOpenMenu((isOpen) => !isOpen), false);
 
@@ -49,15 +49,13 @@ function MobileMenu({ session, newUser, oldUser }) {
                   transition={{ duration: 0.2 }}
                >
                   <div
-                     className={`pl-10 xs:pl-5 pr-16 xs:pr-12 py-2  ${
-                        session?.session !== null ? 'xs:pt-3.5' : 'xs:pt-2'
-                     } pb-4 xs:pb-0 3xs:pb-12 space-y-7 3xs:border-b 3xs:border-b-primary-300 3xs:dark:border-b-primary-300/40`}
+                     className={`pl-10 xs:pl-6 pr-16 xs:pr-12 py-2 xs:pt-0  pb-4 xs:pb-0 3xs:pb-12 space-y-7 3xs:border-b 3xs:border-b-primary-300 3xs:dark:border-b-primary-300/40`}
                   >
                      <h2 className="uppercase tracking-wide font-semibold text-accent dark:text-accent-200">
                         {t('HomePage.pages-label')}
                      </h2>
 
-                     <div className="space-y-7 xs:space-y-6 text-4xl">
+                     <div className="space-y-7 xs:space-y-5.5 text-4xl">
                         <Link
                            href="/"
                            className="flex items-center gap-3.5"

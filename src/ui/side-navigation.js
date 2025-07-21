@@ -35,12 +35,12 @@ function SideNavigation() {
    ];
 
    return (
-      <nav className="sm:fixed sm:left-0 bottom-0 leading-6 sm:order-2 bg-white dark:bg-primary-300/10 sm:dark:bg-primary-200/70 sm:backdrop-blur-3xl border border-quaternary dark:border-primary-300/15 p-3 md:py-2 sm:py-3 lg:px-1 md:px-0 sm:px-3 rounded-2xl sm:rounded-none box-shadow transition-bg_border md:h-fit sm:w-screen">
+      <nav className="sm:fixed sm:left-0 bottom-0 leading-6 sm:order-2 bg-white dark:bg-primary-300/10 sm:dark:bg-primary-200/70 sm:backdrop-blur-3xl border border-quaternary dark:border-primary-300/15 p-3 md:py-2 sm:py-3 xs:py-2 lg:px-1 md:px-0 sm:px-3 rounded-2xl sm:rounded-none box-shadow transition-bg_border md:h-fit sm:w-screen">
          <ul className="flex flex-col sm:flex-row sm:justify-around gap-2 md:gap-4 sm:gap-0">
             {navLinks.map((link) => (
                <li className="lg:self-center" key={link.name}>
                   <Link
-                     className={`nav-link lg:px-4 font-semibold group transition-bg_color sm:flex sm:flex-col ${
+                     className={`nav-link lg:px-4 xs:px-2.5 font-semibold group transition-bg_color sm:flex sm:flex-col xs:text-lg ${
                         pathname === link.href
                            ? 'bg-primary-50 dark:bg-primary-300/10 !text-accent [&_svg]:!text-accent'
                            : ''

@@ -12,7 +12,7 @@ import HeaderButton from '@/src/ui/buttons/header-button';
 import MobileMenu from '@/src/ui/mobile-menu';
 import Image from 'next/image';
 
-function HeaderOptions({ session, oldUser, newUser }) {
+function HeaderOptions({ oldUser, newUser }) {
    const [mounted, setMounted] = useState();
    const { resolvedTheme, setTheme } = useTheme();
 
@@ -73,7 +73,7 @@ function HeaderOptions({ session, oldUser, newUser }) {
             |
          </span>
 
-         <MobileMenu session={session} newUser={newUser} oldUser={oldUser} />
+         <MobileMenu newUser={newUser} oldUser={oldUser} />
       </div>
    );
 }

@@ -12,7 +12,7 @@ async function JoinedDate({ user }) {
          <span className="text-xs md:text-center uppercase font-bold text-primary-400 tracking-wider">
             {t('joined-label')}
          </span>
-         <span className="text-[1.3rem] md:text-center font-semibold">
+         <span className="text-[1.3rem] xs:text-2xl md:text-center font-semibold">
             {date}
          </span>
       </div>

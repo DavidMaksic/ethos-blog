@@ -30,7 +30,7 @@ function ProfileInfo({ oldUser, newUser }) {
                </h2>
             </div>
 
-            <p className="text-lg">{email}</p>
+            <p className="text-lg xs:text-xl">{email}</p>
          </div>
       </div>
    );

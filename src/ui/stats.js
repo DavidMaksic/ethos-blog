@@ -23,7 +23,7 @@ function Stats({ title, value, icon, color, order }) {
             </span>
 
             <span
-               className={`text-3xl text-primary-600 dark:text-primary-600/90 transition-color pl-0.5 ${parisienne.className}`}
+               className={`text-3xl xs:font-bold! text-primary-600 xs:text-primary-500 dark:text-primary-600/90 xs:dark:text-primary-600/75 transition-color pl-0.5 ${parisienne.className}`}
             >
                {value || '--'}
             </span>
