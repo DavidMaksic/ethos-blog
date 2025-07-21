@@ -45,11 +45,11 @@ function BookmarkItem({ article, categories }) {
          >
             <div className="self-center py-2 px-12 xs:px-12 md:pr-0 space-y-5 lg:space-y-4 z-20">
                <h2
-                  className={`text-primary-500 dark:text-primary-600/85 text-3xl lg:text-[2rem] xs:text-[1.75rem] font-medium dark:font-normal lg:font-semibold lg:dark:font-normal md:dark:font-medium lg:leading-10 xs:leading-8.5 ${
+                  className={`text-primary-500 dark:text-primary-600/85 text-3xl lg:text-[2rem] xs:text-[1.85rem] font-medium dark:font-normal lg:font-semibold lg:dark:font-normal md:dark:font-medium lg:leading-10 xs:leading-9 ${
                      cormorantSC.className
                   } leading-8.5 ${
                      article.title.length >= 48 &&
-                     'text-[1.8rem]! lg:text-[1.7rem]! md:text-[1.6rem]! sm:text-[1.4rem]! xs:text-[1.55rem]! leading-[2.5rem]! lg:leading-[2.3rem]! md:leading-[2.1rem]! sm:leading-[2rem]! xs:leading-[1.95rem]!'
+                     'text-[1.8rem]! lg:text-[1.7rem]! md:text-[1.6rem]! sm:text-[1.4rem]! xs:text-[1.55rem]! leading-[2.5rem]! lg:leading-[2.3rem]! md:leading-[2.1rem]! sm:leading-[2rem]! xs:leading-[1.98rem]!'
                   }`}
                >
                   {article.title}

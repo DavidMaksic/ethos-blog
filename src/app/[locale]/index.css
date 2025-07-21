@@ -212,7 +212,7 @@
 
 @layer components {
    .nav-link {
-      @apply flex items-center gap-3 xs:gap-1 py-3 xs:py-2.5 px-6 rounded-xl text-primary-500/80 dark:text-primary-400 hover:text-accent hover:bg-gray-50 dark:hover:bg-primary-300/10;
+      @apply flex items-center gap-3 xs:gap-1 py-3 px-6 rounded-xl text-primary-500/80 dark:text-primary-400 hover:text-accent hover:bg-gray-50 dark:hover:bg-primary-300/10;
    }
 
    .box-shadow {
