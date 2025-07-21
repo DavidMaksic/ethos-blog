@@ -20,7 +20,7 @@ const parisienne = Parisienne({
    weight: ['400'],
 });
 
-function MobileMenu({ newUser, oldUser }) {
+function MobileMenu({ session, newUser, oldUser }) {
    const [openMenu, setOpenMenu] = useState(false);
    const ref = useOutsideClick(() => setOpenMenu((isOpen) => !isOpen), false);
 
@@ -49,7 +49,9 @@ function MobileMenu({ newUser, oldUser }) {
                   transition={{ duration: 0.2 }}
                >
                   <div
-                     className={`pl-10 xs:pl-6 pr-16 xs:pr-12 py-2 xs:pt-0  pb-4 xs:pb-0 3xs:pb-12 space-y-7 3xs:border-b 3xs:border-b-primary-300 3xs:dark:border-b-primary-300/40`}
+                     className={`pl-10 xs:pl-6 pr-16 xs:pr-12 py-2 xs:pt-0  pb-4 xs:pb-0 3xs:pb-12 space-y-7 3xs:border-b 3xs:border-b-primary-300 3xs:dark:border-b-primary-300/40 ${
+                        session ? 'xs:pt-3.5' : 'xs:pt-0'
+                     }`}
                   >
                      <h2 className="uppercase tracking-wide font-semibold text-accent dark:text-accent-200">
                         {t('HomePage.pages-label')}
@@ -98,7 +100,7 @@ function MobileMenu({ newUser, oldUser }) {
                         <div className="min-w-50 xs:min-w-full flex flex-col gap-3 items-center mx-4 xs:mx-0 py-2 3xs:pt-5 pb-6 border-b border-b-primary-300 dark:border-b-primary-300/40">
                            <Link
                               href="/user/home"
-                              className="relative size-20"
+                              className="relative size-18"
                               onClick={() => setOpenMenu((isOpen) => !isOpen)}
                            >
                               <Image

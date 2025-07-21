@@ -73,7 +73,7 @@ function BookmarkItem({ article, categories }) {
             <RemoteImage
                imageUrl={article.image}
                alt="Article image"
-               styles="rounded-xl absolute translate-x-[30%] xs:translate-x-[50%] object-cover opacity-100 dark:opacity-70 [mask-image:linear-gradient(to_right,transparent,black)] [mask-mode:alpha] [mask-size:100%_100%] [mask-repeat:no-repeat]"
+               styles="rounded-xl absolute translate-x-[30%] xs:translate-x-[45%] object-cover opacity-100 dark:opacity-70 [mask-image:linear-gradient(to_right,transparent,black)] [mask-mode:alpha] [mask-size:100%_100%] [mask-repeat:no-repeat]"
             />
          </Link>
       </motion.div>
