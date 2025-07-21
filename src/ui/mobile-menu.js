@@ -41,19 +41,19 @@ function MobileMenu({ newUser, oldUser }) {
          <AnimatePresence>
             {openMenu && (
                <motion.div
-                  className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-70%] flex gap-2 py-8 pb-8.5 pr-6 pl-4 text-2xl rounded-3xl bg-white dark:bg-primary/80 backdrop-blur-3xl border border-quaternary dark:border-primary-300/15 shadow-article dark:shadow-none overflow-auto transition-bg_border z-40"
+                  className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-65%] 3xs:translate-y-[-55%] flex 3xs:flex-col gap-2 py-8 xs:py-6 3xs:py-4 pb-8.5 xs:pb-6.5 3xs:pb-4.5 pr-6 xs:pr-5 3xs:pr-8 pl-4 xs:pl-4 3xs:pl-8 text-2xl rounded-3xl bg-white dark:bg-primary/80 backdrop-blur-3xl border border-quaternary dark:border-primary-300/15 shadow-article dark:shadow-none overflow-auto transition-bg_border z-40"
                   ref={ref}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                >
-                  <div className="pl-10 pr-16 py-2 pb-4 space-y-7">
+                  <div className="pl-10 xs:pl-7 pr-16 xs:pr-12 py-2 xs:pt-5 pb-4 xs:pb-0 3xs:pb-12 space-y-7 3xs:border-b 3xs:border-b-primary-300 3xs:dark:border-b-primary-300/40">
                      <h2 className="uppercase tracking-wide font-semibold text-accent dark:text-accent-200">
                         {t('HomePage.pages-label')}
                      </h2>
 
-                     <ul className="space-y-7 text-4xl">
+                     <div className="space-y-7 xs:space-y-6 text-4xl">
                         <Link
                            href="/"
                            className="flex items-center gap-3.5"
@@ -86,14 +86,14 @@ function MobileMenu({ newUser, oldUser }) {
                            <HiOutlineUser className="size-7" />
                            <span>{t('HomePage.nav-link-4')}</span>
                         </Link>
-                     </ul>
+                     </div>
                   </div>
 
-                  <span className="w-px bg-primary-300 dark:bg-primary-300/40" />
+                  <span className="w-px bg-primary-300 dark:bg-primary-300/40 3xs:hidden" />
 
                   <div className="flex flex-col gap-2 items-center">
                      {newUser?.image || oldUser?.image ? (
-                        <div className="min-w-50 flex flex-col gap-3 items-center mx-4 py-2 pb-6 border-b border-b-primary-300 dark:border-b-primary-300/40">
+                        <div className="min-w-50 xs:min-w-full flex flex-col gap-3 items-center mx-4 xs:mx-0 py-2 3xs:pt-5 pb-6 border-b border-b-primary-300 dark:border-b-primary-300/40">
                            <Link
                               href="/user/home"
                               className="relative size-20"

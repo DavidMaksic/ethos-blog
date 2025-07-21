@@ -28,11 +28,11 @@ async function Page({ searchParams }) {
    );
 
    return (
-      <div className="grid grid-cols-[2fr_1fr] md:grid-cols-1 gap-10 xl:mt-3">
+      <div className="grid grid-cols-[2fr_1fr] md:grid-cols-1 gap-10 xs:gap-14 xl:mt-3">
          <div className="space-y-7 lg:space-y-5 md:order-2">
             <div className="flex justify-between">
                <div className="flex items-center gap-3.5">
-                  <h1 className="text-4xl lg:text-3xl md:text-4xl dark:text-primary-600/65">
+                  <h1 className="text-4xl lg:text-3xl md:text-4xl dark:text-primary-600/65 xs:hidden">
                      {t('Archive.label')}
                   </h1>
                   <Search isArchive={true} />

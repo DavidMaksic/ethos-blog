@@ -36,7 +36,7 @@ function Category({
             <span
                className={`border px-3.5 md:px-4 pl-4 py-1.5 md:py-2 rounded-full font-semibold lg:font-bold text-[1.415rem] xl:text-[1.3rem] lg:text-[1.2rem] md:text-2xl cursor-pointer transition-200 select-none border-primary ${
                   currentTag !== category.category && currentTag
-                     ? `bg-white! text-primary-400! dark:text-primary-500/70! border-primary-200/70! dark:bg-primary-300/20!`
+                     ? `bg-white! text-primary-400! dark:text-primary-500/70! border-primary-200/70! dark:bg-primary-300/20! xs:dark:bg-primary-300/15!`
                      : ''
                } ${customStyles}`}
                style={{

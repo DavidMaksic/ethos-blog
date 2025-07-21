@@ -14,6 +14,7 @@
 @custom-variant sm (@media (max-width: 640px));
 @custom-variant xs (@media (max-width: 450px));
 @custom-variant 2xs (@media (max-width: 390px));
+@custom-variant 3xs (@media (max-width: 350px));
 @custom-variant short (@media (max-height: 470px));
 @custom-variant above-xl (@media (min-width: 2000px));
 

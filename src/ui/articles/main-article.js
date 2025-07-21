@@ -57,7 +57,7 @@ function MainArticle({ article }) {
             <Link
                href={`/${article.id}`}
                aria-label="Article link"
-               className="self-start md:self-center mt-7 lg:mt-4 md:mt-5 xs:mt-4 rounded-full bg-gradient-to-r from-accent-300/80 to-accent-600/70 hover:from-white hover:to-white dark:hover:from-primary dark:hover:to-primary border-2 border-transparent hover:border-accent/80 shadow-btn hover:shadow-none dark:shadow-none transition-[box-shadow,border,--tw-gradient-from,--tw-gradient-to] duration-300 bg-origin-border group"
+               className="self-start md:self-center mt-7 lg:mt-4 md:mt-5 xs:mt-3 rounded-full bg-gradient-to-r from-accent-300/80 to-accent-600/70 hover:from-white hover:to-white dark:hover:from-primary dark:hover:to-primary border-2 border-transparent hover:border-accent/80 shadow-btn hover:shadow-none dark:shadow-none transition-[box-shadow,border,--tw-gradient-from,--tw-gradient-to] duration-300 bg-origin-border group"
             >
                <span
                   className={`flex articles-center gap-5 text-4xl xl:text-[2rem] lg:text-[1.8rem] xs:text-[1.9rem] pl-8 xl:pl-7 lg:pl-5 md:pl-6 xs:pl-5.5 pr-9 xl:pr-7.5 lg:pr-6 md:pr-6.5 xs:pr-6 py-3.5 lg:py-2.5 md:py-3 xs:py-2.5 text-white group-hover:text-accent group-hover:drop-shadow-xs dark:group-hover:text-accent/90 transition-[color] duration-300 cursor-pointer ${
