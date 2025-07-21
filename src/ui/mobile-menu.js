@@ -57,7 +57,7 @@ function MobileMenu({ session, newUser, oldUser }) {
                         {t('HomePage.pages-label')}
                      </h2>
 
-                     <div className="space-y-7 xs:space-y-5.5 text-4xl">
+                     <div className="space-y-7 xs:space-y-5 text-4xl">
                         <Link
                            href="/"
                            className="flex items-center gap-3.5"
@@ -134,7 +134,7 @@ function MobileMenu({ session, newUser, oldUser }) {
                         </Link>
                      )}
 
-                     <div className="py-7 xs:pb-5 xs:pt-4 px-4 xs:pl-5 flex flex-col gap-2 items-center">
+                     <div className="py-7 xs:pb-5 xs:pt-4 px-4 xs:pl-5 flex flex-col gap-2 items-center xs:items-start">
                         {options.map((item) => (
                            <FilterButton
                               key={item}
@@ -142,7 +142,7 @@ function MobileMenu({ session, newUser, oldUser }) {
                               param={param}
                               styles="md:text-[2rem]! ml-1!"
                               imageStyle="size-10!"
-                              activeStyle="py-1.5! px-3.5! rounded-2xl!"
+                              activeStyle="py-1.5! pl-3.5! pr-4! rounded-2xl!"
                               isMobile={true}
                            >
                               {item}
