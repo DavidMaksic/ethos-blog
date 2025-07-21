@@ -34,7 +34,7 @@ async function Page() {
             <ProfileImage user={session.user} image={image} />
          </div>
 
-         <div className="size-fit md:w-full md:order-1 flex flex-col gap-3 bg-white dark:bg-primary-300/10 rounded-3xl border border-quaternary dark:border-primary-300/15 text-lg text-[#4d525c] dark:text-slate-300/80 px-17 lg:px-14 xs:px-13.5 py-8 xs:py-7.5 box-shadow transition-200">
+         <div className="size-fit md:w-full md:order-1 flex flex-col gap-3 bg-white dark:bg-primary-300/10 rounded-3xl border border-quaternary dark:border-primary-300/15 text-lg text-[#4d525c] dark:text-slate-300/80 px-17 lg:px-14 xs:px-13.5 py-8 xs:pt-6.5 xs:pb-7.5 box-shadow transition-200">
             <label className="text-sm uppercase font-semibold text-primary-400 tracking-wider">
                {t('email')}
             </label>
