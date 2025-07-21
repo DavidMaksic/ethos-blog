@@ -40,7 +40,7 @@ function SideNavigation() {
             {navLinks.map((link) => (
                <li className="lg:self-center" key={link.name}>
                   <Link
-                     className={`nav-link lg:px-4 md:px-0 font-semibold group transition-bg_color sm:flex sm:flex-col xs:text-lg ${
+                     className={`nav-link lg:px-4 md:px-0 md:py-2 font-semibold group transition-bg_color sm:flex sm:flex-col xs:text-lg ${
                         pathname === link.href
                            ? 'bg-primary-50 dark:bg-primary-300/10 !text-accent [&_svg]:!text-accent'
                            : ''
