@@ -59,7 +59,7 @@ function ArticleItem({ article, categories, style, authors }) {
                      cormorantSC.className
                   } ${
                      article.title.length >= 48 &&
-                     'text-[1.45rem]! lg:text-[1.4rem]! md:text-[1.8rem]!  sm:text-[2rem]! xl:leading-7.5! lg:leading-8! md:leading-[2.5rem]! sm:leading-[2.6rem]!'
+                     'text-[1.45rem]! xl:text-[1.7rem]! lg:text-[1.4rem]! md:text-[1.8rem]! sm:text-[2rem]! lg:leading-8! md:leading-[2.5rem]! sm:leading-[2.6rem]!'
                   }  `}
                >
                   {article.title}

@@ -108,7 +108,7 @@ function Options() {
 
                   {openTable && (
                      <motion.div
-                        className="absolute bottom-0 font-headers max-h-[32.5rem] md:max-h-[37rem] xs:max-h-[41rem] right-20 md:right-24.5 flex flex-col py-4 pb-2 xs:pb-4 px-2 md:px-2.5 border border-primary-300/50 lg:border-primary-300/80 dark:border-tertiary lg:dark:border-primary-300/35 rounded-2xl xs:rounded-3xl bg-primary/80 xl:bg-white/90 lg:bg-white dark:bg-transparent xl:dark:bg-transparent lg:dark:bg-primary/90 backdrop-blur-3xl overflow-y-auto scrollbar shadow-article xl:shadow-none md:shadow-menu dark:shadow-none md:dark:shadow-none md:text-2xl"
+                        className="absolute bottom-0 font-headers max-h-[32.5rem] md:max-h-[37rem] xs:max-h-[41rem] right-20 md:right-24.5 flex flex-col py-4 pb-2 xs:pb-4 px-2 md:px-2.5 border border-primary-300/50 lg:border-primary-300/80 dark:border-tertiary lg:dark:border-primary-300/35 rounded-2xl xs:rounded-3xl bg-primary/80 xl:bg-white lg:bg-white dark:bg-transparent xl:dark:bg-primary lg:dark:bg-primary/90 backdrop-blur-3xl overflow-y-auto scrollbar shadow-article xl:shadow-none md:shadow-menu dark:shadow-none md:dark:shadow-none md:text-2xl"
                         ref={tableRef}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
