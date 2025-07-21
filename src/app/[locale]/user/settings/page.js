@@ -18,7 +18,7 @@ async function Page() {
    return (
       <div className="space-y-4 md:flex md:flex-col md:gap-4">
          <div className="flex md:flex-col xl:flex-wrap gap-4 md:order-2">
-            <div className="size-fit flex flex-col gap-10 bg-white dark:bg-primary-300/10 rounded-3xl border border-quaternary dark:border-primary-300/15 text-lg text-[#4d525c] dark:text-slate-300/80 px-17 lg:px-14 py-12 lg:pt-10 box-shadow transition-200">
+            <div className="size-fit flex flex-col gap-10 bg-white dark:bg-primary-300/10 rounded-3xl border border-quaternary dark:border-primary-300/15 text-lg text-[#4d525c] dark:text-slate-300/80 px-17 lg:px-14 xs:px-13.5 py-12 xs:py-7.5 lg:pt-10 box-shadow transition-200">
                <div className="flex flex-col gap-2">
                   <label className="text-sm uppercase font-semibold text-primary-400 tracking-wider">
                      {t('username')}
@@ -34,7 +34,7 @@ async function Page() {
             <ProfileImage user={session.user} image={image} />
          </div>
 
-         <div className="size-fit md:w-full md:order-1 flex flex-col gap-3 bg-white dark:bg-primary-300/10 rounded-3xl border border-quaternary dark:border-primary-300/15 text-lg text-[#4d525c] dark:text-slate-300/80 px-17 lg:px-14 py-8 box-shadow transition-200">
+         <div className="size-fit md:w-full md:order-1 flex flex-col gap-3 bg-white dark:bg-primary-300/10 rounded-3xl border border-quaternary dark:border-primary-300/15 text-lg text-[#4d525c] dark:text-slate-300/80 px-17 lg:px-14 xs:px-13.5 py-8 xs:py-7.5 box-shadow transition-200">
             <label className="text-sm uppercase font-semibold text-primary-400 tracking-wider">
                {t('email')}
             </label>

@@ -19,7 +19,7 @@ async function Page({ searchParams }) {
    const bookmarkIDs = JSON.parse(bookmarks).flat();
 
    return (
-      <div className="flex flex-col justify-between sm:gap-7">
+      <div className="flex flex-col justify-between sm:gap-7 xs:gap-4">
          <BookmarkList
             bookmarkIDs={bookmarkIDs}
             articles={articles}
