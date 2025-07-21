@@ -29,7 +29,7 @@ function AuthModal({ onClose, string }) {
          exit={{ opacity: 0 }}
          transition={{ duration: 0.1 }}
       >
-         <span className="text-primary-600 dark:text-primary-500 w-[75%] md:w-[34rem] md:px-12 text-center text-[2.2rem] leading-11 border-b border-b-quaternary pb-10">
+         <div className="text-primary-600 dark:text-primary-500 w-[75%] md:w-[34rem] xs:w-[25rem] 3xs:w-[23rem] md:px-12 xs:px-8 text-center text-[2.2rem] leading-11 border-b border-b-quaternary pb-10">
             {t('Auth.join')}
             <span
                className={`px-3 text-accent ${
@@ -39,7 +39,7 @@ function AuthModal({ onClose, string }) {
                {t('Logo')}
             </span>
             {t(`Auth.${string}`)}
-         </span>
+         </div>
 
          <div className="flex items-center gap-2 text-2xl">
             <Link

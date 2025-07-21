@@ -35,7 +35,7 @@ function DeleteModal({
 
    return (
       <div className="flex flex-col items-center gap-10">
-         <span className="text-primary-600 dark:text-primary-500 w-4/5 md:w-[28rem] md:px-12 text-center text-[2.2rem] leading-11 border-b border-b-quaternary pb-10">
+         <span className="text-primary-600 dark:text-primary-500 w-4/5 md:w-[28rem] xs:w-[25rem] 3xs:w-[23rem] md:px-12 xs:px-0 text-center text-[2.2rem] leading-11 border-b border-b-quaternary pb-10">
             {t('delete-label')}
          </span>
 

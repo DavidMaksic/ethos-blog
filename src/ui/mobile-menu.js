@@ -20,7 +20,7 @@ const parisienne = Parisienne({
    weight: ['400'],
 });
 
-function MobileMenu({ newUser, oldUser }) {
+function MobileMenu({ session, newUser, oldUser }) {
    const [openMenu, setOpenMenu] = useState(false);
    const ref = useOutsideClick(() => setOpenMenu((isOpen) => !isOpen), false);
 
@@ -41,14 +41,18 @@ function MobileMenu({ newUser, oldUser }) {
          <AnimatePresence>
             {openMenu && (
                <motion.div
-                  className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-65%] 3xs:translate-y-[-55%] flex 3xs:flex-col gap-2 py-8 xs:py-6 3xs:py-4 pb-8.5 xs:pb-6.5 3xs:pb-4.5 pr-6 xs:pr-5 3xs:pr-8 pl-4 xs:pl-4 3xs:pl-8 text-2xl rounded-3xl bg-white dark:bg-primary/80 backdrop-blur-3xl border border-quaternary dark:border-primary-300/15 shadow-article dark:shadow-none overflow-auto transition-bg_border z-40"
+                  className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-65%] 3xs:translate-y-[-55%] flex 3xs:flex-col gap-2 xs:gap-0 3xs:gap-2 py-8 xs:py-6 3xs:py-4 pb-8.5 xs:pb-6.5 3xs:pb-4.5 pr-6 xs:pr-5 3xs:pr-8 pl-4 xs:pl-4 3xs:pl-8 text-2xl rounded-3xl bg-white dark:bg-primary/80 backdrop-blur-3xl border border-quaternary dark:border-primary-300/15 shadow-article dark:shadow-none overflow-auto transition-bg_border z-40"
                   ref={ref}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                >
-                  <div className="pl-10 xs:pl-7 pr-16 xs:pr-12 py-2 xs:pt-5 pb-4 xs:pb-0 3xs:pb-12 space-y-7 3xs:border-b 3xs:border-b-primary-300 3xs:dark:border-b-primary-300/40">
+                  <div
+                     className={`pl-10 xs:pl-5 pr-16 xs:pr-12 py-2  ${
+                        session?.session !== null ? 'xs:pt-3.5' : 'xs:pt-2'
+                     } pb-4 xs:pb-0 3xs:pb-12 space-y-7 3xs:border-b 3xs:border-b-primary-300 3xs:dark:border-b-primary-300/40`}
+                  >
                      <h2 className="uppercase tracking-wide font-semibold text-accent dark:text-accent-200">
                         {t('HomePage.pages-label')}
                      </h2>
@@ -122,7 +126,7 @@ function MobileMenu({ newUser, oldUser }) {
                      ) : (
                         <Link
                            href="/user/home"
-                           className="min-w-50 flex gap-2 items-center justify-center mx-4 py-12 border-b border-b-primary-300 dark:border-b-primary-300/40"
+                           className="min-w-50 xs:min-w-full flex gap-2 items-center justify-center mx-4 xs:mx-0 py-12 border-b border-b-primary-300 dark:border-b-primary-300/40"
                            onClick={() => setOpenMenu((isOpen) => !isOpen)}
                         >
                            <span className="text-3xl">{t('Auth.sign-in')}</span>
@@ -130,7 +134,7 @@ function MobileMenu({ newUser, oldUser }) {
                         </Link>
                      )}
 
-                     <div className="py-7 px-4 flex flex-col gap-2 items-center">
+                     <div className="py-7 xs:pb-5 xs:pt-4 px-4 xs:pl-5 flex flex-col gap-2 items-center">
                         {options.map((item) => (
                            <FilterButton
                               key={item}
