@@ -41,15 +41,15 @@ function BookmarkItem({ article, categories }) {
       >
          <Link
             href={`/${article.id}`}
-            className="relative grid grid-cols-[2fr_0.8fr] xs:grid-cols-[2fr_0.4fr] min-h-45.5 xl:min-h-46 lg:min-h-38 md:min-h-52 sm:min-h-[18vh] rounded-2xl group cursor-pointer overflow-hidden border border-quaternary dark:border-primary-300/15 bg-white dark:bg-primary-300/15 hover:translate-x-1.5 transition-[translate] duration-200 select-none box-shadow"
+            className="relative grid grid-cols-[2fr_0.8fr] xs:grid-cols-[2fr_0.3fr] min-h-45.5 xl:min-h-46 lg:min-h-38 md:min-h-52 sm:min-h-[18vh] rounded-2xl group cursor-pointer overflow-hidden border border-quaternary dark:border-primary-300/15 bg-white dark:bg-primary-300/15 hover:translate-x-1.5 transition-[translate] duration-200 select-none box-shadow"
          >
-            <div className="self-center py-2 px-12 xs:px-8 md:pr-0 space-y-5 lg:space-y-4 xs:space-y-3 z-20">
+            <div className="self-center py-2 px-12 xs:px-9 md:pr-0 space-y-5 lg:space-y-4 xs:space-y-3 z-20">
                <h2
                   className={`text-primary-500 dark:text-primary-600/85 text-3xl lg:text-[2rem] xs:text-[1.75rem] font-medium dark:font-normal lg:font-semibold lg:dark:font-normal md:dark:font-medium lg:leading-10 xs:leading-8.5 ${
                      cormorantSC.className
                   } leading-8.5 ${
                      article.title.length >= 48 &&
-                     'text-[1.8rem]! lg:text-[1.7rem]! md:text-[1.6rem]! sm:text-[1.4rem]! xs:text-[1.5rem]! leading-[2.5rem]! lg:leading-[2.3rem]! md:leading-[2.1rem]! sm:leading-[2rem]!'
+                     'text-[1.8rem]! lg:text-[1.7rem]! md:text-[1.6rem]! sm:text-[1.4rem]! xs:text-[1.55rem]! leading-[2.5rem]! lg:leading-[2.3rem]! md:leading-[2.1rem]! sm:leading-[2rem]! xs:leading-[1.95rem]!'
                   }`}
                >
                   {article.title}
@@ -73,7 +73,7 @@ function BookmarkItem({ article, categories }) {
             <RemoteImage
                imageUrl={article.image}
                alt="Article image"
-               styles="rounded-xl absolute translate-x-[30%] xs:translate-x-[40%] object-cover opacity-100 dark:opacity-70 [mask-image:linear-gradient(to_right,transparent,black)] [mask-mode:alpha] [mask-size:100%_100%] [mask-repeat:no-repeat]"
+               styles="rounded-xl absolute translate-x-[30%] xs:translate-x-[50%] object-cover opacity-100 dark:opacity-70 [mask-image:linear-gradient(to_right,transparent,black)] [mask-mode:alpha] [mask-size:100%_100%] [mask-repeat:no-repeat]"
             />
          </Link>
       </motion.div>
