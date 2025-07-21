@@ -20,7 +20,9 @@ function SideNavigation() {
       {
          name: t('nav-link-2'),
          href: '/user/comments',
-         icon: <FaRegComment className="size-4.5 md:size-5.5 ml-px mr-px" />,
+         icon: (
+            <FaRegComment className="size-4.5 md:size-5.5 xs:size-6 ml-px mr-px xs:mt-0.5" />
+         ),
       },
       {
          name: t('nav-link-3'),
@@ -30,7 +32,7 @@ function SideNavigation() {
       {
          name: t('nav-link-4'),
          href: '/user/settings',
-         icon: <LuUserRoundPen className="md:size-6" />,
+         icon: <LuUserRoundPen className="md:size-6 xs:mt-0.5" />,
       },
    ];
 
