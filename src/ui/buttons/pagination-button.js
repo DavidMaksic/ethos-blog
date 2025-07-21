@@ -22,9 +22,9 @@ function PaginationButton({ type, handler, disabled, children }) {
             }}
             disabled={disabled}
          >
-            {next}
+            <span className="xs:hidden">{next}</span>
             {children}
-            {prev}
+            <span className="xs:hidden">{prev}</span>
          </button>
       </>
    );
