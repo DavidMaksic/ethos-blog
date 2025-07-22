@@ -19,8 +19,8 @@ function HeaderItem({ to, children }) {
 
          {isActive && (
             <>
-               <div className="bg-active-link absolute above-xl:hidden top-[44.5px] xl:top-[44px] lg:top-[44.5px] left-1/2 h-px w-14 dark:w-12 -translate-x-1/2" />
-               <div className="absolute above-xl:hidden top-[44px] xl:top-[42px] lg:top-[46px] left-1/2 size-4 dark:size-4 rounded-[4px] blur-sm bg-accent-200 dark:bg-accent -translate-x-1/2" />
+               <div className="bg-active-link absolute above-xl:hidden top-[44.5px] xl:top-[45px] lg:top-[44.5px] left-1/2 h-px w-14 dark:w-12 -translate-x-1/2" />
+               <div className="absolute above-xl:hidden top-[44px] xl:top-[44px] lg:top-[46px] left-1/2 size-4 dark:size-4 rounded-[4px] blur-sm bg-accent-200 dark:bg-accent -translate-x-1/2" />
             </>
          )}
       </div>

@@ -81,7 +81,7 @@ export default async function RootLayout({ children, params }) {
                         enableSystem
                      >
                         <Header />
-                        <main className="py-12 xl:pt-9 lg:pt-4 md:pt-5 w-7xl xl:w-full mx-auto">
+                        <main className="py-12 xl:pt-4 md:pt-5 w-7xl xl:w-full mx-auto">
                            {children}
                         </main>
                         <Footer />

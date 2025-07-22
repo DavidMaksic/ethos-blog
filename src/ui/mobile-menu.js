@@ -134,7 +134,7 @@ function MobileMenu({ session, newUser, oldUser }) {
                         </Link>
                      )}
 
-                     <div className="py-7 xs:pb-5 xs:pt-4 px-4 xs:pl-5 flex flex-col gap-2 items-center xs:items-start">
+                     <div className="py-7 xs:pb-5 xs:pt-4 px-4 xs:pl-5 flex flex-col gap-2 items-center md:items-start">
                         {options.map((item) => (
                            <FilterButton
                               key={item}

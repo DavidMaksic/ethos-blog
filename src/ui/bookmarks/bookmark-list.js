@@ -66,11 +66,11 @@ function BookmarkList({ bookmarkIDs, articles, categories, param }) {
    return (
       <>
          <div>
-            <div className="flex justify-between mb-8.5 xl:mb-7 lg:mb-4.5 md:mb-8 xs:mb-4">
+            <div className="flex justify-between mb-8.5 xl:mb-5 lg:mb-4.5 md:mb-8 xs:mb-4">
                <BookmarkOptions param={param} />
             </div>
 
-            <div className="flex flex-col gap-4 lg:gap-3">
+            <div className="flex flex-col gap-4 xl:gap-3">
                {displayedArticles.length ? (
                   displayedArticles.map((item) => (
                      <BookmarkItem
