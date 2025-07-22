@@ -690,12 +690,12 @@
 
    [data-theme='dark'] .background-gradient {
       background-image: radial-gradient(
-            1700px 1000px at -500px -80px,
+            1700px 1000px at -450px -80px,
             #3b2e1aff 0px,
             transparent 78%
          ),
          radial-gradient(
-            2200px 1200px at 800px 2000px,
+            2200px 1200px at 700px 2000px,
             #28202bff 0px,
             transparent 55%
          ),
