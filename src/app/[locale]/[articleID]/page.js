@@ -38,6 +38,15 @@ const cormorantGaramond = Cormorant_Garamond({
    variable: '--font-cormorant-garamond',
 });
 
+export async function generateMetadata({ params }) {
+   const param = await params;
+   const { title } = await getArticle(param.articleID);
+
+   return {
+      title: title ? title : 'Article',
+   };
+}
+
 async function Page({ params, searchParams }) {
    const [
       param,

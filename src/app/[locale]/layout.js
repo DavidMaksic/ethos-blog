@@ -27,7 +27,7 @@ export async function generateMetadata({ params }) {
 
    return {
       title: {
-         template: `%s / ${locale === 'en' ? 'Etos' : 'Етос'}`,
+         template: `%s • ${locale === 'en' ? 'Etos' : 'Етос'}`,
          default: locale === 'en' ? 'Etos' : 'Етос',
       },
       description:
