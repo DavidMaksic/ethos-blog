@@ -799,7 +799,7 @@
    .bn-block-group:first-child
    > div:first-child
    .bn-inline-content {
-   @apply first-letter:text-[8.2rem]! xl:first-letter:text-[7.3rem]! md:first-letter:text-[8.4rem]! xs:first-letter:text-[8.2rem]! first-letter:pt-[7px]! lg:first-letter:pt-[8px]! md:first-letter:pt-4! xs:first-letter:pt-[12.5px]!;
+   @apply first-letter:text-[8.2rem]! xl:first-letter:text-[7.3rem]! md:first-letter:text-[8.4rem]! xs:first-letter:text-[8.2rem]! first-letter:pt-[7px]! lg:first-letter:pt-[8px]! md:first-letter:pt-4! xs:first-letter:pt-[12.5px]! 2xs:first-letter:pt-[10px]!;
 }
 
 /* Editor styles */
