@@ -8,6 +8,7 @@ import {
 import { getTranslations } from 'next-intl/server';
 import { auth } from '@/src/lib/auth';
 
+import UserCommentLabel from '@/src/ui/user-comment-label';
 import UserCommentList from '@/src/ui/comments/user-comment-list';
 import SortBy from '@/src/ui/operations/sort-by';
 
@@ -45,9 +46,7 @@ async function Page({ searchParams }) {
    return (
       <div className="space-y-6 lg:space-y-4">
          <div className="flex items-center justify-between">
-            <h1 className="text-4xl lg:text-3xl md:text-4xl text-primary-500 dark:text-primary-600/65">
-               {t('Comment.user-label')}
-            </h1>
+            <UserCommentLabel />
 
             <SortBy
                options={[

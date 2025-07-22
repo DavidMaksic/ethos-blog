@@ -1,11 +1,11 @@
 import { getArticles, getAuthors, getCategories } from '@/src/lib/data-service';
 import { getTranslations } from 'next-intl/server';
 
+import ArchiveHeading from '@/src/ui/archive-heading';
 import Categories from '@/src/ui/categories/categories';
 import Languages from '@/src/ui/languages';
 import Articles from '@/src/ui/articles/articles';
 import SortBy from '@/src/ui/operations/sort-by';
-import Search from '@/src/ui/operations/search';
 
 export async function generateMetadata({ params }) {
    const { locale } = await params;
@@ -18,7 +18,7 @@ async function Page({ searchParams }) {
       getArticles(),
       getCategories(),
       getAuthors(),
-      getTranslations(),
+      getTranslations('Sort'),
    ]);
 
    const currentCategory = categories.find(
@@ -31,29 +31,25 @@ async function Page({ searchParams }) {
       <div className="grid grid-cols-[2fr_1fr] md:grid-cols-1 gap-10 xs:gap-14 xl:mt-3">
          <div className="space-y-7 lg:space-y-5 md:order-2">
             <div className="flex justify-between">
-               <div className="flex items-center gap-3.5">
-                  <h1 className="text-4xl lg:text-3xl md:text-4xl dark:text-primary-600/65 xs:hidden">
-                     {t('Archive.label')}
-                  </h1>
-                  <Search isArchive={true} />
-               </div>
+               <ArchiveHeading />
+
                <SortBy
                   options={[
                      {
                         value: 'created_at-asc',
-                        label: t('Sort.latest'),
+                        label: t('latest'),
                      },
                      {
                         value: 'created_at-desc',
-                        label: t('Sort.oldest'),
+                        label: t('oldest'),
                      },
                      {
                         value: 'title-asc',
-                        label: t('Sort.a-z'),
+                        label: t('a-z'),
                      },
                      {
                         value: 'title-desc',
-                        label: t('Sort.z-a'),
+                        label: t('z-a'),
                      },
                   ]}
                   param={param}
