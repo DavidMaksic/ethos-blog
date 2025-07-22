@@ -49,16 +49,16 @@ function BookmarkList({ bookmarkIDs, articles, categories, param }) {
 
    if (loading)
       return (
-         <div className="relative h-[44rem] xl:h-[37.5rem] lg:h-[35rem] md:h-[51.5rem] max-w-full space-y-10.5 xl:space-y-9 lg:space-y-7 md:space-y-8 animate-skeleton">
+         <div className="relative h-[44rem] xl:h-[37.5rem] lg:h-[35rem] md:h-[51.5rem] max-w-full space-y-10.5 xl:space-y-7 md:space-y-8 xs:space-y-5 animate-skeleton">
             <div className="flex justify-between items-center">
                <span className="h-9 md:h-11 w-[14rem] bg-primary-300/40 rounded-2xl" />
                <span className="h-9 md:h-11 w-[10rem] bg-primary-300/40 rounded-2xl" />
             </div>
 
-            <div className="space-y-4 lg:space-y-3">
-               <div className="h-45.5 xl:h-46.5 lg:h-38 md:h-54 sm:h-58.5 xs:h-50 2xs:h-59 bg-primary-300/30 rounded-3xl" />
-               <div className="h-45.5 xl:h-46.5 lg:h-38 md:h-54 sm:h-58.5 xs:h-50 2xs:h-59 bg-primary-300/20 rounded-3xl" />
-               <div className="h-45.5 xl:h-46.5 lg:h-38 md:h-54 sm:h-58.5 xs:h-50 2xs:h-59 bg-primary-300/10 rounded-3xl" />
+            <div className="space-y-4 xl:space-y-3.5 lg:space-y-3">
+               <div className="h-45.5 xl:h-40 lg:h-38 md:h-54 sm:h-46.5 xs:h-45 2xs:h-49 bg-primary-300/30 rounded-3xl" />
+               <div className="h-45.5 xl:h-40 lg:h-38 md:h-54 sm:h-46.5 xs:h-45 2xs:h-49 bg-primary-300/20 rounded-3xl" />
+               <div className="h-45.5 xl:h-40 lg:h-38 md:h-54 sm:h-46.5 xs:h-45 2xs:h-49 bg-primary-300/10 rounded-3xl" />
             </div>
          </div>
       );

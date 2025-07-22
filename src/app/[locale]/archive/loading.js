@@ -2,6 +2,9 @@
 
 import { motion } from 'motion/react';
 
+// TODO: Animate Sort component and user comments section
+// TODO: Add title to metadata
+
 function Loading() {
    return (
       <motion.div
@@ -18,16 +21,16 @@ function Loading() {
                   <span className="h-9 md:h-11 w-[8rem] xl:w-[10rem] bg-primary-300/40 rounded-2xl" />
                </div>
 
-               <div className="relative space-y-6 lg:space-y-4 md:space-y-6 sm:space-y-5">
-                  <div className="h-50 xl:h-55 lg:h-53 md:h-70 sm:h-48.5 bg-primary-300/40 rounded-3xl" />
-                  <div className="h-50 xl:h-55 lg:h-53 md:h-70 sm:h-48.5 bg-primary-300/30 rounded-3xl" />
-                  <div className="h-50 xl:h-55 lg:h-53 md:h-70 sm:h-48.5 bg-primary-300/20 rounded-3xl" />
-                  <div className="h-50 xl:h-55 lg:h-53 md:h-70 sm:h-48.5 bg-primary-300/10 rounded-3xl" />
-                  <div className="h-50 xl:h-55 lg:h-53 md:h-70 sm:h-48.5 bg-primary-300/5 rounded-3xl" />
+               <div className="relative space-y-6 lg:space-y-4 md:space-y-4 sm:space-y-5">
+                  <div className="h-50 xl:h-55 lg:h-53 md:h-62 sm:h-55 2xs:h-58 bg-primary-300/40 rounded-3xl" />
+                  <div className="h-50 xl:h-55 lg:h-53 md:h-62 sm:h-55 2xs:h-58 bg-primary-300/30 rounded-3xl" />
+                  <div className="h-50 xl:h-55 lg:h-53 md:h-62 sm:h-55 2xs:h-58 bg-primary-300/20 rounded-3xl" />
+                  <div className="h-50 xl:h-55 lg:h-53 md:h-62 sm:h-55 2xs:h-58 bg-primary-300/10 rounded-3xl" />
+                  <div className="h-50 xl:h-55 lg:h-53 md:h-62 sm:h-55 2xs:h-58 bg-primary-300/5 rounded-3xl" />
                </div>
             </div>
 
-            <div className="md:order-1 flex flex-col gap-9 lg:gap-7 md:gap-9 sm:gap-12 2xs:gap-14">
+            <div className="md:order-1 flex flex-col gap-9 lg:gap-7 md:gap-7.5 sm:gap-7">
                <span className="self-start md:self-center h-9 md:h-10 w-[12rem] md:w-[13rem] bg-primary-300/40 rounded-2xl" />
 
                <div className="flex gap-4 lg:gap-3 flex-wrap md:justify-center">
@@ -41,7 +44,7 @@ function Loading() {
                   <span className="h-[42px] xl:h-10.5 lg:h-10 md:h-13 sm:h-12 w-24 bg-primary-300 rounded-full" />
                </div>
 
-               <div className="md:order-2 flex flex-col self-start md:self-center gap-6 mt-5 md:mt-10">
+               <div className="md:order-2 flex flex-col self-start md:self-center gap-6 mt-5 md:mt-4">
                   <span className="h-9 md:h-10 w-[12rem] bg-primary-300/40 rounded-2xl md:self-center" />
                   <span className="h-11 w-[16rem] bg-primary-300 rounded-2xl" />
                </div>

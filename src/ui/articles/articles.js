@@ -96,7 +96,7 @@ function Articles({
                   {[...Array(3)].map((_, i) => (
                      <div
                         key={i}
-                        className="h-50.5 xl:h-55 lg:h-53 md:h-61 sm:h-50 xs:h-58 2xs:h-50 bg-primary-300/35 dark:bg-primary-300/18 rounded-3xl"
+                        className="h-50.5 xl:h-55 lg:h-53 md:h-62 sm:h-50 xs:h-58 2xs:h-50 bg-primary-300/35 dark:bg-primary-300/18 rounded-3xl"
                      />
                   ))}
                </div>

@@ -11,7 +11,7 @@ function Loading() {
          exit={{ opacity: 0 }}
          transition={{ duration: 0.3 }}
       >
-         <div className="h-[26rem] md:h-fit grid items-center grid-cols-2 md:flex! md:flex-col! gap-10 mt-24 xl:mt-16 lg:mt-12 md:mt-24 sm:mt-14 mb-39 xl:mb-28 lg:mb-22 md:mb-49 sm:mb-46 xs:mb-46.5">
+         <div className="h-[26rem] md:h-fit grid items-center grid-cols-2 md:flex! md:flex-col! gap-10 mt-24 xl:mt-16 lg:mt-12 md:mt-24 sm:mt-14 xs:mt-10 mb-39 xl:mb-28 lg:mb-22 md:mb-49 sm:mb-44 xs:mb-46.5">
             <div className="md:order-2 md:w-full flex flex-col self-center">
                <span className="mt-3 xl:mt-0 h-26 lg:h-18 w-11/12 md:w-5/6 md:self-center bg-primary-300/80 rounded-3xl" />
                <span className="mt-8 h-8 w-4/6 md:self-center lg:h-5 bg-primary-300/40 rounded-3xl" />
@@ -41,9 +41,9 @@ function Loading() {
                <span className="md:hidden self-start h-7.5 xl:h-9 lg:h-7.5 w-[12rem] xl:w-[16rem] lg:w-[13.5rem] bg-primary-300/40 rounded-2xl" />
 
                <div className="space-y-6 lg:space-y-4 md:space-y-6">
-                  <div className="h-50 xl:h-54 lg:h-52 md:h-60 bg-primary-300/80 rounded-3xl" />
-                  <div className="h-50 xl:h-54 lg:h-52 md:h-60 bg-primary-300/80 rounded-3xl" />
-                  <div className="h-50 xl:h-54 lg:h-52 md:h-60 bg-primary-300/80 rounded-3xl" />
+                  <div className="h-50 xl:h-54 lg:h-52 md:h-60 sm:h-54 bg-primary-300/80 rounded-3xl" />
+                  <div className="h-50 xl:h-54 lg:h-52 md:h-60 sm:h-54 bg-primary-300/80 rounded-3xl" />
+                  <div className="h-50 xl:h-54 lg:h-52 md:h-60 sm:h-54 bg-primary-300/80 rounded-3xl" />
                </div>
             </div>
 
