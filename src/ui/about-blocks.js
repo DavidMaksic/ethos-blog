@@ -22,7 +22,7 @@ function AboutBlocks({ authors }) {
                <h1 className="text-4xl text-primary-600/75 font-bold">
                   {t('label')}
                </h1>
-               <p className="text-[1.35rem] leading-7 md:leading-7.5 md:text-2xl">
+               <p className="text-[1.35rem] leading-7 md:leading-8 md:text-2xl">
                   {t('description')}
                </p>
             </section>
@@ -36,7 +36,7 @@ function AboutBlocks({ authors }) {
                <span className="text-primary-400 text-[1.4rem]">
                   {t('ipa')}
                </span>
-               <p className="text-[1.35rem] leading-7 md:leading-7.5 mt-3">
+               <p className="text-[1.35rem] leading-7 md:leading-8 mt-3">
                   {t.rich('etymology', {
                      em: (chunks) => <em>{chunks}</em>,
                   })}
