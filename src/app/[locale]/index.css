@@ -216,7 +216,7 @@
    }
 
    .box-shadow {
-      @apply border border-quaternary/70 dark:border-tertiary shadow-dashboard dark:shadow-none;
+      @apply border border-quaternary/70 dark:border-primary-300/15 shadow-dashboard dark:shadow-none;
    }
 
    .styled_text {
