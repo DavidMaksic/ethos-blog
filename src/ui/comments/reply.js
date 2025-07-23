@@ -64,7 +64,7 @@ function Reply({
                         </div>
                      )}
 
-                     <div className="flex items-center gap-2 md:text-2xl sm:text-xl">
+                     <div className="flex items-center gap-2 md:text-2xl sm:text-[1.35rem]">
                         <span className="font-semibold">
                            {currentUser.username
                               ? currentUser.username.split(' ')[0].slice(0, 10)

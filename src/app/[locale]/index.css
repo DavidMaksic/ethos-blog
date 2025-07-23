@@ -99,8 +99,8 @@
    --color-scrollbar: var(--color-primary-300);
 
    --shadow-article: 0 0 40px 0px #e5e7eba4;
-   --shadow-menu: 0 0 40px 0px #d1d5db;
    --shadow-dashboard: 0 0 40px 0px #f3f4f6;
+   --shadow-menu: 0 0 40px 0px #d6d9df;
    --shadow-btn: 0 0.2rem 0.5rem #cbd5e1;
    --shadow-toast-btn: 0 0 40px 0px #e5e7eb;
    --shadow-link-btn: 0 0 1rem var(--color-accent-300);
