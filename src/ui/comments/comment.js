@@ -117,13 +117,11 @@ function Comment({
                   <div className="flex items-center gap-2 md:text-2xl sm:text-xl">
                      <span className="font-semibold">
                         {user.username
-                           ? user.username.slice(0, 24)
-                           : user.name.slice(0, 24)}
+                           ? user.username.split(' ')[0].slice(0, 10)
+                           : user.name.split(' ')[0].slice(0, 10)}
                      </span>
-                     <span className="text-primary-400 xs:hidden">•</span>
-                     <span className="font-thin text-primary-400 xs:hidden">
-                        {date}
-                     </span>
+                     <span className="text-primary-400">•</span>
+                     <span className="font-thin text-primary-400">{date}</span>
                   </div>
                </div>
 

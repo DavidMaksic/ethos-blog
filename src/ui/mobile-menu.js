@@ -50,7 +50,7 @@ function MobileMenu({ session, newUser, oldUser }) {
                >
                   <div
                      className={`pl-10 xs:pl-6 pr-16 xs:pr-12 py-2 xs:pt-0  pb-4 xs:pb-0 3xs:pb-12 space-y-7 3xs:border-b 3xs:border-b-primary-300 3xs:dark:border-b-primary-300/40 ${
-                        session ? 'xs:pt-3' : 'xs:pt-0'
+                        session ? 'xs:pt-2.5' : 'xs:pt-0'
                      }`}
                   >
                      <h2 className="uppercase tracking-wide font-semibold text-accent dark:text-accent-200">

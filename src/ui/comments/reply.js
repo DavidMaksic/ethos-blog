@@ -67,11 +67,11 @@ function Reply({
                      <div className="flex items-center gap-2 md:text-2xl sm:text-xl">
                         <span className="font-semibold">
                            {currentUser.username
-                              ? currentUser.username.slice(0, 24)
-                              : currentUser.name.slice(0, 24)}
+                              ? currentUser.username.split(' ')[0].slice(0, 10)
+                              : currentUser.name.split(' ')[0].slice(0, 10)}
                         </span>
-                        <span className="text-primary-400 xs:hidden">•</span>
-                        <span className="font-thin text-primary-400 xs:hidden">
+                        <span className="text-primary-400">•</span>
+                        <span className="font-thin text-primary-400">
                            {date}
                         </span>
                      </div>
