@@ -100,7 +100,7 @@ function Comment({
       <>
          <div
             id={`comment-${commentID}`}
-            className="flex flex-col gap-5 bg-secondary dark:bg-primary-200 md:dark:bg-primary-300/15 box-shadow rounded-3xl px-14 sm:px-12 xs:px-10 py-10 sm:py-8 xs:py-6 scroll-mt-28! transition duration-300"
+            className="flex flex-col gap-5 bg-secondary dark:bg-primary-200 md:dark:bg-primary-300/15 box-shadow rounded-3xl px-14 sm:px-12 xs:px-10 py-10 sm:py-8 xs:py-5.5 scroll-mt-28! transition duration-300"
          >
             <div className="flex items-center justify-between">
                <div className="flex items-center gap-4">
@@ -114,7 +114,7 @@ function Comment({
                      </div>
                   )}
 
-                  <div className="flex items-center gap-2 md:text-2xl sm:text-[1.35rem]">
+                  <div className="flex items-center gap-2 md:text-2xl sm:text-[1.4rem]">
                      <span className="font-semibold">
                         {user.username
                            ? user.username.split(' ')[0].slice(0, 10)
