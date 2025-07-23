@@ -50,7 +50,7 @@ function Reply({
 
             <div
                id={`comment-${replyID}`}
-               className="flex flex-col gap-5 bg-secondary/65 dark:bg-primary-200/49 md:dark:bg-primary-300/10 box-shadow dark:border-primary-300/10 rounded-3xl px-14 sm:px-12 xs:px-10 py-10 sm:py-8 xs:py-5.5 ml-14 mb-4 scroll-mt-28! transition duration-300"
+               className="flex flex-col gap-5 xs:gap-4 bg-secondary/65 dark:bg-primary-200/49 md:dark:bg-primary-300/10 box-shadow dark:border-primary-300/10 rounded-3xl px-14 sm:px-12 xs:px-10 py-10 sm:py-8 xs:py-5.5 ml-14 mb-4 scroll-mt-28! transition duration-300"
             >
                <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
