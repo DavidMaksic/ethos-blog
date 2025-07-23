@@ -47,7 +47,7 @@ function List({ id, children }) {
    return (
       <AnimatePresence>
          <motion.ul
-            className="absolute right-0 top-9 mt-2.5 p-1 w-max max-h-52 text-lg rounded-2xl bg-white dark:bg-primary border border-quaternary dark:border-tertiary shadow-lg cursor-pointer transition-bg_border z-10 overflow-hidden"
+            className="absolute right-0 top-9 mt-2.5 p-1 w-max max-h-52 text-lg rounded-2xl bg-white dark:bg-primary border border-quaternary dark:border-primary-300/15 shadow-lg cursor-pointer transition-bg_border z-10 overflow-hidden"
             ref={ref}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

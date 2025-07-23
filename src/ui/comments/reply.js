@@ -45,12 +45,12 @@ function Reply({
       <>
          <div className="relative last:mb-12" ref={lastItemRef}>
             <div className="absolute left-10 top-1/2 w-10 h-8 -translate-x-full -translate-y-[100%]">
-               <div className="w-full h-full border-l-2 border-b-2 border-quaternary dark:border-tertiary rounded-bl-full"></div>
+               <div className="w-full h-full border-l-2 border-b-2 border-quaternary dark:border-tertiary rounded-bl-full" />
             </div>
 
             <div
                id={`comment-${replyID}`}
-               className="flex flex-col gap-5 bg-secondary/65 dark:bg-primary-200/49 xs:dark:bg-primary-300/10 box-shadow dark:border-primary-300/10 rounded-3xl px-14 sm:px-12 xs:px-10 py-10 sm:py-8 xs:py-6 ml-14 mb-4 scroll-mt-28! transition duration-300"
+               className="flex flex-col gap-5 bg-secondary/65 dark:bg-primary-200/49 md:dark:bg-primary-300/10 box-shadow dark:border-primary-300/10 rounded-3xl px-14 sm:px-12 xs:px-10 py-10 sm:py-8 xs:py-6 ml-14 mb-4 scroll-mt-28! transition duration-300"
             >
                <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
@@ -95,7 +95,7 @@ function Reply({
 
                <div className="flex items-center gap-2 md:gap-2.5 mt-2 md:mt-3">
                   <div
-                     className={`flex items-center gap-2 h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-3 py-1.5 bg-primary-300/15 dark:bg-primary-400/12 xs:dark:bg-primary-400/10 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75 ${
+                     className={`flex items-center gap-2 h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-3 py-1.5 bg-primary-300/15 dark:bg-primary-400/12 md:dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75 ${
                         replyCount === 0 && 'gap-0!'
                      }`}
                      onClick={() => {
@@ -133,7 +133,7 @@ function Reply({
                   </div>
 
                   <div
-                     className="flex items-center gap-2 h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-3 md:px-4 py-1.5 bg-primary-300/15 dark:bg-primary-400/12 xs:dark:bg-primary-400/10 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75"
+                     className="flex items-center gap-2 h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-3 md:px-4 py-1.5 bg-primary-300/15 dark:bg-primary-400/12 md:dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75"
                      onClick={() => {
                         if (!session) setIsOpen(true);
                         if (session) {
