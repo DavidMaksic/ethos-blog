@@ -116,11 +116,11 @@ function MobileMenu({ session, newUser, oldUser }) {
                               />
                            </Link>
                            <span
-                              className={`text-accent-400 dark:text-accent text-5xl w-fit self-center pr-1.5 ${parisienne.className}`}
+                              className={`text-accent-400 dark:text-accent text-4xl w-fit self-center pr-1.5 ${parisienne.className}`}
                            >
                               {newUser?.username
-                                 ? newUser?.username.split(' ')[0]
-                                 : oldUser?.name.split(' ')[0]}
+                                 ? newUser?.username.split(' ')[0].slice(0, 10)
+                                 : oldUser?.name.split(' ')[0].slice(0, 10)}
                            </span>
                         </div>
                      ) : (
