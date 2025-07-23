@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useEffect } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import ReactDOMServer from 'react-dom/server';
 import mediumZoom from 'medium-zoom';
 import parse from 'html-react-parser';
@@ -27,6 +28,7 @@ export default function RichTextRenderer({ html }) {
 
    const rawElement = parse(html, options);
    const containerRef = useRef(null);
+   const isMobile = useMediaQuery({ maxWidth: 768 });
 
    useEffect(() => {
       if (containerRef.current && rawElement) {
@@ -37,13 +39,13 @@ export default function RichTextRenderer({ html }) {
 
    useEffect(() => {
       const zoom = mediumZoom('.container img', {
-         margin: 60,
+         margin: isMobile ? 22 : 60,
       });
 
       return () => {
          zoom.detach();
       };
-   }, []);
+   }, [isMobile]);
 
    return <div ref={containerRef} />;
 }
