@@ -1833,15 +1833,3 @@ h3 {
       font-size: 15px !important;
    }
 }
-
-/* Glowing Logo */
-
-.glow-text {
-   text-shadow: 0 0 5px var(--color-accent-400);
-}
-
-@media (max-width: 768px) {
-   .glow-text {
-      text-shadow: none;
-   }
-}
