@@ -95,7 +95,7 @@ function Reply({
 
                <div className="flex items-center gap-2 md:gap-2.5 mt-2 md:mt-3">
                   <div
-                     className={`flex items-center gap-2 h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-3 py-1.5 bg-primary-300/20 dark:bg-primary-400/12 xs:dark:bg-primary-300/20 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75 ${
+                     className={`flex items-center gap-2 h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-3 py-1.5 bg-primary-300/15 dark:bg-primary-400/12 xs:dark:bg-primary-300/20 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75 ${
                         replyCount === 0 && 'gap-0!'
                      }`}
                      onClick={() => {
@@ -133,7 +133,7 @@ function Reply({
                   </div>
 
                   <div
-                     className="flex items-center gap-2 h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-3 md:px-4 py-1.5 bg-primary-300/20 dark:bg-primary-400/12 xs:dark:bg-primary-300/20 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75"
+                     className="flex items-center gap-2 h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-3 md:px-4 py-1.5 bg-primary-300/15 dark:bg-primary-400/12 xs:dark:bg-primary-300/20 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75"
                      onClick={() => {
                         if (!session) setIsOpen(true);
                         if (session) {
