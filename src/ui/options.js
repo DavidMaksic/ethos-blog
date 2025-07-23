@@ -7,6 +7,7 @@ import { useIntersectionObserver } from '@/src/hooks/use-intersection-observer';
 import { useEffect, useState } from 'react';
 import { useOutsideClick } from '@/src/hooks/use-outside-click';
 import { useTranslations } from 'next-intl';
+import { useMediaQuery } from 'react-responsive';
 import { RxChatBubble } from 'react-icons/rx';
 import { FiChevronUp } from 'react-icons/fi';
 import { useScroll } from '@/src/hooks/use-scroll';
@@ -43,12 +44,18 @@ function Options() {
 
    useIntersectionObserver(setActiveId, activeId);
 
+   const isBellowMd = useMediaQuery({ maxWidth: 768 });
+
    return (
       <>
          <div className="absolute top-[-140px] left-0" ref={scrollRef} />
 
          <IoOptions
-            className="fixed bottom-13 xl:bottom-11 lg:bottom-11.5 md:bottom-9 right-24 lg:right-15 md:right-9 size-16 md:size-20.5 bg-white/50 lg:bg-white dark:bg-transparent backdrop-blur-3xl lg:dark:bg-primary/40 md:dark:bg-primary/80 hover:bg-primary-100 dark:hover:bg-primary-400/10 cursor-pointer border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/40 p-3.5 md:p-4.5 rounded-full box-shadow md:shadow-menu md:dark:shadow-none transition-bg_border z-20"
+            className={`fixed bottom-13 xl:bottom-11 lg:bottom-11.5 md:bottom-9 right-24 lg:right-15 md:right-9 size-16 md:size-20.5 bg-white/50 lg:bg-white dark:bg-transparent backdrop-blur-3xl lg:dark:bg-primary/40 md:dark:bg-primary/80  cursor-pointer border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/40 p-3.5 md:p-4.5 rounded-full box-shadow md:shadow-menu md:dark:shadow-none transition-bg_border z-20 ${
+               !isBellowMd
+                  ? 'hover:bg-primary-100 dark:hover:bg-primary-400/10'
+                  : ''
+            }`}
             onClick={(e) => {
                e.stopPropagation();
                setOpenMenu((isOpen) => !isOpen);
