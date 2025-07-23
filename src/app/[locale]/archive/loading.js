@@ -2,9 +2,6 @@
 
 import { motion } from 'motion/react';
 
-// TODO: Animate Sort component and user comments section
-// TODO: Add title to metadata
-
 function Loading() {
    return (
       <motion.div
