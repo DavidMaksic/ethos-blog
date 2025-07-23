@@ -666,12 +666,12 @@
 @media (max-width: 450px) {
    .background-gradient {
       background-image: radial-gradient(
-            640px 440px at 140px -100px,
+            640px 440px at 140px -120px,
             #ffeab5ff 0px,
             transparent 55%
          ),
          radial-gradient(
-            640px 400px at 300px -100px,
+            640px 400px at 300px -120px,
             #e3abffff 0px,
             transparent 55%
          ),

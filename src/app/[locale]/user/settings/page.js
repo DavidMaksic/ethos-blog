@@ -23,7 +23,7 @@ async function Page() {
                   <label className="text-sm uppercase font-semibold text-primary-400 tracking-wider">
                      {t('username')}
                   </label>
-                  <span className="text-3xl xs:text-4xl">
+                  <span className="text-3xl xs:text-[2rem]">
                      {username ? username : session.user.name}
                   </span>
                </div>

@@ -32,7 +32,7 @@ function UsernameInput() {
          </label>
 
          <input
-            className="w-[24rem] lg:w-[20rem] text-3xl xs:text-4xl border-b border-b-quaternary outline-none"
+            className="w-[24rem] lg:w-[20rem] text-3xl xs:text-[2rem] border-b border-b-quaternary outline-none"
             value={input}
             name="username"
             autoComplete="one-time-code"
@@ -40,7 +40,7 @@ function UsernameInput() {
          />
 
          {!isPending ? (
-            input?.length > 2 && input?.length < 11 ? (
+            input?.length > 2 && input?.length < 25 ? (
                <button className="absolute bottom-0 right-[-46px] xs:right-[-34px] 2xs:right-[-30px]">
                   <GiCheckMark className="opacity-80 size-9 px-[0.5rem] pt-0.5 ml-4 rounded-full text-primary-500 dark:text-primary-500 hover:text-green-900/80 dark:hover:text-green-900 bg-white dark:bg-primary-300/40 hover:bg-green-200/60 border border-primary-300/70 dark:border-quaternary hover:border-green-700/30 transition-bg_color_border cursor-pointer" />
                </button>
