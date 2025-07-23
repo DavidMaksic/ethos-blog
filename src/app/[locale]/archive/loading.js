@@ -14,7 +14,7 @@ function Loading() {
          <div className="mb-31 grid grid-cols-[2fr_1fr] md:grid-cols-1 gap-10 2xs:gap-8">
             <div className="md:order-2 flex flex-col gap-9 lg:gap-7 md:gap-6 md:mt-2.5 sm:mt-5 2xs:mt-10">
                <div className="flex justify-between items-center">
-                  <span className="h-9 md:h-11 w-[12rem] bg-primary-300/40 rounded-2xl" />
+                  <span className="h-9 md:h-11 w-[12rem] xs:w-[16rem] bg-primary-300/40 rounded-2xl" />
                   <span className="h-9 md:h-11 w-[8rem] xl:w-[10rem] bg-primary-300/40 rounded-2xl" />
                </div>
 
@@ -38,7 +38,7 @@ function Loading() {
                   <span className="h-[42px] xl:h-10.5 lg:h-10 md:h-13 sm:h-12 w-34 bg-primary-300 rounded-full" />
                   <span className="h-[42px] xl:h-10.5 lg:h-10 md:h-13 sm:h-12 w-30 xl:w-24 bg-primary-300 rounded-full" />
                   <span className="h-[42px] xl:h-10.5 lg:h-10 md:h-13 sm:h-12 w-34 bg-primary-300 rounded-full" />
-                  <span className="h-[42px] xl:h-10.5 lg:h-10 md:h-13 sm:h-12 w-24 bg-primary-300 rounded-full" />
+                  <span className="h-[42px] xl:h-10.5 lg:h-10 md:h-13 sm:h-12 w-24 bg-primary-300 rounded-full sm:hidden" />
                </div>
 
                <div className="md:order-2 flex flex-col self-start md:self-center gap-6 mt-5 md:mt-4">

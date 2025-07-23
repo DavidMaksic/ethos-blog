@@ -282,6 +282,10 @@
    }
 }
 
+.no-hover:hover {
+   all: unset !important;
+}
+
 /* Background lights */
 
 .background-gradient {
