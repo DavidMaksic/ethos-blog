@@ -55,13 +55,13 @@ function ArticleAuthorInfo({ article, author, date, children }) {
                </div>
 
                {author?.description_en || author?.description_srb ? (
-                  <p className="text-xl md:text-2xl">
+                  <p className="text-[1.35rem] leading-7 md:leading-7.5 md:text-2xl">
                      {article.language === 'English'
                         ? author.description_en
                         : author.description_srb}
                   </p>
                ) : (
-                  <p className="text-xl md:text-2xl">
+                  <p className="text-[1.35rem] leading-7 md:leading-7.5 md:text-2xl">
                      {article.language === 'English'
                         ? 'Is an author writing for Ethos blog.'
                         : 'Је аутор који пише за Етос блог.'}

@@ -44,25 +44,27 @@ function Author({ author }) {
                </div>
 
                {description_en || description_srb ? (
-                  <p className="text-xl md:text-2xl">
+                  <p className="text-[1.35rem] leading-7 md:leading-7.5 md:text-2xl">
                      {locale === 'en' ? (
                         description_en ? (
                            description_en
                         ) : (
-                           <p className="text-xl md:text-2xl">
+                           <p className="text-[1.35rem] leading-7 md:leading-7.5 md:text-2xl">
                               {t('description')}
                            </p>
                         )
                      ) : description_srb ? (
                         description_srb
                      ) : (
-                        <p className="text-xl md:text-2xl">
+                        <p className="text-[1.35rem] leading-7 md:leading-7.5 md:text-2xl">
                            {t('description')}
                         </p>
                      )}
                   </p>
                ) : (
-                  <p className="text-xl md:text-2xl">{t('description')}</p>
+                  <p className="text-[1.35rem] leading-7 md:leading-7.5 md:text-2xl">
+                     {t('description')}
+                  </p>
                )}
             </div>
          </div>
