@@ -23,7 +23,7 @@ async function Page() {
                   <label className="text-sm uppercase font-semibold text-primary-400 tracking-wider">
                      {t('username')}
                   </label>
-                  <span className="text-3xl">
+                  <span className="text-3xl xs:text-4xl">
                      {username ? username : session.user.name}
                   </span>
                </div>
@@ -38,7 +38,9 @@ async function Page() {
             <label className="text-sm uppercase font-semibold text-primary-400 tracking-wider">
                {t('email')}
             </label>
-            <span className="text-2xl">{session.user.email}</span>
+            <span className="text-2xl xs:text-[1.7rem]">
+               {session.user.email}
+            </span>
          </div>
       </div>
    );

@@ -32,7 +32,7 @@ function UsernameInput() {
          </label>
 
          <input
-            className="w-[24rem] lg:w-[20rem] text-3xl border-b border-b-quaternary outline-none"
+            className="w-[24rem] lg:w-[20rem] text-3xl xs:text-4xl border-b border-b-quaternary outline-none"
             value={input}
             name="username"
             autoComplete="one-time-code"
