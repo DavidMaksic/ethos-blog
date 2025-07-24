@@ -34,8 +34,8 @@ export async function generateMetadata({ params }) {
       },
       description:
          locale === 'en'
-            ? 'Ethos is a blog featuring diverse topics ranging from history, religion and politics.'
-            : 'Етос је блог који се бави свакаквим темама, од историје, религије до политике.',
+            ? 'Ethos blog features many authors from across the world, who write with great interest on various topics connected to the concept of ethos - culture, customs, values, ethics, etc.'
+            : 'За етос блог пишу аутори из целог света, са великим занимањем за разне теме које су повезане са идејом етоса - културом, обичајима, вредностима, етиком, итд.',
    };
 }
 
