@@ -4,6 +4,7 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { Cormorant_Garamond } from 'next/font/google';
 import { LanguageProvider } from '@/src/context/language-context';
 import { setRequestLocale } from 'next-intl/server';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
 import { LikeProvider } from '@/src/context/like-context';
 import { notFound } from 'next/navigation';
@@ -83,6 +84,7 @@ export default async function RootLayout({ children, params }) {
                         <Header />
                         <main className="py-12 xl:pt-4 md:pt-5 w-7xl xl:w-full mx-auto">
                            {children}
+                           <SpeedInsights />
                         </main>
                         <Footer />
 
