@@ -19,6 +19,7 @@ export default function RichTextRenderer({ html }) {
                   width={4000}
                   height={3000}
                   quality={60}
+                  priority={true}
                   sizes="(max-width: 400px) 300px, (max-width: 630px) 600px, (max-width: 2300px) 1000px, 100vw"
                />
             );
