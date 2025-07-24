@@ -1581,6 +1581,22 @@ h3 {
    scroll-margin-top: 46px;
 }
 
+@media (max-width: 550px) {
+   h1,
+   h2,
+   h3 {
+      scroll-margin-top: 30px !important;
+   }
+}
+
+@media (max-width: 400px) {
+   h1,
+   h2,
+   h3 {
+      scroll-margin-top: 20px !important;
+   }
+}
+
 [data-content-type='numberedListItem'] {
    margin-top: 10px;
 }
@@ -1692,7 +1708,7 @@ h3 {
    }
 }
 
-@media screen and (max-width: 640px) {
+@media (max-width: 640px) {
    [data-content-type='quote'] blockquote {
       padding: 0 0 0 32px !important;
    }
@@ -1717,7 +1733,7 @@ h3 {
    }
 }
 
-@media screen and (max-width: 550px) {
+@media (max-width: 550px) {
    .inter-padding {
       padding-inline: 22px;
    }

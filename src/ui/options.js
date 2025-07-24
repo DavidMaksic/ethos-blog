@@ -144,6 +144,9 @@ function Options() {
                                     .scrollIntoView({
                                        behavior: 'smooth',
                                     });
+
+                                 setOpenTable(false);
+                                 setOpenMenu(false);
                               }}
                            >
                               {item.innerText}
