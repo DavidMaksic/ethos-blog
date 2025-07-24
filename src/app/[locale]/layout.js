@@ -7,6 +7,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
 import { LikeProvider } from '@/src/context/like-context';
+import { Analytics } from '@vercel/analytics/next';
 import { notFound } from 'next/navigation';
 import { Toaster } from 'react-hot-toast';
 import { routing } from '@/src/i18n/routing';
@@ -85,6 +86,7 @@ export default async function RootLayout({ children, params }) {
                         <main className="py-12 xl:pt-4 md:pt-5 w-7xl xl:w-full mx-auto">
                            {children}
                            <SpeedInsights />
+                           <Analytics />
                         </main>
                         <Footer />
 
