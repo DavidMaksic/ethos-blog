@@ -1679,9 +1679,9 @@ h3 {
    }
 
    .bn-block-column-list {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 30px !important;
    }
 
    .bn-block-column {
@@ -1753,9 +1753,9 @@ h3 {
    }
 
    .bn-block-column-list {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 24px !important;
    }
 
    .bn-file-caption {
