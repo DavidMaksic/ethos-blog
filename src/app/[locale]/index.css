@@ -38,7 +38,7 @@
 
 @media screen and (max-height: 590px) {
    html {
-      font-size: 10px;
+      font-size: 12px;
    }
 }
 
@@ -101,6 +101,7 @@
    --shadow-article: 0 0 40px 0px #e5e7eba4;
    --shadow-dashboard: 0 0 40px 0px #f3f4f6;
    --shadow-menu: 0 0 40px 0px #d6d9df;
+   --shadow-menu-dark: 0 0 40px 0px #0a0e17;
    --shadow-btn: 0 0.2rem 0.5rem #cbd5e1;
    --shadow-toast-btn: 0 0 40px 0px #e5e7eb;
    --shadow-link-btn: 0 0 1rem var(--color-accent-300);
