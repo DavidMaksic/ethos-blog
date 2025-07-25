@@ -13,7 +13,7 @@ function RelatedArticles({ articles, category, title, author }) {
 
    const relatedArticles = array
       .filter((item) => item.title !== title)
-      .slice(0, 3);
+      .slice(0, 2);
 
    if (!relatedArticles.length) return null;
 

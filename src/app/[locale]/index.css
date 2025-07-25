@@ -16,39 +16,40 @@
 @custom-variant 2xs (@media (max-width: 390px));
 @custom-variant 3xs (@media (max-width: 350px));
 @custom-variant short (@media (max-height: 470px));
+@custom-variant shorter (@media (max-height: 390px));
 @custom-variant above-xl (@media (min-width: 2000px));
 
-@media screen and (max-width: 2000px) {
+@media (max-width: 2000px) {
    html {
       font-size: 15px;
    }
 }
 
-@media screen and (max-width: 1024px) {
+@media (max-width: 1024px) {
    html {
       font-size: 15px;
    }
 }
 
-@media screen and (max-width: 550px) {
+@media (max-width: 550px) {
    html {
       font-size: 12px;
    }
 }
 
-@media screen and (max-height: 590px) {
+@media (max-height: 590px) {
    html {
       font-size: 12px;
    }
 }
 
-@media screen and (min-width: 3940px) {
+@media (min-width: 3940px) {
    html {
       font-size: 28px !important;
    }
 }
 
-@media screen and (max-width: 390px) {
+@media (max-width: 390px) {
    html {
       font-size: 10.5px;
    }
@@ -101,7 +102,7 @@
    --shadow-article: 0 0 40px 0px #e5e7eba4;
    --shadow-dashboard: 0 0 40px 0px #f3f4f6;
    --shadow-menu: 0 0 40px 0px #d6d9df;
-   --shadow-menu-dark: 0 0 40px 0px #0a0e17;
+   --shadow-menu-dark: 0 0 40px 0px #0c111b;
    --shadow-btn: 0 0.2rem 0.5rem #cbd5e1;
    --shadow-toast-btn: 0 0 40px 0px #e5e7eb;
    --shadow-link-btn: 0 0 1rem var(--color-accent-300);
