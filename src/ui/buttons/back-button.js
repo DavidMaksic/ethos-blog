@@ -13,7 +13,7 @@ function BackButton() {
 
    return (
       <HiOutlineArrowUturnLeft
-         className="size-10 xl:size-[2.4rem] backdrop-blur-md p-2 stroke-2 text-primary-400 group-hover:text-primary-500 dark:text-primary-400 dark:group-hover:text-primary-500 transition-color hover:bg-gradient-to-b hover:from-[rgba(255,255,255,0.25)] hover:to-[rgba(255,255,255,0.05)] hover:bg-[rgba(30,30,30,0.7)] border border-white/20"
+         className="size-10 xl:size-[2.4rem] p-2 stroke-2 text-primary-400 group-hover:text-primary-500 dark:text-primary-400 dark:group-hover:text-primary-500 transition-color"
          onClick={navigate}
       />
    );

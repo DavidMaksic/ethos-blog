@@ -51,7 +51,7 @@ function Options() {
          <div className="absolute top-[-140px] left-0" ref={scrollRef} />
 
          <IoOptions
-            className={`fixed bottom-13 xl:bottom-11 lg:bottom-11.5 md:bottom-9 right-24 lg:right-15 md:right-9 size-16 md:size-20.5 bg-white/50 lg:bg-white dark:bg-transparent backdrop-blur-3xl lg:dark:bg-primary/40 md:dark:bg-primary-100/80 cursor-pointer border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/40 p-3.5 md:p-4.5 rounded-full box-shadow md:shadow-menu transition-bg_border z-20 ${
+            className={`fixed bottom-13 xl:bottom-11 lg:bottom-11.5 md:bottom-9 right-24 lg:right-15 md:right-9 size-16 md:size-20.5 bg-white/50 lg:bg-white dark:bg-transparent backdrop-blur-3xl lg:dark:bg-primary/40 md:dark:bg-primary-200/80 cursor-pointer border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/40 p-3.5 md:p-4.5 rounded-full box-shadow md:shadow-menu transition-bg_border z-20 ${
                !isBellowMd
                   ? 'hover:bg-primary-100 dark:hover:bg-primary-400/10'
                   : ''
@@ -67,7 +67,7 @@ function Options() {
          <AnimatePresence>
             {openMenu && (
                <motion.ul
-                  className={`fixed bottom-32 xl:bottom-30 lg:bottom-30.5 md:bottom-33 right-24 lg:right-15 md:right-9 px-1 md:px-2 flex flex-col items-center bg-white/50 lg:bg-white dark:bg-transparent lg:dark:bg-primary/40 md:dark:bg-primary-100/80 backdrop-blur-3xl border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/40 rounded-3xl transition [&_svg]:cursor-pointer box-shadow md:shadow-menu transition-border z-20 ${
+                  className={`fixed bottom-32 xl:bottom-30 lg:bottom-30.5 md:bottom-33 right-24 lg:right-15 md:right-9 px-1 md:px-2 flex flex-col items-center bg-white/50 lg:bg-white dark:bg-transparent lg:dark:bg-primary/40 md:dark:bg-primary-200/80 backdrop-blur-3xl border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/40 rounded-3xl transition [&_svg]:cursor-pointer box-shadow md:shadow-menu transition-border z-20 ${
                      openTable
                         ? 'md:dark:shadow-none'
                         : 'md:dark:shadow-menu-dark'
