@@ -30,7 +30,7 @@ function ArticleImage({
 
    return (
       <motion.div
-         className="flex flex-col border bg-white/50 dark:bg-transparent border-primary-300/70 dark:border-quaternary rounded-3xl mt-3 shadow-article dark:shadow-none transition-bg_border"
+         className="flex flex-col border bg-white/50 dark:bg-primary-300/5 border-primary-300/70 dark:border-primary-300/15 rounded-3xl mt-3 shadow-article dark:shadow-menu-dark transition-bg_border"
          initial={{ opacity: 0 }}
          animate={{ opacity: 1 }}
          transition={{ duration: 0.3 }}
