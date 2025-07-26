@@ -49,7 +49,7 @@ function HeaderOptions({ session, oldUser, newUser }) {
             >
                <div className="relative size-7.5!">
                   <Image
-                     className="rounded-full block aspect-square object-cover object-center opacity-80 border border-primary-300 transition-200"
+                     className="rounded-full block aspect-square object-cover object-center dark:opacity-90 border border-primary-300 transition-200"
                      fill
                      src={newUser.image ? newUser.image : oldUser.image}
                      alt="Profile image"
