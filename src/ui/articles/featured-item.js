@@ -43,7 +43,7 @@ function FeaturedItem({ article, authors }) {
                </div>
 
                <h2
-                  className={`text-primary dark:text-primary-600/95 text-[1.9rem] lg:text-[1.6rem] md:text-4xl sm:text-[2rem] xs:text-[2.1rem] font-medium ${cormorantSC.className} leading-9 xl:leading-9 lg:leading-8 md:leading-10`}
+                  className={`text-primary dark:text-primary-600/95 text-[1.9rem] lg:text-[1.6rem] md:text-4xl sm:text-[2rem] xs:text-[2.1rem] font-medium ${cormorantSC.className} leading-9.5 xl:leading-9 lg:leading-8 md:leading-10`}
                   style={{ textShadow: '2px 2px 12px rgba(0, 0, 0, 1)' }}
                >
                   {article.title}
