@@ -43,6 +43,8 @@ export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));
 }
 
+// TODO: Fix featured item line height
+
 // TODO: Implement:
 // TODO: 'Author' flag to author's comments
 // TODO: 'Most popular' sorting tag
