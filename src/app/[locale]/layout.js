@@ -44,6 +44,7 @@ export function generateStaticParams() {
 }
 
 // TODO: Fix featured item line height
+// TODO: Fix about loader
 
 // TODO: Implement:
 // TODO: 'Author' flag to author's comments

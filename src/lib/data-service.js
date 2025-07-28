@@ -50,7 +50,7 @@ export async function getAuthors() {
    const { data, error } = await supabase
       .from('authors')
       .select()
-      .order('id', { ascending: false });
+      .order('id', { ascending: true });
 
    if (error) throw new Error('Authors could not be loaded');
 
