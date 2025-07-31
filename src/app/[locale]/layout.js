@@ -43,8 +43,9 @@ export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));
 }
 
-// TODO: Fix featured item line height
-// TODO: Fix about loader
+// TODO: Fix:
+// TODO: About loader
+// TODO: Language switch not working after new page enter
 
 // TODO: Implement:
 // TODO: 'Author' flag to author's comments

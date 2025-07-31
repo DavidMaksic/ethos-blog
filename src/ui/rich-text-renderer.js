@@ -2,6 +2,7 @@
 
 import React, { useRef, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
+
 import ReactDOMServer from 'react-dom/server';
 import mediumZoom from 'medium-zoom';
 import parse from 'html-react-parser';
