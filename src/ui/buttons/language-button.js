@@ -30,13 +30,28 @@ function LanguageButton() {
    const handler = useSetParams();
    const pathname = usePathname();
 
-   // - Old way
    const switchLocale = (lang) => {
-      const segments = pathname.split('/');
-      segments[1] = lang;
+      // Update NEXT_LOCALE cookie for middleware and client sync
+      document.cookie = `NEXT_LOCALE=${lang}; path=/; max-age=31536000`;
 
-      const newPath = segments.join('/');
-      router.push(newPath);
+      // Update language context state
+      setLanguage(
+         lang === 'sr-cyrl'
+            ? { language: 'Српски', flag: srbFlag }
+            : { language: 'English', flag: enFlag }
+      );
+
+      // Replace the locale segment in the URL path
+      const segments = pathname.split('/');
+      if (segments.length > 1) {
+         segments[1] = lang;
+      } else {
+         segments.push(lang);
+      }
+
+      const newPath = segments.join('/') || `/${lang}`;
+
+      // Navigate to new locale URL
       router.replace(newPath);
    };
 
