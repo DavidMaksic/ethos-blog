@@ -31,6 +31,12 @@ function LanguageProvider({ children }) {
       }
    }, [locale, setLanguage]);
 
+   useEffect(() => {
+      if (locale) {
+         document.cookie = `NEXT_LOCALE=${locale}; path=/; max-age=31536000`;
+      }
+   }, [locale]);
+
    return (
       <LanguageContext.Provider value={{ language, setLanguage }}>
          {children}
