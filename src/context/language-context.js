@@ -1,27 +1,35 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect } from 'react';
+import { useLocalStorage } from '../hooks/use-local-storage';
 import { useLocale } from 'next-intl';
+import { routing } from '@/src/i18n/routing';
 
 import srbFlag from '@/assets/srb-flag.png';
 import enFlag from '@/assets/en-flag.png';
 
 const LanguageContext = createContext();
 
-export function LanguageProvider({ children }) {
+function LanguageProvider({ children }) {
    const locale = useLocale();
-   const [language, setLanguage] = useState({
-      language: 'English',
-      flag: enFlag,
-   });
+   const defaultLang = locale === routing.defaultLocale ? 'English' : 'Српски';
+   const defaultFlag = locale === routing.defaultLocale ? enFlag : srbFlag;
+
+   const [language, setLanguage] = useLocalStorage(
+      {
+         language: defaultLang,
+         flag: defaultFlag,
+      },
+      'localLang'
+   );
 
    useEffect(() => {
-      if (locale === 'sr-cyrl') {
-         setLanguage({ language: 'Српски', flag: srbFlag });
-      } else {
+      if (locale === 'en') {
          setLanguage({ language: 'English', flag: enFlag });
+      } else {
+         setLanguage({ language: 'Српски', flag: srbFlag });
       }
-   }, [locale]);
+   }, [locale, setLanguage]);
 
    return (
       <LanguageContext.Provider value={{ language, setLanguage }}>
@@ -30,8 +38,13 @@ export function LanguageProvider({ children }) {
    );
 }
 
-export function useLanguage() {
+function useLanguage() {
    const context = useContext(LanguageContext);
-   if (!context) throw new Error('useLanguage must be inside LanguageProvider');
+
+   if (context === undefined)
+      throw new Error('LanguageContext was used outside of LanguageProvider');
+
    return context;
 }
+
+export { LanguageProvider, useLanguage };
