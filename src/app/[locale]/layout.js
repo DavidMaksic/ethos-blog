@@ -29,8 +29,8 @@ export async function generateMetadata({ params }) {
 
    return {
       title: {
-         template: `%s • ${locale === 'en' ? 'Etos' : 'Етос'}`,
-         default: locale === 'en' ? 'Etos' : 'Етос',
+         template: `%s • ${locale === 'en' ? 'Ethos' : 'Етос'}`,
+         default: locale === 'en' ? 'Ethos' : 'Етос',
       },
       description:
          locale === 'en'
@@ -45,7 +45,6 @@ export function generateStaticParams() {
 
 // TODO: Fix:
 // TODO: About loader
-// TODO: Language switch not working after new page enter
 
 // TODO: Implement:
 // TODO: 'Author' flag to author's comments
