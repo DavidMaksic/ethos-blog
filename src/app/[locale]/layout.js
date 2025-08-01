@@ -35,7 +35,7 @@ export async function generateMetadata({ params }) {
       description:
          locale === 'en'
             ? 'Ethos blog features many authors from across the world, who write with great interest on various topics connected to the concept of ethos - culture, customs, values, ethics, etc.'
-            : 'За етос блог пишу аутори из целог света, са великим занимањем за разне теме које су повезане са идејом етоса - културом, обичајима, вредностима, етиком, итд.',
+            : 'За Eтос блог пишу аутори из целог света, са великим занимањем за разне теме које су повезане са идејом етоса - културом, обичајима, вредностима, етиком, итд.',
    };
 }
 
