@@ -177,7 +177,7 @@ function Options() {
                      )}
 
                      <FiChevronDown
-                        className="py-3 size-13.5 stroke-[1.8px] hover:bg-primary-200/40 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-b-[20px] mb-1 mt-0.5 rounded-2xl"
+                        className="py-3 size-13.5 md:size-16 stroke-[1.8px] md:stroke-[1.6px] hover:bg-primary-200/40 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-b-[20px] mt-0.5 mb-1 rounded-2xl transition-bg"
                         onClick={() => {
                            setBottomScroll(true);
                            setOpenTable(false);
