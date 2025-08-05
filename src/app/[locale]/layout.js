@@ -43,8 +43,7 @@ export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));
 }
 
-// TODO: Fix:
-// TODO: About loader
+// TODO: Fix about loader
 
 // TODO: Implement:
 // TODO: 'Author' flag to author's comments
