@@ -12,6 +12,7 @@ import { useMediaQuery } from 'react-responsive';
 import { RxChatBubble } from 'react-icons/rx';
 import { useScroll } from '@/src/hooks/use-scroll';
 import { useTheme } from 'next-themes';
+import { FaRegComment } from 'react-icons/fa';
 
 function Options() {
    const t = useTranslations('Article');
@@ -94,8 +95,8 @@ function Options() {
                      }}
                   />
 
-                  <RxChatBubble
-                     className="py-3.5 px-[16px] xl:px-3 xs:px-4 size-[54px] xl:size-13.5 lg:size-13 md:size-14.5 sm:size-15 xs:size-15 hover:bg-primary-200/40 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-2xl transition-bg mt-0.5"
+                  <FaRegComment
+                     className="py-3.5 px-[15.5px] xl:px-4 xs:px-4 4k:size-12.5! 2k:size-13 size-[52px] xl:size-13.5 lg:size-13.5 md:size-15 sm:size-15 xs:size-15 text-primary-500 dark:text-gray-400/90 hover:bg-primary-200/40 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-2xl transition-bg mt-0.5"
                      onClick={(e) => {
                         e.preventDefault();
                         document

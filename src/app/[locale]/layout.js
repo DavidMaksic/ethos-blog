@@ -43,7 +43,10 @@ export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));
 }
 
+// TODO: Fix bg colors for 2k and 4k
+
 // TODO: Implement:
+// TODO: Dates for comments like '2 days ago'
 // TODO: 'Author' flag to author's comments
 // TODO: 'Edit' option to comments
 // TODO: 'Most popular' sorting tag
