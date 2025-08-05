@@ -1,6 +1,7 @@
 'use client';
 
 import { LuSunMedium, LuTableOfContents } from 'react-icons/lu';
+import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { IoMoonOutline, IoOptions } from 'react-icons/io5';
 import { AnimatePresence, motion } from 'motion/react';
 import { useIntersectionObserver } from '@/src/hooks/use-intersection-observer';
@@ -9,21 +10,24 @@ import { useOutsideClick } from '@/src/hooks/use-outside-click';
 import { useTranslations } from 'next-intl';
 import { useMediaQuery } from 'react-responsive';
 import { RxChatBubble } from 'react-icons/rx';
-import { FiChevronUp } from 'react-icons/fi';
 import { useScroll } from '@/src/hooks/use-scroll';
 import { useTheme } from 'next-themes';
 
 function Options() {
    const t = useTranslations('Article');
+   const { theme, setTheme } = useTheme();
+
+   // - Scroll
+   const { setScroll: setTopScroll, ref: topRef } = useScroll();
+   const { setScroll: setBottomScroll, ref: bottomRef } = useScroll();
+
+   // - Table and menu
+   const [openTable, setOpenTable] = useState(false);
+   const tableRef = useOutsideClick(() => setOpenTable((isOpen) => !isOpen));
    const [openMenu, setOpenMenu] = useState(false);
    const ref = useOutsideClick(() => setOpenMenu((isOpen) => !isOpen), false);
 
-   const { theme, setTheme } = useTheme();
-   const { setScroll, ref: scrollRef } = useScroll();
-
-   const [openTable, setOpenTable] = useState(false);
-   const tableRef = useOutsideClick(() => setOpenTable((isOpen) => !isOpen));
-
+   // - Headings
    const [headings, setHeadings] = useState([]);
    const [activeId, setActiveId] = useState();
 
@@ -48,7 +52,8 @@ function Options() {
 
    return (
       <>
-         <div className="absolute top-[-140px] left-0" ref={scrollRef} />
+         <div className="absolute top-[-140px] left-0" ref={topRef} />
+         <div className="absolute bottom-0 left-0" ref={bottomRef} />
 
          <IoOptions
             className={`fixed bottom-13 xl:bottom-11 lg:bottom-11.5 md:bottom-9 right-24 lg:right-15 md:right-9 size-16 md:size-20.5 bg-white/50 lg:bg-white dark:bg-transparent backdrop-blur-3xl lg:dark:bg-primary/40 md:dark:bg-primary-200/80 cursor-pointer border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/25 p-3.5 md:p-4.5 rounded-full box-shadow md:shadow-menu transition-bg_border z-20 ${
@@ -82,7 +87,7 @@ function Options() {
                >
                   <FiChevronUp
                      className="py-3 size-13.5 md:size-16 stroke-[1.8px] md:stroke-[1.6px] hover:bg-primary-200/40 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-t-[20px] mt-1 rounded-2xl transition-bg"
-                     onClick={() => setScroll(true)}
+                     onClick={() => setTopScroll(true)}
                   />
 
                   <RxChatBubble
@@ -108,7 +113,7 @@ function Options() {
                   ) : null}
 
                   <button
-                     className="relative hover:bg-primary-200/40 dark:bg-transparent dark:hover:bg-primary-400/10 transition-bg rounded-b-[20px] transition-bg mt-0.5 md:mt-1.5 mb-1 md:mb-2 rounded-2xl"
+                     className="relative hover:bg-primary-200/40 dark:bg-transparent dark:hover:bg-primary-400/10 transition-bg transition-bg mt-0.5 md:mt-1.5 mb-0.5 md:mb-2 rounded-2xl"
                      onClick={(e) => {
                         e.stopPropagation();
                         setTheme(theme === 'light' ? 'dark' : 'light');
@@ -163,6 +168,11 @@ function Options() {
                            ))}
                         </motion.div>
                      )}
+
+                     <FiChevronDown
+                        className="py-3 size-13.5 stroke-[1.8px] hover:bg-primary-200/40 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-b-[20px] mb-1 mt-0.5 rounded-2xl"
+                        onClick={() => setBottomScroll(true)}
+                     />
                   </AnimatePresence>
                </motion.ul>
             )}
