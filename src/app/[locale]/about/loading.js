@@ -11,11 +11,11 @@ function Loading() {
          exit={{ opacity: 0 }}
          transition={{ duration: 0.3 }}
       >
-         <div className="bg-primary-300/40 md:col-span-full col-span-6 h-66 xl:h-70 lg:h-73 md:h-72 sm:h-89 p-10 px-14 rounded-2xl" />
-         <div className="bg-primary-300/80 col-span-4 md:col-span-7 sm:col-span-8 h-66 xl:h-70 lg:h-73 md:h-60 p-10 px-14 rounded-2xl" />
+         <div className="bg-primary-300/40 md:col-span-full col-span-6 h-74 xl:h-80 lg:h-77 md:h-80.5 sm:h-89 xs:h-[26rem] p-10 px-14 rounded-2xl" />
+         <div className="bg-primary-300/80 col-span-4 md:col-span-7 sm:col-span-8 h-74 xl:h-80 lg:h-77 md:h-65 sm:h-64 xs:h-72.5 p-10 px-14 rounded-2xl" />
 
-         <div className="col-span-5 md:col-span-full h-[27rem] lg:h-[31.5rem] bg-primary-300/40 p-10 px-14 rounded-2xl" />
-         <div className="col-span-5 md:col-span-full h-[27rem] lg:h-[31.5rem] bg-primary-300/80 p-10 px-14 rounded-2xl" />
+         <div className="col-span-5 md:col-span-full h-[28rem] lg:h-[30rem] md:h-[29rem] sm:h-[31.5rem] bg-primary-300/40 p-10 px-14 rounded-2xl" />
+         <div className="col-span-5 md:col-span-full h-[28rem] lg:h-[30rem] md:h-[29rem] sm:h-[31.5rem] bg-primary-300/80 p-10 px-14 rounded-2xl" />
       </motion.div>
    );
 }

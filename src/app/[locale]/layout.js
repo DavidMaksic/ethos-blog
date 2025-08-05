@@ -43,14 +43,12 @@ export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));
 }
 
-// TODO: Fix about loader
-
 // TODO: Implement:
 // TODO: 'Author' flag to author's comments
 // TODO: 'Most popular' sorting tag
 // TODO: 'Edit' option to comments
 // TODO: Social media auth
-// TODO: Date intl
+// TODO: Date intlconsole.log();
 // TODO: Email notification
 // TODO: Notifications
 
