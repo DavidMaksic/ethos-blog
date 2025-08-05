@@ -48,7 +48,7 @@ export function generateStaticParams() {
 // TODO: 'Most popular' sorting tag
 // TODO: 'Edit' option to comments
 // TODO: Social media auth
-// TODO: Date intlconsole.log();
+// TODO: Date intl
 // TODO: Email notification
 // TODO: Notifications
 
