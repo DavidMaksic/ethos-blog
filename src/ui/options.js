@@ -96,7 +96,7 @@ function Options() {
                   />
 
                   <FaRegComment
-                     className="py-3.5 px-[15.5px] xl:px-4 xs:px-4 4k:size-12.5! 2k:size-13 size-[52px] xl:size-13.5 lg:size-13.5 md:size-15 sm:size-15 xs:size-15 text-primary-500 dark:text-gray-400/90 hover:bg-primary-200/40 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-2xl transition-bg mt-0.5"
+                     className="py-3.5 px-[15.5px] xl:px-4 xs:px-4 2k:size-12.5 size-[52px] xl:size-13.5 lg:size-13.5 md:size-15 sm:size-15 xs:size-15 text-primary-500 dark:text-gray-400/90 hover:bg-primary-200/40 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-2xl transition-bg mb-1"
                      onClick={(e) => {
                         e.preventDefault();
                         document
