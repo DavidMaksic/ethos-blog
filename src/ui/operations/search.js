@@ -56,13 +56,13 @@ function Search({ isArchive = false }) {
       <div className="flex items-center">
          <label htmlFor="search">
             <CgSearch
-               className={`size-11 md:size-12 text-accent-600/85 dark:text-accent-200/90 p-2 pt-2.5 pr-2.5 bg-white/60 md:bg-white dark:bg-primary-300/18 md:dark:bg-primary-300/18 border border-quaternary dark:border-transparent rounded-full transition-bg_border cursor-pointer xs:hidden ${
+               className={`size-11 md:size-12 text-accent-600/85 dark:text-accent-200/90 p-2 pt-2.5 pr-2.5 bg-white/60 md:bg-white dark:bg-primary-300/18 md:dark:bg-primary-300/18 border border-quaternary dark:border-transparent rounded-full transition-bg_border cursor-pointer md:hidden ${
                   open && 'rounded-r-none border-r-transparent'
                }`}
                onClick={() => setOpen((isOpen) => !isOpen)}
             />
 
-            <CgSearch className="size-11 md:size-12 text-accent-600/85 dark:text-accent-200/90 p-2 pt-2.5 pr-2.5 bg-white/60 md:bg-white dark:bg-primary-300/18 md:dark:bg-primary-300/18 border border-quaternary dark:border-transparent rounded-full transition-bg_border cursor-pointer rounded-r-none border-r-transparent hidden xs:block" />
+            <CgSearch className="size-11 md:size-12 text-accent-600/85 dark:text-accent-200/90 p-2 pt-2.5 pr-2.5 bg-white/60 md:bg-white dark:bg-primary-300/18 md:dark:bg-primary-300/18 border border-quaternary dark:border-transparent rounded-full transition-bg_border cursor-pointer rounded-r-none border-r-transparent hidden md:block" />
          </label>
 
          {open && (
@@ -74,12 +74,12 @@ function Search({ isArchive = false }) {
                placeholder={t('Search-placeholder')}
                autoComplete="one-time-code"
                onChange={(e) => setInputValue(e.target.value)}
-               className={`h-11 md:h-12 py-4 px-1 w-[22rem] lg:w-[14rem] bg-white/60 md:bg-white dark:bg-primary-300/18 md:dark:bg-primary-300/18 border border-quaternary dark:border-transparent rounded-full text-xl md:text-2xl font-medium font-article outline-none transition-bg_border xs:hidden ${
+               className={`h-11 md:h-12 py-4 px-1 w-[22rem] lg:w-[14rem] bg-white/60 md:bg-white dark:bg-primary-300/18 md:dark:bg-primary-300/18 border border-quaternary dark:border-transparent rounded-full text-xl md:text-2xl font-medium font-article outline-none transition-bg_border md:hidden ${
                   open && 'rounded-l-none border-l-transparent'
                } ${
                   isArchive
                      ? `md:w-[18rem] sm:w-[10.5rem]`
-                     : 'md:w-[9.5rem] sm:w-[7rem]'
+                     : 'lg:w-[20rem] md:w-[9.5rem] sm:w-[7rem]'
                }`}
             />
          )}
@@ -92,7 +92,7 @@ function Search({ isArchive = false }) {
             placeholder={t('Search-placeholder')}
             autoComplete="one-time-code"
             onChange={(e) => setInputValue(e.target.value)}
-            className={`h-12 py-4 px-1 bg-white/60 md:bg-white dark:bg-primary-300/18 md:dark:bg-primary-300/18 border border-quaternary dark:border-transparent rounded-full text-2xl font-medium font-article outline-none transition-bg_border rounded-l-none border-l-transparent hidden xs:block ${
+            className={`h-12 py-4 px-1 bg-white/60 md:bg-white dark:bg-primary-300/18 md:dark:bg-primary-300/18 border border-quaternary dark:border-transparent rounded-full text-2xl font-medium font-article outline-none transition-bg_border rounded-l-none border-l-transparent hidden md:block ${
                locale === 'en' ? 'w-[14rem]' : 'w-[12.5rem]'
             } ${isArchive ? `w-[10.5rem]` : 'w-[7rem]'}`}
          />

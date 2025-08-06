@@ -44,7 +44,7 @@ async function Page({ searchParams }) {
    );
 
    return (
-      <div className="space-y-6 lg:space-y-4">
+      <div className="flex flex-col gap-8 lg:gap-6">
          <div className="flex items-center justify-between">
             <UserCommentLabel />
 
@@ -63,7 +63,7 @@ async function Page({ searchParams }) {
             />
          </div>
 
-         <div className="flex flex-col gap-4">
+         <div>
             {userComments.length > 0 ? (
                <UserCommentList
                   param={searchParam}

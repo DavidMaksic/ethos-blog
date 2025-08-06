@@ -32,7 +32,7 @@ function UserComment({ comment, users, user, articles, allComments }) {
    return (
       <Link
          href={fullUrl}
-         className="flex flex-col gap-5 last:border-b-transparent border-b border-b-quaternary dark:border-b-primary-300/23 lg:dark:border-b-primary-300/28 hover:bg-primary-300/10 dark:hover:bg-primary-300/7 px-14 lg:px-12 xs:px-10 pt-8 lg:pt-6 pb-11 lg:pb-8 scroll-mt-28! transition select-none cursor-pointer"
+         className="flex flex-col gap-5 md:gap-4 last:border-b-transparent border-b border-b-quaternary dark:border-b-primary-300/23 lg:dark:border-b-primary-300/28 hover:bg-primary-300/10 dark:hover:bg-primary-300/7 px-14 lg:px-12 xs:px-10 pt-8 lg:pt-6 pb-11 lg:pb-8 scroll-mt-28! transition select-none cursor-pointer"
       >
          <div className="flex items-center gap-4">
             <div className="flex items-center xs:grid xs:grid-cols-1 gap-2 xs:gap-y-px lg:text-[1.1rem] md:text-xl">

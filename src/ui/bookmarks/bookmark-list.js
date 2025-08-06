@@ -47,44 +47,32 @@ function BookmarkList({ bookmarkIDs, articles, categories, param }) {
       return filtered.slice(from, to);
    }, [param, bookmarkedArticles]);
 
-   if (loading)
-      return (
-         <div className="relative h-[44rem] 2xl:h-[37.5rem] lg:h-[35rem] md:h-[51.5rem] max-w-full space-y-10.5 2xl:space-y-7 md:space-y-8 xs:space-y-5 animate-skeleton">
-            <div className="flex justify-between items-center">
-               <span className="h-9 md:h-11 w-[14rem] bg-primary-300/40 rounded-2xl" />
-               <span className="h-9 md:h-11 w-[10rem] bg-primary-300/40 rounded-2xl" />
-            </div>
-
-            <div className="space-y-4 2xl:space-y-3.5 lg:space-y-3">
-               <div className="h-45.5 2xl:h-40 lg:h-38 md:h-54 sm:h-46.5 xs:h-45 2xs:h-49 bg-primary-300/30 rounded-3xl" />
-               <div className="h-45.5 2xl:h-40 lg:h-38 md:h-54 sm:h-46.5 xs:h-45 2xs:h-49 bg-primary-300/20 rounded-3xl" />
-               <div className="h-45.5 2xl:h-40 lg:h-38 md:h-54 sm:h-46.5 xs:h-45 2xs:h-49 bg-primary-300/10 rounded-3xl" />
-            </div>
-         </div>
-      );
-
    return (
       <>
-         <div>
-            <div className="flex justify-between mb-8.5 2xl:mb-5 lg:mb-4.5 md:mb-8 xs:mb-4">
-               <BookmarkOptions param={param} />
-            </div>
+         <div className="flex justify-between">
+            <BookmarkOptions param={param} />
+         </div>
 
-            <div className="flex flex-col gap-4 2xl:gap-3">
-               {displayedArticles.length ? (
-                  displayedArticles.map((item) => (
-                     <BookmarkItem
-                        article={item}
-                        categories={categories}
-                        key={item.id}
-                     />
-                  ))
-               ) : (
-                  <span className="self-center mt-41.5 sm:mt-56 sm:mb-60 text-primary-400 text-3xl border border-tertiary dark:border-primary-300/15 rounded-3xl py-8 px-12 bg-white dark:bg-primary-300/15">
-                     {t('no-bookmarks')}
-                  </span>
-               )}
-            </div>
+         <div className="grid grid-rows-3 gap-4 2xl:gap-3">
+            {loading ? (
+               <>
+                  <div className="h-full sm:min-h-[18vh] xs:min-h-[20vh] bg-primary-300/30 rounded-3xl animate-skeleton" />
+                  <div className="h-full sm:min-h-[18vh] xs:min-h-[20vh] bg-primary-300/20 rounded-3xl animate-skeleton" />
+                  <div className="h-full sm:min-h-[18vh] xs:min-h-[20vh] bg-primary-300/10 rounded-3xl animate-skeleton" />
+               </>
+            ) : displayedArticles.length ? (
+               displayedArticles.map((item) => (
+                  <BookmarkItem
+                     article={item}
+                     categories={categories}
+                     key={item.id}
+                  />
+               ))
+            ) : (
+               <span className="self-center mt-41.5 sm:mt-56 sm:mb-60 text-primary-400 text-3xl border border-tertiary dark:border-primary-300/15 rounded-3xl py-8 px-12 bg-white dark:bg-primary-300/15">
+                  {t('no-bookmarks')}
+               </span>
+            )}
          </div>
 
          {bookmarkedArticles.length <= 3 ? (

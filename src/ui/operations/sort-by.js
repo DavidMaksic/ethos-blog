@@ -36,14 +36,14 @@ function SortBy({ options, isBookmarks = false, param }) {
             }`}
          >
             <div
-               className="relative px-3 py-[7px] xs:py-[5px] pl-5 cursor-pointer rounded-xl bg-white dark:bg-primary-300/15 dark:hover:bg-primary-300/10 text-primary-500 border border-tertiary dark:border-primary-300/10 shadow-2xs transition-200"
+               className="relative px-3 4k:py-[14px]! py-[7px] xs:py-[5px] pl-5 cursor-pointer rounded-xl bg-white dark:bg-primary-300/15 dark:hover:bg-primary-300/10 text-primary-500 border border-tertiary dark:border-primary-300/10 shadow-2xs transition-200"
                onClick={(e) => {
                   e.stopPropagation();
                   setOpen((isOpen) => !isOpen);
                }}
             >
                {currentLabel}
-               <FaCaretDown className="absolute top-[11px] md:top-3.5 xs:top-4 right-4 size-4.5 text-md text-primary-400 mb-0.5" />
+               <FaCaretDown className="absolute 4k:top-[24px]! top-[11px] md:top-3.5 xs:top-4 right-4 size-4.5 text-md text-primary-400 mb-0.5" />
             </div>
 
             <AnimatePresence>

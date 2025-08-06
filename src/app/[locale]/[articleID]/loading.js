@@ -5,7 +5,7 @@ import { motion } from 'motion/react';
 function Loading() {
    return (
       <motion.div
-         className="relative flex flex-col justify-self-center w-[52rem] 2xl:w-[46rem] lg:w-[44rem] md:w-full space-y-7 2xl:space-y-13 lg:space-y-15 sm:space-y-7 py-2 md:pt-0 [&_div]:rounded-full animate-skeleton transition-200"
+         className="relative flex flex-col justify-self-center w-[52rem] 2xl:w-[46rem] lg:w-[44rem] md:w-full gap-7 2xl:gap-7 lg:gap-8 sm:gap-7 py-2 2xl:pt-7 md:pt-0 [&_div]:rounded-full animate-skeleton transition-200"
          initial={{ opacity: 0 }}
          animate={{ opacity: 1 }}
          exit={{ opacity: 0 }}
@@ -13,7 +13,7 @@ function Loading() {
       >
          <span className="absolute inset-0 m-0 bg-gradient-to-t from-primary-100 dark:from-primary-50 lg:dark:from-transparent" />
 
-         <div className="flex flex-col gap-8 md:mt-7">
+         <div className="flex flex-col gap-8 2xl:gap-6 md:mt-7">
             <div className="h-28 sm:h-20 lg:h-26.5 bg-primary-400/15 dark:bg-primary-400/15 !rounded-4xl w-5/6 md:w-10/12 self-center" />
             <div className="h-8 bg-skeleton dark:bg-primary-300/15 w-2/3 self-center" />
          </div>

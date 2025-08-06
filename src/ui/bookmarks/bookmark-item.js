@@ -41,11 +41,11 @@ function BookmarkItem({ article, categories }) {
       >
          <Link
             href={`/${article.id}`}
-            className="relative grid grid-cols-[2fr_0.8fr] xs:grid-cols-[2fr_0.3fr] min-h-45.5 2xl:min-h-40 lg:min-h-38 md:min-h-52 sm:min-h-[18vh] xs:min-h-[20vh] rounded-2xl group cursor-pointer overflow-hidden border border-quaternary dark:border-primary-300/15 bg-white dark:bg-primary-300/15 hover:translate-x-1.5 transition-[translate] duration-200 select-none box-shadow"
+            className="relative grid grid-cols-[2fr_0.8fr] xl:grid-cols-[2fr_0.3fr] h-full sm:min-h-[18vh] xs:min-h-[20vh] rounded-2xl group cursor-pointer overflow-hidden border border-quaternary dark:border-primary-300/15 bg-white dark:bg-primary-300/15 hover:translate-x-1.5 transition-[translate] duration-200 select-none box-shadow"
          >
-            <div className="self-center py-2 px-12 xs:px-12 md:pr-0 space-y-5 2xl:space-y-4 z-20">
+            <div className="self-center py-2 px-12 xs:px-12 md:pr-0 space-y-5 2xl:space-y-5 lg:space-y-4 z-20">
                <h2
-                  className={`text-primary-500 dark:text-primary-600/85 text-3xl lg:text-[2rem] xs:text-[1.85rem] font-medium dark:font-normal lg:font-semibold lg:dark:font-normal md:dark:font-medium lg:leading-10 xs:leading-9 ${
+                  className={`text-primary-500 dark:text-primary-600/85 text-3xl xl:text-[2.1rem] lg:text-[1.8rem] md:text-[1.85rem] font-medium dark:font-normal lg:font-semibold lg:dark:font-normal md:dark:font-medium 2xl:leading-9 xl:leading-10.5 lg:leading-10 xs:leading-9 ${
                      cormorantSC.className
                   } leading-8.5 ${
                      article.title.length >= 48 &&
@@ -55,7 +55,7 @@ function BookmarkItem({ article, categories }) {
                   {article.title}
                </h2>
 
-               <div className="space-x-2 text-primary-400 dark:text-primary-600/60">
+               <div className="space-x-3 text-primary-400 dark:text-primary-600/60">
                   <span
                      className="bg-accent-400/15 text-accent/75 px-3 pl-3.5 py-1 pb-1.5 rounded-full font-semibold text-[1.2rem]"
                      style={{

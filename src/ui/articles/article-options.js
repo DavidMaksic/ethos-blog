@@ -109,7 +109,7 @@ function ArticleOptions({
                      updateLikes(articleID, newCount);
                   }
                }}
-               styles="xs:hidden"
+               styles="md:hidden"
             >
                <LikeButton
                   styles="size-9.5! md:size-11! sm:size-10!"
@@ -120,7 +120,7 @@ function ArticleOptions({
             </Button>
 
             <Button
-               styles="ml-px xs:hidden"
+               styles="ml-px md:hidden"
                handler={(e) => {
                   e.preventDefault();
                   document.querySelector('.comment-section').scrollIntoView({
@@ -137,7 +137,7 @@ function ArticleOptions({
                )}
             </Button>
 
-            <Button styles="sm:hidden">
+            <Button styles="md:hidden">
                {isBookmarked ? (
                   <FaBookmark
                      className="size-9.5 md:size-10.5 p-2 text-cyan-600/45 dark:text-cyan-300/50 transition-color"
@@ -163,7 +163,7 @@ function ArticleOptions({
             </AnimatePresence>
          </div>
 
-         <div className="text-primary-300 text-2xl select-none xs:hidden">
+         <div className="text-primary-300 text-2xl select-none md:hidden">
             |
          </div>
       </>
