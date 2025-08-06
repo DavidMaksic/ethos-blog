@@ -22,7 +22,7 @@ function Author({ author }) {
                !description_en || !description_srb ? 'mb-10' : ''
             }`}
          >
-            <div className="relative size-24 xl:size-26 md:size-32">
+            <div className="relative size-24 2xl:size-26 md:size-32">
                {profile_image ? (
                   <RemoteImage
                      imageUrl={profile_image}
@@ -30,14 +30,14 @@ function Author({ author }) {
                      styles="block aspect-square object-cover object-center rounded-full dark:opacity-90"
                   />
                ) : (
-                  <HiOutlineUserCircle className="size-22 xl:size-26 md:size-32 self-center stroke-[0.5px] text-primary-400 dark:text-primary-300" />
+                  <HiOutlineUserCircle className="size-22 2xl:size-26 md:size-32 self-center stroke-[0.5px] text-primary-400 dark:text-primary-300" />
                )}
             </div>
 
-            <div className="flex flex-col gap-5 xl:gap-4 md:gap-5 self-center text-center">
+            <div className="flex flex-col gap-5 2xl:gap-4 md:gap-5 self-center text-center">
                <div className="flex flex-col">
                   <span
-                     className={`text-accent-400 dark:text-accent text-[2.7rem] xl:text-[2.8rem] md:text-[3.2rem] w-fit self-center ${parisienne.className}`}
+                     className={`text-accent-400 dark:text-accent text-[2.7rem] 2xl:text-[2.8rem] md:text-[3.2rem] w-fit self-center ${parisienne.className}`}
                   >
                      {full_name}
                   </span>

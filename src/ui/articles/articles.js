@@ -85,7 +85,7 @@ function Articles({
                      />
                   ))
                ) : (
-                  <span className="justify-self-center text-center mt-25 xl:mt-29 lg:mt-27 md:mt-34 sm:mt-44 sm:mb-94 xs:mb-[26.3rem] 2xs:mb-[23.6rem] text-primary-400 text-3xl md:text-4xl border border-quaternary dark:border-primary-300/15 rounded-2xl sm:rounded-3xl py-8 sm:py-12 px-12 bg-white dark:bg-primary-300/15 box-shadow">
+                  <span className="justify-self-center text-center mt-25 2xl:mt-29 lg:mt-27 md:mt-34 sm:mt-44 sm:mb-94 xs:mb-[26.3rem] 2xs:mb-[23.6rem] text-primary-400 text-3xl md:text-4xl border border-quaternary dark:border-primary-300/15 rounded-2xl sm:rounded-3xl py-8 sm:py-12 px-12 bg-white dark:bg-primary-300/15 box-shadow">
                      {t('no-articles')}
                   </span>
                )}
@@ -96,7 +96,7 @@ function Articles({
                   {[...Array(3)].map((_, i) => (
                      <div
                         key={i}
-                        className="h-50.5 xl:h-55 lg:h-53 md:h-62 sm:h-50 xs:h-58 2xs:h-50 bg-primary-300/35 dark:bg-primary-300/18 rounded-3xl"
+                        className="h-50.5 2xl:h-55 lg:h-53 md:h-62 sm:h-50 xs:h-58 2xs:h-50 bg-primary-300/35 dark:bg-primary-300/18 rounded-3xl"
                      />
                   ))}
                </div>

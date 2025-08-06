@@ -40,7 +40,7 @@ async function Page() {
          </div>
 
          <div className="space-y-4">
-            <div className="flex gap-4 xl:flex-wrap">
+            <div className="flex gap-4 2xl:flex-wrap">
                <Stats
                   title={t('user-stat-1')}
                   value={likesLength}

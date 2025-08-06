@@ -10,7 +10,7 @@ function AboutBlocks({ authors }) {
    return (
       <AnimatePresence mode="wait">
          <motion.div
-            className="grid grid-cols-10 items-stretch gap-y-2 xl:gap-y-0 gap-x-8 xl:gap-x-6 xl:mt-3 py-4"
+            className="grid grid-cols-10 items-stretch gap-y-2 2xl:gap-y-0 gap-x-8 2xl:gap-x-6 2xl:mt-3 py-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

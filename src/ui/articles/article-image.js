@@ -38,10 +38,10 @@ function ArticleImage({
          <MainImage article={article} />
 
          <div
-            className={`flex items-center justify-between gap-6 px-6 py-4 xl:py-3 ${cormorantSC.className}`}
+            className={`flex items-center justify-between gap-6 px-6 py-4 2xl:py-3 ${cormorantSC.className}`}
          >
-            <div className="flex gap-4 xl:gap-3.5 items-center">
-               <div className="relative size-12 xl:size-10 md:size-12 sm:size-11">
+            <div className="flex gap-4 2xl:gap-3.5 items-center">
+               <div className="relative size-12 2xl:size-10 md:size-12 sm:size-11">
                   {author?.profile_image ? (
                      <RemoteImage
                         imageUrl={author.profile_image}
@@ -49,18 +49,18 @@ function ArticleImage({
                         styles="block aspect-square object-cover object-center rounded-full dark:opacity-80"
                      />
                   ) : (
-                     <HiOutlineUserCircle className="size-12 xl:size-10 md:size-12 sm:size-11 stroke-[0.5px] text-primary-400 dark:text-primary-300" />
+                     <HiOutlineUserCircle className="size-12 2xl:size-10 md:size-12 sm:size-11 stroke-[0.5px] text-primary-400 dark:text-primary-300" />
                   )}
                </div>
 
                <div className="flex flex-col font-medium leading-6 self-center">
                   <div className="space-x-1.5">
                      {locale === 'en' && <span className="md:hidden">By</span>}
-                     <span className="text-accent-500 dark:text-accent-200/90 font-semibold xl:text-[1.2rem] md:text-2xl sm:text-[1.3rem] md:font-bold">
+                     <span className="text-accent-500 dark:text-accent-200/90 font-semibold 2xl:text-[1.2rem] md:text-2xl sm:text-[1.3rem] md:font-bold">
                         {author.full_name}
                      </span>
                   </div>
-                  <span className="text-base xl:text-sm md:text-base md:mt-[-2px] sm:mt-[-3px]">
+                  <span className="text-base 2xl:text-sm md:text-base md:mt-[-2px] sm:mt-[-3px]">
                      {date}
                   </span>
                </div>

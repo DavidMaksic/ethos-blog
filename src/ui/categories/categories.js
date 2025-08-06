@@ -19,7 +19,7 @@ function Categories({ categories, currentCategory, param, isArchive = false }) {
       <motion.div
          className={`md:flex md:flex-col md:items-center space-y-10 lg:space-y-7 md:order-1 md:mb-4 md:px-10 sm:px-6 ${
             isArchive &&
-            'space-y-[32px]! xs:space-y-6! xl:space-y-[29px]! xl:mb-15! md:mb-6! xs:mb-4!'
+            'space-y-[32px]! xs:space-y-6! 2xl:space-y-[29px]! 2xl:mb-15! md:mb-6! xs:mb-4!'
          }`}
          initial={{ opacity: 0 }}
          animate={{ opacity: 1 }}
@@ -30,7 +30,7 @@ function Categories({ categories, currentCategory, param, isArchive = false }) {
             <h1>{t('categories')}</h1>
          </div>
 
-         <div className="flex md:justify-center gap-4 xl:gap-3 lg:gap-2.5 flex-wrap">
+         <div className="flex md:justify-center gap-4 2xl:gap-3 lg:gap-2.5 flex-wrap">
             {filteredCategories?.map((item) => (
                <Category
                   category={item}

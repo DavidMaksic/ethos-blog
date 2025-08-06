@@ -8,7 +8,7 @@ function Error({ error, reset }) {
    const t = useTranslations('Error');
 
    return (
-      <div className="flex items-center justify-center bg-transparent mt-55 xl:mt-46 md:mt-72 mb-45 md:mb-56">
+      <div className="flex items-center justify-center bg-transparent mt-55 2xl:mt-46 md:mt-72 mb-45 md:mb-56">
          <div className="px-20 py-12 flex flex-col gap-8 rounded-3xl bg-white/60 dark:bg-primary-300/15 border border-quaternary dark:border-primary-300/15 translate-y-[-20%] box-shadow">
             <p className="text-4xl font-bold text-center">{t('message')}</p>
             <p className="text-center text-2xl">{error.message}</p>

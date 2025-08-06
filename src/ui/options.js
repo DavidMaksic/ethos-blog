@@ -60,7 +60,7 @@ function Options() {
          <div className="absolute bottom-0 left-0" ref={bottomRef} />
 
          <IoOptions
-            className={`fixed bottom-13 xl:bottom-11 lg:bottom-11.5 md:bottom-9 right-24 lg:right-15 md:right-9 size-16 md:size-20.5 bg-white/50 lg:bg-white dark:bg-transparent backdrop-blur-3xl lg:dark:bg-primary/40 md:dark:bg-primary-200/80 cursor-pointer border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/25 p-3.5 md:p-4.5 rounded-full box-shadow md:shadow-menu transition-bg_border z-20 ${
+            className={`fixed bottom-13 2xl:bottom-11 lg:bottom-11.5 md:bottom-9 right-24 lg:right-15 md:right-9 size-16 md:size-20.5 bg-white/50 lg:bg-white dark:bg-transparent backdrop-blur-3xl lg:dark:bg-primary/40 md:dark:bg-primary-200/80 cursor-pointer border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/25 p-3.5 md:p-4.5 rounded-full box-shadow md:shadow-menu transition-bg_border z-20 ${
                !isBellowMd
                   ? 'hover:bg-primary-100 dark:hover:bg-primary-400/10'
                   : ''
@@ -78,7 +78,7 @@ function Options() {
          <AnimatePresence>
             {openMenu && (
                <motion.ul
-                  className={`fixed bottom-32 xl:bottom-30 lg:bottom-30.5 md:bottom-33 right-24 lg:right-15 md:right-9 px-1 md:px-2 flex flex-col items-center bg-white/50 lg:bg-white dark:bg-transparent lg:dark:bg-primary/40 md:dark:bg-primary-200/80 backdrop-blur-3xl border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/25 rounded-3xl transition [&_svg]:cursor-pointer box-shadow md:shadow-menu transition-border z-20 ${
+                  className={`fixed bottom-32 2xl:bottom-30 lg:bottom-30.5 md:bottom-33 right-24 lg:right-15 md:right-9 px-1 md:px-2 flex flex-col items-center bg-white/50 lg:bg-white dark:bg-transparent lg:dark:bg-primary/40 md:dark:bg-primary-200/80 backdrop-blur-3xl border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/25 rounded-3xl transition [&_svg]:cursor-pointer box-shadow md:shadow-menu transition-border z-20 ${
                      openTable
                         ? 'md:dark:shadow-none lg:dark:bg-primary/90!'
                         : 'md:dark:shadow-menu-dark'
@@ -99,7 +99,7 @@ function Options() {
                   />
 
                   <FaRegComment
-                     className="py-3.5 4k:px-[30px]! 2k:px-[21px] px-[15.5px] xl:px-4 xs:px-4 2k:size-13.5 size-[52px] xl:size-13.5 lg:size-13.5 md:size-15 sm:size-15 xs:size-15 text-primary-500 dark:text-gray-400/90 hover:bg-primary-200/40 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-2xl transition-bg mb-1"
+                     className="py-3.5 4k:px-[30px]! 2k:px-[21px] px-[15.5px] 2xl:px-4 xs:px-4 2k:size-13.5 size-[52px] 2xl:size-13.5 lg:size-13.5 md:size-15 sm:size-15 xs:size-15 text-primary-500 dark:text-gray-400/90 hover:bg-primary-200/40 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-2xl transition-bg mb-1"
                      onClick={(e) => {
                         e.preventDefault();
                         document
@@ -140,7 +140,7 @@ function Options() {
                   <AnimatePresence>
                      {openTable && (
                         <motion.div
-                           className="absolute bottom-0 font-headers max-h-[32.5rem] md:max-h-[37rem] xs:max-h-[41rem] short:max-h-[60rem] shorter:max-h-[16.5rem] right-20 md:right-24.5 flex flex-col py-4 pb-2 xs:pb-4 px-2 md:px-2.5 border border-primary-300/50 lg:border-primary-300/80 dark:border-tertiary lg:dark:border-primary-300/35 rounded-2xl xs:rounded-3xl bg-primary/80 xl:bg-white lg:bg-white dark:bg-transparent xl:dark:bg-primary lg:dark:bg-primary/90 backdrop-blur-3xl overflow-y-auto scrollbar shadow-article xl:shadow-none md:shadow-menu dark:shadow-none md:dark:shadow-none md:text-2xl"
+                           className="absolute bottom-0 font-headers max-h-[32.5rem] md:max-h-[37rem] xs:max-h-[41rem] short:max-h-[60rem] shorter:max-h-[16.5rem] right-20 md:right-24.5 flex flex-col py-4 pb-2 xs:pb-4 px-2 md:px-2.5 border border-primary-300/50 lg:border-primary-300/80 dark:border-tertiary lg:dark:border-primary-300/35 rounded-2xl xs:rounded-3xl bg-primary/80 2xl:bg-white lg:bg-white dark:bg-transparent 2xl:dark:bg-primary lg:dark:bg-primary/90 backdrop-blur-3xl overflow-y-auto scrollbar shadow-article 2xl:shadow-none md:shadow-menu dark:shadow-none md:dark:shadow-none md:text-2xl"
                            ref={tableRef}
                            initial={{ opacity: 0 }}
                            animate={{ opacity: 1 }}

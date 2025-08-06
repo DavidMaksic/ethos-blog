@@ -27,7 +27,7 @@ function Footer() {
 
    return (
       <footer
-         className={`w-7xl xl:w-full rounded-4xl mb-14 self-center flex flex-col justify-center items-center gap-10 py-20 border border-tertiary dark:border-primary-300/10 text-primary-600 dark:text-primary-600/50 text-2xl bg-white/60 dark:bg-primary-100/50 ${
+         className={`w-7xl 2xl:w-full rounded-4xl mb-14 self-center flex flex-col justify-center items-center gap-10 py-20 border border-tertiary dark:border-primary-300/10 text-primary-600 dark:text-primary-600/50 text-2xl bg-white/60 dark:bg-primary-100/50 ${
             pathname.includes('/user') && 'sm:mb-44'
          }`}
       >

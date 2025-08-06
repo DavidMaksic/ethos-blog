@@ -12,7 +12,7 @@ function ProfileInfo({ oldUser, newUser }) {
    const { username, image: newImage } = newUser;
 
    return (
-      <div className="self-start w-fit md:w-full flex flex-col items-center gap-6 bg-white dark:bg-primary-300/10 border border-quaternary dark:border-primary-300/15 rounded-3xl px-28 xl:px-20 lg:px-12 md:px-10 py-20 xl:py-16 lg:py-12 text-3xl box-shadow transition-bg_border">
+      <div className="self-start w-fit md:w-full flex flex-col items-center gap-6 bg-white dark:bg-primary-300/10 border border-quaternary dark:border-primary-300/15 rounded-3xl px-28 2xl:px-20 lg:px-12 md:px-10 py-20 2xl:py-16 lg:py-12 text-3xl box-shadow transition-bg_border">
          <div className="relative size-30">
             <RemoteImage
                imageUrl={newImage ? newImage : image}

@@ -23,7 +23,7 @@ function FeaturedItem({ article, authors }) {
       >
          <Link
             href={`/${article.id}`}
-            className="relative flex flex-col justify-between h-[30rem] lg:h-[25rem] md:h-[20rem] rounded-xl p-10 xl:p-8 lg:p-6 md:p-9 xs:p-8 group cursor-pointer hover:translate-y-[-6px] transition duration-300 hover:shadow-2xl dark:hover:shadow-none select-none"
+            className="relative flex flex-col justify-between h-[30rem] lg:h-[25rem] md:h-[20rem] rounded-xl p-10 2xl:p-8 lg:p-6 md:p-9 xs:p-8 group cursor-pointer hover:translate-y-[-6px] transition duration-300 hover:shadow-2xl dark:hover:shadow-none select-none"
          >
             <span className="absolute inset-[-1px] m-0 bg-gradient-to-t from-primary-800 dark:from-primary-200/80 group-hover:from-primary-900 dark:group-hover:from-primary-200 z-10 pointer-events-none rounded-xl md:rounded-2xl dark:rounded-[10px] transition duration-300 group-hover:saturate-120" />
 
@@ -43,7 +43,7 @@ function FeaturedItem({ article, authors }) {
                </div>
 
                <h2
-                  className={`text-primary dark:text-primary-600/95 text-[1.9rem] lg:text-[1.6rem] md:text-4xl sm:text-[2rem] xs:text-[2.1rem] font-medium ${cormorantSC.className} leading-9.5 xl:leading-9 lg:leading-8 md:leading-10`}
+                  className={`text-primary dark:text-primary-600/95 text-[1.9rem] lg:text-[1.6rem] md:text-4xl sm:text-[2rem] xs:text-[2.1rem] font-medium ${cormorantSC.className} leading-9.5 2xl:leading-9 lg:leading-8 md:leading-10`}
                   style={{ textShadow: '2px 2px 12px rgba(0, 0, 0, 1)' }}
                >
                   {article.title}

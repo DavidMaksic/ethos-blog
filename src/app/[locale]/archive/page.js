@@ -28,7 +28,7 @@ async function Page({ searchParams }) {
    );
 
    return (
-      <div className="grid grid-cols-[2fr_1fr] md:grid-cols-1 gap-10 xs:gap-14 xl:mt-3">
+      <div className="grid grid-cols-[2fr_1fr] md:grid-cols-1 gap-10 xs:gap-14 2xl:mt-3">
          <div className="space-y-7 lg:space-y-5 md:order-2">
             <div className="flex justify-between">
                <ArchiveHeading />

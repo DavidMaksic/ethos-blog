@@ -135,7 +135,7 @@ function Comment({
             </div>
 
             <p
-               className={`${ebGaramond.className} text-[1.4rem] xl:text-[1.3rem] md:text-[1.6rem] xs:text-[1.5rem] md:leading-9 xs:leading-[1.4] whitespace-pre-line`}
+               className={`${ebGaramond.className} text-[1.4rem] 2xl:text-[1.3rem] md:text-[1.6rem] xs:text-[1.5rem] md:leading-9 xs:leading-[1.4] whitespace-pre-line`}
             >
                {comment.content}
             </p>

@@ -20,7 +20,7 @@ function MainImage({ article }) {
    }, [isMobile]);
 
    return (
-      <div className="parent relative h-[24rem] xl:h-[21rem] sm:h-[17rem]">
+      <div className="parent relative h-[24rem] 2xl:h-[21rem] sm:h-[17rem]">
          <RemoteImage
             imageUrl={article.image}
             alt="Main image"

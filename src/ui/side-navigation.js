@@ -55,7 +55,7 @@ function SideNavigation() {
                </li>
             ))}
 
-            <li className="mt-[29rem] xl:mt-[22.5rem] lg:mt-[22rem] md:mt-[33rem] sm:mt-0">
+            <li className="mt-[29rem] 2xl:mt-[22.5rem] lg:mt-[22rem] md:mt-[33rem] sm:mt-0">
                <SignOutButton />
             </li>
          </ul>

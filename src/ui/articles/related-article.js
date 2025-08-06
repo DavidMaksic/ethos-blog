@@ -17,7 +17,7 @@ function RelatedArticle({ article, author }) {
          href={`/${article.id}`}
          className="relative flex flex-col rounded-2xl group cursor-pointer overflow-hidden bg-secondary dark:bg-primary-200 border border-primary-200 hover:scale-102 transition-[scale] duration-200 select-none box-shadow group"
       >
-         <div className="relative h-48 xl:h-44 md:h-80 sm:h-60">
+         <div className="relative h-48 2xl:h-44 md:h-80 sm:h-60">
             <RemoteImage
                imageUrl={article.image}
                alt="Article image"
@@ -25,7 +25,7 @@ function RelatedArticle({ article, author }) {
             />
          </div>
 
-         <div className="self-center md:flex md:flex-col md:gap-1 px-10 md:px-6 sm:px-8 py-8 xl:pt-7 text-center">
+         <div className="self-center md:flex md:flex-col md:gap-1 px-10 md:px-6 sm:px-8 py-8 2xl:pt-7 text-center">
             <span
                className={`text-primary-500 dark:text-primary-600/70 text-[1.7rem] md:text-[1.9rem] sm:text-[2.1rem] font-medium md:font-semibold md:dark:font-medium ${cormorantSC.className} leading-8.5 md:leading-9`}
             >

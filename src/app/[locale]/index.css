@@ -8,16 +8,18 @@
 
 @custom-variant 4k (@media (min-width: 3840px));
 @custom-variant 2k (@media (min-width: 2560px));
-@custom-variant xl (@media (max-width: 1580px));
+@custom-variant 2xl (@media (max-width: 1580px));
+@custom-variant xl (@media (max-width: 1290px));
 @custom-variant lg (@media (max-width: 1024px));
+
 @custom-variant md (@media (max-width: 768px));
 @custom-variant sm (@media (max-width: 640px));
 @custom-variant xs (@media (max-width: 450px));
 @custom-variant 2xs (@media (max-width: 390px));
 @custom-variant 3xs (@media (max-width: 350px));
+
 @custom-variant short (@media (max-height: 470px));
 @custom-variant shorter (@media (max-height: 390px));
-@custom-variant above-xl (@media (min-width: 2000px));
 
 @media (min-width: 2560px) {
    html {
@@ -796,7 +798,7 @@
 /* Style first letter of an article */
 
 .container > div > div > div:first-child > div:first-child .bn-inline-content {
-   @apply first-letter:font-creator first-letter:leading-24 xl:first-letter:leading-20.5 first-letter:float-left first-letter:pr-3.5 xs:first-letter:pr-3 first-letter:font-medium first-letter:text-accent-600/60 dark:first-letter:text-accent-200/70;
+   @apply first-letter:font-creator first-letter:leading-24 2xl:first-letter:leading-20.5 first-letter:float-left first-letter:pr-3.5 xs:first-letter:pr-3 first-letter:font-medium first-letter:text-accent-600/60 dark:first-letter:text-accent-200/70;
 }
 
 [lang='en']
@@ -806,7 +808,7 @@
    > div:first-child
    > div:first-child
    .bn-inline-content {
-   @apply first-letter:text-[8rem]! xl:first-letter:text-[7.3rem]! md:first-letter:text-[8.4rem]! xs:first-letter:text-[7.8rem]! first-letter:pt-1.5! md:first-letter:pt-4! xs:first-letter:pt-3!;
+   @apply first-letter:text-[8rem]! 2xl:first-letter:text-[7.3rem]! md:first-letter:text-[8.4rem]! xs:first-letter:text-[7.8rem]! first-letter:pt-1.5! md:first-letter:pt-4! xs:first-letter:pt-3!;
 }
 
 [lang='sr-cyrl']
@@ -816,7 +818,7 @@
    > div:first-child
    > div:first-child
    .bn-inline-content {
-   @apply first-letter:text-[8.2rem]! xl:first-letter:text-[7.3rem]! md:first-letter:text-[8.4rem]! xs:first-letter:text-[8.2rem]! first-letter:pt-[7px]! lg:first-letter:pt-[8px]! md:first-letter:pt-4! xs:first-letter:pt-[12.5px]! 2xs:first-letter:pt-[10px]!;
+   @apply first-letter:text-[8.2rem]! 2xl:first-letter:text-[7.3rem]! md:first-letter:text-[8.4rem]! xs:first-letter:text-[8.2rem]! first-letter:pt-[7px]! lg:first-letter:pt-[8px]! md:first-letter:pt-4! xs:first-letter:pt-[12.5px]! 2xs:first-letter:pt-[10px]!;
 }
 
 /* Editor styles */
@@ -1683,12 +1685,6 @@ h3 {
    .bn-block-content > h3 {
       font-size: 28px;
       line-height: 2.8rem;
-   }
-}
-
-@media (max-width: 1200px) {
-   .inter-padding {
-      padding-inline: 44px;
    }
 }
 

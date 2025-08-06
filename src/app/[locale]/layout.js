@@ -43,9 +43,8 @@ export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));
 }
 
-// TODO: Fix xl and 2xl breakpoints
-
 // TODO: Implement:
+// TODO: xl breakpoint
 // TODO: Dates for comments like '2 days ago'
 // TODO: 'Author' flag to author's comments
 // TODO: 'Edit' option to comments
@@ -75,7 +74,7 @@ export default async function RootLayout({ children, params }) {
          </head>
 
          <body
-            className={`min-h-screen flex flex-col text-xl xl:px-60 inter-padding text-text selection:bg-accent-500/50 dark:selection:bg-accent-200/50 selection:text-white caret-primary-400 antialiased bg-primary dark:bg-primary transition-200 background-gradient ${cormorantGaramond.className}`}
+            className={`min-h-screen flex flex-col text-xl 2xl:px-60 xl:px-26 inter-padding text-text selection:bg-accent-500/50 dark:selection:bg-accent-200/50 selection:text-white caret-primary-400 antialiased bg-primary dark:bg-primary transition-200 background-gradient ${cormorantGaramond.className}`}
          >
             <NextIntlClientProvider>
                <LanguageProvider>
@@ -86,7 +85,7 @@ export default async function RootLayout({ children, params }) {
                         enableSystem
                      >
                         <Header />
-                        <main className="py-12 xl:pt-4 md:pt-5 w-7xl xl:w-full mx-auto">
+                        <main className="py-12 2xl:pt-4 md:pt-5 w-7xl 2xl:w-full mx-auto">
                            {children}
                            <SpeedInsights />
                            <Analytics />
