@@ -53,7 +53,10 @@ function Options() {
 
    return (
       <>
-         <div className="absolute top-[-140px] left-0" ref={topRef} />
+         <div
+            className="absolute 4k:top-[-280px]! 2k:top-[-220px] top-[-140px] left-0"
+            ref={topRef}
+         />
          <div className="absolute bottom-0 left-0" ref={bottomRef} />
 
          <IoOptions
@@ -87,7 +90,7 @@ function Options() {
                   transition={{ duration: 0.06 }}
                >
                   <FiChevronUp
-                     className="py-3 size-13.5 md:size-16 stroke-[1.8px] md:stroke-[1.6px] hover:bg-primary-200/40 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-t-[20px] mt-1 rounded-2xl transition-bg"
+                     className="py-3 size-13.5 md:size-16 stroke-[1.8px] md:stroke-[1.6px] hover:bg-primary-200/40 dark:bg-transparent dark:hover:bg-primary-400/10 4k:rounded-t-[36px]! 2k:rounded-t-[26px] rounded-t-[20px] mt-1 rounded-2xl transition-bg"
                      onClick={() => {
                         setTopScroll(true);
                         setOpenTable(false);
@@ -96,7 +99,7 @@ function Options() {
                   />
 
                   <FaRegComment
-                     className="py-3.5 px-[15.5px] xl:px-4 xs:px-4 2k:size-12.5 size-[52px] xl:size-13.5 lg:size-13.5 md:size-15 sm:size-15 xs:size-15 text-primary-500 dark:text-gray-400/90 hover:bg-primary-200/40 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-2xl transition-bg mb-1"
+                     className="py-3.5 4k:px-[30px]! 2k:px-[21px] px-[15.5px] xl:px-4 xs:px-4 2k:size-13.5 size-[52px] xl:size-13.5 lg:size-13.5 md:size-15 sm:size-15 xs:size-15 text-primary-500 dark:text-gray-400/90 hover:bg-primary-200/40 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-2xl transition-bg mb-1"
                      onClick={(e) => {
                         e.preventDefault();
                         document
@@ -178,7 +181,7 @@ function Options() {
                      )}
 
                      <FiChevronDown
-                        className="py-3 size-13.5 md:size-16 stroke-[1.8px] md:stroke-[1.6px] hover:bg-primary-200/40 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-b-[20px] mt-0.5 mb-1 rounded-2xl transition-bg"
+                        className="py-3 size-13.5 md:size-16 stroke-[1.8px] md:stroke-[1.6px] hover:bg-primary-200/40 dark:bg-transparent dark:hover:bg-primary-400/10 4k:rounded-b-[36px]! 2k:rounded-b-[26px] rounded-b-[20px] mt-0.5 mb-1 rounded-2xl transition-bg"
                         onClick={() => {
                            setBottomScroll(true);
                            setOpenTable(false);
