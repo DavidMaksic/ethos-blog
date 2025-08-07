@@ -44,7 +44,6 @@ export function generateStaticParams() {
 }
 
 // TODO: Implement:
-// TODO: xl breakpoint
 // TODO: Dates for comments like '2 days ago'
 // TODO: 'Author' flag to author's comments
 // TODO: 'Edit' option to comments
