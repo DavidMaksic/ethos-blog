@@ -2,8 +2,8 @@
 
 import { useLocale, useTranslations } from 'next-intl';
 import { Great_Vibes, Parisienne } from 'next/font/google';
-import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { useState } from 'react';
 import { Link } from '@/src/i18n/navigation';
 
 const parisienne = Parisienne({

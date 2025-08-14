@@ -1,3 +1,6 @@
+import { differenceInDays, format, formatDistanceToNow } from 'date-fns';
+import { enUS, sr } from 'date-fns/locale';
+
 export function getSortedItems(param, items) {
    const sort = param.sort ?? 'created_at-asc';
 
@@ -60,4 +63,26 @@ export function applyFilter(result, parsedParam, currentCategoryID) {
    });
 
    return filteredResult;
+}
+
+const localeMap = {
+   en: enUS,
+   'sr-cyrl': sr,
+};
+
+export function CommentDate(createdAt, locale) {
+   const createdDate = new Date(createdAt);
+   const dateFnsLocale = localeMap[locale] || enUS;
+   console.log(localeMap);
+   const daysAgo = differenceInDays(new Date(), createdDate);
+
+   const dateDisplay =
+      daysAgo < 3
+         ? `${formatDistanceToNow(createdDate, {
+              addSuffix: true,
+              locale: dateFnsLocale,
+           })}`
+         : format(createdDate, 'MMM dd, yyyy');
+
+   return <span>{dateDisplay}</span>;
 }

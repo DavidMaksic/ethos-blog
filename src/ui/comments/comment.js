@@ -3,12 +3,13 @@ import { commentLikes, deleteReply } from '@/src/lib/actions';
 import { BiLike, BiSolidLike } from 'react-icons/bi';
 import { useLocalStorage } from '@/src/hooks/use-local-storage';
 import { AnimatePresence } from 'motion/react';
-import { useTranslations } from 'use-intl';
+import { useLocale, useTranslations } from 'use-intl';
+import { useMediaQuery } from 'react-responsive';
+import { CommentDate } from '@/src/utils/helpers';
 import { EB_Garamond } from 'next/font/google';
 import { RxChevronUp } from 'react-icons/rx';
 import { useRouter } from '@/src/i18n/navigation';
 import { LuReply } from 'react-icons/lu';
-import { format } from 'date-fns';
 
 import CommentOptions from '@/src/ui/comments/comment-options';
 import useCommentLike from '@/src/hooks/use-comment-like';
@@ -43,7 +44,9 @@ function Comment({
    const [showReplies, setShowReplies] = useState(true);
    const t = useTranslations('Comment');
 
-   const date = format(new Date(comment.created_at), 'MMM dd, yyyy');
+   const locale = useLocale();
+   const date = CommentDate(comment.created_at, locale);
+
    const user = users.find((item) => item.id === comment.user_id);
    const isAuthor = user.email === author.email;
 
@@ -98,6 +101,8 @@ function Comment({
       toast.success(t('reply-deleted'));
    }
 
+   const isMobile = useMediaQuery({ maxWidth: 768 });
+
    return (
       <>
          <div
@@ -119,7 +124,11 @@ function Comment({
                   <div className="flex items-center gap-2 md:text-2xl sm:text-[1.4rem]">
                      <span className="font-semibold">
                         {user.username
-                           ? user.username.split(' ')[0].slice(0, 10)
+                           ? !isMobile
+                              ? user.username
+                              : user.username.split(' ')[0].slice(0, 10)
+                           : !isMobile
+                           ? user.name
                            : user.name.split(' ')[0].slice(0, 10)}
                      </span>
                      {isAuthor && (
@@ -252,7 +261,6 @@ function Comment({
                      session={session}
                      key={item.id}
                      font={ebGaramond.className}
-                     date={date}
                      users={users}
                      articleID={articleID}
                      commentID={commentID}

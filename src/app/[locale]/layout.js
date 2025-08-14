@@ -44,12 +44,9 @@ export function generateStaticParams() {
 }
 
 // TODO: Implement:
-// TODO: Dates for comments like '2 days ago'
-// TODO: 'Author' flag to author's comments
 // TODO: 'Edit' option to comments
 // TODO: 'Most popular' sorting tag
 // TODO: Social media auth
-// TODO: Date intl
 // TODO: Email notification
 // TODO: Notifications
 

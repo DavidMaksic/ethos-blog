@@ -1,7 +1,9 @@
-import { AnimatePresence } from 'motion/react';
+import { useLocale, useTranslations } from 'next-intl';
 import { BiLike, BiSolidLike } from 'react-icons/bi';
 import { useLocalStorage } from '@/src/hooks/use-local-storage';
-import { useTranslations } from 'next-intl';
+import { AnimatePresence } from 'motion/react';
+import { useMediaQuery } from 'react-responsive';
+import { CommentDate } from '@/src/utils/helpers';
 import { replyLikes } from '@/src/lib/actions';
 import { useState } from 'react';
 import { LuReply } from 'react-icons/lu';
@@ -17,7 +19,6 @@ function Reply({
    reply,
    session,
    font,
-   date,
    users,
    articleID,
    commentID,
@@ -42,6 +43,11 @@ function Reply({
 
    const currentUser = users.find((item) => item.id === reply.user_id);
    const isAuthor = currentUser.email === author.email;
+
+   const isMobile = useMediaQuery({ maxWidth: 768 });
+
+   const locale = useLocale();
+   const date = CommentDate(reply.created_at, locale);
 
    return (
       <>
@@ -69,11 +75,17 @@ function Reply({
                      <div className="flex items-center gap-2 md:text-2xl sm:text-[1.4rem]">
                         <span className="font-semibold">
                            {currentUser.username
-                              ? currentUser.username.split(' ')[0].slice(0, 10)
+                              ? !isMobile
+                                 ? currentUser.username
+                                 : currentUser.username
+                                      .split(' ')[0]
+                                      .slice(0, 10)
+                              : !isMobile
+                              ? currentUser.name
                               : currentUser.name.split(' ')[0].slice(0, 10)}
                         </span>
                         {isAuthor && (
-                           <span className="px-2.5 py-0.5 bg-accent-400/20 dark:bg-accent-300/40 text-accent-600 dark:text-accent-50/70 rounded-xl font-semibold dark:font-medium">
+                           <span className="px-2.5 pt-px pb-0.5 bg-accent-400/20 dark:bg-accent-300/40 text-accent-600 dark:text-accent-50/70 rounded-xl font-semibold dark:font-medium">
                               {t('author')}
                            </span>
                         )}
