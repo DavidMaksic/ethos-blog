@@ -57,6 +57,7 @@
    },
    "Comment": {
       "label": "Коментари",
+      "author": "Аутор",
       "placeholder": "Остави коментар...",
       "reply-placeholder": "Остави одговор...",
       "post-btn": "Објави",

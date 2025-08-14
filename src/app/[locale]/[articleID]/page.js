@@ -154,6 +154,7 @@ async function Page({ params, searchParams }) {
                repliesInThisArticle={repliesInThisArticle}
                newUser={user}
                commentsNum={commentsNum}
+               author={author}
             />
 
             <RelatedArticles

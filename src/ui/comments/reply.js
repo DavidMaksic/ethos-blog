@@ -26,6 +26,7 @@ function Reply({
    lastItemRef,
    setReplyClicked,
    onDelete,
+   author,
 }) {
    const [isOpen, setIsOpen] = useState(false);
    const [replyIsOpen, setReplyIsOpen] = useState(false);
@@ -40,6 +41,7 @@ function Reply({
    const [replyCount, setReplyCount] = useState(reply.likes);
 
    const currentUser = users.find((item) => item.id === reply.user_id);
+   const isAuthor = currentUser.email === author.email;
 
    return (
       <>
@@ -70,6 +72,11 @@ function Reply({
                               ? currentUser.username.split(' ')[0].slice(0, 10)
                               : currentUser.name.split(' ')[0].slice(0, 10)}
                         </span>
+                        {isAuthor && (
+                           <span className="px-2.5 py-0.5 bg-accent-400/20 dark:bg-accent-300/40 text-accent-600 dark:text-accent-50/70 rounded-xl font-semibold dark:font-medium">
+                              {t('author')}
+                           </span>
+                        )}
                         <span className="text-primary-400">•</span>
                         <span className="font-thin text-primary-400">
                            {date}

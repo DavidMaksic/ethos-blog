@@ -57,6 +57,7 @@
    },
    "Comment": {
       "label": "Comments",
+      "author": "Author",
       "placeholder": "Leave a comment...",
       "reply-placeholder": "Leave a reply...",
       "post-btn": "Post",

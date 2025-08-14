@@ -19,6 +19,7 @@ function CommentList({
    repliesInThisArticle,
    newUser,
    commentsNum,
+   author,
 }) {
    const t = useTranslations();
 
@@ -79,6 +80,7 @@ function CommentList({
                              replies={replies}
                              repliesInThisArticle={repliesInThisArticle}
                              newUser={newUser}
+                             author={author}
                           />
                        ))
                      : comments.map((item) => (
@@ -91,6 +93,7 @@ function CommentList({
                              replies={replies}
                              repliesInThisArticle={repliesInThisArticle}
                              newUser={newUser}
+                             author={author}
                           />
                        ))}
                </motion.div>

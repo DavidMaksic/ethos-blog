@@ -1885,6 +1885,20 @@ h3 {
       margin-top: 0 !important;
       margin-bottom: 6px !important;
    }
+
+   .bn-block-content[data-content-type='bulletListItem'] {
+      margin-top: 0.1rem !important;
+      margin-bottom: 0.1rem !important;
+   }
+
+   .bn-block-outer:not([data-prev-type])
+      > .bn-block
+      > .bn-block-content[data-content-type='bulletListItem']:before,
+   .bn-block-outer[data-prev-type='bulletListItem']
+      > .bn-block
+      > .bn-block-content:before {
+      padding-inline: 0.3rem !important;
+   }
 }
 
 @media (max-width: 400px) {
@@ -1914,6 +1928,15 @@ h3 {
 
    .bn-file-caption {
       font-size: 15px !important;
+   }
+
+   .bn-block-outer:not([data-prev-type])
+      > .bn-block
+      > .bn-block-content[data-content-type='bulletListItem']:before,
+   .bn-block-outer[data-prev-type='bulletListItem']
+      > .bn-block
+      > .bn-block-content:before {
+      padding-inline: 0rem !important;
    }
 }
 

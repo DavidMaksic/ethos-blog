@@ -35,6 +35,7 @@ function Comment({
    replies,
    repliesInThisArticle,
    newUser,
+   author,
 }) {
    const [isOpen, setIsOpen] = useState(false);
    const [replyIsOpen, setReplyIsOpen] = useState(false);
@@ -44,6 +45,7 @@ function Comment({
 
    const date = format(new Date(comment.created_at), 'MMM dd, yyyy');
    const user = users.find((item) => item.id === comment.user_id);
+   const isAuthor = user.email === author.email;
 
    const [commentCount, setCommentCount] = useState(comment.likes);
    const router = useRouter();
@@ -120,6 +122,11 @@ function Comment({
                            ? user.username.split(' ')[0].slice(0, 10)
                            : user.name.split(' ')[0].slice(0, 10)}
                      </span>
+                     {isAuthor && (
+                        <span className="px-2.5 py-0.5 bg-accent-400/20 dark:bg-accent-300/40 text-accent-600 dark:text-accent-50/70 rounded-xl font-semibold dark:font-medium">
+                           {t('author')}
+                        </span>
+                     )}
                      <span className="text-primary-400">•</span>
                      <span className="font-thin text-primary-400">{date}</span>
                   </div>
@@ -254,6 +261,7 @@ function Comment({
                      lastItemRef={lastItemRef}
                      setReplyClicked={setReplyClicked}
                      onDelete={handleDelete}
+                     author={author}
                   />
                ))}
          </div>
