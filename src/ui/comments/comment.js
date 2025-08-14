@@ -121,7 +121,7 @@ function Comment({
                      </div>
                   )}
 
-                  <div className="flex items-center gap-2 md:text-2xl sm:text-[1.4rem]">
+                  <div className="flex xs:flex-wrap items-center gap-2 md:text-2xl sm:text-[1.4rem]">
                      <span className="font-semibold">
                         {user.username
                            ? !isMobile
