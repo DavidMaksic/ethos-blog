@@ -73,7 +73,7 @@ export default async function RootLayout({ children, params }) {
          </head>
 
          <body
-            className={`min-h-screen flex flex-col text-xl 2xl:px-60 xl:px-26 inter-padding text-text selection:bg-accent-500/50 dark:selection:bg-accent-200/50 selection:text-white caret-primary-400 antialiased bg-primary dark:bg-primary transition-200 background-gradient ${cormorantGaramond.className}`}
+            className={`min-h-screen flex flex-col text-xl 2xl:px-60 xl:px-26 inter-padding text-text selection:bg-accent-400/90 dark:selection:bg-accent-200/50 selection:text-white caret-primary-400 antialiased bg-primary dark:bg-primary transition-200 background-gradient ${cormorantGaramond.className}`}
          >
             <NextIntlClientProvider>
                <LanguageProvider>

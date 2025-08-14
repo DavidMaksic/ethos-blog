@@ -1710,10 +1710,6 @@ h3 {
    }
 }
 
-[data-content-type='numberedListItem'] {
-   margin-top: 10px;
-}
-
 .bg-active-link {
    background-image: var(--background-image-active-link);
 }
@@ -1919,4 +1915,43 @@ h3 {
    .bn-file-caption {
       font-size: 15px !important;
    }
+}
+
+.bn-block-outer:not([data-prev-type])
+   > .bn-block
+   > .bn-block-content[data-content-type='bulletListItem']:before,
+.bn-block-outer[data-prev-type='bulletListItem']
+   > .bn-block
+   > .bn-block-content:before {
+   opacity: 65%;
+   padding-inline: 0.6rem;
+   color: var(--color-primary-400) !important;
+}
+
+[data-theme='dark']
+   .bn-block-outer:not([data-prev-type])
+   > .bn-block
+   > .bn-block-content[data-content-type='bulletListItem']:before,
+.bn-block-outer[data-prev-type='bulletListItem']
+   > .bn-block
+   > .bn-block-content:before {
+   opacity: 100%;
+   color: var(--color-primary-300) !important;
+}
+
+.bn-block-content[data-content-type='bulletListItem'] {
+   margin-top: 0.2rem;
+   margin-bottom: 0.2rem;
+}
+
+.bn-block-outer:not([data-prev-type])
+   > .bn-block
+   > .bn-block-content[data-content-type='numberedListItem']:before {
+   color: var(--color-primary-400) !important;
+}
+
+[data-content-type='numberedListItem'] {
+   margin-top: 5px;
+   margin-bottom: 5px;
+   gap: 0.6em !important;
 }
