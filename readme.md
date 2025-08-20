@@ -1,1 +1,5 @@
-# Ethos Blog
+Installation:
+```
+npm i
+npm run dev
+```
