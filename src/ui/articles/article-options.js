@@ -84,7 +84,7 @@ function ArticleOptions({
             |
          </div>
 
-         <div className="flex items-center gap-2 md:gap-3 sm:gap-1.5">
+         <div className="flex items-center gap-1.5 md:gap-3 sm:gap-1.5">
             <Button
                handler={() => {
                   if (isLiked) {
@@ -112,7 +112,7 @@ function ArticleOptions({
                styles="md:hidden"
             >
                <LikeButton
-                  styles="size-9.5! md:size-11! sm:size-10!"
+                  styles="size-[2.68rem]! 2xl:size-10.5! sm:size-9! px-[0.5rem]! mt-px"
                   articleID={articleID}
                   likedArticles={likedArticles}
                   isLiked={isLiked}
@@ -120,7 +120,7 @@ function ArticleOptions({
             </Button>
 
             <Button
-               styles="ml-px md:hidden"
+               styles="ml-1 2xl:mt-px md:hidden"
                handler={(e) => {
                   e.preventDefault();
                   document.querySelector('.comment-section').scrollIntoView({
@@ -130,22 +130,22 @@ function ArticleOptions({
             >
                {hasCommented || hasReplied ? (
                   <FaComment
-                     className={`size-10 md:size-11 sm:size-10 p-2 text-amber-600/45 dark:text-amber-300/53 transition-color`}
+                     className={`size-11 2xl:size-10.5 sm:size-9 p-2.5 text-amber-600/45 dark:text-amber-300/53 transition-color`}
                   />
                ) : (
-                  <FaRegComment className="size-9.5 md:size-11 sm:size-10 p-2 text-primary-400 group-hover:text-amber-600/65 dark:text-primary-400 dark:group-hover:text-amber-400/70 transition-color" />
+                  <FaRegComment className="size-11 2xl:size-10.5 sm:size-9 p-2.5 text-primary-400 group-hover:text-amber-600/65 dark:text-primary-400 dark:group-hover:text-amber-400/70 transition-color" />
                )}
             </Button>
 
-            <Button styles="md:hidden">
+            <Button styles="md:hidden 2xl:mt-px">
                {isBookmarked ? (
                   <FaBookmark
-                     className="size-9.5 md:size-10.5 p-2 text-cyan-600/45 dark:text-cyan-300/50 transition-color"
+                     className="size-10.5 2xl:size-10 p-2.5 text-cyan-600/45 dark:text-cyan-300/50 transition-color"
                      onClick={handleBookmarkClick}
                   />
                ) : (
                   <FaRegBookmark
-                     className="size-9.5 md:size-10.5 p-2 text-primary-400 dark:text-primary-400 group-hover:text-cyan-600/60 dark:group-hover:text-cyan-400/60 transition-color"
+                     className="size-10.5 2xl:size-10 p-2.5 text-primary-400 dark:text-primary-400 group-hover:text-cyan-600/60 dark:group-hover:text-cyan-400/60 transition-color"
                      onClick={handleBookmarkClick}
                   />
                )}

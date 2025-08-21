@@ -10,16 +10,16 @@ function LikeButton({ styles, articleID, likedArticles, isLiked }) {
          {!likedArticle?.length ? (
             isLiked ? (
                <FaHeart
-                  className={`${styles} size-10 md:size-12 p-2 text-red-600/40! dark:text-red-400/65! dark:group-hover:text-primary-500 transition-color`}
+                  className={`${styles} size-11 md:size-12 p-2.5 text-red-600/40! dark:text-red-400/65! dark:group-hover:text-primary-500 transition-color`}
                />
             ) : (
                <FaRegHeart
-                  className={`${styles} size-10 md:size-12 p-2 text-primary-400 group-hover:text-red-400/70! dark:group-hover:text-primary-500 transition-color`}
+                  className={`${styles} size-11 md:size-12 p-2.5 text-primary-400 group-hover:text-red-400/70! dark:group-hover:text-primary-500 transition-color`}
                />
             )
          ) : (
             <FaRegHeart
-               className={`${styles} size-10 p-2 text-primary-400 group-hover:text-red-400/70! dark:group-hover:text-primary-500 transition-color`}
+               className={`${styles} size-11 p-2.5 text-primary-400 group-hover:text-red-400/70! dark:group-hover:text-primary-500 transition-color`}
             />
          )}
       </>
