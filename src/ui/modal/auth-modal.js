@@ -34,7 +34,7 @@ function AuthModal({ onClose, string }) {
             <span
                className={`px-3 text-accent ${
                   locale === 'en' && parisienne.className
-               } ${locale === 'sr-cyrl' && greatVibes.className}`}
+               } ${locale === 'sr' && greatVibes.className}`}
             >
                {t('Logo')}
             </span>

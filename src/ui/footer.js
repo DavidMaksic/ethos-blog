@@ -35,7 +35,7 @@ function Footer() {
             href="/"
             className={`styled_text text-center text-7xl bg-primary-600/80 dark:bg-primary-600/60 pt-2 px-2 hover:bg-primary-700/90 transition-bg duration-100 ${
                locale === 'en' && parisienne.className
-            } ${locale === 'sr-cyrl' && greatVibes.className}`}
+            } ${locale === 'sr' && greatVibes.className}`}
             onClick={() => {
                window.scrollTo({
                   top: 0,

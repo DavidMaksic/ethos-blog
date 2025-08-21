@@ -45,7 +45,6 @@ export function generateStaticParams() {
 
 // TODO: Implement:
 // TODO: 'Edit' option to comments
-// TODO: 'Most popular' sorting tag
 // TODO: Social media auth
 // TODO: Email notification
 // TODO: Notifications

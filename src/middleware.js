@@ -2,7 +2,7 @@ import { routing } from '@/src/i18n/routing';
 import { auth } from '@/src/lib/auth';
 import createMiddleware from 'next-intl/middleware';
 
-const locales = ['en', 'sr-cyrl'];
+const locales = ['en', 'sr'];
 const publicPages = ['/', '/archive', '/about'];
 
 const handleI18nRouting = createMiddleware(routing);

@@ -76,8 +76,7 @@ function LanguageButton() {
                            });
                            handler('category', '');
 
-                           const lang =
-                              item.lang === 'English' ? 'en' : 'sr-cyrl';
+                           const lang = item.lang === 'English' ? 'en' : 'sr';
                            switchLocale(lang);
                         }}
                      >

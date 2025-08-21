@@ -59,7 +59,7 @@ function DeleteModal({
                   <>
                      <ImSpinner2
                         className={`size-5 animate-spin absolute right-36 top-4 text-[#db7979] dark:text-[#cc7272] ${
-                           locale === 'sr-cyrl' && 'mr-3.5'
+                           locale === 'sr' && 'mr-3.5'
                         }`}
                      />
                      <span>{t('deleting')}</span>

@@ -62,7 +62,7 @@ function MainArticle({ article }) {
                <span
                   className={`flex articles-center gap-5 text-4xl 2xl:text-[1.8rem] md:text-[2rem] sm:text-[1.8rem] xs:text-[1.9rem] pl-8 2xl:pl-5 md:pl-6 xs:pl-5 pr-9 2xl:pr-6 md:pr-6.5 xs:pr-6 py-3.5 2xl:py-3 lg:py-2.5 md:py-3.5 xs:py-2.5 text-white group-hover:text-accent group-hover:drop-shadow-xs dark:group-hover:text-accent/90 transition-[color] duration-300 cursor-pointer ${
                      locale === 'en' && parisienne.className
-                  } ${locale === 'sr-cyrl' && greatVibes.className}`}
+                  } ${locale === 'sr' && greatVibes.className}`}
                >
                   {t('read-btn')}
                </span>

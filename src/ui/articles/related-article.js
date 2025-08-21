@@ -15,7 +15,7 @@ function RelatedArticle({ article, author }) {
    return (
       <Link
          href={`/${article.id}`}
-         className="relative flex flex-col rounded-2xl group cursor-pointer overflow-hidden bg-secondary dark:bg-primary-200 border border-primary-200 hover:scale-102 transition-[scale] duration-200 select-none box-shadow group"
+         className="relative flex flex-col rounded-2xl group cursor-pointer overflow-hidden bg-secondary dark:bg-primary-200 border border-primary-200 hover:-translate-y-0.5 box-shadow hover:shadow-preview dark:hover:shadow-preview-dark transition-[translate,box-shadow] duration-200 select-none group"
       >
          <div className="relative h-48 2xl:h-44 md:h-80 sm:h-60">
             <RemoteImage

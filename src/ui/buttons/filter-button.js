@@ -51,7 +51,7 @@ function FilterButton({
 
             if (isMobile) {
                handler('category', '');
-               const language = lang === 'English' ? 'en' : 'sr-cyrl';
+               const language = lang === 'English' ? 'en' : 'sr';
                switchLocale(language);
             }
          }}

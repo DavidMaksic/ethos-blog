@@ -155,7 +155,7 @@ function CommentInput({ session, oldUser, newUser, article, commentLength }) {
                         className={`flex articles-center gap-5 text-3xl md:text-4xl px-3.5 pr-4.5 py-0.5 pt-1 text-white group-hover:text-accent group-hover:drop-shadow-xs dark:group-hover:text-accent/90 transition-[color] duration-300 cursor-pointer ${
                            locale === 'en' && `${parisienne.className}`
                         } ${
-                           locale === 'sr-cyrl' &&
+                           locale === 'sr' &&
                            `py-1 pt-1.5 px-4 pr-5 ${greatVibes.className}`
                         }`}
                      >

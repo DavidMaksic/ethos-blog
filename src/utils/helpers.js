@@ -67,7 +67,7 @@ export function applyFilter(result, parsedParam, currentCategoryID) {
 
 const localeMap = {
    en: enUS,
-   'sr-cyrl': sr,
+   sr: sr,
 };
 
 export function CommentDate(createdAt, locale) {
