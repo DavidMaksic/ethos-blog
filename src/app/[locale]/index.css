@@ -1942,6 +1942,8 @@ h3 {
    }
 }
 
+/* Bullet list dot styles */
+
 .bn-block-outer:not([data-prev-type])
    > .bn-block
    > .bn-block-content[data-content-type='bulletListItem']:before,

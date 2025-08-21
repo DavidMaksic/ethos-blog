@@ -85,6 +85,7 @@ function LanguageButton() {
                            <Image
                               className="border border-primary-300 dark:border-primary-200 rounded-full group-hover:opacity-100 dark:group-hover:opacity-95 transition-[opacity]"
                               fill
+                              priority={true}
                               src={item.flag}
                               alt={item.lang}
                            />
