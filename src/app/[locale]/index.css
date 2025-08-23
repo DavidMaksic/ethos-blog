@@ -64,13 +64,10 @@
 }
 
 @theme inline {
-   --font-creator: var(--font-cormorant-garamond);
-   --font-headers: var(--font-ebGaramond);
-   --font-quote: var(--font-quote);
-}
-
-.serif-fallback {
-   font-family: 'Crimson Text', serif;
+   --font-creator: var(--font-cormorant-garamond), serif;
+   --font-headers: var(--font-ebGaramond), serif;
+   --font-quote: var(--font-quote), serif;
+   --font-crimson: var(--font-crimson), serif;
 }
 
 @theme {
