@@ -69,6 +69,10 @@
    --font-quote: var(--font-quote);
 }
 
+.serif-fallback {
+   font-family: 'Crimson Text', serif;
+}
+
 @theme {
    --color-primary: #fafafa;
    --color-secondary: #fff;
