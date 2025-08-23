@@ -17,6 +17,7 @@ import Footer from '@/src/ui/footer';
 
 import '@blocknote/core/fonts/inter.css';
 import '@blocknote/mantine/style.css';
+import Script from 'next/script';
 
 const cormorantGaramond = Cormorant_Garamond({
    subsets: ['latin'],
@@ -61,11 +62,11 @@ export default async function RootLayout({ children, params }) {
    return (
       <html lang={locale} suppressHydrationWarning>
          <head>
-            <script
-               defer
+            <Script
                src="https://cloud.umami.is/script.js"
                data-website-id="d90edcea-5d99-4e40-93f9-48e026866d66"
-            ></script>
+               strategy="lazyOnload"
+            />
          </head>
 
          <body
