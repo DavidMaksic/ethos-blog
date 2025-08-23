@@ -1,11 +1,3 @@
-import { Parisienne } from 'next/font/google';
-
-const parisienne = Parisienne({
-   subsets: ['latin'],
-   display: 'swap',
-   weight: ['400'],
-});
-
 function Stats({ title, value, icon, color, order }) {
    return (
       <div
@@ -22,9 +14,7 @@ function Stats({ title, value, icon, color, order }) {
                {title}
             </span>
 
-            <span
-               className={`text-3xl xs:font-bold! text-primary-600 xs:text-primary-500 dark:text-primary-600/90 xs:dark:text-primary-600/75 transition-color pl-0.5 ${parisienne.className}`}
-            >
+            <span className="text-3xl xs:font-bold! text-primary-600 xs:text-primary-500 dark:text-primary-600/90 xs:dark:text-primary-600/75 transition-color pl-0.5 font-logo">
                {value || '--'}
             </span>
          </div>

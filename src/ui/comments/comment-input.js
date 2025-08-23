@@ -1,7 +1,6 @@
 'use client';
 
 import { useActionState, useEffect, useRef, useState } from 'react';
-import { EB_Garamond, Great_Vibes, Parisienne } from 'next/font/google';
 import { useLocale, useTranslations } from 'next-intl';
 import { HiOutlineUserCircle } from 'react-icons/hi2';
 import { addComment } from '@/src/lib/actions';
@@ -13,25 +12,6 @@ import AuthModal from '@/src/ui/modal/auth-modal';
 import Modal from '@/src/ui/modal/modal';
 import toast from 'react-hot-toast';
 import Image from 'next/image';
-
-const ebGaramond = EB_Garamond({
-   subsets: ['latin'],
-   display: 'swap',
-   style: ['normal', 'italic'],
-   weight: ['400', '500', '600', '700'],
-});
-
-const parisienne = Parisienne({
-   subsets: ['latin'],
-   display: 'swap',
-   weight: ['400'],
-});
-
-const greatVibes = Great_Vibes({
-   subsets: ['cyrillic'],
-   display: 'swap',
-   weight: ['400'],
-});
 
 function CommentInput({ session, oldUser, newUser, article, commentLength }) {
    const [isOpen, setIsOpen] = useState();
@@ -90,7 +70,7 @@ function CommentInput({ session, oldUser, newUser, article, commentLength }) {
 
    return (
       <motion.div
-         className={`comment-section scroll-mt-20! flex flex-col gap-1.5 mt-20 ${ebGaramond.className}`}
+         className="comment-section scroll-mt-20! flex flex-col gap-1.5 mt-20 font-secondary"
          initial={{ opacity: 0 }}
          animate={{ opacity: 1 }}
          transition={{ duration: 0.3 }}
@@ -154,10 +134,10 @@ function CommentInput({ session, oldUser, newUser, article, commentLength }) {
                   >
                      <div
                         className={`flex articles-center gap-5 text-3xl md:text-4xl px-3.5 pr-4.5 py-0.5 pt-1 text-white group-hover:text-accent group-hover:drop-shadow-xs dark:group-hover:text-accent/90 transition-[color] duration-300 cursor-pointer ${
-                           locale === 'en' && `${parisienne.className}`
+                           locale === 'en' && 'font-logo'
                         } ${
                            locale === 'sr' &&
-                           `py-1 pt-1.5 px-4 pr-5 ${greatVibes.className}`
+                           `py-1 pt-1.5 px-4 pr-5 font-logo-sr`
                         }`}
                      >
                         {isPending ? (

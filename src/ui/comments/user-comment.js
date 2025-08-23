@@ -1,16 +1,8 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { EB_Garamond } from 'next/font/google';
 import { format } from 'date-fns';
 import { Link } from '@/src/i18n/navigation';
-
-const ebGaramond = EB_Garamond({
-   subsets: ['latin'],
-   display: 'swap',
-   style: ['normal', 'italic'],
-   weight: ['400', '500', '600', '700'],
-});
 
 function UserComment({ comment, users, user, articles, allComments }) {
    const t = useTranslations('Comment');
@@ -73,9 +65,7 @@ function UserComment({ comment, users, user, articles, allComments }) {
             </div>
          </div>
 
-         <p
-            className={`${ebGaramond.className} text-[1.35rem] lg:text-xl md:text-[1.62rem] xs:text-[1.5rem] xs:leading-[1.4] whitespace-pre-line`}
-         >
+         <p className="font-secondary text-[1.35rem] lg:text-xl md:text-[1.62rem] xs:text-[1.5rem] xs:leading-[1.4] whitespace-pre-line">
             {comment.content}
          </p>
       </Link>

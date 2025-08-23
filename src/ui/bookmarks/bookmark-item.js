@@ -1,18 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Cormorant_SC } from 'next/font/google';
 import { useTheme } from 'next-themes';
 import { format } from 'date-fns';
 import { motion } from 'motion/react';
 import { Link } from '@/src/i18n/navigation';
 import RemoteImage from '@/src/ui/remote-image';
-
-const cormorantSC = Cormorant_SC({
-   subsets: ['latin'],
-   display: 'swap',
-   weight: ['300', '400', '500', '600', '700'],
-});
 
 function BookmarkItem({ article, categories }) {
    const date = format(new Date(article.created_at), 'MMM dd, yyyy');
@@ -45,9 +38,7 @@ function BookmarkItem({ article, categories }) {
          >
             <div className="self-center py-2 px-12 xs:px-12 md:pr-0 space-y-5 2xl:space-y-5 lg:space-y-4 z-20">
                <h2
-                  className={`text-primary-500 dark:text-primary-600/85 text-3xl xl:text-[2.1rem] lg:text-[1.8rem] md:text-[1.85rem] font-medium dark:font-normal lg:font-semibold lg:dark:font-normal md:dark:font-medium 2xl:leading-9 xl:leading-10.5 lg:leading-10 xs:leading-9 ${
-                     cormorantSC.className
-                  } leading-8.5 ${
+                  className={`text-primary-500 dark:text-primary-600/85 text-3xl xl:text-[2.1rem] lg:text-[1.8rem] md:text-[1.85rem] font-medium dark:font-normal lg:font-semibold lg:dark:font-normal md:dark:font-medium 2xl:leading-9 xl:leading-10.5 lg:leading-10 xs:leading-9 font-title leading-8.5 ${
                      article.title.length >= 48 &&
                      'text-[1.8rem]! lg:text-[1.7rem]! md:text-[1.6rem]! sm:text-[1.4rem]! xs:text-[1.55rem]! leading-[2.5rem]! 2xl:leading-[2.4rem]! lg:leading-[2.2rem]! md:leading-[2.1rem]! sm:leading-[2rem]! xs:leading-[1.98rem]!'
                   }`}

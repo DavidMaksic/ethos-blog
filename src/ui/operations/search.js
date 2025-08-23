@@ -74,7 +74,7 @@ function Search({ isArchive = false }) {
                placeholder={t('Search-placeholder')}
                autoComplete="one-time-code"
                onChange={(e) => setInputValue(e.target.value)}
-               className={`h-11 md:h-12 py-4 px-1 w-[22rem] lg:w-[14rem] bg-white/60 md:bg-white dark:bg-primary-300/18 md:dark:bg-primary-300/18 border border-quaternary dark:border-transparent rounded-full text-xl md:text-2xl font-medium font-article outline-none transition-bg_border md:hidden ${
+               className={`h-11 md:h-12 py-4 px-1 w-[22rem] lg:w-[14rem] bg-white/60 md:bg-white dark:bg-primary-300/18 md:dark:bg-primary-300/18 border border-quaternary dark:border-transparent rounded-full text-xl md:text-2xl font-medium outline-none transition-bg_border md:hidden ${
                   open && 'rounded-l-none border-l-transparent'
                } ${
                   isArchive
@@ -92,7 +92,7 @@ function Search({ isArchive = false }) {
             placeholder={t('Search-placeholder')}
             autoComplete="one-time-code"
             onChange={(e) => setInputValue(e.target.value)}
-            className={`h-12 py-4 px-1 bg-white/60 md:bg-white dark:bg-primary-300/18 md:dark:bg-primary-300/18 border border-quaternary dark:border-transparent rounded-full text-2xl font-medium font-article outline-none transition-bg_border rounded-l-none border-l-transparent hidden md:block ${
+            className={`h-12 py-4 px-1 bg-white/60 md:bg-white dark:bg-primary-300/18 md:dark:bg-primary-300/18 border border-quaternary dark:border-transparent rounded-full text-2xl font-medium outline-none transition-bg_border rounded-l-none border-l-transparent hidden md:block ${
                locale === 'en' ? 'w-[14rem]' : 'w-[12.5rem]'
             } ${isArchive ? `w-[10.5rem]` : 'w-[7rem]'}`}
          />

@@ -3,19 +3,10 @@
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { AnimatePresence } from 'motion/react';
-import { EB_Garamond } from 'next/font/google';
 import { motion } from 'motion/react';
 
 import useFilterCategory from '@/src/hooks/use-filter-category';
 import FeaturedItem from '@/src/ui/articles/featured-item';
-
-const ebGaramond = EB_Garamond({
-   subsets: ['latin'],
-   display: 'swap',
-   style: ['normal', 'italic'],
-   weight: ['400', '500', '600', '700', '800'],
-   variable: '--font-ebGaramond',
-});
 
 function FeaturedArticles({ articles, categories, authors }) {
    const [index, setIndex] = useState(0);
@@ -52,14 +43,14 @@ function FeaturedArticles({ articles, categories, authors }) {
 
    return (
       <motion.div
-         className={`flex flex-col gap-10 my-14 ${ebGaramond.variable}`}
+         className="flex flex-col gap-10 my-14"
          initial={{ opacity: 0 }}
          animate={{ opacity: 1 }}
          transition={{ duration: 0.3 }}
       >
          <h1 className="flex items-center gap-2 self-center text-4xl lg:text-3xl md:text-4xl">
             <span>{t('featuring')}</span>
-            <span className="text-accent/75 dark:text-accent-300/90 italic font-medium font-headers">
+            <span className="text-accent/75 dark:text-accent-300/90 italic font-medium font-secondary">
                {currentCategory.category ? currentCategory.category : 'History'}
             </span>
          </h1>

@@ -14,7 +14,6 @@ function CommentList({
    param,
    articleID,
    users,
-   font,
    replies,
    repliesInThisArticle,
    newUser,
@@ -42,7 +41,7 @@ function CommentList({
                   <div className="uppercase tracking-wide text-xl md:text-2xl font-medium select-none">
                      <span>{t('Comment.label')}</span>
                      <span
-                        className={`text-accent/90 dark:text-accent-200/90 ml-2 ${font}`}
+                        className={`text-accent/90 dark:text-accent-200/90 ml-2 font-secondary`}
                      >
                         ({commentsNum})
                      </span>

@@ -5,7 +5,6 @@ import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 import { useOutsideClick } from '@/src/hooks/use-outside-click';
 import { useTranslations } from 'next-intl';
 import { HiOutlineUser } from 'react-icons/hi2';
-import { Parisienne } from 'next/font/google';
 import { BiHomeAlt2 } from 'react-icons/bi';
 import { useParams } from 'next/navigation';
 import { useState } from 'react';
@@ -13,12 +12,6 @@ import { Link } from '@/src/i18n/navigation';
 
 import FilterButton from '@/src/ui/buttons/filter-button';
 import Image from 'next/image';
-
-const parisienne = Parisienne({
-   subsets: ['latin'],
-   display: 'swap',
-   weight: ['400'],
-});
 
 function MobileMenu({ session, newUser, oldUser }) {
    const [openMenu, setOpenMenu] = useState(false);
@@ -116,9 +109,7 @@ function MobileMenu({ session, newUser, oldUser }) {
                                  referrerPolicy="no-referrer"
                               />
                            </Link>
-                           <span
-                              className={`text-accent-400 dark:text-accent text-4xl w-fit self-center pr-1.5 ${parisienne.className}`}
-                           >
+                           <span className="text-accent-400 dark:text-accent text-4xl w-fit self-center pr-1.5 font-logo">
                               {newUser?.username
                                  ? newUser?.username.split(' ')[0].slice(0, 10)
                                  : oldUser?.name.split(' ')[0].slice(0, 10)}

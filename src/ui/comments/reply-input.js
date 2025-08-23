@@ -1,7 +1,6 @@
 'use client';
 
 import { useActionState, useEffect, useRef, useState } from 'react';
-import { EB_Garamond, Great_Vibes, Parisienne } from 'next/font/google';
 import { AnimatePresence } from 'motion/react';
 import { useTranslations } from 'use-intl';
 import { ImSpinner2 } from 'react-icons/im';
@@ -12,25 +11,6 @@ import TextareaAutosize from 'react-textarea-autosize';
 import AuthModal from '@/src/ui/modal/auth-modal';
 import Modal from '@/src/ui/modal/modal';
 import toast from 'react-hot-toast';
-
-const ebGaramond = EB_Garamond({
-   subsets: ['latin'],
-   display: 'swap',
-   style: ['normal', 'italic'],
-   weight: ['400', '500', '600', '700'],
-});
-
-const parisienne = Parisienne({
-   subsets: ['latin'],
-   display: 'swap',
-   weight: ['400'],
-});
-
-const greatVibes = Great_Vibes({
-   subsets: ['cyrillic'],
-   display: 'swap',
-   weight: ['400'],
-});
 
 function ReplyInput({
    articleID,
@@ -89,9 +69,7 @@ function ReplyInput({
    }, [state, setReplyIsOpen, t]);
 
    return (
-      <div
-         className={`comment-section scroll-mt-20! flex flex-col gap-1.5 ml-14 ${ebGaramond.className}`}
-      >
+      <div className="comment-section scroll-mt-20! flex flex-col gap-1.5 ml-14 font-secondary">
          <form action={handleAction} className="w-full">
             <TextareaAutosize
                minRows={1}
@@ -115,11 +93,10 @@ function ReplyInput({
             <div className="relative">
                <span
                   className={`absolute bottom-6 rounded-full text-3xl md:text-[2rem] px-4 pt-[5px] pb-[3px] text-primary-500 dark:text-inherit hover:text-primary-400 cursor-pointer transition-200 ${
-                     locale === 'en' &&
-                     `right-32 md:right-33 ${parisienne.className}`
+                     locale === 'en' && `right-32 md:right-33 font-logo`
                   } ${
                      locale === 'sr' &&
-                     `py-1 pt-1.5 px-4 pr-5 right-34 md:right-33 ${greatVibes.className}`
+                     `py-1 pt-1.5 px-4 pr-5 right-34 md:right-33 font-logo-sr`
                   }`}
                   onClick={() => setReplyIsOpen(false)}
                >
@@ -135,10 +112,9 @@ function ReplyInput({
                >
                   <div
                      className={`flex articles-center gap-5 text-3xl md:text-4xl px-3.5 pr-4.5 py-0.5 pt-1 text-white group-hover:text-accent group-hover:drop-shadow-xs dark:group-hover:text-accent/90 transition-[color] duration-300 cursor-pointer ${
-                        locale === 'en' && `${parisienne.className}`
+                        locale === 'en' && 'font-logo'
                      } ${
-                        locale === 'sr' &&
-                        `py-1 pt-1.5 px-4 pr-5 ${greatVibes.className}`
+                        locale === 'sr' && `py-1 pt-1.5 px-4 pr-5 font-logo-sr`
                      }`}
                   >
                      {isPending ? (

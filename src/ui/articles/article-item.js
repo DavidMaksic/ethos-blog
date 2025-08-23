@@ -1,18 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Cormorant_SC } from 'next/font/google';
 import { useTheme } from 'next-themes';
 import { format } from 'date-fns';
 import { motion } from 'motion/react';
 import { Link } from '@/src/i18n/navigation';
 import RemoteImage from '@/src/ui/remote-image';
-
-const cormorantSC = Cormorant_SC({
-   subsets: ['latin'],
-   display: 'swap',
-   weight: ['300', '400', '500', '600', '700'],
-});
 
 function ArticleItem({ article, categories, style, authors }) {
    const date = format(new Date(article.created_at), 'MMM dd, yyyy');
@@ -55,9 +48,7 @@ function ArticleItem({ article, categories, style, authors }) {
 
             <div className="self-center py-2 md:py-10 sm:py-8 xs:pb-9 px-12 sm:px-13 space-y-1 md:space-y-1">
                <h2
-                  className={`text-primary-500 dark:text-primary-600/85 text-[1.7rem] lg:text-[1.65rem] md:text-[2.1rem] sm:text-[2rem] leading-8.5 lg:leading-8.5 md:leading-10 sm:leading-10 xs:leading-[2.45rem] font-semibold dark:font-normal ${
-                     cormorantSC.className
-                  } ${
+                  className={`text-primary-500 dark:text-primary-600/85 text-[1.7rem] lg:text-[1.65rem] md:text-[2.1rem] sm:text-[2rem] leading-8.5 lg:leading-8.5 md:leading-10 sm:leading-10 xs:leading-[2.45rem] font-semibold dark:font-normal font-title ${
                      article.title.length >= 48 &&
                      'xl:text-[1.7rem]! md:text-[2rem]! sm:text-[2rem]! lg:leading-8.5! md:leading-[2.5rem]! sm:leading-[2.55rem]! xs:leading-[2.45rem]!'
                   }  `}

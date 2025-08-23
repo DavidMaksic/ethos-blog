@@ -1,21 +1,8 @@
-import { Great_Vibes, Parisienne } from 'next/font/google';
 import { useTranslations } from 'use-intl';
 import { useLocale } from 'next-intl';
 import { LuLogIn } from 'react-icons/lu';
 import { motion } from 'motion/react';
 import { Link } from '@/src/i18n/navigation';
-
-const parisienne = Parisienne({
-   subsets: ['latin'],
-   display: 'swap',
-   weight: ['400'],
-});
-
-const greatVibes = Great_Vibes({
-   subsets: ['cyrillic'],
-   display: 'swap',
-   weight: ['400'],
-});
 
 function AuthModal({ onClose, string }) {
    const t = useTranslations();
@@ -32,9 +19,9 @@ function AuthModal({ onClose, string }) {
          <div className="text-primary-600 dark:text-primary-500 w-[75%] md:w-[34rem] xs:w-[25rem] 3xs:w-[23rem] md:px-12 xs:px-8 text-center text-[2.2rem] leading-11 border-b border-b-quaternary pb-10">
             {t('Auth.join')}
             <span
-               className={`px-3 text-accent ${
-                  locale === 'en' && parisienne.className
-               } ${locale === 'sr' && greatVibes.className}`}
+               className={`px-3 text-accent ${locale === 'en' && 'font-logo'} ${
+                  locale === 'sr' && 'font-logo-sr'
+               }`}
             >
                {t('Logo')}
             </span>

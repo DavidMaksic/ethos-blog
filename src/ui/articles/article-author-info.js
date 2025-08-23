@@ -1,21 +1,8 @@
 'use client';
 
-import { Cormorant_SC, Parisienne } from 'next/font/google';
 import { HiOutlineUserCircle } from 'react-icons/hi2';
 import { motion } from 'motion/react';
 import RemoteImage from '@/src/ui/remote-image';
-
-const cormorantSC = Cormorant_SC({
-   subsets: ['latin'],
-   display: 'swap',
-   weight: ['300', '400', '500', '600', '700'],
-});
-
-const parisienne = Parisienne({
-   subsets: ['latin'],
-   display: 'swap',
-   weight: ['400'],
-});
 
 function ArticleAuthorInfo({ article, author, date, children }) {
    return (
@@ -42,14 +29,10 @@ function ArticleAuthorInfo({ article, author, date, children }) {
 
             <div className="flex flex-col gap-6 self-center text-center">
                <div className="flex flex-col md:gap-1">
-                  <span
-                     className={`text-accent-400 dark:text-accent text-[2.5rem] md:text-5xl w-fit self-center ${parisienne.className}`}
-                  >
+                  <span className="text-accent-400 dark:text-accent text-[2.5rem] md:text-5xl w-fit self-center font-logo">
                      {author.full_name}
                   </span>
-                  <span
-                     className={`text-xl text-primary-400 ${cormorantSC.className}`}
-                  >
+                  <span className="text-xl text-primary-400 font-title">
                      {date}
                   </span>
                </div>

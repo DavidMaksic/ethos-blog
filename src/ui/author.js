@@ -1,13 +1,6 @@
 import { useLocale, useTranslations } from 'next-intl';
 import { HiOutlineUserCircle } from 'react-icons/hi2';
-import { Parisienne } from 'next/font/google';
 import RemoteImage from '@/src/ui/remote-image';
-
-const parisienne = Parisienne({
-   subsets: ['latin'],
-   display: 'swap',
-   weight: ['400'],
-});
 
 function Author({ author }) {
    const t = useTranslations('Article');
@@ -37,7 +30,7 @@ function Author({ author }) {
             <div className="flex flex-col gap-5 2xl:gap-4 md:gap-5 self-center text-center">
                <div className="flex flex-col">
                   <span
-                     className={`text-accent-400 dark:text-accent text-[2.7rem] 2xl:text-[2.8rem] md:text-[3.2rem] w-fit self-center ${parisienne.className}`}
+                     className={`text-accent-400 dark:text-accent text-[2.7rem] 2xl:text-[2.8rem] md:text-[3.2rem] w-fit self-center font-logo`}
                   >
                      {full_name}
                   </span>

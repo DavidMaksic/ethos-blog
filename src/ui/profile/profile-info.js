@@ -1,11 +1,4 @@
-import { Parisienne } from 'next/font/google';
 import RemoteImage from '@/src/ui/remote-image';
-
-const parisienne = Parisienne({
-   subsets: ['latin'],
-   display: 'swap',
-   weight: ['400'],
-});
 
 function ProfileInfo({ oldUser, newUser }) {
    const { email, image, name } = oldUser;
@@ -23,9 +16,7 @@ function ProfileInfo({ oldUser, newUser }) {
 
          <div className="flex flex-col gap-3 self-center text-center">
             <div className="flex flex-col">
-               <h2
-                  className={`text-accent-400 dark:text-accent text-5xl w-fit self-center ${parisienne.className}`}
-               >
+               <h2 className="text-accent-400 dark:text-accent text-5xl w-fit self-center font-logo">
                   {username ? username : name}
                </h2>
             </div>

@@ -1,12 +1,4 @@
 import { useLocale, useTranslations } from 'next-intl';
-import { EB_Garamond } from 'next/font/google';
-
-const ebGaramond = EB_Garamond({
-   subsets: ['latin'],
-   display: 'swap',
-   style: ['normal', 'italic'],
-   weight: ['400', '500', '600', '700'],
-});
 
 function ArticleOptionItem({
    isLiked,
@@ -53,16 +45,14 @@ function ArticleOptionItem({
          onClick={handler}
       >
          {children}
-         <span
-            className={`text-xl md:text-[1.4rem] md:font-semibold text-primary-400 ${ebGaramond.className} select-none`}
-         >
+         <span className="text-xl md:text-[1.4rem] md:font-semibold text-primary-400 font-main select-none">
             {type === 'link' ? (
-               <span className={`uppercase text-base ${ebGaramond.className}`}>
+               <span className="uppercase text-base font-main">
                   {t('share')}
                </span>
             ) : count ? (
                <span
-                  className={`transition-color ${
+                  className={`transition-color font-secondary ${
                      isLiked && 'text-red-600/55 dark:text-red-300/80'
                   } ${
                      isBookmarked && 'text-cyan-600/80 dark:text-cyan-300/70'

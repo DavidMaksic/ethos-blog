@@ -1,7 +1,15 @@
 import '@/src/app/[locale]/index.css';
 
+import {
+   Cormorant_Garamond,
+   Gentium_Book_Plus,
+   Cormorant_SC,
+   Crimson_Text,
+   EB_Garamond,
+   Great_Vibes,
+   Parisienne,
+} from 'next/font/google';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
-import { Cormorant_Garamond } from 'next/font/google';
 import { LanguageProvider } from '@/src/context/language-context';
 import { setRequestLocale } from 'next-intl/server';
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -14,15 +22,63 @@ import { routing } from '@/src/i18n/routing';
 
 import Header from '@/src/ui/header/header';
 import Footer from '@/src/ui/footer';
+import Script from 'next/script';
 
 import '@blocknote/core/fonts/inter.css';
 import '@blocknote/mantine/style.css';
-import Script from 'next/script';
 
+/* Logo font (en) */
+const parisienne = Parisienne({
+   subsets: ['latin'],
+   weight: ['400'],
+   variable: '--font-parisienne',
+});
+
+/* Logo font (srb) */
+const greatVibes = Great_Vibes({
+   subsets: ['cyrillic'],
+   display: 'swap',
+   weight: ['400'],
+   variable: '--font-greatVibes',
+});
+
+/* English font */
+const crimsonText = Crimson_Text({
+   subsets: ['latin'],
+   style: ['normal', 'italic'],
+   weight: ['400', '600', '700'],
+   variable: '--font-crimsonText',
+});
+
+/* Serbian font */
+const gentium = Gentium_Book_Plus({
+   subsets: ['cyrillic'],
+   style: ['normal', 'italic'],
+   weight: ['400', '700'],
+   variable: '--font-gentium',
+});
+
+/* Main font */
 const cormorantGaramond = Cormorant_Garamond({
    subsets: ['latin'],
-   display: 'swap',
+   style: ['normal', 'italic'],
    weight: ['300', '400', '500', '600', '700'],
+   variable: '--font-cormorantGaramond',
+});
+
+/* Secondary font */
+const ebGaramond = EB_Garamond({
+   subsets: ['latin'],
+   style: ['normal', 'italic'],
+   weight: ['400', '500', '600', '700', '800'],
+   variable: '--font-ebGaramond',
+});
+
+/* Tertiary font */
+const cormorantSC = Cormorant_SC({
+   subsets: ['latin'],
+   weight: ['300', '400', '500', '600', '700'],
+   variable: '--font-cormorantSC',
 });
 
 export async function generateMetadata({ params }) {
@@ -45,6 +101,7 @@ export function generateStaticParams() {
 }
 
 // TODO: Implement:
+// TODO: Make names cyrillic
 // TODO: 'Edit' option to comments
 // TODO: Social media auth
 // TODO: Email notification
@@ -70,7 +127,7 @@ export default async function RootLayout({ children, params }) {
          </head>
 
          <body
-            className={`min-h-screen flex flex-col text-xl 2xl:px-60 xl:px-26 inter-padding text-text selection:bg-accent-400/90 dark:selection:bg-accent-200/50 selection:text-white caret-primary-400 antialiased bg-primary dark:bg-primary transition-200 background-gradient ${cormorantGaramond.className}`}
+            className={`min-h-screen flex flex-col text-xl 2xl:px-60 xl:px-26 inter-padding font-main text-text selection:bg-accent-400/90 dark:selection:bg-accent-200/50 selection:text-white caret-primary-400 antialiased bg-primary dark:bg-primary transition-200 background-gradient ${cormorantGaramond.variable} ${gentium.variable} ${ebGaramond.variable} ${crimsonText.variable} ${parisienne.variable} ${greatVibes.variable} ${cormorantSC.variable}`}
          >
             <NextIntlClientProvider>
                <LanguageProvider>

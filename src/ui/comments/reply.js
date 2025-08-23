@@ -18,7 +18,6 @@ import Modal from '@/src/ui/modal/modal';
 function Reply({
    reply,
    session,
-   font,
    users,
    articleID,
    commentID,
@@ -106,9 +105,7 @@ function Reply({
                   />
                </div>
 
-               <p
-                  className={`${font} text-[1.4rem] 2xl:text-[1.3rem] md:text-[1.6rem] xs:text-[1.5rem] md:leading-9 xs:leading-[1.4] whitespace-pre-line`}
-               >
+               <p className="font-secondary text-[1.4rem] 2xl:text-[1.3rem] md:text-[1.6rem] xs:text-[1.5rem] md:leading-9 xs:leading-[1.4] whitespace-pre-line">
                   {reply.content}
                </p>
 
@@ -144,9 +141,7 @@ function Reply({
                         <BiLike className="size-4 md:size-6 xs:size-[1.35rem]" />
                      )}
 
-                     <span
-                        className={`tracking-wide font-semibold text-base select-none ${font}`}
-                     >
+                     <span className="tracking-wide font-semibold text-base select-none font-secondary">
                         {replyCount > 0 && replyCount}
                      </span>
                   </div>

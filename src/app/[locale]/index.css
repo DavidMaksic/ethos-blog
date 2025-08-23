@@ -64,10 +64,18 @@
 }
 
 @theme inline {
-   --font-creator: var(--font-cormorant-garamond), serif;
-   --font-headers: var(--font-ebGaramond), serif;
-   --font-quote: var(--font-quote), serif;
-   --font-crimson: var(--font-crimson), var(--font-ebGaramond), serif;
+   /* Logo fonts */
+   --font-logo: var(--font-parisienne), serif;
+   --font-logo-sr: var(--font-greatVibes), serif;
+
+   /* Article fonts */
+   --font-article: var(--font-crimsonText), var(--font-cormorantGaramond), serif;
+   --font-article-sr: var(--font-gentium), serif;
+
+   /* Other fonts */
+   --font-main: var(--font-cormorantGaramond), serif;
+   --font-secondary: var(--font-ebGaramond), serif;
+   --font-title: var(--font-cormorantSC), serif;
 }
 
 @theme {
@@ -801,7 +809,7 @@
 /* Style first letter of an article */
 
 .container > div > div > div:first-child > div:first-child .bn-inline-content {
-   @apply first-letter:font-creator first-letter:leading-24 2xl:first-letter:leading-20.5 first-letter:float-left first-letter:pr-3.5 xs:first-letter:pr-3 first-letter:font-medium first-letter:text-accent-600/60 dark:first-letter:text-accent-200/70;
+   @apply first-letter:font-main first-letter:leading-24 2xl:first-letter:leading-20.5 first-letter:float-left first-letter:pr-3.5 xs:first-letter:pr-3 first-letter:font-medium first-letter:text-accent-600/60 dark:first-letter:text-accent-200/70;
 }
 
 [lang='en']

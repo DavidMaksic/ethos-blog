@@ -9,11 +9,6 @@ import {
    getUsers,
    getUser,
 } from '@/src/lib/data-service';
-import {
-   Cormorant_Garamond,
-   Crimson_Text,
-   EB_Garamond,
-} from 'next/font/google';
 import { format } from 'date-fns';
 import { auth } from '@/src/lib/auth';
 
@@ -26,29 +21,6 @@ import CommentInput from '@/src/ui/comments/comment-input';
 import ArticleImage from '@/src/ui/articles/article-image';
 import CommentList from '@/src/ui/comments/comment-list';
 import Options from '@/src/ui/options';
-
-const ebGaramond = EB_Garamond({
-   subsets: ['latin'],
-   display: 'swap',
-   style: ['normal', 'italic'],
-   weight: ['400', '500', '600', '700', '800'],
-   variable: '--font-ebGaramond',
-});
-
-const cormorantGaramond = Cormorant_Garamond({
-   subsets: ['latin'],
-   display: 'swap',
-   weight: ['400', '500', '600', '700'],
-   variable: '--font-cormorant-garamond',
-});
-
-const crimsonText = Crimson_Text({
-   subsets: ['latin'],
-   display: 'swap',
-   style: ['normal', 'italic'],
-   weight: ['400', '600', '700'],
-   variable: '--font-crimson',
-});
 
 export async function generateMetadata({ params }) {
    const param = await params;
@@ -116,9 +88,7 @@ async function Page({ params, searchParams }) {
 
    return (
       <main className="flex flex-col">
-         <article
-            className={`relative max-w-5xl 2xl:max-w-[46rem] md:max-w-full self-center flex flex-col gap-6 xs:gap-4 py-2 px-24 2xl:px-0 pb-22 2xl:pt-8 md:pt-6 sm:pt-4 transition-200 ${cormorantGaramond.variable} ${ebGaramond.variable} ${crimsonText.variable}`}
-         >
+         <article className="relative max-w-5xl 2xl:max-w-[46rem] md:max-w-full self-center flex flex-col gap-6 xs:gap-4 py-2 px-24 2xl:px-0 pb-22 2xl:pt-8 md:pt-6 sm:pt-4 transition-200">
             <ArticleHeading article={article} />
 
             <ArticleImage
@@ -161,7 +131,6 @@ async function Page({ params, searchParams }) {
                param={searchParam}
                articleID={article.id}
                users={allUsers}
-               font={ebGaramond.className}
                replies={replies}
                repliesInThisArticle={repliesInThisArticle}
                newUser={user}

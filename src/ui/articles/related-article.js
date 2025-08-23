@@ -1,13 +1,6 @@
-import { Cormorant_SC } from 'next/font/google';
 import { format } from 'date-fns';
 import { Link } from '@/src/i18n/navigation';
 import RemoteImage from '@/src/ui/remote-image';
-
-const cormorantSC = Cormorant_SC({
-   subsets: ['latin'],
-   display: 'swap',
-   weight: ['300', '400', '500', '600', '700'],
-});
 
 function RelatedArticle({ article, author }) {
    const date = format(new Date(article.created_at), 'MMM dd, yyyy');
@@ -26,9 +19,7 @@ function RelatedArticle({ article, author }) {
          </div>
 
          <div className="self-center md:flex md:flex-col md:gap-1 px-10 md:px-6 sm:px-8 py-8 2xl:pt-7 text-center">
-            <span
-               className={`text-primary-500 dark:text-primary-600/70 text-[1.7rem] md:text-[1.9rem] sm:text-[2.1rem] font-medium md:font-semibold md:dark:font-medium ${cormorantSC.className} leading-8.5 md:leading-9`}
-            >
+            <span className="text-primary-500 dark:text-primary-600/70 text-[1.7rem] md:text-[1.9rem] sm:text-[2.1rem] font-medium md:font-semibold md:dark:font-medium font-title leading-8.5 md:leading-9">
                {article.title}
             </span>
 

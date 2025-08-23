@@ -1,24 +1,11 @@
 'use client';
 
 import { useLocale, useTranslations } from 'next-intl';
-import { Great_Vibes, Parisienne } from 'next/font/google';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import { RiTwitterXFill } from 'react-icons/ri';
 import { IoLogoGithub } from 'react-icons/io5';
-import { Link } from '@/src/i18n/navigation';
 import { usePathname } from 'next/navigation';
-
-const parisienne = Parisienne({
-   subsets: ['latin'],
-   display: 'swap',
-   weight: ['400'],
-});
-
-const greatVibes = Great_Vibes({
-   subsets: ['cyrillic'],
-   display: 'swap',
-   weight: ['400'],
-});
+import { Link } from '@/src/i18n/navigation';
 
 function Footer() {
    const t = useTranslations();
@@ -34,8 +21,8 @@ function Footer() {
          <Link
             href="/"
             className={`styled_text text-center text-7xl bg-primary-600/80 dark:bg-primary-600/60 pt-2 px-2 hover:bg-primary-700/90 transition-bg duration-100 ${
-               locale === 'en' && parisienne.className
-            } ${locale === 'sr' && greatVibes.className}`}
+               locale === 'en' && 'font-logo'
+            } ${locale === 'sr' && 'font-logo-sr'}`}
             onClick={() => {
                window.scrollTo({
                   top: 0,

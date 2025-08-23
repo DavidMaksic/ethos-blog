@@ -1,12 +1,11 @@
 import { useEffect, useOptimistic, useState } from 'react';
+import { useLocale, useTranslations } from 'use-intl';
 import { commentLikes, deleteReply } from '@/src/lib/actions';
 import { BiLike, BiSolidLike } from 'react-icons/bi';
 import { useLocalStorage } from '@/src/hooks/use-local-storage';
 import { AnimatePresence } from 'motion/react';
-import { useLocale, useTranslations } from 'use-intl';
 import { useMediaQuery } from 'react-responsive';
 import { CommentDate } from '@/src/utils/helpers';
-import { EB_Garamond } from 'next/font/google';
 import { RxChevronUp } from 'react-icons/rx';
 import { useRouter } from '@/src/i18n/navigation';
 import { LuReply } from 'react-icons/lu';
@@ -20,13 +19,6 @@ import AuthModal from '@/src/ui/modal/auth-modal';
 import Modal from '@/src/ui/modal/modal';
 import Reply from '@/src/ui/comments/reply';
 import toast from 'react-hot-toast';
-
-const ebGaramond = EB_Garamond({
-   subsets: ['latin'],
-   display: 'swap',
-   style: ['normal', 'italic'],
-   weight: ['400', '500', '600', '700'],
-});
 
 function Comment({
    comment,
@@ -150,9 +142,7 @@ function Comment({
                />
             </div>
 
-            <p
-               className={`${ebGaramond.className} text-[1.4rem] 2xl:text-[1.3rem] md:text-[1.6rem] xs:text-[1.5rem] md:leading-9 xs:leading-[1.4] whitespace-pre-line`}
-            >
+            <p className="font-secondary text-[1.4rem] 2xl:text-[1.3rem] md:text-[1.6rem] xs:text-[1.5rem] md:leading-9 xs:leading-[1.4] whitespace-pre-line">
                {comment.content}
             </p>
 
@@ -188,9 +178,7 @@ function Comment({
                      <BiLike className="size-4 md:size-6 xs:size-[1.35rem]" />
                   )}
 
-                  <span
-                     className={`tracking-wide font-semibold text-base md:text-xl select-none ${ebGaramond.className}`}
-                  >
+                  <span className="tracking-wide font-semibold text-base md:text-xl select-none font-secondary">
                      {commentCount > 0 && commentCount}
                   </span>
                </div>
@@ -260,7 +248,6 @@ function Comment({
                      reply={item}
                      session={session}
                      key={item.id}
-                     font={ebGaramond.className}
                      users={users}
                      articleID={articleID}
                      commentID={commentID}
