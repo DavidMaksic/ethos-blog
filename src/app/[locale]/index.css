@@ -67,7 +67,7 @@
    --font-creator: var(--font-cormorant-garamond), serif;
    --font-headers: var(--font-ebGaramond), serif;
    --font-quote: var(--font-quote), serif;
-   --font-crimson: var(--font-crimson), serif;
+   --font-crimson: var(--font-crimson), var(--font-ebGaramond), serif;
 }
 
 @theme {
