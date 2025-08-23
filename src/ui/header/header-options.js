@@ -51,6 +51,7 @@ function HeaderOptions({ session, oldUser, newUser }) {
                   <Image
                      className="rounded-full block aspect-square object-cover object-center dark:opacity-90 border border-primary-300 transition-200"
                      fill
+                     priority={true}
                      src={newUser.image ? newUser.image : oldUser.image}
                      alt="Profile image"
                      referrerPolicy="no-referrer"
