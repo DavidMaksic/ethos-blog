@@ -101,7 +101,6 @@ export function generateStaticParams() {
 }
 
 // TODO: Implement:
-// TODO: Make names cyrillic
 // TODO: 'Edit' option to comments
 // TODO: Social media auth
 // TODO: Email notification
