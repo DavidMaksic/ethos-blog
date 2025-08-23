@@ -12,7 +12,7 @@ const gentium = Gentium_Book_Plus({
 });
 
 const crimsonText = Crimson_Text({
-   subsets: ['latin'],
+   subsets: ['latin', 'greek'],
    display: 'swap',
    style: ['normal', 'italic'],
    weight: ['400', '600', '700'],
