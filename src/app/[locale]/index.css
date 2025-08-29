@@ -1193,10 +1193,6 @@
    border-color: var(--color-primary-300);
 }
 
-.bn-inline-content [data-background-color='gray'] {
-   padding: 3px 6px 5px 6px;
-}
-
 .bn-toolbar .mantine-Button-root[data-disabled],
 .bn-toolbar .mantine-ActionIcon-root[data-disabled] {
    color: var(--color-red-300);
@@ -1909,6 +1905,18 @@ h3 {
       > .bn-block
       > .bn-block-content:before {
       padding-inline: 0.3rem !important;
+   }
+
+   .bn-inline-content [data-background-color='gray'],
+   .bn-inline-content [data-background-color='brown'],
+   .bn-inline-content [data-background-color='red'],
+   .bn-inline-content [data-background-color='orange'],
+   .bn-inline-content [data-background-color='yellow'],
+   .bn-inline-content [data-background-color='green'],
+   .bn-inline-content [data-background-color='blue'],
+   .bn-inline-content [data-background-color='purple'],
+   .bn-inline-content [data-background-color='pink'] {
+      padding: 1.5px 4px 2.5px 4px;
    }
 }
 
