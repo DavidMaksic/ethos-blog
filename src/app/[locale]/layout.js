@@ -103,7 +103,7 @@ export function generateStaticParams() {
 // TODO: Implement:
 // TODO: 'Edit' option to comments
 // TODO: Social media auth
-// TODO: Email notification
+
 // TODO: Notifications
 
 export default async function RootLayout({ children, params }) {
