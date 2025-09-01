@@ -24,10 +24,15 @@ import Options from '@/src/ui/options';
 
 export async function generateMetadata({ params }) {
    const param = await params;
-   const { title } = await getArticle(param.articleID);
+   const { title, description } = await getArticle(param.articleID);
 
    return {
-      title: title ? title : 'Article',
+      title: title ? title : params.locale === 'en' ? 'Article' : 'Чланак',
+      description: description
+         ? description
+         : params.locale === 'en'
+         ? 'Read this article on our blog.'
+         : 'Прочитајте овај чланак на нашем блогу.',
    };
 }
 
