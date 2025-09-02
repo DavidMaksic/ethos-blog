@@ -45,6 +45,7 @@ function HeaderOptions({ session, oldUser, newUser }) {
          {oldUser?.image || newUser?.image ? (
             <Link
                href="/user/home"
+               prefetch
                className="block hover:text-accent bg-none border-none p-2 rounded-xl transition-200 hover:bg-primary-200/40 dark:hover:bg-primary-300/30 [&_svg]:size-6 [&_svg]:text-accent cursor-pointer select-none md:hidden"
             >
                <div className="relative size-7.5!">

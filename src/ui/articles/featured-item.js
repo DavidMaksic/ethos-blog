@@ -9,7 +9,7 @@ function FeaturedItem({ article, authors }) {
    return (
       <Link
          href={`/${article.id}`}
-
+         prefetch
          className="relative flex flex-col justify-between h-[30rem] lg:h-[25rem] md:h-[20rem] rounded-xl p-10 2xl:p-8 lg:p-6 md:p-9 xs:p-8 group cursor-pointer hover:translate-y-[-6px] transition duration-300 hover:shadow-2xl dark:hover:shadow-none select-none"
       >
          <span className="absolute inset-[-1px] m-0 bg-gradient-to-t from-primary-800 dark:from-primary-200/80 group-hover:from-primary-900 dark:group-hover:from-primary-200 z-10 pointer-events-none rounded-xl md:rounded-2xl dark:rounded-[10px] transition duration-300 group-hover:saturate-120" />
