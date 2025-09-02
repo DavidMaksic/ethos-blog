@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
+import { motion } from 'motion/react';
 import { format } from 'date-fns';
 import { Link } from '@/src/i18n/navigation';
 import RemoteImage from '@/src/ui/remote-image';
@@ -26,7 +27,12 @@ function BookmarkItem({ article, categories }) {
    }, [resolvedTheme, category]);
 
    return (
-      <div>
+      <motion.div
+         initial={{ opacity: 0 }}
+         animate={{ opacity: 1 }}
+         exit={{ opacity: 0 }}
+         transition={{ duration: 0.3 }}
+      >
          <Link
             href={`/${article.id}`}
             className="relative grid grid-cols-[2fr_0.8fr] xl:grid-cols-[2fr_0.3fr] h-full sm:min-h-[18vh] xs:min-h-[20vh] rounded-2xl group cursor-pointer overflow-hidden border border-quaternary dark:border-primary-300/15 bg-white dark:bg-primary-300/15 hover:translate-x-1.5 transition-[translate] duration-200 select-none box-shadow"
@@ -62,7 +68,7 @@ function BookmarkItem({ article, categories }) {
                styles="rounded-xl absolute translate-x-[30%] xs:translate-x-[45%] object-cover opacity-100 dark:opacity-70 [mask-image:linear-gradient(to_right,transparent,black)] [mask-mode:alpha] [mask-size:100%_100%] [mask-repeat:no-repeat]"
             />
          </Link>
-      </div>
+      </motion.div>
    );
 }
 
