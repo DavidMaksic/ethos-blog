@@ -5,6 +5,15 @@ import { motion } from 'motion/react';
 
 function PageAnimation({ children }) {
    const pathname = usePathname();
+   const isUserRoute = pathname.startsWith('/user');
+
+   if (isUserRoute) {
+      return (
+         <main className="py-12 2xl:pt-4 md:pt-5 w-7xl 2xl:w-full mx-auto">
+            {children}
+         </main>
+      );
+   }
 
    return (
       <motion.main

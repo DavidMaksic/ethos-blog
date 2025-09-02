@@ -73,7 +73,7 @@ const localeMap = {
 export function CommentDate(createdAt, locale) {
    const createdDate = new Date(createdAt);
    const dateFnsLocale = localeMap[locale] || enUS;
-   console.log(localeMap);
+
    const daysAgo = differenceInDays(new Date(), createdDate);
 
    const dateDisplay =

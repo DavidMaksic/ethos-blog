@@ -28,14 +28,14 @@ function FilterButton({
       lang === param.lang?.charAt(0).toUpperCase() + param.lang?.slice(1) ||
       (param.lang === undefined && lang === language.language);
 
-   const switchLocale = (lang) => {
+   function switchLocale(lang) {
       const segments = pathname.split('/');
       segments[1] = lang;
 
       const newPath = segments.join('/');
       router.push(newPath);
       router.replace(newPath);
-   };
+   }
 
    return (
       <button
