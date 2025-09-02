@@ -11,7 +11,7 @@ import {
 } from 'next/font/google';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { LanguageProvider } from '@/src/context/language-context';
-import { setRequestLocale } from 'next-intl/server';
+import { getMessages, setRequestLocale } from 'next-intl/server';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
 import { LikeProvider } from '@/src/context/like-context';
@@ -114,7 +114,7 @@ export default async function RootLayout({ children, params }) {
       notFound();
    }
 
-   setRequestLocale(locale);
+   const messages = await getMessages({ locale });
 
    return (
       <html lang={locale} suppressHydrationWarning>
@@ -129,7 +129,7 @@ export default async function RootLayout({ children, params }) {
          <body
             className={`min-h-screen flex flex-col text-xl 2xl:px-60 xl:px-26 inter-padding font-main text-text selection:bg-accent-400/90 dark:selection:bg-accent-200/50 selection:text-white caret-primary-400 antialiased bg-primary dark:bg-primary transition-200 background-gradient ${cormorantGaramond.variable} ${gentium.variable} ${ebGaramond.variable} ${crimsonText.variable} ${parisienne.variable} ${greatVibes.variable} ${cormorantSC.variable}`}
          >
-            <NextIntlClientProvider>
+            <NextIntlClientProvider locale={locale} messages={messages}>
                <LanguageProvider>
                   <LikeProvider>
                      <ThemeProvider

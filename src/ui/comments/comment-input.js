@@ -3,6 +3,7 @@
 import { useActionState, useEffect, useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { HiOutlineUserCircle } from 'react-icons/hi2';
+import { AnimatePresence } from 'motion/react';
 import { addComment } from '@/src/lib/actions';
 import { ImSpinner2 } from 'react-icons/im';
 
@@ -169,14 +170,16 @@ function CommentInput({ session, oldUser, newUser, article, commentLength }) {
             </form>
          </div>
 
-         {isOpen && (
-            <Modal closeModal={() => setIsOpen(false)}>
-               <AuthModal
-                  onClose={() => setIsOpen(false)}
-                  string="comment-label"
-               />
-            </Modal>
-         )}
+         <AnimatePresence>
+            {isOpen && (
+               <Modal closeModal={() => setIsOpen(false)}>
+                  <AuthModal
+                     onClose={() => setIsOpen(false)}
+                     string="comment-label"
+                  />
+               </Modal>
+            )}
+         </AnimatePresence>
       </div>
    );
 }

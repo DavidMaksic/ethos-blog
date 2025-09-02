@@ -15,6 +15,7 @@ import {
 } from '@/src/lib/actions';
 import { useEffect, useState } from 'react';
 import { useLocalStorage } from '@/src/hooks/use-local-storage';
+import { AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { useLikeContext } from '@/src/context/like-context';
 import { FiLink } from 'react-icons/fi';
@@ -178,14 +179,16 @@ function OtherArticleOptions({
             <FiLink className="size-10.5 md:size-12 stroke-[2.2px] p-2 text-primary-400 transition-color" />
          </ArticleOptionItem>
 
-         {isOpen && (
-            <Modal closeModal={() => setIsOpen(false)}>
-               <AuthModal
-                  onClose={() => setIsOpen(false)}
-                  string="bookmark-label"
-               />
-            </Modal>
-         )}
+         <AnimatePresence>
+            {isOpen && (
+               <Modal closeModal={() => setIsOpen(false)}>
+                  <AuthModal
+                     onClose={() => setIsOpen(false)}
+                     string="bookmark-label"
+                  />
+               </Modal>
+            )}
+         </AnimatePresence>
       </div>
    );
 }
