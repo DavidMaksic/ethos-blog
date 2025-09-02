@@ -61,7 +61,7 @@ function HeaderOptions({ session, oldUser, newUser }) {
             </Link>
          ) : (
             <HeaderButton styles="md:hidden">
-               <Link href="/user/home" className="hover:text-accent">
+               <Link href="/user/home" prefetch className="hover:text-accent">
                   <HiOutlineUser className="size-6.5! stroke-[1.7px]" />
                </Link>
             </HeaderButton>
