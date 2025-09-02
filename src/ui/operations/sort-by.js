@@ -21,13 +21,7 @@ function SortBy({ options, isBookmarks = false, param }) {
    const handler = useSetParams();
 
    return (
-      <motion.div
-         className="flex items-center gap-2.5 select-none md:text-2xl"
-         initial={{ opacity: 0 }}
-         animate={{ opacity: 1 }}
-         exit={{ opacity: 0 }}
-         transition={{ duration: 0.3 }}
-      >
+      <div className="flex items-center gap-2.5 select-none md:text-2xl">
          <TbArrowsSort className="size-5 text-accent/80 dark:text-accent-200/90" />
 
          <div
@@ -77,7 +71,7 @@ function SortBy({ options, isBookmarks = false, param }) {
                )}
             </AnimatePresence>
          </div>
-      </motion.div>
+      </div>
    );
 }
 

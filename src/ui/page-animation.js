@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { usePathname } from '@/src/i18n/navigation';
 import { motion } from 'motion/react';
 

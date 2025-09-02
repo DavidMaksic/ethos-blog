@@ -1,11 +1,9 @@
-'use client';
-
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { format } from 'date-fns';
 import { Link } from '@/src/i18n/navigation';
 
-function UserComment({ comment, users, user, articles, allComments }) {
-   const t = useTranslations('Comment');
+async function UserComment({ comment, users, user, articles, allComments }) {
+   const t = await getTranslations('Comment');
    const date = format(new Date(comment.created_at), 'MMM dd, yyyy');
 
    const commentedArticle = articles.find(

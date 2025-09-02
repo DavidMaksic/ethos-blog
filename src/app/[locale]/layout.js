@@ -102,6 +102,7 @@ export function generateStaticParams() {
 }
 
 // TODO: Implement:
+// TODO: Fix date in comments table in user profile settings
 // TODO: 'Edit' option to comments
 // TODO: Social media auth
 // TODO: Notifications

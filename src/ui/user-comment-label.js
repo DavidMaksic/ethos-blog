@@ -1,21 +1,12 @@
-'use client';
+import { getTranslations } from 'next-intl/server';
 
-import { useTranslations } from 'next-intl';
-import { motion } from 'motion/react';
-
-function UserCommentLabel() {
-   const t = useTranslations('Comment');
+async function UserCommentLabel() {
+   const t = await getTranslations('Comment');
 
    return (
-      <motion.h1
-         className="text-4xl lg:text-3xl md:text-4xl text-primary-500 dark:text-primary-600/65"
-         initial={{ opacity: 0 }}
-         animate={{ opacity: 1 }}
-         exit={{ opacity: 0 }}
-         transition={{ duration: 0.3 }}
-      >
+      <h1 className="text-4xl lg:text-3xl md:text-4xl text-primary-500 dark:text-primary-600/65">
          {t('user-label')}
-      </motion.h1>
+      </h1>
    );
 }
 
