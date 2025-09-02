@@ -48,6 +48,7 @@ function SideNavigation() {
                            : ''
                      }`}
                      href={link.href}
+                     prefetch
                   >
                      {link.icon}
                      <span className="lg:hidden sm:block">{link.name}</span>
