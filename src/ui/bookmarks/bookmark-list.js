@@ -4,13 +4,11 @@ import { useEffect, useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import { getSortedItems } from '@/src/utils/helpers';
 
-import BookmarkOptions from '@/src/ui/bookmarks/bookmark-options';
 import BookmarkItem from '@/src/ui/bookmarks/bookmark-item';
 import Pagination from '@/src/ui/pagination';
 
 function BookmarkList({ bookmarkIDs, articles, categories, param }) {
    const [bookmarkedArticles, setBookmarkedArticles] = useState([]);
-   const [loading, setLoading] = useState(true);
    const t = useTranslations('Profile');
 
    useEffect(() => {
@@ -19,7 +17,6 @@ function BookmarkList({ bookmarkIDs, articles, categories, param }) {
          .filter(Boolean);
 
       setBookmarkedArticles(bookmarked);
-      setLoading(false);
    }, [bookmarkIDs, articles]);
 
    const displayedArticles = useMemo(() => {
@@ -49,18 +46,8 @@ function BookmarkList({ bookmarkIDs, articles, categories, param }) {
 
    return (
       <>
-         <div className="flex justify-between">
-            <BookmarkOptions param={param} />
-         </div>
-
          <div className="grid grid-rows-3 gap-4 2xl:gap-3">
-            {loading ? (
-               <>
-                  <div className="h-full sm:min-h-[18vh] xs:min-h-[20vh] bg-primary-300/30 rounded-3xl animate-skeleton" />
-                  <div className="h-full sm:min-h-[18vh] xs:min-h-[20vh] bg-primary-300/20 rounded-3xl animate-skeleton" />
-                  <div className="h-full sm:min-h-[18vh] xs:min-h-[20vh] bg-primary-300/10 rounded-3xl animate-skeleton" />
-               </>
-            ) : displayedArticles.length ? (
+            {displayedArticles.length ? (
                displayedArticles.map((item) => (
                   <BookmarkItem
                      article={item}

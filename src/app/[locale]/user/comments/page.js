@@ -63,22 +63,20 @@ async function Page({ searchParams }) {
             />
          </div>
 
-         <div>
-            {userComments.length > 0 ? (
-               <UserCommentList
-                  param={searchParam}
-                  allComments={comments}
-                  comments={userComments}
-                  articles={articles}
-                  users={users}
-                  user={user}
-               />
-            ) : (
-               <span className="self-center mt-44 sm:mt-56 sm:mb-44 text-primary-400 text-3xl border border-tertiary dark:border-primary-300/15 rounded-3xl py-8 px-12 bg-white dark:bg-primary-300/15">
-                  {t('Comment.no-comments')}
-               </span>
-            )}
-         </div>
+         {userComments.length > 0 ? (
+            <UserCommentList
+               param={searchParam}
+               allComments={comments}
+               comments={userComments}
+               articles={articles}
+               users={users}
+               user={user}
+            />
+         ) : (
+            <span className="self-center mt-44 sm:mt-56 sm:mb-44 text-primary-400 text-3xl border border-tertiary dark:border-primary-300/15 rounded-3xl py-8 px-12 bg-white dark:bg-primary-300/15">
+               {t('Comment.no-comments')}
+            </span>
+         )}
       </div>
    );
 }
