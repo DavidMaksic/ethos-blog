@@ -1,15 +1,12 @@
-'use client';
-
 import { HiOutlineUserCircle } from 'react-icons/hi2';
-import { useLocale } from 'next-intl';
-import { motion } from 'motion/react';
+import { getLocale } from 'next-intl/server';
 
 import ArticleOptions from '@/src/ui/articles/article-options';
 import RemoteImage from '@/src/ui/remote-image';
 import MainImage from '@/src/ui/main-image';
 import Category from '@/src/ui/categories/category';
 
-function ArticleImage({
+async function ArticleImage({
    article,
    author,
    user,
@@ -19,15 +16,10 @@ function ArticleImage({
    category,
    date,
 }) {
-   const locale = useLocale();
+   const locale = await getLocale();
 
    return (
-      <motion.div
-         className="flex flex-col border bg-white/50 dark:bg-primary-300/5 border-primary-300/70 dark:border-primary-300/15 rounded-3xl mt-3 shadow-article dark:shadow-menu-dark transition-bg_border"
-         initial={{ opacity: 0 }}
-         animate={{ opacity: 1 }}
-         transition={{ duration: 0.3 }}
-      >
+      <div className="flex flex-col border bg-white/50 dark:bg-primary-300/5 border-primary-300/70 dark:border-primary-300/15 rounded-3xl mt-3 shadow-article dark:shadow-menu-dark transition-bg_border">
          <MainImage article={article} />
 
          <div className="flex items-center justify-between gap-6 px-6 py-4 2xl:py-3 font-title">
@@ -76,7 +68,7 @@ function ArticleImage({
                </div>
             </span>
          </div>
-      </motion.div>
+      </div>
    );
 }
 

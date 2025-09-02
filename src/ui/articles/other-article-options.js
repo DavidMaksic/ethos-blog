@@ -16,6 +16,7 @@ import {
 import { useEffect, useState } from 'react';
 import { useLocalStorage } from '@/src/hooks/use-local-storage';
 import { useTranslations } from 'next-intl';
+import { useLikeContext } from '@/src/context/like-context';
 import { FiLink } from 'react-icons/fi';
 
 import ArticleOptionItem from '@/src/ui/articles/article-option-item';
@@ -25,7 +26,6 @@ import AuthModal from '@/src/ui/modal/auth-modal';
 import useLike from '@/src/hooks/use-like';
 import toast from 'react-hot-toast';
 import Modal from '@/src/ui/modal/modal';
-import { useLikeContext } from '@/src/context/like-context';
 
 function OtherArticleOptions({
    article,

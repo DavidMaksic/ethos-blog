@@ -3,7 +3,6 @@
 import { useTranslations } from 'use-intl';
 import { getSortedItems } from '@/src/utils/helpers';
 import { useMemo } from 'react';
-import { motion } from 'motion/react';
 
 import Comment from '@/src/ui/comments/comment';
 import SortBy from '@/src/ui/operations/sort-by';
@@ -32,12 +31,7 @@ function CommentList({
       <>
          {comments.length ? (
             <>
-               <motion.div
-                  className="flex items-center justify-between mt-[-10px] xs:mt-0"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-               >
+               <div className="flex items-center justify-between mt-[-10px] xs:mt-0">
                   <div className="uppercase tracking-wide text-xl md:text-2xl font-medium select-none">
                      <span>{t('Comment.label')}</span>
                      <span
@@ -60,14 +54,9 @@ function CommentList({
                      ]}
                      param={param}
                   />
-               </motion.div>
+               </div>
 
-               <motion.div
-                  className="space-y-5"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-               >
+               <div className="space-y-5">
                   {sortedComments
                      ? sortedComments.map((item) => (
                           <Comment
@@ -95,7 +84,7 @@ function CommentList({
                              author={author}
                           />
                        ))}
-               </motion.div>
+               </div>
             </>
          ) : null}
       </>

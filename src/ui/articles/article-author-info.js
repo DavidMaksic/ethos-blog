@@ -1,17 +1,9 @@
-'use client';
-
 import { HiOutlineUserCircle } from 'react-icons/hi2';
-import { motion } from 'motion/react';
 import RemoteImage from '@/src/ui/remote-image';
 
 function ArticleAuthorInfo({ article, author, date, children }) {
    return (
-      <motion.div
-         className="flex sm:flex-col gap-6 mt-12"
-         initial={{ opacity: 0 }}
-         animate={{ opacity: 1 }}
-         transition={{ duration: 0.3 }}
-      >
+      <div className="flex sm:flex-col gap-6 mt-12">
          {children}
 
          <div className="size-full flex flex-col items-center self-center gap-4 bg-secondary dark:bg-primary-200 xs:dark:bg-primary-300/15 rounded-3xl px-18 2xl:px-16! md:px-12! sm:px-11! xs:px-8! py-12 pb-14 text-3xl box-shadow transition-bg_border">
@@ -52,7 +44,7 @@ function ArticleAuthorInfo({ article, author, date, children }) {
                )}
             </div>
          </div>
-      </motion.div>
+      </div>
    );
 }
 

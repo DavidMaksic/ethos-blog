@@ -1,11 +1,8 @@
-'use client';
-
-import { useTranslations } from 'next-intl';
-import { motion } from 'motion/react';
+import { getTranslations } from 'next-intl/server';
 import RelatedArticle from '@/src/ui/articles/related-article';
 
-function RelatedArticles({ articles, category, title, author }) {
-   const t = useTranslations('Article');
+async function RelatedArticles({ articles, category, title, author }) {
+   const t = await getTranslations('Article');
 
    const array = articles.filter(
       (item) => Number(item.categoryID) === Number(category.id)
@@ -18,12 +15,7 @@ function RelatedArticles({ articles, category, title, author }) {
    if (!relatedArticles.length) return null;
 
    return (
-      <motion.div
-         className="flex flex-col gap-4 mt-12"
-         initial={{ opacity: 0 }}
-         animate={{ opacity: 1 }}
-         transition={{ duration: 0.3 }}
-      >
+      <div className="flex flex-col gap-4 mt-12">
          <span className="uppercase tracking-wide text-xl md:text-2xl font-medium select-none">
             {t('read-next-label')}
          </span>
@@ -33,7 +25,7 @@ function RelatedArticles({ articles, category, title, author }) {
                <RelatedArticle article={item} author={author} key={item.id} />
             ))}
          </div>
-      </motion.div>
+      </div>
    );
 }
 

@@ -9,10 +9,9 @@ import { useEffect, useState } from 'react';
 import { useOutsideClick } from '@/src/hooks/use-outside-click';
 import { useTranslations } from 'next-intl';
 import { useMediaQuery } from 'react-responsive';
-import { RxChatBubble } from 'react-icons/rx';
+import { FaRegComment } from 'react-icons/fa';
 import { useScroll } from '@/src/hooks/use-scroll';
 import { useTheme } from 'next-themes';
-import { FaRegComment } from 'react-icons/fa';
 
 function Options() {
    const t = useTranslations('Article');

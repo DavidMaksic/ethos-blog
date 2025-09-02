@@ -5,7 +5,6 @@ import { useLocale, useTranslations } from 'next-intl';
 import { HiOutlineUserCircle } from 'react-icons/hi2';
 import { addComment } from '@/src/lib/actions';
 import { ImSpinner2 } from 'react-icons/im';
-import { motion } from 'motion/react';
 
 import TextareaAutosize from 'react-textarea-autosize';
 import AuthModal from '@/src/ui/modal/auth-modal';
@@ -69,12 +68,7 @@ function CommentInput({ session, oldUser, newUser, article, commentLength }) {
    }, [state, t]);
 
    return (
-      <motion.div
-         className="comment-section scroll-mt-20! flex flex-col gap-1.5 mt-20 font-secondary"
-         initial={{ opacity: 0 }}
-         animate={{ opacity: 1 }}
-         transition={{ duration: 0.3 }}
-      >
+      <div className="comment-section scroll-mt-20! flex flex-col gap-1.5 mt-20 font-secondary">
          <div className="flex gap-4">
             <div className="py-3 px-2 sm:hidden">
                {oldUser?.image || newUser?.image ? (
@@ -183,7 +177,7 @@ function CommentInput({ session, oldUser, newUser, article, commentLength }) {
                />
             </Modal>
          )}
-      </motion.div>
+      </div>
    );
 }
 
