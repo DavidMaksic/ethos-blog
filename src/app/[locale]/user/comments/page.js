@@ -6,10 +6,11 @@ import {
    getUser,
 } from '@/src/lib/data-service';
 import { getTranslations } from 'next-intl/server';
+import { getSortedItems } from '@/src/utils/helpers';
 import { auth } from '@/src/lib/auth';
 
 import UserCommentLabel from '@/src/ui/user-comment-label';
-import UserCommentList from '@/src/ui/comments/user-comment-list';
+import UserComment from '@/src/ui/comments/user-comment';
 import SortBy from '@/src/ui/operations/sort-by';
 
 export async function generateMetadata({ params }) {
@@ -43,6 +44,8 @@ async function Page({ searchParams }) {
       (item) => item.user_id === session.user.userID
    );
 
+   const sortedComments = getSortedItems(searchParam, userComments);
+
    return (
       <div className="flex flex-col gap-8 lg:gap-6">
          <div className="flex items-center justify-between">
@@ -63,17 +66,25 @@ async function Page({ searchParams }) {
             />
          </div>
 
-         {userComments.length > 0 ? (
-            <UserCommentList
-               param={searchParam}
-               allComments={comments}
-               comments={userComments}
-               articles={articles}
-               users={users}
-               user={user}
-            />
+         {sortedComments?.length ? (
+            <div
+               className={`max-h-[650px] 2xl:max-h-[597px] xl:max-h-[46.7rem] lg:max-h-[35.5rem] md:max-h-[47.55rem] sm:max-h-[67vh] xs:max-h-[70vh] overflow-y-scroll scrollbar rounded-3xl bg-white dark:bg-primary-300/10 border border-quaternary dark:border-primary-300/15 box-shadow ${
+                  sortedComments?.length === 1 && 'mb-70'
+               }`}
+            >
+               {sortedComments?.map((item) => (
+                  <UserComment
+                     comment={item}
+                     allComments={comments}
+                     articles={articles}
+                     users={users}
+                     user={user}
+                     key={item.id}
+                  />
+               ))}
+            </div>
          ) : (
-            <span className="self-center mt-44 sm:mt-56 sm:mb-44 text-primary-400 text-3xl border border-tertiary dark:border-primary-300/15 rounded-3xl py-8 px-12 bg-white dark:bg-primary-300/15">
+            <span className="self-center mt-55 sm:mt-60 sm:mb-44 text-primary-400 text-3xl border border-tertiary dark:border-primary-300/15 rounded-3xl py-8 px-12 bg-white dark:bg-primary-300/15">
                {t('Comment.no-comments')}
             </span>
          )}

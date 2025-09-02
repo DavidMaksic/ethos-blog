@@ -46,7 +46,11 @@ function BookmarkList({ bookmarkIDs, articles, categories, param }) {
 
    return (
       <>
-         <div className="grid grid-rows-3 gap-4 2xl:gap-3">
+         <div
+            className={`grid grid-rows-3 gap-4 2xl:gap-3 ${
+               !displayedArticles.length && 'grid-rows-1!'
+            }`}
+         >
             {displayedArticles.length ? (
                displayedArticles.map((item) => (
                   <BookmarkItem
@@ -56,7 +60,7 @@ function BookmarkList({ bookmarkIDs, articles, categories, param }) {
                   />
                ))
             ) : (
-               <span className="self-center mt-41.5 sm:mt-56 sm:mb-60 text-primary-400 text-3xl border border-tertiary dark:border-primary-300/15 rounded-3xl py-8 px-12 bg-white dark:bg-primary-300/15">
+               <span className="self-center justify-self-center sm:mt-60 sm:mb-44 text-primary-400 text-3xl border border-tertiary dark:border-primary-300/15 rounded-3xl py-8 px-12 bg-white dark:bg-primary-300/15">
                   {t('no-bookmarks')}
                </span>
             )}
