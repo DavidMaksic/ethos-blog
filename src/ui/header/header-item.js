@@ -10,7 +10,6 @@ function HeaderItem({ to, children }) {
       <div className="relative">
          <Link
             href={to}
-            prefetch
             className={`hover:text-accent dark:hover:text-accent-200 px-4 py-2 underlined-nav lg:no-underline transition md:hidden ${
                isActive && 'text-accent dark:text-accent-200'
             }`}

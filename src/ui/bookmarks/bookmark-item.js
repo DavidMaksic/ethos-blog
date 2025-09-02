@@ -28,7 +28,6 @@ function BookmarkItem({ article, categories }) {
    return (
       <Link
          href={`/${article.id}`}
-         prefetch
          className="relative grid grid-cols-[2fr_0.8fr] xl:grid-cols-[2fr_0.3fr] h-full sm:min-h-[18vh] xs:min-h-[20vh] rounded-2xl group cursor-pointer overflow-hidden border border-quaternary dark:border-primary-300/15 bg-white dark:bg-primary-300/15 hover:translate-x-1.5 transition-[translate] duration-200 select-none box-shadow"
       >
          <div className="self-center py-2 px-12 xs:px-12 md:pr-0 space-y-5 2xl:space-y-5 lg:space-y-4 z-20">
