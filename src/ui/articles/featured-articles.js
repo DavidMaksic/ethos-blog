@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { AnimatePresence } from 'motion/react';
-import { motion } from 'motion/react';
 
 import useFilterCategory from '@/src/hooks/use-filter-category';
 import FeaturedItem from '@/src/ui/articles/featured-item';
@@ -42,12 +41,7 @@ function FeaturedArticles({ articles, categories, authors }) {
    const t = useTranslations('HomePage');
 
    return (
-      <motion.div
-         className="flex flex-col gap-10 my-14"
-         initial={{ opacity: 0 }}
-         animate={{ opacity: 1 }}
-         transition={{ duration: 0.3 }}
-      >
+      <div className="flex flex-col gap-10 my-14">
          <h1 className="flex items-center gap-2 self-center text-4xl lg:text-3xl md:text-4xl">
             <span>{t('featuring')}</span>
             <span className="text-accent/75 dark:text-accent-300/90 italic font-medium font-secondary">
@@ -74,7 +68,7 @@ function FeaturedArticles({ articles, categories, authors }) {
                )}
             </AnimatePresence>
          </div>
-      </motion.div>
+      </div>
    );
 }
 

@@ -1,16 +1,6 @@
-'use client';
-
-import { motion } from 'motion/react';
-
 function Loading() {
    return (
-      <motion.div
-         className="animate-skeleton flex flex-col"
-         initial={{ opacity: 0 }}
-         animate={{ opacity: 1 }}
-         exit={{ opacity: 0 }}
-         transition={{ duration: 0.3 }}
-      >
+      <div className="animate-skeleton flex flex-col">
          <div className="h-[26rem] md:h-fit grid items-center grid-cols-2 md:flex! md:flex-col! gap-10 mt-24 2xl:mt-16 lg:mt-12 md:mt-24 sm:mt-14 xs:mt-10 mb-39 2xl:mb-28 lg:mb-22 md:mb-49 sm:mb-44 xs:mb-46.5">
             <div className="md:order-2 md:w-full flex flex-col self-center">
                <span className="mt-3 2xl:mt-0 h-26 lg:h-18 w-11/12 md:w-5/6 md:self-center bg-primary-300/80 rounded-3xl" />
@@ -64,7 +54,7 @@ function Loading() {
 
             <span className="md:order-3 md:justify-self-center h-14 2xl:h-13 lg:h-12 md:h-16 w-37 2xl:w-44 lg:w-41 md:w-45 2xl:mt-2 lg:mt-[-14px] md:mt-[-8px] bg-primary-300/40 rounded-full" />
          </div>
-      </motion.div>
+      </div>
    );
 }
 

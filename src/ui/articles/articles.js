@@ -24,8 +24,6 @@ function Articles({
 
    // Derive filtered & paginated articles
    const { filteredArticles, paginatedArticles } = useMemo(() => {
-      const start = performance.now();
-
       if (!isArchive) {
          return {
             filteredArticles: articles,

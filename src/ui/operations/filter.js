@@ -1,5 +1,3 @@
-'use client';
-
 import FilterButton from '@/src/ui/buttons/filter-button';
 
 function Filter({ param }) {

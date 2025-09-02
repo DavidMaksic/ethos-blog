@@ -20,6 +20,7 @@ import { notFound } from 'next/navigation';
 import { Toaster } from 'react-hot-toast';
 import { routing } from '@/src/i18n/routing';
 
+import PageAnimation from '@/src/ui/page-animation';
 import Header from '@/src/ui/header/header';
 import Footer from '@/src/ui/footer';
 import Script from 'next/script';
@@ -103,7 +104,6 @@ export function generateStaticParams() {
 // TODO: Implement:
 // TODO: 'Edit' option to comments
 // TODO: Social media auth
-
 // TODO: Notifications
 
 export default async function RootLayout({ children, params }) {
@@ -137,11 +137,13 @@ export default async function RootLayout({ children, params }) {
                         enableSystem
                      >
                         <Header />
-                        <main className="py-12 2xl:pt-4 md:pt-5 w-7xl 2xl:w-full mx-auto">
+
+                        <PageAnimation>
                            {children}
                            <SpeedInsights />
                            <Analytics />
-                        </main>
+                        </PageAnimation>
+
                         <Footer />
 
                         <Toaster
