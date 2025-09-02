@@ -1,4 +1,3 @@
-import { usePathname, useRouter } from 'next/navigation';
 import { AnimatePresence, motion } from 'motion/react';
 import { useOutsideClick } from '@/src/hooks/use-outside-click';
 import { useSetParams } from '@/src/hooks/use-set-params';
@@ -8,6 +7,7 @@ import { useState } from 'react';
 import srbFlag from '@/assets/srb-flag.png';
 import enFlag from '@/assets/en-flag.png';
 import Image from 'next/image';
+import { usePathname, useRouter } from '@/src/i18n/navigation';
 
 const languages = [
    {
@@ -31,14 +31,9 @@ function LanguageButton() {
    const pathname = usePathname();
 
    // - Old way
-   const switchLocale = (lang) => {
-      const segments = pathname.split('/');
-      segments[1] = lang;
-
-      const newPath = segments.join('/');
-      router.push(newPath);
-      router.replace(newPath);
-   };
+   function switchLocale(lang) {
+      router.push(pathname, { locale: lang });
+   }
 
    return (
       <>
