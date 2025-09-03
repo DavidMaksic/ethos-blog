@@ -24,10 +24,8 @@ function LanguageButton() {
    const [open, setOpen] = useState(false);
 
    const ref = useOutsideClick(() => setOpen((isOpen) => !isOpen), false);
-
    const handler = useSetParams();
 
-   // - New way
    function switchLocale(lang) {
       window.location.pathname = `/${lang}${window.location.pathname.replace(
          /^\/(en|sr)/,

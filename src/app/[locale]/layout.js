@@ -103,7 +103,6 @@ export function generateStaticParams() {
 
 // TODO: Implement:
 // TODO: Improve SEO
-// TODO: Page reload switches language to srb from eng
 // TODO: 'Edit' option to comments
 // TODO: Social media auth
 // TODO: Notifications
