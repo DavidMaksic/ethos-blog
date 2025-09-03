@@ -1,5 +1,5 @@
-import { usePathname, useRouter } from 'next/navigation';
 import { AnimatePresence, motion } from 'motion/react';
+import { usePathname, useRouter } from '@/src/i18n/navigation';
 import { useOutsideClick } from '@/src/hooks/use-outside-click';
 import { useSetParams } from '@/src/hooks/use-set-params';
 import { useLanguage } from '@/src/context/language-context';
@@ -30,15 +30,9 @@ function LanguageButton() {
    const handler = useSetParams();
    const pathname = usePathname();
 
-   // - Old way
-   const switchLocale = (lang) => {
-      const segments = pathname.split('/');
-      segments[1] = lang;
-
-      const newPath = segments.join('/');
-      router.push(newPath);
-      router.replace(newPath);
-   };
+   function switchLocale(lang) {
+      router.push(pathname, { locale: lang });
+   }
 
    return (
       <>

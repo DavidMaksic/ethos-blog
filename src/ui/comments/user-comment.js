@@ -1,10 +1,11 @@
-import { getTranslations } from 'next-intl/server';
-import { format } from 'date-fns';
+import { getLocale, getTranslations } from 'next-intl/server';
+import { CommentDate } from '@/src/utils/helpers';
 import { Link } from '@/src/i18n/navigation';
 
 async function UserComment({ comment, users, user, articles, allComments }) {
    const t = await getTranslations('Comment');
-   const date = format(new Date(comment.created_at), 'MMM dd, yyyy');
+   const locale = await getLocale();
+   const date = CommentDate(comment.created_at, locale);
 
    const commentedArticle = articles.find(
       (item) => item.id === comment.article_id

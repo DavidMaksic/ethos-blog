@@ -11,10 +11,10 @@ import {
 } from 'next/font/google';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { LanguageProvider } from '@/src/context/language-context';
-import { getMessages, setRequestLocale } from 'next-intl/server';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
 import { LikeProvider } from '@/src/context/like-context';
+import { getMessages } from 'next-intl/server';
 import { Analytics } from '@vercel/analytics/next';
 import { notFound } from 'next/navigation';
 import { Toaster } from 'react-hot-toast';
@@ -103,7 +103,7 @@ export function generateStaticParams() {
 
 // TODO: Implement:
 // TODO: Improve SEO
-// TODO: Fix date in comments table in user profile settings
+// TODO: Read more button shadow is clipped
 // TODO: 'Edit' option to comments
 // TODO: Social media auth
 // TODO: Notifications

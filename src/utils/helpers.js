@@ -76,13 +76,15 @@ export function CommentDate(createdAt, locale) {
 
    const daysAgo = differenceInDays(new Date(), createdDate);
 
-   const dateDisplay =
-      daysAgo < 3
+   const date =
+      daysAgo < 27
          ? `${formatDistanceToNow(createdDate, {
               addSuffix: true,
               locale: dateFnsLocale,
            })}`
          : format(createdDate, 'MMM dd, yyyy');
+
+   const dateDisplay = date.charAt(0).toUpperCase() + date.slice(1);
 
    return <span>{dateDisplay}</span>;
 }
