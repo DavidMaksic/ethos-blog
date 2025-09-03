@@ -1,5 +1,4 @@
 import { AnimatePresence, motion } from 'motion/react';
-import { usePathname, useRouter } from '@/src/i18n/navigation';
 import { useOutsideClick } from '@/src/hooks/use-outside-click';
 import { useSetParams } from '@/src/hooks/use-set-params';
 import { useLanguage } from '@/src/context/language-context';
@@ -26,13 +25,14 @@ function LanguageButton() {
 
    const ref = useOutsideClick(() => setOpen((isOpen) => !isOpen), false);
 
-   const router = useRouter();
    const handler = useSetParams();
-   const pathname = usePathname();
 
+   // - New way
    function switchLocale(lang) {
-      router.push(pathname, { locale: lang });
-      router.replace(pathname, { locale: lang });
+      window.location.pathname = `/${lang}${window.location.pathname.replace(
+         /^\/(en|sr)/,
+         ''
+      )}`;
    }
 
    return (
