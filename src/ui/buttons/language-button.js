@@ -32,6 +32,7 @@ function LanguageButton() {
 
    function switchLocale(lang) {
       router.push(pathname, { locale: lang });
+      router.replace(pathname, { locale: lang });
    }
 
    return (
