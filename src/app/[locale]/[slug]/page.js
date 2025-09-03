@@ -24,7 +24,7 @@ import Options from '@/src/ui/options';
 
 export async function generateMetadata({ params }) {
    const param = await params;
-   const { title, description } = await getArticle(param.articleID);
+   const { title, description } = await getArticle(param.slug);
 
    return {
       title: title ? title : params.locale === 'en' ? 'Article' : 'Чланак',
@@ -63,7 +63,7 @@ async function Page({ params, searchParams }) {
 
    // - Users and authors logic
    const user = await getUser(session?.user?.email);
-   const article = await getArticle(param?.articleID);
+   const article = await getArticle(param?.slug);
    const author = authors?.find((item) => item.id === article.author_id);
 
    // - Comment logic

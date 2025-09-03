@@ -4,7 +4,7 @@ export async function getArticles() {
    const { data, error } = await supabase
       .from('articles')
       .select(
-         'id, categoryID, created_at, title, image, description, author_id, featured, language'
+         'id, categoryID, created_at, title, image, description, author_id, featured, language, slug'
       )
       .eq('status', 'published')
       .order('id', { ascending: false });
@@ -14,11 +14,11 @@ export async function getArticles() {
    return data;
 }
 
-export async function getArticle(id) {
+export async function getArticle(slug) {
    const { data, error } = await supabase
       .from('articles')
       .select()
-      .eq('id', id)
+      .eq('slug', slug)
       .single();
 
    if (error) throw new Error('Article could not be loaded');
@@ -29,7 +29,7 @@ export async function getArticle(id) {
 export async function getMainArticles() {
    const { data, error } = await supabase
       .from('articles')
-      .select('id, title, image, description, language')
+      .select('id, title, image, description, language, slug')
       .eq('status', 'published')
       .eq('main_feature', 'true')
       .order('index');

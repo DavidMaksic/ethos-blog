@@ -8,7 +8,7 @@ function FeaturedItem({ article, authors }) {
 
    return (
       <Link
-         href={`/${article.id}`}
+         href={`/${article.slug}`}
          prefetch
          className="relative flex flex-col justify-between h-[30rem] lg:h-[25rem] md:h-[20rem] rounded-xl p-10 2xl:p-8 lg:p-6 md:p-9 xs:p-8 group cursor-pointer hover:translate-y-[-6px] transition duration-300 hover:shadow-2xl dark:hover:shadow-none select-none"
       >
