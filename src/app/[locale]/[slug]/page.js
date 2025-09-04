@@ -23,9 +23,9 @@ import CommentList from '@/src/ui/comments/comment-list';
 import Options from '@/src/ui/options';
 
 export async function generateMetadata({ params }) {
-   const param = await params;
-   const isEnglish = param.locale === 'en';
-   const { title, description, image } = await getArticle(param.slug);
+   const { locale, slug } = await params;
+   const isEnglish = locale === 'en';
+   const { title, description, image } = await getArticle(slug);
 
    return {
       title: title ? title : isEnglish ? 'Article' : 'Чланак',
