@@ -92,13 +92,12 @@ export async function generateMetadata({ params }) {
          default: isEnglish ? 'Ethos' : 'Етос',
       },
       description: isEnglish
-         ? 'Ethos blog features many authors from across the world, who write with great interest on various topics connected to the concept of ethos - culture, customs, values, ethics...'
+         ? 'Ethos blog features many authors from across the world, who write on various topics connected to the concept of ethos - culture, customs, values, ethics...'
          : 'За Eтос блог пишу аутори из целог света, са великим занимањем за разне теме које су повезане са идејом етоса - културом, обичајима, вредностима, етиком...',
-      metadataBase: new URL('https://ethos-blog.vercel.app'),
       openGraph: {
          title: isEnglish ? 'Ethos' : 'Етос',
          description: isEnglish
-            ? 'Ethos blog features many authors from across the world, who write with great interest on various topics connected to the concept of ethos - culture, customs, values, ethics...'
+            ? 'Ethos blog features many authors from across the world, who write on various topics connected to the concept of ethos - culture, customs, values, ethics...'
             : 'За Eтос блог пишу аутори из целог света, са великим занимањем за разне теме које су повезане са идејом етоса - културом, обичајима, вредностима, етиком...',
          url: `https://ethos-blog.vercel.app/${locale}`,
          siteName: isEnglish ? 'Ethos' : 'Етос',
@@ -107,8 +106,8 @@ export async function generateMetadata({ params }) {
          images: [
             {
                url: 'https://qjbihfajkucvfxqkvtxk.supabase.co/storage/v1/object/public/misc/ethos-banner-2.png',
-               width: 136,
-               height: 136,
+               width: 762,
+               height: 387,
                alt: isEnglish ? 'Ethos Blog' : 'Етос блог',
             },
          ],
@@ -117,7 +116,7 @@ export async function generateMetadata({ params }) {
          card: 'summary',
          title: isEnglish ? 'Ethos' : 'Етос',
          description: isEnglish
-            ? 'Ethos blog features many authors from across the world, who write with great interest on various topics connected to the concept of ethos - culture, customs, values, ethics...'
+            ? 'Ethos blog features many authors from across the world, who write on various topics connected to the concept of ethos - culture, customs, values, ethics...'
             : 'За Eтос блог пишу аутори из целог света, са великим занимањем за разне теме које су повезане са идејом етоса - културом, обичајима, вредностима, етиком...',
          images: [
             'https://qjbihfajkucvfxqkvtxk.supabase.co/storage/v1/object/public/misc/ethos-banner-2.png',
