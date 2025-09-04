@@ -35,10 +35,12 @@ export async function generateMetadata({ params }) {
          ? 'Read this article on our blog.'
          : 'Прочитајте овај чланак на нашем блогу.',
       openGraph: {
-         title: isEnglish ? 'Ethos' : 'Етос',
-         description: isEnglish
-            ? 'Ethos blog features many authors from across the world, who write on various topics connected to the concept of ethos - culture, customs, values, ethics...'
-            : 'За Eтос блог пишу аутори из целог света, са великим занимањем за разне теме које су повезане са идејом етоса - културом, обичајима, вредностима, етиком...',
+         title: title ? title : isEnglish ? 'Article' : 'Чланак',
+         description: description
+            ? description
+            : isEnglish
+            ? 'Read this article on our blog.'
+            : 'Прочитајте овај чланак на нашем блогу.',
          url: `https://ethos-blog.vercel.app/${locale}`,
          siteName: isEnglish ? 'Ethos' : 'Етос',
          locale: isEnglish ? 'en' : 'sr',
@@ -54,10 +56,12 @@ export async function generateMetadata({ params }) {
       },
       twitter: {
          card: 'summary_large_image',
-         title: isEnglish ? 'Ethos' : 'Етос',
-         description: isEnglish
-            ? 'Ethos blog features many authors from across the world, who write on various topics connected to the concept of ethos - culture, customs, values, ethics...'
-            : 'За Eтос блог пишу аутори из целог света, са великим занимањем за разне теме које су повезане са идејом етоса - културом, обичајима, вредностима, етиком...',
+         title: title ? title : isEnglish ? 'Article' : 'Чланак',
+         description: description
+            ? description
+            : isEnglish
+            ? 'Read this article on our blog.'
+            : 'Прочитајте овај чланак на нашем блогу.',
          images: [image],
       },
    };
