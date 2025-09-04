@@ -106,7 +106,7 @@ export async function generateMetadata({ params }) {
          type: 'website',
          images: [
             {
-               url: './icon.png',
+               url: 'https://qjbihfajkucvfxqkvtxk.supabase.co/storage/v1/object/public/misc/ethos-banner.png',
                width: 136,
                height: 136,
                alt: isEnglish ? 'Ethos Blog' : 'Етос блог',
@@ -119,7 +119,9 @@ export async function generateMetadata({ params }) {
          description: isEnglish
             ? 'Ethos blog features many authors from across the world, who write with great interest on various topics connected to the concept of ethos - culture, customs, values, ethics...'
             : 'За Eтос блог пишу аутори из целог света, са великим занимањем за разне теме које су повезане са идејом етоса - културом, обичајима, вредностима, етиком...',
-         images: ['/icon.png'],
+         images: [
+            'https://qjbihfajkucvfxqkvtxk.supabase.co/storage/v1/object/public/misc/ethos-banner.png',
+         ],
       },
    };
 }
