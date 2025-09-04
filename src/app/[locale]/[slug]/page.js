@@ -24,8 +24,8 @@ import Options from '@/src/ui/options';
 
 export async function generateMetadata({ params }) {
    const { locale, slug } = await params;
-   const isEnglish = locale === 'en';
    const { title, description, image } = await getArticle(slug);
+   const isEnglish = locale === 'en';
 
    return {
       title: title ? title : isEnglish ? 'Article' : 'Чланак',
@@ -53,7 +53,7 @@ export async function generateMetadata({ params }) {
          ],
       },
       twitter: {
-         card: 'summary',
+         card: 'summary_large_image',
          title: isEnglish ? 'Ethos' : 'Етос',
          description: isEnglish
             ? 'Ethos blog features many authors from across the world, who write on various topics connected to the concept of ethos - culture, customs, values, ethics...'
