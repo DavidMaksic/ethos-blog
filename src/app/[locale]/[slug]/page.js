@@ -41,7 +41,7 @@ export async function generateMetadata({ params }) {
             : isEnglish
             ? 'Read this article on our blog.'
             : 'Прочитајте овај чланак на нашем блогу.',
-         url: `https://ethos-blog.vercel.app/${locale}`,
+         url: `https://ethos-blog.vercel.app/${locale}/${slug}`,
          siteName: isEnglish ? 'Ethos' : 'Етос',
          locale: isEnglish ? 'en' : 'sr',
          type: 'website',
