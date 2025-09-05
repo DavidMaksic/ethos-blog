@@ -6,8 +6,7 @@ export const revalidate = 604800; // Revalidate once a week
 export default async function sitemap() {
    const articles = await getArticles();
    const locale = await getLocale();
-   const baseURL =
-      process.env.NEXT_PUBLIC_WEBSITE_URL ?? 'https://ethos-blog.vercel.app';
+   const baseURL = process.env.NEXT_PUBLIC_WEBSITE_URL;
 
    return [
       {
