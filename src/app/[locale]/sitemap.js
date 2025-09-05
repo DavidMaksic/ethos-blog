@@ -1,9 +1,11 @@
 import { getArticles } from '@/src/lib/data-service';
+import { getLocale } from 'next-intl/server';
 
 export const revalidate = 604800; // Revalidate once a week
 
 export default async function sitemap() {
    const articles = await getArticles();
+   const locale = getLocale();
 
    return [
       {
@@ -17,7 +19,7 @@ export default async function sitemap() {
          },
       },
       ...articles.map((item) => ({
-         url: `${process.env.WEBSITE_URL}/${item.slug}`,
+         url: `${process.env.WEBSITE_URL}/${locale}/${item.slug}`,
          lastModified: item.updatedAt ?? new Date().toISOString(),
       })),
    ];
