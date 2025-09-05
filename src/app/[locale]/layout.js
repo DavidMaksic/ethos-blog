@@ -154,6 +154,7 @@ export default async function RootLayout({ children, params }) {
                data-website-id="d90edcea-5d99-4e40-93f9-48e026866d66"
                strategy="lazyOnload"
             />
+            <link rel="manifest" href="/manifest.json" />
          </head>
 
          <body
