@@ -41,7 +41,7 @@ export async function generateMetadata({ params }) {
             : isEnglish
             ? 'Read this article on our blog.'
             : 'Прочитајте овај чланак на нашем блогу.',
-         url: `${process.env.WEBSITE_URL}/${locale}/${slug}`,
+         url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/${locale}/${slug}`,
          siteName: isEnglish ? 'Ethos' : 'Етос',
          locale: isEnglish ? 'en' : 'sr',
          type: 'website',

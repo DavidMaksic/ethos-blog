@@ -9,17 +9,17 @@ export default async function sitemap() {
 
    return [
       {
-         url: process.env.WEBSITE_URL,
+         url: process.env.NEXT_PUBLIC_WEBSITE_URL,
          lastModified: new Date().toISOString(),
          alternates: {
             languages: {
-               en: `${process.env.WEBSITE_URL}/`,
-               sr: `${process.env.WEBSITE_URL}/sr`,
+               en: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/`,
+               sr: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/sr`,
             },
          },
       },
       ...articles.map((item) => ({
-         url: `${process.env.WEBSITE_URL}/${locale}/${item.slug}`,
+         url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/${locale}/${item.slug}`,
          lastModified: item.updatedAt ?? new Date().toISOString(),
       })),
    ];

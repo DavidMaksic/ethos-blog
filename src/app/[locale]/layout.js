@@ -99,7 +99,7 @@ export async function generateMetadata({ params }) {
          description: isEnglish
             ? 'Ethos blog features many authors from across the world, who write on various topics connected to the concept of ethos - culture, customs, values, ethics...'
             : 'За Eтос блог пишу аутори из целог света, са великим занимањем за разне теме које су повезане са идејом етоса - културом, обичајима, вредностима, етиком...',
-         url: `${process.env.WEBSITE_URL}/${locale}`,
+         url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/${locale}`,
          siteName: isEnglish ? 'Ethos' : 'Етос',
          locale: isEnglish ? 'en' : 'sr',
          type: 'website',
