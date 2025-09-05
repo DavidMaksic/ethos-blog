@@ -30,7 +30,7 @@ function BookmarkList({ bookmarkIDs, articles, categories, param }) {
          const fuse = new Fuse(filtered, {
             keys: ['title'],
             includeScore: true,
-            threshold: 0.3,
+            threshold: 0.4,
          });
 
          const fuseResults = fuse.search(param.search);

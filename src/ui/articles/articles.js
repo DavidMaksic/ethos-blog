@@ -44,7 +44,7 @@ function Articles({
          const fuse = new Fuse(result, {
             keys: ['title'],
             includeScore: true,
-            threshold: 0.3,
+            threshold: 0.4,
          });
 
          const fuseResults = fuse.search(param.search);
