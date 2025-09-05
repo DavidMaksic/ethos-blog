@@ -6,20 +6,30 @@ export const revalidate = 604800; // Revalidate once a week
 export default async function sitemap() {
    const articles = await getArticles();
    const locale = await getLocale();
+   const baseURL =
+      process.env.NEXT_PUBLIC_WEBSITE_URL ?? 'https://ethos-blog.vercel.app';
 
    return [
       {
-         url: process.env.NEXT_PUBLIC_WEBSITE_URL,
+         url: baseURL,
          lastModified: new Date().toISOString(),
          alternates: {
             languages: {
-               en: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/`,
-               sr: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/sr`,
+               en: `${baseURL}/`,
+               sr: `${baseURL}/sr`,
             },
          },
       },
+      {
+         url: `${baseURL}/${locale}/archive`,
+         lastModified: new Date().toISOString(),
+      },
+      {
+         url: `${baseURL}/${locale}/about`,
+         lastModified: new Date().toISOString(),
+      },
       ...articles.map((item) => ({
-         url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/${locale}/${item.slug}`,
+         url: `${baseURL}/${locale}/${item.slug}`,
          lastModified: item.updatedAt ?? new Date().toISOString(),
       })),
    ];
