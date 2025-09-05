@@ -5,7 +5,7 @@ export const revalidate = 604800; // Revalidate once a week
 
 export default async function sitemap() {
    const articles = await getArticles();
-   const locale = getLocale();
+   const locale = await getLocale();
 
    return [
       {
