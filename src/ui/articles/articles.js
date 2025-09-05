@@ -7,6 +7,7 @@ import { useMemo } from 'react';
 
 import ArticleItem from '@/src/ui/articles/article-item';
 import Pagination from '@/src/ui/pagination';
+import Fuse from 'fuse.js';
 
 function Articles({
    isArchive = false,
@@ -40,10 +41,14 @@ function Articles({
 
       // 2. Search
       if (param.search) {
-         const query = param.search.toLowerCase();
-         result = result.filter((item) =>
-            item.title?.toLowerCase().includes(query)
-         );
+         const fuse = new Fuse(result, {
+            keys: ['title'],
+            includeScore: true,
+            threshold: 0.3,
+         });
+
+         const fuseResults = fuse.search(param.search);
+         result = fuseResults.map((res) => res.item);
       }
 
       // 3. Filter (category + language)

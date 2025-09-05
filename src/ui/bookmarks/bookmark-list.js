@@ -6,6 +6,7 @@ import { getSortedItems } from '@/src/utils/helpers';
 
 import BookmarkItem from '@/src/ui/bookmarks/bookmark-item';
 import Pagination from '@/src/ui/pagination';
+import Fuse from 'fuse.js';
 
 function BookmarkList({ bookmarkIDs, articles, categories, param }) {
    const [bookmarkedArticles, setBookmarkedArticles] = useState([]);
@@ -26,10 +27,14 @@ function BookmarkList({ bookmarkIDs, articles, categories, param }) {
 
       // 1. Search filtering
       if (param.search) {
-         const query = param.search.toLowerCase();
-         filtered = filtered.filter((item) =>
-            item.title?.toLowerCase().includes(query)
-         );
+         const fuse = new Fuse(filtered, {
+            keys: ['title'],
+            includeScore: true,
+            threshold: 0.3,
+         });
+
+         const fuseResults = fuse.search(param.search);
+         filtered = fuseResults.map((res) => res.item);
       }
 
       // 2. Sorting
