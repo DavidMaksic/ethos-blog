@@ -14,6 +14,7 @@ import { LanguageProvider } from '@/src/context/language-context';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
 import { LikeProvider } from '@/src/context/like-context';
+import { WEBSITE_URL } from '@/src/utils/config';
 import { getMessages } from 'next-intl/server';
 import { Analytics } from '@vercel/analytics/next';
 import { notFound } from 'next/navigation';
@@ -99,7 +100,7 @@ export async function generateMetadata({ params }) {
          description: isEnglish
             ? 'Ethos blog features many authors from across the world, who write on various topics connected to the concept of ethos - culture, customs, values, ethics...'
             : 'За Eтос блог пишу аутори из целог света, са великим занимањем за разне теме које су повезане са идејом етоса - културом, обичајима, вредностима, етиком...',
-         url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/${locale}`,
+         url: `${WEBSITE_URL}/${locale}`,
          siteName: isEnglish ? 'Ethos' : 'Етос',
          locale: isEnglish ? 'en' : 'sr',
          type: 'website',

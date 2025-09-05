@@ -9,6 +9,7 @@ import {
    getUsers,
    getUser,
 } from '@/src/lib/data-service';
+import { WEBSITE_URL } from '@/src/utils/config';
 import { format } from 'date-fns';
 import { auth } from '@/src/lib/auth';
 
@@ -41,7 +42,7 @@ export async function generateMetadata({ params }) {
             : isEnglish
             ? 'Read this article on our blog.'
             : 'Прочитајте овај чланак на нашем блогу.',
-         url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/${locale}/${slug}`,
+         url: `${WEBSITE_URL}/${locale}/${slug}`,
          siteName: isEnglish ? 'Ethos' : 'Етос',
          locale: isEnglish ? 'en' : 'sr',
          type: 'website',

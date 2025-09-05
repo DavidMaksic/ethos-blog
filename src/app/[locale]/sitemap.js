@@ -1,4 +1,5 @@
 import { getArticles } from '@/src/lib/data-service';
+import { WEBSITE_URL } from '@/src/utils/config';
 import { getLocale } from 'next-intl/server';
 
 export const revalidate = 604800; // Revalidate once a week
@@ -6,7 +7,7 @@ export const revalidate = 604800; // Revalidate once a week
 export default async function sitemap() {
    const articles = await getArticles();
    const locale = await getLocale();
-   const baseURL = process.env.NEXT_PUBLIC_WEBSITE_URL;
+   const baseURL = WEBSITE_URL;
 
    return [
       {
