@@ -1,5 +1,6 @@
 import { getArticles, getAuthors, getCategories } from '@/src/lib/data-service';
 import { getTranslations } from 'next-intl/server';
+import { WEBSITE_URL } from '@/src/utils/config';
 
 import ArchiveHeading from '@/src/ui/archive-heading';
 import Categories from '@/src/ui/categories/categories';
@@ -8,27 +9,45 @@ import Articles from '@/src/ui/articles/articles';
 import SortBy from '@/src/ui/operations/sort-by';
 
 export async function generateMetadata({ params }) {
-   const { locale } = await params;
-   return { title: locale === 'en' ? 'Archive' : 'Архива' };
+   const [param, t] = await Promise.all([params, getTranslations()]);
+   const isEnglish = param?.locale === 'en';
+
+   const jsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: t('Page-descriptions.archive-name'),
+      description: t('Page-descriptions.archive'),
+      url: isEnglish ? `${WEBSITE_URL}/archive` : `${WEBSITE_URL}/sr/archive`,
+      inLanguage: isEnglish ? 'en' : 'sr',
+      keywords: ['Ethos Blog', 'Archive', 'Blog posts', 'Articles'],
+   };
+
+   return {
+      title: t('Page-descriptions.archive-name'),
+      other: {
+         'script:ld+json': JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
+      },
+   };
 }
 
 async function Page({ searchParams }) {
-   const [param, articles, categories, authors, t] = await Promise.all([
+   const [searchParam, articles, categories, authors, t] = await Promise.all([
       searchParams,
       getArticles(),
       getCategories(),
       getAuthors(),
-      getTranslations('Sort'),
+      getTranslations(),
    ]);
 
    const currentCategory = categories.find(
       (item) =>
          item.category ===
-         param.category?.charAt(0).toUpperCase() + param.category?.slice(1)
+         searchParam.category?.charAt(0).toUpperCase() +
+            searchParam.category?.slice(1)
    );
 
    return (
-      <div className="grid grid-cols-[2fr_1fr] md:grid-cols-1 gap-10 xs:gap-14 2xl:mt-3">
+      <section className="grid grid-cols-[2fr_1fr] md:grid-cols-1 gap-10 xs:gap-14 2xl:mt-3">
          <div className="space-y-7 lg:space-y-5 md:order-2">
             <div className="flex justify-between">
                <ArchiveHeading />
@@ -37,22 +56,22 @@ async function Page({ searchParams }) {
                   options={[
                      {
                         value: 'created_at-asc',
-                        label: t('latest'),
+                        label: t('Sort.latest'),
                      },
                      {
                         value: 'created_at-desc',
-                        label: t('oldest'),
+                        label: t('Sort.oldest'),
                      },
                      {
                         value: 'title-asc',
-                        label: t('a-z'),
+                        label: t('Sort.a-z'),
                      },
                      {
                         value: 'title-desc',
-                        label: t('z-a'),
+                        label: t('Sort.z-a'),
                      },
                   ]}
-                  param={param}
+                  param={searchParam}
                />
             </div>
 
@@ -61,7 +80,7 @@ async function Page({ searchParams }) {
                articles={articles}
                categories={categories}
                currentCategory={currentCategory}
-               param={param}
+               param={searchParam}
                authors={authors}
                style="dark:bg-primary-300/15"
             />
@@ -71,12 +90,12 @@ async function Page({ searchParams }) {
             <Categories
                categories={categories}
                currentCategory={currentCategory}
-               param={param}
+               param={searchParam}
                isArchive={true}
             />
-            <Languages param={param} />
+            <Languages param={searchParam} />
          </div>
-      </div>
+      </section>
    );
 }
 

@@ -15,7 +15,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
 import { LikeProvider } from '@/src/context/like-context';
 import { WEBSITE_URL } from '@/src/utils/config';
-import { getMessages } from 'next-intl/server';
+import { getMessages, getTranslations } from 'next-intl/server';
 import { Analytics } from '@vercel/analytics/next';
 import { notFound } from 'next/navigation';
 import { Toaster } from 'react-hot-toast';
@@ -84,24 +84,37 @@ const cormorantSC = Cormorant_SC({
 });
 
 export async function generateMetadata({ params }) {
-   const { locale } = await params;
-   const isEnglish = locale === 'en';
+   const [param, t] = await Promise.all([params, getTranslations()]);
+   const isEnglish = param?.locale === 'en';
+
+   const jsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      url: isEnglish ? WEBSITE_URL : `${WEBSITE_URL}/sr`,
+      name: t('Logo'),
+      description: t('Page-descriptions.about'),
+      inLanguage: isEnglish ? 'en' : 'sr',
+      keywords: [
+         'Ethos Blog',
+         'History',
+         'Theology',
+         'Christian Philosophy',
+         'Moral Ethics',
+         'Culture',
+      ],
+   };
 
    return {
       title: {
-         template: `%s • ${isEnglish ? 'Ethos' : 'Етос'}`,
-         default: isEnglish ? 'Ethos' : 'Етос',
+         template: `%s • ${t('Logo')}`,
+         default: t('Logo'),
       },
-      description: isEnglish
-         ? 'Ethos blog features many authors from across the world, who write on various topics connected to the concept of ethos - culture, customs, values, ethics...'
-         : 'За Eтос блог пишу аутори из целог света, са великим занимањем за разне теме које су повезане са идејом етоса - културом, обичајима, вредностима, етиком...',
+      description: t('Page-descriptions.about'),
       openGraph: {
-         title: isEnglish ? 'Ethos' : 'Етос',
-         description: isEnglish
-            ? 'Ethos blog features many authors from across the world, who write on various topics connected to the concept of ethos - culture, customs, values, ethics...'
-            : 'За Eтос блог пишу аутори из целог света, са великим занимањем за разне теме које су повезане са идејом етоса - културом, обичајима, вредностима, етиком...',
-         url: `${WEBSITE_URL}/${locale}`,
-         siteName: isEnglish ? 'Ethos' : 'Етос',
+         title: t('Logo'),
+         description: t('Page-descriptions.about'),
+         url: `${WEBSITE_URL}/${param?.locale}`,
+         siteName: t('Logo'),
          locale: isEnglish ? 'en' : 'sr',
          type: 'website',
          images: [
@@ -109,19 +122,20 @@ export async function generateMetadata({ params }) {
                url: 'https://qjbihfajkucvfxqkvtxk.supabase.co/storage/v1/object/public/misc/ethos-banner-3.png',
                width: 1200,
                height: 630,
-               alt: isEnglish ? 'Ethos Blog' : 'Етос блог',
+               alt: t('Logo'),
             },
          ],
       },
       twitter: {
          card: 'summary_large_image',
-         title: isEnglish ? 'Ethos' : 'Етос',
-         description: isEnglish
-            ? 'Ethos blog features many authors from across the world, who write on various topics connected to the concept of ethos - culture, customs, values, ethics...'
-            : 'За Eтос блог пишу аутори из целог света, са великим занимањем за разне теме које су повезане са идејом етоса - културом, обичајима, вредностима, етиком...',
+         title: t('Logo'),
+         description: t('Page-descriptions.about'),
          images: [
             'https://qjbihfajkucvfxqkvtxk.supabase.co/storage/v1/object/public/misc/ethos-banner-3.png',
          ],
+      },
+      other: {
+         'script:ld+json': JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
       },
    };
 }
@@ -132,19 +146,17 @@ export function generateStaticParams() {
 
 // TODO: Implement:
 // TODO: Improve SEO
-// TODO: NextAuthURL inside .env file has local address
 // TODO: 'Edit' option to comments
 // TODO: Social media auth
 // TODO: Notifications
 
 export default async function RootLayout({ children, params }) {
    const { locale } = await params;
+   const messages = await getMessages({ locale });
 
    if (!hasLocale(routing.locales, locale)) {
       notFound();
    }
-
-   const messages = await getMessages({ locale });
 
    return (
       <html lang={locale} suppressHydrationWarning>

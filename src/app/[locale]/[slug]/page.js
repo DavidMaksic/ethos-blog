@@ -9,6 +9,7 @@ import {
    getUsers,
    getUser,
 } from '@/src/lib/data-service';
+import { getTranslations } from 'next-intl/server';
 import { WEBSITE_URL } from '@/src/utils/config';
 import { format } from 'date-fns';
 import { auth } from '@/src/lib/auth';
@@ -24,26 +25,50 @@ import CommentList from '@/src/ui/comments/comment-list';
 import Options from '@/src/ui/options';
 
 export async function generateMetadata({ params }) {
-   const { locale, slug } = await params;
-   const { title, description, image } = await getArticle(slug);
+   const [param, authors, t] = await Promise.all([
+      params,
+      getAuthors(),
+      getTranslations(),
+   ]);
+
+   const { slug, locale } = param;
+   const { title, description, image, author_id, created_at, updated_at } =
+      await getArticle(slug);
+
+   const { full_name } = authors?.find((item) => item.id === author_id);
    const isEnglish = locale === 'en';
 
+   const jsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      url: isEnglish ? `${WEBSITE_URL}/${slug}` : `${WEBSITE_URL}/sr/${slug}`,
+      headline: title,
+      description: description,
+      author: {
+         '@type': 'Person',
+         name: full_name,
+      },
+      datePublished: created_at,
+      dateModified: updated_at,
+      image: {
+         '@type': 'ImageObject',
+         url: image,
+         width: 1200,
+         height: 628,
+      },
+      keywords: ['Ethos Blog', 'Blog post', 'Article'],
+   };
+
    return {
-      title: title ? title : isEnglish ? 'Article' : 'Чланак',
-      description: description
-         ? description
-         : isEnglish
-         ? 'Read this article on our blog.'
-         : 'Прочитајте овај чланак на нашем блогу.',
+      title: title ? title : t('Page-descriptions.article-name'),
+      description: description ? description : t('Page-descriptions.article'),
       openGraph: {
-         title: title ? title : isEnglish ? 'Article' : 'Чланак',
+         title: title ? title : t('Page-descriptions.article-name'),
          description: description
             ? description
-            : isEnglish
-            ? 'Read this article on our blog.'
-            : 'Прочитајте овај чланак на нашем блогу.',
+            : t('Page-descriptions.article'),
          url: `${WEBSITE_URL}/${locale}/${slug}`,
-         siteName: isEnglish ? 'Ethos' : 'Етос',
+         siteName: t('Logo'),
          locale: isEnglish ? 'en' : 'sr',
          type: 'website',
          images: [
@@ -57,13 +82,14 @@ export async function generateMetadata({ params }) {
       },
       twitter: {
          card: 'summary_large_image',
-         title: title ? title : isEnglish ? 'Article' : 'Чланак',
+         title: title ? title : t('Page-descriptions.article-name'),
          description: description
             ? description
-            : isEnglish
-            ? 'Read this article on our blog.'
-            : 'Прочитајте овај чланак на нашем блогу.',
+            : t('Page-descriptions.article'),
          images: [image],
+      },
+      other: {
+         'script:ld+json': JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
       },
    };
 }
@@ -124,8 +150,8 @@ async function Page({ params, searchParams }) {
    const commentsNum = repliesInThisArticle?.length + filteredComments?.length;
 
    return (
-      <main className="flex flex-col">
-         <article className="relative max-w-5xl 2xl:max-w-[46rem] md:max-w-full self-center flex flex-col gap-6 xs:gap-4 py-2 px-24 2xl:px-0 pb-22 2xl:pt-8 md:pt-6 sm:pt-4 transition-200">
+      <article className="flex flex-col">
+         <div className="relative max-w-5xl 2xl:max-w-[46rem] md:max-w-full self-center flex flex-col gap-6 xs:gap-4 py-2 px-24 2xl:px-0 pb-22 2xl:pt-8 md:pt-6 sm:pt-4 transition-200">
             <ArticleHeading article={article} />
 
             <ArticleImage
@@ -183,8 +209,8 @@ async function Page({ params, searchParams }) {
             />
 
             <Options />
-         </article>
-      </main>
+         </div>
+      </article>
    );
 }
 
