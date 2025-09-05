@@ -8,7 +8,7 @@ export default function manifest() {
       theme_color: '#ddc2a2',
       icons: [
          {
-            src: '/alt-icon.png',
+            src: '/icon-phone.png',
             sizes: '192x192',
             type: 'image/png',
          },
