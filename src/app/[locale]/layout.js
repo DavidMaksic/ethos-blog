@@ -134,7 +134,7 @@ export async function generateMetadata({ params }) {
          ],
       },
       twitter: {
-         card: 'summary',
+         card: 'summary_large_image',
          title: t('Logo'),
          description: t('Page-descriptions.about'),
          images: [
