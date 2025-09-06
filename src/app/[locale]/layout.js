@@ -141,7 +141,7 @@ export async function generateMetadata({ params }) {
             'https://qjbihfajkucvfxqkvtxk.supabase.co/storage/v1/object/public/misc/ethos-banner-3.png',
          ],
       },
-      manifest: '@/public/manifest.json',
+      manifest: '/manifest.json',
       other: {
          'script:ld+json': JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
       },
