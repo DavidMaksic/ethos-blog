@@ -36,12 +36,11 @@ export async function generateMetadata({ params }) {
       await getArticle(slug);
 
    const { full_name } = authors?.find((item) => item.id === author_id);
-   const isEnglish = locale === 'en';
 
    const jsonLd = {
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',
-      url: isEnglish ? `${WEBSITE_URL}/${slug}` : `${WEBSITE_URL}/sr/${slug}`,
+      url: `${WEBSITE_URL}/${locale}/${slug}`,
       headline: title,
       description: description,
       author: {
@@ -62,6 +61,13 @@ export async function generateMetadata({ params }) {
    return {
       title: title ? title : t('Page-descriptions.article-name'),
       description: description ? description : t('Page-descriptions.article'),
+      alternates: {
+         canonical: `${WEBSITE_URL}/${locale}/${slug}`,
+         languages: {
+            en: `${WEBSITE_URL}/en/${slug}`,
+            sr: `${WEBSITE_URL}/sr/${slug}`,
+         },
+      },
       openGraph: {
          title: title ? title : t('Page-descriptions.article-name'),
          description: description
@@ -69,7 +75,7 @@ export async function generateMetadata({ params }) {
             : t('Page-descriptions.article'),
          url: `${WEBSITE_URL}/${locale}/${slug}`,
          siteName: t('Logo'),
-         locale: isEnglish ? 'en' : 'sr',
+         locale: locale,
          type: 'website',
          images: [
             {

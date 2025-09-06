@@ -5,15 +5,15 @@ import AboutBlocks from '@/src/ui/about-blocks';
 
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
-   const isEnglish = param?.locale === 'en';
+   const { locale } = param;
 
    const jsonLd = {
       '@context': 'https://schema.org',
       '@type': 'AboutPage',
       name: t('about-name'),
       description: t('about'),
-      url: isEnglish ? `${WEBSITE_URL}/about` : `${WEBSITE_URL}/sr/about`,
-      inLanguage: isEnglish ? 'en' : 'sr',
+      url: `${WEBSITE_URL}/${locale}/about`,
+      inLanguage: locale,
       keywords: [
          'Ethos Blog',
          'About',
@@ -26,12 +26,19 @@ export async function generateMetadata({ params }) {
       ],
       mainEntityOfPage: {
          '@type': 'WebPage',
-         '@id': isEnglish ? `${WEBSITE_URL}/about` : `${WEBSITE_URL}/sr/about`,
+         '@id': `${WEBSITE_URL}/${locale}/about`,
       },
    };
 
    return {
       title: t('about-name'),
+      alternates: {
+         canonical: `${WEBSITE_URL}/${locale}/about`,
+         languages: {
+            en: `${WEBSITE_URL}/en/about`,
+            sr: `${WEBSITE_URL}/sr/about`,
+         },
+      },
       other: {
          'script:ld+json': JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
       },

@@ -10,20 +10,27 @@ import SortBy from '@/src/ui/operations/sort-by';
 
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
-   const isEnglish = param?.locale === 'en';
+   const { locale } = param;
 
    const jsonLd = {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
       name: t('Page-descriptions.archive-name'),
       description: t('Page-descriptions.archive'),
-      url: isEnglish ? `${WEBSITE_URL}/archive` : `${WEBSITE_URL}/sr/archive`,
-      inLanguage: isEnglish ? 'en' : 'sr',
+      url: `${WEBSITE_URL}/${locale}/archive`,
+      inLanguage: locale,
       keywords: ['Ethos Blog', 'Archive', 'Blog posts', 'Articles'],
    };
 
    return {
       title: t('Page-descriptions.archive-name'),
+      alternates: {
+         canonical: `${WEBSITE_URL}/${locale}/archive`,
+         languages: {
+            en: `${WEBSITE_URL}/en/archive`,
+            sr: `${WEBSITE_URL}/sr/archive`,
+         },
+      },
       other: {
          'script:ld+json': JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
       },

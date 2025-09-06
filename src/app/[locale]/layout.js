@@ -85,15 +85,15 @@ const cormorantSC = Cormorant_SC({
 
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
-   const isEnglish = param?.locale === 'en';
+   const { locale } = param;
 
    const jsonLd = {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      url: isEnglish ? WEBSITE_URL : `${WEBSITE_URL}/sr`,
+      url: `${WEBSITE_URL}/${locale}`,
       name: t('Logo'),
       description: t('Page-descriptions.about'),
-      inLanguage: isEnglish ? 'en' : 'sr',
+      inLanguage: locale,
       keywords: [
          'Ethos Blog',
          'History',
@@ -110,12 +110,19 @@ export async function generateMetadata({ params }) {
          default: t('Logo'),
       },
       description: t('Page-descriptions.about'),
+      alternates: {
+         canonical: `${WEBSITE_URL}/${locale}`,
+         languages: {
+            en: `${WEBSITE_URL}/en`,
+            sr: `${WEBSITE_URL}/sr`,
+         },
+      },
       openGraph: {
          title: t('Logo'),
          description: t('Page-descriptions.about'),
-         url: `${WEBSITE_URL}/${param?.locale}`,
+         url: `${WEBSITE_URL}/${locale}`,
          siteName: t('Logo'),
-         locale: isEnglish ? 'en' : 'sr',
+         locale: locale,
          type: 'website',
          images: [
             {
