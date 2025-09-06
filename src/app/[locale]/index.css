@@ -1242,7 +1242,7 @@
 }
 
 .alert[data-alert-type='references'] {
-   @apply border border-primary-300/80 dark:border-primary-300/40 shadow-reference dark:shadow-none;
+   @apply border border-primary-300/80 dark:border-primary-300/40;
 
    .alert-icon-wrapper > svg {
       @apply hidden;
