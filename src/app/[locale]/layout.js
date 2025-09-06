@@ -178,6 +178,19 @@ export default async function RootLayout({ children, params }) {
                strategy="lazyOnload"
             />
             <meta name="color-scheme" content="light dark" />
+
+            <meta name="theme-color" content="#131c24" />
+            <meta
+               name="viewport"
+               content="width=device-width, initial-scale=1, viewport-fit=cover"
+            />
+
+            <meta name="msapplication-navbutton-color" content="#131c24" />
+            <meta
+               name="apple-mobile-web-app-status-bar-style"
+               content="black-translucent"
+            />
+            <meta name="navigationbar-color" content="#131c24" />
          </head>
 
          <body
