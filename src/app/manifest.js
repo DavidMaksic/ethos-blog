@@ -14,6 +14,11 @@ export default function manifest() {
             sizes: '192x192',
             type: 'image/png',
          },
+         {
+            src: '/icon-mobile-lg.png',
+            sizes: '512x512',
+            type: 'image/png',
+         },
       ],
    };
 }
