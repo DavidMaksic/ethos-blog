@@ -9,7 +9,7 @@ export function useThemeColor() {
    useEffect(() => {
       if (typeof window === 'undefined') return;
 
-      const color = resolvedTheme === 'dark' ? '#27251F' : '#fafafa';
+      const color = resolvedTheme === 'dark' ? '#131c24' : '#fafafa';
       const meta = document.querySelector('meta[name="theme-color"]');
 
       if (meta) {
