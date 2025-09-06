@@ -117,6 +117,10 @@ export async function generateMetadata({ params }) {
             sr: `${WEBSITE_URL}/sr`,
          },
       },
+      themeColor: [
+         { media: '(prefers-color-scheme: dark)', color: '#131c24' },
+         { media: '(prefers-color-scheme: light)', color: '#fafafa' },
+      ],
       openGraph: {
          title: t('Logo'),
          description: t('Page-descriptions.about'),
@@ -173,10 +177,11 @@ export default async function RootLayout({ children, params }) {
                data-website-id="d90edcea-5d99-4e40-93f9-48e026866d66"
                strategy="lazyOnload"
             />
+            <meta name="color-scheme" content="light dark" />
          </head>
 
          <body
-            className={`min-h-screen flex flex-col text-xl 2xl:px-60 xl:px-26 inter-padding font-main text-text selection:bg-accent-400/90 dark:selection:bg-accent-200/50 selection:text-white caret-primary-400 antialiased bg-primary dark:bg-primary transition-200 background-gradient ${cormorantGaramond.variable} ${gentium.variable} ${ebGaramond.variable} ${crimsonText.variable} ${parisienne.variable} ${greatVibes.variable} ${cormorantSC.variable}`}
+            className={`min-h-screen flex flex-col text-xl 2xl:px-60 xl:px-26 inter-padding font-main text-text selection:bg-accent-400/90 dark:selection:bg-accent-200/50 selection:text-white caret-primary-400 antialiased bg-primary transition-200 background-gradient ${cormorantGaramond.variable} ${gentium.variable} ${ebGaramond.variable} ${crimsonText.variable} ${parisienne.variable} ${greatVibes.variable} ${cormorantSC.variable}`}
          >
             <NextIntlClientProvider locale={locale} messages={messages}>
                <LanguageProvider>
