@@ -1896,3 +1896,9 @@ h3 {
    margin-bottom: 5px;
    gap: 0.6em !important;
 }
+
+@media (display-mode: standalone) {
+   body {
+      background-color: var(--color-primary);
+   }
+}

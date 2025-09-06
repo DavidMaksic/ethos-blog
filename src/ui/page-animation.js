@@ -5,9 +5,9 @@ import { usePathname } from '@/src/i18n/navigation';
 import { motion } from 'motion/react';
 
 function PageAnimation({ children }) {
+   useThemeColor();
    const pathname = usePathname();
    const isUserRoute = pathname.startsWith('/user');
-   useThemeColor();
 
    if (isUserRoute) {
       return (

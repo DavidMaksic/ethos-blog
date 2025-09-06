@@ -4,9 +4,11 @@ import { useEffect } from 'react';
 import { useTheme } from 'next-themes';
 
 export function useThemeColor() {
-   const { theme, resolvedTheme } = useTheme();
+   const { resolvedTheme } = useTheme();
 
    useEffect(() => {
+      if (typeof window === 'undefined') return;
+
       const metaTag = document.querySelector('meta[name="theme-color"]');
       if (!metaTag) return;
 
