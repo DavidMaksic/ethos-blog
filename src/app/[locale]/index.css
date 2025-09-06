@@ -1899,6 +1899,6 @@ h3 {
 
 @media (display-mode: standalone) {
    body {
-      background-color: var(--color-primary);
+      background-color: var(--color-primary) !important;
    }
 }

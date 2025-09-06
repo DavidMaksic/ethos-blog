@@ -9,10 +9,16 @@ export function useThemeColor() {
    useEffect(() => {
       if (typeof window === 'undefined') return;
 
-      const metaTag = document.querySelector('meta[name="theme-color"]');
-      if (!metaTag) return;
-
       const color = resolvedTheme === 'dark' ? '#131c24' : '#fafafa';
-      metaTag.setAttribute('content', color);
+      const meta = document.querySelector('meta[name="theme-color"]');
+
+      if (meta) {
+         meta.setAttribute('content', color);
+      } else {
+         const newMeta = document.createElement('meta');
+         newMeta.setAttribute('name', 'theme-color');
+         newMeta.setAttribute('content', color);
+         document.head.appendChild(newMeta);
+      }
    }, [resolvedTheme]);
 }

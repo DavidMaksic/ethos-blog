@@ -9,11 +9,11 @@ export default function manifest() {
       background_color: '#f1f5f9',
       theme_color: '#1c242c',
       icons: [
-         // {
-         //    src: '/icon-mobile.png',
-         //    sizes: '192x192',
-         //    type: 'image/png',
-         // },
+         {
+            src: '/icon-mobile.png',
+            sizes: '192x192',
+            type: 'image/png',
+         },
          {
             src: '/icon-mobile-lg.png',
             sizes: '512x512',

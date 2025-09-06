@@ -178,8 +178,6 @@ export default async function RootLayout({ children, params }) {
                strategy="lazyOnload"
             />
             <meta name="color-scheme" content="light dark" />
-            <meta name="navigationbar-color" content="#131c24" />
-            <meta name="msapplication-navbutton-color" content="#131c24" />
          </head>
 
          <body
