@@ -11,7 +11,7 @@ export default function manifest() {
       icons: [
          {
             src: '/icon-mobile.png',
-            sizes: 'any',
+            sizes: '192x192',
             type: 'image/png',
          },
       ],
