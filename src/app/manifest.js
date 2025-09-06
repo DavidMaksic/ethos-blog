@@ -6,7 +6,7 @@ export default function manifest() {
          'Ethos blog features many authors from across the world, who write on various topics connected to the concept of ethos - culture, customs, values, ethics...',
       start_url: '/',
       display: 'standalone',
-      background_color: '#1c242c',
+      background_color: '#46535e',
       theme_color: '#1c242c',
       icons: [
          {

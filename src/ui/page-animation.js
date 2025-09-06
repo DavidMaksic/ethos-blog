@@ -1,11 +1,13 @@
 'use client';
 
+import { useThemeColor } from '@/src/hooks/use-theme-color';
 import { usePathname } from '@/src/i18n/navigation';
 import { motion } from 'motion/react';
 
 function PageAnimation({ children }) {
    const pathname = usePathname();
    const isUserRoute = pathname.startsWith('/user');
+   useThemeColor();
 
    if (isUserRoute) {
       return (
