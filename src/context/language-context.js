@@ -5,8 +5,8 @@ import { useLocalStorage } from '../hooks/use-local-storage';
 import { useLocale } from 'next-intl';
 import { routing } from '@/src/i18n/routing';
 
-import srbFlag from '@/assets/srb-flag.png';
-import enFlag from '@/assets/en-flag.png';
+import srbFlag from '@/public/srb-flag.png';
+import enFlag from '@/public/en-flag.png';
 
 const LanguageContext = createContext();
 

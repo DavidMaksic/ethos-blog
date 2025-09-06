@@ -5,8 +5,8 @@ import { useSetParams } from '@/src/hooks/use-set-params';
 import { useLanguage } from '@/src/context/language-context';
 
 import RemoteImage from '@/src/ui/remote-image';
-import srbFlag from '@/assets/srb-flag.png';
-import enFlag from '@/assets/en-flag.png';
+import srbFlag from '@/public/srb-flag.png';
+import enFlag from '@/public/en-flag.png';
 
 function FilterButton({
    lang,
