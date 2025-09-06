@@ -68,6 +68,7 @@ export async function generateMetadata({ params }) {
             sr: `${WEBSITE_URL}/sr/${slug}`,
          },
       },
+      creator: full_name,
       openGraph: {
          title: title ? title : t('Page-descriptions.article-name'),
          description: description

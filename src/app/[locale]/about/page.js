@@ -4,7 +4,11 @@ import { getAuthors } from '@/src/lib/data-service';
 import AboutBlocks from '@/src/ui/about-blocks';
 
 export async function generateMetadata({ params }) {
-   const [param, t] = await Promise.all([params, getTranslations()]);
+   const [param, authors, t] = await Promise.all([
+      params,
+      getAuthors(),
+      getTranslations(),
+   ]);
    const { locale } = param;
 
    const jsonLd = {
@@ -39,6 +43,7 @@ export async function generateMetadata({ params }) {
             sr: `${WEBSITE_URL}/sr/about`,
          },
       },
+      authors: authors.map((author) => ({ name: author.full_name })),
       other: {
          'script:ld+json': JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
       },

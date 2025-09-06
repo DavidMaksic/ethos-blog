@@ -134,13 +134,14 @@ export async function generateMetadata({ params }) {
          ],
       },
       twitter: {
-         card: 'summary_large_image',
+         card: 'summary',
          title: t('Logo'),
          description: t('Page-descriptions.about'),
          images: [
             'https://qjbihfajkucvfxqkvtxk.supabase.co/storage/v1/object/public/misc/ethos-banner-3.png',
          ],
       },
+      manifest: '/manifest.json',
       other: {
          'script:ld+json': JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
       },
