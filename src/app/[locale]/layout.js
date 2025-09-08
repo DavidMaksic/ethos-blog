@@ -157,7 +157,6 @@ export function generateStaticParams() {
 
 // TODO: Implement:
 // TODO: Improve SEO
-// TODO: Credits box has text centered on mobile
 // TODO: 'Edit' option to comments
 // TODO: Social media auth
 // TODO: Notifications
@@ -178,7 +177,7 @@ export default async function RootLayout({ children, params }) {
                data-website-id="d90edcea-5d99-4e40-93f9-48e026866d66"
                strategy="lazyOnload"
             />
-            <meta name="color-scheme" content="light dark" />
+            {/* <meta name="color-scheme" content="light dark" />
             <meta name="theme-color" content="#27251F" />
             <meta
                name="viewport"
@@ -189,7 +188,7 @@ export default async function RootLayout({ children, params }) {
                name="apple-mobile-web-app-status-bar-style"
                content="black-translucent"
             />
-            <meta name="navigationbar-color" content="#27251F" />
+            <meta name="navigationbar-color" content="#27251F" /> */}
          </head>
 
          <body
