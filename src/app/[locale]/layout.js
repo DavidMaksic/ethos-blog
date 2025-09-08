@@ -177,18 +177,17 @@ export default async function RootLayout({ children, params }) {
                data-website-id="d90edcea-5d99-4e40-93f9-48e026866d66"
                strategy="lazyOnload"
             />
-            {/* <meta name="color-scheme" content="light dark" />
+            {/* Android PWA Support */}
             <meta name="theme-color" content="#27251F" />
-            <meta
-               name="viewport"
-               content="width=device-width, initial-scale=1, viewport-fit=cover"
-            />
-            <meta name="msapplication-navbutton-color" content="#27251F" />
+            <meta name="navigationbar-color" content="#27251F" />
+
+            {/* Apple PWA Support */}
+            <meta name="apple-mobile-web-app-capable" content="yes" />
             <meta
                name="apple-mobile-web-app-status-bar-style"
                content="black-translucent"
             />
-            <meta name="navigationbar-color" content="#27251F" /> */}
+            <meta name="apple-mobile-web-app-title" content="Ethos Blog" />
          </head>
 
          <body
