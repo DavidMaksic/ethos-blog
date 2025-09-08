@@ -157,6 +157,7 @@ export function generateStaticParams() {
 
 // TODO: Implement:
 // TODO: Improve SEO
+// TODO: Credits box has text centered on mobile
 // TODO: 'Edit' option to comments
 // TODO: Social media auth
 // TODO: Notifications

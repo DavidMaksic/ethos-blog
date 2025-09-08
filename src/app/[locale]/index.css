@@ -1242,7 +1242,7 @@
 }
 
 .alert[data-alert-type='references'] {
-   @apply border border-primary-300/80 dark:border-primary-300/40;
+   @apply border border-primary-300/80 dark:border-primary-300/40 text-start;
 
    .alert-icon-wrapper > svg {
       @apply hidden;
@@ -1501,7 +1501,7 @@ strong {
 }
 
 [data-text-color='orange'] {
-   @apply text-[#b8874c]! dark:text-accent-200! dark:opacity-90;
+   @apply text-[#b8874c]! dark:text-accent-200! dark:opacity-90!;
 }
 
 [data-text-color='yellow'] {
@@ -1525,39 +1525,39 @@ strong {
 }
 
 [data-background-color='gray'] {
-   @apply bg-[#dddddd] dark:bg-[#3a4046] text-[#525252]! dark:text-[#bcc8d4]!;
+   @apply bg-[#dddddd]! dark:bg-[#3a4046]! text-[#525252]! dark:text-[#bcc8d4]!;
 }
 
 [data-background-color='brown'] {
-   @apply bg-[#e7d4cc] dark:bg-[#5f4c44] text-[#53392a]! dark:text-[#e6c2b2]!;
+   @apply bg-[#e7d4cc]! dark:bg-[#5f4c44]! text-[#53392a]! dark:text-[#e6c2b2]!;
 }
 
 [data-background-color='red'] {
-   @apply bg-[#e9d1d1] dark:bg-[#5f4040] text-[#4e2626]! dark:text-[#dbb3b3]!;
+   @apply bg-[#e9d1d1]! dark:bg-[#5f4040]! text-[#4e2626]! dark:text-[#dbb3b3]!;
 }
 
 [data-background-color='orange'] {
-   @apply bg-[#e0d2c4] dark:bg-[#644e39] text-[#533f29]! dark:text-[#dfc9b3]!;
+   @apply bg-[#e0d2c4]! dark:bg-[#644e39]! text-[#533f29]! dark:text-[#dfc9b3]!;
 }
 
 [data-background-color='yellow'] {
-   @apply bg-[#ddd4b9] dark:bg-[#574e32] text-[#5c5029]! dark:text-[#e2d7b5]!;
+   @apply bg-[#ddd4b9]! dark:bg-[#574e32]! text-[#5c5029]! dark:text-[#e2d7b5]!;
 }
 
 [data-background-color='green'] {
-   @apply bg-[#bce6e0] dark:bg-[#3b5350] text-[#244e48]! dark:text-[#cde2e0]!;
+   @apply bg-[#bce6e0]! dark:bg-[#3b5350]! text-[#244e48]! dark:text-[#cde2e0]!;
 }
 
 [data-background-color='blue'] {
-   @apply bg-[#bad7e4] dark:bg-[#3e5a66] text-[#284a5a]! dark:text-[#bfd5df]!;
+   @apply bg-[#bad7e4]! dark:bg-[#3e5a66]! text-[#284a5a]! dark:text-[#bfd5df]!;
 }
 
 [data-background-color='purple'] {
-   @apply bg-[#dccdf3] dark:bg-[#564b66] text-[#36264e]! dark:text-[#d1c6e0]!;
+   @apply bg-[#dccdf3]! dark:bg-[#564b66]! text-[#36264e]! dark:text-[#d1c6e0]!;
 }
 
 [data-background-color='pink'] {
-   @apply bg-[#dfbfd2] dark:bg-[#5a4050] text-[#532a43]! dark:text-[#e6cfdd]!;
+   @apply bg-[#dfbfd2]! dark:bg-[#5a4050]! text-[#532a43]! dark:text-[#e6cfdd]!;
 }
 
 .bn-inline-content [data-background-color='gray'],
