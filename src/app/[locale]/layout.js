@@ -86,11 +86,12 @@ const cormorantSC = Cormorant_SC({
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
    const { locale } = param;
+   const path = locale === 'en' ? '' : `/${locale}`;
 
    const jsonLd = {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      url: `${WEBSITE_URL}/${locale}`,
+      url: `${WEBSITE_URL}${path}`,
       name: t('Logo'),
       description: t('Page-descriptions.about'),
       inLanguage: locale,
@@ -111,20 +112,16 @@ export async function generateMetadata({ params }) {
       },
       description: t('Page-descriptions.about'),
       alternates: {
-         canonical: `${WEBSITE_URL}/${locale}`,
+         canonical: `${WEBSITE_URL}${path}`,
          languages: {
-            en: `${WEBSITE_URL}/en`,
+            en: `${WEBSITE_URL}`,
             sr: `${WEBSITE_URL}/sr`,
          },
       },
-      // themeColor: [
-      //    { media: '(prefers-color-scheme: dark)', color: '#27251F' },
-      //    { media: '(prefers-color-scheme: light)', color: '#fafafa' },
-      // ],
       openGraph: {
          title: t('Logo'),
          description: t('Page-descriptions.about'),
-         url: `${WEBSITE_URL}/${locale}`,
+         url: `${WEBSITE_URL}${path}`,
          siteName: t('Logo'),
          locale: locale,
          type: 'website',
