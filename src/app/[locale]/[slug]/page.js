@@ -24,6 +24,8 @@ import ArticleImage from '@/src/ui/articles/article-image';
 import CommentList from '@/src/ui/comments/comment-list';
 import Options from '@/src/ui/options';
 
+export const revalidate = 60;
+
 export async function generateMetadata({ params }) {
    const [param, authors, t] = await Promise.all([
       params,
