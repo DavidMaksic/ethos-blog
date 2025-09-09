@@ -54,8 +54,10 @@ async function Page({ searchParams }) {
    );
 
    return (
-      <section className="grid grid-cols-[2fr_1fr] md:grid-cols-1 gap-10 xs:gap-14 2xl:mt-3">
-         <div className="space-y-7 lg:space-y-5 md:order-2">
+      <div className="grid grid-cols-[2fr_1fr] md:grid-cols-1 gap-10 xs:gap-14 2xl:mt-3">
+         <h1 className="sr-only">{t('H1.archive-page')}</h1>
+
+         <section className="space-y-7 lg:space-y-5 md:order-2">
             <div className="flex justify-between">
                <ArchiveHeading />
 
@@ -91,9 +93,9 @@ async function Page({ searchParams }) {
                authors={authors}
                style="dark:bg-primary-300/15"
             />
-         </div>
+         </section>
 
-         <div className="space-y-12 md:order-1 md:flex md:flex-col md:gap-6">
+         <section className="space-y-12 md:order-1 md:flex md:flex-col md:gap-6">
             <Categories
                categories={categories}
                currentCategory={currentCategory}
@@ -101,8 +103,8 @@ async function Page({ searchParams }) {
                isArchive={true}
             />
             <Languages param={searchParam} />
-         </div>
-      </section>
+         </section>
+      </div>
    );
 }
 

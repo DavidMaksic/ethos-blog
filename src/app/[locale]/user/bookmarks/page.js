@@ -1,4 +1,5 @@
 import { getArticles, getCategories, getUser } from '@/src/lib/data-service';
+import { getTranslations } from 'next-intl/server';
 import { auth } from '@/src/lib/auth';
 
 import BookmarkOptions from '@/src/ui/bookmarks/bookmark-options';
@@ -10,11 +11,12 @@ export async function generateMetadata({ params }) {
 }
 
 async function Page({ searchParams }) {
-   const [searchParam, session, articles, categories] = await Promise.all([
+   const [searchParam, session, articles, categories, t] = await Promise.all([
       searchParams,
       auth(),
       getArticles(),
       getCategories(),
+      getTranslations('H1'),
    ]);
 
    const { bookmarks } = await getUser(session.user.email);
@@ -22,6 +24,8 @@ async function Page({ searchParams }) {
 
    return (
       <div className="grid grid-rows-[0.1fr_2fr_0.1fr] gap-8 lg:gap-6 h-full">
+         <h1 className="sr-only">{t('profile-page-bookmarks')}</h1>
+
          <div className="flex justify-between">
             <BookmarkOptions param={searchParam} />
          </div>

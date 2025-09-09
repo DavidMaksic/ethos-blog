@@ -17,9 +17,9 @@ function OtherArticles() {
    return (
       <div className="grid grid-cols-[2fr_1fr] gap-10 my-14 mb-40">
          <div className="space-y-10">
-            <h1 className="text-4xl">
+            <h2 className="text-4xl">
                <span>Other articles</span>
-            </h1>
+            </h2>
 
             <ul className="grid grid-rows-3 gap-6">
                {dummyData.map((item) => (
@@ -31,7 +31,7 @@ function OtherArticles() {
          <div className="space-y-10">
             <div className="flex items-center gap-3 text-4xl">
                <TbCategory2 className="text-3xl stroke-[1.4px]" />
-               <h1>Categories</h1>
+               <h2>Categories</h2>
             </div>
 
             <ul className="flex gap-4 flex-wrap">

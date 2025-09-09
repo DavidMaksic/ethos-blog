@@ -8,9 +8,9 @@ function BookmarkOptions({ param }) {
    return (
       <>
          <div className="flex items-center gap-3.5">
-            <h1 className="text-4xl lg:text-3xl md:text-4xl text-primary-500 dark:text-primary-600/65 md:hidden">
+            <h2 className="text-4xl lg:text-3xl md:text-4xl text-primary-500 dark:text-primary-600/65 md:hidden">
                {t('Profile.bookmark-label')}
-            </h1>
+            </h2>
             <Search />
          </div>
 

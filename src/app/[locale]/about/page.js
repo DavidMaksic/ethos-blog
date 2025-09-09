@@ -7,7 +7,7 @@ export async function generateMetadata({ params }) {
    const [param, authors, t] = await Promise.all([
       params,
       getAuthors(),
-      getTranslations(),
+      getTranslations('Page-descriptions'),
    ]);
    const { locale } = param;
 
@@ -51,9 +51,17 @@ export async function generateMetadata({ params }) {
 }
 
 async function Page() {
-   const authors = await getAuthors();
+   const [authors, t] = await Promise.all([
+      getAuthors(),
+      getTranslations('H1'),
+   ]);
 
-   return <AboutBlocks authors={authors} />;
+   return (
+      <>
+         <h1 className="sr-only">{t('about-page')}</h1>
+         <AboutBlocks authors={authors} />
+      </>
+   );
 }
 
 export default Page;

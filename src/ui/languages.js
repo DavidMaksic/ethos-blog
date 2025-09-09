@@ -9,7 +9,7 @@ async function Languages({ param }) {
       <div className="space-y-6 md:order-2">
          <div className="flex gap-3 items-center md:justify-center">
             <IoLanguageOutline className="size-7.5 stroke-[0.2px]" />
-            <h1 className="text-4xl">{t('lang-label')}</h1>
+            <h2 className="text-4xl">{t('lang-label')}</h2>
          </div>
 
          <Filter param={param} />

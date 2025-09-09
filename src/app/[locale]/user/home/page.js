@@ -18,7 +18,7 @@ async function Page() {
       auth(),
       getComments(),
       getReplies(),
-      getTranslations('Profile'),
+      getTranslations(),
    ]);
 
    const { user } = session;
@@ -34,6 +34,8 @@ async function Page() {
 
    return (
       <div className="flex gap-4 md:flex-col">
+         <h1 className="sr-only">{t('H1.profile-page-overview')}</h1>
+
          <div className="space-y-4">
             <ProfileInfo oldUser={user} newUser={newUser} />
             <JoinedDate user={user} />
@@ -42,7 +44,7 @@ async function Page() {
          <div className="space-y-4">
             <div className="flex gap-4 2xl:flex-wrap">
                <Stats
-                  title={t('user-stat-1')}
+                  title={t('Profile.user-stat-1')}
                   value={likesLength}
                   icon={
                      <FaRegHeart className="text-red-600/40 dark:text-red-300/80 transition-color" />
@@ -50,7 +52,7 @@ async function Page() {
                   color="bg-red-300/20 dark:bg-red-300/30"
                />
                <Stats
-                  title={t('user-stat-2')}
+                  title={t('Profile.user-stat-2')}
                   value={commentsLength ? commentsLength : '--'}
                   icon={
                      <FaRegComments className="text-amber-700/50 dark:text-amber-300/70 transition-color" />
@@ -60,7 +62,7 @@ async function Page() {
             </div>
 
             <Stats
-               title={t('user-stat-3')}
+               title={t('Profile.user-stat-3')}
                value={bookmarksLength ? bookmarksLength : '--'}
                icon={
                   <LuBookmark className="text-cyan-700/50 dark:text-cyan-300/70 transition-color" />

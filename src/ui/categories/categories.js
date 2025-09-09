@@ -23,7 +23,7 @@ function Categories({ categories, currentCategory, param, isArchive = false }) {
       >
          <div className="flex items-center gap-3 text-4xl lg:text-3xl md:text-4xl">
             <TbCategory2 className="text-3xl stroke-[1.4px]" />
-            <h1>{t('categories')}</h1>
+            <h2>{t('categories')}</h2>
          </div>
 
          <div className="flex md:justify-center gap-4 2xl:gap-3 lg:gap-2.5 flex-wrap">

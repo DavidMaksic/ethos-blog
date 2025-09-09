@@ -27,9 +27,9 @@ function LatestArticles({ articles, categories, param, authors }) {
    return (
       <div className="grid grid-cols-[2fr_1fr] md:grid-cols-1 gap-10 lg:gap-y-7 my-14 lg:mb-10">
          <div className="md:flex md:flex-col md:items-center space-y-10 lg:space-y-7 md:order-2">
-            <h1 className="text-4xl lg:text-3xl md:text-4xl md:hidden">
+            <h2 className="text-4xl lg:text-3xl md:text-4xl md:hidden">
                <span>{t('latest')}</span>
-            </h1>
+            </h2>
 
             <Articles
                articles={finalArticles}

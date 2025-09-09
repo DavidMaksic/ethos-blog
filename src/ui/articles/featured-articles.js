@@ -42,12 +42,12 @@ function FeaturedArticles({ articles, categories, authors }) {
 
    return (
       <div className="flex flex-col gap-10 my-14">
-         <h1 className="flex items-center gap-2 self-center text-4xl lg:text-3xl md:text-4xl">
+         <h2 className="flex items-center gap-2 self-center text-4xl lg:text-3xl md:text-4xl">
             <span>{t('featuring')}</span>
             <span className="text-accent/75 dark:text-accent-300/90 italic font-medium font-secondary">
                {currentCategory.category ? currentCategory.category : 'History'}
             </span>
-         </h1>
+         </h2>
 
          <div className="grid grid-cols-3 md:flex md:flex-col gap-6 lg:gap-4 md:gap-6">
             <AnimatePresence mode="wait">

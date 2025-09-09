@@ -119,5 +119,14 @@
       "archive-name": "Archive",
       "article": "Read this article on our blog.",
       "article-name": "Article"
+   },
+   "H1": {
+      "main-page": "Ethos ─ Blog about history, theology, ethics...",
+      "archive-page": "Archive ─ Search, sort and filter all articles.",
+      "about-page": "About us ─ Short description of our blog and its authors.",
+      "profile-page-overview": "Profile ─ Overview",
+      "profile-page-comments": "Profile ─ Comments",
+      "profile-page-bookmarks": "Profile ─ Bookmarks",
+      "profile-page-settings": "Profile ─ Settings"
    }
 }

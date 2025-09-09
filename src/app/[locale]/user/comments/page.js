@@ -48,6 +48,8 @@ async function Page({ searchParams }) {
 
    return (
       <div className="flex flex-col gap-8 lg:gap-6">
+         <h1 className="sr-only">{t('H1.profile-page-comments')}</h1>
+
          <div className="flex items-center justify-between">
             <UserCommentLabel />
 
