@@ -10,6 +10,8 @@ import FeaturedArticles from '@/src/ui/articles/featured-articles';
 import LatestArticles from '@/src/ui/articles/latest-articles';
 import MainArticles from '@/src/ui/articles/main-articles';
 
+export const revalidate = 60;
+
 export default async function Home({ searchParams }) {
    const [param, articles, categories, mainArticles, authors, t] =
       await Promise.all([
