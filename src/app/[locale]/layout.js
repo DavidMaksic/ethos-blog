@@ -117,10 +117,10 @@ export async function generateMetadata({ params }) {
             sr: `${WEBSITE_URL}/sr`,
          },
       },
-      themeColor: [
-         { media: '(prefers-color-scheme: dark)', color: '#27251F' },
-         { media: '(prefers-color-scheme: light)', color: '#fafafa' },
-      ],
+      // themeColor: [
+      //    { media: '(prefers-color-scheme: dark)', color: '#27251F' },
+      //    { media: '(prefers-color-scheme: light)', color: '#fafafa' },
+      // ],
       openGraph: {
          title: t('Logo'),
          description: t('Page-descriptions.about'),
@@ -158,7 +158,6 @@ export function generateStaticParams() {
 // TODO: Implement:
 // TODO: Improve SEO
 // TODO: Remove H1 in blocknote editor
-// TODO: Header seems to be re-rendered on every click anywhere
 // TODO: Add manifest.json file for Portfolio app
 // TODO: 'Edit' option to comments
 // TODO: Social media auth
