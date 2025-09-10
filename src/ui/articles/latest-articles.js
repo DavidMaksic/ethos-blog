@@ -1,5 +1,6 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { FiChevronRight } from 'react-icons/fi';
 import { Link } from '@/src/i18n/navigation';
@@ -8,12 +9,14 @@ import useFilterArticle from '@/src/hooks/use-filter-article';
 import Categories from '@/src/ui/categories/categories';
 import Articles from '@/src/ui/articles/articles';
 
-function LatestArticles({ articles, categories, param, authors }) {
+function LatestArticles({ articles, categories, authors }) {
    const { filteredArray: filteredArticles } = useFilterArticle(articles);
+   const searchParams = useSearchParams();
+   const category = searchParams.get('category');
 
    const currentCategory = categories.find(
       (item) =>
-         item.category === param?.charAt(0).toUpperCase() + param?.slice(1)
+         item.category === category.charAt(0).toUpperCase() + category.slice(1)
    );
 
    const finalArticles = filteredArticles?.filter((item) => {

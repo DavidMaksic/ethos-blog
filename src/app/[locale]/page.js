@@ -12,18 +12,14 @@ import FeaturedArticles from '@/src/ui/articles/featured-articles';
 import LatestArticles from '@/src/ui/articles/latest-articles';
 import MainArticles from '@/src/ui/articles/main-articles';
 
-export default async function Home({ searchParams }) {
-   const [param, articles, categories, mainArticles, authors, t] =
-      await Promise.all([
-         searchParams,
-         getArticles(),
-         getCategories(),
-         getMainArticles(),
-         getAuthors(),
-         getTranslations('H1'),
-      ]);
-
-   const category = param?.category || null;
+export default async function Home() {
+   const [articles, categories, mainArticles, authors, t] = await Promise.all([
+      getArticles(),
+      getCategories(),
+      getMainArticles(),
+      getAuthors(),
+      getTranslations('H1'),
+   ]);
 
    return (
       <>
@@ -44,7 +40,6 @@ export default async function Home({ searchParams }) {
          <LatestArticles
             articles={articles}
             categories={categories}
-            param={category}
             authors={authors}
          />
       </>
