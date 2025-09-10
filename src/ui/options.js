@@ -33,7 +33,7 @@ function Options() {
 
    useEffect(() => {
       const headingElementsRaw = Array.from(
-         document.querySelectorAll('h2, h3')
+         document.querySelectorAll('h1, h2, h3')
       );
 
       const headingElements = headingElementsRaw.map((item, i) => {

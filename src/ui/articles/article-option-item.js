@@ -45,9 +45,9 @@ function ArticleOptionItem({
          onClick={handler}
       >
          {children}
-         <span className="text-xl md:text-[1.4rem] md:font-semibold text-primary-400 font-main select-none">
+         <span className="text-xl md:text-[1.4rem] md:font-semibold text-primary-400 select-none">
             {type === 'link' ? (
-               <span className="uppercase text-base font-main">
+               <span className="uppercase text-base font-secondary">
                   {t('share')}
                </span>
             ) : count ? (

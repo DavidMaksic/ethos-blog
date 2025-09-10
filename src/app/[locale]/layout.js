@@ -44,22 +44,6 @@ const greatVibes = Great_Vibes({
    variable: '--font-greatVibes',
 });
 
-/* English font */
-const crimsonText = Crimson_Text({
-   subsets: ['latin'],
-   style: ['normal', 'italic'],
-   weight: ['400', '600', '700'],
-   variable: '--font-crimsonText',
-});
-
-/* Serbian font */
-const gentium = Gentium_Book_Plus({
-   subsets: ['cyrillic'],
-   style: ['normal', 'italic'],
-   weight: ['400', '700'],
-   variable: '--font-gentium',
-});
-
 /* Main font */
 const cormorantGaramond = Cormorant_Garamond({
    subsets: ['latin'],
@@ -190,7 +174,7 @@ export default async function RootLayout({ children, params }) {
          </head>
 
          <body
-            className={`min-h-screen flex flex-col text-xl 2xl:px-60 xl:px-26 inter-padding font-main text-text selection:bg-accent-400/90 dark:selection:bg-accent-200/50 selection:text-white caret-primary-400 antialiased bg-primary transition-200 background-gradient ${cormorantGaramond.variable} ${gentium.variable} ${ebGaramond.variable} ${crimsonText.variable} ${parisienne.variable} ${greatVibes.variable} ${cormorantSC.variable}`}
+            className={`min-h-screen flex flex-col text-xl 2xl:px-60 xl:px-26 inter-padding font-main text-text selection:bg-accent-400/90 dark:selection:bg-accent-200/50 selection:text-white caret-primary-400 antialiased bg-primary transition-200 background-gradient ${cormorantGaramond.variable} ${ebGaramond.variable} ${parisienne.variable} ${greatVibes.variable} ${cormorantSC.variable}`}
          >
             <NextIntlClientProvider locale={locale} messages={messages}>
                <LanguageProvider>
