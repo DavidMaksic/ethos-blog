@@ -17,9 +17,9 @@ export default function RichTextRenderer({ html }) {
                   className={domNode.attribs.class}
                   src={domNode.attribs.src}
                   alt="Article image"
-                  width={1200}
-                  height={800}
-                  quality={50}
+                  width={4000}
+                  height={3000}
+                  quality={60}
                   priority={true}
                   sizes="(max-width: 400px) 300px, (max-width: 630px) 600px, (max-width: 1020px) 1000px, (max-width: 2300px) 1200px, 100vw"
                />
