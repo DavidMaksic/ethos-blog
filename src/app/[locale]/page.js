@@ -23,6 +23,8 @@ export default async function Home({ searchParams }) {
          getTranslations('H1'),
       ]);
 
+   const category = param?.category || null;
+
    return (
       <>
          <h1 className="sr-only">{t('main-page')}</h1>
@@ -42,7 +44,7 @@ export default async function Home({ searchParams }) {
          <LatestArticles
             articles={articles}
             categories={categories}
-            param={param}
+            param={category}
             authors={authors}
          />
       </>
