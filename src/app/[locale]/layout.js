@@ -34,6 +34,7 @@ const parisienne = Parisienne({
    subsets: ['latin'],
    weight: ['400'],
    variable: '--font-parisienne',
+   preload: false,
 });
 
 /* Logo font (srb) */
@@ -42,6 +43,7 @@ const greatVibes = Great_Vibes({
    display: 'swap',
    weight: ['400'],
    variable: '--font-greatVibes',
+   preload: false,
 });
 
 /* Main font */
@@ -50,6 +52,7 @@ const cormorantGaramond = Cormorant_Garamond({
    style: ['normal', 'italic'],
    weight: ['300', '400', '500', '600', '700'],
    variable: '--font-cormorantGaramond',
+   preload: false,
 });
 
 /* Secondary font */
@@ -58,6 +61,7 @@ const ebGaramond = EB_Garamond({
    style: ['normal', 'italic'],
    weight: ['400', '500', '600', '700', '800'],
    variable: '--font-ebGaramond',
+   preload: false,
 });
 
 /* Tertiary font */
@@ -65,6 +69,7 @@ const cormorantSC = Cormorant_SC({
    subsets: ['latin'],
    weight: ['300', '400', '500', '600', '700'],
    variable: '--font-cormorantSC',
+   preload: false,
 });
 
 export async function generateMetadata({ params }) {

@@ -7,6 +7,7 @@ const crimsonText = Crimson_Text({
    style: ['normal', 'italic'],
    weight: ['400', '700'],
    variable: '--font-crimsonText',
+   preload: false,
 });
 
 /* Serbian font */
@@ -15,6 +16,7 @@ const gentium = Gentium_Book_Plus({
    style: ['normal', 'italic'],
    weight: ['400', '700'],
    variable: '--font-gentium',
+   preload: false,
 });
 
 function ArticleContent({ content, article }) {
