@@ -21,7 +21,7 @@ export default function RichTextRenderer({ html }) {
                   height={4000}
                   quality={60}
                   priority={true}
-                  sizes="(max-width: 400px) 300px, (max-width: 630px) 600px, (max-width: 1020px) 1000px, (max-width: 2300px) 400px, 100vw"
+                  sizes="(max-width: 400px) 300px, (max-width: 630px) 600px, (max-width: 1020px) 1000px, (max-width: 2300px) 800px, 100vw"
                />
             );
          }
