@@ -80,6 +80,7 @@ function MobileMenu({ session, newUser, oldUser }) {
                         </Link>
                         <Link
                            href="/user/home"
+                           prefetch
                            className="flex items-center gap-3.5"
                            onClick={() => setOpenMenu((isOpen) => !isOpen)}
                         >
@@ -122,6 +123,7 @@ function MobileMenu({ session, newUser, oldUser }) {
                      ) : (
                         <Link
                            href="/user/home"
+                           prefetch
                            className="min-w-50 xs:min-w-full flex gap-2 items-center justify-center mx-4 xs:mx-0 py-12 border-b border-b-primary-300 dark:border-b-primary-300/40"
                            onClick={() => setOpenMenu((isOpen) => !isOpen)}
                         >

@@ -1,7 +1,6 @@
 import { supabase } from '@/src/lib/supabase';
-import { cache } from 'react';
 
-export const getArticles = cache(async () => {
+export async function getArticles() {
    const { data, error } = await supabase
       .from('articles')
       .select(
@@ -13,9 +12,9 @@ export const getArticles = cache(async () => {
    if (error) throw new Error('Articles could not be loaded');
 
    return data;
-});
+}
 
-export const getArticle = cache(async (slug) => {
+export async function getArticle(slug) {
    const { data, error } = await supabase
       .from('articles')
       .select()
@@ -25,9 +24,9 @@ export const getArticle = cache(async (slug) => {
    if (error) throw new Error('Article could not be loaded');
 
    return data;
-});
+}
 
-export const getMainArticles = cache(async () => {
+export async function getMainArticles() {
    const { data, error } = await supabase
       .from('articles')
       .select('id, title, image, description, language, slug')
@@ -38,16 +37,16 @@ export const getMainArticles = cache(async () => {
    if (error) throw new Error('Articles could not be loaded');
 
    return data;
-});
+}
 
-export const getCategories = cache(async () => {
+export async function getCategories() {
    const { data, error } = await supabase.from('categories').select();
 
    if (error) throw new Error('Categories could not be loaded');
    return data;
-});
+}
 
-export const getAuthors = cache(async () => {
+export async function getAuthors() {
    const { data, error } = await supabase
       .from('authors')
       .select()
@@ -56,9 +55,9 @@ export const getAuthors = cache(async () => {
    if (error) throw new Error('Authors could not be loaded');
 
    return data;
-});
+}
 
-export const getUser = cache(async (email) => {
+export async function getUser(email) {
    const { data, error } = await supabase
       .from('users')
       .select()
@@ -68,15 +67,15 @@ export const getUser = cache(async (email) => {
    if (error) throw new Error('User could not be loaded');
 
    return data;
-});
+}
 
-export const getUsers = cache(async () => {
+export async function getUsers() {
    const { data, error } = await supabase.from('users').select();
 
    if (error) throw new Error('User could not be created');
 
    return data;
-});
+}
 
 export async function createUser(newUser) {
    const { data, error } = await supabase.from('users').insert([newUser]);
@@ -86,7 +85,7 @@ export async function createUser(newUser) {
    return data;
 }
 
-export const getComments = cache(async () => {
+export async function getComments() {
    const { data, error } = await supabase
       .from('comments')
       .select()
@@ -95,9 +94,9 @@ export const getComments = cache(async () => {
    if (error) throw new Error('Comments could not be loaded');
 
    return data;
-});
+}
 
-export const getReplies = cache(async () => {
+export async function getReplies() {
    const { data, error } = await supabase
       .from('replies')
       .select()
@@ -106,12 +105,12 @@ export const getReplies = cache(async () => {
    if (error) throw new Error('Replies could not be loaded');
 
    return data;
-});
+}
 
-export const getSettings = cache(async () => {
+export async function getSettings() {
    const { data, error } = await supabase.from('settings').select().single();
 
    if (error) throw new Error('Setting could not be updated');
 
    return data;
-});
+}

@@ -31,6 +31,7 @@ function AuthModal({ onClose, string }) {
          <div className="flex items-center gap-2 text-2xl">
             <Link
                href="/user/home"
+               prefetch
                className="flex items-center gap-2 hover:bg-accent-400 dark:hover:bg-accent-300/60 hover:text-white rounded-full p-2 px-4 pl-6 cursor-pointer hover:shadow-link-btn dark:hover:shadow-link-btn-dark transition"
             >
                <span className="uppercase font-semibold tracking-wider">

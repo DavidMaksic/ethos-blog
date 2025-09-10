@@ -1,5 +1,3 @@
-export const revalidate = 60;
-
 import { getArticles, getAuthors, getCategories } from '@/src/lib/data-service';
 import { getTranslations } from 'next-intl/server';
 import { WEBSITE_URL } from '@/src/utils/config';
