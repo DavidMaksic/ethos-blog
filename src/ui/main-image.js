@@ -26,9 +26,6 @@ function MainImage({ article }) {
             alt="Main image"
             styles="main-image rounded-3xl object-cover opacity-95 dark:opacity-80"
             quality={60}
-            priority={true}
-            fetchPriority="high"
-            sizes="(max-width: 400px) 300px, (max-width: 630px) 600px, (max-width: 2300px) 1000px, 100vw"
          />
       </div>
    );
