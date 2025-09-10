@@ -202,6 +202,7 @@ async function Page({ params, searchParams }) {
                session={session}
                comments={filteredComments}
                param={searchParam}
+               slug={article.slug}
                articleID={article.id}
                users={allUsers}
                replies={replies}

@@ -13,6 +13,7 @@ function CommentOptions({
    id,
    userID,
    replyID,
+   slug,
    articleID,
    session,
    onDelete,
@@ -67,6 +68,7 @@ function CommentOptions({
             {openDelete && (
                <Modal closeModal={() => setOpenDelete(false)}>
                   <DeleteModal
+                     slug={slug}
                      onClose={() => setOpenDelete(false)}
                      commentID={id}
                      replyID={replyID}

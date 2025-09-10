@@ -24,6 +24,7 @@ function Comment({
    comment,
    users,
    session,
+   slug,
    articleID,
    replies,
    repliesInThisArticle,
@@ -89,7 +90,7 @@ function Comment({
 
    async function handleDelete(replyID) {
       optimisticDelete(replyID);
-      await deleteReply(replyID, articleID);
+      await deleteReply(replyID, slug);
       toast.success(t('reply-deleted'));
    }
 
@@ -136,6 +137,7 @@ function Comment({
                <CommentOptions
                   id={commentID}
                   userID={comment.user_id}
+                  slug={slug}
                   articleID={articleID}
                   session={session}
                   repliesInThisArticle={repliesInThisArticle}
@@ -159,7 +161,7 @@ function Comment({
                         const newCount = commentCount - 1;
                         setCommentCount(() => commentCount - 1);
 
-                        commentLikes(commentID, articleID, newCount);
+                        commentLikes(commentID, newCount, slug);
                      } else {
                         setLikedComments((items) => [
                            ...items,
@@ -168,7 +170,7 @@ function Comment({
                         const newCount = commentCount + 1;
                         setCommentCount(() => commentCount + 1);
 
-                        commentLikes(commentID, articleID, newCount);
+                        commentLikes(commentID, newCount, slug);
                      }
                   }}
                >
@@ -233,6 +235,7 @@ function Comment({
 
             {replyIsOpen && (
                <ReplyInput
+                  slug={slug}
                   articleID={articleID}
                   commentID={commentID}
                   newUser={newUser}
@@ -249,6 +252,7 @@ function Comment({
                      session={session}
                      key={item.id}
                      users={users}
+                     slug={slug}
                      articleID={articleID}
                      commentID={commentID}
                      newUser={newUser}

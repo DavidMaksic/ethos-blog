@@ -51,6 +51,7 @@ async function ArticleImage({
 
             <span className="flex items-center gap-6 md:gap-4.5">
                <ArticleOptions
+                  slug={article.slug}
                   articleID={article.id}
                   count={article.likes}
                   session={session}

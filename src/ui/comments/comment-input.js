@@ -117,6 +117,7 @@ function CommentInput({ session, oldUser, newUser, article, commentLength }) {
                   name="userID"
                   defaultValue={session && newUser.id}
                />
+               <input hidden name="slug" defaultValue={article.slug} />
                <input hidden name="articleID" defaultValue={article.id} />
 
                <div className="relative">

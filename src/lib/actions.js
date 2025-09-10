@@ -73,17 +73,18 @@ export async function updateImage(previousState, formData) {
    return { success: true };
 }
 
-export async function updateLikes(articleID, count) {
+export async function updateLikes(articleID, count, slug) {
    const { error } = await supabase
       .from('articles')
       .update({ likes: count })
       .eq('id', articleID);
 
    if (error) throw new Error('Article could not be liked');
-   revalidatePath(`/${articleID}`);
+   revalidatePath(`/${slug}`);
+   revalidatePath(`/sr/${slug}`);
 }
 
-export async function addBookmark(user, articleID) {
+export async function addBookmark(user, articleID, slug) {
    const {
       data: [userBookmarks],
       error,
@@ -103,10 +104,11 @@ export async function addBookmark(user, articleID) {
       .eq('id', user.userID);
 
    if (error1) throw new Error('Article could not be bookmarked');
-   revalidatePath(`/${articleID}`);
+   revalidatePath(`/${slug}`);
+   revalidatePath(`/sr/${slug}`);
 }
 
-export async function removeBookmark(user, articleID) {
+export async function removeBookmark(user, articleID, slug) {
    const {
       data: [userBookmarks],
       error,
@@ -126,7 +128,8 @@ export async function removeBookmark(user, articleID) {
       .eq('id', user.userID);
 
    if (error1) throw new Error('Bookmark could not be removed');
-   revalidatePath(`/${articleID}`);
+   revalidatePath(`/${slug}`);
+   revalidatePath(`/sr/${slug}`);
 }
 
 export async function addComment(previousState, formData) {
@@ -135,19 +138,23 @@ export async function addComment(previousState, formData) {
       .replace(/\n\s*\n+/g, '\n\n')
       .replace(/\s+$/, '');
    const userID = formData.get('userID');
+   const slug = formData.get('slug');
    const articleID = formData.get('articleID');
 
-   const { error } = await supabase
-      .from('comments')
-      .insert({ content: comment, article_id: articleID, user_id: userID });
+   const { error } = await supabase.from('comments').insert({
+      content: comment,
+      article_id: articleID,
+      user_id: userID,
+   });
 
    if (error) throw new Error('Comment could not be posted');
 
-   revalidatePath(`/${articleID}`);
+   revalidatePath(`/${slug}`);
+   revalidatePath(`/sr/${slug}`);
    return { success: true };
 }
 
-export async function deleteComment(commentID, articleID) {
+export async function deleteComment(commentID, slug) {
    const { error } = await supabase
       .from('comments')
       .delete()
@@ -155,33 +162,37 @@ export async function deleteComment(commentID, articleID) {
 
    if (error) throw new Error('Comment could not be deleted');
 
-   revalidatePath(`/${articleID}`);
+   revalidatePath(`/${slug}`);
+   revalidatePath(`/sr/${slug}`);
    return { success: true };
 }
 
-export async function commentLikes(commentID, articleID, count) {
+export async function commentLikes(commentID, count, slug) {
    const { error } = await supabase
       .from('comments')
       .update({ likes: count })
       .eq('id', commentID);
 
    if (error) throw new Error('Comment could not be liked');
-   revalidatePath(`/${articleID}`);
+   revalidatePath(`/${slug}`);
+   revalidatePath(`/sr/${slug}`);
 }
 
-export async function replyLikes(replyID, articleID, count) {
+export async function replyLikes(replyID, count, slug) {
    const { error } = await supabase
       .from('replies')
       .update({ likes: count })
       .eq('id', replyID);
 
    if (error) throw new Error('Reply could not be liked');
-   revalidatePath(`/${articleID}`);
+   revalidatePath(`/${slug}`);
+   revalidatePath(`/sr/${slug}`);
 }
 
 export async function addReply(previousState, formData) {
    const comment = formData.get('content');
    const userID = formData.get('userID');
+   const slug = formData.get('slug');
    const articleID = formData.get('articleID');
    const commentID = formData.get('commentID');
 
@@ -194,16 +205,18 @@ export async function addReply(previousState, formData) {
 
    if (error) throw new Error('Reply could not be posted');
 
-   revalidatePath(`/${articleID}`);
+   revalidatePath(`/${slug}`);
+   revalidatePath(`/sr/${slug}`);
    return { success: true };
 }
 
-export async function deleteReply(replyID, articleID) {
+export async function deleteReply(replyID, slug) {
    const { error } = await supabase.from('replies').delete().eq('id', replyID);
 
    if (error) throw new Error('Reply could not be deleted');
 
-   revalidatePath(`/${articleID}`);
+   revalidatePath(`/${slug}`);
+   revalidatePath(`/sr/${slug}`);
    return { success: true };
 }
 

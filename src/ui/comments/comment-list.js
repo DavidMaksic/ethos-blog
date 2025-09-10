@@ -11,6 +11,7 @@ function CommentList({
    session,
    comments,
    param,
+   slug,
    articleID,
    users,
    replies,
@@ -64,6 +65,7 @@ function CommentList({
                              users={users}
                              session={session}
                              key={item.id}
+                             slug={slug}
                              articleID={articleID}
                              replies={replies}
                              repliesInThisArticle={repliesInThisArticle}
@@ -77,6 +79,7 @@ function CommentList({
                              users={users}
                              session={session}
                              key={item.id}
+                             slug={slug}
                              articleID={articleID}
                              replies={replies}
                              repliesInThisArticle={repliesInThisArticle}

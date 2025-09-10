@@ -19,6 +19,7 @@ function Reply({
    reply,
    session,
    users,
+   slug,
    articleID,
    commentID,
    newUser,
@@ -98,6 +99,7 @@ function Reply({
                   <CommentOptions
                      id={replyID}
                      userID={reply.user_id}
+                     slug={slug}
                      replyID={replyID}
                      articleID={articleID}
                      session={session}
@@ -122,7 +124,7 @@ function Reply({
                            const newCount = replyCount - 1;
                            setReplyCount(() => replyCount - 1);
 
-                           replyLikes(replyID, articleID, newCount);
+                           replyLikes(replyID, newCount, slug);
                         } else {
                            setLikedReplies((items) => [
                               ...items,
@@ -131,7 +133,7 @@ function Reply({
                            const newCount = replyCount + 1;
                            setReplyCount(() => replyCount + 1);
 
-                           replyLikes(replyID, articleID, newCount);
+                           replyLikes(replyID, newCount, slug);
                         }
                      }}
                   >
@@ -179,6 +181,7 @@ function Reply({
          {replyIsOpen && (
             <div className="mt-4">
                <ReplyInput
+                  slug={slug}
                   articleID={articleID}
                   commentID={commentID}
                   newUser={newUser}

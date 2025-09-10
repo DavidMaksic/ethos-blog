@@ -5,6 +5,7 @@ import { ImSpinner2 } from 'react-icons/im';
 import toast from 'react-hot-toast';
 
 function DeleteModal({
+   slug,
    onClose,
    commentID,
    replyID,
@@ -22,7 +23,7 @@ function DeleteModal({
    async function handleDelete() {
       setIsPending(true);
       let result;
-      result = await deleteComment(commentID, articleID);
+      result = await deleteComment(commentID, slug);
 
       if (result?.success) {
          repliesToDelete?.forEach((item) => deleteReply(item.id, articleID));

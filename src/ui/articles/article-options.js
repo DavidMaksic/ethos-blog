@@ -29,6 +29,7 @@ import Modal from '@/src/ui/modal/modal';
 import toast from 'react-hot-toast';
 
 function ArticleOptions({
+   slug,
    articleID,
    count,
    session,
@@ -49,10 +50,10 @@ function ArticleOptions({
       }
 
       if (isBookmarked) {
-         removeBookmark(session.user, articleID);
+         removeBookmark(session.user, articleID, slug);
          toast.success(t('bookmark-removed'));
       } else {
-         addBookmark(session.user, articleID);
+         addBookmark(session.user, articleID, slug);
          toast.success(t('bookmark-added'));
       }
 
@@ -96,7 +97,7 @@ function ArticleOptions({
                      setLikesCount(() => likesCount - 1);
 
                      removeLiked(session.user, articleID);
-                     updateLikes(articleID, newCount);
+                     updateLikes(articleID, newCount, slug);
                   } else {
                      setLikedArticles((items) => [
                         ...items,
@@ -106,7 +107,7 @@ function ArticleOptions({
                      setLikesCount(() => likesCount + 1);
 
                      addLiked(session.user, articleID);
-                     updateLikes(articleID, newCount);
+                     updateLikes(articleID, newCount, slug);
                   }
                }}
                styles="md:hidden"
