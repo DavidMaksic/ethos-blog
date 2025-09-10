@@ -2,20 +2,18 @@ import '@/src/app/[locale]/index.css';
 
 import {
    Cormorant_Garamond,
-   Gentium_Book_Plus,
    Cormorant_SC,
-   Crimson_Text,
    EB_Garamond,
    Great_Vibes,
    Parisienne,
 } from 'next/font/google';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
+import { getMessages, getTranslations } from 'next-intl/server';
 import { LanguageProvider } from '@/src/context/language-context';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
 import { LikeProvider } from '@/src/context/like-context';
 import { WEBSITE_URL } from '@/src/utils/config';
-import { getMessages, getTranslations } from 'next-intl/server';
 import { Analytics } from '@vercel/analytics/next';
 import { notFound } from 'next/navigation';
 import { Toaster } from 'react-hot-toast';
@@ -34,7 +32,6 @@ const parisienne = Parisienne({
    subsets: ['latin'],
    weight: ['400'],
    variable: '--font-parisienne',
-   preload: false,
 });
 
 /* Logo font (srb) */
@@ -43,7 +40,6 @@ const greatVibes = Great_Vibes({
    display: 'swap',
    weight: ['400'],
    variable: '--font-greatVibes',
-   preload: false,
 });
 
 /* Main font */
@@ -52,7 +48,6 @@ const cormorantGaramond = Cormorant_Garamond({
    style: ['normal', 'italic'],
    weight: ['300', '400', '500', '600', '700'],
    variable: '--font-cormorantGaramond',
-   preload: false,
 });
 
 /* Secondary font */
