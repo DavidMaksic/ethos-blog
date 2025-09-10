@@ -16,7 +16,8 @@ function LatestArticles({ articles, categories, authors }) {
 
    const currentCategory = categories.find(
       (item) =>
-         item.category === category.charAt(0).toUpperCase() + category.slice(1)
+         item.category ===
+         category?.charAt(0).toUpperCase() + category?.slice(1)
    );
 
    const finalArticles = filteredArticles?.filter((item) => {
