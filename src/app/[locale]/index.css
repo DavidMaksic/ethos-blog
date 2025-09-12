@@ -1053,7 +1053,7 @@
    color: var(--color-primary-400);
 }
 
-.inline-content > a {
+.inline-content a {
    color: var(--color-link);
    text-decoration-color: var(--color-link-border) !important;
    text-decoration: underline;
@@ -1062,7 +1062,7 @@
    cursor: pointer;
 }
 
-.inline-content > a:hover {
+.inline-content a:hover {
    color: var(--color-link-hover);
    text-decoration-color: var(--color-link-border-hover) !important;
    transition: 0.075s;
