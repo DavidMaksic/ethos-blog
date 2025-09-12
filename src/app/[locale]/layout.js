@@ -137,6 +137,7 @@ export function generateStaticParams() {
 // TODO: Implement:
 // TODO: Italic font for greek on mobile doesn't work
 // TODO: Remove H1 in blocknote editor
+// TODO: Links on don't have styles
 // TODO: Add manifest.json file for Portfolio app
 // TODO: 'Edit' option to comments
 // TODO: Social media auth

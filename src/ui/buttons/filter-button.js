@@ -1,8 +1,8 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
 import { useSetParams } from '@/src/hooks/use-set-params';
 import { useLanguage } from '@/src/context/language-context';
+import { useRouter } from 'next/navigation';
 
 import RemoteImage from '@/src/ui/remote-image';
 import srbFlag from '@/public/srb-flag.png';
@@ -18,7 +18,6 @@ function FilterButton({
    isMobile = false,
 }) {
    const { language } = useLanguage();
-   const pathname = usePathname();
    const handler = useSetParams();
    const router = useRouter();
 
@@ -29,12 +28,10 @@ function FilterButton({
       (param.lang === undefined && lang === language.language);
 
    function switchLocale(lang) {
-      const segments = pathname.split('/');
-      segments[1] = lang;
-
-      const newPath = segments.join('/');
-      router.push(newPath);
-      router.replace(newPath);
+      window.location.pathname = `/${lang}${window.location.pathname.replace(
+         /^\/(en|sr)/,
+         ''
+      )}`;
    }
 
    return (
