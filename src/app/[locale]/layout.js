@@ -90,7 +90,7 @@ export async function generateMetadata({ params }) {
    return {
       title: {
          template: `%s • ${t('Logo')}`,
-         default: t('Logo'),
+         default: `${t('Logo')}${t('Page-descriptions.title')}`,
       },
       description: t('Page-descriptions.about'),
       alternates: {
@@ -135,9 +135,6 @@ export function generateStaticParams() {
 }
 
 // TODO: Implement:
-// TODO: Italic font for greek on mobile doesn't work
-// TODO: Remove H1 in blocknote editor
-// TODO: Add manifest.json file for Portfolio app
 // TODO: 'Edit' option to comments
 // TODO: Social media auth
 // TODO: Notifications

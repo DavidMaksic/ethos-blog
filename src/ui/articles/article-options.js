@@ -113,7 +113,7 @@ function ArticleOptions({
                styles="md:hidden"
             >
                <LikeButton
-                  styles="size-[2.68rem]! 2xl:size-10.5! sm:size-9! px-[0.5rem]! mt-px"
+                  styles="size-[2.68rem]! 2xl:size-10.5! px-[0.5rem]! mt-px"
                   articleID={articleID}
                   likedArticles={likedArticles}
                   isLiked={isLiked}
