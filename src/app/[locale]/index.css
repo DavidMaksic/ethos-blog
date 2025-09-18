@@ -1021,12 +1021,7 @@
 }
 
 .bn-file-caption {
-   font-style: italic;
-   color: var(--color-primary-400);
-   font-size: 20px !important;
-   font-weight: 600;
-   width: 90%;
-   align-self: center;
+   @apply italic text-[21px]! w-[90%]! self-center! text-primary-500/75! font-medium;
 }
 
 .mantine-Tooltip-tooltip {
