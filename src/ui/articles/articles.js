@@ -76,7 +76,7 @@ function Articles({
    return (
       <>
          {paginatedArticles && (
-            <div className="grid grid-rows-3 sm:flex sm:flex-col gap-6 lg:gap-4 md:gap-4 sm:gap-5">
+            <div className="grid grid-rows-3 sm:flex sm:flex-col gap-6 lg:gap-4 md:gap-4 sm:gap-5 md:w-full">
                {paginatedArticles.length ? (
                   paginatedArticles.map((item) => (
                      <ArticleItem
