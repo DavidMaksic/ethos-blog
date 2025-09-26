@@ -9,7 +9,9 @@ import RemoteImage from '@/src/ui/remote-image';
 
 function BookmarkItem({ article, categories }) {
    const date = format(new Date(article.created_at), 'MMM dd, yyyy');
-   const category = categories?.find((item) => item.id === article?.categoryID);
+   const category = categories?.find(
+      (item) => item.id === article?.category_id
+   );
 
    const [bgColor, setBgColor] = useState('');
    const [textColor, setTextColor] = useState('');
@@ -18,11 +20,11 @@ function BookmarkItem({ article, categories }) {
    useEffect(() => {
       if (!category) return;
       if (resolvedTheme === 'dark') {
-         setBgColor(category.bgDark);
-         setTextColor(category.textDark);
+         setBgColor(category.bg_dark);
+         setTextColor(category.text_dark);
       } else {
-         setBgColor(category.bgLight);
-         setTextColor(category.textLight);
+         setBgColor(category.bg_light);
+         setTextColor(category.text_light);
       }
    }, [resolvedTheme, category]);
 

@@ -22,11 +22,11 @@ function Category({
       if (!category && !mounted) return;
 
       if (resolvedTheme === 'dark') {
-         setBgColor(category.bgDark);
-         setTextColor(category.textDark);
+         setBgColor(category.bg_dark);
+         setTextColor(category.text_dark);
       } else {
-         setBgColor(category.bgLight);
-         setTextColor(category.textLight);
+         setBgColor(category.bg_light);
+         setTextColor(category.text_light);
       }
    }, [resolvedTheme, category]);
 

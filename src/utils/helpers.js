@@ -51,10 +51,10 @@ export function applyPagination(parsedParam, result) {
    return paginatedResult;
 }
 
-export function applyFilter(result, parsedParam, currentCategoryID) {
+export function applyFilter(result, parsedParam, category_id) {
    const filteredResult = result.filter((item) => {
       const matchesCategory =
-         !currentCategory || item.categoryID === currentCategoryID;
+         !currentCategory || item.category_id === category_id;
       const matchesLanguage = !parsedParam.lang
          ? item.language === language
          : item.language ===

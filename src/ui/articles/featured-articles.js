@@ -35,7 +35,7 @@ function FeaturedArticles({ articles, categories, authors }) {
    // - Filter for featured articles
    const filteredArticles = articles.filter((item) => item.featured);
    const featuredArticles = filteredArticles.filter(
-      (item) => Number(item.categoryID) === Number(currentCategory.id)
+      (item) => Number(item.category_id) === Number(currentCategory.id)
    );
 
    const t = useTranslations('HomePage');

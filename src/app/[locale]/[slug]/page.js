@@ -151,7 +151,9 @@ async function Page({ params, searchParams }) {
    );
 
    // - Categories logic
-   const category = categories?.find((item) => item.id === article?.categoryID);
+   const category = categories?.find(
+      (item) => item.id === article?.category_id
+   );
 
    // - Other logic
    const date = format(new Date(article.created_at), 'MMM dd, yyyy');

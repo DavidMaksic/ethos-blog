@@ -22,7 +22,7 @@ function LatestArticles({ articles, categories, authors }) {
 
    const finalArticles = filteredArticles?.filter((item) => {
       if (!currentCategory) return true;
-      return item.categoryID === currentCategory?.id;
+      return item.category_id === currentCategory?.id;
    });
 
    const t = useTranslations('HomePage');

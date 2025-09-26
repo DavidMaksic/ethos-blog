@@ -5,7 +5,7 @@ async function RelatedArticles({ articles, category, title, author }) {
    const t = await getTranslations('Article');
 
    const array = articles.filter(
-      (item) => Number(item.categoryID) === Number(category.id)
+      (item) => Number(item.category_id) === Number(category.id)
    );
 
    const relatedArticles = array

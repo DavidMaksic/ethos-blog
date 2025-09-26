@@ -52,11 +52,11 @@ function Articles({
       }
 
       // 3. Filter (category + language)
-      const currentCategoryID = currentCategory?.id;
+      const category_id = currentCategory?.id;
 
       result = result.filter((item) => {
          const matchesCategory =
-            !currentCategory || item.categoryID === currentCategoryID;
+            !currentCategory || item.category_id === category_id;
          const matchesLanguage = !param.lang
             ? item.language === language
             : item.language ===
