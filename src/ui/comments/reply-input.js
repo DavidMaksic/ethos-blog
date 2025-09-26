@@ -90,7 +90,6 @@ function ReplyInput({
             <input hidden name="userID" defaultValue={session && newUser.id} />
             <input hidden name="commentID" defaultValue={commentID} />
             <input hidden name="slug" defaultValue={slug} />
-            <input hidden name="articleID" defaultValue={articleID} />
 
             <div className="relative">
                <span

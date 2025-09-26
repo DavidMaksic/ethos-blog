@@ -843,6 +843,7 @@
    text-decoration-thickness: 1.5px;
    text-underline-offset: 4px;
    cursor: pointer;
+   transition: all 0.15s;
 }
 
 .inline-content a:hover {
