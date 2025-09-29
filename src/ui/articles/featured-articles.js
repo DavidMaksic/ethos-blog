@@ -15,9 +15,9 @@ function FeaturedArticles({ articles, categories, authors }) {
    // - Filter by language
    const { filteredArray: filteredCategories } = useFilterCategory(categories);
 
-   // - Check if current tag has enough articles
+   // - Check if the current tag has enough articles
    const tags = filteredCategories?.filter(
-      (item) => JSON.parse(item.articles).length === 3
+      (item) => item.articles.length === 3
    );
 
    // - Shuffle articles
@@ -35,7 +35,7 @@ function FeaturedArticles({ articles, categories, authors }) {
    // - Filter for featured articles
    const filteredArticles = articles.filter((item) => item.featured);
    const featuredArticles = filteredArticles.filter(
-      (item) => Number(item.category_id) === Number(currentCategory.id)
+      (item) => Number(item.category_id) === currentCategory.id
    );
 
    const t = useTranslations('HomePage');
