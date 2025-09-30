@@ -39,11 +39,10 @@ export async function generateMetadata({ params }) {
 }
 
 async function Page({ searchParams }) {
-   const [searchParam, articles, categories, authors, t] = await Promise.all([
+   const [searchParam, articles, categories, t] = await Promise.all([
       searchParams,
       getArticles(),
       getCategories(),
-      getAuthors(),
       getTranslations(),
    ]);
 
@@ -88,10 +87,8 @@ async function Page({ searchParams }) {
             <Articles
                isArchive={true}
                articles={articles}
-               categories={categories}
                currentCategory={currentCategory}
                param={searchParam}
-               authors={authors}
                style="dark:bg-primary-300/15"
             />
          </section>

@@ -26,8 +26,6 @@ function Comment({
    session,
    slug,
    articleID,
-   replies,
-   repliesInThisArticle,
    newUser,
    author,
 }) {
@@ -65,12 +63,9 @@ function Comment({
       'likedComments'
    );
 
+   const replies = comment.replies;
    const commentID = comment.id;
    const isLiked = useCommentLike(commentID, likedComments);
-
-   const allReplies = replies.filter(
-      (item) => Number(item.comment_id) === commentID
-   );
 
    // - Comment line logic
    const { containerRef, lastItemRef, lineHeight } = useCommentLine(
@@ -80,14 +75,14 @@ function Comment({
       showReplies
    );
 
-   // - Deleting reply logic
    const [optimisticReplies, optimisticDelete] = useOptimistic(
-      allReplies,
+      replies,
       (curReplies, replyID) => {
          return curReplies.filter((item) => item.id === replyID);
       }
    );
 
+   // - Deleting reply logic
    async function handleDelete(replyID) {
       optimisticDelete(replyID);
       await deleteReply(replyID, slug);
@@ -135,12 +130,11 @@ function Comment({
                </div>
 
                <CommentOptions
-                  id={commentID}
+                  commentID={commentID}
                   userID={comment.user_id}
                   slug={slug}
                   articleID={articleID}
                   session={session}
-                  repliesInThisArticle={repliesInThisArticle}
                />
             </div>
 

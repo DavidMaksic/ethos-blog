@@ -1,10 +1,7 @@
 import {
    getArticles,
-   getCategories,
-   getComments,
    getSettings,
    getAuthors,
-   getReplies,
    getArticle,
    getUsers,
    getUser,
@@ -25,17 +22,18 @@ import CommentList from '@/src/ui/comments/comment-list';
 import Options from '@/src/ui/options';
 
 export async function generateMetadata({ params }) {
-   const [param, authors, t] = await Promise.all([
-      params,
-      getAuthors(),
-      getTranslations(),
-   ]);
+   const [param, t] = await Promise.all([params, getTranslations()]);
 
    const { slug, locale } = param;
-   const { title, description, image, author_id, created_at, updated_at } =
-      await getArticle(slug);
+   const {
+      title,
+      description,
+      image,
+      created_at,
+      updated_at,
+      authors: { full_name },
+   } = await getArticle(slug);
 
-   const { full_name } = authors?.find((item) => item.id === author_id);
    const path = locale === 'en' ? '' : `/${locale}`;
 
    const jsonLd = {
@@ -103,61 +101,33 @@ export async function generateMetadata({ params }) {
 }
 
 async function Page({ params, searchParams }) {
-   const [
-      param,
-      searchParam,
-      session,
-      articles,
-      allUsers,
-      authors,
-      comments,
-      replies,
-      categories,
-      comment_length,
-   ] = await Promise.all([
-      params,
-      searchParams,
-      auth(),
-      getArticles(),
-      getUsers(),
-      getAuthors(),
-      getComments(),
-      getReplies(),
-      getCategories(),
-      getSettings(),
-   ]);
+   const [param, searchParam, session, articles, allUsers, comment_length] =
+      await Promise.all([
+         params,
+         searchParams,
+         auth(),
+         getArticles(),
+         getUsers(),
+         getSettings(),
+      ]);
 
-   // - Users and authors logic
+   // - Article logic
    const user = await getUser(session?.user?.email);
    const article = await getArticle(param?.slug);
-   const author = authors?.find((item) => item.id === article.author_id);
+   const { comments, categories: category, authors: author } = article;
 
    // - Comment logic
-   const filteredComments = comments.filter(
-      (item) => item.article_id === article.id
-   );
-
    let hasCommented;
-   hasCommented = !!filteredComments.find((item) => item.user_id === user?.id);
+   hasCommented = !!comments.find((item) => item.user_id === user?.id);
 
    // - Reply logic
-   const repliesInThisArticle = replies?.filter(
-      (item) => item.article_id === article.id
-   );
-
    let hasReplied;
-   hasReplied = !!repliesInThisArticle.find(
-      (item) => item.user_id === user?.id
-   );
-
-   // - Categories logic
-   const category = categories?.find(
-      (item) => item.id === article?.category_id
-   );
+   const replies = comments.map((item) => item.replies).flat();
+   hasReplied = !!replies.find((item) => item.user_id === user?.id);
 
    // - Other logic
    const date = format(new Date(article.created_at), 'MMM dd, yyyy');
-   const commentsNum = repliesInThisArticle?.length + filteredComments?.length;
+   const commentsNum = replies?.length + comments?.length;
 
    return (
       <article className="flex flex-col">
@@ -183,7 +153,7 @@ async function Page({ params, searchParams }) {
                   session={session}
                   allUsers={allUsers}
                   user={user}
-                  comments={filteredComments}
+                  comments={comments}
                   hasCommented={hasCommented}
                   hasReplied={hasReplied}
                   commentsNum={commentsNum}
@@ -200,12 +170,10 @@ async function Page({ params, searchParams }) {
 
             <CommentList
                session={session}
-               comments={filteredComments}
+               comments={comments}
                param={searchParam}
                articleID={article.id}
                users={allUsers}
-               replies={replies}
-               repliesInThisArticle={repliesInThisArticle}
                newUser={user}
                commentsNum={commentsNum}
                author={author}

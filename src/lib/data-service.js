@@ -4,7 +4,7 @@ export async function getArticles() {
    const { data, error } = await supabase
       .from('articles')
       .select(
-         'id, category_id, created_at, title, image, description, author_id, featured, language, slug, updated_at'
+         'id, category_id, created_at, title, image, description, author_id, featured, language, slug, updated_at, authors (full_name), categories(*)'
       )
       .eq('status', 'published')
       .order('id', { ascending: false });
@@ -17,7 +17,7 @@ export async function getArticles() {
 export async function getArticle(slug) {
    const { data, error } = await supabase
       .from('articles')
-      .select()
+      .select('*, categories (*), authors (*), comments (*, replies (*))')
       .eq('slug', slug)
       .single();
 
@@ -91,21 +91,10 @@ export async function createUser(newUser) {
 export async function getComments() {
    const { data, error } = await supabase
       .from('comments')
-      .select()
+      .select('*, replies (*, articles (title, slug)), articles (title, slug)')
       .order('id', { ascending: false });
 
    if (error) throw new Error('Comments could not be loaded');
-
-   return data;
-}
-
-export async function getReplies() {
-   const { data, error } = await supabase
-      .from('replies')
-      .select()
-      .order('id', { ascending: true });
-
-   if (error) throw new Error('Replies could not be loaded');
 
    return data;
 }

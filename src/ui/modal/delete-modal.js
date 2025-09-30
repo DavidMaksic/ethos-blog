@@ -1,6 +1,6 @@
-import { deleteComment, deleteReply } from '@/src/lib/actions';
 import { useLocale, useTranslations } from 'next-intl';
 import { startTransition, useState } from 'react';
+import { deleteComment } from '@/src/lib/actions';
 import { ImSpinner2 } from 'react-icons/im';
 import toast from 'react-hot-toast';
 
@@ -11,14 +11,10 @@ function DeleteModal({
    replyID,
    articleID,
    onDelete,
-   repliesInThisArticle,
 }) {
    const t = useTranslations('Comment');
    const locale = useLocale();
    const [isPending, setIsPending] = useState(false);
-   const repliesToDelete = repliesInThisArticle?.filter(
-      (item) => item.comment_id === commentID
-   );
 
    async function handleDelete() {
       setIsPending(true);
@@ -26,7 +22,6 @@ function DeleteModal({
       result = await deleteComment(commentID, slug);
 
       if (result?.success) {
-         repliesToDelete?.forEach((item) => deleteReply(item.id, articleID));
          onClose();
          toast.success(t('deleted'));
       }

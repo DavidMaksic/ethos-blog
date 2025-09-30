@@ -2,23 +2,19 @@ import { getLocale, getTranslations } from 'next-intl/server';
 import { CommentDate } from '@/src/utils/helpers';
 import { Link } from '@/src/i18n/navigation';
 
-async function UserComment({ comment, users, user, articles, allComments }) {
+async function UserComment({ comment, users, user, comments }) {
    const t = await getTranslations('Comment');
    const locale = await getLocale();
-   const date = CommentDate(comment.created_at, locale);
 
-   const commentedArticle = articles.find(
-      (item) => item.id === comment.article_id
-   );
+   const { id, comment_id, created_at, articles, content } = comment;
+   const date = CommentDate(created_at, locale);
 
-   const repliedToID = allComments.find(
-      (item) => item.id === comment.comment_id
-   )?.user_id;
-
+   const repliedToID = comments.find((item) => item.id === comment_id)?.user_id;
    const repliedTo = users.find((item) => item.id === repliedToID);
 
-   const title = commentedArticle.title;
-   const fullUrl = `/${commentedArticle.slug}/#comment-${comment.id}`;
+   if (!articles) return null;
+   const { title, slug } = articles;
+   const fullUrl = `/${slug}/#comment-${id}`;
 
    return (
       <Link
@@ -31,7 +27,7 @@ async function UserComment({ comment, users, user, articles, allComments }) {
                   {user.username ? user.username : user.name}
                </span>
                <p className="text-primary-400 md:hidden">
-                  {comment.isReply ? t('user-replied') : t('user-commented')}{' '}
+                  {comment_id ? t('user-replied') : t('user-commented')}{' '}
                   {repliedTo ? (
                      <>
                         {repliedTo.id === comment.user_id ? (
@@ -65,7 +61,7 @@ async function UserComment({ comment, users, user, articles, allComments }) {
          </div>
 
          <p className="font-secondary text-[1.35rem] lg:text-xl md:text-[1.62rem] xs:text-[1.5rem] xs:leading-[1.4] whitespace-pre-line">
-            {comment.content}
+            {content}
          </p>
       </Link>
    );

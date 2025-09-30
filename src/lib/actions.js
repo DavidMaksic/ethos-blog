@@ -194,10 +194,12 @@ export async function addReply(previousState, formData) {
    const userID = formData.get('userID');
    const slug = formData.get('slug');
    const commentID = formData.get('commentID');
+   const articleID = formData.get('articleID');
 
    const { error } = await supabase.from('replies').insert({
       content: comment,
       comment_id: commentID,
+      article_id: articleID,
       user_id: userID,
    });
 

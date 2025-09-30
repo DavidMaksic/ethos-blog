@@ -1,5 +1,5 @@
-import { getComments, getReplies, getUser } from '@/src/lib/data-service';
 import { FaRegComments, FaRegHeart } from 'react-icons/fa';
+import { getComments, getUser } from '@/src/lib/data-service';
 import { getTranslations } from 'next-intl/server';
 import { LuBookmark } from 'react-icons/lu';
 import { auth } from '@/src/lib/auth';
@@ -14,10 +14,9 @@ export async function generateMetadata({ params }) {
 }
 
 async function Page() {
-   const [session, comments, replies, t] = await Promise.all([
+   const [session, comments, t] = await Promise.all([
       auth(),
       getComments(),
-      getReplies(),
       getTranslations(),
    ]);
 
@@ -26,6 +25,7 @@ async function Page() {
 
    const likesLength = JSON.parse(newUser?.liked).flat().length;
    const bookmarksLength = JSON.parse(newUser?.bookmarks).flat().length;
+   const replies = comments.map((item) => item.replies).flat();
 
    const mergedArray = [...comments, ...replies];
    const commentsLength = mergedArray.filter(

@@ -10,14 +10,13 @@ import Menus from '@/src/ui/menus';
 import toast from 'react-hot-toast';
 
 function CommentOptions({
-   id,
+   commentID,
    userID,
    replyID,
    slug,
    articleID,
    session,
    onDelete,
-   repliesInThisArticle,
 }) {
    const [openDelete, setOpenDelete] = useState();
    const t = useTranslations('Comment');
@@ -25,15 +24,15 @@ function CommentOptions({
    return (
       <>
          <Menus>
-            <Menus.Toggle id={String(id)} />
+            <Menus.Toggle id={String(commentID)} />
 
-            <Menus.List id={String(id)}>
+            <Menus.List id={String(commentID)}>
                <Menus.Button
                   icon={<FiLink className="stroke-[1.7px]" />}
                   handler={() => {
                      const baseUrl =
                         window.location.origin + window.location.pathname;
-                     const fullUrl = `${baseUrl}#comment-${id}`;
+                     const fullUrl = `${baseUrl}#comment-${commentID}`;
 
                      navigator.clipboard.writeText(fullUrl);
                      toast.success(t('link'));
@@ -46,7 +45,7 @@ function CommentOptions({
                   <>
                      {/* <Menus.Button
                      icon={<LuPencilLine className="stroke-[1.7px]" />}
-                     // handler={() => navigate(`/edit/:${id}`)}
+                     // handler={() => navigate(`/edit/:${commentID}`)}
                      >
                         Edit
                      </Menus.Button> */}
@@ -70,11 +69,10 @@ function CommentOptions({
                   <DeleteModal
                      slug={slug}
                      onClose={() => setOpenDelete(false)}
-                     commentID={id}
+                     commentID={commentID}
                      replyID={replyID}
                      articleID={articleID}
                      onDelete={onDelete}
-                     repliesInThisArticle={repliesInThisArticle}
                   />
                </Modal>
             )}

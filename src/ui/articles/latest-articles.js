@@ -36,7 +36,6 @@ function LatestArticles({ articles, categories, authors }) {
 
             <Articles
                articles={finalArticles}
-               categories={categories}
                currentCategory={currentCategory}
                authors={authors}
                style="dark:bg-primary-200 md:dark:bg-primary-300/15"

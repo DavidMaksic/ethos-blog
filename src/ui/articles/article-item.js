@@ -7,17 +7,13 @@ import { format } from 'date-fns';
 import { Link } from '@/src/i18n/navigation';
 import RemoteImage from '@/src/ui/remote-image';
 
-function ArticleItem({ article, categories, style, authors }) {
+function ArticleItem({ article, style }) {
    const date = format(new Date(article.created_at), 'MMM dd, yyyy');
-   const category = categories?.find(
-      (item) => item.id === article?.category_id
-   );
+   const category = article.categories;
 
    const [bgColor, setBgColor] = useState('');
    const [textColor, setTextColor] = useState('');
    const { resolvedTheme } = useTheme();
-
-   const author = authors?.find((item) => item.id === article.author_id);
 
    useEffect(() => {
       if (!category) return;
@@ -63,7 +59,7 @@ function ArticleItem({ article, categories, style, authors }) {
                <div className="space-x-2 text-primary-400 dark:text-primary-600/60 mb-4 lg:mb-3 md:mb-4 sm:mb-5 lg:text-base md:text-xl">
                   <span>{date}</span>
                   <span className="text-lg lg:text-base">•</span>
-                  <span>{author.full_name}</span>
+                  <span>{article.authors.full_name}</span>
                </div>
 
                <span

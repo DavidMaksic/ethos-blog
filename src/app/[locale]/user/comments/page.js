@@ -1,10 +1,4 @@
-import {
-   getArticles,
-   getComments,
-   getReplies,
-   getUsers,
-   getUser,
-} from '@/src/lib/data-service';
+import { getComments, getUsers, getUser } from '@/src/lib/data-service';
 import { getTranslations } from 'next-intl/server';
 import { getSortedItems } from '@/src/utils/helpers';
 import { auth } from '@/src/lib/auth';
@@ -19,31 +13,21 @@ export async function generateMetadata({ params }) {
 }
 
 async function Page({ searchParams }) {
-   const [searchParam, session, articles, users, replies, t] =
-      await Promise.all([
-         searchParams,
-         auth(),
-         getArticles(),
-         getUsers(),
-         getReplies(),
-         getTranslations(),
-      ]);
+   const [searchParam, session, comments, users, t] = await Promise.all([
+      searchParams,
+      auth(),
+      getComments(),
+      getUsers(),
+      getTranslations(),
+   ]);
 
    const user = await getUser(session?.user.email);
+   const replies = comments.map((item) => item.replies).flat();
 
-   const updatedReplies = replies.map((item) => ({
-      ...item,
-      isReply: true,
-   }));
-
-   const comments = await getComments();
-   if (!comments.length) return <span>bruh</span>;
-
-   const mergedArray = [...comments, ...updatedReplies];
+   const mergedArray = [...comments, ...replies];
    const userComments = mergedArray.filter(
       (item) => item.user_id === session.user.userID
    );
-
    const sortedComments = getSortedItems(searchParam, userComments);
 
    return (
@@ -77,8 +61,7 @@ async function Page({ searchParams }) {
                {sortedComments?.map((item) => (
                   <UserComment
                      comment={item}
-                     allComments={comments}
-                     articles={articles}
+                     comments={comments}
                      users={users}
                      user={user}
                      key={item.id}

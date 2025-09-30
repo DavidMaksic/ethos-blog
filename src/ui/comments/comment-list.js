@@ -14,8 +14,6 @@ function CommentList({
    slug,
    articleID,
    users,
-   replies,
-   repliesInThisArticle,
    newUser,
    commentsNum,
    author,
@@ -25,7 +23,7 @@ function CommentList({
    const sortedComments = useMemo(() => {
       if (!param?.sort) return comments;
 
-      return getSortedItems(param, comments);
+      return [...getSortedItems(param, comments)].reverse();
    }, [param, comments]);
 
    return (
@@ -67,8 +65,6 @@ function CommentList({
                              key={item.id}
                              slug={slug}
                              articleID={articleID}
-                             replies={replies}
-                             repliesInThisArticle={repliesInThisArticle}
                              newUser={newUser}
                              author={author}
                           />
@@ -81,8 +77,6 @@ function CommentList({
                              key={item.id}
                              slug={slug}
                              articleID={articleID}
-                             replies={replies}
-                             repliesInThisArticle={repliesInThisArticle}
                              newUser={newUser}
                              author={author}
                           />

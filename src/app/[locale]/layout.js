@@ -135,7 +135,6 @@ export function generateStaticParams() {
 }
 
 // TODO: Implement:
-// TODO: Fetch comments and replies with articles
 // TODO: When lang is changed, clear category URL search
 // TODO: 'Edit' option to comments
 // TODO: Social media auth
