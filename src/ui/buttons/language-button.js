@@ -1,6 +1,5 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useOutsideClick } from '@/src/hooks/use-outside-click';
-import { useSetParams } from '@/src/hooks/use-set-params';
 import { useLanguage } from '@/src/context/language-context';
 import { useState } from 'react';
 
@@ -24,13 +23,16 @@ function LanguageButton() {
    const [open, setOpen] = useState(false);
 
    const ref = useOutsideClick(() => setOpen((isOpen) => !isOpen), false);
-   const handler = useSetParams();
 
    function switchLocale(lang) {
-      window.location.pathname = `/${lang}${window.location.pathname.replace(
-         /^\/(en|sr)/,
-         ''
-      )}`;
+      const url = new URL(window.location.href);
+      url.searchParams.delete('category');
+
+      // Replace the locale part of the pathname (e.g. /en/blog → /sr/blog)
+      url.pathname = `/${lang}${url.pathname.replace(/^\/(en|sr)/, '')}`;
+
+      // Navigate to the new URL
+      window.location.href = url.toString();
    }
 
    return (
@@ -68,7 +70,6 @@ function LanguageButton() {
                               language: item.lang,
                               flag: item.flag,
                            });
-                           handler('category', '');
 
                            const lang = item.lang === 'English' ? 'en' : 'sr';
                            switchLocale(lang);

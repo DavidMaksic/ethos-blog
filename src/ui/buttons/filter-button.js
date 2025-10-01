@@ -1,6 +1,5 @@
 'use client';
 
-import { useSetParams } from '@/src/hooks/use-set-params';
 import { useLanguage } from '@/src/context/language-context';
 import { useRouter } from 'next/navigation';
 
@@ -18,7 +17,6 @@ function FilterButton({
    isMobile = false,
 }) {
    const { language } = useLanguage();
-   const handler = useSetParams();
    const router = useRouter();
 
    const langString = lang.charAt(0).toLowerCase() + lang.slice(1);
@@ -28,10 +26,14 @@ function FilterButton({
       (param.lang === undefined && lang === language.language);
 
    function switchLocale(lang) {
-      window.location.pathname = `/${lang}${window.location.pathname.replace(
-         /^\/(en|sr)/,
-         ''
-      )}`;
+      const url = new URL(window.location.href);
+      url.searchParams.delete('category');
+
+      // Replace the locale part of the pathname (e.g. /en/blog → /sr/blog)
+      url.pathname = `/${lang}${url.pathname.replace(/^\/(en|sr)/, '')}`;
+
+      // Navigate to the new URL
+      window.location.href = url.toString();
    }
 
    return (
@@ -49,7 +51,6 @@ function FilterButton({
             router.push(`?${params.toString()}`);
 
             if (isMobile) {
-               handler('category', '');
                const language = lang === 'English' ? 'en' : 'sr';
                switchLocale(language);
             }

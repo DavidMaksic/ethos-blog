@@ -35,8 +35,8 @@ function Search({ isArchive = false }) {
 
    // - Update URL param only when debounced input changes
    useEffect(() => {
-      handler('search', debouncedInput);
-   }, [debouncedInput]); // eslint-disable-line
+      if (open) handler('search', debouncedInput);
+   }, [debouncedInput, open]); // eslint-disable-line
 
    // - Toggle open on Enter key
    useEffect(() => {
