@@ -99,10 +99,58 @@ export async function getComments() {
    return data;
 }
 
+export async function getBookmarks(userID) {
+   const { data, error } = await supabase
+      .from('bookmarks')
+      .select(
+         '*, articles (id, created_at, title, image, category_id, categories(*))'
+      )
+      .eq('user_id', userID);
+
+   if (error) throw new Error('Bookmarks could not be loaded');
+
+   return data;
+}
+
+export async function isBookmarked(userID) {
+   const { data, error } = await supabase
+      .from('bookmarks')
+      .select('id')
+      .eq('user_id', userID);
+
+   if (error) throw new Error('Bookmarks could not be loaded');
+
+   return data.length > 0;
+}
+
+export async function getBookmarksCount(articleID, userID) {
+   if (articleID) {
+      const { count, error } = await supabase
+         .from('bookmarks')
+         .select('id', { count: 'exact', head: true })
+         .eq('article_id', articleID);
+
+      if (error) throw new Error('Bookmarks count could not be loaded');
+
+      return count || 0;
+   }
+
+   if (userID) {
+      const { count, error } = await supabase
+         .from('bookmarks')
+         .select('id', { count: 'exact', head: true })
+         .eq('user_id', userID);
+
+      if (error) throw new Error('Bookmarks count count could not be loaded');
+
+      return count || 0;
+   }
+}
+
 export async function getSettings() {
    const { data, error } = await supabase.from('settings').select().single();
 
-   if (error) throw new Error('Setting could not be updated');
+   if (error) throw new Error('Setting could not be loaded');
 
    return data;
 }

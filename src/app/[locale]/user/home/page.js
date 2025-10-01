@@ -1,5 +1,9 @@
 import { FaRegComments, FaRegHeart } from 'react-icons/fa';
-import { getComments, getUser } from '@/src/lib/data-service';
+import {
+   getUser,
+   getComments,
+   getBookmarksCount,
+} from '@/src/lib/data-service';
 import { getTranslations } from 'next-intl/server';
 import { LuBookmark } from 'react-icons/lu';
 import { auth } from '@/src/lib/auth';
@@ -19,12 +23,14 @@ async function Page() {
       getComments(),
       getTranslations(),
    ]);
-
    const { user } = session;
-   const newUser = await getUser(user.email);
+
+   const [newUser, bookmarksLength] = await Promise.all([
+      getUser(user.email),
+      getBookmarksCount(null, user.userID),
+   ]);
 
    const likesLength = JSON.parse(newUser?.liked).flat().length;
-   const bookmarksLength = JSON.parse(newUser?.bookmarks).flat().length;
    const replies = comments.map((item) => item.replies).flat();
 
    const mergedArray = [...comments, ...replies];

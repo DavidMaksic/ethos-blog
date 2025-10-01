@@ -103,7 +103,14 @@ export async function addBookmark(user, articleID, slug) {
       .update({ bookmarks: [...allIDs, articleID] })
       .eq('id', user.userID);
 
-   if (error1) throw new Error('Article could not be bookmarked');
+   const { error2 } = await supabase.from('bookmarks').insert([
+      {
+         user_id: user.userID,
+         article_id: articleID,
+      },
+   ]);
+
+   if (error1 || error2) throw new Error('Article could not be bookmarked');
    revalidatePath(`/${slug}`);
    revalidatePath(`/sr/${slug}`);
 }
@@ -127,7 +134,12 @@ export async function removeBookmark(user, articleID, slug) {
       .update({ bookmarks: [...allIDs] })
       .eq('id', user.userID);
 
-   if (error1) throw new Error('Bookmark could not be removed');
+   const { error2 } = await supabase
+      .from('bookmarks')
+      .delete()
+      .eq('user_id', user.userID);
+
+   if (error1 || error2) throw new Error('Bookmark could not be removed');
    revalidatePath(`/${slug}`);
    revalidatePath(`/sr/${slug}`);
 }

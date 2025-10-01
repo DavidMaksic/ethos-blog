@@ -19,7 +19,6 @@ import { AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { useLikeContext } from '@/src/context/like-context';
 
-import useBookmark from '@/src/hooks/use-bookmark';
 import BackButton from '@/src/ui/buttons/back-button';
 import LikeButton from '@/src/ui/buttons/like-button';
 import AuthModal from '@/src/ui/modal/auth-modal';
@@ -33,15 +32,14 @@ function ArticleOptions({
    articleID,
    count,
    session,
-   user,
    hasCommented,
    hasReplied,
+   hasBookmarked,
 }) {
    const t = useTranslations('Article');
    const [isOpen, setIsOpen] = useState();
 
-   const isBookmarkedDB = useBookmark(articleID, session, user);
-   const [isBookmarked, setIsBookmarked] = useState(isBookmarkedDB);
+   const [isBookmarked, setIsBookmarked] = useState(hasBookmarked);
 
    function handleBookmarkClick() {
       if (!session) {
@@ -61,8 +59,8 @@ function ArticleOptions({
    }
 
    useEffect(() => {
-      setIsBookmarked(isBookmarkedDB);
-   }, [isBookmarkedDB]);
+      setIsBookmarked(hasBookmarked);
+   }, [hasBookmarked]);
 
    // Likes logic
    const [likedArticles, setLikedArticles] = useLocalStorage(

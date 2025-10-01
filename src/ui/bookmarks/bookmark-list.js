@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import { getSortedItems } from '@/src/utils/helpers';
 
@@ -8,22 +8,15 @@ import BookmarkItem from '@/src/ui/bookmarks/bookmark-item';
 import Pagination from '@/src/ui/pagination';
 import Fuse from 'fuse.js';
 
-function BookmarkList({ bookmarkIDs, articles, categories, param }) {
-   const [bookmarkedArticles, setBookmarkedArticles] = useState([]);
+function BookmarkList({ usersBookmarks, param }) {
    const t = useTranslations('Profile');
+   const articles = usersBookmarks.map((item) => item.articles);
+   const [bookmarks, setBookmarks] = useState(articles);
 
-   useEffect(() => {
-      const bookmarked = bookmarkIDs
-         .map((bookmarkID) => articles.find((item) => item.id === bookmarkID))
-         .filter(Boolean);
+   const displayedBookmarks = useMemo(() => {
+      if (!bookmarks || bookmarks.length === 0) return [];
 
-      setBookmarkedArticles(bookmarked);
-   }, [bookmarkIDs, articles]);
-
-   const displayedArticles = useMemo(() => {
-      if (!bookmarkedArticles || bookmarkedArticles.length === 0) return [];
-
-      let filtered = [...bookmarkedArticles];
+      let filtered = [...bookmarks];
 
       // 1. Search filtering
       if (param.search) {
@@ -47,22 +40,18 @@ function BookmarkList({ bookmarkIDs, articles, categories, param }) {
       const to = from + itemsPerPage;
 
       return filtered.slice(from, to);
-   }, [param, bookmarkedArticles]);
+   }, [param, bookmarks]);
 
    return (
       <>
          <div
             className={`grid grid-rows-3 gap-4 2xl:gap-3 ${
-               !displayedArticles.length && 'grid-rows-1!'
+               !displayedBookmarks.length && 'grid-rows-1!'
             }`}
          >
-            {displayedArticles.length ? (
-               displayedArticles.map((item) => (
-                  <BookmarkItem
-                     article={item}
-                     categories={categories}
-                     key={item.id}
-                  />
+            {displayedBookmarks.length ? (
+               displayedBookmarks.map((item) => (
+                  <BookmarkItem bookmark={item} key={item.id} />
                ))
             ) : (
                <span className="self-center justify-self-center sm:mt-60 sm:mb-44 text-primary-400 text-3xl border border-tertiary dark:border-primary-300/15 rounded-3xl py-8 px-12 bg-white dark:bg-primary-300/15">
@@ -71,10 +60,10 @@ function BookmarkList({ bookmarkIDs, articles, categories, param }) {
             )}
          </div>
 
-         {bookmarkedArticles.length <= 3 ? (
+         {displayedBookmarks.length <= 3 ? (
             <div className="h-24" />
          ) : (
-            <Pagination count={bookmarkedArticles.length} isArchive={false} />
+            <Pagination count={displayedBookmarks.length} isArchive={false} />
          )}
       </>
    );

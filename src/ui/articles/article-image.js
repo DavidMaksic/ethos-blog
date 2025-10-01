@@ -1,21 +1,11 @@
 import { HiOutlineUserCircle } from 'react-icons/hi2';
 import { getLocale } from 'next-intl/server';
 
-import ArticleOptions from '@/src/ui/articles/article-options';
 import RemoteImage from '@/src/ui/remote-image';
 import MainImage from '@/src/ui/main-image';
 import Category from '@/src/ui/categories/category';
 
-async function ArticleImage({
-   article,
-   author,
-   user,
-   session,
-   hasReplied,
-   hasCommented,
-   category,
-   date,
-}) {
+async function ArticleImage({ article, author, date, children }) {
    const locale = await getLocale();
 
    return (
@@ -50,19 +40,11 @@ async function ArticleImage({
             </div>
 
             <span className="flex items-center gap-6 md:gap-4.5">
-               <ArticleOptions
-                  slug={article.slug}
-                  articleID={article.id}
-                  count={article.likes}
-                  session={session}
-                  user={user}
-                  hasCommented={hasCommented}
-                  hasReplied={hasReplied}
-               />
+               {children}
 
                <div className="pointer-events-none">
                   <Category
-                     category={category}
+                     category={article.categories}
                      isArticle={true}
                      customStyles="text-xl! md:text-[1.4rem]! sm:text-[1.2rem]! !font-bold pb-[8px]! sm:pb-[6px]!"
                   />

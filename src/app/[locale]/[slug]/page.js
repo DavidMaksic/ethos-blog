@@ -1,7 +1,8 @@
 import {
+   getBookmarksCount,
+   isBookmarked,
    getArticles,
    getSettings,
-   getAuthors,
    getArticle,
    getUsers,
    getUser,
@@ -20,6 +21,7 @@ import CommentInput from '@/src/ui/comments/comment-input';
 import ArticleImage from '@/src/ui/articles/article-image';
 import CommentList from '@/src/ui/comments/comment-list';
 import Options from '@/src/ui/options';
+import ArticleOptions from '@/src/ui/articles/article-options';
 
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
@@ -112,9 +114,12 @@ async function Page({ params, searchParams }) {
       ]);
 
    // - Article logic
-   const user = await getUser(session?.user?.email);
-   const article = await getArticle(param?.slug);
-   const { comments, categories: category, authors: author } = article;
+   const [user, article] = await Promise.all([
+      getUser(session?.user?.email),
+      getArticle(param?.slug),
+   ]);
+
+   const { id, comments, categories: category, authors: author } = article;
 
    // - Comment logic
    let hasCommented;
@@ -125,6 +130,12 @@ async function Page({ params, searchParams }) {
    const replies = comments.map((item) => item.replies).flat();
    hasReplied = !!replies.find((item) => item.user_id === user?.id);
 
+   // - Bookmark logic
+   const [hasBookmarked, bookmarkCount] = await Promise.all([
+      isBookmarked(user.id),
+      getBookmarksCount(id),
+   ]);
+
    // - Other logic
    const date = format(new Date(article.created_at), 'MMM dd, yyyy');
    const commentsNum = replies?.length + comments?.length;
@@ -134,16 +145,17 @@ async function Page({ params, searchParams }) {
          <div className="relative max-w-5xl 2xl:max-w-[46rem] md:max-w-full self-center flex flex-col gap-6 xs:gap-4 py-2 px-24 2xl:px-0 pb-22 2xl:pt-8 md:pt-6 sm:pt-4 transition-200">
             <ArticleHeading article={article} />
 
-            <ArticleImage
-               article={article}
-               author={author}
-               user={user}
-               session={session}
-               hasReplied={hasReplied}
-               hasCommented={hasCommented}
-               category={category}
-               date={date}
-            />
+            <ArticleImage article={article} author={author} date={date}>
+               <ArticleOptions
+                  slug={article.slug}
+                  articleID={article.id}
+                  count={article.likes}
+                  session={session}
+                  hasCommented={hasCommented}
+                  hasReplied={hasReplied}
+                  hasBookmarked={hasBookmarked}
+               />
+            </ArticleImage>
 
             <ArticleContent content={article?.content} article={article} />
 
@@ -151,11 +163,11 @@ async function Page({ params, searchParams }) {
                <OtherArticleOptions
                   article={article}
                   session={session}
-                  allUsers={allUsers}
-                  user={user}
                   comments={comments}
-                  hasCommented={hasCommented}
                   hasReplied={hasReplied}
+                  hasCommented={hasCommented}
+                  hasBookmarked={hasBookmarked}
+                  bookmarkCount={bookmarkCount}
                   commentsNum={commentsNum}
                />
             </ArticleAuthorInfo>

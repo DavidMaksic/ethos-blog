@@ -21,7 +21,6 @@ import { useLikeContext } from '@/src/context/like-context';
 import { FiLink } from 'react-icons/fi';
 
 import ArticleOptionItem from '@/src/ui/articles/article-option-item';
-import useBookmark from '@/src/hooks/use-bookmark';
 import LikeButton from '@/src/ui/buttons/like-button';
 import AuthModal from '@/src/ui/modal/auth-modal';
 import useLike from '@/src/hooks/use-like';
@@ -31,11 +30,11 @@ import Modal from '@/src/ui/modal/modal';
 function OtherArticleOptions({
    article,
    session,
-   allUsers,
-   user,
    comments,
-   hasCommented,
    hasReplied,
+   hasCommented,
+   hasBookmarked,
+   bookmarkCount,
    commentsNum,
 }) {
    const t = useTranslations();
@@ -43,16 +42,8 @@ function OtherArticleOptions({
    const articleID = article.id;
 
    // 1. Bookmark logic
-   const allBookmarks = allUsers
-      .map((item) => JSON.parse(item.bookmarks))
-      .filter((item) => item.length)
-      .flat();
-
-   const bookmarks = allBookmarks.filter((item) => item === articleID);
-   const [bookmarksCount, setBookmarksCount] = useState(bookmarks.length);
-
-   const isBookmarkedDB = useBookmark(articleID, session, user);
-   const [isBookmarked, setIsBookmarked] = useState(isBookmarkedDB);
+   const [bookmarksCount, setBookmarksCount] = useState(bookmarkCount);
+   const [isBookmarked, setIsBookmarked] = useState(hasBookmarked);
 
    const handleBookmark = () => {
       if (!session) {
@@ -74,8 +65,12 @@ function OtherArticleOptions({
    };
 
    useEffect(() => {
-      setIsBookmarked(isBookmarkedDB);
-   }, [isBookmarkedDB]);
+      setIsBookmarked(hasBookmarked);
+   }, [hasBookmarked]);
+
+   useEffect(() => {
+      setBookmarksCount(bookmarkCount);
+   }, [bookmarkCount]);
 
    // 2. Likes logic
    const [likedArticles, setLikedArticles] = useLocalStorage(
