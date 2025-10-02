@@ -1204,7 +1204,7 @@ strong {
 
 h2,
 h3 {
-   scroll-margin-top: 46px;
+   scroll-margin-top: 44px;
 }
 
 @media (max-width: 550px) {
