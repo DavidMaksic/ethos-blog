@@ -12,10 +12,9 @@ function RelatedArticle({ article, author }) {
       >
          <div className="relative h-48 2xl:h-44 md:h-80 sm:h-60">
             <Image
-               ref={article.image}
                className="object-cover opacity-90 dark:opacity-75 group-hover:opacity-100! dark:group-hover:opacity-90! transition-200"
                fill
-               src={imageUrl}
+               src={article.image}
                alt="Article image"
                quality={60}
                sizes="100vw"
