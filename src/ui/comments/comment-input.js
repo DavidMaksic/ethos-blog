@@ -77,7 +77,7 @@ function CommentInput({ session, oldUser, newUser, article, commentLength }) {
                      <Image
                         className="rounded-full block aspect-square object-cover object-center dark:opacity-90 border border-primary-300 transition-200"
                         fill
-                        priority={true}
+                        // priority={true}
                         src={newUser.image ? newUser.image : oldUser.image}
                         alt="Profile image"
                         referrerPolicy="no-referrer"
