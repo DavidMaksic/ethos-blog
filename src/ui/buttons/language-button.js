@@ -45,7 +45,7 @@ function LanguageButton() {
                className="opacity-80 dark:opacity-70 transition-[opacity]"
                fill
                src={language.flag ? language.flag : srbFlag}
-               // priority={true}
+               priority={true}
                alt="Serbian flag"
             />
          </div>
@@ -80,7 +80,7 @@ function LanguageButton() {
                            <Image
                               className="border border-primary-300 dark:border-primary-200 rounded-full group-hover:opacity-100 dark:group-hover:opacity-95 transition-[opacity]"
                               fill
-                              // priority={true}
+                              priority={true}
                               src={item.flag}
                               alt={item.lang}
                            />

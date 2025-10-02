@@ -13,7 +13,7 @@ async function SignInButton() {
                alt="Google logo"
                height="24"
                width="24"
-               // priority={true}
+               priority={true}
             />
             <span>{t('google')}</span>
          </button>
