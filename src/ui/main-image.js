@@ -27,7 +27,7 @@ function MainImage({ article }) {
             src={article.image}
             alt="Main image"
             priority={true}
-            // quality={60}
+            quality={60}
             fetchPriority="high"
             sizes="100vw"
          />
