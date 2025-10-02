@@ -3,8 +3,8 @@
 import { useMediaQuery } from 'react-responsive';
 import { useEffect } from 'react';
 
-import RemoteImage from '@/src/ui/remote-image';
 import mediumZoom from 'medium-zoom';
+import Image from 'next/image';
 
 function MainImage({ article }) {
    const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -21,10 +21,15 @@ function MainImage({ article }) {
 
    return (
       <div className="parent relative h-[24rem] 2xl:h-[21rem] sm:h-[17rem]">
-         <RemoteImage
-            imageUrl={article.image}
+         <Image
+            className="main-image rounded-3xl object-cover opacity-95 dark:opacity-80"
+            fill
+            src={article.image}
             alt="Main image"
-            styles="main-image rounded-3xl object-cover opacity-95 dark:opacity-80"
+            priority={true}
+            // quality={60}
+            fetchPriority="high"
+            sizes="100vw"
          />
       </div>
    );
