@@ -16,27 +16,19 @@ import { LikeProvider } from '@/src/context/like-context';
 import { WEBSITE_URL } from '@/src/utils/config';
 import { Analytics } from '@vercel/analytics/next';
 import { notFound } from 'next/navigation';
+import { Toaster } from 'react-hot-toast';
 import { routing } from '@/src/i18n/routing';
 
 import PageAnimation from '@/src/ui/page-animation';
-import dynamic from 'next/dynamic';
 import Header from '@/src/ui/header/header';
 import Footer from '@/src/ui/footer';
 import Script from 'next/script';
-
-const Toaster = dynamic(
-   () => import('react-hot-toast').then((mod) => mod.Toaster),
-   {
-      ssr: true,
-   }
-);
 
 /* Logo font (en) */
 const parisienne = Parisienne({
    subsets: ['latin'],
    weight: ['400'],
    variable: '--font-parisienne',
-   priority: false,
 });
 
 /* Logo font (srb) */
@@ -44,7 +36,6 @@ const greatVibes = Great_Vibes({
    subsets: ['cyrillic'],
    weight: ['400'],
    variable: '--font-greatVibes',
-   priority: false,
 });
 
 /* Main font */
@@ -53,7 +44,6 @@ const cormorantGaramond = Cormorant_Garamond({
    style: ['normal', 'italic'],
    weight: ['300', '400', '500', '600', '700'],
    variable: '--font-cormorantGaramond',
-   priority: false,
 });
 
 /* Secondary font */
@@ -62,7 +52,6 @@ const ebGaramond = EB_Garamond({
    style: ['normal', 'italic'],
    weight: ['400', '500', '600', '700', '800'],
    variable: '--font-ebGaramond',
-   priority: false,
 });
 
 /* Tertiary font */
@@ -70,7 +59,6 @@ const cormorantSC = Cormorant_SC({
    subsets: ['latin'],
    weight: ['300', '400', '500', '600', '700'],
    variable: '--font-cormorantSC',
-   priority: false,
 });
 
 export async function generateMetadata({ params }) {

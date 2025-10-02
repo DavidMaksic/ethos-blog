@@ -113,6 +113,8 @@ export async function getBookmarks(userID) {
 }
 
 export async function isBookmarked(articleID, userID) {
+   if (!userID) return false;
+
    const { data, error } = await supabase
       .from('bookmarks')
       .select('id')
