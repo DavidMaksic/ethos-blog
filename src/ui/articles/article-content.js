@@ -3,12 +3,16 @@ import ImageZoom from '@/src/ui/image-zoom';
 import parse from 'html-react-parser';
 import Image from 'next/image';
 
+import '@blocknote/core/fonts/inter.css';
+import '@blocknote/mantine/style.css';
+
 /* English font */
 const crimsonText = Crimson_Text({
    subsets: ['latin'],
    style: ['normal', 'italic'],
    weight: ['400', '600', '700'],
    variable: '--font-crimsonText',
+   priority: false,
 });
 
 /* Serbian font */
@@ -17,6 +21,7 @@ const gentium = Gentium_Book_Plus({
    style: ['normal', 'italic'],
    weight: ['400', '700'],
    variable: '--font-gentium',
+   priority: false,
 });
 
 function ArticleContent({ content, article }) {
