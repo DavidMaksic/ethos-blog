@@ -112,10 +112,11 @@ export async function getBookmarks(userID) {
    return data;
 }
 
-export async function isBookmarked(userID) {
+export async function isBookmarked(articleID, userID) {
    const { data, error } = await supabase
       .from('bookmarks')
       .select('id')
+      .eq('article_id', articleID)
       .eq('user_id', userID);
 
    if (error) throw new Error('Bookmarks could not be loaded');

@@ -132,7 +132,7 @@ async function Page({ params, searchParams }) {
 
    // - Bookmark logic
    const [hasBookmarked, bookmarkCount] = await Promise.all([
-      isBookmarked(user.id),
+      isBookmarked(id, user?.id),
       getBookmarksCount(id),
    ]);
 
