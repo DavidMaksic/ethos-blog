@@ -808,13 +808,12 @@
 
 /* Style first letter of an article */
 
-.container > div > div > div:first-child > div:first-child .bn-inline-content {
+.container > div > div:first-child > div:first-child .bn-inline-content {
    @apply first-letter:font-main first-letter:leading-24 2xl:first-letter:leading-20.5 first-letter:float-left first-letter:pr-3.5 xs:first-letter:pr-3 first-letter:font-medium first-letter:text-accent-600/60 dark:first-letter:text-accent-200/70;
 }
 
 [lang='en']
    .container
-   > div
    > div
    > div:first-child
    > div:first-child
@@ -824,7 +823,6 @@
 
 [lang='sr']
    .container
-   > div
    > div
    > div:first-child
    > div:first-child

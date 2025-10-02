@@ -1,5 +1,7 @@
 import { Crimson_Text, Gentium_Book_Plus } from 'next/font/google';
-import RichTextRenderer from '@/src/ui/rich-text-renderer';
+import ImageZoom from '@/src/ui/image-zoom';
+import parse from 'html-react-parser';
+import Image from 'next/image';
 
 /* English font */
 const crimsonText = Crimson_Text({
@@ -18,6 +20,25 @@ const gentium = Gentium_Book_Plus({
 });
 
 function ArticleContent({ content, article }) {
+   const options = {
+      replace: (domNode) => {
+         if (domNode.name === 'img' && domNode.attribs?.src) {
+            return (
+               <Image
+                  className={domNode.attribs.class}
+                  src={domNode.attribs.src}
+                  alt="Article image"
+                  width={4000}
+                  height={3000}
+                  quality={60}
+                  priority={true}
+                  sizes="100vw"
+               />
+            );
+         }
+      },
+   };
+
    return (
       <div
          className={`container text-text my-3 [&_:is(h2,h3)]:font-secondary ${
@@ -28,7 +49,8 @@ function ArticleContent({ content, article }) {
                : `text-[1.4rem] 2xl:text-[1.235rem] lg:text-[1.178rem] md:text-[1.4rem] xs:text-[1.55rem] [&_p]:leading-[1.6]! 2xl:[&_p]:leading-[1.7] lg:[&_p]:leading-[1.65]! xs:[&_p]:leading-[1.44]! [&_blockquote>*]:text-2xl! 2xl:[&_blockquote>*]:text-[1.32rem]! lg:[&_blockquote>*]:text-[1.26rem]! md:[&_blockquote>*]:text-[1.6rem]! [&_blockquote>*]:leading-[1.5] xs:[&_blockquote>*]:leading-[1.4] font-article-sr`
          }`}
       >
-         <RichTextRenderer html={content} />
+         <>{parse(content, options)}</>
+         <ImageZoom />
       </div>
    );
 }
