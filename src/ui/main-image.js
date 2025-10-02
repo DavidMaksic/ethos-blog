@@ -25,7 +25,6 @@ function MainImage({ article }) {
             imageUrl={article.image}
             alt="Main image"
             styles="main-image rounded-3xl object-cover opacity-95 dark:opacity-80"
-            quality={60}
          />
       </div>
    );
