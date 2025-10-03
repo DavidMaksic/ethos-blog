@@ -67,7 +67,8 @@ function Reply({
                            <RemoteImage
                               imageUrl={currentUser.image}
                               alt="User image"
-                              styles="block aspect-square object-cover object-center rounded-full dark:opacity-90"
+                              styles="block aspect-square object-cover object-center rounded-full"
+                              opacity="dark:opacity-90"
                            />
                         </div>
                      )}

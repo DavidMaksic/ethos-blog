@@ -1,5 +1,4 @@
 import { Crimson_Text, Gentium_Book_Plus } from 'next/font/google';
-import ImageZoom from '@/src/ui/image-zoom';
 import parse from 'html-react-parser';
 import Image from 'next/image';
 
@@ -53,7 +52,6 @@ function ArticleContent({ content, article }) {
          }`}
       >
          <>{parse(content, options)}</>
-         <ImageZoom />
       </div>
    );
 }

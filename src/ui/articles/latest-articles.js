@@ -43,6 +43,7 @@ function LatestArticles({ articles, categories, authors }) {
          </div>
 
          <Categories
+            finalArticles={finalArticles}
             categories={categories}
             currentCategory={currentCategory}
          />

@@ -10,7 +10,7 @@ function ProfileInfo({ oldUser, newUser }) {
             <RemoteImage
                imageUrl={newImage ? newImage : image}
                alt="User profile image"
-               styles="block aspect-square object-cover object-center rounded-full dark:opacity-90 border border-quaternary"
+               styles="block aspect-square object-cover object-center rounded-full border border-quaternary dark:opacity-90"
             />
          </div>
 

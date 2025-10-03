@@ -1,17 +1,25 @@
+'use client';
+
+import { useState } from 'react';
 import Image from 'next/image';
 
-function RemoteImage({ imageRef = null, imageUrl, styles, alt }) {
+function RemoteImage({ imageRef = null, imageUrl, styles, opacity, alt }) {
+   const [loaded, setLoaded] = useState(false);
+   const opacitySetting = opacity ? opacity : 'opacity-95 dark:opacity-80';
+
    return (
       <Image
          ref={imageRef}
-         className={styles}
+         className={`${styles} transition-opacity duration-300 ease-in-out ${
+            loaded ? opacitySetting : 'opacity-0'
+         }`}
          fill
          src={imageUrl}
          alt={alt ? alt : 'Image'}
          priority={true}
          quality={60}
-         fetchPriority="high"
          sizes="100vw"
+         onLoad={() => setLoaded(true)}
       />
    );
 }

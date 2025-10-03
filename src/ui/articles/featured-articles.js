@@ -61,9 +61,9 @@ function FeaturedArticles({ articles, categories, authors }) {
                   ))
                ) : (
                   <>
-                     <div className="h-[30rem] lg:h-[25rem] md:h-[20rem] bg-primary-300/35 dark:bg-primary-300/18 rounded-2xl animate-skeleton" />
-                     <div className="h-[30rem] lg:h-[25rem] md:h-[20rem] bg-primary-300/35 dark:bg-primary-300/18 rounded-2xl animate-skeleton" />
-                     <div className="h-[30rem] lg:h-[25rem] md:h-[20rem] bg-primary-300/35 dark:bg-primary-300/18 rounded-2xl animate-skeleton" />
+                     <div className="h-[30rem] lg:h-[25rem] md:h-[20rem] bg-primary-300/45 dark:bg-primary-300/18 rounded-2xl animate-skeleton" />
+                     <div className="h-[30rem] lg:h-[25rem] md:h-[20rem] bg-primary-300/45 dark:bg-primary-300/18 rounded-2xl animate-skeleton" />
+                     <div className="h-[30rem] lg:h-[25rem] md:h-[20rem] bg-primary-300/45 dark:bg-primary-300/18 rounded-2xl animate-skeleton" />
                   </>
                )}
             </AnimatePresence>

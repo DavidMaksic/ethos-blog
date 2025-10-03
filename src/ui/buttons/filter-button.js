@@ -14,7 +14,6 @@ function FilterButton({
    imageStyle,
    activeStyle,
    children,
-   isMobile = false,
 }) {
    const { language } = useLanguage();
    const router = useRouter();
@@ -25,17 +24,6 @@ function FilterButton({
       lang === param.lang?.charAt(0).toUpperCase() + param.lang?.slice(1) ||
       (param.lang === undefined && lang === language.language);
 
-   function switchLocale(lang) {
-      const url = new URL(window.location.href);
-      url.searchParams.delete('category');
-
-      // Replace the locale part of the pathname (e.g. /en/blog → /sr/blog)
-      url.pathname = `/${lang}${url.pathname.replace(/^\/(en|sr)/, '')}`;
-
-      // Navigate to the new URL
-      window.location.href = url.toString();
-   }
-
    return (
       <button
          className={`hover:bg-accent/20 flex items-center gap-2 dark:hover:bg-accent-300/50 hover:text-accent-800 dark:hover:text-accent-100 py-0.5 px-2.5 rounded-xl  transition-bg_color cursor-pointer group ${activeStyle} ${
@@ -44,21 +32,14 @@ function FilterButton({
          }`}
          onClick={() => {
             const params = new URLSearchParams(param);
-
             params.set('lang', langString);
-            params.set('category', '');
-
+            params.delete('category');
             router.push(`?${params.toString()}`);
-
-            if (isMobile) {
-               const language = lang === 'English' ? 'en' : 'sr';
-               switchLocale(language);
-            }
          }}
       >
          <div className={`relative size-6 2xs:size-8 ${imageStyle}`}>
             <RemoteImage
-               styles={`opacity-90 border border-accent-800/80 group-hover:border-accent-800/80! rounded-full ${
+               styles={`border border-accent-800/80 group-hover:border-accent-800/80! rounded-full opacity-90 ${
                   active && 'border-accent-800/80'
                }`}
                imageUrl={lang === 'Српски' ? srbFlag : enFlag}

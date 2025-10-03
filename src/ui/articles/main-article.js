@@ -1,10 +1,14 @@
 import { useLocale, useTranslations } from 'next-intl';
 import { Link } from '@/src/i18n/navigation';
 import RemoteImage from '@/src/ui/remote-image';
+import { useEffect, useState } from 'react';
 
 function MainArticle({ article }) {
    const t = useTranslations('HomePage');
    const locale = useLocale();
+   const [mounted, setMounted] = useState();
+
+   useEffect(() => setMounted(true), []);
 
    return (
       <div className="grid grid-cols-2 md:flex! md:flex-col! gap-10 md:gap-4 mt-24 2xl:mt-22 lg:mt-24 sm:mt-14 xs:mt-10 mb-38 2xl:mb-33 sm:mb-20 overflow-visible">
@@ -32,13 +36,18 @@ function MainArticle({ article }) {
             </Link>
          </div>
 
-         <div className="relative md:order-1 h-[26rem] 2xl:h-[23rem] lg:h-[20rem] xs:h-[20rem]">
-            <RemoteImage
-               imageUrl={article.image}
-               alt="Article image"
-               styles="rounded-3xl object-cover opacity-90 dark:opacity-75 border border-primary-200"
-            />
-         </div>
+         {mounted && article ? (
+            <div className="relative md:order-1 h-[26rem] 2xl:h-[23rem] lg:h-[20rem] xs:h-[20rem]">
+               <RemoteImage
+                  imageUrl={article.image}
+                  alt="Article image"
+                  styles="rounded-3xl object-cover border border-primary-200"
+                  opacity="opacity-90 dark:opacity-75"
+               />
+            </div>
+         ) : (
+            <div className="md:order-1 h-[26rem] 2xl:h-[23rem] lg:h-[20rem] xs:h-[20rem] bg-primary-300/45 dark:bg-primary-300/18 rounded-3xl animate-skeleton" />
+         )}
       </div>
    );
 }

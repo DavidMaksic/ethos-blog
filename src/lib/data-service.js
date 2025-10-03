@@ -103,7 +103,7 @@ export async function getBookmarks(userID) {
    const { data, error } = await supabase
       .from('bookmarks')
       .select(
-         '*, articles (id, created_at, title, image, category_id, categories(*))'
+         '*, articles (id, created_at, title, image, category_id, slug, categories(*))'
       )
       .eq('user_id', userID);
 

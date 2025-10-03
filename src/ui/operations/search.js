@@ -15,10 +15,16 @@ function Search({ isArchive = false }) {
    const inputRef = useRef(null);
 
    const searchParams = useSearchParams();
+   const handler = useSetParams();
+
+   const lang = searchParams.get('lang') || '';
+   const langString = lang.charAt(0).toLowerCase() + lang.slice(1);
+
+   // - When language is switched, remove input
+   useEffect(() => setInputValue(''), [langString]);
+
    const initialQuery = searchParams.get('search') || '';
    const [inputValue, setInputValue] = useState(initialQuery);
-
-   const handler = useSetParams();
    const debouncedInput = useDebounce(inputValue, 200);
 
    // - Open search if there's an existing query
@@ -35,8 +41,12 @@ function Search({ isArchive = false }) {
 
    // - Update URL param only when debounced input changes
    useEffect(() => {
-      if (open) handler('search', debouncedInput);
-   }, [debouncedInput, open]); // eslint-disable-line
+      if (debouncedInput && debouncedInput.trim() !== '') {
+         handler('search', debouncedInput);
+      } else {
+         handler('search', null);
+      }
+   }, [debouncedInput, handler]);
 
    // - Toggle open on Enter key
    useEffect(() => {

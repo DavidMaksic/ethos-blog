@@ -73,7 +73,7 @@ function Articles({
 
    return (
       <>
-         {paginatedArticles && (
+         {paginatedArticles ? (
             <div className="grid grid-rows-3 sm:flex sm:flex-col gap-6 lg:gap-4 md:gap-4 sm:gap-5 md:w-full">
                {paginatedArticles.length ? (
                   paginatedArticles.map((item) => (
@@ -84,6 +84,17 @@ function Articles({
                      {t('no-articles')}
                   </span>
                )}
+            </div>
+         ) : (
+            <div className="flex flex-col mt-[-1.2px] md:w-full animate-skeleton">
+               <div className="space-y-6 lg:space-y-4">
+                  {[...Array(3)].map((_, i) => (
+                     <div
+                        key={i}
+                        className="h-50.5 2xl:h-55 lg:h-53 md:h-62 sm:h-50 xs:h-58 2xs:h-50 bg-primary-300/35 dark:bg-primary-300/18 rounded-3xl"
+                     />
+                  ))}
+               </div>
             </div>
          )}
 

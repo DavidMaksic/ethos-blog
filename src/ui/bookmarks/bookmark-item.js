@@ -25,6 +25,7 @@ function BookmarkItem({ bookmark }) {
          setTextColor(category.text_light);
       }
    }, [resolvedTheme, category]);
+   console.log(bookmark);
 
    return (
       <motion.div
@@ -65,7 +66,7 @@ function BookmarkItem({ bookmark }) {
             <RemoteImage
                imageUrl={bookmark.image}
                alt="bookmark image"
-               styles="rounded-xl absolute translate-x-[30%] xs:translate-x-[45%] object-cover opacity-100 dark:opacity-70 [mask-image:linear-gradient(to_right,transparent,black)] [mask-mode:alpha] [mask-size:100%_100%] [mask-repeat:no-repeat]"
+               styles="rounded-xl opacity-100 dark:opacity-70 absolute translate-x-[30%] xs:translate-x-[45%] object-cover [mask-image:linear-gradient(to_right,transparent,black)] [mask-mode:alpha] [mask-size:100%_100%] [mask-repeat:no-repeat]"
             />
          </Link>
       </motion.div>

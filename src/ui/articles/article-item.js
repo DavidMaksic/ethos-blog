@@ -42,7 +42,8 @@ function ArticleItem({ article, style }) {
                <RemoteImage
                   imageUrl={article.image}
                   alt="Article image"
-                  styles="object-cover opacity-90 dark:opacity-75 border-r border-r-primary-100 dark:border-r-primary-300/5"
+                  styles="object-cover border-r border-r-primary-100 dark:border-r-primary-300/5"
+                  opacity="opacity-90 dark:opacity-75"
                />
             </div>
 

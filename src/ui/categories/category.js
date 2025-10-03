@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useSetParams } from '@/src/hooks/use-set-params';
 import { useTheme } from 'next-themes';
@@ -14,9 +15,11 @@ function Category({
 
    const [bgColor, setBgColor] = useState('');
    const [textColor, setTextColor] = useState('');
-
    const { resolvedTheme } = useTheme();
+
    const handler = useSetParams();
+   const params = useSearchParams();
+   const router = useRouter();
 
    useEffect(() => {
       if (!category && !mounted) return;
@@ -45,7 +48,9 @@ function Category({
                }}
                onClick={() => {
                   if (currentTag === category.category) {
-                     handler('category', '');
+                     const param = new URLSearchParams(params);
+                     param.delete('category');
+                     router.push(`?${param.toString()}`);
                   } else {
                      handler('category', category.category.toLowerCase());
                   }

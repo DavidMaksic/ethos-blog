@@ -15,13 +15,14 @@ import { auth } from '@/src/lib/auth';
 import OtherArticleOptions from '@/src/ui/articles/other-article-options';
 import ArticleAuthorInfo from '@/src/ui/articles/article-author-info';
 import RelatedArticles from '@/src/ui/articles/related-articles';
+import ArticleOptions from '@/src/ui/articles/article-options';
 import ArticleContent from '@/src/ui/articles/article-content';
 import ArticleHeading from '@/src/ui/articles/article-heading';
 import CommentInput from '@/src/ui/comments/comment-input';
 import ArticleImage from '@/src/ui/articles/article-image';
 import CommentList from '@/src/ui/comments/comment-list';
+import ImageZoom from '@/src/ui/image-zoom';
 import Options from '@/src/ui/options';
-import ArticleOptions from '@/src/ui/articles/article-options';
 
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
@@ -157,6 +158,7 @@ async function Page({ params, searchParams }) {
                />
             </ArticleImage>
 
+            <ImageZoom />
             <ArticleContent content={article?.content} article={article} />
 
             <ArticleAuthorInfo article={article} author={author} date={date}>
