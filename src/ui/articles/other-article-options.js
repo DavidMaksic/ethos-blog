@@ -53,11 +53,11 @@ function OtherArticleOptions({
 
       if (isBookmarked) {
          setBookmarksCount((i) => i - 1);
-         removeBookmark(session.user, articleID);
+         removeBookmark(session.user, articleID, article.slug);
          toast.success(t('Article.bookmark-removed'));
       } else {
          setBookmarksCount((i) => i + 1);
-         addBookmark(session.user, articleID);
+         addBookmark(session.user, articleID, article.slug);
          toast.success(t('Article.bookmark-added'));
       }
 

@@ -97,11 +97,12 @@ export async function addBookmark(user, articleID, slug) {
    revalidatePath(`/sr/${slug}`);
 }
 
-export async function removeBookmark(user, slug) {
+export async function removeBookmark(user, articleID, slug) {
    const { error } = await supabase
       .from('bookmarks')
       .delete()
-      .eq('user_id', user.userID);
+      .eq('user_id', user.userID)
+      .eq('article_id', articleID);
 
    if (error) throw new Error('Bookmark could not be removed');
    revalidatePath(`/${slug}`);
