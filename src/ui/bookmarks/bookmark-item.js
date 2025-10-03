@@ -25,7 +25,6 @@ function BookmarkItem({ bookmark }) {
          setTextColor(category.text_light);
       }
    }, [resolvedTheme, category]);
-   console.log(bookmark);
 
    return (
       <motion.div

@@ -41,12 +41,17 @@ function Search({ isArchive = false }) {
 
    // - Update URL param only when debounced input changes
    useEffect(() => {
-      if (debouncedInput && debouncedInput.trim() !== '') {
-         handler('search', debouncedInput);
-      } else {
-         handler('search', null);
+      const currentValue = searchParams.get('search') || '';
+      const trimmedInput = debouncedInput?.trim() || '';
+
+      if (trimmedInput !== currentValue) {
+         if (trimmedInput) {
+            handler('search', trimmedInput);
+         } else {
+            handler('search', null);
+         }
       }
-   }, [debouncedInput, handler]);
+   }, [debouncedInput, handler, searchParams]);
 
    // - Toggle open on Enter key
    useEffect(() => {

@@ -1,9 +1,9 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
 import { useSetParams } from '@/src/hooks/use-set-params';
 import { useTheme } from 'next-themes';
+import React from 'react';
 
 function Category({
    category,
@@ -13,25 +13,15 @@ function Category({
 }) {
    const currentTag = currentCategory?.category;
 
-   const [bgColor, setBgColor] = useState('');
-   const [textColor, setTextColor] = useState('');
    const { resolvedTheme } = useTheme();
-
    const handler = useSetParams();
    const params = useSearchParams();
    const router = useRouter();
 
-   useEffect(() => {
-      if (!category && !mounted) return;
-
-      if (resolvedTheme === 'dark') {
-         setBgColor(category.bg_dark);
-         setTextColor(category.text_dark);
-      } else {
-         setBgColor(category.bg_light);
-         setTextColor(category.text_light);
-      }
-   }, [resolvedTheme, category]);
+   const bgColor =
+      resolvedTheme === 'dark' ? category.bg_dark : category.bg_light;
+   const textColor =
+      resolvedTheme === 'dark' ? category.text_dark : category.text_light;
 
    return (
       <>
@@ -77,4 +67,4 @@ function Category({
    );
 }
 
-export default Category;
+export default React.memo(Category);

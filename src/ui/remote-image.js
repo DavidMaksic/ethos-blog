@@ -10,7 +10,7 @@ function RemoteImage({ imageRef = null, imageUrl, styles, opacity, alt }) {
    return (
       <Image
          ref={imageRef}
-         className={`${styles} transition-opacity duration-300 ease-in-out ${
+         className={`${styles} transition-opacity duration-700 ease-in-out ${
             loaded ? opacitySetting : 'opacity-0'
          }`}
          fill
