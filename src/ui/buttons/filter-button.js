@@ -34,7 +34,7 @@ function FilterButton({
             const params = new URLSearchParams(param);
             params.set('lang', langString);
             params.delete('category');
-            router.push(`?${params.toString()}`);
+            router.replace(`?${params.toString()}`, { scroll: false });
          }}
       >
          <div className={`relative size-6 2xs:size-8 ${imageStyle}`}>

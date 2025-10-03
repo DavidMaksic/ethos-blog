@@ -50,7 +50,9 @@ function Category({
                   if (currentTag === category.category) {
                      const param = new URLSearchParams(params);
                      param.delete('category');
-                     router.push(`?${param.toString()}`);
+                     router.replace(`?${param.toString()}`, {
+                        scroll: false,
+                     });
                   } else {
                      handler('category', category.category.toLowerCase());
                   }
