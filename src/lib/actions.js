@@ -85,61 +85,25 @@ export async function updateLikes(articleID, count, slug) {
 }
 
 export async function addBookmark(user, articleID, slug) {
-   const {
-      data: [userBookmarks],
-      error,
-   } = await supabase.from('users').select('bookmarks').eq('id', user.userID);
-
-   if (error) {
-      throw new Error('Bookmarks could not be fetched');
-   }
-
-   const allIDs = JSON.parse(userBookmarks.bookmarks).filter(
-      (item) => item !== articleID
-   );
-
-   const { error1 } = await supabase
-      .from('users')
-      .update({ bookmarks: [...allIDs, articleID] })
-      .eq('id', user.userID);
-
-   const { error2 } = await supabase.from('bookmarks').insert([
+   const { error } = await supabase.from('bookmarks').insert([
       {
          user_id: user.userID,
          article_id: articleID,
       },
    ]);
 
-   if (error1 || error2) throw new Error('Article could not be bookmarked');
+   if (error) throw new Error('Article could not be bookmarked');
    revalidatePath(`/${slug}`);
    revalidatePath(`/sr/${slug}`);
 }
 
-export async function removeBookmark(user, articleID, slug) {
-   const {
-      data: [userBookmarks],
-      error,
-   } = await supabase.from('users').select('bookmarks').eq('id', user.userID);
-
-   if (error) {
-      throw new Error('Bookmarks could not be fetched');
-   }
-
-   const allIDs = JSON.parse(userBookmarks.bookmarks).filter(
-      (item) => item !== articleID
-   );
-
-   const { error1 } = await supabase
-      .from('users')
-      .update({ bookmarks: [...allIDs] })
-      .eq('id', user.userID);
-
-   const { error2 } = await supabase
+export async function removeBookmark(user, slug) {
+   const { error } = await supabase
       .from('bookmarks')
       .delete()
       .eq('user_id', user.userID);
 
-   if (error1 || error2) throw new Error('Bookmark could not be removed');
+   if (error) throw new Error('Bookmark could not be removed');
    revalidatePath(`/${slug}`);
    revalidatePath(`/sr/${slug}`);
 }
@@ -246,7 +210,7 @@ export async function addLiked(user, articleID) {
       (item) => item !== articleID
    );
 
-   const { error1 } = await supabase
+   const { error: error1 } = await supabase
       .from('users')
       .update({ liked: [...allIDs, articleID] })
       .eq('id', user.userID);
@@ -268,7 +232,7 @@ export async function removeLiked(user, articleID) {
       (item) => item !== articleID
    );
 
-   const { error1 } = await supabase
+   const { error: error1 } = await supabase
       .from('users')
       .update({ liked: [...allIDs] })
       .eq('id', user.userID);
