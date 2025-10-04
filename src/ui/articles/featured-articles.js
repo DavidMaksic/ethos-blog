@@ -39,6 +39,11 @@ function FeaturedArticles({ articles, categories, authors }) {
    );
 
    const t = useTranslations('HomePage');
+   const [loading, setLoading] = useState(true);
+
+   useEffect(() => {
+      setLoading(false);
+   }, []);
 
    return (
       <div className="flex flex-col gap-10 my-14">
@@ -51,7 +56,7 @@ function FeaturedArticles({ articles, categories, authors }) {
 
          <div className="grid grid-cols-3 md:flex md:flex-col gap-6 lg:gap-4 md:gap-6">
             <AnimatePresence mode="wait">
-               {featuredArticles.length ? (
+               {!loading ? (
                   featuredArticles.map((item) => (
                      <FeaturedItem
                         article={item}
