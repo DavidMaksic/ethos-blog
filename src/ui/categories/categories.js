@@ -1,9 +1,11 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { TbCategory2 } from 'react-icons/tb';
 
 import useFilterCategory from '@/src/hooks/use-filter-category';
+import CategoryLoader from '@/src/ui/category-loader';
 import Category from '@/src/ui/categories/category';
 
 function Categories({ categories, currentCategory, param, isArchive = false }) {
@@ -13,6 +15,11 @@ function Categories({ categories, currentCategory, param, isArchive = false }) {
    );
 
    const t = useTranslations('HomePage');
+   const [loading, setLoading] = useState(true);
+
+   useEffect(() => {
+      setLoading(false);
+   }, []);
 
    return (
       <div
@@ -27,13 +34,17 @@ function Categories({ categories, currentCategory, param, isArchive = false }) {
          </div>
 
          <div className="flex md:justify-center gap-4 2xl:gap-3 lg:gap-2.5 flex-wrap">
-            {filteredCategories?.map((item) => (
-               <Category
-                  category={item}
-                  key={item.id}
-                  currentCategory={currentCategory}
-               />
-            ))}
+            {!loading ? (
+               filteredCategories?.map((item) => (
+                  <Category
+                     category={item}
+                     key={item.id}
+                     currentCategory={currentCategory}
+                  />
+               ))
+            ) : (
+               <CategoryLoader />
+            )}
          </div>
       </div>
    );

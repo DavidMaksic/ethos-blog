@@ -1,9 +1,9 @@
 'use client';
 
 import { applyPagination, getSortedItems } from '@/src/utils/helpers';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useLanguage } from '@/src/context/language-context';
-import { useMemo } from 'react';
 
 import ArticleItem from '@/src/ui/articles/article-item';
 import Pagination from '@/src/ui/pagination';
@@ -20,6 +20,12 @@ function Articles({
       language: { language },
    } = useLanguage();
    const t = useTranslations('Archive');
+
+   const [loading, setLoading] = useState(true);
+
+   useEffect(() => {
+      setLoading(false);
+   }, []);
 
    // Derive filtered & paginated articles
    const { filteredArticles, paginatedArticles } = useMemo(() => {
@@ -71,9 +77,26 @@ function Articles({
       };
    }, [articles, param, currentCategory, language, isArchive]);
 
+   const arr = isArchive ? [...Array(6)] : [...Array(3)];
+
+   if (loading) {
+      return (
+         <div className="flex flex-col mt-[-1.2px] md:w-full animate-skeleton">
+            <div className="space-y-6 lg:space-y-4">
+               {arr.map((_, i) => (
+                  <div
+                     key={i}
+                     className="h-50.5 2xl:h-55 lg:h-53 md:h-62 sm:h-50 xs:h-58 2xs:h-50 bg-primary-300/35 dark:bg-primary-300/18 rounded-3xl"
+                  />
+               ))}
+            </div>
+         </div>
+      );
+   }
+
    return (
       <>
-         {paginatedArticles ? (
+         {paginatedArticles && (
             <div className="grid grid-rows-3 sm:flex sm:flex-col gap-6 lg:gap-4 md:gap-4 sm:gap-5 md:w-full">
                {paginatedArticles.length ? (
                   paginatedArticles.map((item) => (
@@ -84,17 +107,6 @@ function Articles({
                      {t('no-articles')}
                   </span>
                )}
-            </div>
-         ) : (
-            <div className="flex flex-col mt-[-1.2px] md:w-full animate-skeleton">
-               <div className="space-y-6 lg:space-y-4">
-                  {[...Array(3)].map((_, i) => (
-                     <div
-                        key={i}
-                        className="h-50.5 2xl:h-55 lg:h-53 md:h-62 sm:h-50 xs:h-58 2xs:h-50 bg-primary-300/35 dark:bg-primary-300/18 rounded-3xl"
-                     />
-                  ))}
-               </div>
             </div>
          )}
 

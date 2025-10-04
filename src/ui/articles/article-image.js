@@ -45,7 +45,6 @@ async function ArticleImage({ article, author, date, children }) {
                <div className="pointer-events-none">
                   <Category
                      category={article.categories}
-                     isArticle={true}
                      customStyles="text-xl! md:text-[1.4rem]! sm:text-[1.2rem]! !font-bold pb-[8px]! sm:pb-[6px]!"
                   />
                </div>
