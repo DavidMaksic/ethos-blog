@@ -1,4 +1,6 @@
 import { Crimson_Text, Gentium_Book_Plus } from 'next/font/google';
+import { sanitizeHTML } from '@/src/utils/helpers';
+
 import parse from 'html-react-parser';
 import Image from 'next/image';
 
@@ -22,6 +24,8 @@ const gentium = Gentium_Book_Plus({
 });
 
 function ArticleContent({ content, article }) {
+   const cleanContent = sanitizeHTML(content);
+
    const options = {
       replace: (domNode) => {
          if (domNode.name === 'img' && domNode.attribs?.src) {
@@ -51,7 +55,7 @@ function ArticleContent({ content, article }) {
                : `text-[1.4rem] 2xl:text-[1.235rem] lg:text-[1.178rem] md:text-[1.4rem] xs:text-[1.55rem] [&_p]:leading-[1.6]! 2xl:[&_p]:leading-[1.7] lg:[&_p]:leading-[1.65]! xs:[&_p]:leading-[1.44]! [&_blockquote>*]:text-2xl! 2xl:[&_blockquote>*]:text-[1.32rem]! lg:[&_blockquote>*]:text-[1.26rem]! md:[&_blockquote>*]:text-[1.6rem]! [&_blockquote>*]:leading-[1.5] xs:[&_blockquote>*]:leading-[1.4] font-article-sr`
          }`}
       >
-         <>{parse(content, options)}</>
+         <>{parse(cleanContent, options)}</>
       </div>
    );
 }

@@ -1,5 +1,6 @@
 import { differenceInDays, format, formatDistanceToNow } from 'date-fns';
 import { enUS, sr } from 'date-fns/locale';
+import sanitizeHtml from 'sanitize-html';
 
 export function getSortedItems(param, items) {
    const sort = param.sort ?? 'created_at-asc';
@@ -35,7 +36,6 @@ export function getSortedItems(param, items) {
 
 export function getMainArticles(array) {
    const englishArticles = array.filter((item) => item.language === 'English');
-
    const serbianArticles = array.filter((item) => item.language === 'Српски');
 
    return { englishArticles, serbianArticles };
@@ -49,20 +49,6 @@ export function applyPagination(parsedParam, result) {
    const paginatedResult = result.slice(from, to);
 
    return paginatedResult;
-}
-
-export function applyFilter(result, parsedParam, category_id) {
-   const filteredResult = result.filter((item) => {
-      const matchesCategory =
-         !currentCategory || item.category_id === category_id;
-      const matchesLanguage = !parsedParam.lang
-         ? item.language === language
-         : item.language ===
-           parsedParam.lang.charAt(0).toUpperCase() + parsedParam.lang.slice(1);
-      return matchesCategory && matchesLanguage;
-   });
-
-   return filteredResult;
 }
 
 const localeMap = {
@@ -87,4 +73,21 @@ export function CommentDate(createdAt, locale) {
    const dateDisplay = date.charAt(0).toUpperCase() + date.slice(1);
 
    return <span>{dateDisplay}</span>;
+}
+
+export function sanitizeHTML(html) {
+   return sanitizeHtml(html, {
+      allowedTags: false,
+      allowedAttributes: false,
+      transformTags: {
+         '*': (tagName, attribs) => {
+            // Remove `contenteditable` if it exists
+            const { contenteditable, ...cleanAttribs } = attribs;
+            return {
+               tagName,
+               attribs: cleanAttribs,
+            };
+         },
+      },
+   });
 }
