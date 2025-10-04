@@ -9,7 +9,7 @@ import FeaturedItem from '@/src/ui/articles/featured-item';
 
 function FeaturedArticles({ articles, categories, authors }) {
    const [index, setIndex] = useState(0);
-
+   const [stopShuffle, setStopShuffle] = useState(false);
    const [currentCategory, setCurrentCategory] = useState(categories?.at(0));
 
    // - Filter by language
@@ -23,14 +23,16 @@ function FeaturedArticles({ articles, categories, authors }) {
    // - Shuffle articles
    useEffect(() => {
       let id;
-      if (currentCategory && tags) {
+      if (currentCategory && tags && !stopShuffle) {
          const tick = () => setIndex((i) => i + 1);
          id = setInterval(tick, 6000);
          setCurrentCategory(tags[index % tags.length]);
+
+         if (tags.length === 1) setStopShuffle(true);
       }
 
       return () => clearInterval(id);
-   }, [index, currentCategory, tags]);
+   }, [index, currentCategory, tags, categories, stopShuffle]);
 
    // - Filter for featured articles
    const filteredArticles = articles.filter((item) => item.featured);
@@ -50,7 +52,7 @@ function FeaturedArticles({ articles, categories, authors }) {
          <h2 className="flex items-center gap-2 self-center text-4xl lg:text-3xl md:text-4xl">
             <span>{t('featuring')}</span>
             <span className="text-accent/75 dark:text-accent-300/90 italic font-medium font-secondary">
-               {currentCategory.category ? currentCategory.category : 'History'}
+               {currentCategory.category}
             </span>
          </h2>
 

@@ -33,21 +33,29 @@ function Options() {
 
    useEffect(() => {
       const headingElementsRaw = Array.from(
-         document.querySelectorAll('h1, h2, h3')
-      );
+         document.querySelectorAll('h2, h3')
+      ).slice(1);
 
-      const headingElements = headingElementsRaw.map((item, i) => {
-         item.id = i;
-         return item;
+      const headingElements = headingElementsRaw.map((item, index) => {
+         const slug = item.innerText
+            .toLowerCase()
+            .replace(/\s+/g, '-')
+            .replace(/[^\w\-]+/g, '');
+
+         const id = `${slug}-${index}`;
+         item.setAttribute('id', id);
+
+         return {
+            id,
+            innerText: item.innerText,
+            localName: item.localName,
+         };
       });
 
-      const finalHeadings = headingElements.slice(2);
-
-      setHeadings(finalHeadings);
+      setHeadings(headingElements);
    }, []);
 
    useIntersectionObserver(setActiveId, activeId);
-
    const isBellowMd = useMediaQuery({ maxWidth: 768 });
 
    return (
@@ -80,6 +88,7 @@ function Options() {
                         : 'md:dark:shadow-menu-dark'
                   }`}
                   ref={ref}
+                  key="options-menu"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -138,6 +147,7 @@ function Options() {
                         <motion.div
                            className="absolute bottom-0 font-secondary max-h-[32rem] md:max-h-[37rem] xs:max-h-[41rem] short:max-h-[60rem] shorter:max-h-[16.5rem] right-20 md:right-24.5 flex flex-col py-4 pb-2 xs:pb-4 px-2 md:px-2.5 border border-primary-300/50 lg:border-primary-300/80 dark:border-tertiary lg:dark:border-primary-300/35 rounded-2xl xs:rounded-3xl bg-white dark:bg-transparent 2xl:dark:bg-primary lg:dark:bg-primary/90 backdrop-blur-3xl overflow-y-auto scrollbar shadow-article 2xl:shadow-none md:shadow-menu dark:shadow-none md:dark:shadow-none md:text-2xl"
                            ref={tableRef}
+                           key="table-of-contents"
                            initial={{ opacity: 0 }}
                            animate={{ opacity: 1 }}
                            exit={{ opacity: 0 }}
@@ -157,7 +167,10 @@ function Options() {
                                     'text-accent! bg-primary-300/10 dark:bg-primary-300/8'
                                  }`}
                                  href={`#${item.id}`}
-                                 key={item.id}
+                                 key={
+                                    item.id ||
+                                    `${item.localName}-${Math.random()}`
+                                 }
                                  onClick={(e) => {
                                     e.preventDefault();
                                     document
