@@ -8,8 +8,8 @@ import { useTheme } from 'next-themes';
 function Category({ category, customStyles, currentCategory }) {
    const currentTag = currentCategory?.category;
 
-   const [bgColor, setBgColor] = useState('');
-   const [textColor, setTextColor] = useState('');
+   const [bgColor, setBgColor] = useState();
+   const [textColor, setTextColor] = useState();
    const { resolvedTheme } = useTheme();
 
    const handler = useSetParams();

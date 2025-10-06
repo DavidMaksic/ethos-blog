@@ -1,9 +1,9 @@
 import { HiOutlineUserCircle } from 'react-icons/hi2';
 import { getLocale } from 'next-intl/server';
 
-import RemoteImage from '@/src/ui/remote-image';
 import MainImage from '@/src/ui/main-image';
 import Category from '@/src/ui/categories/category';
+import Image from 'next/image';
 
 async function ArticleImage({ article, author, date, children }) {
    const locale = await getLocale();
@@ -16,10 +16,14 @@ async function ArticleImage({ article, author, date, children }) {
             <div className="flex gap-4 2xl:gap-3.5 items-center">
                <div className="relative size-12 2xl:size-10 md:size-12 sm:size-11">
                   {author?.profile_image ? (
-                     <RemoteImage
-                        imageUrl={author.profile_image}
+                     <Image
+                        className="block aspect-square object-cover object-center rounded-full dark:opacity-80"
+                        fill
+                        src={author.profile_image}
                         alt="User image"
-                        styles="block aspect-square object-cover object-center rounded-full dark:opacity-80"
+                        priority={true}
+                        quality={60}
+                        sizes="100vw"
                      />
                   ) : (
                      <HiOutlineUserCircle className="size-12 2xl:size-10 md:size-12 sm:size-11 stroke-[0.5px] text-primary-400 dark:text-primary-300" />

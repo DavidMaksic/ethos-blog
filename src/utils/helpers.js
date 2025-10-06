@@ -77,8 +77,7 @@ export function CommentDate(createdAt, locale) {
 
 export function sanitizeHTML(html) {
    return sanitizeHtml(html, {
-      allowedTags: false,
-      allowedAttributes: false,
+      ...sanitizeHtml.defaults,
       transformTags: {
          '*': (tagName, attribs) => {
             // Remove `contenteditable` if it exists
