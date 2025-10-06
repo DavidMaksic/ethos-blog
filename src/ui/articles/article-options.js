@@ -69,12 +69,12 @@ function ArticleOptions({
          addLiked(session.user, articleID, slug);
       }
 
-      setIsLiked(!hasLiked);
+      setIsLiked(!isLiked);
    }
 
    useEffect(() => {
-      setIsLiked(hasLiked);
-   }, [hasLiked]);
+      setIsLiked(isLiked);
+   }, [isLiked]);
 
    return (
       <>

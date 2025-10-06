@@ -71,29 +71,32 @@ function OtherArticleOptions({
    }, [bookmarkCount]);
 
    // - Like logic
+   const [likesCount, setLikesCount] = useState(likeCount);
    const [isLiked, setIsLiked] = useState(hasLiked);
 
    function handleLike() {
       if (isLiked) {
-         removeLiked(session.user, articleID, slug);
+         setLikesCount((i) => i - 1);
+         removeLiked(session.user, articleID, article.slug);
       } else {
-         addLiked(session.user, articleID, slug);
+         setLikesCount((i) => i + 1);
+         addLiked(session.user, articleID, article.slug);
       }
 
-      setIsLiked(!hasLiked);
+      setIsLiked(!isLiked);
    }
 
    useEffect(() => {
-      setIsLiked(hasLiked);
-   }, [hasLiked]);
+      setIsLiked(isLiked);
+   }, [isLiked]);
 
    return (
       <div className="grid grid-rows-4 sm:grid-rows-1 sm:grid-cols-4 gap-3">
          <ArticleOptionItem
             type="like"
             handler={handleLike}
-            count={likeCount}
-            hasLiked={isLiked}
+            isLiked={isLiked}
+            count={likesCount}
          >
             <LikeButton isLiked={isLiked} />
          </ArticleOptionItem>

@@ -133,10 +133,7 @@ async function Page({ params, searchParams }) {
 
    // - Like logic
    let hasLiked;
-   const likedIDs = articles
-      .map((item) => item.likes)
-      .flat()
-      .map((item) => item.user_id);
+   const likedIDs = article.likes.map((item) => item.user_id);
    hasLiked = !!likedIDs.find((item) => item === user?.id);
 
    // - Bookmark logic
@@ -178,7 +175,7 @@ async function Page({ params, searchParams }) {
                   hasCommented={hasCommented}
                   hasBookmarked={hasBookmarked}
                   hasLiked={hasLiked}
-                  likeCount={likedIDs}
+                  likeCount={likedIDs.length}
                   bookmarkCount={bookmarkCount}
                   commentsNum={commentsNum}
                />

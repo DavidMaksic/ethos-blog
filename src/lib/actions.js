@@ -187,7 +187,6 @@ export async function deleteReply(replyID, slug) {
 }
 
 export async function addLiked(user, articleID, slug) {
-   console.log(user, articleID, slug);
    const { error } = await supabase.from('likes').insert([
       {
          user_id: user.userID,
