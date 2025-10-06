@@ -10,20 +10,16 @@ import {
    removeBookmark,
    removeLiked,
    addBookmark,
-   updateLikes,
    addLiked,
 } from '@/src/lib/actions';
 import { useEffect, useState } from 'react';
-import { useLocalStorage } from '@/src/hooks/use-local-storage';
 import { AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
-import { useLikeContext } from '@/src/context/like-context';
 import { FiLink } from 'react-icons/fi';
 
 import ArticleOptionItem from '@/src/ui/articles/article-option-item';
 import LikeButton from '@/src/ui/buttons/like-button';
 import AuthModal from '@/src/ui/modal/auth-modal';
-import useLike from '@/src/hooks/use-like';
 import toast from 'react-hot-toast';
 import Modal from '@/src/ui/modal/modal';
 
@@ -34,6 +30,8 @@ function OtherArticleOptions({
    hasReplied,
    hasCommented,
    hasBookmarked,
+   hasLiked,
+   likeCount,
    bookmarkCount,
    commentsNum,
 }) {
@@ -41,7 +39,7 @@ function OtherArticleOptions({
    const [isOpen, setIsOpen] = useState();
    const articleID = article.id;
 
-   // 1. Bookmark logic
+   // - Bookmark logic
    const [bookmarksCount, setBookmarksCount] = useState(bookmarkCount);
    const [isBookmarked, setIsBookmarked] = useState(hasBookmarked);
 
@@ -72,55 +70,32 @@ function OtherArticleOptions({
       setBookmarksCount(bookmarkCount);
    }, [bookmarkCount]);
 
-   // 2. Likes logic
-   const [likedArticles, setLikedArticles] = useLocalStorage(
-      [],
-      'likedArticles'
-   );
+   // - Like logic
+   const [isLiked, setIsLiked] = useState(hasLiked);
 
-   const isLiked = useLike(articleID, likedArticles);
-   const { likesCount, setLikesCount } = useLikeContext();
+   function handleLike() {
+      if (isLiked) {
+         removeLiked(session.user, articleID, slug);
+      } else {
+         addLiked(session.user, articleID, slug);
+      }
+
+      setIsLiked(!hasLiked);
+   }
 
    useEffect(() => {
-      setLikesCount(article.likes);
-   }, []); // eslint-disable-line
+      setIsLiked(hasLiked);
+   }, [hasLiked]);
 
    return (
       <div className="grid grid-rows-4 sm:grid-rows-1 sm:grid-cols-4 gap-3">
          <ArticleOptionItem
             type="like"
-            count={likesCount}
-            isLiked={isLiked}
-            handler={() => {
-               if (isLiked) {
-                  setLikedArticles((items) =>
-                     items.filter((item) => item.articleID !== articleID)
-                  );
-                  if (likesCount === 0) return;
-                  const newCount = likesCount - 1;
-                  setLikesCount(() => likesCount - 1);
-
-                  removeLiked(session.user, articleID);
-                  updateLikes(articleID, newCount);
-               } else {
-                  setLikedArticles((items) => [
-                     ...items,
-                     { articleID, isLiked: true },
-                  ]);
-                  const newCount = likesCount + 1;
-                  setLikesCount(() => likesCount + 1);
-
-                  addLiked(session.user, articleID);
-                  updateLikes(articleID, newCount);
-               }
-            }}
+            handler={handleLike}
+            count={likeCount}
+            hasLiked={isLiked}
          >
-            <LikeButton
-               articleID={articleID}
-               likedArticles={likedArticles}
-               setLikedArticles={setLikedArticles}
-               isLiked={isLiked}
-            />
+            <LikeButton isLiked={isLiked} />
          </ArticleOptionItem>
 
          <ArticleOptionItem

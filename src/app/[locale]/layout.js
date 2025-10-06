@@ -12,7 +12,6 @@ import { getMessages, getTranslations } from 'next-intl/server';
 import { LanguageProvider } from '@/src/context/language-context';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
-import { LikeProvider } from '@/src/context/like-context';
 import { WEBSITE_URL } from '@/src/utils/config';
 import { Analytics } from '@vercel/analytics/next';
 import { notFound } from 'next/navigation';
@@ -169,50 +168,48 @@ export default async function RootLayout({ children, params }) {
          >
             <NextIntlClientProvider locale={locale} messages={messages}>
                <LanguageProvider>
-                  <LikeProvider>
-                     <ThemeProvider
-                        attribute="data-theme"
-                        defaultTheme="system"
-                        enableSystem
-                     >
-                        <Header />
+                  <ThemeProvider
+                     attribute="data-theme"
+                     defaultTheme="system"
+                     enableSystem
+                  >
+                     <Header />
 
-                        <PageAnimation>
-                           {children}
-                           <SpeedInsights />
-                           <Analytics />
-                        </PageAnimation>
+                     <PageAnimation>
+                        {children}
+                        <SpeedInsights />
+                        <Analytics />
+                     </PageAnimation>
 
-                        <Footer />
+                     <Footer />
 
-                        <Toaster
-                           position="top-center"
-                           gutter={12}
-                           containerStyle={{ margin: '-4px' }}
-                           toastOptions={{
-                              success: {
-                                 duration: 4000,
-                              },
-                              error: {
-                                 duration: 6000,
-                              },
-                              style: {
-                                 fontSize: '20px',
-                                 maxWidth: '500px',
-                                 color: 'var(--color-primary-500)',
-                                 backgroundColor: 'var(--color-toast)',
-                                 backdropFilter: 'blur(80px)',
-                                 borderRadius: '14px',
-                                 boxShadow: 'var(--shadow-toast-btn)',
-                                 padding: '10px 20px',
-                              },
-                              iconTheme: {
-                                 primary: 'var(--color-accent-400)',
-                              },
-                           }}
-                        />
-                     </ThemeProvider>
-                  </LikeProvider>
+                     <Toaster
+                        position="top-center"
+                        gutter={12}
+                        containerStyle={{ margin: '-4px' }}
+                        toastOptions={{
+                           success: {
+                              duration: 4000,
+                           },
+                           error: {
+                              duration: 6000,
+                           },
+                           style: {
+                              fontSize: '20px',
+                              maxWidth: '500px',
+                              color: 'var(--color-primary-500)',
+                              backgroundColor: 'var(--color-toast)',
+                              backdropFilter: 'blur(80px)',
+                              borderRadius: '14px',
+                              boxShadow: 'var(--shadow-toast-btn)',
+                              padding: '10px 20px',
+                           },
+                           iconTheme: {
+                              primary: 'var(--color-accent-400)',
+                           },
+                        }}
+                     />
+                  </ThemeProvider>
                </LanguageProvider>
             </NextIntlClientProvider>
          </body>

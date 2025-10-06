@@ -77,10 +77,10 @@ export function CommentDate(createdAt, locale) {
 
 export function sanitizeHTML(html) {
    return sanitizeHtml(html, {
-      ...sanitizeHtml.defaults,
+      allowedTags: false,
+      allowedAttributes: false,
       transformTags: {
          '*': (tagName, attribs) => {
-            // Remove `contenteditable` if it exists
             const { contenteditable, ...cleanAttribs } = attribs;
             return {
                tagName,
@@ -88,5 +88,7 @@ export function sanitizeHTML(html) {
             };
          },
       },
+      disallowedTagsMode: 'discard',
+      nonTextTags: ['script', 'style', 'iframe', 'object'],
    });
 }

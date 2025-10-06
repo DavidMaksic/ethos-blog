@@ -73,17 +73,6 @@ export async function updateImage(previousState, formData) {
    return { success: true };
 }
 
-export async function updateLikes(articleID, count, slug) {
-   const { error } = await supabase
-      .from('articles')
-      .update({ likes: count })
-      .eq('id', articleID);
-
-   if (error) throw new Error('Article could not be liked');
-   revalidatePath(`/${slug}`);
-   revalidatePath(`/sr/${slug}`);
-}
-
 export async function addBookmark(user, articleID, slug) {
    const { error } = await supabase.from('bookmarks').insert([
       {
@@ -197,46 +186,28 @@ export async function deleteReply(replyID, slug) {
    return { success: true };
 }
 
-export async function addLiked(user, articleID) {
-   const {
-      data: [userLikedArticles],
-      error,
-   } = await supabase.from('users').select('liked').eq('id', user.userID);
+export async function addLiked(user, articleID, slug) {
+   console.log(user, articleID, slug);
+   const { error } = await supabase.from('likes').insert([
+      {
+         user_id: user.userID,
+         article_id: articleID,
+      },
+   ]);
 
-   if (error) {
-      throw new Error('Liked IDs could not be fetched');
-   }
-
-   const allIDs = JSON.parse(userLikedArticles.liked).filter(
-      (item) => item !== articleID
-   );
-
-   const { error: error1 } = await supabase
-      .from('users')
-      .update({ liked: [...allIDs, articleID] })
-      .eq('id', user.userID);
-
-   if (error1) throw new Error('Liked ID could not be uploaded');
+   if (error) throw new Error('Article could not be liked');
+   revalidatePath(`/${slug}`);
+   revalidatePath(`/sr/${slug}`);
 }
 
-export async function removeLiked(user, articleID) {
-   const {
-      data: [userLikedArticles],
-      error,
-   } = await supabase.from('users').select('liked').eq('id', user.userID);
+export async function removeLiked(user, articleID, slug) {
+   const { error } = await supabase
+      .from('likes')
+      .delete()
+      .eq('user_id', user.userID)
+      .eq('article_id', articleID);
 
-   if (error) {
-      throw new Error('Liked IDs could not be fetched');
-   }
-
-   const allIDs = JSON.parse(userLikedArticles.liked).filter(
-      (item) => item !== articleID
-   );
-
-   const { error: error1 } = await supabase
-      .from('users')
-      .update({ liked: [...allIDs] })
-      .eq('id', user.userID);
-
-   if (error1) throw new Error('Liked ID could not be uploaded');
+   if (error) throw new Error('Article could not be disliked');
+   revalidatePath(`/${slug}`);
+   revalidatePath(`/sr/${slug}`);
 }

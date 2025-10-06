@@ -10,19 +10,15 @@ import {
    removeBookmark,
    addBookmark,
    removeLiked,
-   updateLikes,
    addLiked,
 } from '@/src/lib/actions';
 import { useEffect, useState } from 'react';
-import { useLocalStorage } from '@/src/hooks/use-local-storage';
 import { AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
-import { useLikeContext } from '@/src/context/like-context';
 
 import BackButton from '@/src/ui/buttons/back-button';
 import LikeButton from '@/src/ui/buttons/like-button';
 import AuthModal from '@/src/ui/modal/auth-modal';
-import useLike from '@/src/hooks/use-like';
 import Button from '@/src/ui/buttons/button';
 import Modal from '@/src/ui/modal/modal';
 import toast from 'react-hot-toast';
@@ -30,15 +26,16 @@ import toast from 'react-hot-toast';
 function ArticleOptions({
    slug,
    articleID,
-   count,
    session,
    hasCommented,
    hasReplied,
    hasBookmarked,
+   hasLiked,
 }) {
    const t = useTranslations('Article');
    const [isOpen, setIsOpen] = useState();
 
+   // - Bookmark logic
    const [isBookmarked, setIsBookmarked] = useState(hasBookmarked);
 
    function handleBookmarkClick() {
@@ -62,14 +59,22 @@ function ArticleOptions({
       setIsBookmarked(hasBookmarked);
    }, [hasBookmarked]);
 
-   // Likes logic
-   const [likedArticles, setLikedArticles] = useLocalStorage(
-      [],
-      'likedArticles'
-   );
+   // - Like logic
+   const [isLiked, setIsLiked] = useState(hasLiked);
 
-   const isLiked = useLike(articleID, likedArticles);
-   const { likesCount, setLikesCount } = useLikeContext();
+   function handleLike() {
+      if (isLiked) {
+         removeLiked(session.user, articleID, slug);
+      } else {
+         addLiked(session.user, articleID, slug);
+      }
+
+      setIsLiked(!hasLiked);
+   }
+
+   useEffect(() => {
+      setIsLiked(hasLiked);
+   }, [hasLiked]);
 
    return (
       <>
@@ -84,36 +89,9 @@ function ArticleOptions({
          </div>
 
          <div className="flex items-center gap-1.5 md:gap-3 sm:gap-1.5">
-            <Button
-               handler={() => {
-                  if (isLiked) {
-                     setLikedArticles((items) =>
-                        items.filter((item) => item.articleID !== articleID)
-                     );
-                     if (count === 0) return;
-                     const newCount = likesCount - 1;
-                     setLikesCount(() => likesCount - 1);
-
-                     removeLiked(session.user, articleID);
-                     updateLikes(articleID, newCount, slug);
-                  } else {
-                     setLikedArticles((items) => [
-                        ...items,
-                        { articleID, isLiked: true },
-                     ]);
-                     const newCount = likesCount + 1;
-                     setLikesCount(() => likesCount + 1);
-
-                     addLiked(session.user, articleID);
-                     updateLikes(articleID, newCount, slug);
-                  }
-               }}
-               styles="md:hidden"
-            >
+            <Button handler={handleLike} styles="md:hidden">
                <LikeButton
                   styles="size-[2.68rem]! 2xl:size-10.5! px-[0.5rem]! mt-px"
-                  articleID={articleID}
-                  likedArticles={likedArticles}
                   isLiked={isLiked}
                />
             </Button>
@@ -136,17 +114,11 @@ function ArticleOptions({
                )}
             </Button>
 
-            <Button styles="md:hidden 2xl:mt-px">
+            <Button handler={handleBookmarkClick} styles="md:hidden 2xl:mt-px">
                {isBookmarked ? (
-                  <FaBookmark
-                     className="size-10.5 2xl:size-10 p-2.5 text-cyan-600/45 dark:text-cyan-300/50 transition-color"
-                     onClick={handleBookmarkClick}
-                  />
+                  <FaBookmark className="size-10.5 2xl:size-10 p-2.5 text-cyan-600/45 dark:text-cyan-300/50 transition-color" />
                ) : (
-                  <FaRegBookmark
-                     className="size-10.5 2xl:size-10 p-2.5 text-primary-400 dark:text-primary-400 group-hover:text-cyan-600/60 dark:group-hover:text-cyan-400/60 transition-color"
-                     onClick={handleBookmarkClick}
-                  />
+                  <FaRegBookmark className="size-10.5 2xl:size-10 p-2.5 text-primary-400 dark:text-primary-400 group-hover:text-cyan-600/60 dark:group-hover:text-cyan-400/60 transition-color" />
                )}
             </Button>
 
