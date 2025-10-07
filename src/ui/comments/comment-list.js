@@ -23,7 +23,7 @@ function CommentList({
    const sortedComments = useMemo(() => {
       if (!param?.sort) return comments;
 
-      return [...getSortedItems(param, comments)].reverse();
+      return [...getSortedItems(param, comments)];
    }, [param, comments]);
 
    return (

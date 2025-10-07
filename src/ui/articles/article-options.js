@@ -104,6 +104,11 @@ function ArticleOptions({
             <Button
                styles="ml-1 2xl:mt-px md:hidden"
                handler={(e) => {
+                  if (!session) {
+                     setIsOpen(true);
+                     return;
+                  }
+
                   e.preventDefault();
                   document.querySelector('.comment-section').scrollIntoView({
                      behavior: 'smooth',

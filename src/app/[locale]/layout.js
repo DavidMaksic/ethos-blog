@@ -130,6 +130,7 @@ export function generateStaticParams() {
 }
 
 // TODO: Implement:
+// TODO: Make sign-in page prettier
 // TODO: 'Edit' option to comments
 // TODO: Social media auth
 // TODO: Notifications
