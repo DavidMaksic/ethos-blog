@@ -74,12 +74,14 @@ function Comment({ comment, users, session, slug, article, newUser, author }) {
    }
 
    // - Like logic
-   let isLiked;
+   let hasLiked;
    const commentLikeIDs = article.likes.filter(
       (item) => item.type === 'comment' && item.target_id === commentID
    );
-   isLiked = commentLikeIDs.length;
+   hasLiked = commentLikeIDs.length;
    const commentCount = commentLikeIDs.length;
+   const [likesCount, setLikesCount] = useState(commentCount);
+   const [isLiked, setIsLiked] = useState(hasLiked);
 
    function handleLike() {
       if (!session) {
@@ -88,11 +90,19 @@ function Comment({ comment, users, session, slug, article, newUser, author }) {
       }
 
       if (isLiked) {
+         setLikesCount((i) => i - 1);
          removeLiked(session.user.userID, articleID, 'comment', slug);
       } else {
+         setLikesCount((i) => i + 1);
          addLiked(session.user.userID, articleID, 'comment', slug, commentID);
       }
+
+      setIsLiked(!isLiked);
    }
+
+   useEffect(() => {
+      setIsLiked(isLiked);
+   }, [isLiked]);
 
    return (
       <>
@@ -148,7 +158,7 @@ function Comment({ comment, users, session, slug, article, newUser, author }) {
             <div className="flex items-center gap-2 md:gap-2.5 mt-2 md:mt-3">
                <div
                   className={`flex items-center gap-2 h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-3 py-1.5 bg-primary-300/20 dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75 ${
-                     commentCount === 0 && 'gap-0!'
+                     likesCount === 0 && 'gap-0!'
                   }`}
                   onClick={handleLike}
                >
@@ -159,7 +169,7 @@ function Comment({ comment, users, session, slug, article, newUser, author }) {
                   )}
 
                   <span className="tracking-wide font-semibold text-base md:text-xl select-none font-secondary">
-                     {commentCount > 0 && commentCount}
+                     {likesCount > 0 && likesCount}
                   </span>
                </div>
 

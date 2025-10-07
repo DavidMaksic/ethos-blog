@@ -1,10 +1,10 @@
 import { useLocale, useTranslations } from 'next-intl';
 import { addLiked, removeLiked } from '@/src/lib/actions';
 import { BiLike, BiSolidLike } from 'react-icons/bi';
+import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'motion/react';
 import { useMediaQuery } from 'react-responsive';
 import { CommentDate } from '@/src/utils/helpers';
-import { useState } from 'react';
 import { LuReply } from 'react-icons/lu';
 
 import CommentOptions from '@/src/ui/comments/comment-options';
@@ -42,12 +42,14 @@ function Reply({
    const date = CommentDate(reply.created_at, locale);
 
    // - Like logic
-   let isLiked;
+   let hasLiked;
    const replyLikeIDs = article.likes.filter(
       (item) => item.type === 'reply' && item.target_id === replyID
    );
-   isLiked = replyLikeIDs.length;
+   hasLiked = replyLikeIDs.length;
    const replyCount = replyLikeIDs.length;
+   const [likesCount, setLikesCount] = useState(replyCount);
+   const [isLiked, setIsLiked] = useState(hasLiked);
 
    function handleLike() {
       if (!session) {
@@ -56,11 +58,19 @@ function Reply({
       }
 
       if (isLiked) {
+         setLikesCount((i) => i - 1);
          removeLiked(session.user.userID, articleID, 'reply', slug);
       } else {
+         setLikesCount((i) => i + 1);
          addLiked(session.user.userID, articleID, 'reply', slug, replyID);
       }
+
+      setIsLiked(!isLiked);
    }
+
+   useEffect(() => {
+      setIsLiked(isLiked);
+   }, [isLiked]);
 
    return (
       <>
@@ -128,7 +138,7 @@ function Reply({
                <div className="flex items-center gap-2 md:gap-2.5 mt-2 md:mt-3">
                   <div
                      className={`flex items-center gap-2 h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-3 py-1.5 bg-primary-300/15 dark:bg-primary-400/12 md:dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75 ${
-                        replyCount === 0 && 'gap-0!'
+                        likesCount === 0 && 'gap-0!'
                      }`}
                      onClick={handleLike}
                   >
@@ -139,7 +149,7 @@ function Reply({
                      )}
 
                      <span className="tracking-wide font-semibold text-base select-none font-secondary">
-                        {replyCount > 0 && replyCount}
+                        {likesCount > 0 && likesCount}
                      </span>
                   </div>
 
