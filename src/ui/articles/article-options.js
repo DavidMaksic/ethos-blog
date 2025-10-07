@@ -78,8 +78,8 @@ function ArticleOptions({
    }
 
    useEffect(() => {
-      setIsLiked(isLiked);
-   }, [isLiked]);
+      setIsLiked(hasLiked);
+   }, [hasLiked]);
 
    return (
       <>

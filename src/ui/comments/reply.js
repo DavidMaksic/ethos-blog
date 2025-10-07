@@ -69,8 +69,8 @@ function Reply({
    }
 
    useEffect(() => {
-      setIsLiked(isLiked);
-   }, [isLiked]);
+      setIsLiked(hasLiked);
+   }, [hasLiked]);
 
    return (
       <>

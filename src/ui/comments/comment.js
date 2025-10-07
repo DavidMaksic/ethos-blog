@@ -101,8 +101,8 @@ function Comment({ comment, users, session, slug, article, newUser, author }) {
    }
 
    useEffect(() => {
-      setIsLiked(isLiked);
-   }, [isLiked]);
+      setIsLiked(hasLiked);
+   }, [hasLiked]);
 
    return (
       <>

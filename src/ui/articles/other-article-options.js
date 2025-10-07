@@ -92,8 +92,12 @@ function OtherArticleOptions({
    }
 
    useEffect(() => {
-      setIsLiked(isLiked);
-   }, [isLiked]);
+      setIsLiked(hasLiked);
+   }, [hasLiked]);
+
+   useEffect(() => {
+      setLikesCount(likeCount);
+   }, [likeCount]);
 
    return (
       <div className="grid grid-rows-4 sm:grid-rows-1 sm:grid-cols-4 gap-3">
