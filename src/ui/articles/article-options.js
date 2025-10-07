@@ -69,9 +69,9 @@ function ArticleOptions({
       }
 
       if (isLiked) {
-         removeLiked(session.user, articleID, slug);
+         removeLiked(session.user.userID, articleID, 'article', slug);
       } else {
-         addLiked(session.user, articleID, slug);
+         addLiked(session.user.userID, articleID, 'article', slug);
       }
 
       setIsLiked(!isLiked);

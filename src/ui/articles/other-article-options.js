@@ -82,10 +82,10 @@ function OtherArticleOptions({
 
       if (isLiked) {
          setLikesCount((i) => i - 1);
-         removeLiked(session.user, articleID, article.slug);
+         removeLiked(session.user.userID, articleID, 'article', article.slug);
       } else {
          setLikesCount((i) => i + 1);
-         addLiked(session.user, articleID, article.slug);
+         addLiked(session.user.userID, articleID, 'article', article.slug);
       }
 
       setIsLiked(!isLiked);

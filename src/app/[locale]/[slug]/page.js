@@ -132,9 +132,11 @@ async function Page({ params, searchParams }) {
    hasReplied = !!replies.find((item) => item.user_id === user?.id);
 
    // - Like logic
-   let hasLiked;
-   const likedIDs = article.likes.map((item) => item.user_id);
-   hasLiked = !!likedIDs.find((item) => item === user?.id);
+   let hasLikedArticle;
+   const articleLikeIDs = article.likes
+      .filter((item) => item.type === 'article')
+      .map((item) => item.user_id);
+   hasLikedArticle = !!articleLikeIDs.find((item) => item === user?.id);
 
    // - Bookmark logic
    const [hasBookmarked, bookmarkCount] = await Promise.all([
@@ -159,7 +161,7 @@ async function Page({ params, searchParams }) {
                   hasCommented={hasCommented}
                   hasReplied={hasReplied}
                   hasBookmarked={hasBookmarked}
-                  hasLiked={hasLiked}
+                  hasLiked={hasLikedArticle}
                />
             </ArticleImage>
 
@@ -174,8 +176,8 @@ async function Page({ params, searchParams }) {
                   hasReplied={hasReplied}
                   hasCommented={hasCommented}
                   hasBookmarked={hasBookmarked}
-                  hasLiked={hasLiked}
-                  likeCount={likedIDs.length}
+                  hasLiked={hasLikedArticle}
+                  likeCount={articleLikeIDs.length}
                   bookmarkCount={bookmarkCount}
                   commentsNum={commentsNum}
                />
@@ -193,7 +195,7 @@ async function Page({ params, searchParams }) {
                session={session}
                comments={comments}
                param={searchParam}
-               articleID={article.id}
+               article={article}
                users={allUsers}
                newUser={user}
                commentsNum={commentsNum}

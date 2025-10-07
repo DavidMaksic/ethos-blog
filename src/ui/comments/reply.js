@@ -1,15 +1,13 @@
 import { useLocale, useTranslations } from 'next-intl';
+import { addLiked, removeLiked } from '@/src/lib/actions';
 import { BiLike, BiSolidLike } from 'react-icons/bi';
-import { useLocalStorage } from '@/src/hooks/use-local-storage';
 import { AnimatePresence } from 'motion/react';
 import { useMediaQuery } from 'react-responsive';
 import { CommentDate } from '@/src/utils/helpers';
-import { replyLikes } from '@/src/lib/actions';
 import { useState } from 'react';
 import { LuReply } from 'react-icons/lu';
 
 import CommentOptions from '@/src/ui/comments/comment-options';
-import useCommentLike from '@/src/hooks/use-comment-like';
 import RemoteImage from '@/src/ui/remote-image';
 import ReplyInput from '@/src/ui/comments/reply-input';
 import AuthModal from '@/src/ui/modal/auth-modal';
@@ -19,8 +17,7 @@ function Reply({
    reply,
    session,
    users,
-   slug,
-   articleID,
+   article,
    commentID,
    newUser,
    user,
@@ -34,13 +31,8 @@ function Reply({
    const replyID = reply.id;
    const t = useTranslations('Comment');
 
-   // - Comment like logic
-   const [likedReplies, setLikedReplies] = useLocalStorage([], 'likedReplies');
-
-   const isLiked = useCommentLike(replyID, likedReplies);
-
-   const [replyCount, setReplyCount] = useState(reply.likes);
-
+   const articleID = article.id;
+   const slug = article.slug;
    const currentUser = users.find((item) => item.id === reply.user_id);
    const isAuthor = currentUser.email === author.email;
 
@@ -48,6 +40,27 @@ function Reply({
 
    const locale = useLocale();
    const date = CommentDate(reply.created_at, locale);
+
+   // - Like logic
+   let isLiked;
+   const replyLikeIDs = article.likes.filter(
+      (item) => item.type === 'reply' && item.target_id === replyID
+   );
+   isLiked = replyLikeIDs.length;
+   const replyCount = replyLikeIDs.length;
+
+   function handleLike() {
+      if (!session) {
+         setIsOpen(true);
+         return;
+      }
+
+      if (isLiked) {
+         removeLiked(session.user.userID, articleID, 'reply', slug);
+      } else {
+         addLiked(session.user.userID, articleID, 'reply', slug, replyID);
+      }
+   }
 
    return (
       <>
@@ -117,26 +130,7 @@ function Reply({
                      className={`flex items-center gap-2 h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-3 py-1.5 bg-primary-300/15 dark:bg-primary-400/12 md:dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75 ${
                         replyCount === 0 && 'gap-0!'
                      }`}
-                     onClick={() => {
-                        if (isLiked) {
-                           setLikedReplies((items) =>
-                              items.filter((item) => item.id !== replyID)
-                           );
-                           const newCount = replyCount - 1;
-                           setReplyCount(() => replyCount - 1);
-
-                           replyLikes(replyID, newCount, slug);
-                        } else {
-                           setLikedReplies((items) => [
-                              ...items,
-                              { id: replyID, isLiked: true },
-                           ]);
-                           const newCount = replyCount + 1;
-                           setReplyCount(() => replyCount + 1);
-
-                           replyLikes(replyID, newCount, slug);
-                        }
-                     }}
+                     onClick={handleLike}
                   >
                      {isLiked ? (
                         <BiSolidLike className="size-4 md:size-6 xs:size-[1.35rem]" />

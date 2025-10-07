@@ -18,7 +18,7 @@ export async function getArticle(slug) {
    const { data, error } = await supabase
       .from('articles')
       .select(
-         '*, categories (*), authors (*), likes(user_id), comments (*, replies (*))'
+         '*, categories (*), authors (*), likes(*), comments (*, replies (*))'
       )
       .eq('slug', slug)
       .single();

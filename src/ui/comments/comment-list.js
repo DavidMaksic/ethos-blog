@@ -12,7 +12,7 @@ function CommentList({
    comments,
    param,
    slug,
-   articleID,
+   article,
    users,
    newUser,
    commentsNum,
@@ -21,7 +21,7 @@ function CommentList({
    const t = useTranslations();
 
    const sortedComments = useMemo(() => {
-      if (!param?.sort) return comments;
+      if (!param?.sort) return [...comments].reverse();
 
       return [...getSortedItems(param, comments)];
    }, [param, comments]);
@@ -64,7 +64,7 @@ function CommentList({
                              session={session}
                              key={item.id}
                              slug={slug}
-                             articleID={articleID}
+                             article={article}
                              newUser={newUser}
                              author={author}
                           />
@@ -76,7 +76,7 @@ function CommentList({
                              session={session}
                              key={item.id}
                              slug={slug}
-                             articleID={articleID}
+                             article={article}
                              newUser={newUser}
                              author={author}
                           />

@@ -133,28 +133,6 @@ export async function deleteComment(commentID, slug) {
    return { success: true };
 }
 
-export async function commentLikes(commentID, count, slug) {
-   const { error } = await supabase
-      .from('comments')
-      .update({ likes: count })
-      .eq('id', commentID);
-
-   if (error) throw new Error('Comment could not be liked');
-   revalidatePath(`/${slug}`);
-   revalidatePath(`/sr/${slug}`);
-}
-
-export async function replyLikes(replyID, count, slug) {
-   const { error } = await supabase
-      .from('replies')
-      .update({ likes: count })
-      .eq('id', replyID);
-
-   if (error) throw new Error('Reply could not be liked');
-   revalidatePath(`/${slug}`);
-   revalidatePath(`/sr/${slug}`);
-}
-
 export async function addReply(previousState, formData) {
    const comment = formData.get('content');
    const userID = formData.get('userID');
@@ -186,25 +164,46 @@ export async function deleteReply(replyID, slug) {
    return { success: true };
 }
 
-export async function addLiked(user, articleID, slug) {
-   const { error } = await supabase.from('likes').insert([
-      {
-         user_id: user.userID,
-         article_id: articleID,
-      },
-   ]);
+export async function addLiked(userID, articleID, type, slug, targetID) {
+   if (type === 'article') {
+      const { error } = await supabase.from('likes').insert([
+         {
+            user_id: userID,
+            article_id: articleID,
+            target_id: articleID,
+            type,
+         },
+      ]);
 
-   if (error) throw new Error('Article could not be liked');
-   revalidatePath(`/${slug}`);
-   revalidatePath(`/sr/${slug}`);
+      if (error) throw new Error('Article could not be liked');
+      revalidatePath(`/${slug}`);
+      revalidatePath(`/sr/${slug}`);
+      return;
+   }
+
+   if (type === 'comment' || type === 'reply') {
+      const { error } = await supabase.from('likes').insert([
+         {
+            user_id: userID,
+            article_id: articleID,
+            target_id: targetID,
+            type,
+         },
+      ]);
+
+      if (error) throw new Error('Article could not be liked');
+      revalidatePath(`/${slug}`);
+      revalidatePath(`/sr/${slug}`);
+   }
 }
 
-export async function removeLiked(user, articleID, slug) {
+export async function removeLiked(userID, articleID, type, slug) {
    const { error } = await supabase
       .from('likes')
       .delete()
-      .eq('user_id', user.userID)
-      .eq('article_id', articleID);
+      .eq('user_id', userID)
+      .eq('article_id', articleID)
+      .eq('type', type);
 
    if (error) throw new Error('Article could not be disliked');
    revalidatePath(`/${slug}`);

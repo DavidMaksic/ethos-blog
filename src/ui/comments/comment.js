@@ -1,8 +1,7 @@
+import { addLiked, deleteReply, removeLiked } from '@/src/lib/actions';
 import { useEffect, useOptimistic, useState } from 'react';
 import { useLocale, useTranslations } from 'use-intl';
-import { commentLikes, deleteReply } from '@/src/lib/actions';
 import { BiLike, BiSolidLike } from 'react-icons/bi';
-import { useLocalStorage } from '@/src/hooks/use-local-storage';
 import { AnimatePresence } from 'motion/react';
 import { useMediaQuery } from 'react-responsive';
 import { CommentDate } from '@/src/utils/helpers';
@@ -11,7 +10,6 @@ import { useRouter } from '@/src/i18n/navigation';
 import { LuReply } from 'react-icons/lu';
 
 import CommentOptions from '@/src/ui/comments/comment-options';
-import useCommentLike from '@/src/hooks/use-comment-like';
 import useCommentLine from '@/src/hooks/use-comment-line';
 import RemoteImage from '@/src/ui/remote-image';
 import ReplyInput from '@/src/ui/comments/reply-input';
@@ -20,15 +18,7 @@ import Modal from '@/src/ui/modal/modal';
 import Reply from '@/src/ui/comments/reply';
 import toast from 'react-hot-toast';
 
-function Comment({
-   comment,
-   users,
-   session,
-   slug,
-   articleID,
-   newUser,
-   author,
-}) {
+function Comment({ comment, users, session, slug, article, newUser, author }) {
    const [isOpen, setIsOpen] = useState(false);
    const [replyIsOpen, setReplyIsOpen] = useState(false);
    const [replyClicked, setReplyClicked] = useState(false);
@@ -37,11 +27,12 @@ function Comment({
 
    const locale = useLocale();
    const date = CommentDate(comment.created_at, locale);
+   const isMobile = useMediaQuery({ maxWidth: 768 });
 
    const user = users.find((item) => item.id === comment.user_id);
    const isAuthor = user.email === author.email;
+   const articleID = article.id;
 
-   const [commentCount, setCommentCount] = useState(comment.likes);
    const router = useRouter();
 
    // - Copy link logic
@@ -57,15 +48,8 @@ function Comment({
       }
    }, [router.asPath]);
 
-   // - Comment like logic
-   const [likedComments, setLikedComments] = useLocalStorage(
-      [],
-      'likedComments'
-   );
-
    const replies = comment.replies;
    const commentID = comment.id;
-   const isLiked = useCommentLike(commentID, likedComments);
 
    // - Comment line logic
    const { containerRef, lastItemRef, lineHeight } = useCommentLine(
@@ -89,7 +73,26 @@ function Comment({
       toast.success(t('reply-deleted'));
    }
 
-   const isMobile = useMediaQuery({ maxWidth: 768 });
+   // - Like logic
+   let isLiked;
+   const commentLikeIDs = article.likes.filter(
+      (item) => item.type === 'comment' && item.target_id === commentID
+   );
+   isLiked = commentLikeIDs.length;
+   const commentCount = commentLikeIDs.length;
+
+   function handleLike() {
+      if (!session) {
+         setIsOpen(true);
+         return;
+      }
+
+      if (isLiked) {
+         removeLiked(session.user.userID, articleID, 'comment', slug);
+      } else {
+         addLiked(session.user.userID, articleID, 'comment', slug, commentID);
+      }
+   }
 
    return (
       <>
@@ -147,26 +150,7 @@ function Comment({
                   className={`flex items-center gap-2 h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-3 py-1.5 bg-primary-300/20 dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75 ${
                      commentCount === 0 && 'gap-0!'
                   }`}
-                  onClick={() => {
-                     if (isLiked) {
-                        setLikedComments((items) =>
-                           items.filter((item) => item.id !== commentID)
-                        );
-                        const newCount = commentCount - 1;
-                        setCommentCount(() => commentCount - 1);
-
-                        commentLikes(commentID, newCount, slug);
-                     } else {
-                        setLikedComments((items) => [
-                           ...items,
-                           { id: commentID, isLiked: true },
-                        ]);
-                        const newCount = commentCount + 1;
-                        setCommentCount(() => commentCount + 1);
-
-                        commentLikes(commentID, newCount, slug);
-                     }
-                  }}
+                  onClick={handleLike}
                >
                   {isLiked ? (
                      <BiSolidLike className="size-4 md:size-6 xs:size-[1.35rem]" />
@@ -246,8 +230,7 @@ function Comment({
                      session={session}
                      key={item.id}
                      users={users}
-                     slug={slug}
-                     articleID={articleID}
+                     article={article}
                      commentID={commentID}
                      newUser={newUser}
                      user={user}
