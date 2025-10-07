@@ -63,6 +63,11 @@ function ArticleOptions({
    const [isLiked, setIsLiked] = useState(hasLiked);
 
    function handleLike() {
+      if (!session) {
+         setIsOpen(true);
+         return;
+      }
+
       if (isLiked) {
          removeLiked(session.user, articleID, slug);
       } else {

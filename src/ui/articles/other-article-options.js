@@ -75,6 +75,11 @@ function OtherArticleOptions({
    const [isLiked, setIsLiked] = useState(hasLiked);
 
    function handleLike() {
+      if (!session) {
+         setIsOpen(true);
+         return;
+      }
+
       if (isLiked) {
          setLikesCount((i) => i - 1);
          removeLiked(session.user, articleID, article.slug);
