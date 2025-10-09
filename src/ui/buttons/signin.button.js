@@ -7,7 +7,7 @@ async function SignInButton() {
 
    return (
       <form action={signInAction}>
-         <button className="flex items-center gap-6 text-xl md:text-2xl border bg-primary-50 lg:dark:bg-primary/70 sm:dark:bg-primary/40 hover:bg-primary-100 dark:hover:bg-[#111920] border-quaternary dark:border-primary-300/20 px-10 py-4 font-medium rounded-3xl cursor-pointer transition-bg_border">
+         <button className="flex items-center gap-6 text-2xl md:text-2xl border bg-primary-50 lg:dark:bg-primary/70 sm:dark:bg-primary/40 hover:bg-primary-100 dark:hover:bg-[#111920] border-quaternary dark:border-primary-300/20 px-14 py-6 font-medium rounded-3xl cursor-pointer transition-bg_border">
             <Image
                src="https://authjs.dev/img/providers/google.svg"
                alt="Google logo"

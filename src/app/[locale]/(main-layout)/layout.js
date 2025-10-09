@@ -14,11 +14,11 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
 import { WEBSITE_URL } from '@/src/utils/config';
 import { Analytics } from '@vercel/analytics/next';
-import { notFound } from 'next/navigation';
 import { Toaster } from 'react-hot-toast';
 import { routing } from '@/src/i18n/routing';
 
 import PageAnimation from '@/src/ui/page-animation';
+import NotFound from '@/src/app/[locale]/not-found';
 import Header from '@/src/ui/header/header';
 import Footer from '@/src/ui/footer';
 import Script from 'next/script';
@@ -140,7 +140,7 @@ export default async function RootLayout({ children, params }) {
    const messages = await getMessages({ locale });
 
    if (!hasLocale(routing.locales, locale)) {
-      notFound();
+      NotFound();
    }
 
    return (
