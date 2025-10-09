@@ -1,9 +1,9 @@
 'use client';
 
 import { createContext, useContext, useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 import { useOutsideClick } from '@/src/hooks/use-outside-click';
 import { BsThreeDots } from 'react-icons/bs';
-import { AnimatePresence, motion } from 'motion/react';
 
 const MenusContext = createContext();
 

@@ -92,3 +92,14 @@ export function sanitizeHTML(html) {
       nonTextTags: ['script', 'style', 'iframe', 'object'],
    });
 }
+
+export function switchLocale(lang) {
+   const url = new URL(window.location.href);
+   url.searchParams.delete('category');
+
+   // Replace the locale part of the pathname (e.g. /en/blog → /sr/blog)
+   url.pathname = `/${lang}${url.pathname.replace(/^\/(en|sr)/, '')}`;
+
+   // Navigate to the new URL
+   window.location.href = url.toString();
+}

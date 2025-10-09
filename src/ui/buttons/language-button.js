@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useOutsideClick } from '@/src/hooks/use-outside-click';
+import { switchLocale } from '@/src/utils/helpers';
 import { useLanguage } from '@/src/context/language-context';
 import { useState } from 'react';
 
@@ -21,18 +22,16 @@ const languages = [
 function LanguageButton() {
    const { language, setLanguage } = useLanguage();
    const [open, setOpen] = useState(false);
-
    const ref = useOutsideClick(() => setOpen((isOpen) => !isOpen), false);
 
-   function switchLocale(lang) {
-      const url = new URL(window.location.href);
-      url.searchParams.delete('category');
+   function handleLang(item) {
+      setLanguage({
+         language: item.lang,
+         flag: item.flag,
+      });
 
-      // Replace the locale part of the pathname (e.g. /en/blog → /sr/blog)
-      url.pathname = `/${lang}${url.pathname.replace(/^\/(en|sr)/, '')}`;
-
-      // Navigate to the new URL
-      window.location.href = url.toString();
+      const lang = item.lang === 'English' ? 'en' : 'sr';
+      switchLocale(lang);
    }
 
    return (
@@ -65,15 +64,7 @@ function LanguageButton() {
                      <li
                         className="flex justify-between items-center relative font-normal rounded-xl py-2 pr-4 pl-5  dark:text-primary-500 hover:bg-primary-100/50 dark:hover:bg-primary-300/18 duration-75 [&_img]:opacity-80 dark:[&_img]:opacity-80 group"
                         key={item.lang}
-                        onClick={() => {
-                           setLanguage({
-                              language: item.lang,
-                              flag: item.flag,
-                           });
-
-                           const lang = item.lang === 'English' ? 'en' : 'sr';
-                           switchLocale(lang);
-                        }}
+                        onClick={() => handleLang(item)}
                      >
                         {item.lang}
                         <div className="relative size-7">

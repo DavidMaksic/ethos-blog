@@ -1,6 +1,8 @@
 'use client';
 
+import { switchLocale } from '@/src/utils/helpers';
 import { useLanguage } from '@/src/context/language-context';
+import { usePathname } from '@/src/i18n/navigation';
 import { useRouter } from 'next/navigation';
 
 import RemoteImage from '@/src/ui/remote-image';
@@ -14,8 +16,10 @@ function FilterButton({
    imageStyle,
    activeStyle,
    children,
+   isMobile = false,
 }) {
    const { language } = useLanguage();
+   const pathname = usePathname();
    const router = useRouter();
 
    const langString = lang.charAt(0).toLowerCase() + lang.slice(1);
@@ -24,18 +28,31 @@ function FilterButton({
       lang === param.lang?.charAt(0).toUpperCase() + param.lang?.slice(1) ||
       (param.lang === undefined && lang === language.language);
 
+   function handleLang() {
+      const params = new URLSearchParams(param);
+
+      if (pathname.startsWith('/archive')) {
+         params.set('lang', langString);
+         router.replace(`?${params.toString()}`, { scroll: false });
+      }
+
+      if (isMobile) {
+         const language = lang === 'English' ? 'en' : 'sr';
+         switchLocale(language);
+         return;
+      }
+
+      params.delete('category');
+      router.replace(`?${params.toString()}`, { scroll: false });
+   }
+
    return (
       <button
          className={`hover:bg-accent/20 flex items-center gap-2 dark:hover:bg-accent-300/50 hover:text-accent-800 dark:hover:text-accent-100 py-0.5 px-2.5 rounded-xl  transition-bg_color cursor-pointer group ${activeStyle} ${
             active &&
             'bg-accent/20 dark:bg-accent-300/50 text-accent-800 dark:text-accent-100 2xs:py-1'
          }`}
-         onClick={() => {
-            const params = new URLSearchParams(param);
-            params.set('lang', langString);
-            params.delete('category');
-            router.replace(`?${params.toString()}`, { scroll: false });
-         }}
+         onClick={handleLang}
       >
          <div className={`relative size-6 2xs:size-8 ${imageStyle}`}>
             <RemoteImage
