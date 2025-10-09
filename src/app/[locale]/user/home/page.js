@@ -30,7 +30,9 @@ async function Page() {
       getBookmarksCount(null, user.userID),
    ]);
 
-   const likesLength = JSON.parse(newUser?.liked).flat().length;
+   const likesLength = newUser.likes.filter(
+      (item) => item.type === 'article'
+   ).length;
    const replies = comments.map((item) => item.replies).flat();
 
    const mergedArray = [...comments, ...replies];

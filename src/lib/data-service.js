@@ -65,7 +65,7 @@ export async function getAuthors() {
 export async function getUser(email) {
    const { data, error } = await supabase
       .from('users')
-      .select()
+      .select('*, likes(id, type)')
       .eq('email', email)
       .maybeSingle();
 
