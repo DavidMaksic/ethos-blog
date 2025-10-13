@@ -10,14 +10,14 @@ function useFilterCategory(array, param) {
    useEffect(() => {
       const filterItems = array.filter((item) => {
          if (param?.lang) {
-            if (param.lang === 'српски') {
+            if (param.lang === 'sr') {
                return cyrillicPattern.test(item.category);
             } else {
                return !cyrillicPattern.test(item.category);
             }
          }
 
-         if (language.language === 'Српски') {
+         if (language.code === 'sr') {
             return cyrillicPattern.test(item.category);
          } else {
             return !cyrillicPattern.test(item.category);
