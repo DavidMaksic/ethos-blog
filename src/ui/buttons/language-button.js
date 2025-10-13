@@ -28,6 +28,8 @@ function LanguageButton() {
    const ref = useOutsideClick(() => setOpen((isOpen) => !isOpen), false);
 
    function handleLang(item) {
+      if (item.code === language.code) return;
+
       setLanguage({
          language: item.code,
          flag: item.flag,
