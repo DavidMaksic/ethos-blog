@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { useOutsideClick } from '@/src/hooks/use-outside-click';
 import { switchLocale } from '@/src/utils/helpers';
 import { useLanguage } from '@/src/context/language-context';
+import { LANG_CODES } from '@/src/utils/config';
 import { useState } from 'react';
 
 import srbFlag from '@/public/srb-flag.png';
@@ -11,10 +12,12 @@ import Image from 'next/image';
 const languages = [
    {
       lang: 'Српски',
+      code: 'sr',
       flag: srbFlag,
    },
    {
       lang: 'English',
+      code: 'en',
       flag: enFlag,
    },
 ];
@@ -26,12 +29,12 @@ function LanguageButton() {
 
    function handleLang(item) {
       setLanguage({
-         language: item.lang,
+         language: item.code,
          flag: item.flag,
       });
 
-      const lang = item.lang === 'English' ? 'en' : 'sr';
-      switchLocale(lang);
+      const langCode = LANG_CODES[item.lang] || 'en';
+      switchLocale(langCode);
    }
 
    return (
@@ -63,7 +66,7 @@ function LanguageButton() {
                   {languages.map((item) => (
                      <li
                         className="flex justify-between items-center relative font-normal rounded-xl py-2 pr-4 pl-5  dark:text-primary-500 hover:bg-primary-100/50 dark:hover:bg-primary-300/18 duration-75 [&_img]:opacity-80 dark:[&_img]:opacity-80 group"
-                        key={item.lang}
+                        key={item.code}
                         onClick={() => handleLang(item)}
                      >
                         {item.lang}

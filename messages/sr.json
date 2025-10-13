@@ -101,9 +101,11 @@
       "join": "Придружи се",
       "comment-label": "заједници да би учествовао у дискусији!",
       "bookmark-label": "заједници да би сачувао чланак!",
+      "sign-in-label": "заједници <em>у једном клику</em>",
       "sign-in": "Пријави се",
       "google": "Настави користећи свој Google nalog",
-      "close": "Затвори"
+      "close": "Затвори",
+      "img-credit": "Слика припада Creative Assembly-у"
    },
    "Error": {
       "message": "Дошло је до грешке...",

@@ -101,9 +101,11 @@
       "join": "Join",
       "comment-label": "community to access more features!",
       "bookmark-label": "community to access more features!",
+      "sign-in-label": "community <em>in one click</em>",
       "sign-in": "Sign in",
       "google": "Continue with Google",
-      "close": "Close"
+      "close": "Close",
+      "img-credit": "Artwork by Creative Assembly"
    },
    "Error": {
       "message": "Something went wrong...",

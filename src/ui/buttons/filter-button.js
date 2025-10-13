@@ -3,6 +3,7 @@
 import { switchLocale } from '@/src/utils/helpers';
 import { useLanguage } from '@/src/context/language-context';
 import { usePathname } from '@/src/i18n/navigation';
+import { LANGUAGES } from '@/src/utils/config';
 import { useRouter } from 'next/navigation';
 
 import RemoteImage from '@/src/ui/remote-image';
@@ -22,24 +23,23 @@ function FilterButton({
    const pathname = usePathname();
    const router = useRouter();
 
-   const langString = lang.charAt(0).toLowerCase() + lang.slice(1);
-
    const active =
-      lang === param.lang?.charAt(0).toUpperCase() + param.lang?.slice(1) ||
-      (param.lang === undefined && lang === language.language);
+      lang === param.lang ||
+      (param.lang === undefined && lang === language.code);
 
    function handleLang() {
       const params = new URLSearchParams(param);
+      const langName =
+         LANGUAGES.find((item) => item.code === lang)?.code || 'en';
 
       if (pathname.startsWith('/archive')) {
-         params.set('lang', langString);
+         params.set('lang', langName);
          router.replace(`?${params.toString()}`, { scroll: false });
       }
 
       if (isMobile) {
-         const language = lang === 'English' ? 'en' : 'sr';
-         switchLocale(language);
-         return;
+         const langCode = LANGUAGES[language.code] || 'en';
+         return switchLocale(langCode);
       }
 
       params.delete('category');
@@ -59,7 +59,7 @@ function FilterButton({
                styles={`border border-accent-800/80 group-hover:border-accent-800/80! rounded-full opacity-90 ${
                   active && 'border-accent-800/80'
                }`}
-               imageUrl={lang === 'Српски' ? srbFlag : enFlag}
+               imageUrl={lang === 'sr' ? srbFlag : enFlag}
                alt="Language image"
             />
          </div>

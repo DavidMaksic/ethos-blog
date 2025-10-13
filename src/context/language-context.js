@@ -12,7 +12,7 @@ const LanguageContext = createContext();
 
 function LanguageProvider({ children }) {
    const locale = useLocale();
-   const defaultLang = locale === routing.defaultLocale ? 'English' : 'Српски';
+   const defaultLang = locale === routing.defaultLocale ? 'en' : 'sr';
    const defaultFlag = locale === routing.defaultLocale ? enFlag : srbFlag;
 
    const [language, setLanguage] = useLocalStorage(
@@ -25,9 +25,9 @@ function LanguageProvider({ children }) {
 
    useEffect(() => {
       if (locale === 'en') {
-         setLanguage({ language: 'English', flag: enFlag });
+         setLanguage({ lang: 'English', code: 'en', flag: enFlag });
       } else {
-         setLanguage({ language: 'Српски', flag: srbFlag });
+         setLanguage({ lang: 'Српски', code: 'sr', flag: srbFlag });
       }
    }, [locale, setLanguage]);
 

@@ -16,9 +16,7 @@ function FeaturedArticles({ articles, categories, authors }) {
    const { filteredArray: filteredCategories } = useFilterCategory(categories);
 
    // - Check if the current tag has enough articles
-   const tags = filteredCategories?.filter(
-      (item) => item.articles.length === 3
-   );
+   const tags = filteredCategories?.filter((item) => item.articles.length >= 3);
 
    // - Shuffle articles
    useEffect(() => {
@@ -27,7 +25,6 @@ function FeaturedArticles({ articles, categories, authors }) {
          const tick = () => setIndex((i) => i + 1);
          id = setInterval(tick, 6000);
          setCurrentCategory(tags[index % tags.length]);
-
          if (tags.length === 1) setStopShuffle(true);
       }
 
@@ -37,7 +34,7 @@ function FeaturedArticles({ articles, categories, authors }) {
    // - Filter for featured articles
    const filteredArticles = articles.filter((item) => item.featured);
    const featuredArticles = filteredArticles.filter(
-      (item) => Number(item.category_id) === currentCategory.id
+      (item) => Number(item.category_id) === currentCategory?.id
    );
 
    const t = useTranslations('HomePage');
@@ -52,7 +49,7 @@ function FeaturedArticles({ articles, categories, authors }) {
          <h2 className="flex items-center gap-2 self-center text-4xl lg:text-3xl md:text-4xl">
             <span>{t('featuring')}</span>
             <span className="text-accent/75 dark:text-accent-300/90 italic font-medium font-secondary">
-               {currentCategory.category}
+               {currentCategory?.category}
             </span>
          </h2>
 

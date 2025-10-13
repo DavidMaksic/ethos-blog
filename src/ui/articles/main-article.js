@@ -1,7 +1,7 @@
 import { useLocale, useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react';
 import { Link } from '@/src/i18n/navigation';
 import RemoteImage from '@/src/ui/remote-image';
-import { useEffect, useState } from 'react';
 
 function MainArticle({ article }) {
    const t = useTranslations('HomePage');
@@ -41,7 +41,7 @@ function MainArticle({ article }) {
                <RemoteImage
                   imageUrl={article.image}
                   alt="Article image"
-                  styles="rounded-3xl object-cover border border-primary-200"
+                  styles="rounded-3xl object-cover border border-primary-200 shadow-xl dark:shadow-none"
                   opacity="opacity-90 dark:opacity-75"
                />
             </div>

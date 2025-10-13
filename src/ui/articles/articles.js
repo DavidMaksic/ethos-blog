@@ -16,9 +16,7 @@ function Articles({
    param,
    style,
 }) {
-   const {
-      language: { language },
-   } = useLanguage();
+   const { language } = useLanguage();
    const t = useTranslations('Archive');
 
    const [loading, setLoading] = useState(true);
@@ -62,9 +60,8 @@ function Articles({
          const matchesCategory =
             !currentCategory || item.category_id === category_id;
          const matchesLanguage = !param.lang
-            ? item.language === language
-            : item.language ===
-              param.lang.charAt(0).toUpperCase() + param.lang.slice(1);
+            ? item.code === language.code
+            : item.code === param.lang;
          return matchesCategory && matchesLanguage;
       });
 

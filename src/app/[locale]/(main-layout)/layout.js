@@ -130,7 +130,8 @@ export function generateStaticParams() {
 }
 
 // TODO: Implement:
-// TODO: Make sign-in page prettier
+// TODO: If language chosen is the same as the current one, disable click
+// TODO: Add media queries and animation for sing-in page
 // TODO: 'Edit' option to comments
 // TODO: Social media auth
 // TODO: Notifications
