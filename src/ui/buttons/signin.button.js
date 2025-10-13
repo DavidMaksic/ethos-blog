@@ -8,13 +8,15 @@ async function SignInButton() {
    return (
       <form action={signInAction}>
          <button className="flex items-center gap-6 text-2xl md:text-2xl border bg-primary-50 lg:dark:bg-primary/70 sm:dark:bg-primary/40 hover:bg-primary-100 dark:hover:bg-[#111920] border-quaternary dark:border-primary-300/20 px-14 py-6 font-medium rounded-3xl cursor-pointer transition-bg_border">
-            <Image
-               src="https://authjs.dev/img/providers/google.svg"
-               alt="Google logo"
-               height="24"
-               width="24"
-               priority={true}
-            />
+            <div className="relative size-7">
+               <Image
+                  fill
+                  src="https://authjs.dev/img/providers/google.svg"
+                  alt="Google logo"
+                  priority={true}
+               />
+            </div>
+
             <span>{t('google')}</span>
          </button>
       </form>
