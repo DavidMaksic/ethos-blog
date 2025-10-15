@@ -41,7 +41,7 @@ function MainArticle({ article }) {
                <RemoteImage
                   imageUrl={article.image}
                   alt="Article image"
-                  styles="rounded-3xl object-cover border border-primary-200 shadow-xl dark:shadow-none"
+                  styles="rounded-3xl object-cover border border-primary-200"
                   opacity="opacity-90 dark:opacity-75"
                />
             </div>

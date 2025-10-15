@@ -6,6 +6,7 @@ import { useOutsideClick } from '@/src/hooks/use-outside-click';
 import { useTranslations } from 'next-intl';
 import { HiOutlineUser } from 'react-icons/hi2';
 import { BiHomeAlt2 } from 'react-icons/bi';
+import { LANGUAGES } from '@/src/utils/config';
 import { useParams } from 'next/navigation';
 import { useState } from 'react';
 import { Link } from '@/src/i18n/navigation';
@@ -17,7 +18,6 @@ function MobileMenu({ session, newUser, oldUser }) {
    const [openMenu, setOpenMenu] = useState(false);
    const ref = useOutsideClick(() => setOpenMenu((isOpen) => !isOpen), false);
 
-   const options = ['Српски', 'English'];
    const param = useParams();
    const t = useTranslations();
 
@@ -137,17 +137,17 @@ function MobileMenu({ session, newUser, oldUser }) {
                            !session && 'xs:pt-5!'
                         }`}
                      >
-                        {options.map((item) => (
+                        {LANGUAGES.map((item) => (
                            <FilterButton
-                              key={item}
-                              lang={item}
+                              key={item.code}
+                              lang={item.code}
                               param={param}
                               styles="md:text-[2rem]! ml-1!"
                               imageStyle="size-10!"
                               activeStyle="py-1.5! pl-3.5! pr-4! rounded-2xl!"
                               isMobile={true}
                            >
-                              {item}
+                              {item.lang}
                            </FilterButton>
                         ))}
                      </div>

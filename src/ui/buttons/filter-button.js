@@ -29,17 +29,20 @@ function FilterButton({
 
    function handleLang() {
       const params = new URLSearchParams(param);
-      const langName =
+      const langCode =
          LANGUAGES.find((item) => item.code === lang)?.code || 'en';
 
       if (pathname.startsWith('/archive')) {
-         params.set('lang', langName);
+         params.set('lang', langCode);
          router.replace(`?${params.toString()}`, { scroll: false });
       }
 
       if (isMobile) {
-         const langCode = LANGUAGES[language.code] || 'en';
-         return switchLocale(langCode);
+         if (param.lang === language.code) return;
+
+         const mobileLangCode =
+            LANGUAGES.find((item) => item.code === lang)?.code || 'en';
+         return switchLocale(mobileLangCode);
       }
 
       params.delete('category');
@@ -63,6 +66,7 @@ function FilterButton({
                alt="Language image"
             />
          </div>
+
          <p className={`md:text-2xl 2xs:text-[1.65rem] ${styles}`}>
             {children}
          </p>

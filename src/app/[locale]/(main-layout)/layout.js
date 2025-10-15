@@ -130,6 +130,7 @@ export function generateStaticParams() {
 }
 
 // TODO: Implement:
+// TODO: Comment icon is not fully visible
 // TODO: 'Edit' option to comments
 // TODO: Social media auth
 // TODO: Notifications
