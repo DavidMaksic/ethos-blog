@@ -30,14 +30,15 @@ async function ArticleImage({ article, author, date, children }) {
                   )}
                </div>
 
-               <div className="flex flex-col font-medium leading-6 self-center">
+               <div className="font-secondary flex flex-col font-medium leading-6 self-center sm:gap-1">
                   <div className="space-x-1.5">
                      {locale === 'en' && <span className="md:hidden">By</span>}
-                     <span className="text-accent-500 dark:text-accent-200/90 font-semibold 2xl:text-[1.2rem] md:text-2xl sm:text-[1.3rem] md:font-bold">
+                     <span className="text-accent-500 dark:text-accent-200/90 font-semibold 2xl:text-[1.2rem] md:text-[1.3rem]">
                         {author.full_name}
                      </span>
                   </div>
-                  <span className="text-base 2xl:text-sm md:text-base md:mt-[-2px] sm:mt-[-3px]">
+
+                  <span className="text-base 2xl:text-sm md:text-base md:mt-[-2px] sm:mt-[-3px] text-primary-400">
                      {date}
                   </span>
                </div>

@@ -18,6 +18,7 @@ function FilterButton({
    activeStyle,
    children,
    isMobile = false,
+   setOpenMenu,
 }) {
    const { language } = useLanguage();
    const pathname = usePathname();
@@ -38,7 +39,7 @@ function FilterButton({
       }
 
       if (isMobile) {
-         if (param.lang === language.code) return;
+         if (param.locale === lang) return;
 
          const mobileLangCode =
             LANGUAGES.find((item) => item.code === lang)?.code || 'en';

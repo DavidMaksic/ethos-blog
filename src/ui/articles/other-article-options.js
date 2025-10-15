@@ -166,7 +166,7 @@ function OtherArticleOptions({
                <Modal closeModal={() => setIsOpen(false)}>
                   <AuthModal
                      onClose={() => setIsOpen(false)}
-                     string="bookmark-label"
+                     string="generic-label"
                   />
                </Modal>
             )}
