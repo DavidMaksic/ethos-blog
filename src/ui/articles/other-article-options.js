@@ -44,10 +44,7 @@ function OtherArticleOptions({
    const [isBookmarked, setIsBookmarked] = useState(hasBookmarked);
 
    const handleBookmark = () => {
-      if (!session) {
-         setIsOpen(true);
-         return;
-      }
+      if (!session) return setIsOpen(true);
 
       if (isBookmarked) {
          setBookmarksCount((i) => i - 1);
@@ -75,10 +72,7 @@ function OtherArticleOptions({
    const [isLiked, setIsLiked] = useState(hasLiked);
 
    function handleLike() {
-      if (!session) {
-         setIsOpen(true);
-         return;
-      }
+      if (!session) return setIsOpen(true);
 
       if (isLiked) {
          setLikesCount((i) => i - 1);
@@ -116,6 +110,8 @@ function OtherArticleOptions({
             hasReplied={hasReplied}
             count={commentsNum}
             handler={(e) => {
+               if (!session) return setIsOpen(true);
+
                e.preventDefault();
                document.querySelector('.comment-section').scrollIntoView({
                   behavior: 'smooth',
