@@ -13,10 +13,10 @@ function MainArticle({ article }) {
    return (
       <div className="grid grid-cols-2 md:flex! md:flex-col! gap-10 md:gap-4 mt-24 2xl:mt-22 lg:mt-24 sm:mt-14 xs:mt-10 mb-38 2xl:mb-33 sm:mb-20 overflow-visible">
          <div className="space-y-2 md:space-y-3 self-center flex flex-col  md:items-center md:order-2 md:w-full md:px-10 xs:px-8 md:bg-white md:dark:bg-primary-300/15 md:pt-8 md:pb-9 md:rounded-3xl md:box-shadow md:border md:border-quaternary md:shadow-dashboard md:dark:shadow-none md:dark:border-primary-300/15">
-            <h2 className="relative md:text-center md:font-semibold styled_text font-title text-6xl 2xl:text-[3.3rem] lg:text-[3rem] md:text-[3rem] sm:text-[2.8rem] 2xl:leading-15.5 xs:leading-12.5 pb-2 2xl:pb-1 lg:pb-0 bg-gradient-to-r from-gray-600 to-gray-500/90 dark:from-slate-300 dark:to-slate-300/80 select-none leading-16 lg:leading-13">
+            <h2 className="relative md:text-center font-medium md:font-semibold styled_text font-title text-6xl 2xl:text-[3.3rem] lg:text-[3rem] md:text-[3rem] sm:text-[2.8rem] 2xl:leading-15.5 xs:leading-12.5 pb-2 2xl:pb-1 lg:pb-0 bg-gradient-to-r from-gray-600 to-gray-500/90 dark:from-slate-300/90 dark:to-slate-300/70 select-none leading-16 lg:leading-13">
                {article.title}
             </h2>
-            <h3 className="text-[1.6rem] lg:text-[1.2rem] md:text-[1.4rem] text-primary-400 xs:w-11/12 2xs:w-10/11 select-none md:text-center">
+            <h3 className="text-[1.6rem] lg:text-[1.2rem] md:text-[1.4rem] text-primary-500/85 dark:text-primary-500/80 xs:w-11/12 2xs:w-10/11 select-none md:text-center">
                {article.description}
             </h3>
 
