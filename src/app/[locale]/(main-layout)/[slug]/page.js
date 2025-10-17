@@ -9,7 +9,6 @@ import {
 } from '@/src/lib/data-service';
 import { getTranslations } from 'next-intl/server';
 import { WEBSITE_URL } from '@/src/utils/config';
-import { supabase } from '@/src/lib/supabase';
 import { format } from 'date-fns';
 import { auth } from '@/src/lib/auth';
 
@@ -25,43 +24,10 @@ import CommentList from '@/src/ui/comments/comment-list';
 import ImageZoom from '@/src/ui/image-zoom';
 import Options from '@/src/ui/options';
 
-export const revalidate = 3600;
-
-export async function generateStaticParams() {
-   const { data, error } = await supabase
-      .from('articles')
-      .select('slug, code')
-      .order('created_at', { ascending: false })
-      .limit(50);
-
-   if (error) {
-      console.error('Failed to get article slugs', error);
-      return [];
-   }
-
-   return data.map((article) => ({
-      slug: article.slug,
-      locale: article.code,
-   }));
-}
-
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
 
    const { slug, locale } = param;
-   const { data, error } = await supabase
-      .from('articles')
-      .select('title, description, image, authors (full_name)')
-      .eq('slug', slug)
-      .single();
-
-   if (error) {
-      console.error('Failed to fetch article metadata', error);
-      return {
-         title: 'Article not found',
-      };
-   }
-
    const {
       title,
       description,
@@ -69,7 +35,7 @@ export async function generateMetadata({ params }) {
       created_at,
       updated_at,
       authors: { full_name },
-   } = data;
+   } = await getArticle(slug);
 
    const path = locale === 'en' ? '' : `/${locale}`;
 
