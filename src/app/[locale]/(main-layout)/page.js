@@ -1,45 +1,29 @@
-import {
-   getArticles,
-   getMainArticles,
-   getCategories,
-   getAuthors,
-} from '@/src/lib/data-service';
-import { getTranslations } from 'next-intl/server';
+import React, { Suspense } from 'react';
+import MainArticlesAsync from '@/src/ui/articles/main-articles-async';
+import FeaturedArticlesAsync from '@/src/ui/articles/featured-articles-async';
+import LatestArticlesAsync from '@/src/ui/articles/latest-articles-async';
+import LoadingSection from '@/src/ui/loading-section';
 
-import FeaturedArticles from '@/src/ui/articles/featured-articles';
-import LatestArticles from '@/src/ui/articles/latest-articles';
-import MainArticles from '@/src/ui/articles/main-articles';
-
-export default async function Home() {
-   const [articles, categories, mainArticles, authors, t] = await Promise.all([
-      getArticles(),
-      getCategories(),
-      getMainArticles(),
-      getAuthors(),
-      getTranslations('H1'),
-   ]);
-
+export default function Home() {
    return (
       <>
-         <h1 className="sr-only">{t('main-page')}</h1>
+         <h1 className="sr-only">Main page</h1>
 
-         <MainArticles articles={mainArticles} />
+         <Suspense fallback={<LoadingSection />}>
+            <MainArticlesAsync />
+         </Suspense>
 
          <div className="h-[1px] mt-2 sm:mt-12 bg-gradient-to-r from-primary-300 to-primary dark:to-transparent" />
 
-         <FeaturedArticles
-            articles={articles}
-            categories={categories}
-            authors={authors}
-         />
+         <Suspense fallback={<LoadingSection />}>
+            <FeaturedArticlesAsync />
+         </Suspense>
 
          <div className="h-[1px] mt-2 sm:mt-12 bg-gradient-to-l from-primary-300 to-primary dark:to-transparent" />
 
-         <LatestArticles
-            articles={articles}
-            categories={categories}
-            authors={authors}
-         />
+         <Suspense fallback={<LoadingSection />}>
+            <LatestArticlesAsync />
+         </Suspense>
       </>
    );
 }
