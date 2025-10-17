@@ -78,6 +78,7 @@ export function CommentDate(createdAt, locale) {
 export function sanitizeHTML(html) {
    return sanitizeHtml(html, {
       allowedTags: false,
+      allowVulnerableTags: true,
       allowedAttributes: false,
       transformTags: {
          '*': (tagName, attribs) => {
