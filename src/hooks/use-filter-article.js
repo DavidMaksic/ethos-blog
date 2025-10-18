@@ -9,7 +9,7 @@ function useFilterArticle(array) {
 
    useEffect(() => {
       const filterItems = array.filter((item) => {
-         if (language.language === 'Српски') {
+         if (language.lang === 'Српски') {
             return cyrillicPattern.test(item.language);
          } else {
             return !cyrillicPattern.test(item.language);

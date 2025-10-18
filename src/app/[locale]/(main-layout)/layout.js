@@ -130,7 +130,6 @@ export function generateStaticParams() {
 }
 
 // TODO: Implement:
-// TODO: In terminal: Your `allowedTags` option includes, `script`
 // TODO: 'Edit' option to comments
 // TODO: Social media auth
 // TODO: Notifications

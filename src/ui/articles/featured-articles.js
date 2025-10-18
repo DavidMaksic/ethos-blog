@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { AnimatePresence } from 'motion/react';
 
@@ -9,27 +9,33 @@ import FeaturedItem from '@/src/ui/articles/featured-item';
 
 function FeaturedArticles({ articles, categories, authors }) {
    const [index, setIndex] = useState(0);
-   const [stopShuffle, setStopShuffle] = useState(false);
    const [currentCategory, setCurrentCategory] = useState(categories?.at(0));
 
    // - Filter by language
    const { filteredArray: filteredCategories } = useFilterCategory(categories);
 
    // - Check if the current tag has enough articles
-   const tags = filteredCategories?.filter((item) => item.articles.length >= 3);
+   const tags = useMemo(
+      () => filteredCategories?.filter((item) => item.articles.length >= 3),
+      [filteredCategories]
+   );
 
    // - Shuffle articles
    useEffect(() => {
-      let id;
-      if (currentCategory && tags && !stopShuffle) {
-         const tick = () => setIndex((i) => i + 1);
-         id = setInterval(tick, 6000);
-         setCurrentCategory(tags[index % tags.length]);
-         if (tags.length === 1) setStopShuffle(true);
-      }
+      if (!tags || tags.length <= 1) return;
+
+      const id = setInterval(() => {
+         setIndex((prev) => prev + 1);
+      }, 6000);
 
       return () => clearInterval(id);
-   }, [index, currentCategory, tags, categories, stopShuffle]);
+   }, [tags]);
+
+   useEffect(() => {
+      if (tags && tags.length > 0) {
+         setCurrentCategory(tags[index % tags.length]);
+      }
+   }, [index, tags]);
 
    // - Filter for featured articles
    const filteredArticles = articles.filter((item) => item.featured);
