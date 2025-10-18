@@ -199,6 +199,7 @@ async function Page({ params, searchParams }) {
                users={allUsers}
                newUser={user}
                commentsNum={commentsNum}
+               commentLength={comment_length.comment_length}
                author={author}
             />
 

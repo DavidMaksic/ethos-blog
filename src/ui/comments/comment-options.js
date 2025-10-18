@@ -1,16 +1,19 @@
 import { AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
+import { LuPencilLine } from 'react-icons/lu';
 import { useState } from 'react';
 import { CgClose } from 'react-icons/cg';
 import { FiLink } from 'react-icons/fi';
 
 import DeleteModal from '@/src/ui/modal/delete-modal';
+import EditModal from '@/src/ui/modal/edit-modal';
 import Modal from '@/src/ui/modal/modal';
 import Menus from '@/src/ui/menus';
 import toast from 'react-hot-toast';
 
 function CommentOptions({
-   commentID,
+   comment,
+   commentLength,
    userID,
    replyID,
    slug,
@@ -19,7 +22,9 @@ function CommentOptions({
    onDelete,
 }) {
    const [openDelete, setOpenDelete] = useState();
+   const [openEdit, setOpenEdit] = useState();
    const t = useTranslations('Comment');
+   const commentID = comment.id;
 
    return (
       <>
@@ -43,12 +48,12 @@ function CommentOptions({
 
                {session?.user?.userID === userID && (
                   <>
-                     {/* <Menus.Button
-                     icon={<LuPencilLine className="stroke-[1.7px]" />}
-                     // handler={() => navigate(`/edit/:${commentID}`)}
+                     <Menus.Button
+                        icon={<LuPencilLine className="stroke-[1.7px]" />}
+                        handler={() => setOpenEdit(true)}
                      >
                         Edit
-                     </Menus.Button> */}
+                     </Menus.Button>
 
                      <Menus.Button
                         icon={
@@ -73,6 +78,20 @@ function CommentOptions({
                      replyID={replyID}
                      articleID={articleID}
                      onDelete={onDelete}
+                  />
+               </Modal>
+            )}
+         </AnimatePresence>
+
+         <AnimatePresence>
+            {openEdit && (
+               <Modal closeModal={() => setOpenEdit(false)}>
+                  <EditModal
+                     comment={comment}
+                     commentLength={commentLength}
+                     slug={slug}
+                     onClose={() => setOpenEdit(false)}
+                     replyID={replyID}
                   />
                </Modal>
             )}

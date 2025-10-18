@@ -126,6 +126,7 @@
    --shadow-toast-btn: 0 0 40px 0px #e5e7eb;
    --shadow-link-btn: 0 0 1rem var(--color-accent-300);
    --shadow-link-btn-dark: 0 0 1rem var(--color-accent-900);
+   --shadow-edit-btn: 0 0 1rem var(--color-accent-200);
    --shadow-delete-btn: 0 0 1rem var(--color-red-300);
    --shadow-category: 0 0.2rem 1rem var(--color-accent-50);
    --shadow-filter: 0 0 0.5rem var(--color-accent-300);

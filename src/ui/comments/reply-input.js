@@ -16,6 +16,7 @@ function ReplyInput({
    slug,
    articleID,
    commentID,
+   commentLength,
    session,
    newUser,
    setReplyIsOpen,
@@ -24,7 +25,6 @@ function ReplyInput({
    const [error, setError] = useState(false);
 
    const [text, setText] = useState('');
-   const charLimit = 1000;
 
    const locale = useLocale();
    const t = useTranslations('Comment');
@@ -75,11 +75,11 @@ function ReplyInput({
             <TextareaAutosize
                minRows={1}
                maxRows={20}
-               maxLength={charLimit}
+               maxLength={commentLength}
                value={text}
                name="content"
                className={`w-full h-auto min-h-fit border text-primary-600 dark:text-text rounded-3xl px-10 pb-18 py-7 pr-11 text-[1.4rem] 2xl:text-[1.3rem] md:text-[1.6rem] xs:text-[1.5rem] md:leading-9 xs:leading-[1.4] transition-bg_border flex-grow outline-none scrollbar transition-200 md:placeholder:text-[1.6rem] ${
-                  text.length === charLimit || error
+                  text.length === commentLength || error
                      ? 'border-red-400 dark:border-red-400/60'
                      : ' border-primary-300 dark:border-primary-300/50'
                }`}
@@ -143,12 +143,12 @@ function ReplyInput({
                   className={`text-lg bg-white border border-quaternary dark:border-tertiary dark:bg-primary-200 rounded-full px-4 py-1 pb-1.5 font-medium select-none pointer-events-none ${
                      text.length < 701 && 'opacity-0'
                   } ${
-                     text.length === charLimit
+                     text.length === commentLength
                         ? 'text-red-600/60 bg-red-300/10! dark:text-red-300/80 border-red-300/30! dark:border-red-300/10!'
                         : ''
                   }`}
                >
-                  {text.length} / {charLimit}
+                  {text.length} / {commentLength}
                </span>
             </div>
          </form>

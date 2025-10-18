@@ -81,7 +81,13 @@
       "deleting": "Deleting",
       "deleted": "Comment deleted",
       "cancel": "Cancel",
-      "no-comments": "No comments found!"
+      "no-comments": "No comments found!",
+      "edit": "Edit",
+      "editing": "Editing",
+      "edit-label-comment": "Edit your comment",
+      "edit-label-reply": "Edit your reply",
+      "edited-comment": "Comment succesfully updated",
+      "edited-reply": "Reply succesfully updated"
    },
    "Sort": {
       "latest": "Latest",

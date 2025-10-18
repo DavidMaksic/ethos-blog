@@ -120,6 +120,19 @@ export async function addComment(previousState, formData) {
    return { success: true };
 }
 
+export async function editComment(commentID, text, slug) {
+   const { error } = await supabase
+      .from('comments')
+      .update({ content: text })
+      .eq('id', commentID);
+
+   if (error) throw new Error('Comment could not be edited');
+
+   revalidatePath(`/${slug}`);
+   revalidatePath(`/sr/${slug}`);
+   return { success: true };
+}
+
 export async function deleteComment(commentID, slug) {
    const { error } = await supabase
       .from('comments')
@@ -148,6 +161,19 @@ export async function addReply(previousState, formData) {
    });
 
    if (error) throw new Error('Reply could not be posted');
+
+   revalidatePath(`/${slug}`);
+   revalidatePath(`/sr/${slug}`);
+   return { success: true };
+}
+
+export async function editReply(replyID, text, slug) {
+   const { error } = await supabase
+      .from('replies')
+      .update({ content: text })
+      .eq('id', replyID);
+
+   if (error) throw new Error('Reply could not be edited');
 
    revalidatePath(`/${slug}`);
    revalidatePath(`/sr/${slug}`);

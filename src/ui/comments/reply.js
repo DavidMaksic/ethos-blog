@@ -8,10 +8,10 @@ import { CommentDate } from '@/src/utils/helpers';
 import { LuReply } from 'react-icons/lu';
 
 import CommentOptions from '@/src/ui/comments/comment-options';
-import RemoteImage from '@/src/ui/remote-image';
 import ReplyInput from '@/src/ui/comments/reply-input';
 import AuthModal from '@/src/ui/modal/auth-modal';
 import Modal from '@/src/ui/modal/modal';
+import Image from 'next/image';
 
 function Reply({
    reply,
@@ -19,6 +19,7 @@ function Reply({
    users,
    article,
    commentID,
+   commentLength,
    newUser,
    user,
    lastItemRef,
@@ -75,8 +76,8 @@ function Reply({
    return (
       <>
          <div className="relative last:mb-12" ref={lastItemRef}>
-            <div className="absolute left-10 top-1/2 w-10 h-8 -translate-x-full -translate-y-[100%]">
-               <div className="w-full h-full border-l-2 border-b-2 border-quaternary dark:border-tertiary rounded-bl-full" />
+            <div className="absolute left-10 top-1/2 w-10 h-10 -translate-x-full -translate-y-[85%]">
+               <div className="w-full h-full border-l-1 border-b-1 border-primary-400/50 dark:border-quaternary/90 rounded-bl-full" />
             </div>
 
             <div
@@ -87,11 +88,14 @@ function Reply({
                   <div className="flex items-center gap-4">
                      {currentUser?.image && (
                         <div className="relative size-10 md:size-11 sm:size-9">
-                           <RemoteImage
-                              imageUrl={currentUser.image}
+                           <Image
+                              className="block aspect-square object-cover object-center rounded-full dark:opacity-90"
+                              fill
+                              src={currentUser.image}
                               alt="User image"
-                              styles="block aspect-square object-cover object-center rounded-full"
-                              opacity="dark:opacity-90"
+                              priority={true}
+                              quality={60}
+                              sizes="100vw"
                            />
                         </div>
                      )}
@@ -124,6 +128,8 @@ function Reply({
                      id={replyID}
                      userID={reply.user_id}
                      slug={slug}
+                     comment={reply}
+                     commentLength={commentLength}
                      replyID={replyID}
                      articleID={articleID}
                      session={session}
@@ -189,6 +195,7 @@ function Reply({
                   slug={slug}
                   articleID={articleID}
                   commentID={commentID}
+                  commentLength={commentLength}
                   newUser={newUser}
                   session={session}
                   user={user}

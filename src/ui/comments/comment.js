@@ -11,14 +11,22 @@ import { LuReply } from 'react-icons/lu';
 
 import CommentOptions from '@/src/ui/comments/comment-options';
 import useCommentLine from '@/src/hooks/use-comment-line';
-import RemoteImage from '@/src/ui/remote-image';
 import ReplyInput from '@/src/ui/comments/reply-input';
 import AuthModal from '@/src/ui/modal/auth-modal';
 import Modal from '@/src/ui/modal/modal';
 import Reply from '@/src/ui/comments/reply';
 import toast from 'react-hot-toast';
+import Image from 'next/image';
 
-function Comment({ comment, users, session, slug, article, newUser, author }) {
+function Comment({
+   comment,
+   commentLength,
+   users,
+   session,
+   article,
+   newUser,
+   author,
+}) {
    const [isOpen, setIsOpen] = useState(false);
    const [replyIsOpen, setReplyIsOpen] = useState(false);
    const [replyClicked, setReplyClicked] = useState(false);
@@ -50,6 +58,7 @@ function Comment({ comment, users, session, slug, article, newUser, author }) {
 
    const replies = comment.replies;
    const commentID = comment.id;
+   const slug = article.slug;
 
    // - Comment line logic
    const { containerRef, lastItemRef, lineHeight } = useCommentLine(
@@ -79,6 +88,7 @@ function Comment({ comment, users, session, slug, article, newUser, author }) {
       (item) => item.type === 'comment' && item.target_id === commentID
    );
    hasLiked = commentLikeIDs.length;
+
    const commentCount = commentLikeIDs.length;
    const [likesCount, setLikesCount] = useState(commentCount);
    const [isLiked, setIsLiked] = useState(hasLiked);
@@ -114,10 +124,14 @@ function Comment({ comment, users, session, slug, article, newUser, author }) {
                <div className="flex items-center gap-4">
                   {user?.image && (
                      <div className="relative size-10 md:size-11 sm:size-9 select-none">
-                        <RemoteImage
-                           imageUrl={user.image}
+                        <Image
+                           className="block aspect-square object-cover object-center rounded-full dark:opacity-90"
+                           fill
+                           src={user.image}
                            alt="User image"
-                           styles="block aspect-square object-cover object-center rounded-full dark:opacity-90"
+                           priority={true}
+                           quality={60}
+                           sizes="100vw"
                         />
                      </div>
                   )}
@@ -143,7 +157,8 @@ function Comment({ comment, users, session, slug, article, newUser, author }) {
                </div>
 
                <CommentOptions
-                  commentID={commentID}
+                  comment={comment}
+                  commentLength={commentLength}
                   userID={comment.user_id}
                   slug={slug}
                   articleID={articleID}
@@ -214,7 +229,7 @@ function Comment({ comment, users, session, slug, article, newUser, author }) {
 
          <div className="relative">
             <div
-               className={`absolute w-0.5 bg-quaternary dark:bg-tertiary rounded-full ${
+               className={`absolute w-0.5 bg-primary-300 dark:bg-tertiary rounded-full ${
                   !optimisticReplies?.length || !showReplies ? 'hidden' : ''
                }`}
                style={{ height: `${lineHeight}px`, top: 0 }}
@@ -226,6 +241,7 @@ function Comment({ comment, users, session, slug, article, newUser, author }) {
                   slug={slug}
                   articleID={articleID}
                   commentID={commentID}
+                  commentLength={commentLength}
                   newUser={newUser}
                   session={session}
                   user={user}
@@ -242,6 +258,7 @@ function Comment({ comment, users, session, slug, article, newUser, author }) {
                      users={users}
                      article={article}
                      commentID={commentID}
+                     commentLength={commentLength}
                      newUser={newUser}
                      user={user}
                      lastItemRef={lastItemRef}

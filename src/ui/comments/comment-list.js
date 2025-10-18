@@ -11,11 +11,11 @@ function CommentList({
    session,
    comments,
    param,
-   slug,
    article,
    users,
    newUser,
    commentsNum,
+   commentLength,
    author,
 }) {
    const t = useTranslations();
@@ -60,10 +60,10 @@ function CommentList({
                      ? sortedComments.map((item) => (
                           <Comment
                              comment={item}
+                             commentLength={commentLength}
                              users={users}
                              session={session}
                              key={item.id}
-                             slug={slug}
                              article={article}
                              newUser={newUser}
                              author={author}
@@ -72,10 +72,10 @@ function CommentList({
                      : comments.map((item) => (
                           <Comment
                              comment={item}
+                             commentLength={commentLength}
                              users={users}
                              session={session}
                              key={item.id}
-                             slug={slug}
                              article={article}
                              newUser={newUser}
                              author={author}

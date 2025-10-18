@@ -40,7 +40,7 @@ function DeleteModal({
                className={`relative font-semibold rounded-full p-2 px-6 cursor-pointer hover:shadow-delete-btn dark:hover:shadow-none transition tracking-wide ${
                   !isPending
                      ? 'hover:bg-red-400/70 dark:hover:bg-red-400/45 hover:text-white dark:hover:text-red-100'
-                     : 'text-[#db7979] dark:text-[#cc7272] pl-12.5!  hover:shadow-none!'
+                     : 'text-[#db7979] dark:text-[#cc7272] pl-12.5!  hover:shadow-none! pointer-events-none'
                }`}
                onClick={() => {
                   if (replyID) {
@@ -70,7 +70,9 @@ function DeleteModal({
             </span>
 
             <button
-               className="mx-4 mr-6 font-semibold tracking-wider text-primary-500/80 dark:text-primary-400 hover:text-primary-400 dark:hover:text-primary-500 cursor-pointer transition"
+               className={`mx-4 mr-6 font-semibold tracking-wider text-primary-500/80 dark:text-primary-400 hover:text-primary-400 dark:hover:text-primary-500 cursor-pointer transition ${
+                  isPending && 'pointer-events-none'
+               }`}
                onClick={onClose}
             >
                {t('cancel')}
