@@ -58,10 +58,9 @@ function Footer() {
             </li>
          </ul>
 
-         <div className="flex flex-col text-center gap-1 text-xl">
-            <span>{t('HomePage.copyright')}</span>
-            <span>Project for portfolio</span>
-         </div>
+         <span className="flex flex-col text-center gap-1 text-xl">
+            {t('HomePage.copyright')}
+         </span>
       </footer>
    );
 }

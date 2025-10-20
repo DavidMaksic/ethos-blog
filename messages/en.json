@@ -10,7 +10,7 @@
       "latest": "Latest articles",
       "categories": "Categories",
       "latest-btn": "See all",
-      "copyright": "Copyright ©2025 Ethos, All rights reserved",
+      "copyright": "Copyright ©2025 Ethos, all rights reserved.",
       "pages-label": "Pages"
    },
    "Article": {
@@ -30,7 +30,7 @@
    "About": {
       "label": "About this blog",
       "label-2": "Ethos",
-      "description": "Ethos blog features many authors from across the world, who write with great interest on various topics connected to the concept of ethos - culture, customs, values, ethics, etc. We strive to tackle less known and overlooked topics which mostly focus on morals and education, with truth as the ultimate goal - even if it's controversial.",
+      "description": "Ethos blog features many authors from across the world, who write with great interest on various topics connected to the concept of ethos - culture, customs, values, ethics, etc. We strive to tackle less known and overlooked topics which mostly focus on morals and education, with truth as the ultimate goal.",
       "etymology": "Set of <em>moral beliefs</em>, <em>attitudes</em> and <em>habits</em> that are characteristic of a person or a group.",
       "ipa": "/'i:θɒs/"
    },
