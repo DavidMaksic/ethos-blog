@@ -68,14 +68,14 @@ function EditModal({ comment, commentLength, replyID, slug, onClose }) {
             {replyID ? t('edit-label-reply') : t('edit-label-comment')}
          </span>
 
-         <div className="w-[45rem] px-10">
+         <div className="font-secondary w-[45rem] md:w-[85vw] xs:w-[80vw] px-10 sm:px-6 xs:px-0">
             <TextareaAutosize
                minRows={1}
-               maxRows={20}
+               maxRows={10}
                maxLength={commentLength}
                value={text}
                name="content"
-               className={`w-full h-auto min-h-fit border text-primary-600 dark:text-text rounded-3xl px-10 pb-18 py-7 pr-11 text-[1.4rem] 2xl:text-[1.3rem] md:text-[1.6rem] xs:text-[1.5rem] md:leading-9 xs:leading-[1.4]  transition-bg_border flex-grow outline-none scrollbar transition-200 md:placeholder:text-[1.6rem] ${
+               className={`w-full h-auto min-h-fit border text-primary-600 dark:text-text rounded-3xl px-10 pb-18 py-7 pr-11 text-[1.4rem] 2xl:text-[1.3rem] md:text-[1.6rem] xs:text-[1.5rem] md:leading-9 xs:leading-[1.4] transition-bg_border flex-grow outline-none scrollbar transition-200 md:placeholder:text-[1.6rem] ${
                   text.length === commentLength || error
                      ? 'border-red-400 dark:border-red-400/60'
                      : ' border-primary-300 dark:border-primary-300/50'

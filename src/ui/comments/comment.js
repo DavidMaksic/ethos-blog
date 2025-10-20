@@ -229,7 +229,7 @@ function Comment({
 
          <div className="relative">
             <div
-               className={`absolute w-0.5 bg-primary-300 dark:bg-tertiary rounded-full ${
+               className={`absolute w-0.5 2xs:w-[0.15rem] bg-primary-300 2xl:bg-primary-400/27 dark:bg-tertiary 2xl:dark:bg-tertiary/90 rounded-full ${
                   !optimisticReplies?.length || !showReplies ? 'hidden' : ''
                }`}
                style={{ height: `${lineHeight}px`, top: 0 }}

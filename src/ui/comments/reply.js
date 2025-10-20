@@ -76,8 +76,8 @@ function Reply({
    return (
       <>
          <div className="relative last:mb-12" ref={lastItemRef}>
-            <div className="absolute left-10 top-1/2 w-10 h-10 -translate-x-full -translate-y-[85%]">
-               <div className="w-full h-full border-l-1 border-b-1 border-primary-400/50 dark:border-quaternary/90 rounded-bl-full" />
+            <div className="absolute left-10 top-1/2 w-10 h-10 -translate-x-full 4k:-translate-y-[40%]! 2k:-translate-y-[60%] -translate-y-[85%] xs:-translate-y-[110%] 2xs:-translate-y-[120%] 2xl:-translate-x-[101%] 2xs:-translate-x-full">
+               <div className="size-full 4k:border-l-3! 2k:border-l-2 border-l-1 2xl:border-l-2 4k:border-b-3! 2k:border-b-2 border-b-1 2xl:border-b-2 2k:border-primary-400/40 border-primary-400/50 2xl:border-primary-400/25 2k:dark:border-quaternary/70 dark:border-quaternary/90 2xl:dark:border-quaternary/70 rounded-bl-full" />
             </div>
 
             <div
