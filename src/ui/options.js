@@ -66,7 +66,7 @@ function Options() {
          <IoOptions
             className={`fixed bottom-13 2xl:bottom-11 lg:bottom-11.5 md:bottom-9 right-24 lg:right-15 md:right-9 size-16 md:size-20.5 bg-white dark:bg-transparent lg:dark:bg-primary/40 md:dark:bg-primary-200/80 backdrop-blur-3xl border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/25 p-3.5 md:p-4.5 rounded-full box-shadow md:shadow-menu transition-bg_border cursor-pointer z-20 ${
                !isBellowMd
-                  ? 'hover:bg-primary-100/80 dark:hover:bg-primary-400/10'
+                  ? 'hover:bg-white/20 dark:hover:bg-primary-400/10'
                   : ''
             } ${
                openTable
