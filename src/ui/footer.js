@@ -43,19 +43,16 @@ function Footer() {
             <Link href="/user/home">{t('HomePage.nav-link-4')}</Link>
          </div>
 
-         <ul className="flex gap-10 text-3xl [&_li]:hover:text-primary-800 [&_li]:transition duration-100">
-            <li>
-               <FaFacebook />
-            </li>
-            <li>
+         <ul className="flex gap-10 text-3xl [&_a]:hover:text-primary-800 [&_a]:transition duration-100">
+            <Link href="https://www.instagram.com/ethos.blog/" target="_blank">
                <FaInstagram />
-            </li>
-            <li>
+            </Link>
+            <Link href="https://x.com/EthosBlogging" target="_blank">
                <RiTwitterXFill />
-            </li>
-            <li>
+            </Link>
+            <Link href="https://github.com/DavidMaksic" target="_blank">
                <IoLogoGithub />
-            </li>
+            </Link>
          </ul>
 
          <span className="flex flex-col text-center gap-1 text-xl">
