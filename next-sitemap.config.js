@@ -1,4 +1,4 @@
-const { WEBSITE_URL } = require('@/src/utils/config');
+const { WEBSITE_URL } = require('./src/utils/config');
 
 module.exports = {
    siteUrl: WEBSITE_URL,
