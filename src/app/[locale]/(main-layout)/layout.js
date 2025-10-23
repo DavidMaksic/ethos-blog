@@ -14,8 +14,8 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
 import { WEBSITE_URL } from '@/src/utils/config';
 import { Analytics } from '@vercel/analytics/next';
-import { Toaster } from 'react-hot-toast';
 import { routing } from '@/src/i18n/routing';
+import { Toaster } from 'react-hot-toast';
 
 import PageAnimation from '@/src/ui/page-animation';
 import NotFound from '@/src/app/[locale]/not-found';
