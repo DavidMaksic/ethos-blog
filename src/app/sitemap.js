@@ -1,11 +1,13 @@
-import { LOCALES, WEBSITE_URL } from '@/src/utils/config';
+import { LOCALES, WEBSITE_URL, DEFAULT_LOCALE } from '@/src/utils/config';
 import { getArticles } from '@/src/lib/data-service';
 
 export const revalidate = 86400; // Revalidate once a day
 
 function createAlternates(path) {
    return LOCALES.reduce((acc, locale) => {
-      acc[locale] = `${WEBSITE_URL}/${locale}${path}`;
+      // Only add locale prefix if it's not the default locale
+      const prefix = locale === DEFAULT_LOCALE ? '' : `/${locale}`;
+      acc[locale] = `${WEBSITE_URL}${prefix}${path}`;
       return acc;
    }, {});
 }
@@ -19,8 +21,9 @@ export default async function sitemap() {
    const staticPages = ['', '/archive', '/about'];
    staticPages.forEach((path) => {
       LOCALES.forEach((locale) => {
+         const prefix = locale === DEFAULT_LOCALE ? '' : `/${locale}`;
          urls.push({
-            url: `${WEBSITE_URL}/${locale}${path}`,
+            url: `${WEBSITE_URL}${prefix}${path}`,
             lastModified: now,
             changeFrequency:
                path === ''
@@ -37,14 +40,15 @@ export default async function sitemap() {
    // Article pages
    articles.forEach((article) => {
       LOCALES.forEach((locale) => {
+         const prefix = locale === DEFAULT_LOCALE ? '' : `/${locale}`;
          urls.push({
-            url: `${WEBSITE_URL}/${locale}/${article.slug}`,
+            url: `${WEBSITE_URL}${prefix}/${article.slug}`,
             lastModified: article.updatedAt
                ? new Date(article.updatedAt).toISOString()
                : now,
             changeFrequency: 'weekly',
             priority: 0.8,
-            images: [article.image],
+            images: article.image ? [article.image] : undefined,
             alternates: createAlternates(`/${article.slug}`),
          });
       });
