@@ -10,14 +10,14 @@ export async function generateMetadata({ params }) {
       getTranslations('Page-descriptions'),
    ]);
    const { locale } = param;
-   const path = locale === 'en' ? '' : `/${locale}`;
+   const prefix = locale === 'en' ? '' : `/${locale}`;
 
    const jsonLd = {
       '@context': 'https://schema.org',
       '@type': 'AboutPage',
       name: t('about-name'),
       description: t('about'),
-      url: `${WEBSITE_URL}${path}/about`,
+      url: `${WEBSITE_URL}${prefix}/about`,
       inLanguage: locale,
       keywords: [
          'Ethos Blog',
@@ -31,14 +31,14 @@ export async function generateMetadata({ params }) {
       ],
       mainEntityOfPage: {
          '@type': 'WebPage',
-         '@id': `${WEBSITE_URL}${path}/about`,
+         '@id': `${WEBSITE_URL}${prefix}/about`,
       },
    };
 
    return {
       title: t('about-name'),
       alternates: {
-         canonical: `${WEBSITE_URL}${path}/about`,
+         canonical: `${WEBSITE_URL}${prefix}/about`,
          languages: {
             en: `${WEBSITE_URL}/about`,
             sr: `${WEBSITE_URL}/sr/about`,

@@ -11,14 +11,14 @@ import SortBy from '@/src/ui/operations/sort-by';
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
    const { locale } = param;
-   const path = locale === 'en' ? '' : `/${locale}`;
+   const prefix = locale === 'en' ? '' : `/${locale}`;
 
    const jsonLd = {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
       name: t('Page-descriptions.archive-name'),
       description: t('Page-descriptions.archive'),
-      url: `${WEBSITE_URL}${path}/archive`,
+      url: `${WEBSITE_URL}${prefix}/archive`,
       inLanguage: locale,
       keywords: ['Ethos Blog', 'Archive', 'Blog posts', 'Articles'],
    };
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }) {
    return {
       title: t('Page-descriptions.archive-name'),
       alternates: {
-         canonical: `${WEBSITE_URL}${path}/archive`,
+         canonical: `${WEBSITE_URL}${prefix}/archive`,
          languages: {
             en: `${WEBSITE_URL}/archive`,
             sr: `${WEBSITE_URL}/sr/archive`,

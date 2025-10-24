@@ -37,12 +37,12 @@ export async function generateMetadata({ params }) {
       authors: { full_name },
    } = await getArticle(slug);
 
-   const path = locale === 'en' ? '' : `/${locale}`;
+   const prefix = locale === 'en' ? '' : `/${locale}`;
 
    const jsonLd = {
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',
-      url: `${WEBSITE_URL}${path}/${slug}`,
+      url: `${WEBSITE_URL}${prefix}/${slug}`,
       headline: title,
       description: description,
       author: {
@@ -64,7 +64,7 @@ export async function generateMetadata({ params }) {
       title: title ? title : t('Page-descriptions.article-name'),
       description: description ? description : t('Page-descriptions.article'),
       alternates: {
-         canonical: `${WEBSITE_URL}${path}/${slug}`,
+         canonical: `${WEBSITE_URL}${prefix}/${slug}`,
          languages: {
             en: `${WEBSITE_URL}/${slug}`,
             sr: `${WEBSITE_URL}/sr/${slug}`,
@@ -76,7 +76,7 @@ export async function generateMetadata({ params }) {
          description: description
             ? description
             : t('Page-descriptions.article'),
-         url: `${WEBSITE_URL}${path}/${slug}`,
+         url: `${WEBSITE_URL}${prefix}/${slug}`,
          siteName: t('Logo'),
          locale: locale,
          type: 'website',

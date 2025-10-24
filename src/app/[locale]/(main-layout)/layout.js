@@ -63,12 +63,12 @@ const cormorantSC = Cormorant_SC({
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
    const { locale } = param;
-   const path = locale === 'en' ? '' : `/${locale}`;
+   const prefix = locale === 'en' ? '' : `/${locale}`;
 
    const jsonLd = {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      url: `${WEBSITE_URL}${path}`,
+      url: `${WEBSITE_URL}${prefix}`,
       name: t('Logo'),
       description: t('Page-descriptions.about'),
       inLanguage: locale,
@@ -89,7 +89,7 @@ export async function generateMetadata({ params }) {
       },
       description: t('Page-descriptions.about'),
       alternates: {
-         canonical: `${WEBSITE_URL}${path}`,
+         canonical: `${WEBSITE_URL}${prefix}`,
          languages: {
             en: `${WEBSITE_URL}`,
             sr: `${WEBSITE_URL}/sr`,
@@ -98,7 +98,7 @@ export async function generateMetadata({ params }) {
       openGraph: {
          title: t('Logo'),
          description: t('Page-descriptions.about'),
-         url: `${WEBSITE_URL}${path}`,
+         url: `${WEBSITE_URL}${prefix}`,
          siteName: t('Logo'),
          locale: locale,
          type: 'website',
@@ -112,7 +112,7 @@ export async function generateMetadata({ params }) {
          ],
       },
       twitter: {
-         card: 'summary',
+         card: 'summary_large_image',
          title: t('Logo'),
          description: t('Page-descriptions.about'),
          images: [
