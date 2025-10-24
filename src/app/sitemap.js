@@ -18,19 +18,19 @@ export default async function sitemap() {
          priority: 1.0,
       },
       {
-         url: `${baseURL}/${locale}/archive`,
+         url: `${baseURL}/archive`,
          lastModified: now,
          changeFrequency: 'weekly',
          priority: 0.6,
       },
       {
-         url: `${baseURL}/${locale}/about`,
+         url: `${baseURL}/about`,
          lastModified: now,
          changeFrequency: 'monthly',
          priority: 0.5,
       },
       ...articles.map((item) => ({
-         url: `${baseURL}/${locale}/${item.slug}`,
+         url: `${baseURL}/${item.slug}`,
          lastModified: item.updatedAt
             ? new Date(item.updatedAt).toISOString()
             : now,
