@@ -104,7 +104,7 @@ export async function generateMetadata({ params }) {
          type: 'website',
          images: [
             {
-               url: 'https://qjbihfajkucvfxqkvtxk.supabase.co/storage/v1/object/public/misc/ethos-banner-3.png',
+               url: 'https://qjbihfajkucvfxqkvtxk.supabase.co/storage/v1/object/public/misc/ethos-banner-main.png',
                width: 1200,
                height: 630,
                alt: t('Logo'),
@@ -116,7 +116,7 @@ export async function generateMetadata({ params }) {
          title: t('Logo'),
          description: t('Page-descriptions.about'),
          images: [
-            'https://qjbihfajkucvfxqkvtxk.supabase.co/storage/v1/object/public/misc/ethos-banner-3.png',
+            'https://qjbihfajkucvfxqkvtxk.supabase.co/storage/v1/object/public/misc/ethos-banner-main.png',
          ],
       },
       other: {
