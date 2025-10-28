@@ -13,16 +13,6 @@ export async function generateMetadata({ params }) {
    const { locale } = param;
    const prefix = locale === 'en' ? '' : `/${locale}`;
 
-   const jsonLd = {
-      '@context': 'https://schema.org',
-      '@type': 'CollectionPage',
-      name: t('Page-descriptions.archive-name'),
-      description: t('Page-descriptions.archive'),
-      url: `${WEBSITE_URL}${prefix}/archive`,
-      inLanguage: locale,
-      keywords: ['Ethos Blog', 'Archive', 'Blog posts', 'Articles'],
-   };
-
    return {
       title: t('Page-descriptions.archive-name'),
       alternates: {
@@ -32,19 +22,20 @@ export async function generateMetadata({ params }) {
             sr: `${WEBSITE_URL}/sr/archive`,
          },
       },
-      other: {
-         'script:ld+json': JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
-      },
    };
 }
 
-async function Page({ searchParams }) {
-   const [searchParam, articles, categories, t] = await Promise.all([
+async function Page({ params, searchParams }) {
+   const [param, searchParam, articles, categories, t] = await Promise.all([
+      params,
       searchParams,
       getArticles(),
       getCategories(),
       getTranslations(),
    ]);
+
+   const { locale } = param;
+   const prefix = locale === 'en' ? '' : `/${locale}`;
 
    const currentCategory = categories.find(
       (item) =>
@@ -52,6 +43,20 @@ async function Page({ searchParams }) {
          searchParam.category?.charAt(0).toUpperCase() +
             searchParam.category?.slice(1)
    );
+
+   const jsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: t('Page-descriptions.archive-name'),
+      description: t('Page-descriptions.archive'),
+      url: `${WEBSITE_URL}${prefix}/archive`,
+      inLanguage: locale,
+      keywords: ['Ethos Blog', 'Archive', 'Blog posts', 'Articles'],
+      mainEntityOfPage: {
+         '@type': 'WebPage',
+         '@id': `${WEBSITE_URL}${prefix}/archive`,
+      },
+   };
 
    return (
       <div className="grid grid-cols-[2fr_1fr] md:grid-cols-1 gap-10 xs:gap-14 2xl:mt-3">
@@ -102,6 +107,13 @@ async function Page({ searchParams }) {
             />
             <Languages param={searchParam} />
          </section>
+
+         <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+               __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
+            }}
+         />
       </div>
    );
 }

@@ -32,33 +32,10 @@ export async function generateMetadata({ params }) {
       title,
       description,
       image,
-      created_at,
-      updated_at,
       authors: { full_name },
    } = await getArticle(slug);
 
    const prefix = locale === 'en' ? '' : `/${locale}`;
-
-   const jsonLd = {
-      '@context': 'https://schema.org',
-      '@type': 'BlogPosting',
-      url: `${WEBSITE_URL}${prefix}/${slug}`,
-      headline: title,
-      description: description,
-      author: {
-         '@type': 'Person',
-         name: full_name,
-      },
-      datePublished: created_at,
-      dateModified: updated_at,
-      image: {
-         '@type': 'ImageObject',
-         url: image,
-         width: 1200,
-         height: 628,
-      },
-      keywords: ['Ethos Blog', 'Blog post', 'Article'],
-   };
 
    return {
       title: title ? title : t('Page-descriptions.article-name'),
@@ -97,9 +74,6 @@ export async function generateMetadata({ params }) {
             : t('Page-descriptions.article'),
          images: [image],
       },
-      other: {
-         'script:ld+json': JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
-      },
    };
 }
 
@@ -114,13 +88,25 @@ async function Page({ params, searchParams }) {
          getSettings(),
       ]);
 
+   const { slug, locale } = param;
+
    // - Article logic
    const [user, article] = await Promise.all([
       getUser(session?.user?.email),
-      getArticle(param?.slug),
+      getArticle(slug),
    ]);
 
-   const { id, comments, categories: category, authors: author } = article;
+   const {
+      id,
+      comments,
+      image,
+      title,
+      description,
+      categories: category,
+      authors: author,
+      created_at,
+      updated_at,
+   } = article;
 
    // - Comment logic
    let hasCommented;
@@ -147,6 +133,33 @@ async function Page({ params, searchParams }) {
    // - Other logic
    const date = format(new Date(article.created_at), 'MMM dd, yyyy');
    const commentsNum = replies?.length + comments?.length;
+
+   const prefix = locale === `en` ? '' : `/${locale}`;
+
+   const jsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      url: `${WEBSITE_URL}${prefix}/${slug}`,
+      headline: title,
+      description: description,
+      author: {
+         '@type': 'Person',
+         name: author.full_name,
+      },
+      datePublished: created_at,
+      dateModified: updated_at,
+      image: {
+         '@type': 'ImageObject',
+         url: image,
+         width: 1200,
+         height: 628,
+      },
+      keywords: ['Ethos Blog', 'Blog post', 'Article'],
+      mainEntityOfPage: {
+         '@type': 'WebPage',
+         '@id': `${WEBSITE_URL}${prefix}/${slug}`,
+      },
+   };
 
    return (
       <article className="flex flex-col">
@@ -212,6 +225,13 @@ async function Page({ params, searchParams }) {
 
             <Options />
          </div>
+
+         <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+               __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
+            }}
+         />
       </article>
    );
 }

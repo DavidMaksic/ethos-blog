@@ -65,23 +65,6 @@ export async function generateMetadata({ params }) {
    const { locale } = param;
    const prefix = locale === 'en' ? '' : `/${locale}`;
 
-   const jsonLd = {
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      url: `${WEBSITE_URL}${prefix}`,
-      name: t('Logo'),
-      description: t('Page-descriptions.about'),
-      inLanguage: locale,
-      keywords: [
-         'Ethos Blog',
-         'History',
-         'Theology',
-         'Christian Philosophy',
-         'Moral Ethics',
-         'Culture',
-      ],
-   };
-
    return {
       title: {
          template: `%s • ${t('Logo')}`,
@@ -119,9 +102,6 @@ export async function generateMetadata({ params }) {
             'https://qjbihfajkucvfxqkvtxk.supabase.co/storage/v1/object/public/misc/ethos-banner-main.webp',
          ],
       },
-      other: {
-         'script:ld+json': JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
-      },
    };
 }
 
@@ -134,8 +114,32 @@ export function generateStaticParams() {
 // TODO: Notifications
 
 export default async function RootLayout({ children, params }) {
-   const { locale } = await params;
+   const [param, t] = await Promise.all([params, getTranslations()]);
+   const { locale } = param;
+
    const messages = await getMessages({ locale });
+   const prefix = locale === 'en' ? '' : `/${locale}`;
+
+   const jsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      url: `${WEBSITE_URL}${prefix}`,
+      name: t('Logo'),
+      description: t('Page-descriptions.about'),
+      inLanguage: locale,
+      sameAs: [
+         'https://www.instagram.com/ethos.blog/',
+         'https://x.com/EthosBlogging',
+      ],
+      keywords: [
+         'Ethos Blog',
+         'History',
+         'Theology',
+         'Christian Philosophy',
+         'Moral Ethics',
+         'Culture',
+      ],
+   };
 
    if (!hasLocale(routing.locales, locale)) {
       NotFound();
@@ -160,6 +164,13 @@ export default async function RootLayout({ children, params }) {
                content="black-translucent"
             />
             <meta name="apple-mobile-web-app-title" content="Ethos Blog" />
+
+            <script
+               type="application/ld+json"
+               dangerouslySetInnerHTML={{
+                  __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
+               }}
+            />
          </head>
 
          <body

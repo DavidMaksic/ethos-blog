@@ -12,11 +12,34 @@ export async function generateMetadata({ params }) {
    const { locale } = param;
    const prefix = locale === 'en' ? '' : `/${locale}`;
 
+   return {
+      title: t('about-name'),
+      alternates: {
+         canonical: `${WEBSITE_URL}${prefix}/about`,
+         languages: {
+            en: `${WEBSITE_URL}/about`,
+            sr: `${WEBSITE_URL}/sr/about`,
+         },
+      },
+      authors: authors.map((author) => ({ name: author.full_name })),
+   };
+}
+
+async function Page({ params }) {
+   const [param, authors, t] = await Promise.all([
+      params,
+      getAuthors(),
+      getTranslations(),
+   ]);
+
+   const { locale } = param;
+   const prefix = locale === 'en' ? '' : `/${locale}`;
+
    const jsonLd = {
       '@context': 'https://schema.org',
       '@type': 'AboutPage',
-      name: t('about-name'),
-      description: t('about'),
+      name: t('Page-descriptions.about-name'),
+      description: t('Page-descriptions.about'),
       url: `${WEBSITE_URL}${prefix}/about`,
       inLanguage: locale,
       keywords: [
@@ -34,25 +57,6 @@ export async function generateMetadata({ params }) {
          '@id': `${WEBSITE_URL}${prefix}/about`,
       },
    };
-
-   return {
-      title: t('about-name'),
-      alternates: {
-         canonical: `${WEBSITE_URL}${prefix}/about`,
-         languages: {
-            en: `${WEBSITE_URL}/about`,
-            sr: `${WEBSITE_URL}/sr/about`,
-         },
-      },
-      authors: authors.map((author) => ({ name: author.full_name })),
-      other: {
-         'script:ld+json': JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
-      },
-   };
-}
-
-async function Page() {
-   const [authors, t] = await Promise.all([getAuthors(), getTranslations()]);
 
    return (
       <>
@@ -87,6 +91,13 @@ async function Page() {
                <Author author={item} key={item.id} styles="mt-6" />
             ))}
          </div>
+
+         <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+               __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
+            }}
+         />
       </>
    );
 }
