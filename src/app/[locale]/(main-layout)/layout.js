@@ -105,15 +105,9 @@ export async function generateMetadata({ params }) {
    };
 }
 
-export function generateStaticParams() {
-   return routing.locales.map((locale) => ({ locale }));
-}
-
 // TODO: Implement:
 // TODO: Next.js 16 + Better Auth
 // TODO: Notifications
-
-export const dynamic = 'force-static';
 
 export default async function RootLayout({ children, params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
