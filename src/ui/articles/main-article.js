@@ -36,7 +36,7 @@ function MainArticle({ article }) {
             </Link>
          </div>
 
-         {mounted && article ? (
+         {mounted ? (
             <div className="relative md:order-1 h-[26rem] 2xl:h-[23rem] lg:h-[20rem] xs:h-[20rem]">
                <RemoteImage
                   imageUrl={article.image}

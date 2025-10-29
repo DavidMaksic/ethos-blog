@@ -9,7 +9,7 @@ function RemoteImage({
    styles,
    opacity,
    alt,
-   props,
+   ...props
 }) {
    const [loaded, setLoaded] = useState(false);
    const opacitySetting = opacity ? opacity : 'opacity-95 dark:opacity-80';
