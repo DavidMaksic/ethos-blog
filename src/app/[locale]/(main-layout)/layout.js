@@ -109,11 +109,15 @@ export async function generateMetadata({ params }) {
 // TODO: Next.js 16 + Better Auth
 // TODO: Notifications
 
+export function generateStaticParams() {
+   return routing.locales.map((locale) => ({ locale }));
+}
+
 export default async function RootLayout({ children, params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
    const { locale } = param;
 
-   const messages = await getMessages({ locale });
+   // const messages = await getMessages({ locale });
    const prefix = locale === 'en' ? '' : `/${locale}`;
 
    const jsonLd = {
@@ -172,7 +176,7 @@ export default async function RootLayout({ children, params }) {
          <body
             className={`min-h-screen flex flex-col text-xl 2xl:px-60 xl:px-26 inter-padding font-main text-text selection:bg-accent-400/90 dark:selection:bg-accent-200/50 selection:text-white caret-primary-400 antialiased bg-primary transition-200 background-gradient ${cormorantGaramond.variable} ${ebGaramond.variable} ${parisienne.variable} ${greatVibes.variable} ${cormorantSC.variable}`}
          >
-            <NextIntlClientProvider locale={locale} messages={messages}>
+            <NextIntlClientProvider locale={locale}>
                <LanguageProvider>
                   <ThemeProvider
                      attribute="data-theme"
