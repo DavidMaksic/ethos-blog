@@ -2,6 +2,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { Link } from '@/src/i18n/navigation';
 import RemoteImage from '@/src/ui/remote-image';
+import Image from 'next/image';
 
 function MainArticle({ article }) {
    const t = useTranslations('HomePage');
@@ -36,19 +37,18 @@ function MainArticle({ article }) {
             </Link>
          </div>
 
-         {mounted ? (
-            <div className="relative md:order-1 h-[26rem] 2xl:h-[23rem] lg:h-[20rem] xs:h-[20rem]">
-               <RemoteImage
-                  imageUrl={article.image}
-                  alt="Article image"
-                  styles="rounded-3xl object-cover border border-primary-200"
-                  opacity="opacity-90 dark:opacity-75"
-                  fetchPriority="high"
-               />
-            </div>
-         ) : (
-            <div className="md:order-1 h-[26rem] 2xl:h-[23rem] lg:h-[20rem] xs:h-[20rem] bg-primary-300/45 dark:bg-primary-300/18 rounded-3xl animate-skeleton" />
-         )}
+         <div className="relative md:order-1 h-[26rem] 2xl:h-[23rem] lg:h-[20rem] xs:h-[20rem]">
+            <Image
+               className={`rounded-3xl object-cover border border-primary-200 opacity-90 dark:opacity-75`}
+               fill
+               src={article.image}
+               alt="Article image"
+               priority={true}
+               quality={60}
+               sizes="100vw"
+               fetchPriority="high"
+            />
+         </div>
       </div>
    );
 }
