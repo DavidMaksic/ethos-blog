@@ -43,7 +43,7 @@ function Footer() {
             <Link href="/user/home">{t('HomePage.nav-link-4')}</Link>
          </div>
 
-         <ul className="flex gap-10 text-3xl [&_a]:hover:text-primary-800 [&_a]:transition duration-75">
+         <div className="flex gap-10 text-3xl [&_a]:hover:text-primary-800 [&_a]:transition duration-75">
             <Link href="https://www.instagram.com/ethos.blog/" target="_blank">
                <FaInstagram />
             </Link>
@@ -53,7 +53,7 @@ function Footer() {
             <Link href="https://github.com/DavidMaksic" target="_blank">
                <IoLogoGithub />
             </Link>
-         </ul>
+         </div>
 
          <span className="flex flex-col text-center gap-1 text-xl">
             {t('HomePage.copyright')}

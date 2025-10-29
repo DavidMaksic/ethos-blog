@@ -3,7 +3,14 @@
 import { useState } from 'react';
 import Image from 'next/image';
 
-function RemoteImage({ imageRef = null, imageUrl, styles, opacity, alt }) {
+function RemoteImage({
+   imageRef = null,
+   imageUrl,
+   styles,
+   opacity,
+   alt,
+   props,
+}) {
    const [loaded, setLoaded] = useState(false);
    const opacitySetting = opacity ? opacity : 'opacity-95 dark:opacity-80';
 
@@ -20,6 +27,7 @@ function RemoteImage({ imageRef = null, imageUrl, styles, opacity, alt }) {
          quality={60}
          sizes="100vw"
          onLoad={() => setLoaded(true)}
+         {...props}
       />
    );
 }
