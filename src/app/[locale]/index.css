@@ -942,7 +942,7 @@
    justify-content: center;
    align-items: center;
    flex-grow: 1;
-   border-radius: 1rem;
+   border-radius: 1.6rem;
    min-height: 48px;
    padding: 1.5rem 2rem 1.5rem 0.7rem;
    transition: background-color 0.1s;
@@ -1376,6 +1376,7 @@ h3 {
       font-size: 18.5px !important;
       line-height: 2.1rem;
       padding: 18px 26px 19px 26px !important;
+      border-radius: 1.35rem !important;
    }
 
    .bn-block-column-list {

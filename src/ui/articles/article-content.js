@@ -1,6 +1,8 @@
 import { Crimson_Text, Gentium_Book_Plus } from 'next/font/google';
 import { sanitizeHTML } from '@/src/utils/helpers';
+import { FiLink } from 'react-icons/fi';
 
+import slugify from 'slugify';
 import parse from 'html-react-parser';
 import Image from 'next/image';
 
@@ -37,9 +39,40 @@ function ArticleContent({ content, article }) {
                   width={4000}
                   height={3000}
                   quality={60}
-                  priority={true}
+                  priority
                   sizes="100vw"
                />
+            );
+         }
+
+         if (['h2', 'h3'].includes(domNode.name)) {
+            const extractText = (node) => {
+               if (node.type === 'text') return node.data;
+               if (node.children)
+                  return node.children.map(extractText).join('');
+               return '';
+            };
+
+            const textContent = extractText(domNode).trim();
+            if (!textContent) return;
+
+            const slug = slugify(textContent, { lower: true, strict: true });
+            const Tag = domNode.name;
+
+            const hashSize = domNode.name === 'h2' ? 'size-6.5' : 'size-5.5';
+
+            return (
+               <Tag id={slug} className="group scroll-mt-20 relative">
+                  <a
+                     href={`#${slug}`}
+                     className="cursor-pointer flex items-center"
+                  >
+                     {textContent}
+                     <FiLink
+                        className={`${hashSize} stroke-[2.2px] opacity-0 group-hover:opacity-100 ml-2 text-primary-500/60 transition-opacity`}
+                     />
+                  </a>
+               </Tag>
             );
          }
       },
