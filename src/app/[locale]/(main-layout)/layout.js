@@ -105,11 +105,6 @@ export async function generateMetadata({ params }) {
    };
 }
 
-// TODO: Implement:
-// TODO: Add layout animation for article items (archive)
-// TODO: Next.js 16 + Better Auth
-// TODO: Notifications
-
 export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));
 }

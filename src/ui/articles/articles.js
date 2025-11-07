@@ -93,19 +93,17 @@ function Articles({
 
    return (
       <>
-         {paginatedArticles && (
-            <div className="grid grid-rows-3 sm:flex sm:flex-col gap-6 lg:gap-4 md:gap-4 sm:gap-5 md:w-full">
-               {paginatedArticles.length ? (
-                  paginatedArticles.map((item) => (
-                     <ArticleItem article={item} key={item.id} style={style} />
-                  ))
-               ) : (
-                  <span className="justify-self-center text-center mt-25 2xl:mt-29 lg:mt-27 md:mt-34 sm:mt-44 sm:mb-94 xs:mb-[26.3rem] 2xs:mb-[23.6rem] text-primary-400 text-3xl md:text-4xl border border-quaternary dark:border-primary-300/15 rounded-2xl sm:rounded-3xl py-8 sm:py-12 px-12 bg-white dark:bg-primary-300/15 box-shadow">
-                     {t('no-articles')}
-                  </span>
-               )}
-            </div>
-         )}
+         <div className="grid grid-rows-3 sm:flex sm:flex-col gap-6 lg:gap-4 md:gap-4 sm:gap-5 md:w-full">
+            {paginatedArticles.length ? (
+               paginatedArticles.map((item) => (
+                  <ArticleItem article={item} key={item.id} style={style} />
+               ))
+            ) : (
+               <span className="justify-self-center text-center mt-25 2xl:mt-29 lg:mt-27 md:mt-34 sm:mt-44 sm:mb-94 xs:mb-[26.3rem] 2xs:mb-[23.6rem] text-primary-400 text-3xl md:text-4xl border border-quaternary dark:border-primary-300/15 rounded-2xl sm:rounded-3xl py-8 sm:py-12 px-12 bg-white dark:bg-primary-300/15 box-shadow">
+                  {t('no-articles')}
+               </span>
+            )}
+         </div>
 
          {isArchive &&
             filteredArticles.length >
