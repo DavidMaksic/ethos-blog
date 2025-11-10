@@ -35,8 +35,12 @@ export function getSortedItems(param, items) {
 }
 
 export function getMainArticles(array) {
-   const englishArticles = array.filter((item) => item.language === 'English');
-   const serbianArticles = array.filter((item) => item.language === 'Српски');
+   const englishArticles = array
+      .filter((item) => item.language === 'English')
+      .reverse();
+   const serbianArticles = array
+      .filter((item) => item.language === 'Српски')
+      .reverse();
 
    return { englishArticles, serbianArticles };
 }

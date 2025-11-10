@@ -113,7 +113,6 @@ export default async function RootLayout({ children, params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
    const { locale } = param;
 
-   // const messages = await getMessages({ locale });
    const prefix = locale === 'en' ? '' : `/${locale}`;
 
    const jsonLd = {
