@@ -35,9 +35,9 @@ function ArticleItem({ article, style }) {
          <Link
             href={`/${article.slug}`}
             prefetch
-            className={`relative grid grid-cols-[0.4fr_1fr] lg:grid-cols-[0.3fr_1fr] sm:grid-cols-1 rounded-2xl group cursor-pointer overflow-hidden border border-quaternary dark:border-primary-300/10 bg-white ${style} hover:translate-x-1.5 transition-[translate] duration-200 box-shadow sm:h-fit`}
+            className={`relative grid grid-cols-[0.4fr_1fr] lg:grid-cols-[0.3fr_1fr] rounded-2xl group cursor-pointer overflow-hidden border border-quaternary dark:border-primary-300/10 bg-white ${style} hover:translate-x-1.5 transition-[translate] duration-200 box-shadow md:min-h-61`}
          >
-            <div className="relative h-50 2xl:h-54 lg:h-52 md:h-61 sm:hidden">
+            <div className="relative h-50 2xl:h-54 lg:h-52 md:h-auto md:min-w-32">
                <RemoteImage
                   imageUrl={article.image}
                   alt="Article image"
@@ -46,13 +46,8 @@ function ArticleItem({ article, style }) {
                />
             </div>
 
-            <div className="self-center py-2 md:py-10 sm:py-8 xs:pb-9 px-12 sm:px-13 space-y-1 md:space-y-1">
-               <h2
-                  className={`text-primary-500 dark:text-primary-600/85 text-[1.7rem] lg:text-[1.65rem] md:text-[2.1rem] sm:text-[2rem] leading-8.5 lg:leading-8.5 md:leading-10 sm:leading-10 xs:leading-[2.45rem] font-semibold dark:font-normal font-title ${
-                     article.title.length >= 48 &&
-                     'xl:text-[1.7rem]! md:text-[2rem]! sm:text-[2rem]! lg:leading-8.5! md:leading-[2.5rem]! sm:leading-[2.55rem]! xs:leading-[2.45rem]!'
-                  }  `}
-               >
+            <div className="self-center py-2 md:py-10 sm:py-8 xs:pb-9 px-12 sm:px-11 space-y-1 md:space-y-1">
+               <h2 className="text-primary-500 dark:text-primary-600/85 text-[1.7rem] lg:text-[1.65rem] md:text-[2.1rem] sm:text-[2rem] leading-8.5 lg:leading-8.5 md:leading-10 sm:leading-10 xs:leading-[2.45rem] font-semibold dark:font-normal font-title">
                   {article.title}
                </h2>
 

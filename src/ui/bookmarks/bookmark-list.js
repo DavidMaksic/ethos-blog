@@ -45,7 +45,7 @@ function BookmarkList({ usersBookmarks, param }) {
    return (
       <>
          <div
-            className={`grid grid-rows-3 gap-4 2xl:gap-3 ${
+            className={`grid grid-rows-3 sm:flex sm:flex-col gap-4 2xl:gap-3 ${
                !displayedBookmarks.length && 'grid-rows-1!'
             }`}
          >
@@ -60,10 +60,10 @@ function BookmarkList({ usersBookmarks, param }) {
             )}
          </div>
 
-         {displayedBookmarks.length <= 3 ? (
-            <div className="h-24" />
+         {bookmarks.length <= 3 ? (
+            <div className="h-0" />
          ) : (
-            <Pagination count={displayedBookmarks.length} isArchive={false} />
+            <Pagination count={bookmarks.length} isArchive={false} />
          )}
       </>
    );

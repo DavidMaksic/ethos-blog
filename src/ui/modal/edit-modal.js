@@ -21,7 +21,6 @@ function EditModal({ comment, commentLength, replyID, slug, onClose }) {
       if (text.length <= 1) return setError(true);
 
       if (replyID) {
-         console.log('replyID: ', replyID);
          setIsPending(true);
          let result;
          result = await editReply(replyID, text, slug);

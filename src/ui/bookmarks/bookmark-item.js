@@ -35,15 +35,10 @@ function BookmarkItem({ bookmark }) {
       >
          <Link
             href={`/${bookmark.slug}`}
-            className="relative grid grid-cols-[2fr_0.8fr] xl:grid-cols-[2fr_0.3fr] h-full sm:min-h-[18vh] xs:min-h-[20vh] rounded-2xl group cursor-pointer overflow-hidden border border-quaternary dark:border-primary-300/15 bg-white dark:bg-primary-300/15 hover:translate-x-1.5 transition-[translate] duration-200 select-none box-shadow"
+            className="relative grid grid-cols-[2fr_0.8fr] xl:grid-cols-[2fr_0.3fr] rounded-2xl group cursor-pointer overflow-hidden border border-quaternary dark:border-primary-300/15 bg-white dark:bg-primary-300/15 hover:translate-x-1.5 transition-[translate] duration-200 select-none box-shadow h-full sm:h-auto sm:min-h-51"
          >
-            <div className="self-center py-2 px-12 xs:px-12 md:pr-0 space-y-5 2xl:space-y-5 lg:space-y-4 z-20">
-               <h2
-                  className={`text-primary-500 dark:text-primary-600/85 text-3xl xl:text-[2.1rem] lg:text-[1.8rem] md:text-[1.85rem] xs:text-[2rem] font-medium dark:font-normal lg:font-semibold lg:dark:font-normal md:dark:font-medium 2xl:leading-9 xl:leading-10.5 lg:leading-10  font-title leading-8.5 ${
-                     bookmark.title.length >= 48 &&
-                     'text-[1.8rem]! lg:text-[1.7rem]! md:text-[1.6rem]! sm:text-[1.4rem]! xs:text-[1.55rem]! leading-[2.5rem]! 2xl:leading-[2.4rem]! lg:leading-[2.2rem]! md:leading-[2.1rem]! sm:leading-[2rem]! xs:leading-[1.98rem]!'
-                  }`}
-               >
+            <div className="self-center py-2 sm:py-8 px-12 xs:px-12 md:pr-0 space-y-5 2xl:space-y-5 lg:space-y-4 z-10">
+               <h2 className="text-primary-500 dark:text-primary-600/85 text-3xl xl:text-[2.1rem] lg:text-[1.8rem] md:text-[1.85rem] xs:text-[2rem] font-medium dark:font-normal lg:font-semibold lg:dark:font-normal md:dark:font-medium 2xl:leading-9 xl:leading-10.5 lg:leading-10  font-title leading-8.5">
                   {bookmark.title}
                </h2>
 
