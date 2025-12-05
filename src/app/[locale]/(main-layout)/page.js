@@ -10,6 +10,9 @@ import FeaturedArticles from '@/src/ui/articles/featured-articles';
 import LatestArticles from '@/src/ui/articles/latest-articles';
 import MainArticles from '@/src/ui/articles/main-articles';
 
+export const dynamic = 'force-static';
+export const revalidate = 300;
+
 export default async function Home() {
    const [articles, categories, mainArticles, authors, t] = await Promise.all([
       getArticles(),
