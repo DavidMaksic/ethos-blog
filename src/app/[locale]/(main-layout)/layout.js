@@ -109,8 +109,6 @@ export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));
 }
 
-// TODO: Update Next js version for security
-
 export default async function RootLayout({ children, params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
    const { locale } = param;
