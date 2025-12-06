@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { switchLocale } from '@/src/utils/helpers';
 import { useLanguage } from '@/src/context/language-context';
 import { usePathname } from '@/src/i18n/navigation';
 import { LANGUAGES } from '@/src/utils/config';
@@ -17,7 +16,6 @@ function FilterButton({
    imageStyle,
    activeStyle,
    children,
-   isMobile = false,
 }) {
    const { language } = useLanguage();
    const pathname = usePathname();
@@ -25,8 +23,7 @@ function FilterButton({
    const searchParams = useSearchParams();
    const paramLang = searchParams.get('lang');
 
-   const active =
-      lang === paramLang || (paramLang === undefined && lang === language.code);
+   const active = lang === paramLang || (!paramLang && lang === language.code);
 
    function handleLang() {
       if (paramLang === lang) return;

@@ -145,7 +145,6 @@ function MobileMenu({ session, newUser, oldUser }) {
                               styles="md:text-[2rem]! ml-1!"
                               imageStyle="size-10!"
                               activeStyle="py-1.5! pl-3.5! pr-4! rounded-2xl!"
-                              isMobile={true}
                            >
                               {item.lang}
                            </FilterButton>
