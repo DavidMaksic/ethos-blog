@@ -51,7 +51,6 @@ function CommentList({
                            label: t('Sort.oldest'),
                         },
                      ]}
-                     param={param}
                   />
                </div>
 

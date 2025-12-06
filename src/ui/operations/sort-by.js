@@ -2,20 +2,23 @@
 
 import { AnimatePresence, motion } from 'motion/react';
 import { useOutsideClick } from '@/src/hooks/use-outside-click';
+import { useSearchParams } from 'next/navigation';
 import { useSetParams } from '@/src/hooks/use-set-params';
 import { TbArrowsSort } from 'react-icons/tb';
 import { FaCaretDown } from 'react-icons/fa';
 import { useLocale } from 'next-intl';
 import { useState } from 'react';
 
-function SortBy({ options, isBookmarks = false, param }) {
+function SortBy({ options, isBookmarks = false }) {
    const [open, setOpen] = useState();
    const ref = useOutsideClick(() => setOpen((isOpen) => !isOpen), false);
    const locale = useLocale();
 
+   const searchParams = useSearchParams();
+   const sort = searchParams.get('sort');
+
    const [currentLabel, setCurrentLabel] = useState(() => {
-      if (param.sort)
-         return options.find((item) => item.value === param.sort).label;
+      if (sort) return options.find((item) => item.value === sort).label;
       return options.at(0).label;
    });
    const handler = useSetParams();

@@ -3,6 +3,9 @@ import { WEBSITE_URL } from '@/src/utils/config';
 import { getAuthors } from '@/src/lib/data-service';
 import Author from '@/src/ui/author';
 
+export const dynamic = 'force-static';
+export const revalidate = 3600;
+
 export async function generateMetadata({ params }) {
    const [param, authors, t] = await Promise.all([
       params,

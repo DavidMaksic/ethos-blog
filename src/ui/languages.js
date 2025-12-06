@@ -2,7 +2,7 @@ import { IoLanguageOutline } from 'react-icons/io5';
 import { getTranslations } from 'next-intl/server';
 import Filter from '@/src/ui/operations/filter';
 
-async function Languages({ param }) {
+async function Languages() {
    const t = await getTranslations('Archive');
 
    return (
@@ -12,7 +12,7 @@ async function Languages({ param }) {
             <h2 className="text-4xl">{t('lang-label')}</h2>
          </div>
 
-         <Filter param={param} />
+         <Filter />
       </div>
    );
 }

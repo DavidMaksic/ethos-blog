@@ -45,14 +45,11 @@ export function getMainArticles(array) {
    return { englishArticles, serbianArticles };
 }
 
-export function applyPagination(parsedParam, result) {
-   const page = Number(parsedParam.page || 1);
+export function applyPagination(page, result) {
    const pageSize = Number(process.env.NEXT_PUBLIC_PAGE_SIZE || 10);
    const from = (page - 1) * pageSize;
    const to = from + pageSize;
-   const paginatedResult = result.slice(from, to);
-
-   return paginatedResult;
+   return result.slice(from, to);
 }
 
 const localeMap = {

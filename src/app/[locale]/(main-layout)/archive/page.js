@@ -8,6 +8,9 @@ import Languages from '@/src/ui/languages';
 import Articles from '@/src/ui/articles/articles';
 import SortBy from '@/src/ui/operations/sort-by';
 
+export const dynamic = 'force-static';
+export const revalidate = 3600;
+
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
    const { locale } = param;
@@ -36,13 +39,6 @@ async function Page({ params, searchParams }) {
 
    const { locale } = param;
    const prefix = locale === 'en' ? '' : `/${locale}`;
-
-   const currentCategory = categories.find(
-      (item) =>
-         item.category ===
-         searchParam.category?.charAt(0).toUpperCase() +
-            searchParam.category?.slice(1)
-   );
 
    const jsonLd = {
       '@context': 'https://schema.org',
@@ -85,27 +81,20 @@ async function Page({ params, searchParams }) {
                         label: t('Sort.z-a'),
                      },
                   ]}
-                  param={searchParam}
                />
             </div>
 
             <Articles
                isArchive={true}
                articles={articles}
-               currentCategory={currentCategory}
-               param={searchParam}
+               categories={categories}
                style="dark:bg-primary-300/15"
             />
          </section>
 
          <section className="space-y-12 md:order-1 md:flex md:flex-col md:gap-6">
-            <Categories
-               categories={categories}
-               currentCategory={currentCategory}
-               param={searchParam}
-               isArchive={true}
-            />
-            <Languages param={searchParam} />
+            <Categories categories={categories} isArchive={true} />
+            <Languages />
          </section>
 
          <script

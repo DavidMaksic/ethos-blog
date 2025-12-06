@@ -48,7 +48,6 @@ async function Page({ searchParams }) {
                      label: t('Sort.oldest'),
                   },
                ]}
-               param={searchParam}
             />
          </div>
 

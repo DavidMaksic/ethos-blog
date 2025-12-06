@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { TbCategory2 } from 'react-icons/tb';
 
@@ -8,11 +9,10 @@ import useFilterCategory from '@/src/hooks/use-filter-category';
 import CategoryLoader from '@/src/ui/category-loader';
 import Category from '@/src/ui/categories/category';
 
-function Categories({ categories, currentCategory, param, isArchive = false }) {
-   const { filteredArray: filteredCategories } = useFilterCategory(
-      categories,
-      param
-   );
+function Categories({ categories, isArchive = false }) {
+   const { filteredArray: filteredCategories } = useFilterCategory(categories);
+   const searchParams = useSearchParams();
+   const category = searchParams.get('category');
 
    const t = useTranslations('HomePage');
    const [loading, setLoading] = useState(true);
@@ -20,6 +20,13 @@ function Categories({ categories, currentCategory, param, isArchive = false }) {
    useEffect(() => {
       setLoading(false);
    }, []);
+
+   // Find active category
+   const currentCategory = categories.find(
+      (item) =>
+         item.category ===
+         category?.charAt(0).toUpperCase() + category?.slice(1)
+   );
 
    return (
       <div

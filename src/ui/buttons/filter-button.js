@@ -1,10 +1,10 @@
 'use client';
 
+import { useRouter, useSearchParams } from 'next/navigation';
 import { switchLocale } from '@/src/utils/helpers';
 import { useLanguage } from '@/src/context/language-context';
 import { usePathname } from '@/src/i18n/navigation';
 import { LANGUAGES } from '@/src/utils/config';
-import { useRouter } from 'next/navigation';
 
 import RemoteImage from '@/src/ui/remote-image';
 import srbFlag from '@/public/srb-flag.png';
@@ -18,18 +18,20 @@ function FilterButton({
    activeStyle,
    children,
    isMobile = false,
-   setOpenMenu,
 }) {
    const { language } = useLanguage();
    const pathname = usePathname();
    const router = useRouter();
+   const searchParams = useSearchParams();
+   const paramLang = searchParams.get('lang');
 
    const active =
-      lang === param.lang ||
-      (param.lang === undefined && lang === language.code);
+      lang === paramLang || (paramLang === undefined && lang === language.code);
 
    function handleLang() {
-      const params = new URLSearchParams(param);
+      if (paramLang === lang) return;
+      const params = new URLSearchParams(searchParams);
+
       const langCode =
          LANGUAGES.find((item) => item.code === lang)?.code || 'en';
 
@@ -38,13 +40,11 @@ function FilterButton({
          router.replace(`?${params.toString()}`, { scroll: false });
       }
 
-      if (isMobile) {
-         if (param.locale === lang) return;
-
-         const mobileLangCode =
-            LANGUAGES.find((item) => item.code === lang)?.code || 'en';
-         return switchLocale(mobileLangCode);
-      }
+      // if (isMobile) {
+      //    const mobileLangCode =
+      //       LANGUAGES.find((item) => item.code === lang)?.code || 'en';
+      //    return switchLocale(mobileLangCode);
+      // }
 
       params.delete('category');
       router.replace(`?${params.toString()}`, { scroll: false });

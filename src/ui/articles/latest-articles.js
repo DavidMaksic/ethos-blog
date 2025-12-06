@@ -36,17 +36,13 @@ function LatestArticles({ articles, categories, authors }) {
 
             <Articles
                articles={finalArticles}
-               currentCategory={currentCategory}
+               categories={categories}
                authors={authors}
                style="dark:bg-primary-200 md:dark:bg-primary-300/15"
             />
          </div>
 
-         <Categories
-            finalArticles={finalArticles}
-            categories={categories}
-            currentCategory={currentCategory}
-         />
+         <Categories finalArticles={finalArticles} categories={categories} />
 
          <Link
             href="/archive"

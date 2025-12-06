@@ -2,6 +2,7 @@
 
 import { applyPagination, getSortedItems } from '@/src/utils/helpers';
 import { useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useLanguage } from '@/src/context/language-context';
 
@@ -9,23 +10,30 @@ import ArticleItem from '@/src/ui/articles/article-item';
 import Pagination from '@/src/ui/pagination';
 import Fuse from 'fuse.js';
 
-function Articles({
-   isArchive = false,
-   articles,
-   currentCategory,
-   param,
-   style,
-}) {
+function Articles({ isArchive = false, articles, categories, style }) {
    const { language } = useLanguage();
    const t = useTranslations('Archive');
+   const searchParams = useSearchParams();
 
    const [loading, setLoading] = useState(true);
 
-   useEffect(() => {
-      setLoading(false);
-   }, []);
+   // Extract client-side params
+   const sort = searchParams.get('sort');
+   const search = searchParams.get('search');
+   const lang = searchParams.get('lang');
+   const category = searchParams.get('category');
+   const page = Number(searchParams.get('page') || 1);
 
-   // Derive filtered & paginated articles
+   useEffect(() => setLoading(false), []);
+
+   // Find active category
+   const currentCategory = categories.find(
+      (item) =>
+         item.category ===
+         category?.charAt(0).toUpperCase() + category?.slice(1)
+   );
+
+   // Sort, search, filter, pagination
    const { filteredArticles, paginatedArticles } = useMemo(() => {
       if (!isArchive) {
          return {
@@ -37,42 +45,53 @@ function Articles({
       let result = [...articles];
 
       // 1. Sort
-      if (param.sort) {
-         result = getSortedItems(param, result);
+      if (sort) {
+         result = getSortedItems({ sort }, result);
       }
 
-      // 2. Search
-      if (param.search) {
+      // 2. Search (Fuse.js)
+      if (search) {
          const fuse = new Fuse(result, {
             keys: ['title'],
             includeScore: true,
             threshold: 0.4,
          });
 
-         const fuseResults = fuse.search(param.search);
-         result = fuseResults.map((res) => res.item);
+         const fuseResults = fuse.search(search);
+         result = fuseResults.map((r) => r.item);
       }
 
-      // 3. Filter (category + language)
+      // 3. Filter language + category
       const category_id = currentCategory?.id;
 
       result = result.filter((item) => {
          const matchesCategory =
             !currentCategory || item.category_id === category_id;
-         const matchesLanguage = !param.lang
-            ? item.code === language.code
-            : item.code === param.lang;
+
+         const matchesLanguage = lang
+            ? item.code === lang
+            : item.code === language.code;
+
          return matchesCategory && matchesLanguage;
       });
 
       // 4. Pagination
-      const paginatedResult = applyPagination(param, result);
+      const paginatedResult = applyPagination(page, result);
 
       return {
          filteredArticles: result,
          paginatedArticles: paginatedResult,
       };
-   }, [articles, param, currentCategory, language, isArchive]);
+   }, [
+      articles,
+      sort,
+      search,
+      lang,
+      page,
+      currentCategory,
+      language,
+      isArchive,
+   ]);
 
    const arr = isArchive ? [...Array(6)] : [...Array(3)];
 

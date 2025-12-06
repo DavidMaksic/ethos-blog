@@ -1,16 +1,19 @@
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { useLanguage } from '@/src/context/language-context';
 
-function useFilterCategory(array, param) {
+function useFilterCategory(array) {
    const [filteredArray, setFilteredArray] = useState();
    const { language } = useLanguage();
+   const searchParams = useSearchParams();
+   const lang = searchParams.get('lang');
 
    const cyrillicPattern = /^\p{Script=Cyrillic}+$/u;
 
    useEffect(() => {
       const filterItems = array.filter((item) => {
-         if (param?.lang) {
-            if (param.lang === 'sr') {
+         if (lang) {
+            if (lang === 'sr') {
                return cyrillicPattern.test(item.category);
             } else {
                return !cyrillicPattern.test(item.category);
@@ -25,7 +28,7 @@ function useFilterCategory(array, param) {
       });
 
       setFilteredArray(filterItems);
-   }, [language, param]); // eslint-disable-line
+   }, [language, lang]); // eslint-disable-line
 
    return { filteredArray };
 }
