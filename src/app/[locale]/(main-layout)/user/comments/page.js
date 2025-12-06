@@ -28,7 +28,7 @@ async function Page({ searchParams }) {
    const userComments = mergedArray.filter(
       (item) => item.user_id === session.user.userID
    );
-   const sortedComments = getSortedItems(searchParam, userComments);
+   const sortedComments = getSortedItems(searchParam?.sort, userComments);
 
    return (
       <div className="flex flex-col gap-8 lg:gap-6">

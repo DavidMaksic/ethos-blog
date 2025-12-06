@@ -1,6 +1,7 @@
 import {
    getBookmarksCount,
    isBookmarked,
+   getBookmarks,
    getArticles,
    getSettings,
    getArticle,
@@ -23,6 +24,9 @@ import ArticleImage from '@/src/ui/articles/article-image';
 import CommentList from '@/src/ui/comments/comment-list';
 import ImageZoom from '@/src/ui/image-zoom';
 import Options from '@/src/ui/options';
+
+export const dynamic = 'force-static';
+export const revalidate = 3600;
 
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
@@ -77,24 +81,20 @@ export async function generateMetadata({ params }) {
    };
 }
 
-async function Page({ params, searchParams }) {
-   const [param, searchParam, session, articles, allUsers, comment_length] =
+async function Page({ params }) {
+   const [param, articles, allUsers, bookmarks, comment_length] =
       await Promise.all([
          params,
-         searchParams,
-         auth(),
          getArticles(),
          getUsers(),
+         getBookmarks(),
          getSettings(),
       ]);
 
    const { slug, locale } = param;
 
    // - Article logic
-   const [user, article] = await Promise.all([
-      getUser(session?.user?.email),
-      getArticle(slug),
-   ]);
+   const article = await getArticle(slug);
 
    const {
       id,
@@ -108,33 +108,11 @@ async function Page({ params, searchParams }) {
       updated_at,
    } = article;
 
-   // - Comment logic
-   let hasCommented;
-   hasCommented = !!comments.find((item) => item.user_id === user?.id);
-
-   // - Reply logic
-   let hasReplied;
-   const replies = comments.map((item) => item.replies).flat();
-   hasReplied = !!replies.find((item) => item.user_id === user?.id);
-
-   // - Like logic
-   let hasLikedArticle;
-   const articleLikeIDs = article.likes
-      .filter((item) => item.type === 'article')
-      .map((item) => item.user_id);
-   hasLikedArticle = !!articleLikeIDs.find((item) => item === user?.id);
-
-   // - Bookmark logic
-   const [hasBookmarked, bookmarkCount] = await Promise.all([
-      isBookmarked(id, user?.id),
-      getBookmarksCount(id),
-   ]);
-
    // - Other logic
    const date = format(new Date(article.created_at), 'MMM dd, yyyy');
-   const commentsNum = replies?.length + comments?.length;
-
    const prefix = locale === `en` ? '' : `/${locale}`;
+   const replies = comments.map((item) => item.replies).flat();
+   const commentsNum = replies?.length + comments?.length;
 
    const jsonLd = {
       '@context': 'https://schema.org',
@@ -168,13 +146,9 @@ async function Page({ params, searchParams }) {
 
             <ArticleImage article={article} author={author} date={date}>
                <ArticleOptions
-                  slug={article.slug}
-                  articleID={article.id}
-                  session={session}
-                  hasCommented={hasCommented}
-                  hasReplied={hasReplied}
-                  hasBookmarked={hasBookmarked}
-                  hasLiked={hasLikedArticle}
+                  article={article}
+                  comments={comments}
+                  bookmarks={bookmarks}
                />
             </ArticleImage>
 
@@ -184,33 +158,21 @@ async function Page({ params, searchParams }) {
             <ArticleAuthorInfo article={article} author={author} date={date}>
                <OtherArticleOptions
                   article={article}
-                  session={session}
                   comments={comments}
-                  hasReplied={hasReplied}
-                  hasCommented={hasCommented}
-                  hasBookmarked={hasBookmarked}
-                  hasLiked={hasLikedArticle}
-                  likeCount={articleLikeIDs.length}
-                  bookmarkCount={bookmarkCount}
+                  bookmarks={bookmarks}
                   commentsNum={commentsNum}
                />
             </ArticleAuthorInfo>
 
             <CommentInput
-               session={session}
-               oldUser={session?.user}
-               newUser={user}
                article={article}
                commentLength={comment_length.comment_length}
             />
 
             <CommentList
-               session={session}
                comments={comments}
-               param={searchParam}
                article={article}
                users={allUsers}
-               newUser={user}
                commentsNum={commentsNum}
                commentLength={comment_length.comment_length}
                author={author}

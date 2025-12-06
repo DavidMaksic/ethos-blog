@@ -5,6 +5,7 @@ import { IoMoonOutline } from 'react-icons/io5';
 import { HiOutlineUser } from 'react-icons/hi2';
 import { LuSunMedium } from 'react-icons/lu';
 import { useTheme } from 'next-themes';
+import { useAuth } from '@/src/context/auth-context';
 import { Link } from '@/src/i18n/navigation';
 
 import LanguageButton from '@/src/ui/buttons/language-button';
@@ -12,9 +13,10 @@ import HeaderButton from '@/src/ui/buttons/header-button';
 import MobileMenu from '@/src/ui/mobile-menu';
 import Image from 'next/image';
 
-function HeaderOptions({ session, oldUser, newUser }) {
+function HeaderOptions() {
    const [mounted, setMounted] = useState();
    const { resolvedTheme, setTheme } = useTheme();
+   const { session, user: oldUser, extendedUser: newUser } = useAuth();
 
    useEffect(() => setMounted(true), []);
 
@@ -42,7 +44,7 @@ function HeaderOptions({ session, oldUser, newUser }) {
             </HeaderButton>
          )}
 
-         {oldUser?.image || newUser?.image ? (
+         {newUser ? (
             <Link
                href="/user/home"
                prefetch

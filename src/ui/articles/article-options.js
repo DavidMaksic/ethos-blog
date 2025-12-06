@@ -15,6 +15,7 @@ import {
 import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
+import { useAuth } from '@/src/context/auth-context';
 
 import BackButton from '@/src/ui/buttons/back-button';
 import LikeButton from '@/src/ui/buttons/like-button';
@@ -23,19 +24,32 @@ import Button from '@/src/ui/buttons/button';
 import Modal from '@/src/ui/modal/modal';
 import toast from 'react-hot-toast';
 
-function ArticleOptions({
-   slug,
-   articleID,
-   session,
-   hasCommented,
-   hasReplied,
-   hasBookmarked,
-   hasLiked,
-}) {
+function ArticleOptions({ article, bookmarks, comments }) {
    const t = useTranslations('Article');
+   const { slug, id: articleID, likes } = article;
+   const { session, extendedUser: user } = useAuth();
    const [isOpen, setIsOpen] = useState();
 
+   // - Like logic
+   let hasLiked;
+   const articleLikeIDs = likes
+      .filter((item) => item.type === 'article')
+      .map((item) => item.user_id);
+   hasLiked = !!articleLikeIDs.find((item) => item === user?.id);
+
+   // - Comment logic
+   let hasCommented;
+   hasCommented = !!comments.find((item) => item.user_id === user?.id);
+
+   // - Reply logic
+   let hasReplied;
+   const replies = comments.map((item) => item.replies).flat();
+   hasReplied = !!replies.find((item) => item.user_id === user?.id);
+
    // - Bookmark logic
+   const hasBookmarked = !!bookmarks.find(
+      (item) => item.user_id === user?.id && item.article_id === articleID
+   );
    const [isBookmarked, setIsBookmarked] = useState(hasBookmarked);
 
    function handleBookmarkClick() {

@@ -1,9 +1,5 @@
 import { FaRegComments, FaRegHeart } from 'react-icons/fa';
-import {
-   getUser,
-   getComments,
-   getBookmarksCount,
-} from '@/src/lib/data-service';
+import { getUser, getComments } from '@/src/lib/data-service';
 import { getTranslations } from 'next-intl/server';
 import { LuBookmark } from 'react-icons/lu';
 import { auth } from '@/src/lib/auth';
@@ -24,28 +20,26 @@ async function Page() {
       getTranslations(),
    ]);
    const { user } = session;
+   const extendedUser = await getUser(user.email);
 
-   const [newUser, bookmarksLength] = await Promise.all([
-      getUser(user.email),
-      getBookmarksCount(null, user.userID),
-   ]);
-
-   const likesLength = newUser.likes.filter(
+   const likesLength = extendedUser.likes.filter(
       (item) => item.type === 'article'
    ).length;
    const replies = comments.map((item) => item.replies).flat();
 
    const mergedArray = [...comments, ...replies];
    const commentsLength = mergedArray.filter(
-      (item) => item.user_id === newUser.id
+      (item) => item.user_id === extendedUser.id
    ).length;
+
+   const bookmarkCount = extendedUser.bookmarks.length;
 
    return (
       <div className="flex gap-4 md:flex-col">
          <h1 className="sr-only">{t('H1.profile-page-overview')}</h1>
 
          <div className="space-y-4">
-            <ProfileInfo oldUser={user} newUser={newUser} />
+            <ProfileInfo oldUser={user} newUser={extendedUser} />
             <JoinedDate user={user} />
          </div>
 
@@ -71,7 +65,7 @@ async function Page() {
 
             <Stats
                title={t('Profile.user-stat-3')}
-               value={bookmarksLength ? bookmarksLength : '--'}
+               value={bookmarkCount ? bookmarkCount : '--'}
                icon={
                   <LuBookmark className="text-cyan-700/50 dark:text-cyan-300/70 transition-color" />
                }

@@ -65,7 +65,7 @@ export async function getAuthors() {
 export async function getUser(email) {
    const { data, error } = await supabase
       .from('users')
-      .select('*, likes(id, type)')
+      .select('*, likes(id, type), bookmarks(*)')
       .eq('email', email)
       .maybeSingle();
 
@@ -101,7 +101,15 @@ export async function getComments() {
    return data;
 }
 
-export async function getBookmarks(userID) {
+export async function getBookmarks() {
+   const { data, error } = await supabase.from('bookmarks').select();
+
+   if (error) throw new Error('Bookmarks could not be loaded');
+
+   return data;
+}
+
+export async function getBookmarksByID(userID) {
    const { data, error } = await supabase
       .from('bookmarks')
       .select(
@@ -112,44 +120,6 @@ export async function getBookmarks(userID) {
    if (error) throw new Error('Bookmarks could not be loaded');
 
    return data;
-}
-
-export async function isBookmarked(articleID, userID) {
-   if (!userID) return false;
-
-   const { data, error } = await supabase
-      .from('bookmarks')
-      .select('id')
-      .eq('article_id', articleID)
-      .eq('user_id', userID);
-
-   if (error) throw new Error('Bookmarks could not be loaded');
-
-   return data.length > 0;
-}
-
-export async function getBookmarksCount(articleID, userID) {
-   if (articleID) {
-      const { count, error } = await supabase
-         .from('bookmarks')
-         .select('id', { count: 'exact', head: true })
-         .eq('article_id', articleID);
-
-      if (error) throw new Error('Bookmarks count could not be loaded');
-
-      return count || 0;
-   }
-
-   if (userID) {
-      const { count, error } = await supabase
-         .from('bookmarks')
-         .select('id', { count: 'exact', head: true })
-         .eq('user_id', userID);
-
-      if (error) throw new Error('Bookmarks count count could not be loaded');
-
-      return count || 0;
-   }
 }
 
 export async function getSettings() {

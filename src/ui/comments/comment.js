@@ -8,6 +8,7 @@ import { CommentDate } from '@/src/utils/helpers';
 import { RxChevronUp } from 'react-icons/rx';
 import { useRouter } from '@/src/i18n/navigation';
 import { LuReply } from 'react-icons/lu';
+import { useAuth } from '@/src/context/auth-context';
 
 import CommentOptions from '@/src/ui/comments/comment-options';
 import useCommentLine from '@/src/hooks/use-comment-line';
@@ -18,19 +19,12 @@ import Reply from '@/src/ui/comments/reply';
 import toast from 'react-hot-toast';
 import Image from 'next/image';
 
-function Comment({
-   comment,
-   commentLength,
-   users,
-   session,
-   article,
-   newUser,
-   author,
-}) {
+function Comment({ comment, commentLength, users, article, author }) {
    const [isOpen, setIsOpen] = useState(false);
    const [replyIsOpen, setReplyIsOpen] = useState(false);
    const [replyClicked, setReplyClicked] = useState(false);
    const [showReplies, setShowReplies] = useState(true);
+   const { session } = useAuth();
    const t = useTranslations('Comment');
 
    const locale = useLocale();
@@ -160,9 +154,8 @@ function Comment({
                   comment={comment}
                   commentLength={commentLength}
                   userID={comment.user_id}
-                  slug={slug}
                   articleID={articleID}
-                  session={session}
+                  slug={slug}
                />
             </div>
 
@@ -242,9 +235,6 @@ function Comment({
                   articleID={articleID}
                   commentID={commentID}
                   commentLength={commentLength}
-                  newUser={newUser}
-                  session={session}
-                  user={user}
                   setReplyIsOpen={setReplyIsOpen}
                />
             )}
@@ -253,14 +243,11 @@ function Comment({
                optimisticReplies?.map((item) => (
                   <Reply
                      reply={item}
-                     session={session}
                      key={item.id}
                      users={users}
                      article={article}
                      commentID={commentID}
                      commentLength={commentLength}
-                     newUser={newUser}
-                     user={user}
                      lastItemRef={lastItemRef}
                      setReplyClicked={setReplyClicked}
                      onDelete={handleDelete}

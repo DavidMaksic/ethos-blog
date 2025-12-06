@@ -9,14 +9,7 @@ import RemoteImage from '@/src/ui/remote-image';
 import srbFlag from '@/public/srb-flag.png';
 import enFlag from '@/public/en-flag.png';
 
-function FilterButton({
-   lang,
-   param,
-   styles,
-   imageStyle,
-   activeStyle,
-   children,
-}) {
+function FilterButton({ lang, styles, imageStyle, activeStyle, children }) {
    const { language } = useLanguage();
    const pathname = usePathname();
    const router = useRouter();

@@ -6,6 +6,7 @@ import { HiOutlineUserCircle } from 'react-icons/hi2';
 import { AnimatePresence } from 'motion/react';
 import { addComment } from '@/src/lib/actions';
 import { ImSpinner2 } from 'react-icons/im';
+import { useAuth } from '@/src/context/auth-context';
 
 import TextareaAutosize from 'react-textarea-autosize';
 import AuthModal from '@/src/ui/modal/auth-modal';
@@ -13,10 +14,11 @@ import Modal from '@/src/ui/modal/modal';
 import toast from 'react-hot-toast';
 import Image from 'next/image';
 
-function CommentInput({ session, oldUser, newUser, article, commentLength }) {
+function CommentInput({ article, commentLength }) {
    const [isOpen, setIsOpen] = useState();
    const [error, setError] = useState(false);
    const [text, setText] = useState('');
+   const { session, user: oldUser, extendedUser: newUser } = useAuth();
 
    const locale = useLocale();
    const t = useTranslations('Comment');
@@ -72,7 +74,7 @@ function CommentInput({ session, oldUser, newUser, article, commentLength }) {
       <div className="comment-section scroll-mt-20! flex flex-col gap-1.5 mt-20 font-secondary">
          <div className="flex gap-4">
             <div className="py-3 px-2 sm:hidden">
-               {oldUser?.image || newUser?.image ? (
+               {newUser ? (
                   <div className="relative block size-16">
                      <Image
                         className="rounded-full block aspect-square object-cover object-center dark:opacity-90 border border-primary-300 transition-200"
@@ -115,7 +117,7 @@ function CommentInput({ session, oldUser, newUser, article, commentLength }) {
                <input
                   hidden
                   name="userID"
-                  defaultValue={session && newUser.id}
+                  defaultValue={session && newUser ? newUser.id : null}
                />
                <input hidden name="slug" defaultValue={article.slug} />
                <input hidden name="articleID" defaultValue={article.id} />

@@ -31,7 +31,7 @@ function BookmarkList({ usersBookmarks, param }) {
       }
 
       // 2. Sorting
-      filtered = getSortedItems(param, filtered);
+      filtered = getSortedItems(param?.sort, filtered);
 
       // 3. Pagination
       const page = param.page ? Number(param.page) : 1;

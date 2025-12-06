@@ -2,6 +2,7 @@ import { AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { LuPencilLine } from 'react-icons/lu';
 import { useState } from 'react';
+import { useAuth } from '@/src/context/auth-context';
 import { CgClose } from 'react-icons/cg';
 import { FiLink } from 'react-icons/fi';
 
@@ -18,11 +19,12 @@ function CommentOptions({
    replyID,
    slug,
    articleID,
-   session,
    onDelete,
 }) {
    const [openDelete, setOpenDelete] = useState();
    const [openEdit, setOpenEdit] = useState();
+   const { session } = useAuth();
+
    const t = useTranslations('Comment');
    const commentID = comment.id;
 

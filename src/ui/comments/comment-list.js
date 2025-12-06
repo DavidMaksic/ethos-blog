@@ -1,5 +1,6 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'use-intl';
 import { getSortedItems } from '@/src/utils/helpers';
 import { useMemo } from 'react';
@@ -8,23 +9,22 @@ import Comment from '@/src/ui/comments/comment';
 import SortBy from '@/src/ui/operations/sort-by';
 
 function CommentList({
-   session,
    comments,
-   param,
    article,
    users,
-   newUser,
    commentsNum,
    commentLength,
    author,
 }) {
    const t = useTranslations();
+   const searchParams = useSearchParams();
+   const sort = searchParams.get('sort');
 
    const sortedComments = useMemo(() => {
-      if (!param?.sort) return [...comments].reverse();
+      if (!sort) return [...comments].reverse();
 
-      return [...getSortedItems(param, comments)];
-   }, [param, comments]);
+      return [...getSortedItems(sort, comments)];
+   }, [sort, comments]);
 
    return (
       <>
@@ -61,11 +61,9 @@ function CommentList({
                              comment={item}
                              commentLength={commentLength}
                              users={users}
-                             session={session}
-                             key={item.id}
                              article={article}
-                             newUser={newUser}
                              author={author}
+                             key={item.id}
                           />
                        ))
                      : comments.map((item) => (
@@ -73,11 +71,9 @@ function CommentList({
                              comment={item}
                              commentLength={commentLength}
                              users={users}
-                             session={session}
-                             key={item.id}
                              article={article}
-                             newUser={newUser}
                              author={author}
+                             key={item.id}
                           />
                        ))}
                </div>

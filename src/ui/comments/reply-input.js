@@ -6,6 +6,7 @@ import { useTranslations } from 'use-intl';
 import { ImSpinner2 } from 'react-icons/im';
 import { useLocale } from 'next-intl';
 import { addReply } from '@/src/lib/actions';
+import { useAuth } from '@/src/context/auth-context';
 
 import TextareaAutosize from 'react-textarea-autosize';
 import AuthModal from '@/src/ui/modal/auth-modal';
@@ -17,12 +18,11 @@ function ReplyInput({
    articleID,
    commentID,
    commentLength,
-   session,
-   newUser,
    setReplyIsOpen,
 }) {
    const [isOpen, setIsOpen] = useState();
    const [error, setError] = useState(false);
+   const { session, extendedUser: newUser } = useAuth();
 
    const [text, setText] = useState('');
 
@@ -87,7 +87,11 @@ function ReplyInput({
                onChange={handleChange}
             />
 
-            <input hidden name="userID" defaultValue={session && newUser.id} />
+            <input
+               hidden
+               name="userID"
+               defaultValue={session && newUser ? newUser.id : null}
+            />
             <input hidden name="commentID" defaultValue={commentID} />
             <input hidden name="articleID" defaultValue={articleID} />
             <input hidden name="slug" defaultValue={slug} />

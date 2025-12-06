@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'motion/react';
 import { useMediaQuery } from 'react-responsive';
 import { CommentDate } from '@/src/utils/helpers';
+import { useAuth } from '@/src/context/auth-context';
 import { LuReply } from 'react-icons/lu';
 
 import CommentOptions from '@/src/ui/comments/comment-options';
@@ -15,13 +16,10 @@ import Image from 'next/image';
 
 function Reply({
    reply,
-   session,
    users,
    article,
    commentID,
    commentLength,
-   newUser,
-   user,
    lastItemRef,
    setReplyClicked,
    onDelete,
@@ -29,6 +27,7 @@ function Reply({
 }) {
    const [isOpen, setIsOpen] = useState(false);
    const [replyIsOpen, setReplyIsOpen] = useState(false);
+   const { session, extendedUser: newUser } = useAuth();
    const replyID = reply.id;
    const t = useTranslations('Comment');
 
@@ -38,7 +37,6 @@ function Reply({
    const isAuthor = currentUser.email === author.email;
 
    const isMobile = useMediaQuery({ maxWidth: 768 });
-
    const locale = useLocale();
    const date = CommentDate(reply.created_at, locale);
 
@@ -132,7 +130,6 @@ function Reply({
                      commentLength={commentLength}
                      replyID={replyID}
                      articleID={articleID}
-                     session={session}
                      onDelete={onDelete}
                   />
                </div>
@@ -196,9 +193,6 @@ function Reply({
                   articleID={articleID}
                   commentID={commentID}
                   commentLength={commentLength}
-                  newUser={newUser}
-                  session={session}
-                  user={user}
                   setReplyIsOpen={setReplyIsOpen}
                />
             </div>

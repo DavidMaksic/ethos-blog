@@ -1,5 +1,5 @@
+import { getBookmarksByID } from '@/src/lib/data-service';
 import { getTranslations } from 'next-intl/server';
-import { getBookmarks } from '@/src/lib/data-service';
 import { auth } from '@/src/lib/auth';
 
 import BookmarkOptions from '@/src/ui/bookmarks/bookmark-options';
@@ -17,7 +17,7 @@ async function Page({ searchParams }) {
       getTranslations('H1'),
    ]);
 
-   const usersBookmarks = await getBookmarks(session.user.userID);
+   const usersBookmarks = await getBookmarksByID(session.user.userID);
 
    return (
       <div className="grid grid-rows-[0.1fr_2fr_0.1fr] gap-8 lg:gap-6 h-full">

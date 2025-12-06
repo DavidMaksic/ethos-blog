@@ -15,6 +15,7 @@ import {
 import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
+import { useAuth } from '@/src/context/auth-context';
 import { FiLink } from 'react-icons/fi';
 
 import ArticleOptionItem from '@/src/ui/articles/article-option-item';
@@ -23,25 +24,38 @@ import AuthModal from '@/src/ui/modal/auth-modal';
 import toast from 'react-hot-toast';
 import Modal from '@/src/ui/modal/modal';
 
-function OtherArticleOptions({
-   article,
-   session,
-   comments,
-   hasReplied,
-   hasCommented,
-   hasBookmarked,
-   hasLiked,
-   likeCount,
-   bookmarkCount,
-   commentsNum,
-}) {
+function OtherArticleOptions({ article, comments, bookmarks, commentsNum }) {
    const t = useTranslations();
    const [isOpen, setIsOpen] = useState();
-   const articleID = article.id;
+   const { likes, id: articleID } = article;
+   const { session, extendedUser: user } = useAuth();
+
+   // - Like logic
+   let hasLiked;
+   const articleLikeIDs = likes
+      .filter((item) => item.type === 'article')
+      .map((item) => item.user_id);
+   hasLiked = !!articleLikeIDs.find((item) => item === user?.id);
+
+   // - Comment logic
+   let hasCommented;
+   hasCommented = !!comments.find((item) => item.user_id === user?.id);
+
+   // - Reply logic
+   let hasReplied;
+   const replies = comments.map((item) => item.replies).flat();
+   hasReplied = !!replies.find((item) => item.user_id === user?.id);
 
    // - Bookmark logic
-   const [bookmarksCount, setBookmarksCount] = useState(bookmarkCount);
+   const hasBookmarked = !!bookmarks.find(
+      (item) => item.user_id === user?.id && item.article_id === articleID
+   );
    const [isBookmarked, setIsBookmarked] = useState(hasBookmarked);
+
+   const bookmarkLength = bookmarks.filter(
+      (item) => item.article_id === articleID
+   ).length;
+   const [bookmarksCount, setBookmarksCount] = useState(bookmarkLength);
 
    const handleBookmark = () => {
       if (!session) return setIsOpen(true);
@@ -64,10 +78,11 @@ function OtherArticleOptions({
    }, [hasBookmarked]);
 
    useEffect(() => {
-      setBookmarksCount(bookmarkCount);
-   }, [bookmarkCount]);
+      setBookmarksCount(bookmarkLength);
+   }, [bookmarkLength]);
 
    // - Like logic
+   const likeCount = articleLikeIDs.length;
    const [likesCount, setLikesCount] = useState(likeCount);
    const [isLiked, setIsLiked] = useState(hasLiked);
 

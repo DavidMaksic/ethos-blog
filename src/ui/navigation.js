@@ -1,13 +1,8 @@
 import { getTranslations } from 'next-intl/server';
-import { getUser } from '@/src/lib/data-service';
-import { auth } from '@/src/lib/auth';
-
 import HeaderOptions from '@/src/ui/header/header-options';
 import HeaderItem from '@/src/ui/header/header-item';
 
 async function Navigation() {
-   const session = await auth();
-   const userData = await getUser(session?.user.email);
    const t = await getTranslations('HomePage');
 
    return (
@@ -16,12 +11,7 @@ async function Navigation() {
             <HeaderItem to="/">{t('nav-link-1')}</HeaderItem>
             <HeaderItem to="/archive">{t('nav-link-2')}</HeaderItem>
             <HeaderItem to="/about">{t('nav-link-3')}</HeaderItem>
-
-            <HeaderOptions
-               session={session}
-               oldUser={session?.user}
-               newUser={userData}
-            />
+            <HeaderOptions />
          </div>
       </nav>
    );

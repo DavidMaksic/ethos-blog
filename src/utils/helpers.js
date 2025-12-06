@@ -3,7 +3,7 @@ import { enUS, sr } from 'date-fns/locale';
 import sanitizeHtml from 'sanitize-html';
 
 export function getSortedItems(param, items) {
-   const sort = param.sort ?? 'created_at-asc';
+   const sort = param ?? 'created_at-asc';
 
    const [field, direction] = sort.split('-');
 
