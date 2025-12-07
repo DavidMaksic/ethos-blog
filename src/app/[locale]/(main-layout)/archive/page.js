@@ -9,7 +9,7 @@ import Articles from '@/src/ui/articles/articles';
 import SortBy from '@/src/ui/operations/sort-by';
 
 export const dynamic = 'force-static';
-export const revalidate = 3600;
+export const revalidate = 300;
 
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
