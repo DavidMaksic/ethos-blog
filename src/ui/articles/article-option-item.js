@@ -1,4 +1,5 @@
 import { useLocale, useTranslations } from 'next-intl';
+import { useAuth } from '@/src/context/auth-context';
 
 function ArticleOptionItem({
    isBookmarked,
@@ -12,6 +13,7 @@ function ArticleOptionItem({
 }) {
    const t = useTranslations('Article');
    const locale = useLocale();
+   const { loading } = useAuth();
 
    return (
       <div
@@ -41,7 +43,7 @@ function ArticleOptionItem({
          } ${
             hasReplied &&
             'border-amber-400/40! dark:border-amber-400/10! bg-amber-400/5!'
-         }`}
+         } ${type !== 'link' && loading ? 'pointer-events-none' : ''}`}
          onClick={handler}
       >
          {children}

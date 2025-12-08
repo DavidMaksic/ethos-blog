@@ -27,7 +27,7 @@ import toast from 'react-hot-toast';
 function ArticleOptions({ article, bookmarks, comments }) {
    const t = useTranslations('Article');
    const { slug, id: articleID, likes } = article;
-   const { session, extendedUser: user } = useAuth();
+   const { session, extendedUser: user, loading } = useAuth();
    const [isOpen, setIsOpen] = useState();
 
    // - Like logic
@@ -107,7 +107,11 @@ function ArticleOptions({ article, bookmarks, comments }) {
             |
          </div>
 
-         <div className="flex items-center gap-1.5 md:gap-3 sm:gap-1.5">
+         <div
+            className={`flex items-center gap-1.5 md:gap-3 sm:gap-1.5 ${
+               loading && 'pointer-events-none'
+            }`}
+         >
             <Button handler={handleLike} styles="md:hidden">
                <LikeButton
                   styles="size-[2.68rem]! 2xl:size-10.5! px-[0.5rem]! mt-px"

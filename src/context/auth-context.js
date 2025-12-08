@@ -13,7 +13,8 @@ export const AuthProvider = ({ children }) => {
 
    // your Supabase user
    const [extendedUser, setExtendedUser] = useState(null);
-   const [loading, setLoading] = useState(true);
+   const [loadingUser, setLoadingUser] = useState(true);
+   const [loadingExtendedUser, setLoadingExtendedUser] = useState(true);
 
    function resetUser() {
       setUser(null);
@@ -22,22 +23,24 @@ export const AuthProvider = ({ children }) => {
 
    useEffect(() => {
       if (status === 'loading') {
-         setLoading(true);
+         setLoadingUser(true);
          return;
       }
 
       if (status === 'unauthenticated') {
          resetUser();
-         setLoading(false);
+         setLoadingUser(false);
          return;
       }
 
-      // authenticated
+      // Authenticated
       setUser(session?.user || null);
-      setLoading(false);
+      setLoadingUser(false);
    }, [session, status]);
 
    useEffect(() => {
+      setLoadingExtendedUser(true);
+
       if (!session?.user?.email) {
          setExtendedUser(null);
          return;
@@ -47,10 +50,14 @@ export const AuthProvider = ({ children }) => {
          const res = await fetch(`/api/user?email=${session.user.email}`);
          const data = await res.json();
          setExtendedUser(data);
+
+         setLoadingExtendedUser(false);
       };
 
       loadUserData();
    }, [session?.user?.email]);
+
+   const loading = loadingUser || loadingExtendedUser;
 
    return (
       <AuthContext.Provider

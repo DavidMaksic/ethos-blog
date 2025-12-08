@@ -109,7 +109,6 @@ export async function generateMetadata({ params }) {
 
 // TODO: Fetch data with user, like select('*', bookmarks(*))
 // TODO: Refactor liking and bookmarking logic
-// TODO: While article page is loading, disable clicking on comments, like and bookmark if the user is loading
 
 export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));

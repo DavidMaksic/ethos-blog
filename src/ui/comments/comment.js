@@ -24,7 +24,7 @@ function Comment({ comment, commentLength, users, article, author }) {
    const [replyIsOpen, setReplyIsOpen] = useState(false);
    const [replyClicked, setReplyClicked] = useState(false);
    const [showReplies, setShowReplies] = useState(true);
-   const { session } = useAuth();
+   const { session, loading } = useAuth();
    const t = useTranslations('Comment');
 
    const locale = useLocale();
@@ -112,7 +112,9 @@ function Comment({ comment, commentLength, users, article, author }) {
       <>
          <div
             id={`comment-${commentID}`}
-            className="flex flex-col gap-5 xs:gap-4 bg-secondary dark:bg-primary-200 md:dark:bg-primary-300/15 box-shadow rounded-3xl px-14 sm:px-12 xs:px-10 py-10 sm:py-8 xs:py-5.5 scroll-mt-28! transition duration-300"
+            className={`flex flex-col gap-5 xs:gap-4 bg-secondary dark:bg-primary-200 md:dark:bg-primary-300/15 box-shadow rounded-3xl px-14 sm:px-12 xs:px-10 py-10 sm:py-8 xs:py-5.5 scroll-mt-28! transition duration-300 ${
+               loading && 'pointer-events-none'
+            }`}
          >
             <div className="flex items-center justify-between">
                <div className="flex items-center gap-4">

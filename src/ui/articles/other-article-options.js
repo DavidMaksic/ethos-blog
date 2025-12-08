@@ -28,7 +28,7 @@ function OtherArticleOptions({ article, comments, bookmarks, commentsNum }) {
    const t = useTranslations();
    const [isOpen, setIsOpen] = useState();
    const { likes, id: articleID } = article;
-   const { session, extendedUser: user } = useAuth();
+   const { session, extendedUser: user, loading } = useAuth();
 
    // - Like logic
    let hasLiked;

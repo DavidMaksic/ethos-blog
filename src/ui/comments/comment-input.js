@@ -18,7 +18,7 @@ function CommentInput({ article, commentLength }) {
    const [isOpen, setIsOpen] = useState();
    const [error, setError] = useState(false);
    const [text, setText] = useState('');
-   const { session, user: oldUser, extendedUser: newUser } = useAuth();
+   const { session, user: oldUser, extendedUser: newUser, loading } = useAuth();
 
    const locale = useLocale();
    const t = useTranslations('Comment');
@@ -92,7 +92,7 @@ function CommentInput({ article, commentLength }) {
 
             <form
                action={handleAction}
-               className="w-full"
+               className={`w-full ${loading && 'pointer-events-none'}`}
                onClick={() => {
                   if (!session) setIsOpen(true);
                }}

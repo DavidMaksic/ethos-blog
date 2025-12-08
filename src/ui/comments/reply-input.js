@@ -20,11 +20,11 @@ function ReplyInput({
    commentLength,
    setReplyIsOpen,
 }) {
-   const [isOpen, setIsOpen] = useState();
+   const [isOpen, setIsOpen] = useState(false);
    const [error, setError] = useState(false);
-   const { session, extendedUser: newUser } = useAuth();
-
    const [text, setText] = useState('');
+
+   const { session, extendedUser: newUser, loading } = useAuth();
 
    const locale = useLocale();
    const t = useTranslations('Comment');
@@ -71,7 +71,10 @@ function ReplyInput({
 
    return (
       <div className="comment-section scroll-mt-20! flex flex-col gap-1.5 ml-14 font-secondary">
-         <form action={handleAction} className="w-full">
+         <form
+            action={handleAction}
+            className={`w-full ${loading && 'pointer-events-none'}`}
+         >
             <TextareaAutosize
                minRows={1}
                maxRows={20}
