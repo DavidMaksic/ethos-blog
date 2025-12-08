@@ -46,7 +46,7 @@ function Articles({ isArchive = false, articles, categories, style }) {
 
       // 1. Sort
       if (sort) {
-         result = getSortedItems({ sort }, result);
+         result = getSortedItems(sort, result);
       }
 
       // 2. Search (Fuse.js)

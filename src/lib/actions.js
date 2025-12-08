@@ -1,7 +1,7 @@
 'use server';
 
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { auth, signIn, signOut } from '@/src/lib/auth';
-import { revalidatePath } from 'next/cache';
 import { supabase } from '@/src/lib/supabase';
 
 export async function signInAction() {
@@ -82,8 +82,7 @@ export async function addBookmark(user, articleID, slug) {
    ]);
 
    if (error) throw new Error('Article could not be bookmarked');
-   revalidatePath(`/${slug}`);
-   revalidatePath(`/sr/${slug}`);
+   revalidateTag(`article-${slug}`);
 }
 
 export async function removeBookmark(user, articleID, slug) {
@@ -94,8 +93,7 @@ export async function removeBookmark(user, articleID, slug) {
       .eq('article_id', articleID);
 
    if (error) throw new Error('Bookmark could not be removed');
-   revalidatePath(`/${slug}`);
-   revalidatePath(`/sr/${slug}`);
+   revalidateTag(`article-${slug}`);
 }
 
 export async function addComment(previousState, formData) {
@@ -115,8 +113,7 @@ export async function addComment(previousState, formData) {
 
    if (error) throw new Error('Comment could not be posted');
 
-   revalidatePath(`/${slug}`);
-   revalidatePath(`/sr/${slug}`);
+   revalidateTag(`article-${slug}`);
    return { success: true };
 }
 
@@ -128,8 +125,7 @@ export async function editComment(commentID, text, slug) {
 
    if (error) throw new Error('Comment could not be edited');
 
-   revalidatePath(`/${slug}`);
-   revalidatePath(`/sr/${slug}`);
+   revalidateTag(`article-${slug}`);
    return { success: true };
 }
 
@@ -141,8 +137,7 @@ export async function deleteComment(commentID, slug) {
 
    if (error) throw new Error('Comment could not be deleted');
 
-   revalidatePath(`/${slug}`);
-   revalidatePath(`/sr/${slug}`);
+   revalidateTag(`article-${slug}`);
    return { success: true };
 }
 
@@ -162,8 +157,7 @@ export async function addReply(previousState, formData) {
 
    if (error) throw new Error('Reply could not be posted');
 
-   revalidatePath(`/${slug}`);
-   revalidatePath(`/sr/${slug}`);
+   revalidateTag(`article-${slug}`);
    return { success: true };
 }
 
@@ -175,8 +169,7 @@ export async function editReply(replyID, text, slug) {
 
    if (error) throw new Error('Reply could not be edited');
 
-   revalidatePath(`/${slug}`);
-   revalidatePath(`/sr/${slug}`);
+   revalidateTag(`article-${slug}`);
    return { success: true };
 }
 
@@ -185,8 +178,7 @@ export async function deleteReply(replyID, slug) {
 
    if (error) throw new Error('Reply could not be deleted');
 
-   revalidatePath(`/${slug}`);
-   revalidatePath(`/sr/${slug}`);
+   revalidateTag(`article-${slug}`);
    return { success: true };
 }
 
@@ -232,6 +224,5 @@ export async function removeLiked(userID, articleID, type, slug) {
       .eq('type', type);
 
    if (error) throw new Error('Article could not be disliked');
-   revalidatePath(`/${slug}`);
-   revalidatePath(`/sr/${slug}`);
+   revalidateTag(`article-${slug}`);
 }

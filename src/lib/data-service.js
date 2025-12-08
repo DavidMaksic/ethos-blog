@@ -15,17 +15,20 @@ export async function getArticles() {
 }
 
 export async function getArticle(slug) {
-   const { data, error } = await supabase
-      .from('articles')
-      .select(
-         '*, categories (*), authors (*), likes(*), comments (*, replies (*))'
-      )
-      .eq('slug', slug)
-      .single();
+   const url = `${process.env.SUPABASE_URL}/rest/v1/articles?select=*,categories(*),authors(*),likes(*),comments(*,replies(*))&slug=eq.${slug}`;
 
-   if (error) throw new Error('Article could not be loaded');
+   const res = await fetch(url, {
+      headers: {
+         apikey: process.env.SUPABASE_KEY,
+         Authorization: `Bearer ${process.env.SUPABASE_KEY}`,
+      },
+      next: { tags: [`article-${slug}`] },
+   });
 
-   return data;
+   if (!res.ok) throw new Error('Failed to fetch article');
+   const data = await res.json();
+   console.log('data: ', data);
+   return data[0];
 }
 
 export async function getMainArticles() {
