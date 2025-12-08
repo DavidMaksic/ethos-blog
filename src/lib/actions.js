@@ -194,8 +194,7 @@ export async function addLiked(userID, articleID, type, slug, targetID) {
       ]);
 
       if (error) throw new Error('Article could not be liked');
-      revalidatePath(`/${slug}`);
-      revalidatePath(`/sr/${slug}`);
+      revalidateTag(`article-${slug}`);
       return;
    }
 
@@ -210,8 +209,7 @@ export async function addLiked(userID, articleID, type, slug, targetID) {
       ]);
 
       if (error) throw new Error('Article could not be liked');
-      revalidatePath(`/${slug}`);
-      revalidatePath(`/sr/${slug}`);
+      revalidateTag(`article-${slug}`);
    }
 }
 
