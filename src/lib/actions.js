@@ -77,6 +77,9 @@ export async function updateImage(previousState, formData) {
 }
 
 export async function addBookmark(user, articleID, slug) {
+   const session = await auth();
+   if (!session) throw new Error('You must be logged in');
+
    const { error } = await supabase.from('bookmarks').insert([
       {
          user_id: user.userID,
@@ -89,6 +92,9 @@ export async function addBookmark(user, articleID, slug) {
 }
 
 export async function removeBookmark(user, articleID, slug) {
+   const session = await auth();
+   if (!session) throw new Error('You must be logged in');
+
    const { error } = await supabase
       .from('bookmarks')
       .delete()
@@ -100,6 +106,9 @@ export async function removeBookmark(user, articleID, slug) {
 }
 
 export async function addComment(previousState, formData) {
+   const session = await auth();
+   if (!session) throw new Error('You must be logged in');
+
    const comment = formData
       .get('content')
       .replace(/\n\s*\n+/g, '\n\n')
@@ -121,6 +130,9 @@ export async function addComment(previousState, formData) {
 }
 
 export async function editComment(commentID, text, slug) {
+   const session = await auth();
+   if (!session) throw new Error('You must be logged in');
+
    const { error } = await supabase
       .from('comments')
       .update({ content: text })
@@ -133,6 +145,9 @@ export async function editComment(commentID, text, slug) {
 }
 
 export async function deleteComment(commentID, slug) {
+   const session = await auth();
+   if (!session) throw new Error('You must be logged in');
+
    const { error } = await supabase
       .from('comments')
       .delete()
@@ -145,6 +160,9 @@ export async function deleteComment(commentID, slug) {
 }
 
 export async function addReply(previousState, formData) {
+   const session = await auth();
+   if (!session) throw new Error('You must be logged in');
+
    const comment = formData.get('content');
    const userID = formData.get('userID');
    const slug = formData.get('slug');
@@ -165,6 +183,9 @@ export async function addReply(previousState, formData) {
 }
 
 export async function editReply(replyID, text, slug) {
+   const session = await auth();
+   if (!session) throw new Error('You must be logged in');
+
    const { error } = await supabase
       .from('replies')
       .update({ content: text })
@@ -177,6 +198,9 @@ export async function editReply(replyID, text, slug) {
 }
 
 export async function deleteReply(replyID, slug) {
+   const session = await auth();
+   if (!session) throw new Error('You must be logged in');
+
    const { error } = await supabase.from('replies').delete().eq('id', replyID);
 
    if (error) throw new Error('Reply could not be deleted');
@@ -186,6 +210,9 @@ export async function deleteReply(replyID, slug) {
 }
 
 export async function addLiked(userID, articleID, type, slug, targetID) {
+   const session = await auth();
+   if (!session) throw new Error('You must be logged in');
+
    if (type === 'article') {
       const { error } = await supabase.from('likes').insert([
          {
@@ -217,6 +244,9 @@ export async function addLiked(userID, articleID, type, slug, targetID) {
 }
 
 export async function removeLiked(userID, articleID, type, slug) {
+   const session = await auth();
+   if (!session) throw new Error('You must be logged in');
+
    const { error } = await supabase
       .from('likes')
       .delete()

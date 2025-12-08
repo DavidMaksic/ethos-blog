@@ -97,7 +97,6 @@ async function Page({ params }) {
    const article = await getArticle(slug);
 
    const {
-      id,
       comments,
       image,
       title,
