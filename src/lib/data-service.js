@@ -17,39 +17,17 @@ export async function getArticles() {
 export async function getArticle(slug) {
    const url = `${process.env.SUPABASE_URL}/rest/v1/articles?select=*,categories(*),authors(*),likes(*),comments(*,replies(*))&slug=eq.${slug}`;
 
-   // Fetch the article first (without caching)
    const res = await fetch(url, {
       headers: {
          apikey: process.env.SUPABASE_KEY,
          Authorization: `Bearer ${process.env.SUPABASE_KEY}`,
       },
+      next: { tags: [`article-${slug}`] },
    });
 
    if (!res.ok) throw new Error('Failed to fetch article');
    const data = await res.json();
-   const article = data[0];
-
-   if (!article) throw new Error('Article not found');
-
-   // Extract unique user IDs from comments
-   const commentUserIds = article.comments?.map((item) => item.user_id) || [];
-   const uniqueUserIds = Array.from(new Set(commentUserIds));
-
-   const resWithTags = await fetch(url, {
-      headers: {
-         apikey: process.env.SUPABASE_KEY,
-         Authorization: `Bearer ${process.env.SUPABASE_KEY}`,
-      },
-      next: {
-         tags: [`article-${slug}`, ...uniqueUserIds.map((id) => `user-${id}`)],
-      },
-   });
-
-   if (!resWithTags.ok)
-      throw new Error('Failed to fetch article with ISR tags');
-
-   const taggedData = await resWithTags.json();
-   return taggedData[0];
+   return data[0];
 }
 
 export async function getMainArticles() {

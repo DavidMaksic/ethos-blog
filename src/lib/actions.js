@@ -26,7 +26,6 @@ export async function updateUser(previousState, formData) {
    if (error) throw new Error('Username could not be updated');
 
    revalidatePath('/user/settings');
-   revalidateTag(`user-${session.user.userID}`);
    return { success: true };
 }
 
@@ -74,7 +73,6 @@ export async function updateImage(previousState, formData) {
    }
 
    revalidatePath('/user/settings');
-   revalidateTag(`user-${session.user.userID}`);
    return { success: true };
 }
 
