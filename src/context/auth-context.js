@@ -8,6 +8,8 @@ const AuthContext = createContext(null);
 export const AuthProvider = ({ children }) => {
    const { data: session, status } = useSession();
 
+   const notAuthenticated = status === 'unauthenticated';
+
    // next-auth user
    const [user, setUser] = useState(null);
 
@@ -57,7 +59,7 @@ export const AuthProvider = ({ children }) => {
       loadUserData();
    }, [session?.user?.email]);
 
-   const loading = loadingUser || loadingExtendedUser;
+   const loading = (loadingUser || loadingExtendedUser) && session;
 
    return (
       <AuthContext.Provider
