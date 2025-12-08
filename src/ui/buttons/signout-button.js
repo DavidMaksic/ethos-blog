@@ -1,26 +1,21 @@
 import { useTranslations } from 'next-intl';
-import { signOutAction } from '@/src/lib/actions';
+import { useLogout } from '@/src/hooks/use-logout';
 import { LuLogOut } from 'react-icons/lu';
-import { useAuth } from '@/src/context/auth-context';
 
 function SignOutButton() {
    const t = useTranslations('Profile');
-   const { resetUser } = useAuth();
+   const logout = useLogout();
 
    return (
-      <form
-         action={() => {
-            signOutAction();
-            resetUser();
-         }}
+      <button
+         onClick={logout}
+         className="nav-link sm:px-0 w-full sm:flex sm:flex-col font-semibold group transition-bg_color cursor-pointer"
       >
-         <button className="nav-link sm:px-0 w-full sm:flex sm:flex-col font-semibold group transition-bg_color cursor-pointer">
-            <LuLogOut className="md:size-6 xs:mt-1" />
-            <span className="lg:hidden sm:block xs:text-lg">
-               {t('nav-link-5')}
-            </span>
-         </button>
-      </form>
+         <LuLogOut className="md:size-6 xs:mt-1" />
+         <span className="lg:hidden sm:block xs:text-lg">
+            {t('nav-link-5')}
+         </span>
+      </button>
    );
 }
 

@@ -28,7 +28,6 @@ function ArticleOptions({ article, bookmarks, comments }) {
    const t = useTranslations('Article');
    const { slug, id: articleID, likes } = article;
    const { session, extendedUser: user, loading } = useAuth();
-   console.log('session: ', session);
    const [isOpen, setIsOpen] = useState();
 
    // - Like logic

@@ -1,15 +1,11 @@
 'use server';
 
 import { revalidatePath, revalidateTag } from 'next/cache';
-import { auth, signIn, signOut } from '@/src/lib/auth';
+import { auth, signIn } from '@/src/lib/auth';
 import { supabase } from '@/src/lib/supabase';
 
 export async function signInAction() {
    await signIn('google', { redirectTo: '/user/home' });
-}
-
-export async function signOutAction() {
-   await signOut({ redirectTo: '/' });
 }
 
 export async function updateUser(previousState, formData) {

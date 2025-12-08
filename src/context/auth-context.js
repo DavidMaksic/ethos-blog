@@ -8,20 +8,13 @@ const AuthContext = createContext(null);
 export const AuthProvider = ({ children }) => {
    const { data: session, status } = useSession();
 
-   const notAuthenticated = status === 'unauthenticated';
-
-   // next-auth user
+   // Next-auth user
    const [user, setUser] = useState(null);
 
-   // your Supabase user
+   // Supabase user
    const [extendedUser, setExtendedUser] = useState(null);
    const [loadingUser, setLoadingUser] = useState(true);
    const [loadingExtendedUser, setLoadingExtendedUser] = useState(true);
-
-   function resetUser() {
-      setUser(null);
-      setExtendedUser(null);
-   }
 
    useEffect(() => {
       if (status === 'loading') {
@@ -30,7 +23,6 @@ export const AuthProvider = ({ children }) => {
       }
 
       if (status === 'unauthenticated') {
-         resetUser();
          setLoadingUser(false);
          return;
       }
@@ -68,7 +60,6 @@ export const AuthProvider = ({ children }) => {
             user,
             extendedUser,
             loading,
-            resetUser,
          }}
       >
          {children}
