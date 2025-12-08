@@ -26,10 +26,14 @@ export async function updateUser(previousState, formData) {
    if (error) throw new Error('Username could not be updated');
 
    revalidatePath('/user/settings');
+   revalidateTag(`user-${session.user.userID}`);
    return { success: true };
 }
 
 export async function updateImage(previousState, formData) {
+   const session = await auth();
+   if (!session) throw new Error('You must be logged in');
+
    const newImage = formData.get('newImage');
    const oldImage = formData.get('oldImage');
    const userID = formData.get('userID');
@@ -70,6 +74,7 @@ export async function updateImage(previousState, formData) {
    }
 
    revalidatePath('/user/settings');
+   revalidateTag(`user-${session.user.userID}`);
    return { success: true };
 }
 
