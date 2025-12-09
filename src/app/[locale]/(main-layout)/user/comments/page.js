@@ -1,4 +1,4 @@
-import { getComments, getUsers, getUser } from '@/src/lib/data-service';
+import { getUsers, getUser } from '@/src/lib/data-service';
 import { getTranslations } from 'next-intl/server';
 import { getSortedItems } from '@/src/utils/helpers';
 import { auth } from '@/src/lib/auth';
@@ -13,21 +13,15 @@ export async function generateMetadata({ params }) {
 }
 
 async function Page({ searchParams }) {
-   const [searchParam, session, comments, users, t] = await Promise.all([
+   const [searchParam, session, users, t] = await Promise.all([
       searchParams,
       auth(),
-      getComments(),
       getUsers(),
       getTranslations(),
    ]);
 
-   const user = await getUser(session?.user.email);
-   const replies = comments.map((item) => item.replies).flat();
-
-   const mergedArray = [...comments, ...replies];
-   const userComments = mergedArray.filter(
-      (item) => item.user_id === session.user.userID
-   );
+   const extendedUser = await getUser(session?.user.email);
+   const userComments = [...extendedUser.comments, ...extendedUser.replies];
    const sortedComments = getSortedItems(searchParam?.sort, userComments);
 
    return (
@@ -60,9 +54,8 @@ async function Page({ searchParams }) {
                {sortedComments?.map((item) => (
                   <UserComment
                      comment={item}
-                     comments={comments}
                      users={users}
-                     user={user}
+                     extendedUser={extendedUser}
                      key={item.id}
                   />
                ))}

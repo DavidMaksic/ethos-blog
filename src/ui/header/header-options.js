@@ -16,7 +16,7 @@ import Image from 'next/image';
 function HeaderOptions() {
    const [mounted, setMounted] = useState();
    const { resolvedTheme, setTheme } = useTheme();
-   const { session, user: oldUser, extendedUser: newUser } = useAuth();
+   const { user, extendedUser } = useAuth();
 
    useEffect(() => setMounted(true), []);
 
@@ -44,7 +44,7 @@ function HeaderOptions() {
             </HeaderButton>
          )}
 
-         {newUser ? (
+         {extendedUser ? (
             <Link
                href="/user/home"
                prefetch
@@ -55,7 +55,7 @@ function HeaderOptions() {
                      className="rounded-full block aspect-square object-cover object-center dark:opacity-90 border border-primary-300 transition-200"
                      fill
                      priority={true}
-                     src={newUser.image ? newUser.image : oldUser.image}
+                     src={extendedUser.image ? extendedUser.image : user.image}
                      alt="Profile image"
                      referrerPolicy="no-referrer"
                   />
@@ -77,7 +77,7 @@ function HeaderOptions() {
             |
          </span>
 
-         <MobileMenu session={session} newUser={newUser} oldUser={oldUser} />
+         <MobileMenu />
       </div>
    );
 }

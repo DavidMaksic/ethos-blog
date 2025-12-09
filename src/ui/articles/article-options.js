@@ -26,37 +26,35 @@ import toast from 'react-hot-toast';
 
 function ArticleOptions({ article, bookmarks, comments }) {
    const t = useTranslations('Article');
-   const { slug, id: articleID, likes } = article;
-   const { session, extendedUser: user, loading } = useAuth();
    const [isOpen, setIsOpen] = useState();
+   const { slug, id: articleID, likes } = article;
+   const { session, extendedUser, loading } = useAuth();
 
    // - Like logic
    let hasLiked;
    const articleLikeIDs = likes
       .filter((item) => item.type === 'article')
       .map((item) => item.user_id);
-   hasLiked = !!articleLikeIDs.find((item) => item === user?.id);
+   hasLiked = !!articleLikeIDs.find((item) => item === extendedUser?.id);
 
    // - Comment logic
    let hasCommented;
-   hasCommented = !!comments.find((item) => item.user_id === user?.id);
+   hasCommented = !!comments.find((item) => item.user_id === extendedUser?.id);
 
    // - Reply logic
    let hasReplied;
    const replies = comments.map((item) => item.replies).flat();
-   hasReplied = !!replies.find((item) => item.user_id === user?.id);
+   hasReplied = !!replies.find((item) => item.user_id === extendedUser?.id);
 
    // - Bookmark logic
    const hasBookmarked = !!bookmarks.find(
-      (item) => item.user_id === user?.id && item.article_id === articleID
+      (item) =>
+         item.user_id === extendedUser?.id && item.article_id === articleID
    );
    const [isBookmarked, setIsBookmarked] = useState(hasBookmarked);
 
    function handleBookmarkClick() {
-      if (!session) {
-         setIsOpen(true);
-         return;
-      }
+      if (!session) return setIsOpen(true);
 
       if (isBookmarked) {
          removeBookmark(session.user, articleID, slug);
@@ -77,10 +75,7 @@ function ArticleOptions({ article, bookmarks, comments }) {
    const [isLiked, setIsLiked] = useState(hasLiked);
 
    function handleLike() {
-      if (!session) {
-         setIsOpen(true);
-         return;
-      }
+      if (!session) return setIsOpen(true);
 
       if (isLiked) {
          removeLiked(session.user.userID, articleID, 'article', slug);

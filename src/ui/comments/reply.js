@@ -27,12 +27,13 @@ function Reply({
 }) {
    const [isOpen, setIsOpen] = useState(false);
    const [replyIsOpen, setReplyIsOpen] = useState(false);
-   const { session, extendedUser: newUser } = useAuth();
+
+   const { id: articleID, slug } = article;
+   const { session } = useAuth();
+
    const replyID = reply.id;
    const t = useTranslations('Comment');
 
-   const articleID = article.id;
-   const slug = article.slug;
    const currentUser = users.find((item) => item.id === reply.user_id);
    const isAuthor = currentUser.email === author.email;
 

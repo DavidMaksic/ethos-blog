@@ -1,7 +1,7 @@
 import { FaRegComments, FaRegHeart } from 'react-icons/fa';
-import { getUser, getComments } from '@/src/lib/data-service';
 import { getTranslations } from 'next-intl/server';
 import { LuBookmark } from 'react-icons/lu';
+import { getUser } from '@/src/lib/data-service';
 import { auth } from '@/src/lib/auth';
 
 import ProfileInfo from '@/src/ui/profile/profile-info';
@@ -14,24 +14,15 @@ export async function generateMetadata({ params }) {
 }
 
 async function Page() {
-   const [session, comments, t] = await Promise.all([
-      auth(),
-      getComments(),
-      getTranslations(),
-   ]);
+   const [session, t] = await Promise.all([auth(), getTranslations()]);
    const { user } = session;
    const extendedUser = await getUser(user.email);
 
-   const likesLength = extendedUser.likes.filter(
+   const likeCount = extendedUser.likes.filter(
       (item) => item.type === 'article'
    ).length;
-   const replies = comments.map((item) => item.replies).flat();
-
-   const mergedArray = [...comments, ...replies];
-   const commentsLength = mergedArray.filter(
-      (item) => item.user_id === extendedUser.id
-   ).length;
-
+   const commentCount = [...extendedUser.comments, ...extendedUser.replies]
+      .length;
    const bookmarkCount = extendedUser.bookmarks.length;
 
    return (
@@ -47,7 +38,7 @@ async function Page() {
             <div className="flex gap-4 2xl:flex-wrap">
                <Stats
                   title={t('Profile.user-stat-1')}
-                  value={likesLength}
+                  value={likeCount}
                   icon={
                      <FaRegHeart className="text-red-600/40 dark:text-red-300/80 transition-color" />
                   }
@@ -55,7 +46,7 @@ async function Page() {
                />
                <Stats
                   title={t('Profile.user-stat-2')}
-                  value={commentsLength ? commentsLength : '--'}
+                  value={commentCount ? commentCount : '--'}
                   icon={
                      <FaRegComments className="text-amber-700/50 dark:text-amber-300/70 transition-color" />
                   }

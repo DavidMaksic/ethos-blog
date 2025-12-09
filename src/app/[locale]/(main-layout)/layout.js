@@ -107,9 +107,6 @@ export async function generateMetadata({ params }) {
    };
 }
 
-// TODO: Fetch data with user, like select('*', bookmarks(*))
-// TODO: Refactor liking and bookmarking logic
-
 export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));
 }

@@ -1,17 +1,13 @@
 import {
-   getBookmarksCount,
-   isBookmarked,
    getBookmarks,
    getArticles,
    getSettings,
    getArticle,
    getUsers,
-   getUser,
 } from '@/src/lib/data-service';
 import { getTranslations } from 'next-intl/server';
 import { WEBSITE_URL } from '@/src/utils/config';
 import { format } from 'date-fns';
-import { auth } from '@/src/lib/auth';
 
 import OtherArticleOptions from '@/src/ui/articles/other-article-options';
 import ArticleAuthorInfo from '@/src/ui/articles/article-author-info';

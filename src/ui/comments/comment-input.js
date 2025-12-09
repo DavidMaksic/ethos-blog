@@ -18,7 +18,7 @@ function CommentInput({ article, commentLength }) {
    const [isOpen, setIsOpen] = useState();
    const [error, setError] = useState(false);
    const [text, setText] = useState('');
-   const { session, user: oldUser, extendedUser: newUser, loading } = useAuth();
+   const { session, user, extendedUser, loading } = useAuth();
 
    const locale = useLocale();
    const t = useTranslations('Comment');
@@ -74,13 +74,15 @@ function CommentInput({ article, commentLength }) {
       <div className="comment-section scroll-mt-20! flex flex-col gap-1.5 mt-20 font-secondary">
          <div className="flex gap-4">
             <div className="py-3 px-2 sm:hidden">
-               {newUser ? (
+               {extendedUser ? (
                   <div className="relative block size-16">
                      <Image
                         className="rounded-full block aspect-square object-cover object-center dark:opacity-90 border border-primary-300 transition-200"
                         fill
                         priority={true}
-                        src={newUser.image ? newUser.image : oldUser.image}
+                        src={
+                           extendedUser.image ? extendedUser.image : user.image
+                        }
                         alt="Profile image"
                         referrerPolicy="no-referrer"
                      />
@@ -117,7 +119,9 @@ function CommentInput({ article, commentLength }) {
                <input
                   hidden
                   name="userID"
-                  defaultValue={session && newUser ? newUser.id : null}
+                  defaultValue={
+                     session && extendedUser ? extendedUser.id : null
+                  }
                />
                <input hidden name="slug" defaultValue={article.slug} />
                <input hidden name="articleID" defaultValue={article.id} />

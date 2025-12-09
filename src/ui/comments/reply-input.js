@@ -24,7 +24,7 @@ function ReplyInput({
    const [error, setError] = useState(false);
    const [text, setText] = useState('');
 
-   const { session, extendedUser: newUser, loading } = useAuth();
+   const { session, extendedUser, loading } = useAuth();
 
    const locale = useLocale();
    const t = useTranslations('Comment');
@@ -93,7 +93,7 @@ function ReplyInput({
             <input
                hidden
                name="userID"
-               defaultValue={session && newUser ? newUser.id : null}
+               defaultValue={session && extendedUser ? extendedUser.id : null}
             />
             <input hidden name="commentID" defaultValue={commentID} />
             <input hidden name="articleID" defaultValue={articleID} />

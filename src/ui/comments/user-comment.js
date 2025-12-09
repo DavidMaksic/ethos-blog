@@ -2,15 +2,16 @@ import { getLocale, getTranslations } from 'next-intl/server';
 import { CommentDate } from '@/src/utils/helpers';
 import { Link } from '@/src/i18n/navigation';
 
-async function UserComment({ comment, users, user, comments }) {
+async function UserComment({ comment, users, extendedUser }) {
    const t = await getTranslations('Comment');
    const locale = await getLocale();
 
    const { id, comment_id, created_at, articles, content } = comment;
-   const date = CommentDate(created_at, locale);
 
-   const repliedToID = comments.find((item) => item.id === comment_id)?.user_id;
-   const repliedTo = users.find((item) => item.id === repliedToID);
+   const repliedTo = users.find(
+      (item) => item.id === comment.comments?.user_id
+   );
+   const date = CommentDate(created_at, locale);
 
    if (!articles) return null;
    const { title, slug } = articles;
@@ -24,7 +25,9 @@ async function UserComment({ comment, users, user, comments }) {
          <div className="flex items-center gap-4">
             <div className="flex items-center xs:grid xs:grid-cols-1 gap-2 xs:gap-y-px lg:text-[1.1rem] md:text-xl">
                <span className="font-bold md:hidden">
-                  {user.username ? user.username : user.name}
+                  {extendedUser.username
+                     ? extendedUser.username
+                     : extendedUser.name}
                </span>
                <p className="text-primary-400 md:hidden">
                   {comment_id ? t('user-replied') : t('user-commented')}{' '}

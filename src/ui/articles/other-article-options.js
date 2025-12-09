@@ -27,28 +27,29 @@ import Modal from '@/src/ui/modal/modal';
 function OtherArticleOptions({ article, comments, bookmarks, commentsNum }) {
    const t = useTranslations();
    const [isOpen, setIsOpen] = useState();
-   const { likes, id: articleID } = article;
-   const { session, extendedUser: user, loading } = useAuth();
+   const { slug, id: articleID, likes } = article;
+   const { session, extendedUser } = useAuth();
 
    // - Like logic
    let hasLiked;
    const articleLikeIDs = likes
       .filter((item) => item.type === 'article')
       .map((item) => item.user_id);
-   hasLiked = !!articleLikeIDs.find((item) => item === user?.id);
+   hasLiked = !!articleLikeIDs.find((item) => item === extendedUser?.id);
 
    // - Comment logic
    let hasCommented;
-   hasCommented = !!comments.find((item) => item.user_id === user?.id);
+   hasCommented = !!comments.find((item) => item.user_id === extendedUser?.id);
 
    // - Reply logic
    let hasReplied;
    const replies = comments.map((item) => item.replies).flat();
-   hasReplied = !!replies.find((item) => item.user_id === user?.id);
+   hasReplied = !!replies.find((item) => item.user_id === extendedUser?.id);
 
    // - Bookmark logic
    const hasBookmarked = !!bookmarks.find(
-      (item) => item.user_id === user?.id && item.article_id === articleID
+      (item) =>
+         item.user_id === extendedUser?.id && item.article_id === articleID
    );
    const [isBookmarked, setIsBookmarked] = useState(hasBookmarked);
 
@@ -62,11 +63,11 @@ function OtherArticleOptions({ article, comments, bookmarks, commentsNum }) {
 
       if (isBookmarked) {
          setBookmarksCount((i) => i - 1);
-         removeBookmark(session.user, articleID, article.slug);
+         removeBookmark(session.user, articleID, slug);
          toast.success(t('Article.bookmark-removed'));
       } else {
          setBookmarksCount((i) => i + 1);
-         addBookmark(session.user, articleID, article.slug);
+         addBookmark(session.user, articleID, slug);
          toast.success(t('Article.bookmark-added'));
       }
 
@@ -91,10 +92,10 @@ function OtherArticleOptions({ article, comments, bookmarks, commentsNum }) {
 
       if (isLiked) {
          setLikesCount((i) => i - 1);
-         removeLiked(session.user.userID, articleID, 'article', article.slug);
+         removeLiked(session.user.userID, articleID, 'article', slug);
       } else {
          setLikesCount((i) => i + 1);
-         addLiked(session.user.userID, articleID, 'article', article.slug);
+         addLiked(session.user.userID, articleID, 'article', slug);
       }
 
       setIsLiked(!isLiked);

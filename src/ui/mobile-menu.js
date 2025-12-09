@@ -9,14 +9,16 @@ import { BiHomeAlt2 } from 'react-icons/bi';
 import { LANGUAGES } from '@/src/utils/config';
 import { useParams } from 'next/navigation';
 import { useState } from 'react';
+import { useAuth } from '@/src/context/auth-context';
 import { Link } from '@/src/i18n/navigation';
 
 import FilterButton from '@/src/ui/buttons/filter-button';
 import Image from 'next/image';
 
-function MobileMenu({ session, newUser, oldUser }) {
+function MobileMenu() {
    const [openMenu, setOpenMenu] = useState(false);
    const ref = useOutsideClick(() => setOpenMenu((isOpen) => !isOpen), false);
+   const { session, user, extendedUser } = useAuth();
 
    const param = useParams();
    const t = useTranslations();
@@ -93,7 +95,7 @@ function MobileMenu({ session, newUser, oldUser }) {
                   <span className="w-px bg-primary-300 dark:bg-primary-300/40 3xs:hidden" />
 
                   <div className="flex flex-col gap-2 items-center">
-                     {newUser?.image || oldUser?.image ? (
+                     {extendedUser?.image || user?.image ? (
                         <div className="min-w-50 xs:min-w-full flex flex-col gap-3 items-center mx-4 xs:mx-0 py-2 3xs:pt-5 pb-6 border-b border-b-primary-300 dark:border-b-primary-300/40">
                            <Link
                               href="/user/home"
@@ -106,18 +108,20 @@ function MobileMenu({ session, newUser, oldUser }) {
                                  fill
                                  priority={true}
                                  src={
-                                    newUser?.image
-                                       ? newUser?.image
-                                       : oldUser?.image
+                                    extendedUser?.image
+                                       ? extendedUser?.image
+                                       : user?.image
                                  }
                                  alt="Profile image"
                                  referrerPolicy="no-referrer"
                               />
                            </Link>
                            <span className="text-accent-400 dark:text-accent text-4xl w-fit self-center pr-1.5 font-logo">
-                              {newUser?.username
-                                 ? newUser?.username.split(' ')[0].slice(0, 10)
-                                 : oldUser?.name.split(' ')[0].slice(0, 10)}
+                              {extendedUser?.username
+                                 ? extendedUser?.username
+                                      .split(' ')[0]
+                                      .slice(0, 10)
+                                 : user?.name.split(' ')[0].slice(0, 10)}
                            </span>
                         </div>
                      ) : (

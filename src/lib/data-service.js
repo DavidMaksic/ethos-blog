@@ -67,7 +67,9 @@ export async function getAuthors() {
 export async function getUser(email) {
    const { data, error } = await supabase
       .from('users')
-      .select('*, likes(id, type), bookmarks(*)')
+      .select(
+         '*, likes(id, type), bookmarks(*), comments(*, articles (title, slug)), replies(*, articles (title, slug), comments(user_id))'
+      )
       .eq('email', email)
       .maybeSingle();
 
@@ -88,17 +90,6 @@ export async function createUser(newUser) {
    const { data, error } = await supabase.from('users').insert([newUser]);
 
    if (error) throw new Error('User could not be created');
-
-   return data;
-}
-
-export async function getComments() {
-   const { data, error } = await supabase
-      .from('comments')
-      .select('*, replies (*, articles (title, slug)), articles (title, slug)')
-      .order('id', { ascending: false });
-
-   if (error) throw new Error('Comments could not be loaded');
 
    return data;
 }
