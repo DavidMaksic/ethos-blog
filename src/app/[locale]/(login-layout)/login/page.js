@@ -8,8 +8,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page() {
-   const t = await getTranslations();
-   const locale = await getLocale();
+   const [locale, t] = await Promise.all([getLocale(), getTranslations()]);
 
    return (
       <>

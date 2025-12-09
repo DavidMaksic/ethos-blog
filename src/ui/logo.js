@@ -8,8 +8,8 @@ import { Link } from '@/src/i18n/navigation';
 function Logo() {
    const [isHovered, setIsHovered] = useState(false);
 
-   const t = useTranslations();
    const locale = useLocale();
+   const t = useTranslations();
 
    const isMobile = useMediaQuery({ maxWidth: 768 });
 

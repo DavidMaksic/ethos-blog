@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { WEBSITE_URL } from '@/src/utils/config';
 import { getAuthors } from '@/src/lib/data-service';
 import Author from '@/src/ui/author';
@@ -7,10 +7,12 @@ export const dynamic = 'force-static';
 export const revalidate = 300;
 
 export async function generateMetadata({ params }) {
-   const [param, authors] = await Promise.all([params, getAuthors()]);
+   const [param, authors, t] = await Promise.all([
+      params,
+      getAuthors(),
+      getTranslations('Page-descriptions'),
+   ]);
    const { locale } = param;
-
-   const t = await getTranslations({ locale, namespace: 'Page-descriptions' });
    const prefix = locale === 'en' ? '' : `/${locale}`;
 
    return {
@@ -27,13 +29,11 @@ export async function generateMetadata({ params }) {
 }
 
 async function Page({ params }) {
-   const [param, authors, t] = await Promise.all([
-      params,
-      getAuthors(),
-      getTranslations(),
-   ]);
-
+   const [param, authors] = await Promise.all([params, getAuthors()]);
    const { locale } = param;
+   setRequestLocale(locale);
+
+   const t = await getTranslations();
    const prefix = locale === 'en' ? '' : `/${locale}`;
 
    const jsonLd = {

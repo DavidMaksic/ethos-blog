@@ -1,5 +1,5 @@
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { getArticles, getCategories } from '@/src/lib/data-service';
-import { getTranslations } from 'next-intl/server';
 import { WEBSITE_URL } from '@/src/utils/config';
 
 import ArchiveHeading from '@/src/ui/archive-heading';
@@ -12,8 +12,8 @@ export const dynamic = 'force-static';
 export const revalidate = 300;
 
 export async function generateMetadata({ params }) {
-   const { locale } = await params;
-   const t = await getTranslations({ locale });
+   const [param, t] = await Promise.all([params, getTranslations()]);
+   const { locale } = param;
    const prefix = locale === 'en' ? '' : `/${locale}`;
 
    return {
@@ -28,16 +28,16 @@ export async function generateMetadata({ params }) {
    };
 }
 
-async function Page({ params, searchParams }) {
-   const [param, searchParam, articles, categories, t] = await Promise.all([
+async function Page({ params }) {
+   const [param, articles, categories] = await Promise.all([
       params,
-      searchParams,
       getArticles(),
       getCategories(),
-      getTranslations(),
    ]);
-
    const { locale } = param;
+   setRequestLocale(locale);
+
+   const t = await getTranslations();
    const prefix = locale === 'en' ? '' : `/${locale}`;
 
    const jsonLd = {

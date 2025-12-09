@@ -5,11 +5,9 @@ import {
    getArticle,
    getUsers,
 } from '@/src/lib/data-service';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { WEBSITE_URL } from '@/src/utils/config';
-import { hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
-import { routing } from '@/src/i18n/routing';
 import { format } from 'date-fns';
 
 import OtherArticleOptions from '@/src/ui/articles/other-article-options';
@@ -28,8 +26,8 @@ export const dynamic = 'force-static';
 export const revalidate = 300;
 
 export async function generateMetadata({ params }) {
-   const { slug, locale } = await params;
-   const t = await getTranslations({ locale });
+   const [param, t] = await Promise.all([params, getTranslations()]);
+   const { slug, locale } = param;
 
    const {
       title,
@@ -91,6 +89,7 @@ async function Page({ params }) {
       ]);
 
    const { slug, locale } = param;
+   setRequestLocale(locale);
 
    // - Article logic
    const article = await getArticle(slug);

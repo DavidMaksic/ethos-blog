@@ -4,7 +4,7 @@ import {
    getCategories,
    getAuthors,
 } from '@/src/lib/data-service';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import FeaturedArticles from '@/src/ui/articles/featured-articles';
 import LatestArticles from '@/src/ui/articles/latest-articles';
@@ -13,14 +13,18 @@ import MainArticles from '@/src/ui/articles/main-articles';
 export const dynamic = 'force-static';
 export const revalidate = 300;
 
-export default async function Home() {
-   const [articles, categories, mainArticles, authors, t] = await Promise.all([
-      getArticles(),
-      getCategories(),
-      getMainArticles(),
-      getAuthors(),
-      getTranslations('H1'),
-   ]);
+export default async function Home({ params }) {
+   const [param, articles, categories, mainArticles, authors] =
+      await Promise.all([
+         params,
+         getArticles(),
+         getCategories(),
+         getMainArticles(),
+         getAuthors(),
+      ]);
+   const { locale } = param;
+   setRequestLocale(locale);
+   const t = await getTranslations('H1');
 
    return (
       <>

@@ -9,7 +9,7 @@ import {
 } from 'next/font/google';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { LanguageProvider } from '@/src/context/language-context';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { SessionProvider } from 'next-auth/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
@@ -63,8 +63,8 @@ const cormorantSC = Cormorant_SC({
 });
 
 export async function generateMetadata({ params }) {
-   const { locale } = await params;
-   const t = await getTranslations({ locale });
+   const [param, t] = await Promise.all([params, getTranslations()]);
+   const { locale } = param;
    const prefix = locale === 'en' ? '' : `/${locale}`;
 
    return {
@@ -112,9 +112,10 @@ export function generateStaticParams() {
 }
 
 export default async function RootLayout({ children, params }) {
-   const [param, t] = await Promise.all([params, getTranslations()]);
-   const { locale } = param;
+   const { locale } = await params;
+   setRequestLocale(locale);
 
+   const t = await getTranslations();
    const prefix = locale === 'en' ? '' : `/${locale}`;
 
    const jsonLd = {
