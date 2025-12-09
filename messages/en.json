@@ -115,7 +115,6 @@
    },
    "Error": {
       "message": "Something went wrong...",
-      "no-page": "This page could not be found!",
       "back-btn": "Go back"
    },
    "Search-placeholder": "Search...",

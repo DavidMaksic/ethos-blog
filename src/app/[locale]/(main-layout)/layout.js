@@ -10,20 +10,20 @@ import {
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { LanguageProvider } from '@/src/context/language-context';
 import { getTranslations } from 'next-intl/server';
+import { SessionProvider } from 'next-auth/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
 import { AuthProvider } from '@/src/context/auth-context';
 import { WEBSITE_URL } from '@/src/utils/config';
 import { Analytics } from '@vercel/analytics/next';
+import { notFound } from 'next/navigation';
 import { routing } from '@/src/i18n/routing';
 import { Toaster } from 'react-hot-toast';
 
 import PageAnimation from '@/src/ui/page-animation';
-import NotFound from '@/src/app/[locale]/not-found';
 import Header from '@/src/ui/header/header';
 import Footer from '@/src/ui/footer';
 import Script from 'next/script';
-import { SessionProvider } from 'next-auth/react';
 
 /* Logo font (en) */
 const parisienne = Parisienne({
@@ -139,7 +139,7 @@ export default async function RootLayout({ children, params }) {
    };
 
    if (!hasLocale(routing.locales, locale)) {
-      NotFound();
+      notFound();
    }
 
    return (

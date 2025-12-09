@@ -6,7 +6,7 @@ import { LanguageProvider } from '@/src/context/language-context';
 import { ThemeProvider } from 'next-themes';
 import { getMessages } from 'next-intl/server';
 import { routing } from '@/src/i18n/routing';
-import NotFound from '@/src/app/[locale]/not-found';
+import { notFound } from 'next/navigation';
 
 /* Main font */
 const cormorantGaramond = Cormorant_Garamond({
@@ -35,7 +35,7 @@ async function Layout({ children, params }) {
    const messages = await getMessages({ locale });
 
    if (!hasLocale(routing.locales, locale)) {
-      NotFound();
+      notFound();
    }
 
    return (

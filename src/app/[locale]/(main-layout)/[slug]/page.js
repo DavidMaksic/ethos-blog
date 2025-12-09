@@ -7,6 +7,9 @@ import {
 } from '@/src/lib/data-service';
 import { getTranslations } from 'next-intl/server';
 import { WEBSITE_URL } from '@/src/utils/config';
+import { hasLocale } from 'next-intl';
+import { notFound } from 'next/navigation';
+import { routing } from '@/src/i18n/routing';
 import { format } from 'date-fns';
 
 import OtherArticleOptions from '@/src/ui/articles/other-article-options';
@@ -88,6 +91,10 @@ async function Page({ params }) {
       ]);
 
    const { slug, locale } = param;
+
+   if (!hasLocale(routing.locales, slug)) {
+      notFound();
+   }
 
    // - Article logic
    const article = await getArticle(slug);
