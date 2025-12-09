@@ -7,12 +7,10 @@ export const dynamic = 'force-static';
 export const revalidate = 300;
 
 export async function generateMetadata({ params }) {
-   const [param, authors, t] = await Promise.all([
-      params,
-      getAuthors(),
-      getTranslations('Page-descriptions'),
-   ]);
+   const [param, authors] = await Promise.all([params, getAuthors()]);
    const { locale } = param;
+
+   const t = await getTranslations({ locale, namespace: 'Page-descriptions' });
    const prefix = locale === 'en' ? '' : `/${locale}`;
 
    return {

@@ -63,8 +63,8 @@ const cormorantSC = Cormorant_SC({
 });
 
 export async function generateMetadata({ params }) {
-   const [param, t] = await Promise.all([params, getTranslations()]);
-   const { locale } = param;
+   const { locale } = await params;
+   const t = await getTranslations({ locale });
    const prefix = locale === 'en' ? '' : `/${locale}`;
 
    return {

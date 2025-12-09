@@ -28,9 +28,9 @@ export const dynamic = 'force-static';
 export const revalidate = 300;
 
 export async function generateMetadata({ params }) {
-   const [param, t] = await Promise.all([params, getTranslations()]);
+   const { slug, locale } = await params;
+   const t = await getTranslations({ locale });
 
-   const { slug, locale } = param;
    const {
       title,
       description,
@@ -92,12 +92,12 @@ async function Page({ params }) {
 
    const { slug, locale } = param;
 
-   if (!hasLocale(routing.locales, slug)) {
-      notFound();
-   }
-
    // - Article logic
    const article = await getArticle(slug);
+
+   if (!article) {
+      notFound();
+   }
 
    const {
       comments,
