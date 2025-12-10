@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
+import { switchLocale } from '@/src/utils/helpers';
 import { useLanguage } from '@/src/context/language-context';
 import { usePathname } from '@/src/i18n/navigation';
 import { LANGUAGES } from '@/src/utils/config';
@@ -9,7 +10,14 @@ import RemoteImage from '@/src/ui/remote-image';
 import srbFlag from '@/public/srb-flag.png';
 import enFlag from '@/public/en-flag.png';
 
-function FilterButton({ lang, styles, imageStyle, activeStyle, children }) {
+function FilterButton({
+   lang,
+   styles,
+   imageStyle,
+   activeStyle,
+   isMobile,
+   children,
+}) {
    const { language } = useLanguage();
    const pathname = usePathname();
    const router = useRouter();
@@ -30,11 +38,11 @@ function FilterButton({ lang, styles, imageStyle, activeStyle, children }) {
          router.replace(`?${params.toString()}`, { scroll: false });
       }
 
-      // if (isMobile) {
-      //    const mobileLangCode =
-      //       LANGUAGES.find((item) => item.code === lang)?.code || 'en';
-      //    return switchLocale(mobileLangCode);
-      // }
+      if (isMobile) {
+         const mobileLangCode =
+            LANGUAGES.find((item) => item.code === lang)?.code || 'en';
+         return switchLocale(mobileLangCode);
+      }
 
       params.delete('category');
       router.replace(`?${params.toString()}`, { scroll: false });

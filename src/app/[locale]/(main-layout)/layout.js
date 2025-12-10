@@ -111,6 +111,9 @@ export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));
 }
 
+// TODO: Lang switch doesn't work on mobile
+// TODO: Fix log in page styling for /sr
+
 export default async function RootLayout({ children, params }) {
    const { locale } = await params;
    setRequestLocale(locale);
