@@ -13,8 +13,12 @@ export default async function Page() {
    return (
       <>
          <section className="flex justify-center self-center -translate-y-10">
-            <div className="flex flex-col justify-center items-center gap-10">
-               <p className="text-4xl">
+            <div
+               className={`flex flex-col justify-center items-center gap-10 ${
+                  locale === 'sr' && 'sm:w-[80vw]'
+               }`}
+            >
+               <p className="text-4xl text-center">
                   {t('Auth.join')}
                   <span
                      className={`px-2.5 text-accent ${

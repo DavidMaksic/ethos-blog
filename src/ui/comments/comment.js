@@ -231,7 +231,7 @@ function Comment({ comment, commentLength, users, article, author }) {
                ref={containerRef}
             />
 
-            {replyIsOpen && (
+            <div className={`${replyIsOpen ? 'block' : 'hidden'}`}>
                <ReplyInput
                   slug={slug}
                   articleID={articleID}
@@ -239,7 +239,7 @@ function Comment({ comment, commentLength, users, article, author }) {
                   commentLength={commentLength}
                   setReplyIsOpen={setReplyIsOpen}
                />
-            )}
+            </div>
 
             {showReplies &&
                optimisticReplies?.map((item) => (

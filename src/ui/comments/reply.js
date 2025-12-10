@@ -187,17 +187,15 @@ function Reply({
             </div>
          </div>
 
-         {replyIsOpen && (
-            <div className="mt-4">
-               <ReplyInput
-                  slug={slug}
-                  articleID={articleID}
-                  commentID={commentID}
-                  commentLength={commentLength}
-                  setReplyIsOpen={setReplyIsOpen}
-               />
-            </div>
-         )}
+         <div className={`mt-4 ${replyIsOpen ? 'block' : 'hidden'}`}>
+            <ReplyInput
+               slug={slug}
+               articleID={articleID}
+               commentID={commentID}
+               commentLength={commentLength}
+               setReplyIsOpen={setReplyIsOpen}
+            />
+         </div>
       </>
    );
 }
