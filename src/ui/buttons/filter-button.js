@@ -6,9 +6,9 @@ import { useLanguage } from '@/src/context/language-context';
 import { usePathname } from '@/src/i18n/navigation';
 import { LANGUAGES } from '@/src/utils/config';
 
-import RemoteImage from '@/src/ui/remote-image';
 import srbFlag from '@/public/srb-flag.png';
 import enFlag from '@/public/en-flag.png';
+import Image from 'next/image';
 
 function FilterButton({
    lang,
@@ -57,12 +57,14 @@ function FilterButton({
          onClick={handleLang}
       >
          <div className={`relative size-6 2xs:size-8 ${imageStyle}`}>
-            <RemoteImage
+            <Image
                styles={`border border-accent-800/80 group-hover:border-accent-800/80! rounded-full opacity-90 ${
                   active && 'border-accent-800/80'
                }`}
-               imageUrl={lang === 'sr' ? srbFlag : enFlag}
+               src={lang === 'sr' ? srbFlag : enFlag}
                alt="Language image"
+               unoptimized
+               fill
             />
          </div>
 

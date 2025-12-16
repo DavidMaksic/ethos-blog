@@ -56,7 +56,6 @@ function HeaderOptions() {
                      priority={true}
                      src={extendedUser.image ? extendedUser.image : user.image}
                      alt="Profile image"
-                     referrerPolicy="no-referrer"
                      unoptimized
                      fill
                   />

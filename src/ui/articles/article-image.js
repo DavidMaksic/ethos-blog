@@ -18,12 +18,11 @@ async function ArticleImage({ article, author, date, children }) {
                   {author?.profile_image ? (
                      <Image
                         className="block aspect-square object-cover object-center rounded-full dark:opacity-80"
-                        fill
                         src={author.profile_image}
                         alt="User image"
                         priority={true}
-                        quality={60}
-                        sizes="(max-width: 768px) 100vw, 1920px"
+                        unoptimized
+                        fill
                      />
                   ) : (
                      <HiOutlineUserCircle className="size-12 2xl:size-10 md:size-12 sm:size-11 stroke-[0.5px] text-primary-400 dark:text-primary-300" />

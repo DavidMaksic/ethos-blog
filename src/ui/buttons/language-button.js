@@ -47,10 +47,11 @@ function LanguageButton() {
          >
             <Image
                className="opacity-80 dark:opacity-70 transition-[opacity]"
-               fill
                src={language.flag ? language.flag : srbFlag}
                priority={true}
                alt="Serbian flag"
+               unoptimized
+               fill
             />
          </div>
 

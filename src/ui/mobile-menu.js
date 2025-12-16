@@ -112,7 +112,6 @@ function MobileMenu() {
                                        : user?.image
                                  }
                                  alt="Profile image"
-                                 referrerPolicy="no-referrer"
                                  unoptimized
                                  fill
                               />

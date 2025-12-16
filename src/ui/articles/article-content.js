@@ -36,8 +36,8 @@ function ArticleContent({ content, article }) {
                   className={domNode.attribs.class}
                   src={domNode.attribs.src}
                   alt="Article image"
-                  width={4000}
-                  height={3000}
+                  width={1920}
+                  height={1080}
                   quality={60}
                   priority
                   sizes="(max-width: 768px) 100vw, 1920px"

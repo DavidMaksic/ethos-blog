@@ -6,7 +6,7 @@ import {
    getUsers,
 } from '@/src/lib/data-service';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { REVALIDATE_TIME, WEBSITE_URL } from '@/src/utils/config';
+import { WEBSITE_URL } from '@/src/utils/config';
 import { notFound } from 'next/navigation';
 import { format } from 'date-fns';
 
@@ -23,7 +23,7 @@ import ImageZoom from '@/src/ui/image-zoom';
 import Options from '@/src/ui/options';
 
 export const dynamic = 'force-static';
-export const revalidate = REVALIDATE_TIME;
+export const revalidate = 3600;
 
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
