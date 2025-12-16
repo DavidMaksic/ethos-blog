@@ -55,7 +55,6 @@ function MobileMenu() {
                      <div className="space-y-7 xs:space-y-6 text-4xl">
                         <Link
                            href="/"
-                           prefetch
                            className="flex items-center gap-3.5"
                            onClick={() => setOpenMenu((isOpen) => !isOpen)}
                         >
@@ -64,7 +63,6 @@ function MobileMenu() {
                         </Link>
                         <Link
                            href="/archive"
-                           prefetch
                            className="flex items-center gap-3.5"
                            onClick={() => setOpenMenu((isOpen) => !isOpen)}
                         >
@@ -73,7 +71,6 @@ function MobileMenu() {
                         </Link>
                         <Link
                            href="/about"
-                           prefetch
                            className="flex items-center gap-3.5"
                            onClick={() => setOpenMenu((isOpen) => !isOpen)}
                         >
@@ -82,7 +79,6 @@ function MobileMenu() {
                         </Link>
                         <Link
                            href="/user/home"
-                           prefetch
                            className="flex items-center gap-3.5"
                            onClick={() => setOpenMenu((isOpen) => !isOpen)}
                         >
@@ -99,7 +95,6 @@ function MobileMenu() {
                         <div className="min-w-50 xs:min-w-full flex flex-col gap-3 items-center mx-4 xs:mx-0 py-2 3xs:pt-5 pb-6 border-b border-b-primary-300 dark:border-b-primary-300/40">
                            <Link
                               href="/user/home"
-                              prefetch
                               className="relative size-18"
                               onClick={() => setOpenMenu((isOpen) => !isOpen)}
                            >
@@ -127,7 +122,6 @@ function MobileMenu() {
                      ) : (
                         <Link
                            href="/user/home"
-                           prefetch
                            className="min-w-50 xs:min-w-full flex gap-2 items-center justify-center mx-4 xs:mx-0 py-12 border-b border-b-primary-300 dark:border-b-primary-300/40"
                            onClick={() => setOpenMenu((isOpen) => !isOpen)}
                         >

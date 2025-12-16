@@ -22,7 +22,6 @@ function MainArticle({ article }) {
 
             <Link
                href={`/${article.slug}`}
-               prefetch
                className="self-start md:self-center mt-7 2xl:mt-5 md:mt-5 xs:mt-3 rounded-full bg-gradient-to-r from-accent-300/80 to-accent-600/70 hover:from-transparent hover:to-transparent border-2 border-transparent hover:border-accent/80 shadow-btn hover:shadow-none dark:shadow-none transition-[box-shadow,border,--tw-gradient-from,--tw-gradient-to] duration-300 bg-origin-border group"
             >
                <span className="sr-only">{`Read more about ${article.title}`}</span>

@@ -3,6 +3,7 @@
 import { applyPagination, getSortedItems } from '@/src/utils/helpers';
 import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { useLanguage } from '@/src/context/language-context';
 
