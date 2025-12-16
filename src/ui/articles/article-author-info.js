@@ -1,5 +1,5 @@
 import { HiOutlineUserCircle } from 'react-icons/hi2';
-import RemoteImage from '@/src/ui/remote-image';
+import UserImage from '@/src/ui/user-image';
 
 function ArticleAuthorInfo({ article, author, date, children }) {
    return (
@@ -9,11 +9,7 @@ function ArticleAuthorInfo({ article, author, date, children }) {
          <div className="size-full flex flex-col items-center self-center gap-4 bg-secondary dark:bg-primary-200 xs:dark:bg-primary-300/15 rounded-3xl px-18 2xl:px-16! md:px-12! sm:px-11! xs:px-8! py-12 pb-14 text-3xl box-shadow transition-bg_border">
             <div className="relative size-28 md:size-30 select-none">
                {author?.profile_image ? (
-                  <RemoteImage
-                     imageUrl={author.profile_image}
-                     alt="User image"
-                     styles="block aspect-square object-cover object-center rounded-full dark:opacity-90"
-                  />
+                  <UserImage url={author.profile_image} />
                ) : (
                   <HiOutlineUserCircle className="size-30 stroke-[0.5px] text-primary-400/70 dark:text-primary-300" />
                )}

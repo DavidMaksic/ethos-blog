@@ -1,6 +1,6 @@
 import { useLocale, useTranslations } from 'next-intl';
 import { HiOutlineUserCircle } from 'react-icons/hi2';
-import RemoteImage from '@/src/ui/remote-image';
+import UserImage from '@/src/ui/user-image';
 
 function Author({ author }) {
    const t = useTranslations('Article');
@@ -17,11 +17,7 @@ function Author({ author }) {
          >
             <div className="relative size-24 2xl:size-26 md:size-32">
                {profile_image ? (
-                  <RemoteImage
-                     imageUrl={profile_image}
-                     alt="Author profile image"
-                     styles="block aspect-square object-cover object-center rounded-full dark:opacity-90"
-                  />
+                  <UserImage url={profile_image} />
                ) : (
                   <HiOutlineUserCircle className="size-22 2xl:size-26 md:size-32 self-center stroke-[0.5px] text-primary-400 dark:text-primary-300" />
                )}

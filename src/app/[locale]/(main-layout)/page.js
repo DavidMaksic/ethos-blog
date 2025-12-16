@@ -5,13 +5,14 @@ import {
    getAuthors,
 } from '@/src/lib/data-service';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { REVALIDATE_TIME } from '@/src/utils/config';
 
 import FeaturedArticles from '@/src/ui/articles/featured-articles';
 import LatestArticles from '@/src/ui/articles/latest-articles';
 import MainArticles from '@/src/ui/articles/main-articles';
 
 export const dynamic = 'force-static';
-export const revalidate = 300;
+export const revalidate = REVALIDATE_TIME;
 
 export default async function Home({ params }) {
    const [param, articles, categories, mainArticles, authors] =

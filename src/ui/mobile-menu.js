@@ -105,7 +105,6 @@ function MobileMenu() {
                            >
                               <Image
                                  className="rounded-full block aspect-square object-cover object-center dark:opacity-90 border border-primary-300 transition-200"
-                                 fill
                                  priority={true}
                                  src={
                                     extendedUser?.image
@@ -114,6 +113,8 @@ function MobileMenu() {
                                  }
                                  alt="Profile image"
                                  referrerPolicy="no-referrer"
+                                 unoptimized
+                                 fill
                               />
                            </Link>
                            <span className="text-accent-400 dark:text-accent text-4xl w-fit self-center pr-1.5 font-logo">

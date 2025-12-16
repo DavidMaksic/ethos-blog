@@ -14,10 +14,10 @@ import CommentOptions from '@/src/ui/comments/comment-options';
 import useCommentLine from '@/src/hooks/use-comment-line';
 import ReplyInput from '@/src/ui/comments/reply-input';
 import AuthModal from '@/src/ui/modal/auth-modal';
+import UserImage from '@/src/ui/user-image';
 import Modal from '@/src/ui/modal/modal';
 import Reply from '@/src/ui/comments/reply';
 import toast from 'react-hot-toast';
-import Image from 'next/image';
 
 function Comment({ comment, commentLength, users, article, author }) {
    const [isOpen, setIsOpen] = useState(false);
@@ -120,15 +120,7 @@ function Comment({ comment, commentLength, users, article, author }) {
                <div className="flex items-center gap-4">
                   {user?.image && (
                      <div className="relative size-10 md:size-11 sm:size-9 select-none">
-                        <Image
-                           className="block aspect-square object-cover object-center rounded-full dark:opacity-90"
-                           fill
-                           src={user.image}
-                           alt="User image"
-                           priority={true}
-                           quality={60}
-                           sizes="100vw"
-                        />
+                        <UserImage url={user.image} />
                      </div>
                   )}
 

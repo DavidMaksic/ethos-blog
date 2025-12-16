@@ -53,11 +53,12 @@ function HeaderOptions() {
                <div className="relative size-7.5!">
                   <Image
                      className="rounded-full block aspect-square object-cover object-center dark:opacity-90 border border-primary-300 transition-200"
-                     fill
                      priority={true}
                      src={extendedUser.image ? extendedUser.image : user.image}
                      alt="Profile image"
                      referrerPolicy="no-referrer"
+                     unoptimized
+                     fill
                   />
                </div>
             </Link>

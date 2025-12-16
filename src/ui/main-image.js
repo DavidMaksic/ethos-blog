@@ -11,7 +11,7 @@ function MainImage({ article }) {
             priority={true}
             quality={60}
             fetchPriority="high"
-            sizes="100vw"
+            sizes="(max-width: 768px) 100vw, 1920px"
          />
       </div>
    );

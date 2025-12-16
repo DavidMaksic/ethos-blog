@@ -25,7 +25,7 @@ function RemoteImage({
          alt={alt ? alt : 'Image'}
          priority={true}
          quality={60}
-         sizes="100vw"
+         sizes="(max-width: 768px) 100vw, 1920px"
          onLoad={() => setLoaded(true)}
          {...props}
       />

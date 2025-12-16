@@ -1,10 +1,10 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { WEBSITE_URL } from '@/src/utils/config';
+import { REVALIDATE_TIME, WEBSITE_URL } from '@/src/utils/config';
 import { getAuthors } from '@/src/lib/data-service';
 import Author from '@/src/ui/author';
 
 export const dynamic = 'force-static';
-export const revalidate = 300;
+export const revalidate = REVALIDATE_TIME;
 
 export async function generateMetadata({ params }) {
    const [param, authors, t] = await Promise.all([

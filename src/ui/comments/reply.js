@@ -11,8 +11,8 @@ import { LuReply } from 'react-icons/lu';
 import CommentOptions from '@/src/ui/comments/comment-options';
 import ReplyInput from '@/src/ui/comments/reply-input';
 import AuthModal from '@/src/ui/modal/auth-modal';
+import UserImage from '@/src/ui/user-image';
 import Modal from '@/src/ui/modal/modal';
-import Image from 'next/image';
 
 function Reply({
    reply,
@@ -87,15 +87,7 @@ function Reply({
                   <div className="flex items-center gap-4">
                      {currentUser?.image && (
                         <div className="relative size-10 md:size-11 sm:size-9">
-                           <Image
-                              className="block aspect-square object-cover object-center rounded-full dark:opacity-90"
-                              fill
-                              src={currentUser.image}
-                              alt="User image"
-                              priority={true}
-                              quality={60}
-                              sizes="100vw"
-                           />
+                           <UserImage url={user.image} />
                         </div>
                      )}
 

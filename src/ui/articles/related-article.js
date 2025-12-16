@@ -17,7 +17,7 @@ function RelatedArticle({ article, author }) {
                src={article.image}
                alt="Article image"
                quality={60}
-               sizes="100vw"
+               sizes="(max-width: 768px) 100vw, 1920px"
             />
          </div>
 

@@ -1,3 +1,4 @@
+export const REVALIDATE_TIME = 3600;
 export const WEBSITE_URL = 'https://ethos-blog.vercel.app';
 export const DEFAULT_LOCALE = 'en';
 export const LOCALES = ['en', 'sr'];

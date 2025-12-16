@@ -69,7 +69,7 @@ function Pagination({ count, isArchive = true }) {
          <div className="flex gap-2 xs:gap-1.5 font-medium">
             <PaginationButton
                type={t('prev-btn')}
-               handler={() => prevPage()}
+               handler={prevPage}
                disabled={currentPage === 1}
             >
                <IoChevronBackOutline className="xs:size-5.5" />
@@ -77,7 +77,7 @@ function Pagination({ count, isArchive = true }) {
 
             <PaginationButton
                type={t('next-btn')}
-               handler={() => nextPage()}
+               handler={nextPage}
                disabled={currentPage === pageCount}
             >
                <IoChevronForwardOutline className="xs:size-5.5" />

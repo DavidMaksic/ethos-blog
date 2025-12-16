@@ -18,10 +18,11 @@ function LoginImage() {
             <section className="relative size-full overflow-hidden shadow-xl dark:shadow-menu-dark">
                <RemoteImage
                   styles="object-cover"
-                  fill
                   imageUrl={loginImg}
                   alt="Login image"
                   opacity="opacity-95"
+                  unoptimized
+                  fill
                />
 
                <span className="absolute right-4 bottom-4">

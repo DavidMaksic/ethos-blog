@@ -40,7 +40,7 @@ function ArticleContent({ content, article }) {
                   height={3000}
                   quality={60}
                   priority
-                  sizes="100vw"
+                  sizes="(max-width: 768px) 100vw, 1920px"
                />
             );
          }
