@@ -20,8 +20,8 @@ async function ArticleImage({ article, author, date, children }) {
                         className="block aspect-square object-cover object-center rounded-full dark:opacity-80"
                         src={author.profile_image}
                         alt="User image"
-                        priority={true}
                         unoptimized
+                        priority
                         fill
                      />
                   ) : (

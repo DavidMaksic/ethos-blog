@@ -8,8 +8,8 @@ function MainImage({ article }) {
             src={article.image}
             alt="Main image"
             fetchPriority="high"
-            priority={true}
             unoptimized
+            priority
             fill
          />
       </div>

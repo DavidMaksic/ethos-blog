@@ -24,8 +24,8 @@ function RemoteImage({
          alt={alt ? alt : 'Image'}
          onLoad={() => setLoaded(true)}
          {...props}
-         priority={true}
          unoptimized
+         priority
          fill
       />
    );

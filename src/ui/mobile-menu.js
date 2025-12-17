@@ -100,7 +100,6 @@ function MobileMenu() {
                            >
                               <Image
                                  className="rounded-full block aspect-square object-cover object-center dark:opacity-90 border border-primary-300 transition-200"
-                                 priority={true}
                                  src={
                                     extendedUser?.image
                                        ? extendedUser?.image
@@ -108,6 +107,7 @@ function MobileMenu() {
                                  }
                                  alt="Profile image"
                                  unoptimized
+                                 priority
                                  fill
                               />
                            </Link>

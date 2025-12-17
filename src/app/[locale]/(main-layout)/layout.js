@@ -111,6 +111,9 @@ export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));
 }
 
+// TODO: After using lang filter, and then changing lang of the site, active class for lang filter is gone (because of ?lang=en attribute)
+// TODO: Add lazy loader for article images
+
 export default async function RootLayout({ children, params }) {
    const { locale } = await params;
    setRequestLocale(locale);

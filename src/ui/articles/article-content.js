@@ -41,12 +41,6 @@ function ArticleContent({ content, article }) {
                   quality={60}
                   sizes="(max-width: 768px) 100vw, 1920px"
                />
-               // <img
-               //    className={domNode.attribs.class}
-               //    src={domNode.attribs.src}
-               //    alt="Article image"
-               //    loading="lazy"
-               // />
             );
          }
 
