@@ -39,6 +39,7 @@ function ArticleContent({ content, article }) {
                   width={1920}
                   height={1080}
                   quality={60}
+                  priority
                   sizes="(max-width: 768px) 100vw, 1920px"
                />
             );
