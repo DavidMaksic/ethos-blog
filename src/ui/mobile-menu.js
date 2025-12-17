@@ -12,7 +12,7 @@ import { useState } from 'react';
 import { useAuth } from '@/src/context/auth-context';
 import { Link } from '@/src/i18n/navigation';
 
-import FilterButton from '@/src/ui/buttons/filter-button';
+import LanguageFilterButton from '@/src/ui/buttons/language-filter-button';
 import Image from 'next/image';
 
 function MobileMenu() {
@@ -136,7 +136,7 @@ function MobileMenu() {
                         }`}
                      >
                         {LANGUAGES.map((item) => (
-                           <FilterButton
+                           <LanguageFilterButton
                               key={item.code}
                               lang={item.code}
                               param={param}
@@ -146,7 +146,7 @@ function MobileMenu() {
                               isMobile={true}
                            >
                               {item.lang}
-                           </FilterButton>
+                           </LanguageFilterButton>
                         ))}
                      </div>
                   </div>

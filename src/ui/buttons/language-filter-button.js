@@ -10,7 +10,7 @@ import srbFlag from '@/public/srb-flag.png';
 import enFlag from '@/public/en-flag.png';
 import Image from 'next/image';
 
-function FilterButton({
+function LanguageFilterButton({
    lang,
    styles,
    imageStyle,
@@ -75,4 +75,4 @@ function FilterButton({
    );
 }
 
-export default FilterButton;
+export default LanguageFilterButton;

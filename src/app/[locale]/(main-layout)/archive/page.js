@@ -7,6 +7,7 @@ import Categories from '@/src/ui/categories/categories';
 import Languages from '@/src/ui/languages';
 import Articles from '@/src/ui/articles/articles';
 import SortBy from '@/src/ui/operations/sort-by';
+import LanguageFilter from '@/src/ui/languages';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
@@ -94,7 +95,7 @@ async function Page({ params }) {
 
          <section className="space-y-12 md:order-1 md:flex md:flex-col md:gap-6">
             <Categories categories={categories} isArchive={true} />
-            <Languages />
+            <LanguageFilter />
          </section>
 
          <script

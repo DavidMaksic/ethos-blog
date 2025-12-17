@@ -1,7 +1,9 @@
 'use client';
 
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo } from 'react';
+import { useLocalStorage } from '../hooks/use-local-storage';
 import { useLocale } from 'next-intl';
+import { routing } from '@/src/i18n/routing';
 
 import srbFlag from '@/public/srb-flag.png';
 import enFlag from '@/public/en-flag.png';
@@ -10,7 +12,19 @@ const LanguageContext = createContext();
 
 function LanguageProvider({ children }) {
    const locale = useLocale();
-   const [language, setLanguage] = useState({});
+   const currentLocale = locale === routing.defaultLocale;
+   const defaultLang = currentLocale ? 'English' : 'Српски';
+   const defaultCode = currentLocale ? 'en' : 'sr';
+   const defaultFlag = currentLocale ? enFlag : srbFlag;
+
+   const [language, setLanguage] = useLocalStorage(
+      {
+         lang: defaultLang,
+         code: defaultCode,
+         flag: defaultFlag,
+      },
+      'localLang'
+   );
 
    useEffect(() => {
       if (locale === 'en') {
@@ -20,7 +34,10 @@ function LanguageProvider({ children }) {
       }
    }, [locale, setLanguage]);
 
-   const value = useMemo(() => ({ language, setLanguage }), [language]);
+   const value = useMemo(
+      () => ({ language, setLanguage }),
+      [language, setLanguage]
+   );
 
    return (
       <LanguageContext.Provider value={value}>

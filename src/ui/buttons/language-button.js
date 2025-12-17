@@ -31,7 +31,8 @@ function LanguageButton() {
       if (item.code === language.code) return;
 
       setLanguage({
-         language: item.code,
+         lang: item.lang,
+         code: item.code,
          flag: item.flag,
       });
 
