@@ -1256,11 +1256,11 @@ h3 {
 }
 
 .main-image.medium-zoom-image--opened {
-   opacity: 75% !important;
+   opacity: 90% !important;
 }
 
 [data-theme='dark'] .main-image.medium-zoom-image--opened {
-   opacity: 55% !important;
+   opacity: 75% !important;
 }
 
 /* Highlighted comment */
