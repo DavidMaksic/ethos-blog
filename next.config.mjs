@@ -4,7 +4,7 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const nextConfig = {
    images: {
       qualities: [60],
-      minimumCacheTTL: 7776000, // 90 days
+      minimumCacheTTL: 2629746, // 6 months
       deviceSizes: [640, 750, 828, 1080, 1200, 1920],
       remotePatterns: [
          {

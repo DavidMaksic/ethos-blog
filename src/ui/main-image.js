@@ -7,9 +7,9 @@ function MainImage({ article }) {
             className="transition-opacity duration-700 ease-in-out main-image rounded-3xl object-cover opacity-95 dark:opacity-80"
             src={article.image}
             alt="Main image"
-            priority={true}
             fetchPriority="high"
-            sizes="(max-width: 768px) 100vw, 1920px"
+            priority={true}
+            unoptimized
             fill
          />
       </div>

@@ -20,14 +20,13 @@ function RemoteImage({
          className={`${styles} transition-opacity duration-700 ease-in-out ${
             loaded ? opacitySetting : 'opacity-0'
          }`}
-         fill
          src={imageUrl}
          alt={alt ? alt : 'Image'}
-         priority={true}
-         quality={60}
-         sizes="(max-width: 768px) 100vw, 1920px"
          onLoad={() => setLoaded(true)}
          {...props}
+         priority={true}
+         unoptimized
+         fill
       />
    );
 }
