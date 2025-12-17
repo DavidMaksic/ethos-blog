@@ -99,6 +99,7 @@ export function switchLocale(lang) {
    const url = new URL(window.location.href);
    url.searchParams.delete('category');
    url.searchParams.delete('lang');
+   url.searchParams.delete('sort');
 
    // Replace the locale part of the pathname (e.g. /en/blog → /sr/blog)
    url.pathname = `/${lang}${url.pathname.replace(/^\/(en|sr)/, '')}`;
