@@ -9,7 +9,14 @@ export async function POST(req) {
 
    const { slug } = await req.json();
 
+   const locales = ['en', 'sr'];
    revalidateTag(`article-${slug}`);
+
+   locales.forEach((locale) => {
+      revalidatePath(`/${locale}`);
+      revalidatePath(`/${locale}/archive`);
+      revalidatePath(`/${locale}/user/bookmarks`);
+   });
 
    return Response.json({ revalidated: true });
 }
