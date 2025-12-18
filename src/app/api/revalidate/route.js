@@ -7,11 +7,13 @@ export async function POST(req) {
       return new Response('Unauthorized', { status: 401 });
    }
 
-   const { slug, type } = await req.json();
+   const { slug, changes } = await req.json();
 
-   revalidateTag(`article-${slug}`);
+   if (changes.content || changes.metadata) {
+      revalidateTag(`article-${slug}`);
+   }
 
-   if (type === 'multiple-routes') {
+   if (changes.metadata) {
       const locales = ['en', 'sr'];
 
       locales.forEach((locale) => {
