@@ -7,15 +7,18 @@ export async function POST(req) {
       return new Response('Unauthorized', { status: 401 });
    }
 
-   const { slug } = await req.json();
+   const { slug, type } = await req.json();
 
-   const locales = ['en', 'sr'];
    revalidateTag(`article-${slug}`);
 
-   locales.forEach((locale) => {
-      revalidatePath(`/${locale}`);
-      revalidatePath(`/${locale}/archive`);
-   });
+   if (type === 'multiple-routes') {
+      const locales = ['en', 'sr'];
+
+      locales.forEach((locale) => {
+         revalidatePath(`/${locale}`);
+         revalidatePath(`/${locale}/archive`);
+      });
+   }
 
    return Response.json({ revalidated: true });
 }
