@@ -15,7 +15,6 @@ export async function POST(req) {
    locales.forEach((locale) => {
       revalidatePath(`/${locale}`);
       revalidatePath(`/${locale}/archive`);
-      revalidatePath(`/${locale}/user/bookmarks`);
    });
 
    return Response.json({ revalidated: true });
