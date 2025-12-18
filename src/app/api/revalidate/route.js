@@ -11,7 +11,6 @@ export async function POST(req) {
 
    const locales = ['en', 'sr'];
    revalidateTag(`article-${slug}`);
-   revalidatePath(`/archive`);
 
    locales.forEach((locale) => {
       revalidatePath(`/${locale}`);
