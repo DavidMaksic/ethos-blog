@@ -22,7 +22,10 @@ export async function getArticle(slug) {
          apikey: process.env.SUPABASE_KEY,
          Authorization: `Bearer ${process.env.SUPABASE_KEY}`,
       },
-      next: { tags: [`article-${slug}`] },
+      next: {
+         tags: [`article-${slug}`],
+         revalidate: 3600,
+      },
    });
 
    if (!res.ok) throw new Error('Failed to fetch article');
