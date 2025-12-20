@@ -4,6 +4,7 @@ import { applyPagination, getSortedItems } from '@/src/utils/helpers';
 import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { FUSE_OPTIONS } from '@/src/utils/config';
 import { useLanguage } from '@/src/context/language-context';
 
 import ArticleItem from '@/src/ui/articles/article-item';
@@ -33,6 +34,11 @@ function Articles({ isArchive = false, articles, categories, style }) {
          category?.charAt(0).toUpperCase() + category?.slice(1)
    );
 
+   const fuse = useMemo(
+      () => (search ? new Fuse(articles, FUSE_OPTIONS) : null),
+      [articles, search]
+   );
+
    // Sort, search, filter, pagination
    const { filteredArticles, paginatedArticles } = useMemo(() => {
       if (!isArchive) {
@@ -45,21 +51,10 @@ function Articles({ isArchive = false, articles, categories, style }) {
       let result = [...articles];
 
       // 1. Sort
-      if (sort) {
-         result = getSortedItems(sort, result);
-      }
+      if (sort) result = getSortedItems(sort, result);
 
       // 2. Search (Fuse.js)
-      if (search) {
-         const fuse = new Fuse(result, {
-            keys: ['title'],
-            includeScore: true,
-            threshold: 0.4,
-         });
-
-         const fuseResults = fuse.search(search);
-         result = fuseResults.map((r) => r.item);
-      }
+      if (fuse && search) result = fuse.search(search).map(({ item }) => item);
 
       // 3. Filter language + category
       const category_id = currentCategory?.id;
@@ -91,6 +86,7 @@ function Articles({ isArchive = false, articles, categories, style }) {
       currentCategory,
       language,
       isArchive,
+      fuse,
    ]);
 
    const arr = isArchive ? [...Array(6)] : [...Array(3)];

@@ -15,3 +15,8 @@ export const LANGUAGES = [
       code: 'en',
    },
 ];
+export const FUSE_OPTIONS = {
+   keys: ['title'],
+   includeScore: true,
+   threshold: 0.4,
+};
