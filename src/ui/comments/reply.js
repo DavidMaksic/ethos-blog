@@ -87,7 +87,7 @@ function Reply({
                   <div className="flex items-center gap-4">
                      {currentUser?.image && (
                         <div className="relative size-10 md:size-11 sm:size-9">
-                           <UserImage url={user.image} />
+                           <UserImage url={currentUser.image} />
                         </div>
                      )}
 

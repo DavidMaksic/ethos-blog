@@ -111,6 +111,8 @@ export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));
 }
 
+// TODO: Fix bookmark height jump caused by pagination disappearing when searching
+
 export default async function RootLayout({ children, params }) {
    const { locale } = await params;
    setRequestLocale(locale);

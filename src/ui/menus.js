@@ -24,6 +24,7 @@ function Toggle({ id }) {
 
    function handleClick(e) {
       e.stopPropagation();
+      e.nativeEvent.stopImmediatePropagation();
       openID === '' || openID !== id ? open(id) : close();
    }
 
