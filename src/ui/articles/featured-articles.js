@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { AnimatePresence } from 'motion/react';
 
@@ -15,10 +15,7 @@ function FeaturedArticles({ articles, categories, authors }) {
    const { filteredArray: filteredCategories } = useFilterCategory(categories);
 
    // - Check if the current tag has enough articles
-   const tags = useMemo(
-      () => filteredCategories?.filter((item) => item.articles.length >= 3),
-      [filteredCategories]
-   );
+   const tags = filteredCategories?.filter((item) => item.articles.length >= 3);
 
    // - Shuffle articles
    useEffect(() => {

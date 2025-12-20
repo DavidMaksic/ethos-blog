@@ -2,6 +2,7 @@
 import createNextIntlPlugin from 'next-intl/plugin';
 
 const nextConfig = {
+   reactCompiler: true,
    images: {
       qualities: [60],
       minimumCacheTTL: 2629746, // 6 months

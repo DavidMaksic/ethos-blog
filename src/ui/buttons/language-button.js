@@ -25,7 +25,7 @@ const languages = [
 function LanguageButton() {
    const { language, setLanguage } = useLanguage();
    const [open, setOpen] = useState(false);
-   const ref = useOutsideClick(() => setOpen((isOpen) => !isOpen), false);
+   const ref = useOutsideClick(() => setOpen(false), false);
 
    function handleLang(item) {
       if (item.code === language.code) return;
@@ -43,8 +43,13 @@ function LanguageButton() {
    return (
       <>
          <div
+            role="button"
             className="relative size-7 sm:size-[2.05rem]! rounded-full border border-primary-300 transition-200"
-            onClick={() => setOpen((isOpen) => !isOpen)}
+            onClick={(e) => {
+               e.stopPropagation();
+               e.nativeEvent.stopImmediatePropagation();
+               setOpen((isOpen) => !isOpen);
+            }}
          >
             <Image
                className="opacity-80 dark:opacity-70 transition-[opacity]"

@@ -25,7 +25,7 @@ function Options() {
    const [openTable, setOpenTable] = useState(false);
    const tableRef = useOutsideClick(() => setOpenTable((isOpen) => !isOpen));
    const [openMenu, setOpenMenu] = useState(false);
-   const ref = useOutsideClick(() => setOpenMenu((isOpen) => !isOpen), false);
+   const ref = useOutsideClick(() => setOpenMenu(false), false);
 
    // - Headings
    const [headings, setHeadings] = useState([]);
@@ -75,6 +75,7 @@ function Options() {
             }`}
             onClick={(e) => {
                e.stopPropagation();
+               e.nativeEvent.stopImmediatePropagation();
                setOpenMenu((isOpen) => !isOpen);
             }}
          />
@@ -123,6 +124,7 @@ function Options() {
                         className="py-1 px-3.5 size-13.5 md:size-15 hover:bg-primary-100/80 dark:bg-transparent dark:hover:bg-primary-400/10 transition-bg rounded-2xl mt-0.5"
                         onClick={(e) => {
                            e.stopPropagation();
+                           e.nativeEvent.stopImmediatePropagation();
                            setOpenTable((isOpen) => !isOpen);
                         }}
                      />
@@ -132,6 +134,7 @@ function Options() {
                      className="relative hover:bg-primary-100/80 dark:bg-transparent dark:hover:bg-primary-400/10 transition-bg transition-bg mt-0.5 md:mt-1.5 mb-0.5 md:mb-2 rounded-2xl"
                      onClick={(e) => {
                         e.stopPropagation();
+                        e.nativeEvent.stopImmediatePropagation();
                         setTheme(theme === 'light' ? 'dark' : 'light');
                      }}
                   >

@@ -3,7 +3,6 @@
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'use-intl';
 import { getSortedItems } from '@/src/utils/helpers';
-import { useMemo } from 'react';
 
 import Comment from '@/src/ui/comments/comment';
 import SortBy from '@/src/ui/operations/sort-by';
@@ -20,11 +19,9 @@ function CommentList({
    const searchParams = useSearchParams();
    const sort = searchParams.get('sort');
 
-   const sortedComments = useMemo(() => {
-      if (!sort) return [...comments].reverse();
-
-      return [...getSortedItems(sort, comments)];
-   }, [sort, comments]);
+   const sortedComments = !sort
+      ? [...comments].reverse()
+      : [...getSortedItems(sort, comments)];
 
    return (
       <>

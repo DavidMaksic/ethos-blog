@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useEffect, useMemo } from 'react';
+import { createContext, useContext, useEffect } from 'react';
 import { useLocalStorage } from '../hooks/use-local-storage';
 import { useLocale } from 'next-intl';
 import { routing } from '@/src/i18n/routing';
@@ -34,13 +34,8 @@ function LanguageProvider({ children }) {
       }
    }, [locale, setLanguage]);
 
-   const value = useMemo(
-      () => ({ language, setLanguage }),
-      [language, setLanguage]
-   );
-
    return (
-      <LanguageContext.Provider value={value}>
+      <LanguageContext.Provider value={{ language, setLanguage }}>
          {children}
       </LanguageContext.Provider>
    );

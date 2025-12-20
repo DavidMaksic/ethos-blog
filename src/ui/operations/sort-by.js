@@ -10,8 +10,8 @@ import { FaCaretDown } from 'react-icons/fa';
 import { useLocale } from 'next-intl';
 
 function SortBy({ options, isBookmarks = false }) {
-   const [open, setOpen] = useState();
-   const ref = useOutsideClick(() => setOpen((isOpen) => !isOpen), false);
+   const [open, setOpen] = useState(false);
+   const ref = useOutsideClick(() => setOpen(false), false);
    const locale = useLocale();
 
    const searchParams = useSearchParams();
@@ -41,7 +41,8 @@ function SortBy({ options, isBookmarks = false }) {
                className="relative px-3 py-[0.5rem] xs:py-[5px] pl-5 cursor-pointer rounded-xl bg-white dark:bg-primary-300/15 dark:hover:bg-primary-300/10 text-primary-500 border border-tertiary dark:border-primary-300/10 shadow-2xs transition-200"
                onClick={(e) => {
                   e.stopPropagation();
-                  setOpen((isOpen) => !isOpen);
+                  e.nativeEvent.stopImmediatePropagation();
+                  setOpen((prev) => !prev);
                }}
             >
                {currentLabel}
