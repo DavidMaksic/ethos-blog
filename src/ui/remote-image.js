@@ -25,7 +25,6 @@ function RemoteImage({
          onLoad={() => setLoaded(true)}
          {...props}
          unoptimized
-         priority
          fill
       />
    );

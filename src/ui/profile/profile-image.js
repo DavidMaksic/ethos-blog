@@ -63,6 +63,7 @@ function ProfileImage({ user, image }) {
                imageUrl={image ? image : user.image}
                alt="User profile image"
                styles="block aspect-square object-cover object-center rounded-full dark:opacity-90 border border-quaternary"
+               priority
             />
 
             <input

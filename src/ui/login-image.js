@@ -21,6 +21,7 @@ function LoginImage() {
                   imageUrl={loginImg}
                   alt="Login image"
                   opacity="opacity-95"
+                  priority
                />
 
                <span className="absolute right-4 bottom-4">

@@ -11,6 +11,7 @@ function ProfileInfo({ oldUser, newUser }) {
                imageUrl={newImage ? newImage : image}
                alt="User profile image"
                styles="block aspect-square object-cover object-center rounded-full border border-quaternary dark:opacity-90"
+               priority
             />
          </div>
 

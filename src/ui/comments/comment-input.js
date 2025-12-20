@@ -83,7 +83,6 @@ function CommentInput({ article, commentLength }) {
                         }
                         alt="Profile image"
                         unoptimized
-                        priority
                         fill
                      />
                   </div>
