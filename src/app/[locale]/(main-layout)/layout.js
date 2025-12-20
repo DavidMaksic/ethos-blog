@@ -58,7 +58,7 @@ const ebGaramond = EB_Garamond({
 /* Tertiary font */
 const cormorantSC = Cormorant_SC({
    subsets: ['latin'],
-   weight: ['300', '400', '500', '600', '700'],
+   weight: ['400', '500', '600', '700'],
    variable: '--font-cormorantSC',
 });
 
