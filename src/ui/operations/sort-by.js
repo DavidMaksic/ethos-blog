@@ -1,13 +1,13 @@
 'use client';
 
 import { AnimatePresence, motion } from 'motion/react';
+import { useEffect, useState } from 'react';
 import { useOutsideClick } from '@/src/hooks/use-outside-click';
 import { useSearchParams } from 'next/navigation';
 import { useSetParams } from '@/src/hooks/use-set-params';
 import { TbArrowsSort } from 'react-icons/tb';
 import { FaCaretDown } from 'react-icons/fa';
 import { useLocale } from 'next-intl';
-import { useState } from 'react';
 
 function SortBy({ options, isBookmarks = false }) {
    const [open, setOpen] = useState();
@@ -21,6 +21,11 @@ function SortBy({ options, isBookmarks = false }) {
       if (sort) return options.find((item) => item.value === sort).label;
       return options.at(0).label;
    });
+
+   useEffect(() => {
+      if (!sort) setCurrentLabel(options.at(0).label);
+   }, [sort, options]);
+
    const handler = useSetParams();
 
    return (
