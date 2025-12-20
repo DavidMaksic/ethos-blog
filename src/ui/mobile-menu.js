@@ -29,6 +29,7 @@ function MobileMenu() {
             className="hidden md:block size-8 mx-2"
             onClick={(e) => {
                e.stopPropagation();
+               e.nativeEvent.stopImmediatePropagation();
                setOpenMenu((isOpen) => !isOpen);
             }}
          />
