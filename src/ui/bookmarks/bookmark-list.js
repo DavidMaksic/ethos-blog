@@ -1,40 +1,46 @@
 'use client';
 
+import { useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import { getSortedItems } from '@/src/utils/helpers';
+
 import BookmarkItem from '@/src/ui/bookmarks/bookmark-item';
 import Pagination from '@/src/ui/pagination';
 import Fuse from 'fuse.js';
 
 function BookmarkList({ usersBookmarks, param }) {
    const t = useTranslations('Profile');
+   const articles = usersBookmarks.map((item) => item.articles);
+   const [bookmarks, setBookmarks] = useState(articles);
 
-   // Deriving data directly (The Compiler will memoize this automatically)
-   const bookmarks = usersBookmarks.map((item) => item.articles);
+   const displayedBookmarks = useMemo(() => {
+      if (!bookmarks || bookmarks.length === 0) return [];
 
-   // 1. Filter / Search Logic
-   let filtered = [...bookmarks];
+      let filtered = [...bookmarks];
 
-   if (param.search) {
-      const fuse = new Fuse(filtered, {
-         keys: ['title'],
-         includeScore: true,
-         threshold: 0.4,
-      });
-      const fuseResults = fuse.search(param.search);
-      filtered = fuseResults.map((res) => res.item);
-   }
+      // 1. Search filtering
+      if (param.search) {
+         const fuse = new Fuse(filtered, {
+            keys: ['title'],
+            includeScore: true,
+            threshold: 0.4,
+         });
 
-   // 2. Sorting
-   filtered = getSortedItems(param?.sort, filtered);
+         const fuseResults = fuse.search(param.search);
+         filtered = fuseResults.map((res) => res.item);
+      }
 
-   // 3. Pagination
-   const page = param.page ? Number(param.page) : 1;
-   const itemsPerPage = 3;
-   const from = (page - 1) * itemsPerPage;
-   const to = from + itemsPerPage;
+      // 2. Sorting
+      filtered = getSortedItems(param?.sort, filtered);
 
-   const displayedBookmarks = filtered.slice(from, to);
+      // 3. Pagination
+      const page = param.page ? Number(param.page) : 1;
+      const itemsPerPage = 3;
+      const from = (page - 1) * itemsPerPage;
+      const to = from + itemsPerPage;
+
+      return filtered.slice(from, to);
+   }, [param, bookmarks]);
 
    return (
       <>

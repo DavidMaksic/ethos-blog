@@ -1,7 +1,7 @@
 'use client';
 
 import { applyPagination, getSortedItems } from '@/src/utils/helpers';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useLanguage } from '@/src/context/language-context';
@@ -34,7 +34,7 @@ function Articles({ isArchive = false, articles, categories, style }) {
    );
 
    // Sort, search, filter, pagination
-   const { filteredArticles, paginatedArticles } = (() => {
+   const { filteredArticles, paginatedArticles } = useMemo(() => {
       if (!isArchive) {
          return {
             filteredArticles: articles,
@@ -82,7 +82,16 @@ function Articles({ isArchive = false, articles, categories, style }) {
          filteredArticles: result,
          paginatedArticles: paginatedResult,
       };
-   })();
+   }, [
+      articles,
+      sort,
+      search,
+      lang,
+      page,
+      currentCategory,
+      language,
+      isArchive,
+   ]);
 
    const arr = isArchive ? [...Array(6)] : [...Array(3)];
 
