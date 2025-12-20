@@ -26,9 +26,6 @@ function ArticleItem({ article, style }) {
       }
    }, [resolvedTheme, category]);
 
-   // TODO: Remove priority for image bellow as test
-   // TODO: Dont call revalidate API for drafted article update
-
    return (
       <motion.div
          initial={{ opacity: 0 }}
