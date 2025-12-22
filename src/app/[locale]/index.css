@@ -1045,11 +1045,23 @@ strong {
 }
 
 [data-content-type='quote'] strong {
+   font-weight: 700;
+}
+
+[data-lang='en'] [data-content-type='quote'] strong {
+   color: #b47323;
+}
+
+[data-lang='sr'] [data-content-type='quote'] strong {
    color: #9e6d32d0;
 }
 
-[data-theme='dark'] [data-content-type='quote'] strong {
-   color: #e5c59e;
+[data-lang='en'][data-theme='dark'] [data-content-type='quote'] strong {
+   color: #f1d7b6;
+}
+
+[data-lang='sr'][data-theme='dark'] [data-content-type='quote'] strong {
+   color: #e9caa5;
 }
 
 .bn-block-group h2 > strong,

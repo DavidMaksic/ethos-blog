@@ -55,11 +55,14 @@ function BookmarkList({ usersBookmarks, param }) {
             )}
          </div>
 
-         {filtered.length <= itemsPerPage ? (
-            <div className="h-0" />
-         ) : (
+         <div
+            className={`${
+               filtered.length <= itemsPerPage &&
+               'invisible pointer-events-none'
+            }`}
+         >
             <Pagination count={bookmarks.length} isArchive={false} />
-         )}
+         </div>
       </>
    );
 }
