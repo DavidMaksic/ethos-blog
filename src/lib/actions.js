@@ -84,7 +84,7 @@ export async function addBookmark(user, articleID, slug) {
    ]);
 
    if (error) throw new Error('Article could not be bookmarked');
-   revalidateTag(`article-${slug}`);
+   revalidateTag(`article-${slug}`, 'max');
 }
 
 export async function removeBookmark(user, articleID, slug) {
@@ -98,7 +98,7 @@ export async function removeBookmark(user, articleID, slug) {
       .eq('article_id', articleID);
 
    if (error) throw new Error('Bookmark could not be removed');
-   revalidateTag(`article-${slug}`);
+   revalidateTag(`article-${slug}`, 'max');
 }
 
 export async function addComment(previousState, formData) {
@@ -121,7 +121,7 @@ export async function addComment(previousState, formData) {
 
    if (error) throw new Error('Comment could not be posted');
 
-   revalidateTag(`article-${slug}`);
+   revalidateTag(`article-${slug}`, 'max');
    return { success: true };
 }
 
@@ -136,7 +136,7 @@ export async function editComment(commentID, text, slug) {
 
    if (error) throw new Error('Comment could not be edited');
 
-   revalidateTag(`article-${slug}`);
+   revalidateTag(`article-${slug}`, 'max');
    return { success: true };
 }
 
@@ -151,7 +151,7 @@ export async function deleteComment(commentID, slug) {
 
    if (error) throw new Error('Comment could not be deleted');
 
-   revalidateTag(`article-${slug}`);
+   revalidateTag(`article-${slug}`, 'max');
    return { success: true };
 }
 
@@ -174,7 +174,7 @@ export async function addReply(previousState, formData) {
 
    if (error) throw new Error('Reply could not be posted');
 
-   revalidateTag(`article-${slug}`);
+   revalidateTag(`article-${slug}`, 'max');
    return { success: true };
 }
 
@@ -189,7 +189,7 @@ export async function editReply(replyID, text, slug) {
 
    if (error) throw new Error('Reply could not be edited');
 
-   revalidateTag(`article-${slug}`);
+   revalidateTag(`article-${slug}`, 'max');
    return { success: true };
 }
 
@@ -201,7 +201,7 @@ export async function deleteReply(replyID, slug) {
 
    if (error) throw new Error('Reply could not be deleted');
 
-   revalidateTag(`article-${slug}`);
+   revalidateTag(`article-${slug}`, 'max');
    return { success: true };
 }
 
@@ -220,7 +220,7 @@ export async function addLiked(userID, articleID, type, slug, targetID) {
       ]);
 
       if (error) throw new Error('Article could not be liked');
-      revalidateTag(`article-${slug}`);
+      revalidateTag(`article-${slug}`, 'max');
       return;
    }
 
@@ -235,7 +235,7 @@ export async function addLiked(userID, articleID, type, slug, targetID) {
       ]);
 
       if (error) throw new Error('Article could not be liked');
-      revalidateTag(`article-${slug}`);
+      revalidateTag(`article-${slug}`, 'max');
    }
 }
 
@@ -251,5 +251,5 @@ export async function removeLiked(userID, articleID, type, slug) {
       .eq('type', type);
 
    if (error) throw new Error('Article could not be disliked');
-   revalidateTag(`article-${slug}`);
+   revalidateTag(`article-${slug}`, 'max');
 }

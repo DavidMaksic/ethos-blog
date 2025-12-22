@@ -10,7 +10,7 @@ export async function POST(req) {
    const { slug, changes } = await req.json();
 
    if (changes.content || changes.metadata) {
-      revalidateTag(`article-${slug}`);
+      revalidateTag(`article-${slug}`, 'max');
    }
 
    if (changes.metadata) {
