@@ -16,7 +16,7 @@ import Image from 'next/image';
 function HeaderOptions() {
    const [mounted, setMounted] = useState();
    const { resolvedTheme, setTheme } = useTheme();
-   const { user, extendedUser, loading } = useAuth();
+   const { user, extendedUser } = useAuth();
 
    useEffect(() => setMounted(true), []);
 
