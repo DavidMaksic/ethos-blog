@@ -24,7 +24,6 @@ export async function getArticle(slug) {
       },
       next: {
          tags: [`article-${slug}`],
-         revalidate: 3600,
       },
    });
 
