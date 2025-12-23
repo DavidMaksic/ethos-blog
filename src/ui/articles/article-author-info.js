@@ -1,7 +1,11 @@
 import { HiOutlineUserCircle } from 'react-icons/hi2';
+import { useLocale, useTranslations } from 'next-intl';
 import UserImage from '@/src/ui/user-image';
 
-function ArticleAuthorInfo({ article, author, date, children }) {
+function ArticleAuthorInfo({ author, date, children }) {
+   const t = useTranslations('Article');
+   const locale = useLocale();
+
    return (
       <div className="flex sm:flex-col gap-6 mt-12">
          {children}
@@ -26,16 +30,14 @@ function ArticleAuthorInfo({ article, author, date, children }) {
                </div>
 
                {author?.description_en || author?.description_srb ? (
-                  <p className="text-[1.35rem] leading-7.5 md:text-2xl">
-                     {article.language === 'English'
+                  <p className="text-[1.35rem] leading-7.5 md:text-2xl font-secondary opacity-90">
+                     {locale === 'en'
                         ? author.description_en
                         : author.description_srb}
                   </p>
                ) : (
-                  <p className="text-[1.35rem] leading-7.5 md:leading-8 md:text-2xl">
-                     {article.language === 'English'
-                        ? 'Is an author writing for Ethos blog.'
-                        : 'Је аутор који пише за Етос блог.'}
+                  <p className="text-[1.35rem] leading-7.5 md:leading-8 md:text-2xl font-secondary opacity-90">
+                     {t('description')}
                   </p>
                )}
             </div>

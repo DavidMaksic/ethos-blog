@@ -55,7 +55,7 @@ function Footer() {
             </Link>
          </div>
 
-         <span className="flex flex-col text-center gap-1 text-xl">
+         <span className="flex flex-col text-center gap-1 text-xl font-secondary opacity-90">
             {t('HomePage.copyright')}
          </span>
       </footer>

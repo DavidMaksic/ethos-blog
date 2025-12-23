@@ -9,7 +9,7 @@ function Author({ author }) {
    const { full_name, profile_image, description_en, description_srb } = author;
 
    return (
-      <section className="col-span-5 md:col-span-full w-full flex justify-center bg-white dark:bg-primary-300/10 border border-quaternary dark:border-tertiary rounded-3xl px-12 lg:px-10 md:px-14 xs:px-8 py-12 pb-14 mt-6 transition-bg_border font-medium box-shadow">
+      <section className="col-span-5 md:col-span-full w-full flex justify-center bg-white dark:bg-primary-300/10 border border-quaternary dark:border-tertiary rounded-3xl px-12 lg:px-10 md:px-14 xs:px-8 py-12 pb-14 mt-6 transition-bg_border box-shadow">
          <div
             className={`flex flex-col items-center self-center gap-4 justify-self-center ${
                !description_en || !description_srb ? 'mb-10' : ''
@@ -32,26 +32,14 @@ function Author({ author }) {
                   </span>
                </div>
 
-               {description_en || description_srb ? (
-                  <p className="text-[1.35rem] leading-7.5 md:leading-8 md:text-2xl">
-                     {locale === 'en' ? (
-                        description_en ? (
-                           description_en
-                        ) : (
-                           <p className="text-[1.35rem] leading-7.5 md:leading-8 md:text-2xl">
-                              {t('description')}
-                           </p>
-                        )
-                     ) : description_srb ? (
-                        description_srb
-                     ) : (
-                        <p className="text-[1.35rem] leading-7.5 md:leading-8 md:text-2xl">
-                           {t('description')}
-                        </p>
-                     )}
+               {author?.description_en || author?.description_srb ? (
+                  <p className="text-[1.35rem] leading-7.5 md:text-2xl font-secondary">
+                     {locale === 'en'
+                        ? author.description_en
+                        : author.description_srb}
                   </p>
                ) : (
-                  <p className="text-[1.35rem] leading-7.5 md:leading-8 md:text-2xl">
+                  <p className="text-[1.35rem] leading-7.5 md:leading-8 md:text-2xl font-secondary">
                      {t('description')}
                   </p>
                )}

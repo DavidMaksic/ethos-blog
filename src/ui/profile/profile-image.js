@@ -82,7 +82,7 @@ function ProfileImage({ user, image }) {
          <input hidden name="userID" type="text" defaultValue={user.userID} />
 
          <button
-            className={`hover:bg-accent-400 dark:hover:bg-accent-300/60 border border-quaternary hover:border-transparent hover:text-white rounded-full p-1 pb-1.5 px-4 cursor-pointer hover:shadow-link-btn dark:hover:shadow-link-btn-dark transition ${
+            className={`hover:bg-accent-400 dark:hover:bg-accent-300/60 border border-quaternary hover:border-transparent hover:text-white rounded-full p-1 px-4 cursor-pointer hover:shadow-link-btn dark:hover:shadow-link-btn-dark transition ${
                !currentImage || isPending || state.success
                   ? 'opacity-50 pointer-events-none'
                   : ''

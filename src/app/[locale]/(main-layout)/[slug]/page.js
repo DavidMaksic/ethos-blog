@@ -156,7 +156,7 @@ async function Page({ params }) {
             <ImageZoom />
             <ArticleContent content={article?.content} article={article} />
 
-            <ArticleAuthorInfo article={article} author={author} date={date}>
+            <ArticleAuthorInfo author={author} date={date}>
                <OtherArticleOptions
                   article={article}
                   comments={comments}

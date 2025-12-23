@@ -1077,9 +1077,9 @@ strong {
 [data-content-type='quote'] blockquote {
    border-left: 2px solid #be8a4aa1 !important;
    color: #c9914d !important;
-   padding: 0px 38px !important;
+   padding: 0px 38px 3px 38px !important;
    margin-top: 8px !important;
-   margin-bottom: 10px !important;
+   margin-bottom: 11px !important;
 }
 
 [data-theme='dark'] [data-content-type='quote'] blockquote {
