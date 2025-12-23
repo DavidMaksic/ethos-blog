@@ -112,6 +112,8 @@ export function generateStaticParams() {
 }
 
 // TODO: Make hover color in footer links darker
+// TODO: Confirm button should have accent color in CMS in featuring
+// TODO: Fix data actions revalidation
 
 export default async function RootLayout({ children, params }) {
    const { locale } = await params;

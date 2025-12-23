@@ -39,7 +39,7 @@ function DeleteModal({
             <button
                className={`relative font-semibold rounded-full p-2 px-6 cursor-pointer hover:shadow-delete-btn dark:hover:shadow-none transition tracking-wide ${
                   !isPending
-                     ? 'hover:bg-red-400/70 dark:hover:bg-red-400/45 hover:text-white dark:hover:text-red-100'
+                     ? 'hover:bg-red-400/70 dark:hover:bg-red-400/45 hover:text-white dark:hover:text-red-100 text-[#ca6565] dark:text-[#e78989] '
                      : 'text-[#db7979] dark:text-[#cc7272] pl-12.5!  hover:shadow-none! pointer-events-none'
                }`}
                onClick={() => {
