@@ -102,7 +102,7 @@ function CommentInput({ article, commentLength }) {
             >
                <TextareaAutosize
                   minRows={1}
-                  maxRows={20}
+                  maxRows={24}
                   maxLength={commentLength}
                   value={text}
                   name="content"

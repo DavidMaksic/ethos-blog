@@ -70,11 +70,11 @@ function EditModal({ comment, commentLength, replyID, slug, onClose }) {
          <div className="font-secondary w-[45rem] md:w-[85vw] xs:w-[80vw] px-10 sm:px-6 xs:px-0">
             <TextareaAutosize
                minRows={1}
-               maxRows={10}
+               maxRows={11}
                maxLength={commentLength}
                value={text}
                name="content"
-               className={`w-full h-auto min-h-fit border text-primary-600 dark:text-text rounded-3xl px-10 pb-18 py-7 pr-11 text-[1.4rem] 2xl:text-[1.3rem] md:text-[1.6rem] xs:text-[1.5rem] md:leading-9 xs:leading-[1.4] transition-bg_border flex-grow outline-none scrollbar transition-200 md:placeholder:text-[1.6rem] ${
+               className={`w-full h-auto min-h-fit border text-primary-600 dark:text-text rounded-3xl px-10 pb-9 py-7 pr-11 text-[1.4rem] 2xl:text-[1.3rem] md:text-[1.6rem] xs:text-[1.5rem] md:leading-9 xs:leading-[1.4] transition-bg_border flex-grow outline-none scrollbar transition-200 md:placeholder:text-[1.6rem] ${
                   text.length === commentLength || error
                      ? 'border-red-400 dark:border-red-400/60'
                      : ' border-primary-300 dark:border-primary-300/50'
@@ -90,8 +90,8 @@ function EditModal({ comment, commentLength, replyID, slug, onClose }) {
                </span>
 
                <span
-                  className={`text-lg  bg-white border border-quaternary dark:border-tertiary dark:bg-primary-200 rounded-full px-4 py-1 pb-1.5 font-medium select-none pointer-events-none ${
-                     text.length < 701 && 'opacity-0'
+                  className={`text-lg bg-primary-100/80 border border-quaternary dark:border-tertiary dark:bg-primary-200 rounded-full px-4 py-1 pb-1.5 font-medium select-none pointer-events-none transition-200 ${
+                     text.length < commentLength * 0.95 && 'opacity-0'
                   } ${
                      text.length === commentLength
                         ? 'text-red-600/60 bg-red-300/10! dark:text-red-300/80 border-red-300/30! dark:border-red-300/10!'
@@ -105,16 +105,16 @@ function EditModal({ comment, commentLength, replyID, slug, onClose }) {
 
          <div className="flex items-center gap-2 text-3xl">
             <button
-               className={`relative font-semibold rounded-full p-2 px-6 cursor-pointer hover:shadow-edit-btn dark:hover:shadow-none transition tracking-wide ${
-                  !isPending
-                     ? 'hover:bg-accent-400/80 dark:hover:bg-accent-300/55 hover:text-white dark:hover:text-accent-100'
-                     : 'text-accent-500 dark:text-accent-300/90 pl-12.5!  hover:shadow-none! pointer-events-none'
+               className={`relative font-semibold rounded-full py-2 px-5 cursor-pointer text-accent hover:bg-accent-400/80 dark:hover:bg-accent-300/55 hover:text-white dark:hover:text-accent-100 hover:shadow-edit-btn dark:hover:shadow-none transition tracking-wide ${
+                  isPending || comment.content === text
+                     ? 'pointer-events-none opacity-50'
+                     : ''
                }`}
                onClick={handleEdit}
             >
                {isPending ? (
                   <>
-                     <ImSpinner2 className="size-5 animate-spin absolute right-34 top-4 text-accent-500 dark:text-accent-300/90" />
+                     <ImSpinner2 className="size-5 animate-spin absolute right-45 top-4 text-accent-500 dark:text-accent-300/90" />
                      <span>{t('editing')}</span>
                   </>
                ) : (
@@ -127,7 +127,7 @@ function EditModal({ comment, commentLength, replyID, slug, onClose }) {
             </span>
 
             <button
-               className={`mx-4 mr-6 font-semibold tracking-wider text-primary-500/80 dark:text-primary-400 hover:text-primary-400 dark:hover:text-primary-500 cursor-pointer transition ${
+               className={`mx-4 mr-6 font-semibold tracking-wider text-primary-500 dark:text-primary-400 hover:text-primary-400 dark:hover:text-primary-500 cursor-pointer transition ${
                   isPending && 'pointer-events-none'
                }`}
                onClick={onClose}

@@ -70,7 +70,7 @@ function DeleteModal({
             </span>
 
             <button
-               className={`mx-4 mr-6 font-semibold tracking-wider text-primary-500/80 dark:text-primary-400 hover:text-primary-400 dark:hover:text-primary-500 cursor-pointer transition ${
+               className={`mx-4 mr-6 font-semibold tracking-wider text-primary-500 dark:text-primary-400 hover:text-primary-400  dark:hover:text-primary-500 cursor-pointer transition ${
                   isPending && 'pointer-events-none'
                }`}
                onClick={onClose}

@@ -79,7 +79,7 @@ function ReplyInput({
          >
             <TextareaAutosize
                minRows={1}
-               maxRows={20}
+               maxRows={24}
                maxLength={commentLength}
                value={text}
                name="content"
