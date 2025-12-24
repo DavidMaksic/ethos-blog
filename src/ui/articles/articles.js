@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { FUSE_OPTIONS } from '@/src/utils/config';
 import { useLanguage } from '@/src/context/language-context';
+import { motion } from 'motion/react';
 
 import ArticleItem from '@/src/ui/articles/article-item';
 import Pagination from '@/src/ui/pagination';
@@ -50,13 +51,10 @@ function Articles({ isArchive = false, articles, categories, style }) {
 
       let result = [...articles];
 
-      // 1. Sort
-      if (sort) result = getSortedItems(sort, result);
-
-      // 2. Search (Fuse.js)
+      // 1. Search (Fuse.js)
       if (fuse && search) result = fuse.search(search).map(({ item }) => item);
 
-      // 3. Filter language + category
+      // 2. Filter language + category
       const category_id = currentCategory?.id;
 
       result = result.filter((item) => {
@@ -69,6 +67,9 @@ function Articles({ isArchive = false, articles, categories, style }) {
 
          return matchesCategory && matchesLanguage;
       });
+
+      // 3. Sort
+      if (sort) result = getSortedItems(sort, result);
 
       // 4. Pagination
       const paginatedResult = applyPagination(page, result);
@@ -114,9 +115,15 @@ function Articles({ isArchive = false, articles, categories, style }) {
                   <ArticleItem article={item} key={item.id} style={style} />
                ))
             ) : (
-               <span className="justify-self-center text-center mt-25 2xl:mt-29 lg:mt-27 md:mt-34 sm:mt-44 sm:mb-94 xs:mb-[26.3rem] 2xs:mb-[23.6rem] text-primary-400 text-3xl md:text-4xl border border-quaternary dark:border-primary-300/15 rounded-2xl sm:rounded-3xl py-8 sm:py-12 px-12 bg-white dark:bg-primary-300/15 box-shadow">
+               <motion.span
+                  className="justify-self-center text-center mt-25 2xl:mt-29 lg:mt-27 md:mt-34 sm:mt-44 sm:mb-94 xs:mb-[26.3rem] 2xs:mb-[23.6rem] text-primary-500/80 dark:text-primary-400 text-3xl md:text-4xl border border-quaternary dark:border-primary-300/15 rounded-2xl sm:rounded-3xl py-8 sm:py-12 px-12 bg-white dark:bg-primary-300/15 box-shadow"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+               >
                   {t('no-articles')}
-               </span>
+               </motion.span>
             )}
          </div>
 

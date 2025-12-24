@@ -73,7 +73,7 @@ function ReplyInput({
       <div className="comment-section scroll-mt-20! flex flex-col gap-1.5 ml-14 font-secondary">
          <form
             action={handleAction}
-            className={`w-full ${
+            className={`w-full transition duration-75 ${
                loading || isPending ? 'pointer-events-none opacity-70' : ''
             }`}
          >
@@ -149,7 +149,7 @@ function ReplyInput({
 
                <span
                   className={`text-lg bg-white border border-quaternary dark:border-tertiary dark:bg-primary-200 rounded-full px-4 py-1 pb-1.5 font-medium select-none pointer-events-none ${
-                     text.length < 701 && 'opacity-0'
+                     text.length < commentLength * 0.95 && 'opacity-0'
                   } ${
                      text.length === commentLength
                         ? 'text-red-600/60 bg-red-300/10! dark:text-red-300/80 border-red-300/30! dark:border-red-300/10!'

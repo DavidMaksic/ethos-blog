@@ -31,18 +31,24 @@ async function Page({ searchParams }) {
          <div className="flex items-center justify-between">
             <UserCommentLabel />
 
-            <SortBy
-               options={[
-                  {
-                     value: 'created_at-asc',
-                     label: t('Sort.latest'),
-                  },
-                  {
-                     value: 'created_at-desc',
-                     label: t('Sort.oldest'),
-                  },
-               ]}
-            />
+            <div
+               className={`${
+                  sortedComments?.length < 1 && 'invisible pointer-events-none'
+               }`}
+            >
+               <SortBy
+                  options={[
+                     {
+                        value: 'created_at-asc',
+                        label: t('Sort.latest'),
+                     },
+                     {
+                        value: 'created_at-desc',
+                        label: t('Sort.oldest'),
+                     },
+                  ]}
+               />
+            </div>
          </div>
 
          {sortedComments?.length ? (
@@ -61,7 +67,7 @@ async function Page({ searchParams }) {
                ))}
             </div>
          ) : (
-            <span className="self-center mt-55 sm:mt-60 sm:mb-44 text-primary-400 text-3xl border border-tertiary dark:border-primary-300/15 rounded-3xl py-8 px-12 bg-white dark:bg-primary-300/15">
+            <span className="self-center mt-55 sm:mt-60 sm:mb-44 text-primary-500/80 dark:text-primary-400 text-3xl border border-quaternary dark:border-primary-300/15 rounded-3xl py-8 px-12 bg-white dark:bg-primary-300/15 w-[50%] md:w-[80%] text-center box-shadow">
                {t('Comment.no-comments')}
             </span>
          )}

@@ -47,7 +47,10 @@ export function getMainArticles(array) {
 
 export function applyPagination(page, result) {
    const pageSize = Number(process.env.NEXT_PUBLIC_PAGE_SIZE || 10);
-   const from = (page - 1) * pageSize;
+   const maxPage = Math.ceil(result.length / pageSize) || 1;
+   const safePage = page > maxPage ? 1 : page;
+
+   const from = (safePage - 1) * pageSize;
    const to = from + pageSize;
    return result.slice(from, to);
 }

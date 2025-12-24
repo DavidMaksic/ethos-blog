@@ -93,8 +93,8 @@ function CommentInput({ article, commentLength }) {
 
             <form
                action={handleAction}
-               className={`w-full ${
-                  loading || isPending ? 'pointer-events-none opacity-70' : ''
+               className={`w-full transition duration-75 ${
+                  loading || isPending ? 'pointer-events-none opacity-60' : ''
                }`}
                onClick={() => {
                   if (!session) setIsOpen(true);
@@ -164,7 +164,7 @@ function CommentInput({ article, commentLength }) {
 
                   <span
                      className={`text-lg  bg-white border border-quaternary dark:border-tertiary dark:bg-primary-200 rounded-full px-4 py-1 pb-1.5 font-medium select-none pointer-events-none ${
-                        text.length < 701 && 'opacity-0'
+                        text.length < commentLength * 0.95 && 'opacity-0'
                      } ${
                         text.length === commentLength
                            ? 'text-red-600/60 bg-red-300/10! dark:text-red-300/80 border-red-300/30! dark:border-red-300/10!'

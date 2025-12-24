@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { getSortedItems } from '@/src/utils/helpers';
 import { FUSE_OPTIONS } from '@/src/utils/config';
 import { useMemo } from 'react';
+import { motion } from 'motion/react';
 
 import BookmarkItem from '@/src/ui/bookmarks/bookmark-item';
 import Pagination from '@/src/ui/pagination';
@@ -32,9 +33,12 @@ function BookmarkList({ usersBookmarks, param }) {
    // 3. Pagination
    const page = param.page ? Number(param.page) : 1;
    const itemsPerPage = 3;
-   const from = (page - 1) * itemsPerPage;
-   const to = from + itemsPerPage;
 
+   const maxPage = Math.ceil(filtered.length / itemsPerPage) || 1;
+   const currentPage = page > maxPage ? 1 : page;
+
+   const from = (currentPage - 1) * itemsPerPage;
+   const to = from + itemsPerPage;
    const displayedBookmarks = filtered.slice(from, to);
 
    return (
@@ -49,9 +53,15 @@ function BookmarkList({ usersBookmarks, param }) {
                   <BookmarkItem bookmark={item} key={item.id} />
                ))
             ) : (
-               <span className="self-center justify-self-center sm:mt-60 sm:mb-44 text-primary-400 text-3xl border border-tertiary dark:border-primary-300/15 rounded-3xl py-8 px-12 bg-white dark:bg-primary-300/15">
+               <motion.span
+                  className="self-center justify-self-center sm:mt-60 sm:mb-44 text-primary-500/80 dark:text-primary-400 text-3xl border border-quaternary dark:border-primary-300/15 rounded-3xl py-8 px-12 bg-white dark:bg-primary-300/15 box-shadow"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+               >
                   {t('no-bookmarks')}
-               </span>
+               </motion.span>
             )}
          </div>
 
