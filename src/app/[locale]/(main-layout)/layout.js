@@ -111,7 +111,6 @@ export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));
 }
 
-// TODO: Make hover color in footer links darker
 // TODO: Fix data actions revalidation
 
 export default async function RootLayout({ children, params }) {

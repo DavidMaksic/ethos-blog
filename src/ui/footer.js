@@ -20,7 +20,7 @@ function Footer() {
       >
          <Link
             href="/"
-            className={`styled_text text-center text-7xl bg-primary-600/80 dark:bg-primary-600/60 pt-2 px-2 hover:bg-primary-700/90 transition-bg duration-100 ${
+            className={`styled_text text-center text-7xl bg-primary-600/80 dark:bg-primary-600/60 pt-2 px-2 hover:bg-primary-500/70 dark:hover:bg-primary-700/80 transition-bg duration-100 ${
                locale === 'en' && 'font-logo'
             } ${locale === 'sr' && 'font-logo-sr'}`}
             onClick={() => {
@@ -33,7 +33,7 @@ function Footer() {
             {t('Logo')}
          </Link>
 
-         <div className="flex sm:flex-col items-center gap-10 md:gap-6 sm:gap-2 py-3 sm:py-10 px-12 sm:px-14 sm:text-3xl border-t border-t-primary-600/50 border-b border-b-primary-600/50 [&_span]:text-base [&_a]:hover:text-primary-800 [&_a]:transition duration-75">
+         <div className="flex sm:flex-col items-center gap-10 md:gap-6 sm:gap-2 py-3 sm:py-10 px-12 sm:px-14 sm:text-3xl border-t border-t-primary-600/50 border-b border-b-primary-600/50 [&_span]:text-base [&_a]:hover:text-primary-500/80 [&_a]:dark:hover:text-primary-800/80 [&_a]:transition duration-75">
             <Link href="/">{t('HomePage.nav-link-1')}</Link>
             <span>•</span>
             <Link href="/archive">{t('HomePage.nav-link-2')}</Link>
@@ -43,7 +43,7 @@ function Footer() {
             <Link href="/user/home">{t('HomePage.nav-link-4')}</Link>
          </div>
 
-         <div className="flex gap-10 text-3xl [&_a]:hover:text-primary-800 [&_a]:transition duration-75">
+         <div className="flex gap-10 text-3xl [&_a]:hover:text-primary-500/80 [&_a]:dark:hover:text-primary-800/80 [&_a]:transition duration-75">
             <Link href="https://www.instagram.com/ethos.blog/" target="_blank">
                <FaInstagram />
             </Link>
