@@ -1,4 +1,4 @@
-import { revalidatePath, revalidateTag } from 'next/cache';
+import { revalidatePath, updateTag } from 'next/cache';
 
 export async function POST(req) {
    const auth = req.headers.get('authorization');
@@ -10,7 +10,7 @@ export async function POST(req) {
    const { slug, changes } = await req.json();
 
    if (changes.content || changes.metadata) {
-      revalidateTag(`article-${slug}`, 'max');
+      updateTag(`article-${slug}`);
    }
 
    if (changes.metadata) {
@@ -22,5 +22,8 @@ export async function POST(req) {
       });
    }
 
-   return Response.json({ revalidated: true });
+   return new Response(JSON.stringify({ revalidated: true }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+   });
 }

@@ -17,7 +17,7 @@ import Image from 'next/image';
 
 function MobileMenu() {
    const [openMenu, setOpenMenu] = useState(false);
-   const ref = useOutsideClick(() => setOpenMenu((isOpen) => !isOpen), false);
+   const ref = useOutsideClick(() => setOpenMenu(false), false);
    const { session, user, extendedUser } = useAuth();
 
    const param = useParams();
