@@ -1,4 +1,5 @@
 import { revalidatePath, revalidateTag } from 'next/cache';
+import { LOCALES } from '@/src/utils/config';
 
 export async function POST(req) {
    const auth = req.headers.get('authorization');
@@ -9,16 +10,26 @@ export async function POST(req) {
    try {
       const { slug, changes } = await req.json();
 
-      if (changes?.content || changes?.metadata) {
-         revalidateTag(`article-${slug}`, 'max');
-      }
-
-      if (changes?.metadata) {
-         const locales = ['en', 'sr'];
-         locales.forEach((locale) => {
+      // 1. Handle creation or deletion
+      if (changes?.action === 'delete' || changes?.action === 'create') {
+         LOCALES.forEach((locale) => {
             revalidatePath(`/${locale}`);
             revalidatePath(`/${locale}/archive`);
          });
+      }
+
+      // 2. Handle update
+      if (changes?.action === 'update') {
+         if (changes?.content || changes?.metadata) {
+            revalidateTag(`article-${slug}`, 'max');
+         }
+
+         if (changes?.metadata) {
+            LOCALES.forEach((locale) => {
+               revalidatePath(`/${locale}`);
+               revalidatePath(`/${locale}/archive`);
+            });
+         }
       }
 
       return new Response(JSON.stringify({ revalidated: true }), {
