@@ -2,25 +2,9 @@ import { AnimatePresence, motion } from 'motion/react';
 import { useOutsideClick } from '@/src/hooks/use-outside-click';
 import { switchLocale } from '@/src/utils/helpers';
 import { useLanguage } from '@/src/context/language-context';
-import { LANG_CODES } from '@/src/utils/config';
+import { LANGUAGES } from '@/src/utils/config';
 import { useState } from 'react';
-
-import srbFlag from '@/public/srb-flag.png';
-import enFlag from '@/public/en-flag.png';
 import Image from 'next/image';
-
-const languages = [
-   {
-      lang: 'Српски',
-      code: 'sr',
-      flag: srbFlag,
-   },
-   {
-      lang: 'English',
-      code: 'en',
-      flag: enFlag,
-   },
-];
 
 function LanguageButton() {
    const { language, setLanguage } = useLanguage();
@@ -36,7 +20,8 @@ function LanguageButton() {
          flag: item.flag,
       });
 
-      const langCode = LANG_CODES[item.lang] || 'en';
+      const langCode =
+         LANGUAGES.find((lang) => lang.code === item.code).code || 'en';
       switchLocale(langCode);
    }
 
@@ -53,7 +38,7 @@ function LanguageButton() {
          >
             <Image
                className="opacity-80 dark:opacity-70 transition-[opacity]"
-               src={language.flag ? language.flag : srbFlag}
+               src={language.flag}
                alt="Serbian flag"
                unoptimized
                priority
@@ -72,7 +57,7 @@ function LanguageButton() {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.06 }}
                >
-                  {languages.map((item) => (
+                  {LANGUAGES.map((item) => (
                      <li
                         className="flex justify-between items-center relative font-normal rounded-xl py-2 pr-4 pl-5  dark:text-primary-500 hover:bg-primary-100/50 dark:hover:bg-primary-300/18 duration-75 [&_img]:opacity-80 dark:[&_img]:opacity-80 group"
                         key={item.code}

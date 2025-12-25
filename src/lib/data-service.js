@@ -4,7 +4,7 @@ export async function getArticles() {
    const { data, error } = await supabase
       .from('articles')
       .select(
-         'id, category_id, created_at, title, image, description, author_id, featured, language, code, slug, updated_at, authors (full_name), categories(*)'
+         'id, category_id, created_at, title, image, description, author_id, featured, code, slug, updated_at, authors (full_name), categories(*)'
       )
       .eq('status', 'published')
       .order('id', { ascending: false });
@@ -35,7 +35,7 @@ export async function getArticle(slug) {
 export async function getMainArticles() {
    const { data, error } = await supabase
       .from('articles')
-      .select('id, title, image, description, language, slug')
+      .select('id, title, image, description, slug, code')
       .eq('status', 'published')
       .eq('main_feature', 'true')
       .order('index');
