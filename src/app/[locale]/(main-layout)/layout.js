@@ -111,8 +111,6 @@ export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));
 }
 
-// TODO: Fix data actions revalidation
-
 export default async function RootLayout({ children, params }) {
    const { locale } = await params;
    setRequestLocale(locale);
