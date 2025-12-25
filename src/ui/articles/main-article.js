@@ -1,7 +1,7 @@
 import { useLocale, useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { Link } from '@/src/i18n/navigation';
-import RemoteImage from '@/src/ui/remote-image';
+import RemoteImage from '@/src/ui/image/remote-image';
 
 function MainArticle({ article }) {
    const t = useTranslations('HomePage');

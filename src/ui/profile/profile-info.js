@@ -1,4 +1,4 @@
-import RemoteImage from '@/src/ui/remote-image';
+import RemoteImage from '@/src/ui/image/remote-image';
 
 function ProfileInfo({ oldUser, newUser }) {
    const { email, image, name } = oldUser;

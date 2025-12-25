@@ -1,4 +1,4 @@
-import Navigation from '@/src/ui/navigation';
+import Navigation from '@/src/ui/navigation/navigation';
 import Logo from '@/src/ui/logo';
 
 function Header() {

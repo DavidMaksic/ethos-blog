@@ -19,8 +19,8 @@ import ArticleHeading from '@/src/ui/articles/article-heading';
 import CommentInput from '@/src/ui/comments/comment-input';
 import ArticleImage from '@/src/ui/articles/article-image';
 import CommentList from '@/src/ui/comments/comment-list';
-import ImageZoom from '@/src/ui/image-zoom';
-import Options from '@/src/ui/options';
+import ImageZoom from '@/src/ui/image/image-zoom';
+import Options from '@/src/ui/operations/options';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
@@ -87,7 +87,6 @@ async function Page({ params }) {
          getBookmarks(),
          getSettings(),
       ]);
-
    const { slug, locale } = param;
    setRequestLocale(locale);
 

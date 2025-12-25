@@ -6,7 +6,7 @@ import { updateImage } from '@/src/lib/actions';
 import { ImSpinner2 } from 'react-icons/im';
 import { LuPencil } from 'react-icons/lu';
 
-import RemoteImage from '@/src/ui/remote-image';
+import RemoteImage from '@/src/ui/image/remote-image';
 import toast from 'react-hot-toast';
 
 function ProfileImage({ user, image }) {

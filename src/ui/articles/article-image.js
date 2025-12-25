@@ -1,7 +1,7 @@
 import { HiOutlineUserCircle } from 'react-icons/hi2';
 import { getLocale } from 'next-intl/server';
 
-import MainImage from '@/src/ui/main-image';
+import MainImage from '@/src/ui/image/main-image';
 import Category from '@/src/ui/categories/category';
 import Image from 'next/image';
 

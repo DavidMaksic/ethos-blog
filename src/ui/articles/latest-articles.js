@@ -1,16 +1,16 @@
 'use client';
 
+import { useLocale, useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
-import { useTranslations } from 'next-intl';
 import { FiChevronRight } from 'react-icons/fi';
 import { Link } from '@/src/i18n/navigation';
 
-import useFilterArticle from '@/src/hooks/use-filter-article';
 import Categories from '@/src/ui/categories/categories';
 import Articles from '@/src/ui/articles/articles';
 
 function LatestArticles({ articles, categories, authors }) {
-   const { filteredArray: filteredArticles } = useFilterArticle(articles);
+   const locale = useLocale();
+   const filteredArticles = articles.filter((item) => item.code === locale);
    const searchParams = useSearchParams();
    const category = searchParams.get('category');
 

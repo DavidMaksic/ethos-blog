@@ -2,12 +2,11 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { getArticles, getCategories } from '@/src/lib/data-service';
 import { WEBSITE_URL } from '@/src/utils/config';
 
-import ArchiveHeading from '@/src/ui/archive-heading';
+import ArchiveHeading from '@/src/ui/header/archive-heading';
+import LanguageFilter from '@/src/ui/operations/language-filter';
 import Categories from '@/src/ui/categories/categories';
-import Languages from '@/src/ui/languages';
 import Articles from '@/src/ui/articles/articles';
 import SortBy from '@/src/ui/operations/sort-by';
-import LanguageFilter from '@/src/ui/languages';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;

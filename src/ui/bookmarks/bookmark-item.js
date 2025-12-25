@@ -5,7 +5,7 @@ import { useTheme } from 'next-themes';
 import { motion } from 'motion/react';
 import { format } from 'date-fns';
 import { Link } from '@/src/i18n/navigation';
-import RemoteImage from '@/src/ui/remote-image';
+import RemoteImage from '@/src/ui/image/remote-image';
 
 function BookmarkItem({ bookmark }) {
    const date = format(new Date(bookmark.created_at), 'MMM dd, yyyy');

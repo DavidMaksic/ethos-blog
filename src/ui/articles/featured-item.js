@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import { Link } from '@/src/i18n/navigation';
-import RemoteImage from '@/src/ui/remote-image';
+import RemoteImage from '@/src/ui/image/remote-image';
 
 function FeaturedItem({ article, authors }) {
    const date = format(new Date(article.created_at), 'MMM dd, yyyy');

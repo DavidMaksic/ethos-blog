@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import { TbCategory2 } from 'react-icons/tb';
 
 import useFilterCategory from '@/src/hooks/use-filter-category';
-import CategoryLoader from '@/src/ui/category-loader';
+import CategoryLoader from '@/src/ui/categories/category-loader';
 import Category from '@/src/ui/categories/category';
 
 function Categories({ categories, isArchive = false }) {

@@ -7,7 +7,7 @@ import { useMemo } from 'react';
 import { motion } from 'motion/react';
 
 import BookmarkItem from '@/src/ui/bookmarks/bookmark-item';
-import Pagination from '@/src/ui/pagination';
+import Pagination from '@/src/ui/operations/pagination';
 import Fuse from 'fuse.js';
 
 function BookmarkList({ usersBookmarks, param }) {

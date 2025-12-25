@@ -20,7 +20,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/src/i18n/routing';
 import { Toaster } from 'react-hot-toast';
 
-import PageAnimation from '@/src/ui/page-animation';
+import PageAnimation from '@/src/ui/animation/page-animation';
 import Header from '@/src/ui/header/header';
 import Footer from '@/src/ui/footer';
 import Script from 'next/script';
@@ -110,6 +110,8 @@ export async function generateMetadata({ params }) {
 export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));
 }
+
+// TODO: Animate flags as they appear
 
 export default async function RootLayout({ children, params }) {
    const { locale } = await params;

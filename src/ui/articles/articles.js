@@ -9,7 +9,7 @@ import { useLanguage } from '@/src/context/language-context';
 import { motion } from 'motion/react';
 
 import ArticleItem from '@/src/ui/articles/article-item';
-import Pagination from '@/src/ui/pagination';
+import Pagination from '@/src/ui/operations/pagination';
 import Fuse from 'fuse.js';
 
 function Articles({ isArchive = false, articles, categories, style }) {

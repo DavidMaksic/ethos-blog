@@ -1,6 +1,6 @@
 import { useLocale, useTranslations } from 'next-intl';
 import { HiOutlineUserCircle } from 'react-icons/hi2';
-import UserImage from '@/src/ui/user-image';
+import UserImage from '@/src/ui/image/user-image';
 
 function Author({ author }) {
    const t = useTranslations('Article');

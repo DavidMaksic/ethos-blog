@@ -11,7 +11,7 @@ import { LuReply } from 'react-icons/lu';
 import CommentOptions from '@/src/ui/comments/comment-options';
 import ReplyInput from '@/src/ui/comments/reply-input';
 import AuthModal from '@/src/ui/modal/auth-modal';
-import UserImage from '@/src/ui/user-image';
+import UserImage from '@/src/ui/image/user-image';
 import Modal from '@/src/ui/modal/modal';
 
 function Reply({

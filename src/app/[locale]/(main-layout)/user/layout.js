@@ -1,5 +1,5 @@
-import UserPageAnimation from '@/src/ui/user-page-animation';
-import SideNavigation from '@/src/ui/side-navigation';
+import UserPageAnimation from '@/src/ui/animation/user-page-animation';
+import SideNavigation from '@/src/ui/navigation/side-navigation';
 
 export default function Layout({ children }) {
    return (

@@ -1,6 +1,6 @@
 import { getLocale, getTranslations } from 'next-intl/server';
-import SignInButton from '@/src/ui/buttons/signin.button';
-import LoginImage from '@/src/ui/login-image';
+import SignInButton from '@/src/ui/buttons/signin-button';
+import LoginImage from '@/src/ui/image/login-image';
 
 export async function generateMetadata({ params }) {
    const { locale } = await params;
