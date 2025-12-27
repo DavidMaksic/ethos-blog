@@ -6,11 +6,26 @@ import { IoLogoGithub } from 'react-icons/io5';
 import { usePathname } from 'next/navigation';
 import { FaInstagram } from 'react-icons/fa';
 import { Link } from '@/src/i18n/navigation';
+import React from 'react';
 
 function Footer() {
    const t = useTranslations();
    const locale = useLocale();
    const pathname = usePathname();
+
+   const navLinks = [
+      { href: '/', label: t('HomePage.nav-link-1') },
+      { href: '/archive', label: t('HomePage.nav-link-2') },
+      { href: '/about', label: t('HomePage.nav-link-3') },
+      { href: '/user/home', label: t('HomePage.nav-link-4') },
+   ];
+
+   const handleNavClick = (href) => (e) => {
+      if (pathname === href) {
+         e.preventDefault();
+         window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+   };
 
    return (
       <footer
@@ -34,13 +49,14 @@ function Footer() {
          </Link>
 
          <div className="flex sm:flex-col items-center gap-10 md:gap-6 sm:gap-2 py-3 sm:py-10 px-12 sm:px-14 sm:text-3xl border-t border-t-primary-600/50 border-b border-b-primary-600/50 [&_span]:text-base [&_a]:hover:text-primary-500/80 [&_a]:dark:hover:text-primary-800/80 [&_a]:transition duration-75">
-            <Link href="/">{t('HomePage.nav-link-1')}</Link>
-            <span>•</span>
-            <Link href="/archive">{t('HomePage.nav-link-2')}</Link>
-            <span>•</span>
-            <Link href="/about">{t('HomePage.nav-link-3')}</Link>
-            <span>•</span>
-            <Link href="/user/home">{t('HomePage.nav-link-4')}</Link>
+            {navLinks.map((link, i) => (
+               <React.Fragment key={link.href}>
+                  <Link href={link.href} onClick={handleNavClick(link.href)}>
+                     {link.label}
+                  </Link>
+                  {i < navLinks.length - 1 && <span>•</span>}
+               </React.Fragment>
+            ))}
          </div>
 
          <div className="flex gap-10 text-3xl [&_a]:hover:text-primary-500/80 [&_a]:dark:hover:text-primary-800/80 [&_a]:transition duration-75">
