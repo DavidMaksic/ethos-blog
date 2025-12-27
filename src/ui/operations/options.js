@@ -23,7 +23,7 @@ function Options() {
 
    // - Table and menu
    const [openTable, setOpenTable] = useState(false);
-   const tableRef = useOutsideClick(() => setOpenTable((isOpen) => !isOpen));
+   const tableRef = useOutsideClick(() => setOpenTable(false), false);
    const [openMenu, setOpenMenu] = useState(false);
    const ref = useOutsideClick(() => setOpenMenu(false), false);
 
@@ -76,7 +76,10 @@ function Options() {
             onClick={(e) => {
                e.stopPropagation();
                e.nativeEvent.stopImmediatePropagation();
-               setOpenMenu((isOpen) => !isOpen);
+               setOpenMenu((isOpen) => {
+                  if (isOpen) setOpenTable(false);
+                  return !isOpen;
+               });
             }}
          />
 

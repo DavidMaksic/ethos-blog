@@ -73,9 +73,7 @@ function HeaderOptions() {
             </HeaderButton>
          )}
 
-         <div className="md:hidden bg-none border-none p-2 rounded-xl transition-200 hover:bg-primary-200/40 dark:hover:bg-primary-300/30 [&_svg]:size-6 [&_svg]:text-accent cursor-pointer select-none">
-            <LanguageButton />
-         </div>
+         <LanguageButton />
 
          <span className="text-primary-400/80 dark:text-primary-500/80 text-2xl mx-4 font-extralight select-none hidden md:block">
             |
