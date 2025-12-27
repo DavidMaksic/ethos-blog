@@ -1,5 +1,6 @@
 import { useLocale, useTranslations } from 'next-intl';
 import { useAuth } from '@/src/context/auth-context';
+import { motion } from 'motion/react';
 
 function ArticleOptionItem({
    isBookmarked,
@@ -16,7 +17,9 @@ function ArticleOptionItem({
    const { loading } = useAuth();
 
    return (
-      <div
+      <motion.div
+         whileTap={{ scale: 0.95 }}
+         transition={{ type: 'spring', stiffness: 500, damping: 20 }}
          className={`grid grid-rows-[1fr_0.1fr] justify-items-center items-center sm:gap-1.5 border border-primary-300/70 dark:border-quaternary px-6 md:px-8! sm:px-0! py-4 md:py-6.5 sm:py-5! rounded-3xl hover:bg-white dark:hover:bg-primary-300/30 cursor-pointer transition-bg_border group ${
             locale === 'en' && 'px-8 md:px-10!'
          } ${
@@ -93,7 +96,7 @@ function ArticleOptionItem({
                </span>
             )}
          </span>
-      </div>
+      </motion.div>
    );
 }
 
