@@ -22,7 +22,7 @@ function RemoteImage({
          }`}
          src={imageUrl}
          alt={alt ? alt : 'Image'}
-         onLoad={() => setLoaded(true)}
+         onLoadingComplete={() => setLoaded(true)}
          {...props}
          unoptimized
          fill

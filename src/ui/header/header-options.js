@@ -15,6 +15,8 @@ import Image from 'next/image';
 
 function HeaderOptions() {
    const [mounted, setMounted] = useState();
+   const [loaded, setLoaded] = useState(false);
+
    const { resolvedTheme, setTheme } = useTheme();
    const { user, extendedUser } = useAuth();
 
@@ -51,9 +53,12 @@ function HeaderOptions() {
             >
                <div className="relative size-7.5!">
                   <Image
-                     className="rounded-full block aspect-square object-cover object-center dark:opacity-90 border border-primary-300 transition-200"
+                     className={`rounded-full block aspect-square object-cover object-center border border-primary-300 transition-200 ${
+                        loaded ? 'dark:opacity-90' : 'opacity-0'
+                     }`}
                      src={extendedUser.image ? extendedUser.image : user.image}
                      alt="Profile image"
+                     onLoadingComplete={() => setLoaded(true)}
                      unoptimized
                      priority
                      fill

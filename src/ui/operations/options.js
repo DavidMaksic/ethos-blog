@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { useOutsideClick } from '@/src/hooks/use-outside-click';
 import { useTranslations } from 'next-intl';
 import { useMediaQuery } from 'react-responsive';
-import { FaRegComment } from 'react-icons/fa';
+import { FaRegComment } from 'react-icons/fa6';
 import { useScroll } from '@/src/hooks/use-scroll';
 import { useTheme } from 'next-themes';
 

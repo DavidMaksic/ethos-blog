@@ -1,4 +1,4 @@
-import { FaRegComments, FaRegHeart } from 'react-icons/fa';
+import { FaRegComments, FaRegHeart } from 'react-icons/fa6';
 import { getTranslations } from 'next-intl/server';
 import { LuBookmark } from 'react-icons/lu';
 import { getUser } from '@/src/lib/data-service';

@@ -1,4 +1,4 @@
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { FaHeart, FaRegHeart } from 'react-icons/fa6';
 
 function LikeButton({ styles, isLiked }) {
    const iconStyle = `${styles} size-11 md:size-13 p-2.5 text-primary-400 group-hover:text-red-400/70! dark:group-hover:text-primary-500 transition-color`;

@@ -111,8 +111,6 @@ export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));
 }
 
-// TODO: Animate flags as they appear
-
 export default async function RootLayout({ children, params }) {
    const { locale } = await params;
    setRequestLocale(locale);
@@ -174,7 +172,7 @@ export default async function RootLayout({ children, params }) {
          </head>
 
          <body
-            className={`min-h-screen flex flex-col text-xl 2xl:px-60 xl:px-26 inter-padding font-main text-text selection:bg-accent-400/90 dark:selection:bg-accent-200/50 selection:text-white caret-primary-400 antialiased bg-primary transition-200 background-gradient ${cormorantGaramond.variable} ${ebGaramond.variable} ${parisienne.variable} ${greatVibes.variable} ${cormorantSC.variable}`}
+            className={`relative min-h-screen flex flex-col text-xl 2xl:px-60 xl:px-26 inter-padding font-main text-text selection:bg-accent-400/90 dark:selection:bg-accent-200/50 selection:text-white caret-primary-400 antialiased bg-primary transition-200 background-gradient ${cormorantGaramond.variable} ${ebGaramond.variable} ${parisienne.variable} ${greatVibes.variable} ${cormorantSC.variable}`}
          >
             <SessionProvider>
                <AuthProvider>

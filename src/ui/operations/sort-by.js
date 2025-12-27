@@ -6,7 +6,7 @@ import { useOutsideClick } from '@/src/hooks/use-outside-click';
 import { useSearchParams } from 'next/navigation';
 import { useSetParams } from '@/src/hooks/use-set-params';
 import { TbArrowsSort } from 'react-icons/tb';
-import { FaCaretDown } from 'react-icons/fa';
+import { FaCaretDown } from 'react-icons/fa6';
 import { useLocale } from 'next-intl';
 
 function SortBy({ options, isBookmarks = false }) {

@@ -7,8 +7,10 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 function LanguageButton() {
-   const { language, setLanguage } = useLanguage();
    const [open, setOpen] = useState(false);
+   const [loaded, setLoaded] = useState(false);
+
+   const { language, setLanguage } = useLanguage();
    const ref = useOutsideClick(() => setOpen(false), false);
 
    function handleLang(item) {
@@ -66,9 +68,12 @@ function LanguageButton() {
                         {item.lang}
                         <div className="relative size-7">
                            <Image
-                              className="border border-primary-300 dark:border-primary-200 rounded-full group-hover:opacity-100 dark:group-hover:opacity-95 transition-[opacity]"
+                              className={`border border-primary-300 dark:border-primary-200 rounded-full group-hover:opacity-100 dark:group-hover:opacity-95 transition-[opacity] ${
+                                 !loaded && 'opacity-0'
+                              }`}
                               src={item.flag}
                               alt={item.lang}
+                              onLoadingComplete={() => setLoaded(true)}
                               unoptimized
                               priority
                               fill

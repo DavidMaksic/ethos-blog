@@ -4,7 +4,7 @@ import { LuBookmark, LuUserRoundPen } from 'react-icons/lu';
 import { Link, usePathname } from '@/src/i18n/navigation';
 import { TbLayoutDashboard } from 'react-icons/tb';
 import { useTranslations } from 'next-intl';
-import { FaRegComment } from 'react-icons/fa';
+import { FaRegComment } from 'react-icons/fa6';
 import SignOutButton from '@/src/ui/buttons/signout-button';
 
 function SideNavigation() {

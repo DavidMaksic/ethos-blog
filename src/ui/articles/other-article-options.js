@@ -5,7 +5,7 @@ import {
    FaRegComment,
    FaBookmark,
    FaComment,
-} from 'react-icons/fa';
+} from 'react-icons/fa6';
 import {
    removeBookmark,
    removeLiked,

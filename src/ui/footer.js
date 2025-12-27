@@ -1,10 +1,10 @@
 'use client';
 
 import { useLocale, useTranslations } from 'next-intl';
-import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import { RiTwitterXFill } from 'react-icons/ri';
 import { IoLogoGithub } from 'react-icons/io5';
 import { usePathname } from 'next/navigation';
+import { FaInstagram } from 'react-icons/fa';
 import { Link } from '@/src/i18n/navigation';
 
 function Footer() {
