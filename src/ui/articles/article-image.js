@@ -10,7 +10,7 @@ async function ArticleImage({ article, author, date, children }) {
    const { image, categories } = article;
 
    return (
-      <div className="flex flex-col border bg-white/50 dark:bg-primary-300/5 border-primary-300/70 dark:border-primary-300/15 rounded-3xl mt-3 shadow-article dark:shadow-menu-dark transition-bg_border">
+      <div className="flex flex-col border bg-white/50 dark:bg-primary-300/5 border-primary-300/70 dark:border-primary-300/15 rounded-3xl mt-3 shadow-dashboard dark:shadow-menu-dark transition-bg_border">
          <MainImage url={image} />
 
          <div className="flex items-center justify-between gap-6 px-6 py-4 2xl:py-3 font-title">

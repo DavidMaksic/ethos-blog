@@ -2,7 +2,7 @@ import { createPortal } from 'react-dom';
 import { useModal } from '@/src/hooks/use-modal';
 import { motion } from 'motion/react';
 
-function Modal({ closeModal, children }) {
+function Modal({ closeModal, styles, children }) {
    const ref = useModal(closeModal);
 
    return createPortal(
@@ -14,7 +14,7 @@ function Modal({ closeModal, children }) {
          transition={{ duration: 0.1 }}
       >
          <div
-            className="fixed top-[45%] left-1/2 px-4 xs:px-8 py-12 pt-14 translate-x-[-50%] translate-y-[-50%] shadow-article dark:shadow-none flex flex-col gap-4 items-center bg-white/90 dark:bg-primary/90 border border-quaternary dark:border-tertiary rounded-4xl overflow-hidden"
+            className={`fixed top-[45%] left-1/2 px-4 xs:px-8 py-12 pt-14 translate-x-[-50%] translate-y-[-50%] shadow-modal dark:shadow-none flex flex-col gap-4 items-center bg-white/90 dark:bg-primary/90 border border-quaternary dark:border-tertiary rounded-4xl overflow-hidden ${styles}`}
             ref={ref}
          >
             {children}

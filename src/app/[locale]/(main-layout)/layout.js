@@ -107,6 +107,8 @@ export async function generateMetadata({ params }) {
    };
 }
 
+// TODO: Animate entry for article options
+
 export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));
 }

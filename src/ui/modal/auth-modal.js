@@ -31,9 +31,9 @@ function AuthModal({ onClose, string }) {
          <div className="flex items-center gap-2 text-[1.7rem]">
             <Link
                href="/user/home"
-               className="flex items-center gap-2 hover:bg-accent-400 dark:hover:bg-accent-300/60 hover:text-white rounded-full p-2 px-4 pl-5 cursor-pointer hover:shadow-link-btn dark:hover:shadow-link-btn-dark transition"
+               className="flex items-center gap-2 text-accent hover:bg-accent-400/80 dark:hover:bg-accent-300/55 hover:text-white dark:hover:text-accent-100 hover:shadow-link-btn dark:hover:shadow-none rounded-full p-2 px-4 pl-5 cursor-pointer transition"
             >
-               <span className="font-semibold tracking-wider">
+               <span className="font-semibold tracking-wide">
                   {t('Auth.sign-in')}
                </span>
                <LuLogIn className="size-5.5" />

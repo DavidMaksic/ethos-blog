@@ -105,7 +105,7 @@ function EditModal({ comment, commentLength, replyID, slug, onClose }) {
 
          <div className="flex items-center gap-2 text-3xl">
             <button
-               className={`relative font-semibold rounded-full py-2 px-5 cursor-pointer text-accent hover:bg-accent-400/80 dark:hover:bg-accent-300/55 hover:text-white dark:hover:text-accent-100 hover:shadow-edit-btn dark:hover:shadow-none transition tracking-wide ${
+               className={`relative font-semibold rounded-full py-2 px-5 cursor-pointer text-accent hover:bg-accent-400/80 dark:hover:bg-accent-300/55 hover:text-white dark:hover:text-accent-100 hover:shadow-link-btn dark:hover:shadow-none transition tracking-wide ${
                   isPending || comment.content === text
                      ? 'pointer-events-none opacity-50'
                      : ''

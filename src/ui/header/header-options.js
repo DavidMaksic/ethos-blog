@@ -58,7 +58,7 @@ function HeaderOptions() {
                      }`}
                      src={extendedUser.image ? extendedUser.image : user.image}
                      alt="Profile image"
-                     onLoadingComplete={() => setLoaded(true)}
+                     onLoad={() => setLoaded(true)}
                      unoptimized
                      priority
                      fill
