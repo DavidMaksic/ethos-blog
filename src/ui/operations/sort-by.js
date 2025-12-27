@@ -46,7 +46,7 @@ function SortBy({ options, isBookmarks = false }) {
                }}
             >
                {currentLabel}
-               <FaCaretDown className="absolute 4k:top-[24px]! top-[11px] md:top-3.5 xs:top-4 right-4 size-4.5 text-md text-primary-400 mb-0.5" />
+               <FaCaretDown className="absolute 4k:top-[24px]! top-3 md:top-3.5 xs:top-4 right-4 size-4.5 text-md text-primary-400 mb-0.5" />
             </div>
 
             <AnimatePresence>

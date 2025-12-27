@@ -71,7 +71,7 @@ function Search({ isArchive = false }) {
       <div className="flex items-center">
          <label htmlFor="search">
             <CgSearch
-               className={`size-11 md:size-12 text-accent-600/85 dark:text-accent-200/90 p-2 pt-2.5 pr-2.5 bg-white/60 md:bg-white dark:bg-primary-300/18 md:dark:bg-primary-300/18 border border-quaternary dark:border-transparent rounded-full transition-bg_border cursor-pointer md:hidden ${
+               className={`size-11 md:size-12 text-accent-600/85 dark:text-accent-200/90 p-2 pt-2.5 pr-2.5 bg-white dark:bg-primary-300/18 md:dark:bg-primary-300/18 shadow-2xs border border-tertiary dark:border-transparent rounded-full transition-bg_border cursor-pointer md:hidden ${
                   open && 'rounded-r-none border-r-transparent'
                }`}
                onClick={() => setOpen((isOpen) => !isOpen)}
@@ -89,7 +89,7 @@ function Search({ isArchive = false }) {
                placeholder={t('Search-placeholder')}
                autoComplete="one-time-code"
                onChange={(e) => setInputValue(e.target.value)}
-               className={`h-11 md:h-12 py-4 px-1 w-[22rem] lg:w-[14rem] bg-white/60 md:bg-white dark:bg-primary-300/18 md:dark:bg-primary-300/18 border border-quaternary dark:border-transparent rounded-full text-xl md:text-2xl font-medium outline-none transition-bg_border md:hidden ${
+               className={`h-11 md:h-12 py-4 px-1 w-[22rem] lg:w-[14rem] bg-white dark:bg-primary-300/18 md:dark:bg-primary-300/18 border border-tertiary shadow-2xs dark:border-transparent rounded-full text-xl md:text-2xl font-medium outline-none transition-bg_border md:hidden ${
                   open && 'rounded-l-none border-l-transparent'
                } ${
                   isArchive
