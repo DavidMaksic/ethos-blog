@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { Link } from '@/src/i18n/navigation';
 import RemoteImage from '@/src/ui/image/remote-image';
 
+// TODO: Load author image smoothly in article
+
 function MainArticle({ article }) {
    const t = useTranslations('HomePage');
    const locale = useLocale();
@@ -22,16 +24,16 @@ function MainArticle({ article }) {
 
             <Link
                href={`/${article.slug}`}
-               className="self-start md:self-center mt-7 2xl:mt-5 md:mt-5 xs:mt-3 rounded-full bg-gradient-to-r from-accent-300/80 to-accent-600/70 hover:from-transparent hover:to-transparent border-2 border-transparent hover:border-accent/80 shadow-btn hover:shadow-none dark:shadow-none transition-[box-shadow,border,--tw-gradient-from,--tw-gradient-to] duration-300 bg-origin-border group"
+               className="self-start md:self-center mt-7 2xl:mt-5 md:mt-5 xs:mt-3 rounded-full bg-gradient-to-r from-accent-300/80 to-accent-600/70 hover:from-transparent hover:to-transparent border-2 border-transparent hover:border-accent/80 shadow-link-btn hover:shadow-none dark:shadow-none transition-[box-shadow,border,--tw-gradient-from,--tw-gradient-to] duration-300 bg-origin-border group"
             >
                <span className="sr-only">{`Read more about ${article.title}`}</span>
-               <span
+               <button
                   className={`flex articles-center gap-5 text-4xl 2xl:text-[1.8rem] md:text-[2rem] sm:text-[1.8rem] xs:text-[1.9rem] pl-8 2xl:pl-5 md:pl-6 xs:pl-5 pr-9 2xl:pr-6 md:pr-6.5 xs:pr-6 py-3.5 2xl:py-3 lg:py-2.5 md:py-3.5 xs:py-2.5 text-white group-hover:text-accent group-hover:drop-shadow-xs dark:group-hover:text-accent/90 transition-[color] duration-300 cursor-pointer ${
                      locale === 'en' && 'font-logo'
                   } ${locale === 'sr' && 'font-logo-sr'}`}
                >
                   {t('read-btn')}
-               </span>
+               </button>
             </Link>
          </div>
 

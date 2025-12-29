@@ -41,16 +41,12 @@ function Search({ isArchive = false }) {
 
    // - Update URL param only when debounced input changes
    useEffect(() => {
-      const currentValue = searchParams.get('search') || '';
-      const trimmedInput = debouncedInput?.trim() || '';
+      const trimmed = debouncedInput?.trim() || '';
+      const current = searchParams.get('search') || '';
 
-      if (trimmedInput !== currentValue) {
-         if (trimmedInput) {
-            handler('search', trimmedInput);
-         } else {
-            handler('search', null);
-         }
-      }
+      if (trimmed === current) return;
+
+      handler('search', trimmed || null);
    }, [debouncedInput, handler, searchParams]);
 
    // - Toggle open on Enter key
@@ -68,16 +64,16 @@ function Search({ isArchive = false }) {
    }, []);
 
    return (
-      <div className="flex items-center">
+      <div className="flex items-center z-10">
          <label htmlFor="search">
             <CgSearch
-               className={`size-11 md:size-12 text-accent-600/85 dark:text-accent-200/90 p-2 pt-2.5 pr-2.5 bg-white dark:bg-primary-300/18 md:dark:bg-primary-300/18 shadow-2xs border border-tertiary dark:border-transparent rounded-full transition-bg_border cursor-pointer md:hidden ${
+               className={`md:hidden size-11 text-accent-600/85 dark:text-accent-200/90 p-2 pt-2.5 pr-2.5 bg-white dark:bg-primary-300/18 shadow-2xs border border-tertiary dark:border-transparent rounded-full transition-bg_border cursor-pointer ${
                   open && 'rounded-r-none border-r-transparent'
                }`}
                onClick={() => setOpen((isOpen) => !isOpen)}
             />
 
-            <CgSearch className="size-11 md:size-12 text-accent-600/85 dark:text-accent-200/90 p-2 pt-2.5 pr-2.5 bg-white/60 md:bg-white dark:bg-primary-300/18 md:dark:bg-primary-300/18 border border-quaternary dark:border-transparent rounded-full transition-bg_border cursor-pointer rounded-r-none border-r-transparent hidden md:block" />
+            <CgSearch className="hidden md:block size-12 text-accent-600/85 dark:text-accent-200/90 p-2 pt-2.5 pr-2.5 bg-white dark:bg-primary-300/18 shadow-2xs border border-tertiary dark:border-transparent rounded-full transition-bg_border cursor-pointer rounded-r-none border-r-transparent" />
          </label>
 
          {open && (
@@ -89,7 +85,7 @@ function Search({ isArchive = false }) {
                placeholder={t('Search-placeholder')}
                autoComplete="one-time-code"
                onChange={(e) => setInputValue(e.target.value)}
-               className={`h-11 md:h-12 py-4 px-1 w-[22rem] lg:w-[14rem] bg-white dark:bg-primary-300/18 md:dark:bg-primary-300/18 border border-tertiary shadow-2xs dark:border-transparent rounded-full text-xl md:text-2xl font-medium outline-none transition-bg_border md:hidden ${
+               className={`md:hidden h-11 py-4 px-1 w-[22rem] lg:w-[14rem] bg-white dark:bg-primary-300/18 shadow-2xs border border-tertiary dark:border-transparent rounded-full text-xl font-medium outline-none transition-bg_border ${
                   open && 'rounded-l-none border-l-transparent'
                } ${
                   isArchive
@@ -107,7 +103,7 @@ function Search({ isArchive = false }) {
             placeholder={t('Search-placeholder')}
             autoComplete="one-time-code"
             onChange={(e) => setInputValue(e.target.value)}
-            className={`h-12 py-4 px-1 bg-white/60 md:bg-white dark:bg-primary-300/18 md:dark:bg-primary-300/18 border border-quaternary dark:border-transparent rounded-full text-2xl font-medium outline-none transition-bg_border rounded-l-none border-l-transparent hidden md:block ${
+            className={`hidden md:block h-12 py-4 px-1 bg-white dark:bg-primary-300/18 shadow-2xs border border-tertiary dark:border-transparent rounded-full text-2xl font-medium outline-none transition-bg_border rounded-l-none border-l-transparent ${
                locale === 'en' ? 'w-[14rem]' : 'w-[12.5rem]'
             } ${isArchive ? `w-[10.5rem]` : 'w-[7rem]'}`}
          />

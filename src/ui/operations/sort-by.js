@@ -29,7 +29,7 @@ function SortBy({ options, isBookmarks = false }) {
    const handler = useSetParams();
 
    return (
-      <div className="flex items-center gap-2.5 select-none md:text-2xl">
+      <div className="flex items-center gap-2.5 select-none md:text-2xl z-10">
          <TbArrowsSort className="size-5 text-accent/80 dark:text-accent-200/90" />
 
          <div
