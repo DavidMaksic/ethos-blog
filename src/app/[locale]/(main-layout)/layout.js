@@ -8,8 +8,8 @@ import {
    Parisienne,
 } from 'next/font/google';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
-import { LanguageProvider } from '@/src/context/language-context';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { LanguageProvider } from '@/src/context/language-context';
 import { SessionProvider } from 'next-auth/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
@@ -106,8 +106,6 @@ export async function generateMetadata({ params }) {
       },
    };
 }
-
-// TODO: Animate entry for article options
 
 export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));

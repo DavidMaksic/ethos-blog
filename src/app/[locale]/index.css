@@ -124,7 +124,7 @@
    --shadow-menu-dark: 0 0 40px 0px #0c111b;
    --shadow-btn: 0 0.2rem 0.5rem #cbd5e1;
    --shadow-toast-btn: 0 0 40px 0px #e5e7eb;
-   --shadow-link-btn: 0 0 1rem var(--color-accent-200);
+   --shadow-link-btn: 0 0 1.05rem var(--color-accent-200);
    --shadow-link-btn-dark: 0 0 1rem var(--color-accent-900);
    --shadow-delete-btn: 0 0 1rem var(--color-red-100);
    --shadow-category: 0 0.2rem 1rem var(--color-accent-50);

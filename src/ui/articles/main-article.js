@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react';
 import { Link } from '@/src/i18n/navigation';
 import RemoteImage from '@/src/ui/image/remote-image';
 
-// TODO: Load author image smoothly in article
-
 function MainArticle({ article }) {
    const t = useTranslations('HomePage');
    const locale = useLocale();

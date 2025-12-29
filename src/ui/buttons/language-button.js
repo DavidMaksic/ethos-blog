@@ -29,32 +29,35 @@ function LanguageButton() {
    }
 
    return (
-      <div
-         className="md:hidden bg-none border-none p-2 rounded-xl transition-200 hover:bg-primary-200/40 dark:hover:bg-primary-300/30 [&_svg]:size-6 [&_svg]:text-accent cursor-pointer select-none"
-         role="button"
-         onClick={(e) => {
-            e.stopPropagation();
-            e.nativeEvent.stopImmediatePropagation();
-            setOpen((isOpen) => !isOpen);
-         }}
-      >
-         <div className="relative size-7 sm:size-[2.05rem]! rounded-full border border-primary-300 transition-200">
-            <Image
-               className={`transition-[opacity] ${
-                  loadedMain ? 'opacity-80 dark:opacity-70' : 'opacity-0'
-               }`}
-               src={language.flag}
-               alt="Serbian flag"
-               onLoadingComplete={() => setLoadedMain(true)}
-               unoptimized
-               priority
-               fill
-            />
+      <div className="relative md:hidden">
+         <div
+            className="bg-none border-none p-2 rounded-xl transition-200 hover:bg-primary-200/40 dark:hover:bg-primary-300/30 [&_svg]:size-6 [&_svg]:text-accent cursor-pointer select-none"
+            role="button"
+            onClick={(e) => {
+               e.stopPropagation();
+               e.nativeEvent.stopImmediatePropagation();
+               setOpen((isOpen) => !isOpen);
+            }}
+         >
+            <div className="relative size-7 sm:size-[2.05rem]! rounded-full border border-primary-300 transition-200">
+               <Image
+                  className={`transition-[opacity] ${
+                     loadedMain ? 'opacity-80 dark:opacity-70' : 'opacity-0'
+                  }`}
+                  src={language.flag}
+                  alt="Language flag"
+                  onLoad={() => setLoadedMain(true)}
+                  unoptimized
+                  priority
+                  fill
+               />
+            </div>
          </div>
+
          <AnimatePresence>
             {open && (
                <motion.ul
-                  className="absolute xl:right-8 z-10 space-y-1 p-1 mt-3 min-w-[10rem] md:min-w-[12rem] text-2xl md:text-3xl rounded-2xl bg-white dark:bg-primary-300/20 backdrop-blur-2xl border border-quaternary dark:border-primary-300/25 shadow-lg overflow-auto cursor-pointer transition-bg_border"
+                  className="fixed top-18 xl:right-8 z-10 space-y-1 p-1 mt-3 min-w-[10rem] md:min-w-[12rem] text-2xl md:text-3xl rounded-2xl bg-white dark:bg-primary-300/20 backdrop-blur-2xl border border-quaternary dark:border-primary-300/25 shadow-lg overflow-auto cursor-pointer transition-bg_border"
                   ref={ref}
                   onClick={() => setOpen(false)}
                   initial={{ opacity: 0, y: -8, scale: 0.97 }}
@@ -81,7 +84,7 @@ function LanguageButton() {
                               }`}
                               src={item.flag}
                               alt={item.lang}
-                              onLoadingComplete={() => setLoaded(true)}
+                              onLoad={() => setLoaded(true)}
                               unoptimized
                               priority
                               fill

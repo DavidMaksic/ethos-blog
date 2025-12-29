@@ -29,7 +29,7 @@ function MainArticles({ articles }) {
             dynamicBullets: true,
          }}
          modules={[Autoplay, Pagination]}
-         className="mySwiper size-full pl-1.5! md:px-0!"
+         className="mySwiper size-full pl-3.5! md:px-0!"
       >
          {locale === 'en'
             ? englishArticles?.map((item) => (
