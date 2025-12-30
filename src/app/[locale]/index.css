@@ -276,6 +276,10 @@
       transition: background-color 0.2s, color 0.2s, border 0.2s;
    }
 
+   .transition-options {
+      transition: background-color 0.2s, border 0.2s, box-shadow 0.2s !important;
+   }
+
    .underlined-nav {
       text-decoration: underline;
       text-decoration-color: transparent;

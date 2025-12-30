@@ -1,6 +1,8 @@
 import { useLocale, useTranslations } from 'next-intl';
+import { TYPE_STYLES } from '@/src/utils/config';
 import { useAuth } from '@/src/context/auth-context';
 import { motion } from 'motion/react';
+import clsx from 'clsx';
 
 function ArticleOptionItem({
    isBookmarked,
@@ -16,81 +18,53 @@ function ArticleOptionItem({
    const locale = useLocale();
    const { loading } = useAuth();
 
+   const isActive =
+      (type === 'like' && isLiked) ||
+      (type === 'bookmark' && isBookmarked) ||
+      (type === 'comment' && (hasCommented || hasReplied));
+
+   const styles = TYPE_STYLES[type] ?? {};
+   const isDisabled = type !== 'link' && loading;
+
    return (
       <motion.div
          whileTap={{ scale: 0.9 }}
          transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-         className={`grid grid-rows-[1fr_0.1fr] justify-items-center items-center sm:gap-1.5 will-change-transform border border-primary-300/70 dark:border-quaternary px-6 md:px-8! sm:px-0! py-4 md:py-6.5 sm:py-5! rounded-3xl hover:bg-white dark:hover:bg-primary-300/30 cursor-pointer transition-bg_border group ${
-            locale === 'en' && 'px-8 md:px-10!'
-         } ${
-            type === 'like' &&
-            'hover:border-red-400/50! dark:hover:border-red-400/20! hover:bg-red-400/5!'
-         } ${
-            type === 'comment' &&
-            'hover:border-amber-400/80! dark:hover:border-amber-400/20! hover:bg-amber-400/5!'
-         } ${
-            type === 'bookmark' &&
-            'hover:border-cyan-400/70! dark:hover:border-cyan-400/20! hover:bg-cyan-400/5!'
-         } ${
-            type === 'link' &&
-            'hover:bg-secondary! dark:hover:bg-primary-400/10!'
-         } ${
-            isLiked &&
-            'border-red-400/20! dark:border-red-400/10! bg-red-400/5!'
-         } ${
-            isBookmarked &&
-            'border-cyan-400/30! dark:border-cyan-400/10! bg-cyan-400/5!'
-         } ${
-            hasCommented &&
-            'border-amber-400/40! dark:border-amber-400/10! bg-amber-400/5!'
-         } ${
-            hasReplied &&
-            'border-amber-400/40! dark:border-amber-400/10! bg-amber-400/5!'
-         } ${type !== 'link' && loading ? 'pointer-events-none' : ''}`}
          onClick={handler}
+         className={clsx(
+            'grid grid-rows-[1fr_0.1fr] justify-items-center items-center',
+            'border border-primary-300/70 dark:border-quaternary rounded-3xl',
+            'dark:hover:shadow-none! cursor-pointer group transition-options will-change-transform',
+            'px-6 py-4 md:py-6.5 sm:py-5!',
+            locale === 'en' && 'px-8 md:px-10!',
+            styles.hover,
+            isActive && styles.activeBorder,
+            isDisabled && 'pointer-events-none'
+         )}
       >
          {children}
-         <span className="text-xl md:text-[1.4rem] md:font-semibold text-primary-400 select-none">
+
+         <span className="text-xl md:text-[1.4rem] font-medium md:font-semibold text-primary-400 select-none">
             {type === 'link' ? (
                <span className="uppercase text-base font-secondary">
                   {t('share')}
                </span>
             ) : count ? (
                <span
-                  className={`transition-color font-secondary tabular-nums ${
-                     isLiked && 'text-red-600/55 dark:text-red-300/80'
-                  } ${
-                     isBookmarked && 'text-cyan-600/80 dark:text-cyan-300/70'
-                  } ${
-                     hasCommented && 'text-amber-600/80 dark:text-amber-300/70'
-                  } ${
-                     hasReplied && 'text-amber-600/80 dark:text-amber-300/70'
-                  }  ${
-                     type === 'like' &&
-                     'group-hover:text-red-600/55 dark:group-hover:text-red-300/80'
-                  }  ${
-                     type === 'comment' &&
-                     'group-hover:text-amber-600/80 dark:group-hover:text-amber-300/70'
-                  } ${
-                     type === 'bookmark' &&
-                     'group-hover:text-cyan-600/80 dark:group-hover:text-cyan-300/70'
-                  }`}
+                  className={clsx(
+                     'font-secondary tabular-nums transition-color',
+                     isActive && styles.text,
+                     styles.hoverText
+                  )}
                >
                   {count}
                </span>
             ) : (
                <span
-                  className={`text-base font-sans font-bold transition-200 ${
-                     type === 'like' &&
-                     'group-hover:text-red-600/55 dark:group-hover:text-red-300/80'
-                  } ${
-                     type === 'comment' &&
-                     'group-hover:text-amber-600/80 dark:group-hover:text-amber-300/70'
-                  }
-                  ${
-                     type === 'bookmark' &&
-                     'group-hover:text-cyan-600/80 dark:group-hover:text-cyan-300/70'
-                  }`}
+                  className={clsx(
+                     'text-base font-sans font-bold transition-200',
+                     styles.hoverText
+                  )}
                >
                   --
                </span>
