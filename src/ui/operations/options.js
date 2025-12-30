@@ -86,17 +86,22 @@ function Options() {
          <AnimatePresence>
             {openMenu && (
                <motion.ul
-                  className={`fixed bottom-32 2xl:bottom-30 lg:bottom-30.5 md:bottom-33 right-24 lg:right-15 md:right-9 px-1 md:px-2 flex flex-col items-center bg-white lg:bg-white dark:bg-transparent lg:dark:bg-primary/40 md:dark:bg-primary-200/80 backdrop-blur-3xl border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/25 rounded-3xl transition [&_svg]:cursor-pointer box-shadow md:shadow-menu transition-border z-20 ${
+                  className={`fixed bottom-32 2xl:bottom-30 lg:bottom-30.5 md:bottom-33 right-24 lg:right-15 md:right-9 px-1 md:px-2 flex flex-col items-center bg-white lg:bg-white dark:bg-transparent lg:dark:bg-primary/40 md:dark:bg-primary-200/80 backdrop-blur-3xl border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/25 rounded-3xl [&_svg]:cursor-pointer box-shadow md:shadow-menu will-change-transform z-20 ${
                      openTable
                         ? 'md:dark:shadow-none lg:dark:bg-primary/90!'
                         : 'md:dark:shadow-menu-dark'
                   }`}
                   ref={ref}
                   key="options-menu"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.06 }}
+                  initial={{ opacity: 0, y: 8, scale: 0.97 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 8, scale: 0.97 }}
+                  transition={{
+                     type: 'spring',
+                     stiffness: 500,
+                     damping: 30,
+                     duration: 0.12,
+                  }}
                >
                   <FiChevronUp
                      className="py-3 size-13.5 md:size-16 stroke-[1.8px] md:stroke-[1.6px] hover:bg-primary-100/80 dark:bg-transparent dark:hover:bg-primary-400/10 4k:rounded-t-[36px]! 2k:rounded-t-[26px] rounded-t-[20px] mt-1 rounded-2xl transition-bg"
@@ -151,13 +156,18 @@ function Options() {
                   <AnimatePresence>
                      {openTable && (
                         <motion.div
-                           className="absolute bottom-0 font-secondary max-h-[32rem] md:max-h-[37rem] xs:max-h-[41rem] short:max-h-[60rem] shorter:max-h-[16.5rem] right-20 md:right-24.5 flex flex-col py-4 pb-2 xs:pb-4 px-2 md:px-2.5 border border-primary-300/50 lg:border-primary-300/80 dark:border-tertiary lg:dark:border-primary-300/35 rounded-2xl xs:rounded-3xl bg-white dark:bg-transparent 2xl:dark:bg-primary lg:dark:bg-primary/90 backdrop-blur-3xl overflow-y-auto scrollbar shadow-dashboard 2xl:shadow-none md:shadow-menu dark:shadow-none md:dark:shadow-none md:text-2xl"
+                           className="absolute bottom-0 font-secondary max-h-[32rem] md:max-h-[37rem] xs:max-h-[41rem] short:max-h-[60rem] shorter:max-h-[16.5rem] right-20 md:right-24.5 flex flex-col py-4 pb-2 xs:pb-4 px-2 md:px-2.5 border border-primary-300/50 lg:border-primary-300/80 dark:border-primary-300/35 lg:dark:border-primary-300/35 rounded-2xl xs:rounded-3xl bg-white dark:bg-transparent 2xl:dark:bg-primary lg:dark:bg-primary/90 backdrop-blur-3xl overflow-y-auto scrollbar shadow-dashboard 2xl:shadow-none md:shadow-menu dark:shadow-none md:dark:shadow-none md:text-2xl"
                            ref={tableRef}
                            key="table-of-contents"
-                           initial={{ opacity: 0 }}
-                           animate={{ opacity: 1 }}
-                           exit={{ opacity: 0 }}
-                           transition={{ duration: 0.06 }}
+                           initial={{ opacity: 0, x: 8, scale: 0.97 }}
+                           animate={{ opacity: 1, x: 0, scale: 1 }}
+                           exit={{ opacity: 0, x: 8, scale: 0.97 }}
+                           transition={{
+                              type: 'spring',
+                              stiffness: 500,
+                              damping: 30,
+                              duration: 0.12,
+                           }}
                         >
                            <span className="pb-3 mb-2 mx-6 md:mx-8 md:pt-0.5 border-b border-b-primary-400/25 text-primary-400 select-none">
                               {t('toc')}
