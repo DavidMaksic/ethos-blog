@@ -6,8 +6,6 @@
    --breakpoint-*: initial;
 }
 
-@custom-variant 4k (@media (min-width: 3840px));
-@custom-variant 2k (@media (min-width: 2560px));
 @custom-variant 2xl (@media (max-width: 1580px));
 @custom-variant xl (@media (max-width: 1290px));
 @custom-variant lg (@media (max-width: 1024px));
@@ -20,18 +18,6 @@
 
 @custom-variant short (@media (max-height: 470px));
 @custom-variant shorter (@media (max-height: 390px));
-
-@media (min-width: 2560px) {
-   html {
-      font-size: 22px !important;
-   }
-}
-
-@media (min-width: 3840px) {
-   html {
-      font-size: 32px !important;
-   }
-}
 
 @media (max-width: 2000px) {
    html {
@@ -340,86 +326,6 @@
          transparent 50%
       ),
       radial-gradient(circle at bottom, var(--color-primary), transparent);
-}
-
-@media (min-width: 2560px) {
-   .background-gradient {
-      background-image: radial-gradient(
-            4400px 2500px at 900px 103%,
-            #ffeab5ff 0px,
-            transparent 25%
-         ),
-         radial-gradient(
-            4400px 2500px at 1400px 100%,
-            #e3abffff 0px,
-            transparent 25%
-         ),
-         radial-gradient(circle at bottom, #f5f5f5, transparent);
-   }
-
-   [data-theme='dark'] .background-gradient {
-      background-image: radial-gradient(
-            4100px 1600px at -350px -340px,
-            #3b2e1aff 0px,
-            transparent 78%
-         ),
-         radial-gradient(
-            3000px 2000px at 3200px 1400px,
-            #28202bff 0px,
-            transparent 55%
-         ),
-         radial-gradient(
-            1700px 1300px at 800px 100%,
-            #21506b50 0px,
-            transparent 50%
-         ),
-         radial-gradient(
-            1700px 1300px at 1600px 100%,
-            #56409c5b 0px,
-            transparent 50%
-         ),
-         radial-gradient(circle at bottom, var(--color-primary), transparent);
-   }
-}
-
-@media (min-width: 3840px) {
-   .background-gradient {
-      background-image: radial-gradient(
-            7000px 4200px at 1400px 100%,
-            #ffeab5ff 0px,
-            transparent 25%
-         ),
-         radial-gradient(
-            7000px 4200px at 2200px 100%,
-            #e3abffff 0px,
-            transparent 25%
-         ),
-         radial-gradient(circle at bottom, #f5f5f5, transparent);
-   }
-
-   [data-theme='dark'] .background-gradient {
-      background-image: radial-gradient(
-            5500px 1900px at -1250px -240px,
-            #3b2e1aff 0px,
-            transparent 78%
-         ),
-         radial-gradient(
-            3100px 2400px at 4200px 2000px,
-            #28202bff 0px,
-            transparent 55%
-         ),
-         radial-gradient(
-            2800px 1800px at 1500px 100%,
-            #21506b50 0px,
-            transparent 50%
-         ),
-         radial-gradient(
-            3200px 1800px at 2151px 100%,
-            #56409c5b 0px,
-            transparent 50%
-         ),
-         radial-gradient(circle at bottom, var(--color-primary), transparent);
-   }
 }
 
 @media (max-width: 1580px) {
@@ -990,19 +896,6 @@ strong {
    opacity: 80% !important;
 }
 
-@media (min-width: 2560px) {
-   [data-theme='dark'] [data-content-type='quote'] blockquote {
-      border-left: 4px solid #b49269a9 !important;
-      padding: 0px 48px !important;
-   }
-}
-
-@media (min-width: 3840px) {
-   [data-theme='dark'] [data-content-type='quote'] blockquote {
-      padding: 0px 60px !important;
-   }
-}
-
 .bn-block-content.ProseMirror-selectednode > *,
 .ProseMirror-selectednode > .bn-block-content > * {
    outline: none !important;
@@ -1190,18 +1083,6 @@ h3 {
 }
 
 /* Media queries */
-
-@media (min-width: 2560px) {
-   .bn-inline-content:empty {
-      height: 2rem !important;
-   }
-}
-
-@media (min-width: 3840px) {
-   .bn-inline-content:empty {
-      height: 2.5rem !important;
-   }
-}
 
 @media (max-width: 1024px) {
    .inter-padding {

@@ -104,7 +104,7 @@ function Options() {
                   }}
                >
                   <FiChevronUp
-                     className="py-3 size-13.5 md:size-16 stroke-[1.8px] md:stroke-[1.6px] hover:bg-primary-100/80 dark:bg-transparent dark:hover:bg-primary-400/10 4k:rounded-t-[36px]! 2k:rounded-t-[26px] rounded-t-[20px] mt-1 rounded-2xl transition-bg"
+                     className="py-3 size-13.5 md:size-16 stroke-[1.8px] md:stroke-[1.6px] hover:bg-primary-100/80 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-t-[20px] mt-1 rounded-2xl transition-bg"
                      onClick={() => {
                         setTopScroll(true);
                         setOpenTable(false);
@@ -113,7 +113,7 @@ function Options() {
                   />
 
                   <FaRegComment
-                     className="py-3.5 4k:px-[30px]! 2k:px-[21px] px-[15.5px] 2xl:px-4 xs:px-4 2k:size-13.5 size-[52px] 2xl:size-13.5 lg:size-13.5 md:size-15 sm:size-15 xs:size-15 text-primary-500 dark:text-gray-400/90 hover:bg-primary-100/80 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-2xl transition-bg mb-1"
+                     className="py-3.5 px-[15.5px] 2xl:px-4 xs:px-4 size-[52px] 2xl:size-13.5 lg:size-13.5 md:size-15 sm:size-15 xs:size-15 text-primary-500 dark:text-gray-400/90 hover:bg-primary-100/80 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-2xl transition-bg mb-1"
                      onClick={(e) => {
                         e.preventDefault();
                         document
@@ -156,7 +156,7 @@ function Options() {
                   <AnimatePresence>
                      {openTable && (
                         <motion.div
-                           className="absolute bottom-0 font-secondary max-h-[32rem] md:max-h-[37rem] xs:max-h-[41rem] short:max-h-[60rem] shorter:max-h-[16.5rem] right-20 md:right-24.5 flex flex-col py-4 pb-2 xs:pb-4 px-2 md:px-2.5 border border-primary-300/50 lg:border-primary-300/80 dark:border-primary-300/35 lg:dark:border-primary-300/35 rounded-2xl xs:rounded-3xl bg-white dark:bg-transparent 2xl:dark:bg-primary lg:dark:bg-primary/90 backdrop-blur-3xl overflow-y-auto scrollbar shadow-dashboard 2xl:shadow-none md:shadow-menu dark:shadow-none md:dark:shadow-none md:text-2xl"
+                           className="absolute bottom-0 font-secondary max-h-[32rem] md:max-h-[37rem] xs:max-h-[41rem] short:max-h-[60rem] shorter:max-h-[16.5rem] right-20 md:right-24.5 flex flex-col py-4 pb-2 xs:pb-4 px-2 md:px-2.5 border border-primary-300/50 lg:border-primary-300/80 dark:border-primary-300/35 lg:dark:border-primary-300/35 rounded-2xl xs:rounded-3xl bg-white dark:bg-transparent 2xl:dark:bg-primary lg:dark:bg-primary/90 backdrop-blur-3xl overflow-y-auto scrollbar shadow-dashboard 2xl:shadow-none md:shadow-menu dark:shadow-none md:dark:shadow-none md:text-2xl will-change-transform"
                            ref={tableRef}
                            key="table-of-contents"
                            initial={{ opacity: 0, x: 8, scale: 0.97 }}
@@ -206,7 +206,7 @@ function Options() {
                      )}
 
                      <FiChevronDown
-                        className="py-3 size-13.5 md:size-16 stroke-[1.8px] md:stroke-[1.6px] hover:bg-primary-100/80 dark:bg-transparent dark:hover:bg-primary-400/10 4k:rounded-b-[36px]! 2k:rounded-b-[26px] rounded-b-[20px] mt-0.5 mb-1 rounded-2xl transition-bg"
+                        className="py-3 size-13.5 md:size-16 stroke-[1.8px] md:stroke-[1.6px] hover:bg-primary-100/80 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-b-[20px] mt-0.5 mb-1 rounded-2xl transition-bg"
                         onClick={() => {
                            setBottomScroll(true);
                            setOpenTable(false);
