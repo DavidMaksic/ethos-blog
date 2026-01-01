@@ -32,11 +32,11 @@ function ArticleOptionItem({
          transition={{ type: 'spring', stiffness: 500, damping: 30 }}
          onClick={handler}
          className={clsx(
-            'grid grid-rows-[1fr_0.1fr] justify-items-center items-center',
+            'flex flex-col items-center justify-center md:gap-1.5 sm:gap-1',
             'border border-primary-300/70 dark:border-quaternary rounded-3xl',
-            'dark:hover:shadow-none! cursor-pointer group transition-options will-change-transform',
-            'px-6 py-4 md:py-6.5 sm:py-5!',
-            locale === 'en' && 'px-8 md:px-10!',
+            'dark:hover:shadow-none! cursor-pointer group transition-options will-change-transform md:min-h-34',
+            'px-6 py-4 md:py-5 md:px-0',
+            locale === 'en' && 'px-8!',
             styles.hover,
             isActive && styles.activeBorder,
             isDisabled && 'pointer-events-none'
@@ -62,7 +62,7 @@ function ArticleOptionItem({
             ) : (
                <span
                   className={clsx(
-                     'text-base font-sans font-bold transition-200',
+                     'text-base font-sans font-bold md:text-2xl sm:text-lg transition-200',
                      styles.hoverText
                   )}
                >

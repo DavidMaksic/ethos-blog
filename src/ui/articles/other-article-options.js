@@ -110,7 +110,7 @@ function OtherArticleOptions({ article, comments, bookmarks, commentsNum }) {
    }, [likeCount]);
 
    return (
-      <div className="grid grid-rows-4 sm:grid-rows-1 sm:grid-cols-4 gap-3">
+      <div className="grid grid-rows-4 md:grid-rows-1 md:grid-cols-4 gap-3">
          <ArticleOptionItem
             type="like"
             handler={handleLike}

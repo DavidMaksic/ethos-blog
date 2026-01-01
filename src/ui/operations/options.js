@@ -93,9 +93,9 @@ function Options() {
                   }`}
                   ref={ref}
                   key="options-menu"
-                  initial={{ opacity: 0, y: 4, scale: 0.97 }}
+                  initial={{ opacity: 0, y: 3, scale: 0.97 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 4, scale: 0.97 }}
+                  exit={{ opacity: 0, y: 3, scale: 0.97 }}
                   transition={{
                      type: 'spring',
                      stiffness: 500,

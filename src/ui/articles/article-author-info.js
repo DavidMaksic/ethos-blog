@@ -7,10 +7,10 @@ function ArticleAuthorInfo({ author, date, children }) {
    const locale = useLocale();
 
    return (
-      <div className="flex sm:flex-col gap-6 mt-12">
+      <div className="flex md:flex-col gap-6 mt-12">
          {children}
 
-         <div className="size-full flex flex-col items-center self-center gap-4 bg-secondary dark:bg-primary-200 xs:dark:bg-primary-300/15 rounded-3xl px-18 2xl:px-16! md:px-12! sm:px-11! xs:px-8! py-12 pb-14 text-3xl box-shadow transition-bg_border">
+         <div className="size-full flex flex-col items-center self-center gap-4 bg-secondary dark:bg-primary-200 xs:dark:bg-primary-300/15 rounded-3xl px-18 2xl:px-16! sm:px-11! xs:px-8! py-12 pb-14 text-3xl box-shadow transition-bg_border">
             <div className="relative size-28 md:size-30 select-none">
                {author?.profile_image ? (
                   <UserImage url={author.profile_image} />
