@@ -32,7 +32,7 @@ function ArticleOptionItem({
          transition={{ type: 'spring', stiffness: 500, damping: 30 }}
          onClick={handler}
          className={clsx(
-            'flex flex-col items-center justify-center md:gap-1.5 sm:gap-1',
+            'flex flex-col items-center justify-center gap-0.5 md:gap-1.5 sm:gap-1',
             'border border-primary-300/70 dark:border-quaternary rounded-3xl',
             'dark:hover:shadow-none! cursor-pointer group transition-options will-change-transform md:min-h-34',
             'px-6 py-4 md:py-5 md:px-0',
