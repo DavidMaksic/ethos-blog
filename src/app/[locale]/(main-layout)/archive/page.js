@@ -58,7 +58,7 @@ async function Page({ params }) {
       <div className="grid grid-cols-[2fr_1fr] md:grid-cols-1 gap-10 xs:gap-14 2xl:mt-3">
          <h1 className="sr-only">{t('H1.archive-page')}</h1>
 
-         <section className="space-y-7 lg:space-y-5 md:order-2">
+         <section className="space-y-7 lg:space-y-5 md:order-2 md:min-h-screen">
             <div className="flex justify-between">
                <ArchiveHeading />
 

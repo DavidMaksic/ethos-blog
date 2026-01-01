@@ -26,7 +26,7 @@ function PageAnimation({ children }) {
 
    return (
       <motion.main
-         className="py-12 2xl:pt-4 md:pt-5 w-7xl 2xl:w-full mx-auto"
+         className="py-12 2xl:pt-4 md:pt-5 w-7xl min-h-[95vh] 2xl:w-full mx-auto"
          key={pathname}
          initial={isFirstLoad ? false : { opacity: 0 }}
          animate={{ opacity: 1 }}

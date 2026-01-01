@@ -116,7 +116,7 @@ function Articles({ isArchive = false, articles, categories, style }) {
                ))
             ) : (
                <motion.span
-                  className="justify-self-center text-center mt-25 2xl:mt-29 lg:mt-27 md:mt-34 sm:mt-44 sm:mb-94 xs:mb-[26.3rem] 2xs:mb-[23.6rem] text-primary-500/80 dark:text-primary-400 text-3xl md:text-4xl border border-quaternary dark:border-primary-300/15 rounded-2xl sm:rounded-3xl py-8 sm:py-12 px-12 bg-white dark:bg-primary-300/15 box-shadow"
+                  className="justify-self-center self-center text-center mt-55 2xl:mt-50 lg:mt-45 md:mt-34 sm:mt-30 text-primary-500/80 dark:text-primary-400 text-3xl md:text-4xl border border-quaternary dark:border-primary-300/15 rounded-2xl sm:rounded-3xl py-8 sm:py-12 px-12 bg-white dark:bg-primary-300/15 box-shadow sm:w-[70vw] 2xs:w-[80vw]"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
