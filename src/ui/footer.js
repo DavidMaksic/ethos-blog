@@ -27,6 +27,9 @@ function Footer() {
       }
    };
 
+   const startYear = 2025;
+   const currentYear = new Date().getFullYear();
+
    return (
       <footer
          className={`w-7xl 2xl:w-full rounded-4xl mb-14 self-center flex flex-col justify-center items-center gap-10 py-20 border border-tertiary dark:border-primary-300/10 text-primary-600 dark:text-primary-600/50 text-2xl bg-white/60 dark:bg-primary-100/50 ${
@@ -71,9 +74,17 @@ function Footer() {
             </Link>
          </div>
 
-         <span className="flex flex-col text-center gap-1 text-xl font-secondary opacity-90">
-            {t('HomePage.copyright')}
-         </span>
+         <div className="flex text-center gap-1 text-xl font-secondary opacity-90">
+            {t('HomePage.copyright-1')}
+            <span>
+               {'©'}
+               {startYear}
+               <span className="font-bold">−</span>
+               {currentYear}
+            </span>
+
+            {t('HomePage.copyright-2')}
+         </div>
       </footer>
    );
 }

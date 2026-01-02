@@ -10,7 +10,8 @@
       "latest": "Latest articles",
       "categories": "Categories",
       "latest-btn": "See all",
-      "copyright": "Copyright ©2025 Ethos, all rights reserved.",
+      "copyright-1": "Copyright ",
+      "copyright-2": " Ethos, all rights reserved.",
       "pages-label": "Pages"
    },
    "Article": {
