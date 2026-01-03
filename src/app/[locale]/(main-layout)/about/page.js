@@ -62,9 +62,9 @@ async function Page({ params }) {
    return (
       <>
          <h1 className="sr-only">{t('H1.about-page')}</h1>
-         <div className="grid grid-cols-10 items-stretch gap-y-2 2xl:gap-y-0 gap-x-8 2xl:gap-x-6 2xl:mt-3 py-4">
+         <div className="grid grid-cols-10 items-stretch gap-y-2 2xl:gap-y-0 gap-x-8 2xl:gap-x-6 -translate-y-5">
             <section
-               className={`space-y-6 col-span-6 md:col-span-full py-10 lg:py-8 md:pb-9 px-14 lg:px-12 md:mb-6 bg-white dark:bg-primary-300/10 border border-quaternary dark:border-primary-300/15 rounded-2xl md:rounded-3xl box-shadow`}
+               className={`space-y-6 col-span-6 md:col-span-full py-10 lg:py-8 md:pb-9 px-14 lg:px-12 md:mb-6 bg-white dark:bg-primary-300/10 border border-quaternary dark:border-primary-300/15 rounded-3xl box-shadow`}
             >
                <h2 className="text-4xl text-primary-600/75 font-bold">
                   {t('About.label')}
@@ -74,7 +74,7 @@ async function Page({ params }) {
                </p>
             </section>
 
-            <section className="space-y-1.5 col-span-4 md:col-span-7 sm:col-span-8 py-10 lg:py-8 md:pb-9 px-14 lg:px-12 bg-white dark:bg-primary-300/10 border border-quaternary dark:border-primary-300/15 rounded-2xl md:rounded-3xl box-shadow">
+            <section className="space-y-1.5 col-span-4 md:col-span-7 sm:col-span-8 py-10 lg:py-8 md:pb-9 px-14 lg:px-12 bg-white dark:bg-primary-300/10 border border-quaternary dark:border-primary-300/15 rounded-3xl box-shadow">
                <h2 className="text-4xl text-primary-600/75 font-bold">
                   {t('About.label-2')}
                </h2>

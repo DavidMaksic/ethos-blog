@@ -8,25 +8,19 @@ import { motion } from 'motion/react';
 function PageAnimation({ children }) {
    useThemeColor();
    const pathname = usePathname();
-   const isUserRoute = pathname.startsWith('/user');
-
    const [isFirstLoad, setIsFirstLoad] = useState(true);
 
    useEffect(() => {
       setIsFirstLoad(false);
    }, []);
 
-   if (isUserRoute) {
-      return (
-         <main className="py-12 2xl:pt-4 md:pt-5 w-7xl 2xl:w-full mx-auto">
-            {children}
-         </main>
-      );
-   }
+   const centerLayout = pathname === '/about';
 
    return (
       <motion.main
-         className="py-12 2xl:pt-4 md:pt-5 w-7xl min-h-[95vh] 2xl:w-full mx-auto"
+         className={`md:pt-5 w-7xl min-h-[91vh] 2xl:w-full mx-auto ${
+            centerLayout ? 'flex items-center' : 'py-[4.7dvh]'
+         }`}
          key={pathname}
          initial={isFirstLoad ? false : { opacity: 0 }}
          animate={{ opacity: 1 }}
