@@ -1,10 +1,10 @@
 'use client';
 
+import { AnimatePresence, motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { getSortedItems } from '@/src/utils/helpers';
 import { FUSE_OPTIONS } from '@/src/utils/config';
 import { useMemo } from 'react';
-import { AnimatePresence, LayoutGroup, motion } from 'motion/react';
 
 import BookmarkItem from '@/src/ui/bookmarks/bookmark-item';
 import Pagination from '@/src/ui/operations/pagination';

@@ -2,11 +2,11 @@
 
 import { applyPagination, getSortedItems } from '@/src/utils/helpers';
 import { useEffect, useMemo, useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { FUSE_OPTIONS } from '@/src/utils/config';
 import { useLanguage } from '@/src/context/language-context';
-import { motion } from 'motion/react';
 
 import ArticleItem from '@/src/ui/articles/article-item';
 import Pagination from '@/src/ui/operations/pagination';
@@ -109,23 +109,29 @@ function Articles({ isArchive = false, articles, categories, style }) {
 
    return (
       <>
-         <div className="grid grid-rows-3 sm:flex sm:flex-col gap-6 lg:gap-4 md:gap-4 sm:gap-5 md:w-full">
-            {paginatedArticles.length ? (
-               paginatedArticles.map((item) => (
-                  <ArticleItem article={item} key={item.id} style={style} />
-               ))
-            ) : (
-               <motion.span
-                  className="justify-self-center self-center text-center mt-55 2xl:mt-50 lg:mt-45 md:mt-34 sm:mt-30 text-primary-500/80 dark:text-primary-400 text-3xl md:text-4xl border border-quaternary dark:border-primary-300/15 rounded-2xl sm:rounded-3xl py-8 sm:py-12 px-12 bg-white dark:bg-primary-300/15 box-shadow sm:w-[70vw] 2xs:w-[80vw]"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-               >
-                  {t('no-articles')}
-               </motion.span>
-            )}
-         </div>
+         <motion.div
+            className="grid grid-rows-3 sm:flex sm:flex-col gap-6 lg:gap-4 md:gap-4 sm:gap-5 md:w-full"
+            layout="position"
+            transition={{ duration: 0.2 }}
+         >
+            <AnimatePresence mode="popLayout">
+               {paginatedArticles.length ? (
+                  paginatedArticles.map((item) => (
+                     <ArticleItem article={item} key={item.id} style={style} />
+                  ))
+               ) : (
+                  <motion.span
+                     className="justify-self-center self-center text-center mt-55 2xl:mt-50 lg:mt-45 md:mt-34 sm:mt-30 text-primary-500/80 dark:text-primary-400 text-3xl md:text-4xl border border-quaternary dark:border-primary-300/15 rounded-2xl sm:rounded-3xl py-8 sm:py-12 px-12 bg-white dark:bg-primary-300/15 box-shadow sm:w-[70vw] 2xs:w-[80vw]"
+                     initial={{ opacity: 0 }}
+                     animate={{ opacity: 1 }}
+                     exit={{ opacity: 0 }}
+                     transition={{ duration: 0.3 }}
+                  >
+                     {t('no-articles')}
+                  </motion.span>
+               )}
+            </AnimatePresence>
+         </motion.div>
 
          {isArchive &&
             filteredArticles.length >

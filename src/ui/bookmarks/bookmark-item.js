@@ -7,7 +7,6 @@ import { format } from 'date-fns';
 import { Link } from '@/src/i18n/navigation';
 import RemoteImage from '@/src/ui/image/remote-image';
 
-// Wrap your component with forwardRef
 const BookmarkItem = forwardRef(({ bookmark }, ref) => {
    const date = format(new Date(bookmark.created_at), 'MMM dd, yyyy');
    const category = bookmark.categories;
@@ -33,7 +32,7 @@ const BookmarkItem = forwardRef(({ bookmark }, ref) => {
          initial={{ opacity: 0, ease: 'easeOut' }}
          animate={{ opacity: 1 }}
          exit={{ opacity: 0, ease: 'easeIn' }}
-         transition={{ duration: 0.15 }}
+         transition={{ duration: 0.2 }}
          layout
       >
          <Link

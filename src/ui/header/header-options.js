@@ -4,15 +4,16 @@ import { useEffect, useState } from 'react';
 import { IoMoonOutline } from 'react-icons/io5';
 import { HiOutlineUser } from 'react-icons/hi2';
 import { LuSunMedium } from 'react-icons/lu';
+import { ImSpinner2 } from 'react-icons/im';
 import { useTheme } from 'next-themes';
 import { useAuth } from '@/src/context/auth-context';
+import { motion } from 'motion/react';
 import { Link } from '@/src/i18n/navigation';
 
 import LanguageButton from '@/src/ui/buttons/language-button';
 import HeaderButton from '@/src/ui/buttons/header-button';
 import MobileMenu from '@/src/ui/mobile-menu';
 import Image from 'next/image';
-import { ImSpinner2 } from 'react-icons/im';
 
 function HeaderOptions() {
    const [mounted, setMounted] = useState();
@@ -48,7 +49,14 @@ function HeaderOptions() {
          )}
 
          {loading ? (
-            <ImSpinner2 className="size-7! mx-[0.43rem] p-0.5 text-accent animate-spin" />
+            <motion.div
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
+               transition={{ duration: 0.2 }}
+            >
+               <ImSpinner2 className="size-7! mx-[0.43rem] p-0.5 text-accent animate-spin" />
+            </motion.div>
          ) : extendedUser ? (
             <Link
                href="/user/home"

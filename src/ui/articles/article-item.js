@@ -1,13 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { motion } from 'motion/react';
 import { format } from 'date-fns';
 import { Link } from '@/src/i18n/navigation';
 import RemoteImage from '@/src/ui/image/remote-image';
 
-function ArticleItem({ article, style }) {
+const ArticleItem = forwardRef(({ article, style }, ref) => {
    const date = format(new Date(article.created_at), 'MMM dd, yyyy');
    const category = article.categories;
 
@@ -28,9 +28,12 @@ function ArticleItem({ article, style }) {
 
    return (
       <motion.div
-         initial={{ opacity: 0 }}
+         ref={ref}
+         initial={{ opacity: 0, ease: 'easeOut' }}
          animate={{ opacity: 1 }}
-         transition={{ duration: 0.3 }}
+         exit={{ opacity: 0, ease: 'easeIn' }}
+         transition={{ duration: 0.2 }}
+         layout
       >
          <Link
             href={`/${article.slug}`}
@@ -69,6 +72,8 @@ function ArticleItem({ article, style }) {
          </Link>
       </motion.div>
    );
-}
+});
+
+ArticleItem.displayName = 'ArticleItem';
 
 export default ArticleItem;
