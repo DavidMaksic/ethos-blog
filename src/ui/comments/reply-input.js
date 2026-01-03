@@ -109,7 +109,12 @@ function ReplyInput({
                      locale === 'sr' &&
                      `py-1 pt-1.5 px-4 pr-5 right-34 md:right-33 font-logo-sr`
                   }`}
-                  onClick={() => setReplyIsOpen(false)}
+                  onClick={() => {
+                     setReplyIsOpen(false);
+                     setTimeout(() => {
+                        setText('');
+                     }, 200);
+                  }}
                >
                   {t('cancel-btn')}
                </span>

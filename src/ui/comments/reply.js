@@ -1,8 +1,8 @@
 import { useLocale, useTranslations } from 'next-intl';
+import { motion, AnimatePresence } from 'motion/react';
 import { addLiked, removeLiked } from '@/src/lib/actions';
 import { BiLike, BiSolidLike } from 'react-icons/bi';
 import { useEffect, useState } from 'react';
-import { AnimatePresence } from 'motion/react';
 import { useMediaQuery } from 'react-responsive';
 import { CommentDate } from '@/src/utils/helpers';
 import { useAuth } from '@/src/context/auth-context';
@@ -20,13 +20,13 @@ function Reply({
    article,
    commentID,
    commentLength,
-   lastItemRef,
-   setReplyClicked,
    onDelete,
    author,
+   replyInputsOpen,
+   setReplyInputsOpen,
 }) {
    const [isOpen, setIsOpen] = useState(false);
-   const [replyIsOpen, setReplyIsOpen] = useState(false);
+   const [replyIsOpenLocal, setReplyIsOpenLocal] = useState(false);
 
    const { id: articleID, slug } = article;
    const { session } = useAuth();
@@ -72,16 +72,26 @@ function Reply({
       setIsLiked(hasLiked);
    }, [hasLiked]);
 
+   const handleReplyToggle = () => {
+      setReplyIsOpenLocal((open) => !open);
+
+      // Update parent state for last reply logic
+      setReplyInputsOpen((prev) => ({
+         ...prev,
+         [reply.id]: !replyIsOpenLocal,
+      }));
+   };
+
    return (
-      <>
-         <div className="relative last:mb-12" ref={lastItemRef}>
+      <div className="last:mb-7">
+         <div className="relative">
             <div className="absolute left-10 top-1/2 w-10 h-10 -translate-x-full -translate-y-[85%] xs:-translate-y-[110%] 2xs:-translate-y-[120%] 2xl:-translate-x-[101%] 2xs:-translate-x-full">
                <div className="size-full border-l-1 2xl:border-l-2 border-b-1 2xl:border-b-2 border-primary-400/50 2xl:border-primary-400/25  dark:border-quaternary/90 2xl:dark:border-quaternary/70 rounded-bl-full" />
             </div>
 
             <div
                id={`comment-${replyID}`}
-               className="flex flex-col gap-5 xs:gap-4 bg-secondary/65 dark:bg-primary-200/49 md:dark:bg-primary-300/10 box-shadow dark:border-primary-300/10 rounded-3xl px-14 sm:px-12 xs:px-10 py-10 sm:py-8 xs:py-5.5 ml-14 mb-4 scroll-mt-28! transition duration-300"
+               className="flex flex-col gap-5 xs:gap-4 bg-secondary/65 dark:bg-primary-200/49 md:dark:bg-primary-300/10 box-shadow dark:border-primary-300/10 rounded-3xl px-14 sm:px-12 xs:px-10 py-10 sm:py-8 xs:py-5.5 ml-14 mb-5 scroll-mt-28! transition duration-300"
             >
                <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
@@ -154,8 +164,7 @@ function Reply({
                      onClick={() => {
                         if (!session) setIsOpen(true);
                         if (session) {
-                           setReplyIsOpen((isOpen) => !isOpen);
-                           setReplyClicked((isOpen) => !isOpen);
+                           handleReplyToggle();
                         }
                      }}
                   >
@@ -179,16 +188,28 @@ function Reply({
             </div>
          </div>
 
-         <div className={`mt-4 ${replyIsOpen ? 'block' : 'hidden'}`}>
+         <motion.div
+            layout
+            initial={false}
+            animate={{
+               height: replyIsOpenLocal ? 'auto' : 0,
+               opacity: replyIsOpenLocal ? 1 : 0,
+            }}
+            transition={{ duration: 0.2 }}
+            style={{ overflow: 'hidden' }}
+         >
             <ReplyInput
                slug={slug}
                articleID={articleID}
                commentID={commentID}
                commentLength={commentLength}
-               setReplyIsOpen={setReplyIsOpen}
+               setReplyIsOpen={(open) => {
+                  setReplyIsOpenLocal(open);
+                  setReplyInputsOpen((prev) => ({ ...prev, [reply.id]: open }));
+               }}
             />
-         </div>
-      </>
+         </motion.div>
+      </div>
    );
 }
 

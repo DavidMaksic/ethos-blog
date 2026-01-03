@@ -93,15 +93,10 @@ function Options() {
                   }`}
                   ref={ref}
                   key="options-menu"
-                  initial={{ opacity: 0, y: 3, scale: 0.97 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 3, scale: 0.97 }}
-                  transition={{
-                     type: 'spring',
-                     stiffness: 500,
-                     damping: 30,
-                     duration: 0.12,
-                  }}
+                  initial={{ opacity: 0, y: 3 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 3 }}
+                  transition={{ duration: 0.12 }}
                >
                   <FiChevronUp
                      className="py-3 size-13.5 md:size-16 stroke-[1.8px] md:stroke-[1.6px] hover:bg-primary-100/80 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-t-[20px] mt-1 rounded-2xl transition-bg"
