@@ -6,15 +6,14 @@ import { usePathname } from '@/src/i18n/navigation';
 import { motion } from 'motion/react';
 
 function PageAnimation({ children }) {
-   useThemeColor();
    const pathname = usePathname();
    const [isFirstLoad, setIsFirstLoad] = useState(true);
+   const centerLayout = pathname === '/about';
+   useThemeColor();
 
    useEffect(() => {
       setIsFirstLoad(false);
    }, []);
-
-   const centerLayout = pathname === '/about';
 
    return (
       <motion.main
