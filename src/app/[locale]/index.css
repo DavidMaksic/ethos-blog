@@ -225,17 +225,6 @@
       @apply border border-quaternary/70 dark:border-primary-300/15 shadow-dashboard dark:shadow-none;
    }
 
-   .reply-thread-line::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 2px;
-      background: var(--color-primary-200);
-      /* Stops the line at the last reply's mid-point */
-      height: calc(100% - 1.8rem);
-   }
-
    .styled_text {
       background-clip: text;
       -webkit-text-fill-color: transparent;

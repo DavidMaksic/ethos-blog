@@ -176,6 +176,7 @@ const Comment = forwardRef(
                      className={`flex items-center gap-2 h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-3 py-1.5 bg-primary-300/20 dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75 ${
                         likesCount === 0 && 'gap-0!'
                      }`}
+                     role="button"
                      onClick={handleLike}
                   >
                      {isLiked ? (
@@ -184,13 +185,14 @@ const Comment = forwardRef(
                         <BiLike className="size-4 md:size-6 xs:size-[1.35rem]" />
                      )}
 
-                     <span className="tracking-wide font-semibold text-base md:text-xl select-none font-secondary">
+                     <span className="tracking-wide font-semibold text-base md:text-xl select-none font-secondary tabular-nums">
                         {likesCount > 0 && likesCount}
                      </span>
                   </div>
 
                   <div
-                     className="flex items-center gap-2 h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-3 md:px-4 py-1.5 bg-primary-300/20 dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer"
+                     className="flex items-center gap-2 h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-3 md:px-4 py-1.5 bg-primary-300/20 dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75"
+                     role="button"
                      onClick={() => {
                         if (!session) setIsOpen(true);
                         if (session) setReplyIsOpen((isOpen) => !isOpen);
@@ -205,6 +207,7 @@ const Comment = forwardRef(
                   {optimisticReplies?.length ? (
                      <div
                         className="flex items-center justify-center h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-2 py-1.5 bg-primary-300/20 dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75"
+                        role="button"
                         onClick={() => setShowReplies((areShown) => !areShown)}
                      >
                         <RxChevronUp

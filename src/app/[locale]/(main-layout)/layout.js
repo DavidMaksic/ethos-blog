@@ -111,6 +111,8 @@ export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));
 }
 
+// TODO: Implement only one active reply input
+// TODO: Comment removal needs better animation
 // TODO: When a comment is deleted, dont optimistically remove it
 
 export default async function RootLayout({ children, params }) {
