@@ -12,13 +12,14 @@ import LanguageButton from '@/src/ui/buttons/language-button';
 import HeaderButton from '@/src/ui/buttons/header-button';
 import MobileMenu from '@/src/ui/mobile-menu';
 import Image from 'next/image';
+import { ImSpinner2 } from 'react-icons/im';
 
 function HeaderOptions() {
    const [mounted, setMounted] = useState();
    const [loaded, setLoaded] = useState(false);
 
    const { resolvedTheme, setTheme } = useTheme();
-   const { user, extendedUser } = useAuth();
+   const { user, extendedUser, loading } = useAuth();
 
    useEffect(() => setMounted(true), []);
 
@@ -46,7 +47,9 @@ function HeaderOptions() {
             </HeaderButton>
          )}
 
-         {extendedUser ? (
+         {loading ? (
+            <ImSpinner2 className="size-7! mx-[0.43rem] p-0.5 text-accent animate-spin" />
+         ) : extendedUser ? (
             <Link
                href="/user/home"
                className="mx-[-2px] block hover:text-accent bg-none border-none p-2 rounded-xl transition-200 hover:bg-primary-200/40 dark:hover:bg-primary-300/30 [&_svg]:size-6 [&_svg]:text-accent cursor-pointer select-none md:hidden"
