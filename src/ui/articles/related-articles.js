@@ -1,7 +1,13 @@
 import { getTranslations } from 'next-intl/server';
 import RelatedArticle from '@/src/ui/articles/related-article';
 
-async function RelatedArticles({ articles, category, title, author }) {
+async function RelatedArticles({
+   articles,
+   category,
+   title,
+   author,
+   commentsNum,
+}) {
    const t = await getTranslations('Article');
 
    const array = articles.filter(
@@ -15,7 +21,7 @@ async function RelatedArticles({ articles, category, title, author }) {
    if (!relatedArticles.length) return null;
 
    return (
-      <div className="flex flex-col gap-4 mt-12">
+      <div className={`flex flex-col gap-4 ${commentsNum && 'mt-12'}`}>
          <span className="uppercase tracking-wide text-xl md:text-2xl font-medium select-none">
             {t('read-next-label')}
          </span>

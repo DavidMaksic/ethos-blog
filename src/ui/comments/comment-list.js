@@ -2,21 +2,10 @@
 
 import { AnimatePresence, motion } from 'motion/react';
 import { useSearchParams } from 'next/navigation';
-import { useTranslations } from 'use-intl';
 import { getSortedItems } from '@/src/utils/helpers';
-
 import Comment from '@/src/ui/comments/comment';
-import SortBy from '@/src/ui/operations/sort-by';
 
-function CommentList({
-   comments,
-   article,
-   users,
-   commentsNum,
-   commentLength,
-   author,
-}) {
-   const t = useTranslations();
+function CommentList({ comments, article, users, commentLength, author }) {
    const searchParams = useSearchParams();
    const sort = searchParams.get('sort');
 
@@ -26,33 +15,15 @@ function CommentList({
 
    return (
       <>
-         {comments.length ? (
-            <>
-               <div className="flex items-center justify-between mt-[-10px] xs:mt-0">
-                  <div className="uppercase tracking-wide text-xl md:text-2xl font-medium select-none">
-                     <span>{t('Comment.label')}</span>
-                     <span
-                        className={`text-accent/90 dark:text-accent-200/90 ml-2 font-secondary`}
-                     >
-                        ({commentsNum})
-                     </span>
-                  </div>
-
-                  <SortBy
-                     options={[
-                        {
-                           value: 'created_at-asc',
-                           label: t('Sort.latest'),
-                        },
-                        {
-                           value: 'created_at-desc',
-                           label: t('Sort.oldest'),
-                        },
-                     ]}
-                  />
-               </div>
-
-               <motion.div layout transition={{ duration: 0.2 }}>
+         <AnimatePresence>
+            {comments.length > 0 && (
+               <motion.div
+                  initial={false}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  layout
+               >
                   <AnimatePresence mode="popLayout">
                      {sortedComments
                         ? sortedComments.map((item) => (
@@ -77,8 +48,8 @@ function CommentList({
                           ))}
                   </AnimatePresence>
                </motion.div>
-            </>
-         ) : null}
+            )}
+         </AnimatePresence>
       </>
    );
 }

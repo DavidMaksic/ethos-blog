@@ -4,9 +4,9 @@ import { useLocale, useTranslations } from 'use-intl';
 import { motion, AnimatePresence } from 'motion/react';
 import { BiLike, BiSolidLike } from 'react-icons/bi';
 import { useMediaQuery } from 'react-responsive';
+import { usePathname } from '@/src/i18n/navigation';
 import { CommentDate } from '@/src/utils/helpers';
 import { RxChevronUp } from 'react-icons/rx';
-import { useRouter } from '@/src/i18n/navigation';
 import { useAuth } from '@/src/context/auth-context';
 import { LuReply } from 'react-icons/lu';
 
@@ -29,6 +29,8 @@ const Comment = forwardRef(
       const t = useTranslations('Comment');
 
       const locale = useLocale();
+      const pathname = usePathname();
+
       const date = CommentDate(comment.created_at, locale);
       const isMobile = useMediaQuery({ maxWidth: 768 });
 
@@ -36,20 +38,22 @@ const Comment = forwardRef(
       const isAuthor = user.email === author.email;
       const articleID = article.id;
 
-      const router = useRouter();
-
       // - Copy link logic
       useEffect(() => {
          const hash = window.location.hash;
-         if (hash) {
-            const target = document.getElementById(hash.substring(1));
-            if (target) {
-               target.scrollIntoView({ behavior: 'smooth' });
-               target.classList.add('highlight');
-               setTimeout(() => target.classList.remove('highlight'), 2000);
+         if (!hash) return;
+
+         const timer = setTimeout(() => {
+            const element = document.getElementById(hash.substring(1));
+            if (element) {
+               element.scrollTo({ behavior: 'smooth' });
+               element.classList.add('highlight');
+               setTimeout(() => element.classList.remove('highlight'), 3000);
             }
-         }
-      }, [router.asPath]);
+         }, 500);
+
+         return () => clearTimeout(timer);
+      }, [pathname]);
 
       // - Replies logic
       const replies = comment.replies;
@@ -116,11 +120,12 @@ const Comment = forwardRef(
       return (
          <motion.div
             ref={ref}
-            initial={{ opacity: 0, ease: 'easeOut' }}
+            initial={false}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, ease: 'easeIn' }}
             transition={{ duration: 0.2 }}
             layout="position"
+            className="will-change-transform"
          >
             <div
                id={`comment-${commentID}`}
