@@ -18,7 +18,7 @@ function PageAnimation({ children }) {
    return (
       <motion.main
          className={`md:pt-5 w-7xl min-h-[91vh] 2xl:w-full mx-auto ${
-            centerLayout ? 'flex items-center' : 'py-[4.7dvh]'
+            centerLayout ? 'flex items-center sm:items-start' : 'py-[4.7dvh]'
          }`}
          key={pathname}
          initial={isFirstLoad ? false : { opacity: 0 }}

@@ -114,6 +114,7 @@ export function generateStaticParams() {
 // TODO: Implement only one active reply input
 // TODO: Comment removal needs better animation
 // TODO: When a comment is deleted, dont optimistically remove it
+// TODO: In CMS, change odd article color, also remove extra space for blocknote / toolbar's headers, also reset doesn't work
 
 export default async function RootLayout({ children, params }) {
    const { locale } = await params;

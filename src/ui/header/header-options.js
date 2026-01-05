@@ -49,14 +49,15 @@ function HeaderOptions() {
          )}
 
          {loading ? (
-            <motion.div
+            <motion.span
+               className="md:hidden"
                initial={{ opacity: 0 }}
                animate={{ opacity: 1 }}
                exit={{ opacity: 0 }}
                transition={{ duration: 0.2 }}
             >
                <ImSpinner2 className="size-7! mx-[0.43rem] p-0.5 text-accent animate-spin" />
-            </motion.div>
+            </motion.span>
          ) : extendedUser ? (
             <Link
                href="/user/home"
