@@ -8,7 +8,7 @@ function RelatedArticle({ article, author }) {
    return (
       <Link
          href={`/${article.slug}`}
-         className="relative flex flex-col rounded-2xl group cursor-pointer overflow-hidden bg-secondary dark:bg-primary-200 border border-primary-200 hover:-translate-y-0.5 box-shadow hover:shadow-preview dark:hover:shadow-preview-dark transition-[translate,box-shadow] duration-200 select-none group"
+         className="relative grid grid-rows-[auto_1fr] rounded-2xl md:rounded-3xl group cursor-pointer overflow-hidden bg-secondary dark:bg-primary-200 border border-primary-200 hover:-translate-y-0.5 box-shadow hover:shadow-preview dark:hover:shadow-preview-dark transition-[translate,box-shadow] duration-200 select-none group"
       >
          <div className="relative h-48 2xl:h-44 md:h-80 sm:h-60">
             <Image
@@ -20,7 +20,7 @@ function RelatedArticle({ article, author }) {
             />
          </div>
 
-         <div className="self-center md:flex md:flex-col md:gap-1 px-10 md:px-6 sm:px-8 py-8 2xl:pt-7 text-center">
+         <div className="self-center md:flex md:flex-col md:justify-self-center md:gap-1 px-10 md:px-6 sm:px-8 py-8 2xl:pt-7 text-center">
             <span className="text-primary-500 dark:text-primary-600/70 text-[1.7rem] md:text-[1.9rem] sm:text-[2.1rem] font-semibold md:dark:font-medium font-title leading-8.5 md:leading-9">
                {article.title}
             </span>

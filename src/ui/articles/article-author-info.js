@@ -30,7 +30,7 @@ function ArticleAuthorInfo({ author, date, children }) {
                </div>
 
                {author?.description_en || author?.description_srb ? (
-                  <p className="text-[1.35rem] leading-7.5 md:text-2xl font-secondary opacity-90">
+                  <p className="text-[1.35rem] leading-7.5 md:leading-8 md:text-2xl font-secondary opacity-90">
                      {locale === 'en'
                         ? author.description_en
                         : author.description_srb}

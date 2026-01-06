@@ -10,6 +10,7 @@ import { RxChevronUp } from 'react-icons/rx';
 import { useAuth } from '@/src/context/auth-context';
 import { LuReply } from 'react-icons/lu';
 
+import UseVerticalLine from '@/src/hooks/use-vertical-line';
 import CommentOptions from '@/src/ui/comments/comment-options';
 import ReplyInput from '@/src/ui/comments/reply-input';
 import AuthModal from '@/src/ui/modal/auth-modal';
@@ -23,7 +24,6 @@ const Comment = forwardRef(
       const [isOpen, setIsOpen] = useState(false);
       const [replyIsOpen, setReplyIsOpen] = useState(false);
       const [showReplies, setShowReplies] = useState(true);
-      const [replyInputsOpen, setReplyInputsOpen] = useState({});
 
       const { session, loading } = useAuth();
       const t = useTranslations('Comment');
@@ -112,10 +112,9 @@ const Comment = forwardRef(
          setIsLiked(hasLiked);
       }, [hasLiked]);
 
-      const lastReply = optimisticReplies[optimisticReplies.length - 1];
-      const isLastReplyInputOpen = lastReply
-         ? !!replyInputsOpen[lastReply.id]
-         : false;
+      // - Calculate vertical line located next to replies
+      const { lineHeight, repliesWrapperRef, lastReplyRef } =
+         UseVerticalLine(optimisticReplies);
 
       return (
          <motion.div
@@ -238,65 +237,61 @@ const Comment = forwardRef(
 
             <div className="relative">
                <motion.div
-                  className={`absolute left-0 top-0 w-0.5 2xs:w-[0.15rem] bg-primary-300 dark:bg-tertiary/90 ${
-                     (replyIsOpen && !showReplies) || !optimisticReplies.length
-                        ? 'hidden'
-                        : ''
-                  }`}
-                  style={{ bottom: '0px' }}
-                  animate={{
-                     clipPath: isLastReplyInputOpen
-                        ? 'inset(0 0 26rem 0)'
-                        : 'inset(0 0 12.5rem 0)',
-                  }}
-                  transition={{ duration: 0.2 }}
+                  className="absolute left-0 top-0 w-0.5 bg-primary-300 dark:bg-tertiary/80"
+                  style={{ height: Math.max(0, lineHeight - 32) }}
+                  animate={{ opacity: showReplies ? 1 : 0 }}
                />
 
-               <motion.div
-                  layout
-                  initial={false}
-                  animate={{
-                     height: replyIsOpen ? 'auto' : 0,
-                     opacity: replyIsOpen ? 1 : 0,
-                  }}
-                  transition={{ duration: 0.2 }}
-                  style={{ overflow: 'hidden' }}
-               >
-                  <ReplyInput
-                     slug={slug}
-                     articleID={articleID}
-                     commentID={commentID}
-                     commentLength={commentLength}
-                     setReplyIsOpen={setReplyIsOpen}
-                  />
-               </motion.div>
+               <div ref={repliesWrapperRef}>
+                  <motion.div
+                     layout
+                     initial={false}
+                     animate={{
+                        height: replyIsOpen ? 'auto' : 0,
+                        opacity: replyIsOpen ? 1 : 0,
+                     }}
+                     transition={{ duration: 0.2 }}
+                     style={{ overflow: 'hidden' }}
+                  >
+                     <ReplyInput
+                        slug={slug}
+                        articleID={articleID}
+                        commentID={commentID}
+                        commentLength={commentLength}
+                        setReplyIsOpen={setReplyIsOpen}
+                     />
+                  </motion.div>
 
-               <AnimatePresence initial={false}>
-                  {showReplies && (
-                     <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        style={{ overflow: 'hidden' }}
-                     >
-                        {optimisticReplies?.map((item) => (
-                           <Reply
-                              reply={item}
-                              key={item.id}
-                              users={users}
-                              article={article}
-                              commentID={commentID}
-                              commentLength={commentLength}
-                              onDelete={handleDelete}
-                              author={author}
-                              replyInputsOpen={replyInputsOpen}
-                              setReplyInputsOpen={setReplyInputsOpen}
-                           />
-                        ))}
-                     </motion.div>
-                  )}
-               </AnimatePresence>
+                  <AnimatePresence initial={false}>
+                     {showReplies && (
+                        <motion.div
+                           initial={{ height: 0, opacity: 0 }}
+                           animate={{ height: 'auto', opacity: 1 }}
+                           exit={{ height: 0, opacity: 0 }}
+                           transition={{ duration: 0.2 }}
+                           style={{ overflow: 'hidden' }}
+                        >
+                           {optimisticReplies?.map((item, index) => {
+                              const isLast =
+                                 index === optimisticReplies.length - 1;
+                              return (
+                                 <Reply
+                                    reply={item}
+                                    key={item.id}
+                                    users={users}
+                                    article={article}
+                                    commentID={commentID}
+                                    commentLength={commentLength}
+                                    onDelete={handleDelete}
+                                    author={author}
+                                    lastReplyRef={isLast ? lastReplyRef : null}
+                                 />
+                              );
+                           })}
+                        </motion.div>
+                     )}
+                  </AnimatePresence>
+               </div>
             </div>
          </motion.div>
       );

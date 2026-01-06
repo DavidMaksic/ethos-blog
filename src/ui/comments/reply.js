@@ -22,11 +22,10 @@ function Reply({
    commentLength,
    onDelete,
    author,
-   replyInputsOpen,
-   setReplyInputsOpen,
+   lastReplyRef,
 }) {
    const [isOpen, setIsOpen] = useState(false);
-   const [replyIsOpenLocal, setReplyIsOpenLocal] = useState(false);
+   const [replyIsOpen, setReplyIsOpen] = useState(false);
 
    const { id: articleID, slug } = article;
    const { session } = useAuth();
@@ -72,21 +71,14 @@ function Reply({
       setIsLiked(hasLiked);
    }, [hasLiked]);
 
-   const handleReplyToggle = () => {
-      setReplyIsOpenLocal((open) => !open);
-
-      // Update parent state for last reply logic
-      setReplyInputsOpen((prev) => ({
-         ...prev,
-         [reply.id]: !replyIsOpenLocal,
-      }));
-   };
-
    return (
       <div className="last:mb-7">
-         <div className="relative">
-            <div className="absolute left-10 top-1/2 w-10 h-10 -translate-x-full -translate-y-[85%] xs:-translate-y-[110%] 2xs:-translate-y-[120%] 2xl:-translate-x-[101%] 2xs:-translate-x-full">
-               <div className="size-full border-l-1 2xl:border-l-2 border-b-1 2xl:border-b-2 border-primary-400/50 2xl:border-primary-400/25  dark:border-quaternary/90 2xl:dark:border-quaternary/70 rounded-bl-full" />
+         <div className="relative" ref={lastReplyRef}>
+            <div className="absolute left-10 top-1/2 size-[38px] 2xl:size-10 -translate-x-full -translate-y-[85%] xs:-translate-y-[110%] 2xs:-translate-y-[120%] 2xl:-translate-x-[101%] 2xs:-translate-x-full">
+               <span
+                  className="absolute size-8 md:size-9.5 border-l-2 2xs:border-l-1 border-b-2 2xs:border-b-1 rounded-bl-full border-primary-300/90 sm:border-primary-300/90 dark:border-tertiary sm:dark:border-tertiary"
+                  aria-hidden="true"
+               />
             </div>
 
             <div
@@ -164,7 +156,7 @@ function Reply({
                      onClick={() => {
                         if (!session) setIsOpen(true);
                         if (session) {
-                           handleReplyToggle();
+                           setReplyIsOpen((open) => !open);
                         }
                      }}
                   >
@@ -192,8 +184,8 @@ function Reply({
             layout
             initial={false}
             animate={{
-               height: replyIsOpenLocal ? 'auto' : 0,
-               opacity: replyIsOpenLocal ? 1 : 0,
+               height: replyIsOpen ? 'auto' : 0,
+               opacity: replyIsOpen ? 1 : 0,
             }}
             transition={{ duration: 0.2 }}
             style={{ overflow: 'hidden' }}
@@ -203,10 +195,7 @@ function Reply({
                articleID={articleID}
                commentID={commentID}
                commentLength={commentLength}
-               setReplyIsOpen={(open) => {
-                  setReplyIsOpenLocal(open);
-                  setReplyInputsOpen((prev) => ({ ...prev, [reply.id]: open }));
-               }}
+               setReplyIsOpen={setReplyIsOpen}
             />
          </motion.div>
       </div>

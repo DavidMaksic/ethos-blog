@@ -113,6 +113,9 @@ export function generateStaticParams() {
 
 // TODO: Implement only one active reply input
 // TODO: Fix reply animations
+// TODO: When reply button is clicked, add focus state to reply input
+// TODO: Credits section has no x padding on sm:
+// TODO: When editing a comment, empty space is not trimmed on the bottom
 
 export default async function RootLayout({ children, params }) {
    const { locale } = await params;
