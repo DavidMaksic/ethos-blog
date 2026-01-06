@@ -113,7 +113,6 @@ export function generateStaticParams() {
 
 // TODO: Implement only one active reply input
 // TODO: Fix reply animations
-// TODO: Memoize editor in Creator
 
 export default async function RootLayout({ children, params }) {
    const { locale } = await params;

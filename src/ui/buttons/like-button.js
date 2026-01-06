@@ -7,7 +7,7 @@ function LikeButton({ styles, isLiked }) {
       <>
          {isLiked ? (
             <FaHeart
-               className={`${styles} size-11 md:size-13 p-2.5 text-red-600/40!  md:text-red-600/50! dark:text-red-400/65! dark:group-hover:text-primary-500 transition-color`}
+               className={`${styles} size-11 md:size-13 p-2.5 text-red-600/40!  md:text-red-600/50! dark:text-red-400/65! md:dark:text-red-400/65! dark:group-hover:text-primary-500 transition-color`}
             />
          ) : (
             <FaRegHeart className={iconStyle} />

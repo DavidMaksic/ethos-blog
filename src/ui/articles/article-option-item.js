@@ -32,10 +32,10 @@ function ArticleOptionItem({
          transition={{ type: 'spring', stiffness: 500, damping: 30 }}
          onClick={handler}
          className={clsx(
-            'flex flex-col items-center justify-center gap-0.5 md:gap-1.5 sm:gap-1',
+            'flex flex-col items-center justify-center gap-0.5 md:gap-1.5 sm:gap-0.5',
             'border border-primary-300/70 dark:border-quaternary rounded-3xl',
-            'dark:hover:shadow-none! cursor-pointer group transition-options will-change-transform md:min-h-34',
-            'px-6 py-4 md:py-5 md:px-0',
+            'dark:hover:shadow-none! cursor-pointer group transition-options will-change-transform md:min-h-34 sm:min-h-30',
+            'px-6 py-4 md:py-5 md:px-0 sm:py-2',
             locale === 'en' && 'px-8!',
             styles.hover,
             isActive && styles.activeBorder,
