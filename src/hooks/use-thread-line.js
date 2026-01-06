@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-function UseVerticalLine(optimisticReplies) {
+function useThreadLine(optimisticReplies) {
    const repliesWrapperRef = useRef(null);
    const lastReplyRef = useRef(null);
    const [lineHeight, setLineHeight] = useState(0);
@@ -28,4 +28,4 @@ function UseVerticalLine(optimisticReplies) {
    return { lineHeight, repliesWrapperRef, lastReplyRef };
 }
 
-export default UseVerticalLine;
+export default useThreadLine;

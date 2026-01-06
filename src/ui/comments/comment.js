@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useOptimistic, useState } from 'react';
+import { forwardRef, useEffect, useOptimistic, useRef, useState } from 'react';
 import { addLiked, deleteReply, removeLiked } from '@/src/lib/actions';
 import { useLocale, useTranslations } from 'use-intl';
 import { motion, AnimatePresence } from 'motion/react';
@@ -10,8 +10,9 @@ import { RxChevronUp } from 'react-icons/rx';
 import { useAuth } from '@/src/context/auth-context';
 import { LuReply } from 'react-icons/lu';
 
-import UseVerticalLine from '@/src/hooks/use-vertical-line';
 import CommentOptions from '@/src/ui/comments/comment-options';
+import useThreadLine from '@/src/hooks/use-thread-line';
+import useFocusReply from '@/src/hooks/use-focus-reply';
 import ReplyInput from '@/src/ui/comments/reply-input';
 import AuthModal from '@/src/ui/modal/auth-modal';
 import UserImage from '@/src/ui/image/user-image';
@@ -114,7 +115,10 @@ const Comment = forwardRef(
 
       // - Calculate vertical line located next to replies
       const { lineHeight, repliesWrapperRef, lastReplyRef } =
-         UseVerticalLine(optimisticReplies);
+         useThreadLine(optimisticReplies);
+
+      // - Add focus to reply input when it's opened
+      const replyInputRef = useFocusReply(replyIsOpen);
 
       return (
          <motion.div
@@ -237,7 +241,7 @@ const Comment = forwardRef(
 
             <div className="relative">
                <motion.div
-                  className="absolute left-0 top-0 w-0.5 bg-primary-300 dark:bg-tertiary/80"
+                  className="absolute left-0 top-0 w-0.5 bg-primary-300/80 dark:bg-tertiary/80"
                   style={{ height: Math.max(0, lineHeight - 32) }}
                   animate={{ opacity: showReplies ? 1 : 0 }}
                />
@@ -259,6 +263,7 @@ const Comment = forwardRef(
                         commentID={commentID}
                         commentLength={commentLength}
                         setReplyIsOpen={setReplyIsOpen}
+                        ref={replyInputRef}
                      />
                   </motion.div>
 

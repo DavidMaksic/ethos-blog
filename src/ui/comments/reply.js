@@ -9,6 +9,7 @@ import { useAuth } from '@/src/context/auth-context';
 import { LuReply } from 'react-icons/lu';
 
 import CommentOptions from '@/src/ui/comments/comment-options';
+import useFocusReply from '@/src/hooks/use-focus-reply';
 import ReplyInput from '@/src/ui/comments/reply-input';
 import AuthModal from '@/src/ui/modal/auth-modal';
 import UserImage from '@/src/ui/image/user-image';
@@ -71,12 +72,15 @@ function Reply({
       setIsLiked(hasLiked);
    }, [hasLiked]);
 
+   // - Add focus to reply input when it's opened
+   const replyInputRef = useFocusReply(replyIsOpen);
+
    return (
       <div className="last:mb-7">
          <div className="relative" ref={lastReplyRef}>
             <div className="absolute left-10 top-1/2 size-[38px] 2xl:size-10 -translate-x-full -translate-y-[85%] xs:-translate-y-[110%] 2xs:-translate-y-[120%] 2xl:-translate-x-[101%] 2xs:-translate-x-full">
                <span
-                  className="absolute size-8 md:size-9.5 border-l-2 2xs:border-l-1 border-b-2 2xs:border-b-1 rounded-bl-full border-primary-300/90 sm:border-primary-300/90 dark:border-tertiary sm:dark:border-tertiary"
+                  className="absolute size-10 md:size-9.5 border-l-2 2xs:border-l-1 border-b-2 2xs:border-b-1 rounded-bl-full border-primary-300/85 sm:border-primary-300/80 dark:border-tertiary sm:dark:border-tertiary"
                   aria-hidden="true"
                />
             </div>
@@ -196,6 +200,7 @@ function Reply({
                commentID={commentID}
                commentLength={commentLength}
                setReplyIsOpen={setReplyIsOpen}
+               ref={replyInputRef}
             />
          </motion.div>
       </div>

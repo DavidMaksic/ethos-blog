@@ -128,10 +128,11 @@ export async function addComment(previousState, formData) {
 export async function editComment(commentID, text, slug) {
    const session = await auth();
    if (!session) throw new Error('You must be logged in');
+   const cleanedText = text.replace(/\n\s*\n+/g, '\n\n').replace(/\s+$/, '');
 
    const { error } = await supabase
       .from('comments')
-      .update({ content: text })
+      .update({ content: cleanedText })
       .eq('id', commentID);
 
    if (error) throw new Error('Comment could not be edited');
@@ -159,7 +160,10 @@ export async function addReply(previousState, formData) {
    const session = await auth();
    if (!session) throw new Error('You must be logged in');
 
-   const comment = formData.get('content');
+   const comment = formData
+      .get('content')
+      .replace(/\n\s*\n+/g, '\n\n')
+      .replace(/\s+$/, '');
    const userID = formData.get('userID');
    const slug = formData.get('slug');
    const commentID = formData.get('commentID');
@@ -181,10 +185,11 @@ export async function addReply(previousState, formData) {
 export async function editReply(replyID, text, slug) {
    const session = await auth();
    if (!session) throw new Error('You must be logged in');
+   const cleanedText = text.replace(/\n\s*\n+/g, '\n\n').replace(/\s+$/, '');
 
    const { error } = await supabase
       .from('replies')
-      .update({ content: text })
+      .update({ content: cleanedText })
       .eq('id', replyID);
 
    if (error) throw new Error('Reply could not be edited');

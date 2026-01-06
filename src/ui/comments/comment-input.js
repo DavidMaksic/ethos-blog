@@ -13,6 +13,8 @@ import AuthModal from '@/src/ui/modal/auth-modal';
 import Modal from '@/src/ui/modal/modal';
 import toast from 'react-hot-toast';
 import Image from 'next/image';
+import { useRouter } from '@/src/i18n/navigation';
+import { useSearchParams } from 'next/navigation';
 
 function CommentInput({ article, commentLength }) {
    const [isOpen, setIsOpen] = useState();
@@ -62,13 +64,20 @@ function CommentInput({ article, commentLength }) {
       setText(input);
    }
 
+   const searchParams = useSearchParams();
+   const router = useRouter();
+
    useEffect(() => {
       if (state.success) {
          setText('');
          toast.success(t('posted'));
          state.success = false;
+
+         const params = new URLSearchParams(searchParams);
+         params.delete('sort');
+         router.replace(`?${params.toString()}`, { scroll: false });
       }
-   }, [state, t]);
+   }, [state, t]); // eslint-disable-line
 
    return (
       <div className="comment-section scroll-mt-20! flex flex-col gap-1.5 mt-20 font-secondary">
