@@ -3,9 +3,11 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useSearchParams } from 'next/navigation';
 import { getSortedItems } from '@/src/utils/helpers';
+import { useState } from 'react';
 import Comment from '@/src/ui/comments/comment';
 
 function CommentList({ comments, article, users, commentLength, author }) {
+   const [openReplyID, setOpenReplyID] = useState(null);
    const searchParams = useSearchParams();
    const sort = searchParams.get('sort');
 
@@ -16,7 +18,7 @@ function CommentList({ comments, article, users, commentLength, author }) {
    return (
       <>
          <AnimatePresence>
-            {comments.length > 0 && (
+            {sortedComments.length > 0 && (
                <motion.div
                   initial={false}
                   animate={{ opacity: 1 }}
@@ -25,27 +27,18 @@ function CommentList({ comments, article, users, commentLength, author }) {
                   layout
                >
                   <AnimatePresence mode="popLayout">
-                     {sortedComments
-                        ? sortedComments.map((item) => (
-                             <Comment
-                                comment={item}
-                                commentLength={commentLength}
-                                users={users}
-                                article={article}
-                                author={author}
-                                key={item.id}
-                             />
-                          ))
-                        : comments.map((item) => (
-                             <Comment
-                                comment={item}
-                                commentLength={commentLength}
-                                users={users}
-                                article={article}
-                                author={author}
-                                key={item.id}
-                             />
-                          ))}
+                     {sortedComments.map((item) => (
+                        <Comment
+                           comment={item}
+                           commentLength={commentLength}
+                           users={users}
+                           article={article}
+                           author={author}
+                           openReplyID={openReplyID}
+                           setOpenReplyID={setOpenReplyID}
+                           key={item.id}
+                        />
+                     ))}
                   </AnimatePresence>
                </motion.div>
             )}

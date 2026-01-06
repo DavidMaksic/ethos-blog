@@ -16,28 +16,22 @@ import toast from 'react-hot-toast';
 const ReplyInput = forwardRef(
    ({ slug, articleID, commentID, commentLength, setReplyIsOpen }, ref) => {
       const [isOpen, setIsOpen] = useState(false);
-      const [error, setError] = useState(false);
+      const [error, setError] = useState(null);
       const [text, setText] = useState('');
 
       const { session, extendedUser, loading } = useAuth();
-
       const locale = useLocale();
       const t = useTranslations('Comment');
 
       // - Error logic
-      const errorRef = useRef(null);
-
       useEffect(() => {
-         if (error) {
-            setTimeout(() => {
-               if (errorRef.current) errorRef.current.style.opacity = '0%';
-            }, 5000);
+         if (!error) return;
 
-            setTimeout(() => {
-               setError(false);
-               if (errorRef.current) errorRef.current.style.opacity = '100%';
-            }, 5100);
-         }
+         const timeout = setTimeout(() => {
+            setError(null);
+         }, 5000);
+
+         return () => clearTimeout(timeout);
       }, [error]);
 
       // - Form submission logic
@@ -46,7 +40,12 @@ const ReplyInput = forwardRef(
       });
 
       function handleAction(formData) {
-         if (text.length <= 1) return setError(true);
+         if (text.trim().length <= 1) {
+            setError(t('warning'));
+            return;
+         }
+
+         setError(null);
          action(formData);
       }
 
@@ -57,7 +56,7 @@ const ReplyInput = forwardRef(
 
       useEffect(() => {
          if (state.success) {
-            setReplyIsOpen((isOpen) => !isOpen);
+            setReplyIsOpen(false);
             setText('');
             toast.success(t('reply-posted'));
             state.success = false;
@@ -111,6 +110,7 @@ const ReplyInput = forwardRef(
                         setReplyIsOpen(false);
                         setTimeout(() => {
                            setText('');
+                           setError(null);
                         }, 200);
                      }}
                   >
@@ -145,10 +145,11 @@ const ReplyInput = forwardRef(
 
                <div className="flex justify-between mt-1 md:mb-3">
                   <span
-                     className="error font-medium ml-4 text-lg md:text-xl transition-200 opacity-100 text-red-600/50 dark:text-red-300/80"
-                     ref={errorRef}
+                     className={`error font-medium ml-4 text-lg md:text-xl transition-200 text-red-600/50 dark:text-red-300/80 ${
+                        error ? 'opacity-100' : 'opacity-0'
+                     }`}
                   >
-                     {error && t('warning')}
+                     {error}
                   </span>
 
                   <span

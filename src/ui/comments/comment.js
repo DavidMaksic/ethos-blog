@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useOptimistic, useRef, useState } from 'react';
+import { forwardRef, useEffect, useOptimistic, useState } from 'react';
 import { addLiked, deleteReply, removeLiked } from '@/src/lib/actions';
 import { useLocale, useTranslations } from 'use-intl';
 import { motion, AnimatePresence } from 'motion/react';
@@ -21,9 +21,19 @@ import Reply from '@/src/ui/comments/reply';
 import toast from 'react-hot-toast';
 
 const Comment = forwardRef(
-   ({ comment, commentLength, users, article, author }, ref) => {
+   (
+      {
+         comment,
+         commentLength,
+         users,
+         article,
+         author,
+         openReplyID,
+         setOpenReplyID,
+      },
+      ref
+   ) => {
       const [isOpen, setIsOpen] = useState(false);
-      const [replyIsOpen, setReplyIsOpen] = useState(false);
       const [showReplies, setShowReplies] = useState(true);
 
       const { session, loading } = useAuth();
@@ -118,7 +128,8 @@ const Comment = forwardRef(
          useThreadLine(optimisticReplies);
 
       // - Add focus to reply input when it's opened
-      const replyInputRef = useFocusReply(replyIsOpen);
+      const isReplyOpen = openReplyID === commentID;
+      const replyInputRef = useFocusReply(isReplyOpen);
 
       return (
          <motion.div
@@ -203,7 +214,9 @@ const Comment = forwardRef(
                      role="button"
                      onClick={() => {
                         if (!session) setIsOpen(true);
-                        if (session) setReplyIsOpen((isOpen) => !isOpen);
+                        if (session) {
+                           setOpenReplyID(isReplyOpen ? null : commentID);
+                        }
                      }}
                   >
                      <LuReply className="size-4 md:size-6 xs:size-[1.35rem]" />
@@ -241,7 +254,7 @@ const Comment = forwardRef(
 
             <div className="relative">
                <motion.div
-                  className="absolute left-0 top-0 w-0.5 bg-primary-300/80 dark:bg-tertiary/80"
+                  className="absolute left-0 top-0 w-0.5 bg-primary-300/60 dark:bg-tertiary/80"
                   style={{ height: Math.max(0, lineHeight - 32) }}
                   animate={{ opacity: showReplies ? 1 : 0 }}
                />
@@ -251,8 +264,8 @@ const Comment = forwardRef(
                      layout
                      initial={false}
                      animate={{
-                        height: replyIsOpen ? 'auto' : 0,
-                        opacity: replyIsOpen ? 1 : 0,
+                        height: isReplyOpen ? 'auto' : 0,
+                        opacity: isReplyOpen ? 1 : 0,
                      }}
                      transition={{ duration: 0.2 }}
                      style={{ overflow: 'hidden' }}
@@ -262,7 +275,10 @@ const Comment = forwardRef(
                         articleID={articleID}
                         commentID={commentID}
                         commentLength={commentLength}
-                        setReplyIsOpen={setReplyIsOpen}
+                        setReplyIsOpen={(prev) => {
+                           setOpenReplyID(prev ? commentID : null);
+                           if (!showReplies) setShowReplies(true);
+                        }}
                         ref={replyInputRef}
                      />
                   </motion.div>
@@ -274,7 +290,6 @@ const Comment = forwardRef(
                            animate={{ height: 'auto', opacity: 1 }}
                            exit={{ height: 0, opacity: 0 }}
                            transition={{ duration: 0.2 }}
-                           style={{ overflow: 'hidden' }}
                         >
                            {optimisticReplies?.map((item, index) => {
                               const isLast =
@@ -290,6 +305,8 @@ const Comment = forwardRef(
                                     onDelete={handleDelete}
                                     author={author}
                                     lastReplyRef={isLast ? lastReplyRef : null}
+                                    openReplyID={openReplyID}
+                                    setOpenReplyID={setOpenReplyID}
                                  />
                               );
                            })}

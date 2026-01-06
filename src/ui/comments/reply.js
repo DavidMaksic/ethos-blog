@@ -24,10 +24,10 @@ function Reply({
    onDelete,
    author,
    lastReplyRef,
+   openReplyID,
+   setOpenReplyID,
 }) {
    const [isOpen, setIsOpen] = useState(false);
-   const [replyIsOpen, setReplyIsOpen] = useState(false);
-
    const { id: articleID, slug } = article;
    const { session } = useAuth();
 
@@ -73,14 +73,15 @@ function Reply({
    }, [hasLiked]);
 
    // - Add focus to reply input when it's opened
-   const replyInputRef = useFocusReply(replyIsOpen);
+   const isReplyOpen = openReplyID === reply.id;
+   const replyInputRef = useFocusReply(isReplyOpen);
 
    return (
       <div className="last:mb-7">
          <div className="relative" ref={lastReplyRef}>
             <div className="absolute left-10 top-1/2 size-[38px] 2xl:size-10 -translate-x-full -translate-y-[85%] xs:-translate-y-[110%] 2xs:-translate-y-[120%] 2xl:-translate-x-[101%] 2xs:-translate-x-full">
                <span
-                  className="absolute size-10 md:size-9.5 border-l-2 2xs:border-l-1 border-b-2 2xs:border-b-1 rounded-bl-full border-primary-300/85 sm:border-primary-300/80 dark:border-tertiary sm:dark:border-tertiary"
+                  className="absolute size-10 md:size-9.5 border-l-2 2xs:border-l-1 border-b-2 2xs:border-b-1 rounded-bl-full border-primary-300/65 sm:border-primary-300/80 dark:border-tertiary sm:dark:border-tertiary"
                   aria-hidden="true"
                />
             </div>
@@ -158,10 +159,8 @@ function Reply({
                   <div
                      className="flex items-center gap-2 h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-3 md:px-4 py-1.5 bg-primary-300/15 dark:bg-primary-400/12 md:dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75"
                      onClick={() => {
-                        if (!session) setIsOpen(true);
-                        if (session) {
-                           setReplyIsOpen((open) => !open);
-                        }
+                        if (!session) return setIsOpen(true);
+                        setOpenReplyID(isReplyOpen ? null : reply.id);
                      }}
                   >
                      <LuReply className="size-4 md:size-6 xs:size-[1.35rem]" />
@@ -188,8 +187,8 @@ function Reply({
             layout
             initial={false}
             animate={{
-               height: replyIsOpen ? 'auto' : 0,
-               opacity: replyIsOpen ? 1 : 0,
+               height: isReplyOpen ? 'auto' : 0,
+               opacity: isReplyOpen ? 1 : 0,
             }}
             transition={{ duration: 0.2 }}
             style={{ overflow: 'hidden' }}
@@ -199,7 +198,9 @@ function Reply({
                articleID={articleID}
                commentID={commentID}
                commentLength={commentLength}
-               setReplyIsOpen={setReplyIsOpen}
+               setReplyIsOpen={(isOpen) =>
+                  setOpenReplyID(isOpen ? reply.id : null)
+               }
                ref={replyInputRef}
             />
          </motion.div>

@@ -111,7 +111,6 @@ export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));
 }
 
-// TODO: Implement only one active reply input
 // TODO: Fix reply animations
 
 export default async function RootLayout({ children, params }) {

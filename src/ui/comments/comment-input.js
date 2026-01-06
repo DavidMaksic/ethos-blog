@@ -1,11 +1,13 @@
 'use client';
 
-import { useActionState, useEffect, useRef, useState } from 'react';
+import { useActionState, useEffect, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { HiOutlineUserCircle } from 'react-icons/hi2';
+import { useSearchParams } from 'next/navigation';
 import { AnimatePresence } from 'motion/react';
 import { addComment } from '@/src/lib/actions';
 import { ImSpinner2 } from 'react-icons/im';
+import { useRouter } from '@/src/i18n/navigation';
 import { useAuth } from '@/src/context/auth-context';
 
 import TextareaAutosize from 'react-textarea-autosize';
@@ -13,8 +15,6 @@ import AuthModal from '@/src/ui/modal/auth-modal';
 import Modal from '@/src/ui/modal/modal';
 import toast from 'react-hot-toast';
 import Image from 'next/image';
-import { useRouter } from '@/src/i18n/navigation';
-import { useSearchParams } from 'next/navigation';
 
 function CommentInput({ article, commentLength }) {
    const [isOpen, setIsOpen] = useState();
@@ -163,7 +163,7 @@ function CommentInput({ article, commentLength }) {
                   </button>
                </div>
 
-               <div className="flex justify-between mt-1">
+               <div className="flex justify-between mt-1 md:mb-3">
                   <span
                      className={`error font-medium ml-4 text-lg md:text-xl transition-200 text-red-600/50 dark:text-red-300/80 ${
                         error ? 'opacity-100' : 'opacity-0'
