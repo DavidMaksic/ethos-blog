@@ -171,6 +171,9 @@ function Options() {
                            {headings.map((item) => (
                               <a
                                  className={`w-[19rem] md:w-[22rem] sm:w-[23rem] py-2 md:py-2.5 hover:text-accent! transition duration-75 px-6 md:px-8 mb-[3px] xs:mb-0.5 hover:bg-primary-300/10 dark:hover:bg-primary-300/8 leading-6.5 md:leading-7 xs:leading-7.5 rounded-xl sm:font-semibold xs:font-medium ${
+                                    item.localName === 'h2' &&
+                                    'text-primary-600 dark:text-slate-300/80'
+                                 } ${
                                     item.localName === 'h3' &&
                                     'sm:font-medium! xs:font-normal! pl-12 md:pl-14 text-primary-500/90 dark:text-primary-500/80'
                                  } ${item.localName} ${

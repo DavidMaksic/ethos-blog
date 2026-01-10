@@ -81,6 +81,7 @@ function ArticleContent({ content, article }) {
 
    return (
       <div
+         lang={article.code}
          className={`container text-text my-3 [&_:is(h2,h3)]:font-secondary ${
             crimsonText.variable
          }  ${gentium.variable} ${
