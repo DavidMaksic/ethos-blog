@@ -113,8 +113,6 @@ export function generateStaticParams() {
 
 // TODO: Credits box has no x padding on mobile, also add more padding to bottom
 // TODO: Try to add backdrop blur to Table of contents
-// TODO: Fix highlighted comment
-// TODO: Test prefetch on article previews (currently, entering is slow)
 // TODO: Fix reply animations
 // TODO: When last reply is deleted, thread line is still present
 // TODO: When reply is deleted, add isPending state and spinner to 'Delete'

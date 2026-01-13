@@ -37,6 +37,7 @@ const ArticleItem = forwardRef(({ article, style }, ref) => {
       >
          <Link
             href={`/${article.slug}`}
+            prefetch
             className={`relative grid grid-cols-[0.4fr_1fr] lg:grid-cols-[0.3fr_1fr] rounded-2xl group cursor-pointer overflow-hidden border border-quaternary dark:border-primary-300/10 bg-white ${style} hover:translate-x-1.5 transition-[translate] duration-200 box-shadow md:min-h-61`}
          >
             <div className="relative h-50 2xl:h-54 lg:h-52 md:h-auto md:min-w-32">
