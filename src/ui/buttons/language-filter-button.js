@@ -5,6 +5,7 @@ import { switchLocale } from '@/src/utils/helpers';
 import { useLanguage } from '@/src/context/language-context';
 import { usePathname } from '@/src/i18n/navigation';
 import { LANGUAGES } from '@/src/utils/config';
+import { motion } from 'motion/react';
 
 import srbFlag from '@/public/srb-flag.png';
 import enFlag from '@/public/en-flag.png';
@@ -17,6 +18,10 @@ function LanguageFilterButton({
    activeStyle,
    isMobile,
    children,
+   isHovered,
+   setIsHovered,
+   pendingActive,
+   setPendingActive,
 }) {
    const { language } = useLanguage();
    const pathname = usePathname();
@@ -24,10 +29,20 @@ function LanguageFilterButton({
    const searchParams = useSearchParams();
    const paramLang = searchParams.get('lang');
 
-   const active = lang === paramLang || (!paramLang && lang === language.code);
+   // Determine if this button is the currently active one
+   const dataActive =
+      lang === paramLang || (!paramLang && lang === language.code);
+
+   // Which button the pill should be on: clicked || hover || active
+   const pillTarget = pendingActive || isHovered || (dataActive ? lang : null);
+
+   // Pill is visible if this button is the target
+   const showPill = pillTarget === lang;
 
    function handleLang() {
       if (paramLang === lang) return;
+
+      setPendingActive(lang);
       const params = new URLSearchParams(searchParams);
 
       const langCode =
@@ -50,29 +65,50 @@ function LanguageFilterButton({
    }
 
    return (
-      <button
-         className={`hover:bg-accent/20 flex items-center gap-2 dark:hover:bg-accent-300/50 hover:text-accent-800 dark:hover:text-accent-100 py-0.5 px-2.5 rounded-xl  transition-bg_color cursor-pointer group ${activeStyle} ${
-            active &&
-            'bg-accent/20 dark:bg-accent-300/50 text-accent-800 dark:text-accent-100 2xs:py-1'
-         }`}
+      <motion.div
+         className="relative cursor-pointer"
+         onMouseEnter={() => setIsHovered(lang)}
+         onMouseLeave={() => setIsHovered(null)}
          onClick={handleLang}
+         role="button"
       >
-         <div className={`relative size-6 2xs:size-8 ${imageStyle}`}>
-            <Image
-               styles={`border border-accent-800/80 group-hover:border-accent-800/80! rounded-full opacity-90 ${
-                  active && 'border-accent-800/80'
-               }`}
-               src={lang === 'sr' ? srbFlag : enFlag}
-               alt="Language image"
-               unoptimized
-               fill
+         {showPill && (
+            <motion.div
+               layoutId="language-pill"
+               className="absolute inset-0 rounded-xl bg-accent/20 dark:bg-accent-300/50"
+               transition={{
+                  type: 'spring',
+                  stiffness: 1000,
+                  damping: 60,
+               }}
             />
-         </div>
+         )}
 
-         <p className={`md:text-2xl 2xs:text-[1.65rem] ${styles}`}>
-            {children}
-         </p>
-      </button>
+         <div
+            className={`relative z-10 flex items-center gap-2
+                        py-0.5 px-2.5 rounded-xl
+                        hover:text-accent-800 dark:hover:text-accent-100
+                        ${activeStyle}
+                        ${
+                           dataActive &&
+                           'text-accent-800 dark:text-accent-100 2xs:py-1'
+                        }`}
+         >
+            <div className={`relative size-7 2xs:size-8 ${imageStyle}`}>
+               <Image
+                  className="border border-primary-300 dark:border-primary-300/50 rounded-full opacity-90"
+                  src={lang === 'sr' ? srbFlag : enFlag}
+                  alt="Language image"
+                  unoptimized
+                  fill
+               />
+            </div>
+
+            <p className={`text-2xl md:text-2xl 2xs:text-[1.65rem] ${styles}`}>
+               {children}
+            </p>
+         </div>
+      </motion.div>
    );
 }
 

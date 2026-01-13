@@ -77,7 +77,7 @@ function LanguageButton() {
                         {item.lang}
                         <div className="relative size-7">
                            <Image
-                              className={`border border-primary-300 dark:border-primary-200 rounded-full group-hover:opacity-100 dark:group-hover:opacity-95 transition-[opacity] duration-200 ${
+                              className={`border border-primary-300 dark:border-primary-300/50 rounded-full group-hover:opacity-100 dark:group-hover:opacity-95 transition-[opacity] duration-200 ${
                                  loaded ? 'opacity-100' : 'opacity-0'
                               }`}
                               src={item.flag}
