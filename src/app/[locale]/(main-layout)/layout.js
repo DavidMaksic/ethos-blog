@@ -116,6 +116,7 @@ export function generateStaticParams() {
 // TODO: Fix reply animations
 // TODO: When last reply is deleted, thread line is still present
 // TODO: When reply is deleted, add isPending state and spinner to 'Delete'
+// TODO: Add 'save' option to options component in article edit
 
 export default async function RootLayout({ children, params }) {
    const { locale } = await params;

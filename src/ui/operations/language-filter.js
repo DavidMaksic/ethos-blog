@@ -1,25 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { IoLanguageOutline } from 'react-icons/io5';
-import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { LayoutGroup } from 'motion/react';
 import { LANGUAGES } from '@/src/utils/config';
 import LanguageFilterButton from '@/src/ui/buttons/language-filter-button';
 
 function LanguageFilter() {
-   const [isHovered, setIsHovered] = useState(null);
-   const [pendingActive, setPendingActive] = useState(null);
    const t = useTranslations('Archive');
-   const searchParams = useSearchParams();
-   const paramLang = searchParams.get('lang');
-
-   useEffect(() => {
-      if (pendingActive && pendingActive === paramLang) {
-         setPendingActive(null);
-      }
-   }, [paramLang, pendingActive]);
 
    return (
       <div className="space-y-6 md:order-2">
@@ -28,24 +15,15 @@ function LanguageFilter() {
             <h2 className="text-4xl">{t('lang-label')}</h2>
          </div>
 
-         <LayoutGroup>
-            <div className="flex items-center gap-4 text-[1.35rem] md:justify-center">
-               <div className="flex gap-2 bg-white dark:bg-primary-300/15 py-2 px-3 border border-tertiary dark:border-primary-300/15 rounded-xl shadow-2xs transition-bg_color_border">
-                  {LANGUAGES.map((item) => (
-                     <LanguageFilterButton
-                        key={item.code}
-                        lang={item.code}
-                        isHovered={isHovered}
-                        setIsHovered={setIsHovered}
-                        pendingActive={pendingActive}
-                        setPendingActive={setPendingActive}
-                     >
-                        {item.lang}
-                     </LanguageFilterButton>
-                  ))}
-               </div>
+         <div className="flex items-center gap-4 text-[1.35rem] md:justify-center">
+            <div className="flex gap-2 bg-white dark:bg-primary-300/15 py-2 px-3 border border-tertiary dark:border-primary-300/15 rounded-xl shadow-2xs transition-bg_color_border">
+               {LANGUAGES.map((item) => (
+                  <LanguageFilterButton key={item.code} lang={item.code}>
+                     {item.lang}
+                  </LanguageFilterButton>
+               ))}
             </div>
-         </LayoutGroup>
+         </div>
       </div>
    );
 }
