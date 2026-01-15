@@ -14,6 +14,7 @@ function LanguageFilterButton({
    lang,
    styles,
    imageStyle,
+   isActive,
    activeStyle,
    isMobile,
    children,
@@ -23,10 +24,15 @@ function LanguageFilterButton({
    const router = useRouter();
    const searchParams = useSearchParams();
    const paramLang = searchParams.get('lang');
-
-   const active = lang === paramLang || (!paramLang && lang === language.code);
+   const active = isMobile && lang === language.code;
 
    function handleLang() {
+      if (isMobile) {
+         const mobileLangCode =
+            LANGUAGES.find((item) => item.code === lang)?.code || 'en';
+         return switchLocale(mobileLangCode);
+      }
+
       if (paramLang === lang) return;
       const params = new URLSearchParams(searchParams);
 
@@ -38,12 +44,6 @@ function LanguageFilterButton({
          router.replace(`?${params.toString()}`, { scroll: false });
       }
 
-      if (isMobile) {
-         const mobileLangCode =
-            LANGUAGES.find((item) => item.code === lang)?.code || 'en';
-         return switchLocale(mobileLangCode);
-      }
-
       params.delete('category');
       params.delete('sort');
       router.replace(`?${params.toString()}`, { scroll: false });
@@ -51,9 +51,11 @@ function LanguageFilterButton({
 
    return (
       <div
-         className={`hover:bg-accent/20 flex items-center gap-2 dark:hover:bg-accent-300/50 hover:text-accent-800 dark:hover:text-accent-100 py-0.5 px-2.5 rounded-xl  transition-bg_color cursor-pointer group ${activeStyle} ${
+         className={`flex items-center gap-2 py-0.5 px-2.5 rounded-xl transition-bg_color cursor-pointer group relative z-10 ${
+            isActive && 'text-accent-800 dark:text-accent-100'
+         } ${activeStyle} ${
             active &&
-            'bg-accent/20 dark:bg-accent-300/50 text-accent-800 dark:text-accent-100 2xs:py-1'
+            'bg-accent/20 dark:bg-accent-300/50 rounded-xl text-accent-800 dark:text-accent-100 2xs:py-1'
          }`}
          onClick={handleLang}
          role="button"

@@ -6,7 +6,6 @@ import { useTranslations } from 'next-intl';
 import { HiOutlineUser } from 'react-icons/hi2';
 import { BiHomeAlt2 } from 'react-icons/bi';
 import { LANGUAGES } from '@/src/utils/config';
-import { useParams } from 'next/navigation';
 import { useState } from 'react';
 import { useAuth } from '@/src/context/auth-context';
 import { Link } from '@/src/i18n/navigation';
@@ -18,8 +17,6 @@ import Modal from '@/src/ui/modal/modal';
 function MobileMenu() {
    const [openMenu, setOpenMenu] = useState(false);
    const { session, user, extendedUser } = useAuth();
-
-   const param = useParams();
    const t = useTranslations();
 
    return (
@@ -140,7 +137,6 @@ function MobileMenu() {
                               <LanguageFilterButton
                                  key={item.code}
                                  lang={item.code}
-                                 param={param}
                                  styles="md:text-[2rem]! ml-1!"
                                  imageStyle="size-10!"
                                  activeStyle="py-1.5! pl-3.5! pr-4! rounded-2xl!"
