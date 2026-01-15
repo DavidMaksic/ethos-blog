@@ -62,7 +62,7 @@ function LanguageFilterButton({
       >
          <div className={`relative size-7 2xs:size-8 ${imageStyle}`}>
             <Image
-               className="border border-primary-300 dark:border-primary-300/50 rounded-full opacity-90"
+               className="border border-primary-300 dark:border-primary-300/50 rounded-full opacity-90 dark:opacity-80"
                src={lang === 'sr' ? srbFlag : enFlag}
                alt="Language image"
                unoptimized

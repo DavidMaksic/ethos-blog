@@ -111,12 +111,9 @@ export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));
 }
 
-// TODO: Credits box has no x padding on mobile, also add more padding to bottom
-// TODO: Try to add backdrop blur to Table of contents
 // TODO: Fix reply animations
 // TODO: When last reply is deleted, thread line is still present
 // TODO: When reply is deleted, add isPending state and spinner to 'Delete'
-// TODO: Add 'save' option to options component in article edit
 
 export default async function RootLayout({ children, params }) {
    const { locale } = await params;

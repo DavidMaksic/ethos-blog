@@ -70,7 +70,7 @@ function LanguageButton() {
                >
                   {LANGUAGES.map((item) => (
                      <li
-                        className="flex justify-between items-center relative font-normal rounded-xl py-2 pr-4 pl-5  dark:text-primary-500 hover:bg-primary-100/50 dark:hover:bg-primary-300/18 duration-75 [&_img]:opacity-80 dark:[&_img]:opacity-80 group"
+                        className="flex justify-between items-center relative font-normal rounded-xl py-2 pr-4 pl-5  dark:text-primary-500 hover:bg-primary-100/50 dark:hover:bg-primary-300/18 duration-75 [&_img]:opacity-80 group"
                         key={item.code}
                         onClick={() => handleLang(item)}
                      >
