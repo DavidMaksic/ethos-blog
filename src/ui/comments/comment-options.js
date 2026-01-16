@@ -18,7 +18,6 @@ function CommentOptions({
    userID,
    replyID,
    slug,
-   articleID,
    onDelete,
 }) {
    const [openDelete, setOpenDelete] = useState();
@@ -78,7 +77,6 @@ function CommentOptions({
                      onClose={() => setOpenDelete(false)}
                      commentID={commentID}
                      replyID={replyID}
-                     articleID={articleID}
                      onDelete={onDelete}
                   />
                </Modal>

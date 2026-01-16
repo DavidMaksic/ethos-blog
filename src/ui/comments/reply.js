@@ -77,7 +77,7 @@ function Reply({
    const replyInputRef = useFocusReply(isReplyOpen);
 
    return (
-      <div className="last:mb-7">
+      <div className="last:pb-7">
          <div className="relative" ref={lastReplyRef}>
             <div className="absolute left-10 top-1/2 size-[38px] 2xl:size-10 -translate-x-full -translate-y-[85%] xs:-translate-y-[110%] 2xs:-translate-y-[120%] 2xl:-translate-x-[101%] 2xs:-translate-x-full">
                <span

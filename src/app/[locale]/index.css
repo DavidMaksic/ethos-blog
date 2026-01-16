@@ -1185,7 +1185,7 @@ h3 {
       font-size: 18.5px !important;
       line-height: 2.1rem;
       border-radius: 1.35rem !important;
-      @apply pb-6.5;
+      /* @apply pb-6.5; */
    }
 
    .bn-block-column-list {

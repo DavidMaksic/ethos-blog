@@ -11,14 +11,12 @@ import { useAuth } from '@/src/context/auth-context';
 import { LuReply } from 'react-icons/lu';
 
 import CommentOptions from '@/src/ui/comments/comment-options';
-import useThreadLine from '@/src/hooks/use-thread-line';
-import useFocusReply from '@/src/hooks/use-focus-reply';
-import ReplyInput from '@/src/ui/comments/reply-input';
+import RepliesList from '@/src/ui/comments/replies-list';
 import AuthModal from '@/src/ui/modal/auth-modal';
 import UserImage from '@/src/ui/image/user-image';
 import Modal from '@/src/ui/modal/modal';
-import Reply from '@/src/ui/comments/reply';
 import toast from 'react-hot-toast';
+import useFocusReply from '@/src/hooks/use-focus-reply';
 
 const Comment = forwardRef(
    (
@@ -74,7 +72,7 @@ const Comment = forwardRef(
       const [optimisticReplies, optimisticDelete] = useOptimistic(
          replies,
          (curReplies, replyID) => {
-            return curReplies.filter((item) => item.id === replyID);
+            return curReplies.filter((item) => item.id !== replyID);
          }
       );
 
@@ -123,199 +121,164 @@ const Comment = forwardRef(
          setIsLiked(hasLiked);
       }, [hasLiked]);
 
-      // - Calculate vertical line located next to replies
-      const { lineHeight, repliesWrapperRef, lastReplyRef } =
-         useThreadLine(optimisticReplies);
-
       // - Add focus to reply input when it's opened
       const isReplyOpen = openReplyID === commentID;
       const replyInputRef = useFocusReply(isReplyOpen);
 
       return (
-         <motion.div
-            ref={ref}
-            initial={false}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, ease: 'easeIn' }}
-            transition={{ duration: 0.2 }}
-            layout="position"
-            className="will-change-transform"
-         >
-            <div
-               id={`comment-${commentID}`}
-               className={`flex flex-col gap-5 xs:gap-4 bg-secondary dark:bg-primary-200 md:dark:bg-primary-300/15 box-shadow rounded-3xl px-14 sm:px-12 xs:px-10 py-10 sm:py-8 xs:py-5.5 scroll-mt-28! transition duration-300 mb-5 ${
-                  loading && 'pointer-events-none'
-               }`}
+         <div className="relative">
+            <motion.div
+               ref={ref}
+               initial={false}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0, ease: 'easeIn' }}
+               transition={{ duration: 0.2 }}
+               layout="position"
             >
-               <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-4">
-                     {user?.image && (
-                        <div className="relative size-10 md:size-11 sm:size-9 select-none">
-                           <UserImage url={user.image} />
-                        </div>
-                     )}
-
-                     <div className="flex xs:flex-wrap items-center gap-2 md:text-2xl sm:text-[1.4rem]">
-                        <span className="font-semibold">
-                           {user.username
-                              ? !isMobile
-                                 ? user.username
-                                 : user.username.split(' ')[0].slice(0, 10)
-                              : !isMobile
-                              ? user.name
-                              : user.name.split(' ')[0].slice(0, 10)}
-                        </span>
-                        {isAuthor && (
-                           <span className="px-2.5 py-0.5 bg-accent-400/20 dark:bg-accent-300/40 text-accent-600 dark:text-accent-50/70 rounded-xl font-semibold dark:font-medium">
-                              {t('author')}
-                           </span>
+               <div
+                  id={`comment-${commentID}`}
+                  className={`flex flex-col gap-5 xs:gap-4 bg-secondary dark:bg-primary-200 md:dark:bg-primary-300/15 box-shadow rounded-3xl px-14 sm:px-12 xs:px-10 py-10 sm:py-8 xs:py-5.5 scroll-mt-28! transition duration-300 mb-5 ${
+                     loading && 'pointer-events-none'
+                  }`}
+               >
+                  <div className="flex items-center justify-between">
+                     <div className="flex items-center gap-4">
+                        {user?.image && (
+                           <div className="relative size-10 md:size-11 sm:size-9 select-none">
+                              <UserImage url={user.image} />
+                           </div>
                         )}
-                        <span className="text-primary-400">•</span>
-                        <span className="font-thin text-primary-400">
-                           {date}
+
+                        <div className="flex xs:flex-wrap items-center gap-2 md:text-2xl sm:text-[1.4rem]">
+                           <span className="font-semibold">
+                              {user.username
+                                 ? !isMobile
+                                    ? user.username
+                                    : user.username.split(' ')[0].slice(0, 10)
+                                 : !isMobile
+                                 ? user.name
+                                 : user.name.split(' ')[0].slice(0, 10)}
+                           </span>
+                           {isAuthor && (
+                              <span className="px-2.5 py-0.5 bg-accent-400/20 dark:bg-accent-300/40 text-accent-600 dark:text-accent-50/70 rounded-xl font-semibold dark:font-medium">
+                                 {t('author')}
+                              </span>
+                           )}
+                           <span className="text-primary-400">•</span>
+                           <span className="font-thin text-primary-400">
+                              {date}
+                           </span>
+                        </div>
+                     </div>
+
+                     <CommentOptions
+                        comment={comment}
+                        commentLength={commentLength}
+                        userID={comment.user_id}
+                        articleID={articleID}
+                        slug={slug}
+                     />
+                  </div>
+
+                  <p className="font-secondary text-[1.4rem] 2xl:text-[1.3rem] md:text-[1.6rem] xs:text-[1.5rem] md:leading-9 xs:leading-[1.4] whitespace-pre-line">
+                     {comment.content}
+                  </p>
+
+                  <div className="flex items-center gap-2 md:gap-2.5 mt-2 md:mt-3">
+                     <div
+                        className={`flex items-center gap-2 h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-3 py-1.5 bg-primary-300/20 dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75 ${
+                           likesCount === 0 && 'gap-0!'
+                        }`}
+                        role="button"
+                        onClick={handleLike}
+                     >
+                        {isLiked ? (
+                           <BiSolidLike className="size-4 md:size-6 xs:size-[1.35rem]" />
+                        ) : (
+                           <BiLike className="size-4 md:size-6 xs:size-[1.35rem]" />
+                        )}
+
+                        <span className="tracking-wide font-semibold text-base md:text-xl select-none font-secondary tabular-nums">
+                           {likesCount > 0 && likesCount}
                         </span>
                      </div>
-                  </div>
 
-                  <CommentOptions
-                     comment={comment}
-                     commentLength={commentLength}
-                     userID={comment.user_id}
-                     articleID={articleID}
-                     slug={slug}
-                  />
-               </div>
-
-               <p className="font-secondary text-[1.4rem] 2xl:text-[1.3rem] md:text-[1.6rem] xs:text-[1.5rem] md:leading-9 xs:leading-[1.4] whitespace-pre-line">
-                  {comment.content}
-               </p>
-
-               <div className="flex items-center gap-2 md:gap-2.5 mt-2 md:mt-3">
-                  <div
-                     className={`flex items-center gap-2 h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-3 py-1.5 bg-primary-300/20 dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75 ${
-                        likesCount === 0 && 'gap-0!'
-                     }`}
-                     role="button"
-                     onClick={handleLike}
-                  >
-                     {isLiked ? (
-                        <BiSolidLike className="size-4 md:size-6 xs:size-[1.35rem]" />
-                     ) : (
-                        <BiLike className="size-4 md:size-6 xs:size-[1.35rem]" />
-                     )}
-
-                     <span className="tracking-wide font-semibold text-base md:text-xl select-none font-secondary tabular-nums">
-                        {likesCount > 0 && likesCount}
-                     </span>
-                  </div>
-
-                  <div
-                     className="flex items-center gap-2 h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-3 md:px-4 py-1.5 bg-primary-300/20 dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75"
-                     role="button"
-                     onClick={() => {
-                        if (!session) setIsOpen(true);
-                        if (session) {
-                           setOpenReplyID(isReplyOpen ? null : commentID);
-                        }
-                     }}
-                  >
-                     <LuReply className="size-4 md:size-6 xs:size-[1.35rem]" />
-                     <span className="tracking-wide font-bold text-base md:text-xl xs:text-[1.2rem] select-none">
-                        {t('reply-btn')}
-                     </span>
-                  </div>
-
-                  {optimisticReplies?.length ? (
                      <div
-                        className="flex items-center justify-center h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-2 py-1.5 bg-primary-300/20 dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75"
+                        className="flex items-center gap-2 h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-3 md:px-4 py-1.5 bg-primary-300/20 dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75"
                         role="button"
-                        onClick={() => setShowReplies((areShown) => !areShown)}
-                     >
-                        <RxChevronUp
-                           className={`size-5 md:size-7 xs:size-[1.55rem] xs:stroke-[0.1px] transition-200 ${
-                              showReplies && 'rotate-180'
-                           }`}
-                        />
-                     </div>
-                  ) : null}
-               </div>
-
-               <AnimatePresence>
-                  {isOpen && (
-                     <Modal closeModal={() => setIsOpen(false)}>
-                        <AuthModal
-                           onClose={() => setIsOpen(false)}
-                           string="comment-label"
-                        />
-                     </Modal>
-                  )}
-               </AnimatePresence>
-            </div>
-
-            <div className="relative">
-               <motion.div
-                  className="absolute left-0 top-0 w-0.5 bg-primary-300/60 dark:bg-tertiary/80"
-                  style={{ height: Math.max(0, lineHeight - 32) }}
-                  animate={{ opacity: showReplies ? 1 : 0 }}
-               />
-
-               <div ref={repliesWrapperRef}>
-                  <motion.div
-                     layout
-                     initial={false}
-                     animate={{
-                        height: isReplyOpen ? 'auto' : 0,
-                        opacity: isReplyOpen ? 1 : 0,
-                     }}
-                     transition={{ duration: 0.2 }}
-                     style={{ overflow: 'hidden' }}
-                  >
-                     <ReplyInput
-                        slug={slug}
-                        articleID={articleID}
-                        commentID={commentID}
-                        commentLength={commentLength}
-                        setReplyIsOpen={(prev) => {
-                           setOpenReplyID(prev ? commentID : null);
-                           if (!showReplies) setShowReplies(true);
+                        onClick={() => {
+                           if (!session) setIsOpen(true);
+                           if (session) {
+                              setOpenReplyID(isReplyOpen ? null : commentID);
+                              if (!showReplies) setShowReplies(true);
+                           }
                         }}
-                        ref={replyInputRef}
-                     />
-                  </motion.div>
+                     >
+                        <LuReply className="size-4 md:size-6 xs:size-[1.35rem]" />
+                        <span className="tracking-wide font-bold text-base md:text-xl xs:text-[1.2rem] select-none">
+                           {t('reply-btn')}
+                        </span>
+                     </div>
 
-                  <AnimatePresence initial={false}>
-                     {showReplies && (
-                        <motion.div
-                           initial={{ height: 0, opacity: 0 }}
-                           animate={{ height: 'auto', opacity: 1 }}
-                           exit={{ height: 0, opacity: 0 }}
-                           transition={{ duration: 0.2 }}
+                     {optimisticReplies?.length ? (
+                        <div
+                           className="flex items-center justify-center h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-2 py-1.5 bg-primary-300/20 dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75"
+                           role="button"
+                           onClick={() =>
+                              setShowReplies((areShown) => !areShown)
+                           }
                         >
-                           {optimisticReplies?.map((item, index) => {
-                              const isLast =
-                                 index === optimisticReplies.length - 1;
-                              return (
-                                 <Reply
-                                    reply={item}
-                                    key={item.id}
-                                    users={users}
-                                    article={article}
-                                    commentID={commentID}
-                                    commentLength={commentLength}
-                                    onDelete={handleDelete}
-                                    author={author}
-                                    lastReplyRef={isLast ? lastReplyRef : null}
-                                    openReplyID={openReplyID}
-                                    setOpenReplyID={setOpenReplyID}
-                                 />
-                              );
-                           })}
-                        </motion.div>
+                           <RxChevronUp
+                              className={`size-5 md:size-7 xs:size-[1.55rem] xs:stroke-[0.1px] transition-200 ${
+                                 showReplies && 'rotate-180'
+                              }`}
+                           />
+                        </div>
+                     ) : null}
+                  </div>
+
+                  <AnimatePresence>
+                     {isOpen && (
+                        <Modal closeModal={() => setIsOpen(false)}>
+                           <AuthModal
+                              onClose={() => setIsOpen(false)}
+                              string="comment-label"
+                           />
+                        </Modal>
                      )}
                   </AnimatePresence>
                </div>
-            </div>
-         </motion.div>
+
+               <motion.div
+                  layoutRoot
+                  className="relative ml-0.5 mt-2"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{
+                     height: showReplies ? 'auto' : 0,
+                     opacity: showReplies ? 1 : 0,
+                  }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  style={{ overflow: 'hidden' }}
+               >
+                  <RepliesList
+                     optimisticReplies={optimisticReplies}
+                     commentID={commentID}
+                     articleID={articleID}
+                     slug={slug}
+                     users={users}
+                     article={article}
+                     commentLength={commentLength}
+                     author={author}
+                     openReplyID={openReplyID}
+                     setOpenReplyID={setOpenReplyID}
+                     handleDelete={handleDelete}
+                     isReplyOpen={isReplyOpen}
+                     replyInputRef={replyInputRef}
+                  />
+               </motion.div>
+            </motion.div>
+         </div>
       );
    }
 );

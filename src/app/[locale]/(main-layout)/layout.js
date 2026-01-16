@@ -111,10 +111,6 @@ export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));
 }
 
-// TODO: Fix reply animations
-// TODO: When last reply is deleted, thread line is still present
-// TODO: When reply is deleted, add isPending state and spinner to 'Delete'
-
 export default async function RootLayout({ children, params }) {
    const { locale } = await params;
    setRequestLocale(locale);
