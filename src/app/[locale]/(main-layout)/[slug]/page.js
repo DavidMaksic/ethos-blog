@@ -12,6 +12,7 @@ import { format } from 'date-fns';
 
 import OtherArticleOptions from '@/src/ui/articles/other-article-options';
 import ArticleAuthorInfo from '@/src/ui/articles/article-author-info';
+import CommentListHeader from '@/src/ui/comment-list-header';
 import AnimationWrapper from '@/src/ui/articles/animation-wrapper';
 import RelatedArticles from '@/src/ui/articles/related-articles';
 import ArticleOptions from '@/src/ui/articles/article-options';
@@ -22,7 +23,6 @@ import ArticleImage from '@/src/ui/articles/article-image';
 import CommentList from '@/src/ui/comments/comment-list';
 import ImageZoom from '@/src/ui/image/image-zoom';
 import Options from '@/src/ui/operations/options';
-import CommentListHeader from '@/src/ui/comment-list-header';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;

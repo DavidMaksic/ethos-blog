@@ -143,9 +143,9 @@ const ReplyInput = forwardRef(
                   </button>
                </div>
 
-               <div className="flex justify-between mt-1 md:mb-3">
+               <div className="flex justify-between items-center mb-2 md:mb-3 z-20">
                   <span
-                     className={`error font-medium ml-4 text-lg md:text-xl transition-200 text-red-600/50 dark:text-red-300/80 ${
+                     className={`error font-medium ml-4 pb-1 text-lg md:text-xl transition-200 text-red-600/50 dark:text-red-300/80 ${
                         error ? 'opacity-100' : 'opacity-0'
                      }`}
                   >
@@ -153,12 +153,11 @@ const ReplyInput = forwardRef(
                   </span>
 
                   <span
-                     className={`text-lg bg-white border border-quaternary dark:border-tertiary dark:bg-primary-200 rounded-full px-4 py-1 pb-1.5 font-medium select-none pointer-events-none ${
+                     className={`text-lg bg-white border border-primary-300 dark:border-tertiary dark:bg-primary-200 rounded-full px-3 py-0.5 pb-1 font-medium select-none pointer-events-none ${
                         text.length < commentLength * 0.95 && 'opacity-0'
                      } ${
-                        text.length === commentLength
-                           ? 'text-red-600/60 bg-red-300/10! dark:text-red-300/80 border-red-300/30! dark:border-red-300/10!'
-                           : ''
+                        text.length === commentLength &&
+                        'text-red-600/60 bg-red-300/10! dark:text-red-300/80 border-red-300/30! dark:border-red-300/10!'
                      }`}
                   >
                      {text.length} / {commentLength}

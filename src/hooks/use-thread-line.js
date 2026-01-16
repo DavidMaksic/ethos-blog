@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-function useThreadLine(optimisticReplies) {
+function useThreadLine(replies) {
    const repliesWrapperRef = useRef(null);
    const lastReplyRef = useRef(null);
    const [lineHeight, setLineHeight] = useState(0);
@@ -23,7 +23,7 @@ function useThreadLine(optimisticReplies) {
       observer.observe(repliesWrapperRef.current);
 
       return () => observer.disconnect();
-   }, [optimisticReplies.length]);
+   }, [replies.length]);
 
    return { lineHeight, repliesWrapperRef, lastReplyRef };
 }

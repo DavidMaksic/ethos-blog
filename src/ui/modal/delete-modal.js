@@ -1,17 +1,10 @@
+import { deleteComment, deleteReply } from '@/src/lib/actions';
 import { useLocale, useTranslations } from 'next-intl';
-import { startTransition, useState } from 'react';
-import { deleteComment } from '@/src/lib/actions';
 import { ImSpinner2 } from 'react-icons/im';
+import { useState } from 'react';
 import toast from 'react-hot-toast';
 
-function DeleteModal({
-   slug,
-   onClose,
-   commentID,
-   replyID,
-   articleID,
-   onDelete,
-}) {
+function DeleteModal({ slug, onClose, commentID, replyID }) {
    const t = useTranslations('Comment');
    const locale = useLocale();
    const [isPending, setIsPending] = useState(false);
@@ -19,11 +12,21 @@ function DeleteModal({
    async function handleDelete() {
       setIsPending(true);
       let result;
-      result = await deleteComment(commentID, slug);
+
+      if (replyID) {
+         result = await deleteReply(replyID, slug);
+      } else {
+         result = await deleteComment(commentID, slug);
+      }
 
       if (result?.success) {
          onClose();
-         toast.success(t('deleted'));
+
+         if (replyID) {
+            toast.success(t('reply-deleted'));
+         } else {
+            toast.success(t('deleted'));
+         }
       }
 
       setIsPending(false);
@@ -42,14 +45,7 @@ function DeleteModal({
                      ? 'hover:bg-red-400/70 dark:hover:bg-red-400/45 hover:text-white dark:hover:text-red-100 text-[#ca6565] dark:text-[#e78989] '
                      : 'text-[#db7979] dark:text-[#cc7272] pl-12.5!  hover:shadow-none! pointer-events-none'
                }`}
-               onClick={() => {
-                  if (replyID) {
-                     startTransition(() => onDelete(replyID, articleID));
-                     onClose();
-                  } else {
-                     handleDelete();
-                  }
-               }}
+               onClick={handleDelete}
             >
                {isPending ? (
                   <>

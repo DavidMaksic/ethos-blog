@@ -1,7 +1,7 @@
-import { forwardRef, useEffect, useOptimistic, useState } from 'react';
-import { addLiked, deleteReply, removeLiked } from '@/src/lib/actions';
+import { forwardRef, useEffect, useState } from 'react';
 import { useLocale, useTranslations } from 'use-intl';
 import { motion, AnimatePresence } from 'motion/react';
+import { addLiked, removeLiked } from '@/src/lib/actions';
 import { BiLike, BiSolidLike } from 'react-icons/bi';
 import { useMediaQuery } from 'react-responsive';
 import { usePathname } from '@/src/i18n/navigation';
@@ -11,18 +11,18 @@ import { useAuth } from '@/src/context/auth-context';
 import { LuReply } from 'react-icons/lu';
 
 import CommentOptions from '@/src/ui/comments/comment-options';
+import useFocusReply from '@/src/hooks/use-focus-reply';
 import RepliesList from '@/src/ui/comments/replies-list';
 import AuthModal from '@/src/ui/modal/auth-modal';
 import UserImage from '@/src/ui/image/user-image';
 import Modal from '@/src/ui/modal/modal';
-import toast from 'react-hot-toast';
-import useFocusReply from '@/src/hooks/use-focus-reply';
 
 const Comment = forwardRef(
    (
       {
          comment,
          commentLength,
+         notFirst,
          users,
          article,
          author,
@@ -69,20 +69,6 @@ const Comment = forwardRef(
       const commentID = comment.id;
       const slug = article.slug;
 
-      const [optimisticReplies, optimisticDelete] = useOptimistic(
-         replies,
-         (curReplies, replyID) => {
-            return curReplies.filter((item) => item.id !== replyID);
-         }
-      );
-
-      // - Deleting reply logic
-      async function handleDelete(replyID) {
-         optimisticDelete(replyID);
-         await deleteReply(replyID, slug);
-         toast.success(t('reply-deleted'));
-      }
-
       // - Like logic
       let hasLiked;
       const commentLikeIDs = article.likes.filter(
@@ -126,7 +112,7 @@ const Comment = forwardRef(
       const replyInputRef = useFocusReply(isReplyOpen);
 
       return (
-         <div className="relative">
+         <div className={`relative ${notFirst ? 'mt-5' : ''}`}>
             <motion.div
                ref={ref}
                initial={false}
@@ -137,7 +123,7 @@ const Comment = forwardRef(
             >
                <div
                   id={`comment-${commentID}`}
-                  className={`flex flex-col gap-5 xs:gap-4 bg-secondary dark:bg-primary-200 md:dark:bg-primary-300/15 box-shadow rounded-3xl px-14 sm:px-12 xs:px-10 py-10 sm:py-8 xs:py-5.5 scroll-mt-28! transition duration-300 mb-5 ${
+                  className={`flex flex-col gap-5 xs:gap-4 bg-secondary dark:bg-primary-200 md:dark:bg-primary-300/15 box-shadow rounded-3xl px-14 sm:px-12 xs:px-10 py-10 sm:py-8 xs:py-5.5 scroll-mt-28! transition duration-300 ${
                      loading && 'pointer-events-none'
                   }`}
                >
@@ -175,7 +161,6 @@ const Comment = forwardRef(
                         comment={comment}
                         commentLength={commentLength}
                         userID={comment.user_id}
-                        articleID={articleID}
                         slug={slug}
                      />
                   </div>
@@ -220,7 +205,7 @@ const Comment = forwardRef(
                         </span>
                      </div>
 
-                     {optimisticReplies?.length ? (
+                     {replies?.length ? (
                         <div
                            className="flex items-center justify-center h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-2 py-1.5 bg-primary-300/20 dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75"
                            role="button"
@@ -251,18 +236,19 @@ const Comment = forwardRef(
 
                <motion.div
                   layoutRoot
-                  className="relative ml-0.5 mt-2"
-                  initial={{ height: 0, opacity: 0 }}
+                  className="relative ml-0.5 2xl:ml-0"
+                  initial={{ height: 0, opacity: 0, marginTop: 0 }}
                   animate={{
                      height: showReplies ? 'auto' : 0,
                      opacity: showReplies ? 1 : 0,
+                     marginTop: showReplies ? 18 : 0,
                   }}
-                  exit={{ height: 0, opacity: 0 }}
+                  exit={{ height: 0, opacity: 0, marginTop: 0 }}
                   transition={{ duration: 0.2 }}
-                  style={{ overflow: 'hidden' }}
                >
                   <RepliesList
-                     optimisticReplies={optimisticReplies}
+                     replies={replies}
+                     showReplies={showReplies}
                      commentID={commentID}
                      articleID={articleID}
                      slug={slug}
@@ -272,7 +258,6 @@ const Comment = forwardRef(
                      author={author}
                      openReplyID={openReplyID}
                      setOpenReplyID={setOpenReplyID}
-                     handleDelete={handleDelete}
                      isReplyOpen={isReplyOpen}
                      replyInputRef={replyInputRef}
                   />

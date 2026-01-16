@@ -12,14 +12,7 @@ import Modal from '@/src/ui/modal/modal';
 import Menus from '@/src/ui/menus';
 import toast from 'react-hot-toast';
 
-function CommentOptions({
-   comment,
-   commentLength,
-   userID,
-   replyID,
-   slug,
-   onDelete,
-}) {
+function CommentOptions({ comment, commentLength, userID, replyID, slug }) {
    const [openDelete, setOpenDelete] = useState();
    const [openEdit, setOpenEdit] = useState();
    const { session } = useAuth();
@@ -73,11 +66,10 @@ function CommentOptions({
             {openDelete && (
                <Modal closeModal={() => setOpenDelete(false)}>
                   <DeleteModal
-                     slug={slug}
                      onClose={() => setOpenDelete(false)}
                      commentID={commentID}
                      replyID={replyID}
-                     onDelete={onDelete}
+                     slug={slug}
                   />
                </Modal>
             )}

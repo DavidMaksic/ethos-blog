@@ -17,11 +17,11 @@ import Modal from '@/src/ui/modal/modal';
 
 function Reply({
    reply,
+   showReplies,
    users,
    article,
    commentID,
    commentLength,
-   onDelete,
    author,
    lastReplyRef,
    openReplyID,
@@ -77,18 +77,26 @@ function Reply({
    const replyInputRef = useFocusReply(isReplyOpen);
 
    return (
-      <div className="last:pb-7">
+      <motion.div
+         initial={{ height: 0, opacity: 0 }}
+         animate={{
+            height: showReplies ? 'auto' : 0,
+            opacity: showReplies ? 1 : 0,
+         }}
+         exit={{ height: 0, opacity: 0 }}
+         transition={{ duration: 0.2 }}
+      >
          <div className="relative" ref={lastReplyRef}>
             <div className="absolute left-10 top-1/2 size-[38px] 2xl:size-10 -translate-x-full -translate-y-[85%] xs:-translate-y-[110%] 2xs:-translate-y-[120%] 2xl:-translate-x-[101%] 2xs:-translate-x-full">
                <span
-                  className="absolute size-10 md:size-9.5 border-l-2 2xs:border-l-1 border-b-2 2xs:border-b-1 rounded-bl-full border-primary-300/65 sm:border-primary-300/80 dark:border-tertiary sm:dark:border-tertiary"
+                  className="absolute size-10 md:size-9.5 xs:size-7 border-l-2 2xs:border-l-1 border-b-2 2xs:border-b-1 rounded-bl-full border-primary-300/65 dark:border-tertiary"
                   aria-hidden="true"
                />
             </div>
 
             <div
                id={`comment-${replyID}`}
-               className="flex flex-col gap-5 xs:gap-4 bg-secondary/65 dark:bg-primary-200/49 md:dark:bg-primary-300/10 box-shadow dark:border-primary-300/10 rounded-3xl px-14 sm:px-12 xs:px-10 py-10 sm:py-8 xs:py-5.5 ml-14 mb-5 scroll-mt-28! transition duration-300"
+               className="flex flex-col gap-5 xs:gap-4 bg-secondary/65 dark:bg-primary-200/49 md:dark:bg-primary-300/10 box-shadow dark:border-primary-300/10 rounded-3xl px-14 sm:px-12 xs:px-10 py-10 sm:py-8 xs:py-5.5 ml-14 xs:ml-10 mb-5 scroll-mt-28! transition duration-300"
             >
                <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
@@ -123,14 +131,11 @@ function Reply({
                   </div>
 
                   <CommentOptions
-                     id={replyID}
                      userID={reply.user_id}
                      slug={slug}
                      comment={reply}
                      commentLength={commentLength}
                      replyID={replyID}
-                     articleID={articleID}
-                     onDelete={onDelete}
                   />
                </div>
 
@@ -204,7 +209,7 @@ function Reply({
                ref={replyInputRef}
             />
          </motion.div>
-      </div>
+      </motion.div>
    );
 }
 

@@ -27,10 +27,11 @@ function CommentList({ comments, article, users, commentLength, author }) {
                   layout
                >
                   <AnimatePresence mode="popLayout">
-                     {sortedComments.map((item) => (
+                     {sortedComments.map((item, index) => (
                         <Comment
                            comment={item}
                            commentLength={commentLength}
+                           notFirst={index !== 0}
                            users={users}
                            article={article}
                            author={author}
