@@ -27,19 +27,25 @@ function CommentList({ comments, article, users, commentLength, author }) {
                   layout
                >
                   <AnimatePresence mode="popLayout">
-                     {sortedComments.map((item, index) => (
-                        <Comment
-                           comment={item}
-                           commentLength={commentLength}
-                           notFirst={index !== 0}
-                           users={users}
-                           article={article}
-                           author={author}
-                           openReplyID={openReplyID}
-                           setOpenReplyID={setOpenReplyID}
-                           key={item.id}
-                        />
-                     ))}
+                     {sortedComments.map((item, index) => {
+                        const prevHasReplyOpen =
+                           index !== 0 &&
+                           openReplyID === sortedComments[index - 1].id;
+
+                        return (
+                           <Comment
+                              comment={item}
+                              commentLength={commentLength}
+                              prevHasReplyOpen={prevHasReplyOpen}
+                              users={users}
+                              article={article}
+                              author={author}
+                              openReplyID={openReplyID}
+                              setOpenReplyID={setOpenReplyID}
+                              key={item.id}
+                           />
+                        );
+                     })}
                   </AnimatePresence>
                </motion.div>
             )}

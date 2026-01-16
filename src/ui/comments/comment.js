@@ -22,14 +22,14 @@ const Comment = forwardRef(
       {
          comment,
          commentLength,
-         notFirst,
+         prevHasReplyOpen,
          users,
          article,
          author,
          openReplyID,
          setOpenReplyID,
       },
-      ref
+      ref,
    ) => {
       const [isOpen, setIsOpen] = useState(false);
       const [showReplies, setShowReplies] = useState(true);
@@ -72,7 +72,7 @@ const Comment = forwardRef(
       // - Like logic
       let hasLiked;
       const commentLikeIDs = article.likes.filter(
-         (item) => item.type === 'comment' && item.target_id === commentID
+         (item) => item.type === 'comment' && item.target_id === commentID,
       );
       hasLiked = commentLikeIDs.length;
 
@@ -96,7 +96,7 @@ const Comment = forwardRef(
                articleID,
                'comment',
                slug,
-               commentID
+               commentID,
             );
          }
 
@@ -112,7 +112,14 @@ const Comment = forwardRef(
       const replyInputRef = useFocusReply(isReplyOpen);
 
       return (
-         <div className={`relative ${notFirst ? 'mt-5' : ''}`}>
+         <div className={`relative`}>
+            <motion.div
+               layout
+               initial={false}
+               animate={{ height: prevHasReplyOpen ? 0 : 18 }}
+               transition={{ duration: 0.2 }}
+            />
+
             <motion.div
                ref={ref}
                initial={false}
@@ -142,8 +149,8 @@ const Comment = forwardRef(
                                     ? user.username
                                     : user.username.split(' ')[0].slice(0, 10)
                                  : !isMobile
-                                 ? user.name
-                                 : user.name.split(' ')[0].slice(0, 10)}
+                                   ? user.name
+                                   : user.name.split(' ')[0].slice(0, 10)}
                            </span>
                            {isAuthor && (
                               <span className="px-2.5 py-0.5 bg-accent-400/20 dark:bg-accent-300/40 text-accent-600 dark:text-accent-50/70 rounded-xl font-semibold dark:font-medium">
@@ -241,7 +248,10 @@ const Comment = forwardRef(
                   animate={{
                      height: showReplies ? 'auto' : 0,
                      opacity: showReplies ? 1 : 0,
-                     marginTop: showReplies ? 18 : 0,
+                     marginTop:
+                        (showReplies && replies.length > 0) || isReplyOpen
+                           ? 18
+                           : 0,
                   }}
                   exit={{ height: 0, opacity: 0, marginTop: 0 }}
                   transition={{ duration: 0.2 }}
@@ -265,7 +275,7 @@ const Comment = forwardRef(
             </motion.div>
          </div>
       );
-   }
+   },
 );
 
 Comment.displayName = 'Comment';
