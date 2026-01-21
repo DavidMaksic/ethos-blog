@@ -36,6 +36,7 @@ function CommentList({ comments, article, users, commentLength, author }) {
                            <Comment
                               comment={item}
                               commentLength={commentLength}
+                              isFirst={index === 0}
                               prevHasReplyOpen={prevHasReplyOpen}
                               users={users}
                               article={article}

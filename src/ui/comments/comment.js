@@ -22,6 +22,7 @@ const Comment = forwardRef(
       {
          comment,
          commentLength,
+         isFirst,
          prevHasReplyOpen,
          users,
          article,
@@ -115,8 +116,9 @@ const Comment = forwardRef(
          <div className={`relative`}>
             <motion.div
                layout
-               initial={false}
-               animate={{ height: prevHasReplyOpen ? 0 : 18 }}
+               initial={{ height: 0 }}
+               animate={{ height: prevHasReplyOpen || isFirst ? 0 : 18 }}
+               exit={{ height: 0 }}
                transition={{ duration: 0.2 }}
             />
 
