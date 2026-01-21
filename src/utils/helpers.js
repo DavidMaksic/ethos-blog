@@ -3,35 +3,28 @@ import { enUS, sr } from 'date-fns/locale';
 import sanitizeHtml from 'sanitize-html';
 
 export function getSortedItems(param, items) {
-   const sort = param ?? 'created_at-asc';
+   if (!items?.length) return items;
 
+   const sort = param ?? 'created_at-asc';
    const [field, direction] = sort.split('-');
 
    const modifier = direction === 'asc' ? 1 : -1;
    const dateModifier = direction === 'asc' ? -1 : 1;
 
-   function compare(a, b) {
-      if (a['title'] < b['title']) {
-         return -1 * modifier;
+   return [...items].sort((a, b) => {
+      // 1. Title
+      if (field === 'title') {
+         return a.title.localeCompare(b.title) * modifier;
       }
-      if (a['title'] > b['title']) {
-         return 1 * modifier;
+
+      // 2. Dates (created_at, bookmarked_at)
+      if (typeof a[field] === 'string') {
+         return (new Date(a[field]) - new Date(b[field])) * dateModifier;
       }
-      return 0;
-   }
 
-   let sortedItems;
-
-   if (field === 'title') sortedItems = items?.sort(compare);
-
-   if (field === 'created_at')
-      sortedItems = items?.sort(
-         (a, b) => (new Date(a[field]) - new Date(b[field])) * dateModifier
-      );
-
-   sortedItems = items?.sort((a, b) => (a[field] - b[field]) * modifier);
-
-   return sortedItems;
+      // 3. Numbers
+      return (a[field] - b[field]) * modifier;
+   });
 }
 
 export function getMainArticles(array) {

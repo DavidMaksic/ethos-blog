@@ -4,7 +4,7 @@ export async function getArticles() {
    const { data, error } = await supabase
       .from('articles')
       .select(
-         'id, category_id, created_at, title, image, description, author_id, featured, code, slug, updated_at, authors (full_name), categories(*)'
+         'id, category_id, created_at, title, image, description, author_id, featured, code, slug, updated_at, authors (full_name), categories(*)',
       )
       .eq('status', 'published')
       .order('id', { ascending: false });
@@ -70,7 +70,7 @@ export async function getUser(email) {
    const { data, error } = await supabase
       .from('users')
       .select(
-         '*, likes(id, type), bookmarks(*), comments(*, articles (title, slug)), replies(*, articles (title, slug), comments(user_id))'
+         '*, likes(id, type), bookmarks(*), comments(*, articles (title, slug)), replies(*, articles (title, slug), comments(user_id))',
       )
       .eq('email', email)
       .maybeSingle();
@@ -108,7 +108,7 @@ export async function getBookmarksByID(userID) {
    const { data, error } = await supabase
       .from('bookmarks')
       .select(
-         '*, articles (id, created_at, title, image, category_id, slug, categories(*))'
+         '*, articles (id, created_at, title, image, category_id, slug, categories(*))',
       )
       .eq('user_id', userID);
 

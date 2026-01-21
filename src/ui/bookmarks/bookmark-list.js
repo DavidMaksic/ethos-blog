@@ -13,15 +13,13 @@ import Fuse from 'fuse.js';
 function BookmarkList({ usersBookmarks, param }) {
    const t = useTranslations('Profile');
 
-   const bookmarks = usersBookmarks.flatMap((item) => item.articles);
-
    const fuse = useMemo(() => {
       if (!param.search) return null;
-      return new Fuse(bookmarks, FUSE_OPTIONS);
-   }, [bookmarks, param.search]);
+      return new Fuse(usersBookmarks, FUSE_OPTIONS);
+   }, [usersBookmarks, param.search]);
 
    // 1. Filter / Search Logic
-   let filtered = [...bookmarks];
+   let filtered = [...usersBookmarks];
 
    if (fuse && param.search) {
       filtered = fuse.search(param.search).map((r) => r.item);
@@ -39,7 +37,9 @@ function BookmarkList({ usersBookmarks, param }) {
 
    const from = (currentPage - 1) * itemsPerPage;
    const to = from + itemsPerPage;
-   const displayedBookmarks = filtered.slice(from, to);
+   const displayedBookmarks = filtered
+      .slice(from, to)
+      .flatMap((item) => item.articles);
 
    return (
       <>
@@ -75,7 +75,7 @@ function BookmarkList({ usersBookmarks, param }) {
                'invisible pointer-events-none'
             }`}
          >
-            <Pagination count={bookmarks.length} isArchive={false} />
+            <Pagination count={usersBookmarks.length} isArchive={false} />
          </div>
       </>
    );

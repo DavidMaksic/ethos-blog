@@ -213,6 +213,7 @@ export default async function RootLayout({ children, params }) {
                                     borderRadius: '14px',
                                     boxShadow: 'var(--shadow-toast-btn)',
                                     padding: '10px 20px',
+                                    textAlign: 'center',
                                  },
                                  iconTheme: {
                                     primary: 'var(--color-accent-400)',
