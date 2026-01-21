@@ -64,7 +64,7 @@ const ReplyInput = forwardRef(
       }, [state, setReplyIsOpen, t]);
 
       return (
-         <div className="comment-section scroll-mt-20! flex flex-col gap-1.5 ml-14 font-secondary">
+         <div className="comment-section scroll-mt-20! flex flex-col gap-1.5 ml-14 xs:ml-10 font-secondary">
             <form
                action={handleAction}
                className={`w-full transition duration-75 ${
