@@ -32,6 +32,13 @@ export async function POST(req) {
          }
       }
 
+      // 3. Handle feature update
+      if (changes?.action === 'featureUpdate') {
+         LOCALES.forEach((locale) => {
+            revalidatePath(`/${locale}`);
+         });
+      }
+
       return new Response(JSON.stringify({ revalidated: true }), {
          status: 200,
          headers: { 'Content-Type': 'application/json' },
