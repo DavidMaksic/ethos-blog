@@ -10,6 +10,8 @@ npm run dev
 
 ![main image](https://davidmaksic.vercel.app/assets/ethos-BxVz4v8U.png)
 
+<br />
+
 Ethos Blog enables its users to do many things: read, comment, bookmark, etc. This website is powered by **Next.js** which provides fast initial load times and server-side rendering.
 
 Authentication and authorization was implemented using **NextAuth**. Internationalization is supported thanks to **`next-intl`** library. Site is styled with **Tailwind** and can be used on variety of devices thanks to the responsive design.
