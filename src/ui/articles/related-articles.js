@@ -11,7 +11,7 @@ async function RelatedArticles({
    const t = await getTranslations('Article');
 
    const array = articles.filter(
-      (item) => Number(item.category_id) === Number(category.id)
+      (item) => Number(item.category_id) === Number(category.id),
    );
 
    const relatedArticles = array
@@ -26,7 +26,7 @@ async function RelatedArticles({
             {t('read-next-label')}
          </span>
 
-         <div className="grid grid-cols-2 sm:grid-cols-1 gap-6 md:gap-5 sm:gap-6">
+         <div className="grid grid-cols-2 md:grid-cols-1 gap-6 md:gap-5 sm:gap-6">
             {relatedArticles.map((item) => (
                <RelatedArticle article={item} author={author} key={item.id} />
             ))}
