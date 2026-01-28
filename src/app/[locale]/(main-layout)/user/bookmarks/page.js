@@ -20,7 +20,7 @@ async function Page({ searchParams }) {
    const usersBookmarks = await getBookmarksByID(session.user.userID);
 
    return (
-      <div className="grid grid-rows-[0.1fr_2fr_0.1fr] gap-8 lg:gap-6 h-full">
+      <div className="grid grid-rows-[0.1fr_2fr_0.1fr] sm:flex sm:flex-col gap-8 lg:gap-6 h-full">
          <h1 className="sr-only">{t('profile-page-bookmarks')}</h1>
 
          <div className="flex justify-between">
