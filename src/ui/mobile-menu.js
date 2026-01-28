@@ -122,7 +122,7 @@ function MobileMenu() {
                                     />
                                  </Link>
                                  <span
-                                    className={`text-accent-400 dark:text-accent text-4xl w-fit self-center pr-1.5 font-logo transition-200 ${
+                                    className={`text-accent dark:text-accent-200 text-4xl w-fit self-center pr-1.5 font-logo transition-200 ${
                                        loaded ? 'opacity-100' : 'opacity-0'
                                     }`}
                                  >

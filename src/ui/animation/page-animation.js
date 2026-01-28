@@ -8,7 +8,9 @@ import { motion } from 'motion/react';
 function PageAnimation({ children }) {
    const pathname = usePathname();
    const [isFirstLoad, setIsFirstLoad] = useState(true);
+
    const centerLayout = pathname === '/about';
+   const isUserRoute = pathname.startsWith('/user');
 
    useThemeColor();
    useEffect(() => setIsFirstLoad(false), []);
@@ -18,10 +20,10 @@ function PageAnimation({ children }) {
          className={`md:pt-5 w-7xl min-h-[91vh] 2xl:w-full mx-auto ${
             centerLayout ? 'flex items-center sm:items-start' : 'py-[4.7dvh]'
          }`}
-         key={pathname}
+         key={isUserRoute ? '/user' : pathname}
          initial={isFirstLoad ? false : { opacity: 0 }}
          animate={{ opacity: 1 }}
-         exit={{ opacity: 0 }}
+         exit={isUserRoute ? false : { opacity: 0 }}
          transition={{ duration: 0.3 }}
       >
          {children}
