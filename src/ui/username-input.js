@@ -44,13 +44,13 @@ function UsernameInput() {
             {!isPending ? (
                input?.length > 2 && input?.length < 25 ? (
                   <motion.button
-                     className="absolute bottom-0 -right-4"
+                     className="absolute bottom-0 -right-4 md:-right-6.5"
                      initial={{ opacity: 0 }}
                      animate={{ opacity: 1 }}
                      exit={{ opacity: 0 }}
                      transition={{ duration: 0.075 }}
                   >
-                     <GiCheckMark className="opacity-80 size-9 px-[0.5rem] pt-0.5 ml-4 rounded-full text-primary-500 dark:text-primary-500 hover:text-green-900/80 dark:hover:text-green-900 bg-white dark:bg-primary-300/40 hover:bg-green-200/60 border border-primary-300/70 dark:border-quaternary hover:border-green-700/30 transition-bg_color_border cursor-pointer" />
+                     <GiCheckMark className="opacity-80 size-9 md:size-12 px-[0.5rem] md:px-3 pt-0.5 rounded-full text-primary-500 dark:text-primary-500 hover:text-green-900/80 dark:hover:text-green-900 bg-white dark:bg-primary-300/40 hover:bg-green-200/60 border border-primary-300/70 dark:border-quaternary hover:border-green-700/30 transition-bg_color_border cursor-pointer" />
                   </motion.button>
                ) : null
             ) : (
