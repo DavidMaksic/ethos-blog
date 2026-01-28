@@ -54,7 +54,15 @@ function UsernameInput() {
                   </motion.button>
                ) : null
             ) : (
-               <ImSpinner2 className="absolute bottom-1 right-[-40px] xs:right-[-29px] 2xs:right-[-25px] size-6 animate-spin opacity-70" />
+               <motion.span
+                  className="absolute bottom-0 -right-3.5 md:-right-5.5"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+               >
+                  <ImSpinner2 className="size-8.5 md:size-11 animate-spin opacity-70" />
+               </motion.span>
             )}
          </AnimatePresence>
       </form>
