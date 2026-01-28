@@ -61,7 +61,7 @@ function UsernameInput() {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.15 }}
                >
-                  <ImSpinner2 className="size-8.5 md:size-11 animate-spin opacity-70" />
+                  <ImSpinner2 className="size-8.5 md:size-11 animate-spin opacity-70 sm:opacity-60" />
                </motion.span>
             )}
          </AnimatePresence>
