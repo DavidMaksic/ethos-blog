@@ -88,7 +88,7 @@ function MobileMenu() {
                      <span className="w-px bg-primary-300 dark:bg-primary-300/40 3xs:hidden" />
 
                      <div className="flex flex-col gap-2 items-center">
-                        <div className="min-w-50 h-39.5 3xs:h-[10.6rem] xs:min-w-full flex flex-col gap-3 items-center justify-center mx-4 xs:mx-0 py-2 3xs:pt-5 pb-6 border-b border-b-primary-300 dark:border-b-primary-300/40">
+                        <div className="min-w-50 min-h-39.5 3xs:min-h-[10.6rem] xs:min-w-full flex flex-col gap-3 items-center justify-center mx-4 xs:mx-0 py-2 3xs:pt-5 pb-6 border-b border-b-primary-300 dark:border-b-primary-300/40">
                            {loading ? (
                               <motion.span
                                  initial={{ opacity: 0 }}

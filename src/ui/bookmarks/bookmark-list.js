@@ -69,19 +69,14 @@ function BookmarkList({ usersBookmarks, param }) {
             </AnimatePresence>
          </motion.div>
 
-         <motion.div
+         <div
             className={`${
                filtered.length <= itemsPerPage &&
                'invisible pointer-events-none'
             }`}
-            layout="position"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
          >
             <Pagination count={usersBookmarks.length} isArchive={false} />
-         </motion.div>
+         </div>
       </>
    );
 }
