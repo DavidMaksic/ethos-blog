@@ -9,11 +9,9 @@ function PageAnimation({ children }) {
    const pathname = usePathname();
    const [isFirstLoad, setIsFirstLoad] = useState(true);
    const centerLayout = pathname === '/about';
-   useThemeColor();
 
-   useEffect(() => {
-      setIsFirstLoad(false);
-   }, []);
+   useThemeColor();
+   useEffect(() => setIsFirstLoad(false), []);
 
    return (
       <motion.main

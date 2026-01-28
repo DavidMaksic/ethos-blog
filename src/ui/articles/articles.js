@@ -32,12 +32,12 @@ function Articles({ isArchive = false, articles, categories, style }) {
    const currentCategory = categories.find(
       (item) =>
          item.category ===
-         category?.charAt(0).toUpperCase() + category?.slice(1)
+         category?.charAt(0).toUpperCase() + category?.slice(1),
    );
 
    const fuse = useMemo(
       () => (search ? new Fuse(articles, FUSE_OPTIONS) : null),
-      [articles, search]
+      [articles, search],
    );
 
    // Sort, search, filter, pagination

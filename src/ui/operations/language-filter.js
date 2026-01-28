@@ -27,7 +27,7 @@ function LanguageFilter() {
 
          <div className="flex items-center gap-4 text-[1.35rem] md:justify-center">
             <LayoutGroup>
-               <div className="relative flex gap-2 bg-white dark:bg-primary-300/15 py-2 px-3 border border-tertiary dark:border-primary-300/15 rounded-xl shadow-2xs transition-bg_color_border">
+               <div className="relative flex gap-2 bg-white dark:bg-primary-300/15 py-2 px-3 border border-tertiary dark:border-primary-300/15 rounded-xl md:rounded-2xl shadow-2xs transition-bg_color_border">
                   {LANGUAGES.map((item) => {
                      const active =
                         item.code === paramLang ||

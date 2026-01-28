@@ -28,16 +28,16 @@ function Pagination({ count, isArchive = true }) {
 
    function nextPage() {
       const next = currentPage === pageCount ? currentPage : currentPage + 1;
-
       const params = new URLSearchParams(searchParams);
+
       params.set('page', next);
       router.replace(`${pathname}?${params.toString()}`, { scroll: false });
    }
 
    function prevPage() {
       const prev = currentPage === 1 ? currentPage : currentPage - 1;
-
       const params = new URLSearchParams(searchParams);
+
       params.set('page', prev);
       router.replace(`${pathname}?${params.toString()}`, { scroll: false });
    }

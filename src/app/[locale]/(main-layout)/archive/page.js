@@ -55,7 +55,7 @@ async function Page({ params }) {
    };
 
    return (
-      <div className="grid grid-cols-[2fr_1fr] md:grid-cols-1 gap-10 xs:gap-14 2xl:mt-3">
+      <div className="grid grid-cols-[2fr_1fr] md:flex md:flex-col gap-10 xs:gap-14 2xl:mt-3 min-h-[152rem] md:min-h-[193.5rem] sm:min-h-[197.4rem] xs:min-h-[197.2rem] 2xs:min-h-[218rem]">
          <h1 className="sr-only">{t('H1.archive-page')}</h1>
 
          <section className="space-y-7 lg:space-y-5 md:order-2 md:min-h-screen">
