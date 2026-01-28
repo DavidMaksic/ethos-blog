@@ -33,7 +33,7 @@ function Options() {
 
    useEffect(() => {
       const headingElementsRaw = Array.from(
-         document.querySelectorAll('h2, h3')
+         document.querySelectorAll('h2, h3'),
       ).slice(1);
 
       const headingElements = headingElementsRaw.map((item, index) => {
@@ -64,7 +64,7 @@ function Options() {
          <div className="absolute bottom-0 left-0" ref={bottomRef} />
 
          <IoOptions
-            className={`fixed bottom-13 2xl:bottom-11 lg:bottom-11.5 md:bottom-9 right-24 lg:right-15 md:right-9 size-16 md:size-20.5 bg-white dark:bg-transparent lg:dark:bg-primary/40 md:dark:bg-primary-200/80 backdrop-blur-3xl border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/25 p-3.5 md:p-4.5 rounded-full box-shadow md:shadow-menu transition-bg_border cursor-pointer z-20 ${
+            className={`fixed bottom-13 2xl:bottom-11 lg:bottom-11.5 md:bottom-9 right-24 lg:right-15 md:right-9 xs:right-7.5 2xs:right-7 size-16 md:size-20.5 bg-white dark:bg-transparent lg:dark:bg-primary/40 md:dark:bg-primary-200/80 backdrop-blur-3xl border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/25 p-3.5 md:p-4.5 rounded-full box-shadow md:shadow-menu transition-bg_border cursor-pointer z-20 ${
                !isBellowMd
                   ? 'hover:bg-white/20 dark:hover:bg-primary-400/10'
                   : ''
@@ -86,7 +86,7 @@ function Options() {
          <AnimatePresence>
             {openMenu && (
                <motion.ul
-                  className={`fixed bottom-32 2xl:bottom-30 lg:bottom-30.5 md:bottom-33 right-24 lg:right-15 md:right-9 px-1 md:px-2 flex flex-col items-center bg-white lg:bg-white dark:bg-transparent lg:dark:bg-primary/40 md:dark:bg-primary-200/80 backdrop-blur-3xl border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/25 rounded-3xl [&_svg]:cursor-pointer box-shadow md:shadow-menu will-change-transform z-20 ${
+                  className={`fixed bottom-32 2xl:bottom-30 lg:bottom-30.5 md:bottom-33 right-24 lg:right-15 md:right-9 xs:right-7.5 2xs:right-7 px-1 md:px-2 flex flex-col items-center bg-white lg:bg-white dark:bg-transparent lg:dark:bg-primary/40 md:dark:bg-primary-200/80 backdrop-blur-3xl border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/25 rounded-3xl [&_svg]:cursor-pointer box-shadow md:shadow-menu will-change-transform z-20 ${
                      openTable
                         ? 'md:dark:shadow-none lg:dark:bg-primary/90!'
                         : 'md:dark:shadow-menu-dark'
@@ -170,7 +170,7 @@ function Options() {
 
                            {headings.map((item) => (
                               <a
-                                 className={`w-[19rem] md:w-[22rem] sm:w-[23rem] py-2 md:py-2.5 hover:text-accent! transition duration-75 px-6 md:px-8 mb-[3px] xs:mb-0.5 hover:bg-primary-300/10 dark:hover:bg-primary-300/8 leading-6.5 md:leading-7 xs:leading-7.5 rounded-xl sm:font-semibold xs:font-medium ${
+                                 className={`w-[19rem] md:w-[22rem] sm:w-[63vw] py-2 md:py-2.5 hover:text-accent! transition duration-75 px-6 md:px-8 mb-[3px] xs:mb-0.5 hover:bg-primary-300/10 dark:hover:bg-primary-300/8 leading-6.5 md:leading-7 xs:leading-7.5 rounded-xl sm:font-semibold xs:font-medium ${
                                     item.localName === 'h2' &&
                                     'text-primary-600 sm:text-primary-600/90 dark:text-slate-300/85 sm:dark:text-slate-300/75'
                                  } ${

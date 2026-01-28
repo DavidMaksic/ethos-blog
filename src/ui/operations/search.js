@@ -103,9 +103,9 @@ function Search({ isArchive = false }) {
             placeholder={t('Search-placeholder')}
             autoComplete="one-time-code"
             onChange={(e) => setInputValue(e.target.value)}
-            className={`hidden md:block h-12 py-4 px-1 bg-white dark:bg-primary-300/18 shadow-2xs border border-tertiary dark:border-transparent rounded-full text-2xl font-medium outline-none transition-bg_border rounded-l-none border-l-transparent ${
+            className={`hidden md:block h-12 py-4 px-1 3xs:w-[11rem] bg-white dark:bg-primary-300/18 shadow-2xs border border-tertiary dark:border-transparent rounded-full text-2xl font-medium outline-none transition-bg_border rounded-l-none border-l-transparent ${
                locale === 'en' ? 'w-[14rem]' : 'w-[12.5rem]'
-            } ${isArchive ? `w-[10.5rem] 3xs:w-[11rem]` : 'w-[7rem]'}`}
+            } ${isArchive ? `w-[10.5rem]` : 'w-[7rem]'}`}
          />
       </div>
    );
