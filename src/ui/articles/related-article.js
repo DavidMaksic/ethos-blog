@@ -25,7 +25,7 @@ function RelatedArticle({ article, author }) {
                {article.title}
             </span>
 
-            <div className="mt-1.5 space-x-2 text-primary-400 dark:text-primary-600/60 mb-4 md:mb-0 text-lg md:text-[1.3rem]">
+            <div className="mt-1.5 space-x-2 text-primary-400 dark:text-primary-600/45 mb-4 md:mb-0 text-lg md:text-[1.3rem]">
                <span>{date}</span>
                <span className="text-lg">•</span>
                <span>{author.full_name}</span>
