@@ -19,7 +19,7 @@ function MobileMenu() {
    const [openMenu, setOpenMenu] = useState(false);
    const [loaded, setLoaded] = useState(false);
 
-   const { session, user, extendedUser, loading } = useAuth();
+   const { user, extendedUser, loading } = useAuth();
    const t = useTranslations();
 
    return (
@@ -40,11 +40,7 @@ function MobileMenu() {
                   closeModal={() => setOpenMenu(false)}
                >
                   <motion.div className="flex 3xs:flex-col gap-2 xs:gap-0 3xs:gap-2 text-2xl">
-                     <div
-                        className={`pl-10 xs:pl-6 pr-16 xs:pr-12 py-2 xs:pt-0  pb-4 xs:pb-0 3xs:pb-12 space-y-7 3xs:border-b 3xs:border-b-primary-300 3xs:dark:border-b-primary-300/40 ${
-                           session ? 'xs:pt-2.5' : 'xs:pt-0 xs:pb-3.5'
-                        }`}
-                     >
+                     <div className="pl-10 xs:pl-6 pr-16 xs:pr-12 py-2 xs:pt-2.5 pb-4 xs:pb-0 3xs:pb-12 space-y-7 3xs:border-b 3xs:border-b-primary-300 3xs:dark:border-b-primary-300/40">
                         <h2 className="uppercase tracking-wide font-semibold text-accent dark:text-accent-200">
                            {t('HomePage.pages-label')}
                         </h2>
@@ -153,11 +149,7 @@ function MobileMenu() {
                            )}
                         </div>
 
-                        <div
-                           className={`py-7 xs:pb-5 xs:pt-4 px-4 xs:pl-5 flex flex-col gap-2 items-center md:items-start ${
-                              !session && 'xs:pt-5!'
-                           }`}
-                        >
+                        <div className="py-7 xs:pb-5 xs:pt-5 px-4 xs:pl-5 flex flex-col gap-2 items-center md:items-start">
                            {LANGUAGES.map((item) => (
                               <LanguageFilterButton
                                  key={item.code}
