@@ -14,7 +14,11 @@ export function getSortedItems(param, items) {
    return [...items].sort((a, b) => {
       // 1. Title
       if (field === 'title') {
-         return a.title.localeCompare(b.title) * modifier;
+         if (a.articles) {
+            return a.articles.title.localeCompare(b.articles.title) * modifier;
+         } else {
+            return a.title.localeCompare(b.title) * modifier;
+         }
       }
 
       // 2. Dates (created_at, bookmarked_at)

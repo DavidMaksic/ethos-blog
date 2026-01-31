@@ -19,7 +19,7 @@ const authConfig = {
             '/user/settings',
          ];
          const isOnProtectRoute = protectedRoutes.some((route) =>
-            nextUrl.pathname.includes(route)
+            nextUrl.pathname.includes(route),
          );
 
          if (isOnProtectRoute) {

@@ -16,7 +16,7 @@ export default function middleware(req) {
       `^(/(${locales.join('|')}))?(${publicPages
          .flatMap((p) => (p === '/' ? ['', '/'] : p))
          .join('|')})/?$`,
-      'i'
+      'i',
    );
    const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);
 
