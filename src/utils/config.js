@@ -2,8 +2,13 @@ import srbFlag from '@/public/srb-flag.png';
 import enFlag from '@/public/en-flag.png';
 
 export const WEBSITE_URL = 'https://ethos-blog.vercel.app';
-export const FUSE_OPTIONS = {
+export const FUSE_ARTICLES = {
    keys: ['title'],
+   includeScore: true,
+   threshold: 0.4,
+};
+export const FUSE_BOOKMARKS = {
+   keys: ['articles.title'],
    includeScore: true,
    threshold: 0.4,
 };

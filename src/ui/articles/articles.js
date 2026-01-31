@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { FUSE_OPTIONS } from '@/src/utils/config';
+import { FUSE_ARTICLES } from '@/src/utils/config';
 import { useLanguage } from '@/src/context/language-context';
 
 import ArticleItem from '@/src/ui/articles/article-item';
@@ -36,7 +36,7 @@ function Articles({ isArchive = false, articles, categories, style }) {
    );
 
    const fuse = useMemo(
-      () => (search ? new Fuse(articles, FUSE_OPTIONS) : null),
+      () => (search ? new Fuse(articles, FUSE_ARTICLES) : null),
       [articles, search],
    );
 

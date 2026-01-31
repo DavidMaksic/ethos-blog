@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { getSortedItems } from '@/src/utils/helpers';
-import { FUSE_OPTIONS } from '@/src/utils/config';
+import { FUSE_BOOKMARKS } from '@/src/utils/config';
 import { useMemo } from 'react';
 
 import BookmarkItem from '@/src/ui/bookmarks/bookmark-item';
@@ -15,7 +15,7 @@ function BookmarkList({ usersBookmarks, param }) {
 
    const fuse = useMemo(() => {
       if (!param.search) return null;
-      return new Fuse(usersBookmarks, FUSE_OPTIONS);
+      return new Fuse(usersBookmarks, FUSE_BOOKMARKS);
    }, [usersBookmarks, param.search]);
 
    // 1. Filter / Search Logic
