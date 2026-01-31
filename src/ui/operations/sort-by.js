@@ -52,7 +52,7 @@ function SortBy({ options, isBookmarks = false }) {
             <AnimatePresence>
                {open && (
                   <motion.ul
-                     className={`absolute z-10 mt-2 p-1 max-h-52 w-full rounded-xl bg-white dark:bg-primary-300/11 backdrop-blur-2xl border border-tertiary dark:border-primary-300/10 shadow-lg dark:shadow-2xl overflow-auto cursor-pointer transition-bg_border ${
+                     className={`absolute z-20 mt-2 p-1 max-h-52 w-full rounded-xl bg-white dark:bg-primary-300/11 backdrop-blur-2xl border border-tertiary dark:border-primary-300/10 shadow-lg dark:shadow-2xl overflow-auto cursor-pointer transition-bg_border ${
                         isBookmarks &&
                         'dark:bg-primary-200/90! lg:dark:bg-primary-200/80! sm:dark:bg-primary-200/75!'
                      }`}
