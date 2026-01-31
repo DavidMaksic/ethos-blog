@@ -38,13 +38,6 @@ export function getMainArticles(array) {
    return { englishArticles, serbianArticles };
 }
 
-export function getArticlesByLanguage(articles) {
-   const englishArticles = articles?.filter((item) => item.code === 'en');
-   const serbianArticles = articles?.filter((item) => item.code === 'sr');
-
-   return { englishArticles, serbianArticles };
-}
-
 export function getCategoriesByLanguage(array) {
    const cyrillicPattern = /^\p{Script=Cyrillic}+$/u;
 
