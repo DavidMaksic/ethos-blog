@@ -1,18 +1,21 @@
 'use client';
 
+import { getCategoriesByLanguage } from '@/src/utils/helpers';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { AnimatePresence } from 'motion/react';
 
-import useFilterCategory from '@/src/hooks/use-filter-category';
 import FeaturedItem from '@/src/ui/articles/featured-item';
 
-function FeaturedArticles({ articles, categories, authors }) {
+function FeaturedArticles({ articles, categories, authors, locale }) {
    const [index, setIndex] = useState(0);
    const [currentCategory, setCurrentCategory] = useState(categories?.at(0));
 
    // - Filter by language
-   const { filteredArray: filteredCategories } = useFilterCategory(categories);
+   const { englishCategories, serbianCategories } =
+      getCategoriesByLanguage(categories);
+   const filteredCategories =
+      locale === 'en' ? englishCategories : serbianCategories;
 
    // - Check if the current tag has enough articles
    const tags = filteredCategories?.filter((item) => item.articles.length >= 3);
@@ -37,7 +40,7 @@ function FeaturedArticles({ articles, categories, authors }) {
    // - Filter for featured articles
    const filteredArticles = articles.filter((item) => item.featured);
    const featuredArticles = filteredArticles.filter(
-      (item) => Number(item.category_id) === currentCategory?.id
+      (item) => Number(item.category_id) === currentCategory?.id,
    );
 
    const t = useTranslations('HomePage');

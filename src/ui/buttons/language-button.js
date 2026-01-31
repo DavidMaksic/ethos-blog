@@ -11,17 +11,11 @@ function LanguageButton() {
    const [loaded, setLoaded] = useState(false);
    const [loadedMain, setLoadedMain] = useState(false);
 
-   const { language, setLanguage } = useLanguage();
+   const { language } = useLanguage();
    const ref = useOutsideClick(() => setOpen(false), false);
 
    function handleLang(item) {
       if (item.code === language.code) return;
-
-      setLanguage({
-         lang: item.lang,
-         code: item.code,
-         flag: item.flag,
-      });
 
       const langCode =
          LANGUAGES.find((lang) => lang.code === item.code).code || 'en';
@@ -57,7 +51,10 @@ function LanguageButton() {
                <motion.ul
                   className="absolute xl:right-8 z-20 space-y-1 p-1 mt-3 min-w-[10rem] md:min-w-[12rem] text-2xl md:text-3xl rounded-2xl bg-white dark:bg-primary-300/20 backdrop-blur-2xl border border-quaternary dark:border-primary-300/25 shadow-lg overflow-auto cursor-pointer transition-bg_border"
                   ref={ref}
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => {
+                     e.stopPropagation();
+                     setOpen(false);
+                  }}
                   initial={{ opacity: 0, y: -8, scale: 0.97 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -8, scale: 0.97 }}
@@ -72,7 +69,11 @@ function LanguageButton() {
                      <li
                         className="flex justify-between items-center relative font-normal rounded-xl py-2 pr-4 pl-5  dark:text-primary-500 hover:bg-primary-100/50 dark:hover:bg-primary-300/18 duration-75 [&_img]:opacity-80 group"
                         key={item.code}
-                        onClick={() => handleLang(item)}
+                        onClick={(e) => {
+                           e.stopPropagation();
+                           setOpen(false);
+                           handleLang(item);
+                        }}
                      >
                         {item.lang}
                         <div className="relative size-7">

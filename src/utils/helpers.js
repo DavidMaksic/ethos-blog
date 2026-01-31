@@ -38,6 +38,26 @@ export function getMainArticles(array) {
    return { englishArticles, serbianArticles };
 }
 
+export function getArticlesByLanguage(articles) {
+   const englishArticles = articles?.filter((item) => item.code === 'en');
+   const serbianArticles = articles?.filter((item) => item.code === 'sr');
+
+   return { englishArticles, serbianArticles };
+}
+
+export function getCategoriesByLanguage(array) {
+   const cyrillicPattern = /^\p{Script=Cyrillic}+$/u;
+
+   const englishCategories = array?.filter(
+      (item) => !cyrillicPattern.test(item.category),
+   );
+   const serbianCategories = array?.filter((item) =>
+      cyrillicPattern.test(item.category),
+   );
+
+   return { englishCategories, serbianCategories };
+}
+
 export function applyPagination(page, result) {
    const pageSize = Number(process.env.NEXT_PUBLIC_PAGE_SIZE || 10);
    const maxPage = Math.ceil(result.length / pageSize) || 1;

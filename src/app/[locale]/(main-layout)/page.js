@@ -22,9 +22,10 @@ export default async function Home({ params }) {
          getMainArticles(),
          getAuthors(),
       ]);
+
+   const t = await getTranslations('H1');
    const { locale } = param;
    setRequestLocale(locale);
-   const t = await getTranslations('H1');
 
    return (
       <>
@@ -38,6 +39,7 @@ export default async function Home({ params }) {
             articles={articles}
             categories={categories}
             authors={authors}
+            locale={locale}
          />
 
          <div className="h-[1px] mt-2 sm:mt-12 bg-gradient-to-l from-primary-300 to-primary dark:to-transparent" />
