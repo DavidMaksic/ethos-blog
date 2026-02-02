@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { TbCategory2 } from 'react-icons/tb';
 import Category from '@/src/ui/categories/category';
 
@@ -10,9 +10,14 @@ function Categories({ categories, isArchive = false }) {
    const category = searchParams.get('category');
    const lang = searchParams.get('lang');
    const t = useTranslations('HomePage');
+   const locale = useLocale();
 
    // Filter categories by language
-   const filteredCategories = categories.filter((item) => item.code === lang);
+   const filteredCategories = lang
+      ? categories.filter((item) => item.code === lang)
+      : locale
+        ? categories.filter((item) => item.code === locale)
+        : categories;
 
    // Find active category
    const currentCategory = filteredCategories.find(
