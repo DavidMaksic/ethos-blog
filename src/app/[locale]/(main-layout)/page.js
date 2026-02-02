@@ -5,6 +5,7 @@ import {
    getAuthors,
 } from '@/src/lib/data-service';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { filterCategories } from '@/src/utils/helpers';
 
 import FeaturedArticles from '@/src/ui/articles/featured-articles';
 import LatestArticles from '@/src/ui/articles/latest-articles';
@@ -13,10 +14,11 @@ import MainArticles from '@/src/ui/articles/main-articles';
 export const dynamic = 'force-static';
 export const revalidate = 3600;
 
-export default async function Home({ params }) {
-   const [param, articles, categories, mainArticles, authors] =
+export default async function Home({ params, searchParams }) {
+   const [param, searchParam, articles, categories, mainArticles, authors] =
       await Promise.all([
          params,
+         searchParams,
          getArticles(),
          getCategories(),
          getMainArticles(),
@@ -26,6 +28,11 @@ export default async function Home({ params }) {
    const t = await getTranslations('H1');
    const { locale } = param;
    setRequestLocale(locale);
+   const filteredCategories = filterCategories(
+      categories,
+      searchParam.lang,
+      locale,
+   );
 
    return (
       <>
@@ -46,7 +53,7 @@ export default async function Home({ params }) {
 
          <LatestArticles
             articles={articles}
-            categories={categories}
+            categories={filteredCategories}
             authors={authors}
          />
       </>

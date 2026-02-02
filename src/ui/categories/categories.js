@@ -3,15 +3,10 @@
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { TbCategory2 } from 'react-icons/tb';
-
-import useFilterCategory from '@/src/hooks/use-filter-category';
-import CategoryLoader from '@/src/ui/categories/category-loader';
 import Category from '@/src/ui/categories/category';
 
 function Categories({ categories, isArchive = false }) {
-   const { filteredArray: filteredCategories } = useFilterCategory(categories);
    const searchParams = useSearchParams();
-
    const category = searchParams.get('category');
    const t = useTranslations('HomePage');
 
@@ -35,7 +30,7 @@ function Categories({ categories, isArchive = false }) {
          </div>
 
          <div className="flex md:justify-center gap-4 2xl:gap-3 lg:gap-2.5 flex-wrap">
-            {filteredCategories?.map((item) => (
+            {categories?.map((item) => (
                <Category
                   category={item}
                   key={item.id}

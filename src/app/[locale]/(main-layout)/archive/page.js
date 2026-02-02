@@ -1,5 +1,6 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { getArticles, getCategories } from '@/src/lib/data-service';
+import { filterCategories } from '@/src/utils/helpers';
 import { WEBSITE_URL } from '@/src/utils/config';
 
 import ArchiveHeading from '@/src/ui/header/archive-heading';
@@ -8,8 +9,8 @@ import Categories from '@/src/ui/categories/categories';
 import Articles from '@/src/ui/articles/articles';
 import SortBy from '@/src/ui/operations/sort-by';
 
-export const dynamic = 'force-static';
-export const revalidate = 3600;
+// export const dynamic = 'force-static';
+// export const revalidate = 3600;
 
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
@@ -28,9 +29,10 @@ export async function generateMetadata({ params }) {
    };
 }
 
-async function Page({ params }) {
-   const [param, articles, categories] = await Promise.all([
+async function Page({ params, searchParams }) {
+   const [param, searchParam, articles, categories] = await Promise.all([
       params,
+      searchParams,
       getArticles(),
       getCategories(),
    ]);
@@ -39,6 +41,11 @@ async function Page({ params }) {
 
    const t = await getTranslations();
    const prefix = locale === 'en' ? '' : `/${locale}`;
+   const filteredCategories = filterCategories(
+      categories,
+      searchParam.lang,
+      locale,
+   );
 
    const jsonLd = {
       '@context': 'https://schema.org',
@@ -87,13 +94,13 @@ async function Page({ params }) {
             <Articles
                isArchive={true}
                articles={articles}
-               categories={categories}
+               categories={filteredCategories}
                style="dark:bg-primary-300/15"
             />
          </section>
 
          <section className="space-y-12 md:order-1 md:flex md:flex-col md:gap-6">
-            <Categories categories={categories} isArchive={true} />
+            <Categories categories={filteredCategories} isArchive={true} />
             <LanguageFilter />
          </section>
 
