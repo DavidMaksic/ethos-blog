@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { TbCategory2 } from 'react-icons/tb';
@@ -12,20 +11,15 @@ import Category from '@/src/ui/categories/category';
 function Categories({ categories, isArchive = false }) {
    const { filteredArray: filteredCategories } = useFilterCategory(categories);
    const searchParams = useSearchParams();
+
    const category = searchParams.get('category');
-
    const t = useTranslations('HomePage');
-   const [loading, setLoading] = useState(true);
-
-   useEffect(() => {
-      setLoading(false);
-   }, []);
 
    // Find active category
    const currentCategory = categories.find(
       (item) =>
          item.category ===
-         category?.charAt(0).toUpperCase() + category?.slice(1)
+         category?.charAt(0).toUpperCase() + category?.slice(1),
    );
 
    return (
@@ -41,17 +35,13 @@ function Categories({ categories, isArchive = false }) {
          </div>
 
          <div className="flex md:justify-center gap-4 2xl:gap-3 lg:gap-2.5 flex-wrap">
-            {!loading ? (
-               filteredCategories?.map((item) => (
-                  <Category
-                     category={item}
-                     key={item.id}
-                     currentCategory={currentCategory}
-                  />
-               ))
-            ) : (
-               <CategoryLoader />
-            )}
+            {filteredCategories?.map((item) => (
+               <Category
+                  category={item}
+                  key={item.id}
+                  currentCategory={currentCategory}
+               />
+            ))}
          </div>
       </div>
    );

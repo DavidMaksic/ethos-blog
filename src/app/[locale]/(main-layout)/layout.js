@@ -111,6 +111,9 @@ export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));
 }
 
+// TODO: Categories loader on xs: needs fix (loaded categories move on load)
+// TODO: Remove empty space before and after 3 cols on mobile
+
 export default async function RootLayout({ children, params }) {
    const { locale } = await params;
    setRequestLocale(locale);

@@ -1,32 +1,34 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
 import { useSetParams } from '@/src/hooks/use-set-params';
 import { useTheme } from 'next-themes';
 
 function Category({ category, customStyles, currentCategory }) {
    const currentTag = currentCategory?.category;
-
-   const [bgColor, setBgColor] = useState();
-   const [textColor, setTextColor] = useState();
    const { resolvedTheme } = useTheme();
 
    const handler = useSetParams();
    const params = useSearchParams();
    const router = useRouter();
 
-   useEffect(() => {
-      if (!category && !mounted) return;
+   const bgColor =
+      resolvedTheme === 'dark' ? category.bg_dark : category.bg_light;
 
-      if (resolvedTheme === 'dark') {
-         setBgColor(category.bg_dark);
-         setTextColor(category.text_dark);
+   const textColor =
+      resolvedTheme === 'dark' ? category.text_dark : category.text_light;
+
+   function handleClick() {
+      if (currentTag === category.category) {
+         const param = new URLSearchParams(params);
+         param.delete('category');
+         router.replace(`?${param.toString()}`, {
+            scroll: false,
+         });
       } else {
-         setBgColor(category.bg_light);
-         setTextColor(category.text_light);
+         handler('category', category.category.toLowerCase());
       }
-   }, [resolvedTheme, category]);
+   }
 
    return (
       <span
@@ -39,17 +41,7 @@ function Category({ category, customStyles, currentCategory }) {
             backgroundColor: `${bgColor}`,
             color: `${textColor}`,
          }}
-         onClick={() => {
-            if (currentTag === category.category) {
-               const param = new URLSearchParams(params);
-               param.delete('category');
-               router.replace(`?${param.toString()}`, {
-                  scroll: false,
-               });
-            } else {
-               handler('category', category.category.toLowerCase());
-            }
-         }}
+         onClick={handleClick}
       >
          {category.category}
       </span>
