@@ -1147,6 +1147,16 @@ h3 {
    .bn-block-column {
       padding: 0 !important;
    }
+
+   /* Hide first child if its inner <p> is empty */
+   .bn-block-column-list > .bn-block-column:first-child:has(p:empty) {
+      display: none !important;
+   }
+
+   /* Hide last child if its inner <p> is empty */
+   .bn-block-column-list > .bn-block-column:last-child:has(p:empty) {
+      display: none !important;
+   }
 }
 
 @media (max-width: 640px) {
@@ -1211,7 +1221,6 @@ h3 {
       font-size: 18.5px !important;
       line-height: 2.1rem;
       border-radius: 1.35rem !important;
-      /* @apply pb-6.5; */
    }
 
    .bn-block-column-list {
