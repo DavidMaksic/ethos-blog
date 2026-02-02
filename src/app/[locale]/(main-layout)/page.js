@@ -14,11 +14,10 @@ import MainArticles from '@/src/ui/articles/main-articles';
 export const dynamic = 'force-static';
 export const revalidate = 3600;
 
-export default async function Home({ params, searchParams }) {
-   const [param, searchParam, articles, categories, mainArticles, authors] =
+export default async function Home({ params }) {
+   const [param, articles, categories, mainArticles, authors] =
       await Promise.all([
          params,
-         searchParams,
          getArticles(),
          getCategories(),
          getMainArticles(),
@@ -28,11 +27,6 @@ export default async function Home({ params, searchParams }) {
    const t = await getTranslations('H1');
    const { locale } = param;
    setRequestLocale(locale);
-   const filteredCategories = filterCategories(
-      categories,
-      searchParam.lang,
-      locale,
-   );
 
    return (
       <>
@@ -53,7 +47,7 @@ export default async function Home({ params, searchParams }) {
 
          <LatestArticles
             articles={articles}
-            categories={filteredCategories}
+            categories={categories}
             authors={authors}
          />
       </>

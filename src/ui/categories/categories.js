@@ -8,10 +8,14 @@ import Category from '@/src/ui/categories/category';
 function Categories({ categories, isArchive = false }) {
    const searchParams = useSearchParams();
    const category = searchParams.get('category');
+   const lang = searchParams.get('lang');
    const t = useTranslations('HomePage');
 
+   // Filter categories by language
+   const filteredCategories = categories.filter((item) => item.code === lang);
+
    // Find active category
-   const currentCategory = categories.find(
+   const currentCategory = filteredCategories.find(
       (item) =>
          item.category ===
          category?.charAt(0).toUpperCase() + category?.slice(1),
@@ -30,7 +34,7 @@ function Categories({ categories, isArchive = false }) {
          </div>
 
          <div className="flex md:justify-center gap-4 2xl:gap-3 lg:gap-2.5 flex-wrap">
-            {categories?.map((item) => (
+            {filteredCategories?.map((item) => (
                <Category
                   category={item}
                   key={item.id}

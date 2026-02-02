@@ -116,25 +116,3 @@ export function switchLocale(lang) {
    // Navigate to the new URL
    window.location.href = url.toString();
 }
-
-export function filterCategories(categories, lang, locale) {
-   const cyrillicPattern = /^\p{Script=Cyrillic}+$/u;
-
-   const filteredCategories = categories.filter((item) => {
-      if (lang) {
-         if (lang === 'sr') {
-            return cyrillicPattern.test(item.category);
-         } else {
-            return !cyrillicPattern.test(item.category);
-         }
-      }
-
-      if (locale === 'sr') {
-         return cyrillicPattern.test(item.category);
-      } else {
-         return !cyrillicPattern.test(item.category);
-      }
-   });
-
-   return filteredCategories;
-}
