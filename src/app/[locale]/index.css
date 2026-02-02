@@ -1183,9 +1183,9 @@ h3 {
       display: none !important;
    }
 
-   .bn-block-group .bn-block-group {
+   /* .bn-block-group .bn-block-group {
       margin-left: 0 !important;
-   }
+   } */
 
    .bn-file-caption {
       font-size: 1.5rem !important;
