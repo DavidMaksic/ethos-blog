@@ -61,7 +61,7 @@ const ArticleItem = forwardRef(({ article, style }, ref) => {
                </div>
 
                <span
-                  className="bg-accent-400/15 text-accent/75 px-3 pl-3.5 py-1 pb-1.5 rounded-full font-semibold md:font-bold text-[1.2rem] lg:text-[1.1rem] md:text-2xl"
+                  className="bg-accent-400/15 text-accent/75 px-3 md:pl-3.5 md:pr-[10px] py-1 pb-1.5 rounded-full font-semibold text-[1.2rem] lg:text-[1.1rem] md:text-2xl"
                   style={{
                      backgroundColor: `${bgColor}`,
                      color: `${textColor}`,
