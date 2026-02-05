@@ -1,6 +1,7 @@
 'use server';
 
 import { revalidatePath, updateTag } from 'next/cache';
+import { usernameSchema } from '@/src/utils/helpers';
 import { supabase } from '@/src/lib/supabase';
 import { headers } from 'next/headers';
 import { auth } from '@/src/lib/auth';
@@ -11,11 +12,25 @@ export async function updateUser(previousState, formData) {
    });
    if (!session) throw new Error('You must be logged in');
 
-   const name = formData.get('username');
+   const rawUsername = formData.get('username');
+   const parsed = usernameSchema.safeParse({ username: rawUsername });
+
+   if (!parsed.success) {
+      const usernameError = parsed.error.issues.find(
+         (issue) => issue.path[0] === 'username',
+      )?.message;
+
+      return {
+         success: false,
+         error: usernameError ?? 'Invalid username',
+      };
+   }
+
+   const { username } = parsed.data;
 
    const { error } = await supabase
       .from('users')
-      .update({ username: name })
+      .update({ username })
       .eq('id', session.user.userID);
 
    if (error) throw new Error('Username could not be updated');

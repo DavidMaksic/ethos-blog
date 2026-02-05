@@ -173,7 +173,7 @@ function CommentInput({ article, commentLength }) {
                   </span>
 
                   <span
-                     className={`text-lg  bg-white border border-quaternary dark:border-tertiary dark:bg-primary-200 rounded-full px-4 py-1 pb-1.5 font-medium select-none pointer-events-none ${
+                     className={`text-lg bg-white border border-quaternary dark:border-tertiary dark:bg-primary-200 rounded-full px-4 py-1 pb-1.5 font-medium select-none pointer-events-none ${
                         text.length < commentLength * 0.95 && 'opacity-0'
                      } ${
                         text.length === commentLength
