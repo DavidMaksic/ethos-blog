@@ -1,10 +1,18 @@
 import { useTranslations } from 'next-intl';
-import { useLogout } from '@/src/hooks/use-logout';
+import { authClient } from '@/src/lib/auth-client';
+import { useRouter } from '@/src/i18n/navigation';
 import { LuLogOut } from 'react-icons/lu';
 
 function SignOutButton() {
    const t = useTranslations('Profile');
-   const logout = useLogout();
+
+   const router = useRouter();
+
+   async function logout() {
+      await authClient.signOut();
+      router.push('/');
+      router.refresh();
+   }
 
    return (
       <button

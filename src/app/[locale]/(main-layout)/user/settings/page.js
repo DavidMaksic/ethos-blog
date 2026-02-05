@@ -1,5 +1,7 @@
 import { getTranslations } from 'next-intl/server';
+import { redirect } from 'next/navigation';
 import { getUser } from '@/src/lib/data-service';
+import { headers } from 'next/headers';
 import { auth } from '@/src/lib/auth';
 
 import UsernameInput from '@/src/ui/username-input';
@@ -11,7 +13,11 @@ export async function generateMetadata({ params }) {
 }
 
 async function Page() {
-   const [session, t] = await Promise.all([auth(), getTranslations('')]);
+   const t = await getTranslations();
+   const session = await auth.api.getSession({
+      headers: await headers(),
+   });
+   if (!session) redirect('/login');
 
    const { username, image } = await getUser(session.user.email);
 

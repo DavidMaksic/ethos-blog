@@ -28,7 +28,7 @@ function OtherArticleOptions({ article, comments, bookmarks, commentsNum }) {
    const t = useTranslations();
    const [isOpen, setIsOpen] = useState();
    const { slug, id: articleID, likes } = article;
-   const { session, extendedUser } = useAuth();
+   const { session, user, extendedUser } = useAuth();
 
    // - Like logic
    let hasLiked;
@@ -49,12 +49,12 @@ function OtherArticleOptions({ article, comments, bookmarks, commentsNum }) {
    // - Bookmark logic
    const hasBookmarked = !!bookmarks.find(
       (item) =>
-         item.user_id === extendedUser?.id && item.article_id === articleID
+         item.user_id === extendedUser?.id && item.article_id === articleID,
    );
    const [isBookmarked, setIsBookmarked] = useState(hasBookmarked);
 
    const bookmarkLength = bookmarks.filter(
-      (item) => item.article_id === articleID
+      (item) => item.article_id === articleID,
    ).length;
    const [bookmarksCount, setBookmarksCount] = useState(bookmarkLength);
 
@@ -63,11 +63,11 @@ function OtherArticleOptions({ article, comments, bookmarks, commentsNum }) {
 
       if (isBookmarked) {
          setBookmarksCount((i) => i - 1);
-         removeBookmark(session.user, articleID, slug);
+         removeBookmark(user, articleID, slug);
          toast.success(t('Article.bookmark-removed'));
       } else {
          setBookmarksCount((i) => i + 1);
-         addBookmark(session.user, articleID, slug);
+         addBookmark(user, articleID, slug);
          toast.success(t('Article.bookmark-added'));
       }
 
@@ -92,10 +92,10 @@ function OtherArticleOptions({ article, comments, bookmarks, commentsNum }) {
 
       if (isLiked) {
          setLikesCount((i) => i - 1);
-         removeLiked(session.user.userID, articleID, 'article', slug);
+         removeLiked(user.userID, articleID, 'article', slug);
       } else {
          setLikesCount((i) => i + 1);
-         addLiked(session.user.userID, articleID, 'article', slug);
+         addLiked(user.userID, articleID, 'article', slug);
       }
 
       setIsLiked(!isLiked);

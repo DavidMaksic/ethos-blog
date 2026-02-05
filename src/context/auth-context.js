@@ -1,12 +1,19 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect } from 'react';
-import { useSession } from 'next-auth/react';
+import { authClient } from '@/src/lib/auth-client';
 
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-   const { data: session, status } = useSession();
+   const { data, isPending } = authClient.useSession();
+   const { session } = data || {};
+
+   const status = isPending
+      ? 'loading'
+      : session
+        ? 'authenticated'
+        : 'unauthenticated';
 
    // Next-auth user
    const [user, setUser] = useState(null);
@@ -28,28 +35,28 @@ export const AuthProvider = ({ children }) => {
       }
 
       // Authenticated
-      setUser(session?.user || null);
+      setUser(data?.user || null);
       setLoadingUser(false);
-   }, [session, status]);
+   }, [data?.user, status]);
 
    useEffect(() => {
       setLoadingExtendedUser(true);
 
-      if (!session?.user?.email) {
+      if (!data?.user?.email) {
          setExtendedUser(null);
          return;
       }
 
       const loadUserData = async () => {
-         const res = await fetch(`/api/user?email=${session.user.email}`);
-         const data = await res.json();
-         setExtendedUser(data);
+         const res = await fetch(`/api/user?email=${data.user.email}`);
+         const extendedData = await res.json();
+         setExtendedUser(extendedData);
 
          setLoadingExtendedUser(false);
       };
 
       loadUserData();
-   }, [session?.user?.email]);
+   }, [data?.user?.email]);
 
    const loading = (loadingUser || loadingExtendedUser) && session;
 

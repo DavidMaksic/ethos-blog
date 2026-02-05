@@ -1,6 +1,8 @@
 import { getUsers, getUser } from '@/src/lib/data-service';
 import { getTranslations } from 'next-intl/server';
 import { getSortedItems } from '@/src/utils/helpers';
+import { redirect } from 'next/navigation';
+import { headers } from 'next/headers';
 import { auth } from '@/src/lib/auth';
 
 import UserCommentLabel from '@/src/ui/user-comment-label';
@@ -13,12 +15,16 @@ export async function generateMetadata({ params }) {
 }
 
 async function Page({ searchParams }) {
-   const [searchParam, session, users, t] = await Promise.all([
+   const [searchParam, users, t] = await Promise.all([
       searchParams,
-      auth(),
       getUsers(),
       getTranslations(),
    ]);
+
+   const session = await auth.api.getSession({
+      headers: await headers(),
+   });
+   if (!session) redirect('/login');
 
    const extendedUser = await getUser(session?.user.email);
    const userComments = [...extendedUser.comments, ...extendedUser.replies];

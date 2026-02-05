@@ -1,9 +1,10 @@
 'use client';
 
-import { signOut } from 'next-auth/react';
+import { authClient } from '@/src/lib/auth-client';
 
-export function useLogout() {
+export function LogOut() {
    return async () => {
-      await signOut({ callbackUrl: '/' });
+      await authClient.signOut();
+      window.location.href = '/';
    };
 }

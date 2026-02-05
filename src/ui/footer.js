@@ -5,6 +5,7 @@ import { RiTwitterXFill } from 'react-icons/ri';
 import { IoLogoGithub } from 'react-icons/io5';
 import { usePathname } from 'next/navigation';
 import { FaInstagram } from 'react-icons/fa';
+import { useAuth } from '@/src/context/auth-context';
 import { Link } from '@/src/i18n/navigation';
 import React from 'react';
 
@@ -12,12 +13,16 @@ function Footer() {
    const t = useTranslations();
    const locale = useLocale();
    const pathname = usePathname();
+   const { session } = useAuth();
 
    const navLinks = [
       { href: '/', label: t('HomePage.nav-link-1') },
       { href: '/archive', label: t('HomePage.nav-link-2') },
       { href: '/about', label: t('HomePage.nav-link-3') },
-      { href: '/user/home', label: t('HomePage.nav-link-4') },
+      {
+         href: session ? '/user/home' : '/login',
+         label: t('HomePage.nav-link-4'),
+      },
    ];
 
    const handleNavClick = (href) => (e) => {

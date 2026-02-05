@@ -1,7 +1,9 @@
 import { FaRegComments, FaRegHeart } from 'react-icons/fa6';
 import { getTranslations } from 'next-intl/server';
 import { LuBookmark } from 'react-icons/lu';
+import { redirect } from 'next/navigation';
 import { getUser } from '@/src/lib/data-service';
+import { headers } from 'next/headers';
 import { auth } from '@/src/lib/auth';
 
 import ProfileInfo from '@/src/ui/profile/profile-info';
@@ -14,16 +16,21 @@ export async function generateMetadata({ params }) {
 }
 
 async function Page() {
-   const [session, t] = await Promise.all([auth(), getTranslations()]);
+   const t = await getTranslations();
+   const session = await auth.api.getSession({
+      headers: await headers(),
+   });
+   if (!session) redirect('/login');
+
    const { user } = session;
    const extendedUser = await getUser(user.email);
 
-   const likeCount = extendedUser.likes.filter(
-      (item) => item.type === 'article'
+   const likeCount = extendedUser?.likes.filter(
+      (item) => item.type === 'article',
    ).length;
-   const commentCount = [...extendedUser.comments, ...extendedUser.replies]
+   const commentCount = [...extendedUser?.comments, ...extendedUser?.replies]
       .length;
-   const bookmarkCount = extendedUser.bookmarks.length;
+   const bookmarkCount = extendedUser?.bookmarks.length;
 
    return (
       <div className="flex gap-4 md:flex-col">

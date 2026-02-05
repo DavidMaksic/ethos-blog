@@ -35,7 +35,7 @@ const Comment = forwardRef(
       const [isOpen, setIsOpen] = useState(false);
       const [showReplies, setShowReplies] = useState(true);
 
-      const { session, loading } = useAuth();
+      const { session, user, loading } = useAuth();
       const t = useTranslations('Comment');
 
       const locale = useLocale();
@@ -44,8 +44,8 @@ const Comment = forwardRef(
       const date = CommentDate(comment.created_at, locale);
       const isMobile = useMediaQuery({ maxWidth: 768 });
 
-      const user = users.find((item) => item.id === comment.user_id);
-      const isAuthor = user.email === author.email;
+      const currentUser = users.find((item) => item.id === comment.user_id);
+      const isAuthor = currentUser.email === author.email;
       const articleID = article.id;
 
       // - Copy link logic
@@ -89,16 +89,10 @@ const Comment = forwardRef(
 
          if (isLiked) {
             setLikesCount((i) => i - 1);
-            removeLiked(session.user.userID, articleID, 'comment', slug);
+            removeLiked(user.userID, articleID, 'comment', slug);
          } else {
             setLikesCount((i) => i + 1);
-            addLiked(
-               session.user.userID,
-               articleID,
-               'comment',
-               slug,
-               commentID,
-            );
+            addLiked(user.userID, articleID, 'comment', slug, commentID);
          }
 
          setIsLiked(!isLiked);
@@ -138,21 +132,25 @@ const Comment = forwardRef(
                >
                   <div className="flex items-center justify-between">
                      <div className="flex items-center gap-4">
-                        {user?.image && (
+                        {currentUser?.image && (
                            <div className="relative size-10 md:size-11 sm:size-9 select-none">
-                              <UserImage url={user.image} />
+                              <UserImage url={currentUser.image} />
                            </div>
                         )}
 
                         <div className="flex xs:flex-wrap items-center gap-2 3xs:gap-y-0.5! md:text-2xl sm:text-[1.4rem]">
                            <span className="font-semibold">
-                              {user.username
+                              {currentUser.username
                                  ? !isMobile
-                                    ? user.username
-                                    : user.username.split(' ')[0].slice(0, 10)
+                                    ? currentUser.username
+                                    : currentUser.username
+                                         .split(' ')[0]
+                                         .slice(0, 10)
                                  : !isMobile
-                                   ? user.name
-                                   : user.name.split(' ')[0].slice(0, 10)}
+                                   ? currentUser.name
+                                   : currentUser.name
+                                        .split(' ')[0]
+                                        .slice(0, 10)}
                            </span>
                            {isAuthor && (
                               <span className="px-2.5 py-0.5 bg-accent-400/20 dark:bg-accent-300/40 text-accent-600 dark:text-accent-50/70 rounded-xl font-semibold dark:font-medium">

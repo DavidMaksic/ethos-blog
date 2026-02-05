@@ -5,8 +5,8 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { LanguageProvider } from '@/src/context/language-context';
 import { ThemeProvider } from 'next-themes';
 import { getMessages } from 'next-intl/server';
-import { routing } from '@/src/i18n/routing';
 import { notFound } from 'next/navigation';
+import { routing } from '@/src/i18n/routing';
 
 /* Main font */
 const cormorantGaramond = Cormorant_Garamond({

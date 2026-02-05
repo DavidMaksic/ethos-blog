@@ -15,7 +15,7 @@ import toast from 'react-hot-toast';
 function CommentOptions({ comment, commentLength, userID, replyID, slug }) {
    const [openDelete, setOpenDelete] = useState();
    const [openEdit, setOpenEdit] = useState();
-   const { session } = useAuth();
+   const { user } = useAuth();
 
    const t = useTranslations('Comment');
    const commentID = comment.id;
@@ -40,7 +40,7 @@ function CommentOptions({ comment, commentLength, userID, replyID, slug }) {
                   {t('copy-link-btn')}
                </Menus.Button>
 
-               {session?.user?.userID === userID && (
+               {user?.userID === userID && (
                   <>
                      <Menus.Button
                         icon={<LuPencilLine className="stroke-[1.7px]" />}

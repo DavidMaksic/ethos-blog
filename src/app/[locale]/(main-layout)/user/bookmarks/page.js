@@ -1,5 +1,7 @@
 import { getBookmarksByID } from '@/src/lib/data-service';
 import { getTranslations } from 'next-intl/server';
+import { redirect } from 'next/navigation';
+import { headers } from 'next/headers';
 import { auth } from '@/src/lib/auth';
 
 import BookmarkOptions from '@/src/ui/bookmarks/bookmark-options';
@@ -11,11 +13,15 @@ export async function generateMetadata({ params }) {
 }
 
 async function Page({ searchParams }) {
-   const [searchParam, session, t] = await Promise.all([
+   const [searchParam, t] = await Promise.all([
       searchParams,
-      auth(),
       getTranslations('H1'),
    ]);
+
+   const session = await auth.api.getSession({
+      headers: await headers(),
+   });
+   if (!session) redirect('/login');
 
    const usersBookmarks = await getBookmarksByID(session.user.userID);
 

@@ -6,7 +6,7 @@ import RemoteImage from '@/src/ui/image/remote-image';
 function MainArticle({ article }) {
    const t = useTranslations('HomePage');
    const locale = useLocale();
-   const [mounted, setMounted] = useState();
+   const [mounted, setMounted] = useState(false);
 
    useEffect(() => setMounted(true), []);
 

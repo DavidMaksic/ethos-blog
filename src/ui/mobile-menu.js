@@ -19,7 +19,7 @@ function MobileMenu() {
    const [openMenu, setOpenMenu] = useState(false);
    const [loaded, setLoaded] = useState(false);
 
-   const { user, extendedUser, loading } = useAuth();
+   const { session, user, extendedUser, loading } = useAuth();
    const t = useTranslations();
 
    return (
@@ -71,7 +71,7 @@ function MobileMenu() {
                               <span>{t('HomePage.nav-link-3')}</span>
                            </Link>
                            <Link
-                              href="/user/home"
+                              href={session ? '/user/home' : '/login'}
                               className="flex items-center gap-3.5"
                               onClick={() => setOpenMenu((isOpen) => !isOpen)}
                            >
@@ -97,7 +97,7 @@ function MobileMenu() {
                            ) : extendedUser ? (
                               <>
                                  <Link
-                                    href="/user/home"
+                                    href={session ? '/user/home' : '/login'}
                                     className="relative size-18"
                                     onClick={() =>
                                        setOpenMenu((isOpen) => !isOpen)
@@ -135,7 +135,7 @@ function MobileMenu() {
                               </>
                            ) : (
                               <Link
-                                 href="/user/home"
+                                 href={session ? '/user/home' : '/login'}
                                  className="flex gap-2 items-center justify-center transition-200"
                                  onClick={() =>
                                     setOpenMenu((isOpen) => !isOpen)

@@ -16,11 +16,11 @@ import MobileMenu from '@/src/ui/mobile-menu';
 import Image from 'next/image';
 
 function HeaderOptions() {
-   const [mounted, setMounted] = useState();
+   const [mounted, setMounted] = useState(false);
    const [loaded, setLoaded] = useState(false);
 
    const { resolvedTheme, setTheme } = useTheme();
-   const { user, extendedUser, loading } = useAuth();
+   const { session, user, extendedUser, loading } = useAuth();
 
    useEffect(() => setMounted(true), []);
 
@@ -60,7 +60,7 @@ function HeaderOptions() {
             </motion.span>
          ) : extendedUser ? (
             <Link
-               href="/user/home"
+               href={session ? '/user/home' : '/login'}
                className="mx-[-2px] block hover:text-accent bg-none border-none p-2 rounded-xl transition-200 hover:bg-primary-200/40 dark:hover:bg-primary-300/30 [&_svg]:size-6 [&_svg]:text-accent cursor-pointer select-none md:hidden"
             >
                <div className="relative size-7.5!">
@@ -79,7 +79,10 @@ function HeaderOptions() {
             </Link>
          ) : (
             <HeaderButton styles="md:hidden">
-               <Link href="/user/home" className="hover:text-accent">
+               <Link
+                  href={session ? '/user/home' : '/login'}
+                  className="hover:text-accent"
+               >
                   <HiOutlineUser className="size-6.5! stroke-[1.7px]" />
                </Link>
             </HeaderButton>

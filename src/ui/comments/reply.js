@@ -29,7 +29,7 @@ function Reply({
 }) {
    const [isOpen, setIsOpen] = useState(false);
    const { id: articleID, slug } = article;
-   const { session } = useAuth();
+   const { session, user } = useAuth();
 
    const replyID = reply.id;
    const t = useTranslations('Comment');
@@ -44,7 +44,7 @@ function Reply({
    // - Like logic
    let hasLiked;
    const replyLikeIDs = article.likes.filter(
-      (item) => item.type === 'reply' && item.target_id === replyID
+      (item) => item.type === 'reply' && item.target_id === replyID,
    );
    hasLiked = replyLikeIDs.length;
    const replyCount = replyLikeIDs.length;
@@ -59,10 +59,10 @@ function Reply({
 
       if (isLiked) {
          setLikesCount((i) => i - 1);
-         removeLiked(session.user.userID, articleID, 'reply', slug);
+         removeLiked(user.userID, articleID, 'reply', slug);
       } else {
          setLikesCount((i) => i + 1);
-         addLiked(session.user.userID, articleID, 'reply', slug, replyID);
+         addLiked(user.userID, articleID, 'reply', slug, replyID);
       }
 
       setIsLiked(!isLiked);
@@ -115,8 +115,8 @@ function Reply({
                                       .split(' ')[0]
                                       .slice(0, 10)
                               : !isMobile
-                              ? currentUser.name
-                              : currentUser.name.split(' ')[0].slice(0, 10)}
+                                ? currentUser.name
+                                : currentUser.name.split(' ')[0].slice(0, 10)}
                         </span>
                         {isAuthor && (
                            <span className="px-2.5 pt-px pb-0.5 bg-accent-400/20 dark:bg-accent-300/40 text-accent-600 dark:text-accent-50/70 rounded-xl font-semibold dark:font-medium">
