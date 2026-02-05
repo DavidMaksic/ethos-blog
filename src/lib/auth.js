@@ -10,6 +10,12 @@ export const auth = betterAuth({
          clientSecret: process.env.AUTH_GOOGLE_SECRET,
       },
    },
+   session: {
+      expiresIn: 60 * 60 * 24 * 180, // 6 months
+      // cookieCache: {
+      //    enabled: false,
+      // },
+   },
 
    hooks: {
       after: createAuthMiddleware(async (ctx) => {
@@ -36,15 +42,22 @@ export const auth = betterAuth({
 
    plugins: [
       customSession(async ({ user, session }) => {
-         // Enriched session with userID from DB
-         const dbUser = await getUser(user.email);
-         return {
-            user: {
-               ...user,
-               userID: dbUser?.id,
-            },
-            session,
-         };
+         if (user.userID) {
+            return { user, session };
+         }
+
+         try {
+            const dbUser = await getUser(user.email);
+            return {
+               user: {
+                  ...user,
+                  userID: dbUser?.id ?? null,
+               },
+               session,
+            };
+         } catch {
+            return { user, session };
+         }
       }),
    ],
 });
