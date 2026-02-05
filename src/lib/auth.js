@@ -1,12 +1,9 @@
 import { createAuthMiddleware, customSession } from 'better-auth/plugins';
 import { createUser, getUser } from '@/src/lib/data-service';
-import { WEBSITE_URL } from '@/src/utils/config';
 import { betterAuth } from 'better-auth';
 
-const localURL = 'http://localhost:3000';
-
 export const auth = betterAuth({
-   baseURL: WEBSITE_URL,
+   baseURL: process.env.BETTER_AUTH_URL,
    socialProviders: {
       google: {
          clientId: process.env.AUTH_GOOGLE_ID,
@@ -32,9 +29,6 @@ export const auth = betterAuth({
                }
             } catch (err) {
                console.error('Better Auth after sign-in error', err);
-               throw new Error(
-                  'LanguageContext was used outside of LanguageProvider',
-               );
             }
          }
       }),
