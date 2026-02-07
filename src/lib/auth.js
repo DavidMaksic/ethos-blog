@@ -12,8 +12,17 @@ export const auth = betterAuth({
    },
    session: {
       expiresIn: 60 * 60 * 24 * 180, // 6 months
+      cookieCache: {
+         enabled: true,
+         maxAge: 60 * 60 * 24 * 180, // 6 months
+         strategy: 'jwe',
+         refreshCache: true,
+      },
    },
-
+   account: {
+      storeStateStrategy: 'cookie',
+      storeAccountCookie: true,
+   },
    hooks: {
       after: createAuthMiddleware(async (ctx) => {
          const newSession = ctx.context.newSession;
@@ -36,7 +45,6 @@ export const auth = betterAuth({
          }
       }),
    },
-
    plugins: [
       customSession(async ({ user, session }) => {
          if (user.userID) {
