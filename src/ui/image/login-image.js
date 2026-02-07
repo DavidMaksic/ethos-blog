@@ -1,37 +1,22 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
-
+import { getTranslations } from 'next-intl/server';
 import RemoteImage from '@/src/ui/image/remote-image';
-import loginImg from '@/public/login.jpg';
+import loginImg from '@/public/login.webp';
 
-function LoginImage() {
-   const t = useTranslations('Auth');
-
-   const [mounted, setMounted] = useState(false);
-   useEffect(() => setMounted(true), []);
+async function LoginImage() {
+   const t = await getTranslations('Auth');
 
    return (
-      <>
-         {mounted ? (
-            <section className="relative size-full overflow-hidden shadow-xl dark:shadow-menu-dark">
-               <RemoteImage
-                  styles="object-cover"
-                  imageUrl={loginImg}
-                  alt="Login image"
-                  opacity="opacity-95"
-                  priority
-               />
+      <section className="relative size-full">
+         <RemoteImage
+            styles="object-contain p-10"
+            imageUrl={loginImg}
+            alt="Login image"
+            opacity="opacity-95"
+            priority
+         />
 
-               <span className="absolute right-4 bottom-4">
-                  {t('img-credit')}
-               </span>
-            </section>
-         ) : (
-            <div className="size-full bg-primary-300/45 dark:bg-primary-300/18 animate-skeleton" />
-         )}
-      </>
+         <span className="absolute right-20 bottom-12">{t('img-credit')}</span>
+      </section>
    );
 }
 
