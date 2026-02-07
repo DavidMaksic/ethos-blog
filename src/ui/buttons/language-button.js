@@ -4,12 +4,13 @@ import { switchLocale } from '@/src/utils/helpers';
 import { useLanguage } from '@/src/context/language-context';
 import { LANGUAGES } from '@/src/utils/config';
 import { useState } from 'react';
+
+import RemoteImage from '@/src/ui/image/remote-image';
 import Image from 'next/image';
 
 function LanguageButton() {
    const [open, setOpen] = useState(false);
    const [loaded, setLoaded] = useState(false);
-   const [loadedMain, setLoadedMain] = useState(false);
 
    const { language } = useLanguage();
    const ref = useOutsideClick(() => setOpen(false), false);
@@ -32,17 +33,14 @@ function LanguageButton() {
             setOpen((isOpen) => !isOpen);
          }}
       >
-         <div className="relative size-7 sm:size-[2.05rem]! rounded-full border border-primary-300 transition-200">
-            <Image
-               className={`transition-[opacity] duration-200 ${
-                  loadedMain ? 'opacity-80 dark:opacity-70' : 'opacity-0'
-               }`}
-               src={language.flag}
+         <div className="relative size-7 sm:size-[2.05rem]! rounded-full border border-primary-300 dark:border-primary-300/50">
+            <RemoteImage
+               imageUrl={language.flag}
                alt="Language flag"
-               onLoad={() => setLoadedMain(true)}
+               styles="rounded-full transition-[opacity]! duration-200!"
+               opacity="opacity-80 dark:opacity-70"
                unoptimized
                priority
-               fill
             />
          </div>
 
