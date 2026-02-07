@@ -36,20 +36,16 @@ function MainArticle({ article }) {
             </Link>
          </div>
 
-         {mounted && article ? (
-            <div className="relative md:order-1 h-[26rem] 2xl:h-[23rem] lg:h-[20rem] xs:h-[20rem]">
-               <RemoteImage
-                  imageUrl={article.image}
-                  alt="Slider article image"
-                  styles="rounded-3xl object-cover border border-primary-200"
-                  opacity="opacity-90 dark:opacity-75"
-                  fetchPriority="high"
-                  priority
-               />
-            </div>
-         ) : (
-            <div className="md:order-1 h-[26rem] 2xl:h-[23rem] lg:h-[20rem] xs:h-[20rem] bg-primary-300/45 dark:bg-primary-300/18 rounded-3xl animate-skeleton" />
-         )}
+         <div className="relative md:order-1 h-[26rem] 2xl:h-[23rem] lg:h-[20rem] xs:h-[20rem]">
+            <RemoteImage
+               imageUrl={article.image}
+               alt="Slider article image"
+               styles="rounded-3xl object-cover border border-primary-200"
+               opacity="opacity-90 dark:opacity-75"
+               fetchPriority="high"
+               priority
+            />
+         </div>
       </div>
    );
 }
