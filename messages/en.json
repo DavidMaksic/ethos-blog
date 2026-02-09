@@ -48,10 +48,10 @@
       "joined-label": "Joined",
       "username": "Current username",
       "new-username": "New username",
-      "username-updated": "Username succesfully updated",
+      "username-updated": "Username successfully updated",
       "pfp": "Profile image",
       "update": "Update",
-      "pfp-updated": "Profile image succesfully updated",
+      "pfp-updated": "Profile image successfully updated",
       "pfp-warning": "Only images are allowed",
       "email": "Email address",
       "no-bookmarks": "No bookmarks found"
@@ -66,7 +66,6 @@
       "copy-link-btn": "Copy link",
       "link": "Link copied to clipboard",
       "delete-btn": "Delete",
-      "warning": "*Comment must have a minimum of 2 characters",
       "reply-btn": "Reply",
       "reply-posted": "Reply posted",
       "reply-deleted": "Reply deleted",
@@ -87,8 +86,13 @@
       "editing": "Confirming",
       "edit-label-comment": "Edit your comment",
       "edit-label-reply": "Edit your reply",
-      "edited-comment": "Comment succesfully updated",
-      "edited-reply": "Reply succesfully updated"
+      "edited-comment": "Comment successfully updated",
+      "edited-reply": "Reply successfully updated"
+   },
+   "CommentErrors": {
+      "empty": "Comment cannot be empty",
+      "min": "Comment must have at least {count} characters",
+      "max": "Comment must be less than {count} characters"
    },
    "Sort": {
       "latest": "Latest",

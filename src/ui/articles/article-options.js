@@ -28,7 +28,7 @@ function ArticleOptions({ article, bookmarks, comments }) {
    const t = useTranslations('Article');
    const [isOpen, setIsOpen] = useState();
    const { slug, id: articleID, likes } = article;
-   const { session, user, extendedUser, loading } = useAuth();
+   const { session, extendedUser, loading } = useAuth();
 
    // - Like logic
    let hasLiked;
@@ -57,10 +57,10 @@ function ArticleOptions({ article, bookmarks, comments }) {
       if (!session) return setIsOpen(true);
 
       if (isBookmarked) {
-         removeBookmark(user, articleID, slug);
+         removeBookmark(articleID, slug);
          toast.success(t('bookmark-removed'));
       } else {
-         addBookmark(user, articleID, slug);
+         addBookmark(articleID, slug);
          toast.success(t('bookmark-added'));
       }
 
@@ -78,9 +78,9 @@ function ArticleOptions({ article, bookmarks, comments }) {
       if (!session) return setIsOpen(true);
 
       if (isLiked) {
-         removeLiked(user.userID, articleID, 'article', slug);
+         removeLiked(articleID, 'article', slug);
       } else {
-         addLiked(user.userID, articleID, 'article', slug);
+         addLiked(articleID, 'article', slug);
       }
 
       setIsLiked(!isLiked);

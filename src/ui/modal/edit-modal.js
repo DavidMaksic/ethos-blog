@@ -1,65 +1,55 @@
-import { useEffect, useRef, useState } from 'react';
 import { editComment, editReply } from '@/src/lib/actions';
 import { useTranslations } from 'next-intl';
 import { ImSpinner2 } from 'react-icons/im';
+import { useState } from 'react';
 
 import TextareaAutosize from 'react-textarea-autosize';
+import ErrorValidation from '@/src/ui/error-validation';
 import toast from 'react-hot-toast';
 
 function EditModal({ comment, commentLength, replyID, slug, onClose }) {
    const [text, setText] = useState(comment.content);
-   const [error, setError] = useState(false);
+   const [error, setError] = useState(null);
+
    const [isPending, setIsPending] = useState(false);
    const t = useTranslations('Comment');
 
    function handleChange(e) {
-      const input = e.target.value;
-      setText(input);
+      setText(e.target.value);
+      setError(null);
    }
 
    async function handleEdit() {
-      if (text.length <= 1) return setError(true);
+      setIsPending(true);
+      setError(null);
+      setIsPending(true);
 
       if (replyID) {
-         setIsPending(true);
          let result;
-         result = await editReply(replyID, text, slug);
+         result = await editReply(replyID, text, slug, commentLength);
 
          if (result?.success) {
             onClose();
             toast.success(t('edited-reply'));
+         } else {
+            setError(result.error);
          }
 
          return setIsPending(false);
       }
 
-      setIsPending(true);
       let result;
-      result = await editComment(comment.id, text, slug);
+      result = await editComment(comment.id, text, slug, commentLength);
 
       if (result?.success) {
          onClose();
          toast.success(t('edited-comment'));
+      } else {
+         setError(result.error);
       }
 
       setIsPending(false);
    }
-
-   // - Error logic
-   const errorRef = useRef(null);
-
-   useEffect(() => {
-      if (error) {
-         setTimeout(() => {
-            if (errorRef.current) errorRef.current.style.opacity = '0%';
-         }, 5000);
-
-         setTimeout(() => {
-            setError(false);
-            if (errorRef.current) errorRef.current.style.opacity = '100%';
-         }, 5100);
-      }
-   }, [error]);
 
    return (
       <div className="flex flex-col items-center">
@@ -75,32 +65,17 @@ function EditModal({ comment, commentLength, replyID, slug, onClose }) {
                value={text}
                name="content"
                className={`w-full h-auto min-h-fit border text-primary-600 dark:text-text rounded-3xl px-10 pb-9 py-7 pr-11 text-[1.4rem] 2xl:text-[1.3rem] md:text-[1.6rem] xs:text-[1.5rem] md:leading-9 xs:leading-[1.4] transition-bg_border flex-grow outline-none scrollbar transition-200 md:placeholder:text-[1.6rem] ${
-                  text.length === commentLength || error
+                  text.length > commentLength || error
                      ? 'border-red-400 dark:border-red-400/60'
                      : ' border-primary-300 dark:border-primary-300/50'
                }`}
                onChange={handleChange}
             />
-            <div className="flex justify-between">
-               <span
-                  className="error font-medium ml-4 text-lg md:text-xl transition-200 opacity-100 text-red-600/50 dark:text-red-300/80"
-                  ref={errorRef}
-               >
-                  {error && t('warning')}
-               </span>
-
-               <span
-                  className={`text-lg bg-primary-100/80 border border-quaternary dark:border-tertiary dark:bg-primary-200 rounded-full px-4 py-1 pb-1.5 font-medium select-none pointer-events-none transition-200 ${
-                     text.length < commentLength * 0.95 && 'opacity-0'
-                  } ${
-                     text.length === commentLength
-                        ? 'text-red-600/60 bg-red-300/10! dark:text-red-300/80 border-red-300/30! dark:border-red-300/10!'
-                        : ''
-                  }`}
-               >
-                  {text.length} / {commentLength}
-               </span>
-            </div>
+            <ErrorValidation
+               error={error}
+               text={text}
+               commentLength={commentLength}
+            />
          </div>
 
          <div className="flex items-center gap-2 text-3xl">

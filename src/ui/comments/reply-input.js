@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, useActionState, useEffect, useRef, useState } from 'react';
+import { forwardRef, useActionState, useEffect, useState } from 'react';
 import { AnimatePresence } from 'motion/react';
 import { useTranslations } from 'use-intl';
 import { ImSpinner2 } from 'react-icons/im';
@@ -9,6 +9,7 @@ import { addReply } from '@/src/lib/actions';
 import { useAuth } from '@/src/context/auth-context';
 
 import TextareaAutosize from 'react-textarea-autosize';
+import ErrorValidation from '@/src/ui/error-validation';
 import AuthModal from '@/src/ui/modal/auth-modal';
 import Modal from '@/src/ui/modal/modal';
 import toast from 'react-hot-toast';
@@ -16,14 +17,26 @@ import toast from 'react-hot-toast';
 const ReplyInput = forwardRef(
    ({ slug, articleID, commentID, commentLength, setReplyIsOpen }, ref) => {
       const [isOpen, setIsOpen] = useState(false);
-      const [error, setError] = useState(null);
       const [text, setText] = useState('');
+      const { loading } = useAuth();
 
-      const { session, extendedUser, loading } = useAuth();
       const locale = useLocale();
       const t = useTranslations('Comment');
 
-      // - Error logic
+      // - Form submission logic
+      const [error, setError] = useState(null);
+      const [state, action, isPending] = useActionState(addReply, {
+         success: false,
+      });
+
+      // Handle server-side errors from Zod validation
+      useEffect(() => {
+         if (state.error) {
+            setError(state.error);
+         }
+      }, [state.error, state.id]);
+
+      // Auto-clear error after 5 seconds
       useEffect(() => {
          if (!error) return;
 
@@ -34,26 +47,19 @@ const ReplyInput = forwardRef(
          return () => clearTimeout(timeout);
       }, [error]);
 
-      // - Form submission logic
-      const [state, action, isPending] = useActionState(addReply, {
-         success: false,
-      });
-
-      function handleAction(formData) {
-         if (text.trim().length <= 1) {
-            setError(t('warning'));
-            return;
-         }
-
-         setError(null);
-         action(formData);
-      }
-
+      // Handle form changes
       function handleChange(e) {
-         const input = e.target.value;
-         setText(input);
+         setText(e.target.value);
+         setError(null);
       }
 
+      // Handle form submission
+      function handleAction(formData) {
+         setError(null);
+         action(formData, commentLength);
+      }
+
+      // Success handling
       useEffect(() => {
          if (state.success) {
             setReplyIsOpen(false);
@@ -79,7 +85,7 @@ const ReplyInput = forwardRef(
                   ref={ref}
                   name="content"
                   className={`w-full h-auto min-h-fit border text-primary-600 dark:text-text rounded-3xl px-10 pb-18 py-7 pr-11 text-[1.4rem] 2xl:text-[1.3rem] md:text-[1.6rem] xs:text-[1.5rem] md:leading-9 xs:leading-[1.4] transition-bg_border flex-grow outline-none scrollbar transition-200 md:placeholder:text-[1.6rem] ${
-                     text.length === commentLength || error
+                     text.length > commentLength || error
                         ? 'border-red-400 dark:border-red-400/60'
                         : ' border-primary-300 dark:border-primary-300/50'
                   }`}
@@ -87,13 +93,6 @@ const ReplyInput = forwardRef(
                   onChange={handleChange}
                />
 
-               <input
-                  hidden
-                  name="userID"
-                  defaultValue={
-                     session && extendedUser ? extendedUser.id : null
-                  }
-               />
                <input hidden name="commentID" defaultValue={commentID} />
                <input hidden name="articleID" defaultValue={articleID} />
                <input hidden name="slug" defaultValue={slug} />
@@ -143,27 +142,11 @@ const ReplyInput = forwardRef(
                   </button>
                </div>
 
-               <div className="flex justify-between items-center mb-2.5 md:mb-3 z-20">
-                  <span
-                     className={`error font-medium ml-4 pb-1.5 text-lg md:text-xl transition-200 text-red-600/50 dark:text-red-300/80 ${
-                        error ? 'opacity-100' : 'opacity-0'
-                     }`}
-                  >
-                     {error}
-                  </span>
-
-                  <span
-                     className={`text-lg bg-white border border-primary-300 dark:border-tertiary dark:bg-primary-200 rounded-full px-4 py-1 pb-1.5 font-medium select-none pointer-events-none ${
-                        text.length < commentLength * 0.95 && 'opacity-0'
-                     } ${
-                        text.length === commentLength
-                           ? 'text-red-600/60 bg-red-300/10! dark:text-red-300/80 border-red-300/30! dark:border-red-300/10!'
-                           : ''
-                     }`}
-                  >
-                     {text.length} / {commentLength}
-                  </span>
-               </div>
+               <ErrorValidation
+                  error={error}
+                  text={text}
+                  commentLength={commentLength}
+               />
             </form>
 
             <AnimatePresence>

@@ -119,6 +119,27 @@ export function switchLocale(lang) {
 
 import { z } from 'zod';
 
+export const commentSchema = (t, maxLength = 2000) =>
+   z.object({
+      content: z
+         .string()
+         .transform((val) =>
+            val
+               .trim()
+               .replace(/\n\s*\n+/g, '\n\n')
+               .replace(/\s+$/, ''),
+         )
+         .refine((val) => val.length >= 2, {
+            message: t('min', { count: 2 }),
+         })
+         .refine((val) => val.length <= maxLength, {
+            message: t('max', { count: maxLength }),
+         })
+         .refine((val) => /\S/.test(val), {
+            message: t('empty'),
+         }),
+   });
+
 export const usernameSchema = (t) =>
    z.object({
       username: z

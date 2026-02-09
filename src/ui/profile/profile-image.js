@@ -79,7 +79,6 @@ function ProfileImage({ user, image }) {
          </label>
 
          <input hidden name="oldImage" type="text" defaultValue={image} />
-         <input hidden name="userID" type="text" defaultValue={user.userID} />
 
          <button
             className={`hover:bg-accent-400 dark:hover:bg-accent-300/60 border border-quaternary hover:border-transparent hover:text-white rounded-full p-1 px-4 cursor-pointer hover:shadow-link-btn dark:hover:shadow-link-btn-dark transition ${

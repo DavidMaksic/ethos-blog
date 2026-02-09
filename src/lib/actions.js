@@ -1,8 +1,8 @@
 'use server';
 
+import { commentSchema, usernameSchema } from '@/src/utils/helpers';
 import { revalidatePath, updateTag } from 'next/cache';
 import { getTranslations } from 'next-intl/server';
-import { usernameSchema } from '@/src/utils/helpers';
 import { supabase } from '@/src/lib/supabase';
 import { headers } from 'next/headers';
 import { auth } from '@/src/lib/auth';
@@ -49,9 +49,9 @@ export async function updateImage(previousState, formData) {
    });
    if (!session) throw new Error('You must be logged in');
 
+   const userID = session.user.userID;
    const newImage = formData.get('newImage');
    const oldImage = formData.get('oldImage');
-   const userID = formData.get('userID');
 
    if (!newImage) {
       throw new Error('No file uploaded or invalid type');
@@ -92,15 +92,17 @@ export async function updateImage(previousState, formData) {
    return { success: true };
 }
 
-export async function addBookmark(user, articleID, slug) {
+export async function addBookmark(articleID, slug) {
    const session = await auth.api.getSession({
       headers: await headers(),
    });
+
    if (!session) throw new Error('You must be logged in');
+   const userID = session.user.userID;
 
    const { error } = await supabase.from('bookmarks').insert([
       {
-         user_id: user.userID,
+         user_id: userID,
          article_id: articleID,
       },
    ]);
@@ -109,38 +111,62 @@ export async function addBookmark(user, articleID, slug) {
    updateTag(`article-${slug}`);
 }
 
-export async function removeBookmark(user, articleID, slug) {
+export async function removeBookmark(articleID, slug) {
    const session = await auth.api.getSession({
       headers: await headers(),
    });
+
    if (!session) throw new Error('You must be logged in');
+   const userID = session.user.userID;
 
    const { error } = await supabase
       .from('bookmarks')
       .delete()
-      .eq('user_id', user.userID)
+      .eq('user_id', userID)
       .eq('article_id', articleID);
 
    if (error) throw new Error('Bookmark could not be removed');
    updateTag(`article-${slug}`);
 }
 
-export async function addComment(previousState, formData) {
+export async function addComment(previousState, formData, commentLength) {
+   const t = await getTranslations('CommentErrors');
+
    const session = await auth.api.getSession({
       headers: await headers(),
    });
    if (!session) throw new Error('You must be logged in');
 
-   const comment = formData
-      .get('content')
-      .replace(/\n\s*\n+/g, '\n\n')
-      .replace(/\s+$/, '');
-   const userID = formData.get('userID');
-   const slug = formData.get('slug');
+   const userID = session.user.userID;
+   const rawContent = formData.get('content');
    const articleID = formData.get('articleID');
+   const slug = formData.get('slug');
 
+   const schema = commentSchema(t, commentLength);
+   const parsed = schema.safeParse({
+      content: rawContent,
+   });
+
+   if (!parsed.success) {
+      const contentErrors = parsed.error.issues.filter(
+         (issue) => issue.path[0] === 'content',
+      );
+
+      const contentError =
+         contentErrors.length > 0
+            ? contentErrors[contentErrors.length - 1].message
+            : 'Invalid comment';
+
+      return {
+         success: false,
+         error: contentError ?? 'Invalid comment',
+         id: Math.random(),
+      };
+   }
+
+   const { content } = parsed.data;
    const { error } = await supabase.from('comments').insert({
-      content: comment,
+      content,
       article_id: articleID,
       user_id: userID,
    });
@@ -151,17 +177,37 @@ export async function addComment(previousState, formData) {
    return { success: true };
 }
 
-export async function editComment(commentID, text, slug) {
+export async function editComment(commentID, text, slug, commentLength) {
+   const t = await getTranslations('CommentErrors');
+
    const session = await auth.api.getSession({
       headers: await headers(),
    });
    if (!session) throw new Error('You must be logged in');
-   const cleanedText = text.replace(/\n\s*\n+/g, '\n\n').replace(/\s+$/, '');
+
+   const userID = session.user.userID;
+   const schema = commentSchema(t, commentLength);
+   const parsed = schema.safeParse({ content: text });
+
+   if (!parsed.success) {
+      const contentErrors = parsed.error.issues.filter(
+         (issue) => issue.path[0] === 'content',
+      );
+      const contentError =
+         contentErrors.length > 0
+            ? contentErrors[contentErrors.length - 1].message
+            : 'Invalid comment';
+
+      return { success: false, error: contentError ?? 'Invalid comment' };
+   }
+
+   const { content } = parsed.data;
 
    const { error } = await supabase
       .from('comments')
-      .update({ content: cleanedText })
-      .eq('id', commentID);
+      .update({ content })
+      .eq('id', commentID)
+      .eq('user_id', userID);
 
    if (error) throw new Error('Comment could not be edited');
 
@@ -175,10 +221,12 @@ export async function deleteComment(commentID, slug) {
    });
    if (!session) throw new Error('You must be logged in');
 
+   const userID = session.user.userID;
    const { error } = await supabase
       .from('comments')
       .delete()
-      .eq('id', commentID);
+      .eq('id', commentID)
+      .eq('user_id', userID);
 
    if (error) throw new Error('Comment could not be deleted');
 
@@ -186,23 +234,46 @@ export async function deleteComment(commentID, slug) {
    return { success: true };
 }
 
-export async function addReply(previousState, formData) {
+export async function addReply(previousState, formData, commentLength) {
+   const t = await getTranslations('CommentErrors');
+
    const session = await auth.api.getSession({
       headers: await headers(),
    });
    if (!session) throw new Error('You must be logged in');
 
-   const comment = formData
-      .get('content')
-      .replace(/\n\s*\n+/g, '\n\n')
-      .replace(/\s+$/, '');
-   const userID = formData.get('userID');
-   const slug = formData.get('slug');
-   const commentID = formData.get('commentID');
+   const userID = session.user.userID;
+   const rawContent = formData.get('content');
    const articleID = formData.get('articleID');
+   const commentID = formData.get('commentID');
+   const slug = formData.get('slug');
+
+   const schema = commentSchema(t, commentLength);
+   const parsed = schema.safeParse({
+      content: rawContent,
+   });
+
+   if (!parsed.success) {
+      const contentErrors = parsed.error.issues.filter(
+         (issue) => issue.path[0] === 'content',
+      );
+
+      const contentError =
+         contentErrors.length > 0
+            ? contentErrors[contentErrors.length - 1].message
+            : 'Invalid comment';
+
+      return {
+         success: false,
+         error: contentError ?? 'Invalid comment',
+         id: Math.random(),
+      };
+   }
+
+   const { content } = parsed.data;
 
    const { error } = await supabase.from('replies').insert({
-      content: comment,
+      content,
       comment_id: commentID,
       article_id: articleID,
       user_id: userID,
@@ -214,17 +285,37 @@ export async function addReply(previousState, formData) {
    return { success: true };
 }
 
-export async function editReply(replyID, text, slug) {
+export async function editReply(replyID, text, slug, commentLength) {
+   const t = await getTranslations('CommentErrors');
+
    const session = await auth.api.getSession({
       headers: await headers(),
    });
    if (!session) throw new Error('You must be logged in');
-   const cleanedText = text.replace(/\n\s*\n+/g, '\n\n').replace(/\s+$/, '');
+
+   const userID = session.user.userID;
+   const schema = commentSchema(t, commentLength);
+   const parsed = schema.safeParse({ content: text });
+
+   if (!parsed.success) {
+      const contentErrors = parsed.error.issues.filter(
+         (issue) => issue.path[0] === 'content',
+      );
+      const contentError =
+         contentErrors.length > 0
+            ? contentErrors[contentErrors.length - 1].message
+            : 'Invalid reply';
+
+      return { success: false, error: contentError ?? 'Invalid reply' };
+   }
+
+   const { content } = parsed.data;
 
    const { error } = await supabase
       .from('replies')
-      .update({ content: cleanedText })
-      .eq('id', replyID);
+      .update({ content })
+      .eq('id', replyID)
+      .eq('user_id', userID);
 
    if (error) throw new Error('Reply could not be edited');
 
@@ -238,7 +329,12 @@ export async function deleteReply(replyID, slug) {
    });
    if (!session) throw new Error('You must be logged in');
 
-   const { error } = await supabase.from('replies').delete().eq('id', replyID);
+   const userID = session.user.userID;
+   const { error } = await supabase
+      .from('replies')
+      .delete()
+      .eq('id', replyID)
+      .eq('user_id', userID);
 
    if (error) throw new Error('Reply could not be deleted');
 
@@ -246,11 +342,13 @@ export async function deleteReply(replyID, slug) {
    return { success: true };
 }
 
-export async function addLiked(userID, articleID, type, slug, targetID) {
+export async function addLiked(articleID, type, slug, targetID) {
    const session = await auth.api.getSession({
       headers: await headers(),
    });
+
    if (!session) throw new Error('You must be logged in');
+   const userID = session.user.userID;
 
    if (type === 'article') {
       const { error } = await supabase.from('likes').insert([
@@ -282,11 +380,13 @@ export async function addLiked(userID, articleID, type, slug, targetID) {
    }
 }
 
-export async function removeLiked(userID, articleID, type, slug) {
+export async function removeLiked(articleID, type, slug) {
    const session = await auth.api.getSession({
       headers: await headers(),
    });
+
    if (!session) throw new Error('You must be logged in');
+   const userID = session.user.userID;
 
    const { error } = await supabase
       .from('likes')
