@@ -119,22 +119,20 @@ export function switchLocale(lang) {
 
 import { z } from 'zod';
 
-export const usernameSchema = z.object({
-   username: z
-      .string()
-      .trim()
-      .transform((s) => s.replace(/\s+/g, ' '))
-      .pipe(
-         z
-            .string()
-            .min(2, 'Minimum of 2 characters')
-            .max(25, 'Maximum of 25 characters')
-            .regex(
-               /^[\p{L}0-9_]+(?: [\p{L}0-9_]+)*$/u,
-               'Use only letters, numbers, or underscores',
-            )
-            .refine((val) => !/^\d+$/.test(val), {
-               message: 'Username cannot be all numbers',
-            }),
-      ),
-});
+export const usernameSchema = (t) =>
+   z.object({
+      username: z
+         .string()
+         .trim()
+         .transform((s) => s.replace(/\s+/g, ' '))
+         .pipe(
+            z
+               .string()
+               .min(2, t('min', { count: 2 }))
+               .max(25, t('max', { count: 25 }))
+               .regex(/^[\p{L}0-9_]+(?: [\p{L}0-9_]+)*$/u, t('invalid-chars'))
+               .refine((val) => !/^\d+$/.test(val), {
+                  message: t('all-numbers'),
+               }),
+         ),
+   });

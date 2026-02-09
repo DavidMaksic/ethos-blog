@@ -31,7 +31,7 @@ function Pagination({ count, isArchive = true }) {
       const params = new URLSearchParams(searchParams);
 
       params.set('page', next);
-      router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+      router.push(`${pathname}?${params.toString()}`, { scroll: false });
    }
 
    function prevPage() {
@@ -39,7 +39,7 @@ function Pagination({ count, isArchive = true }) {
       const params = new URLSearchParams(searchParams);
 
       params.set('page', prev);
-      router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+      router.push(`${pathname}?${params.toString()}`, { scroll: false });
    }
 
    if (pageCount <= 1) return null;

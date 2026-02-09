@@ -112,7 +112,7 @@
       "sign-in": "Пријави се",
       "google": "Настави користећи свој Google nalog",
       "close": "Затвори",
-      "img-credit": "Слика припада Creative Assembly-у"
+      "img-credit": "Слика припада "
    },
    "Error": {
       "message": "Дошло је до грешке...",
@@ -137,5 +137,11 @@
       "profile-page-comments": "Профил ─ Коментари",
       "profile-page-bookmarks": "Профил ─ Сачувани чланци",
       "profile-page-settings": "Профил ─ Подешавања"
+   },
+   "UsernameErrors": {
+      "min": "Минимум од 2 слова",
+      "max": "Максимум од 25 слова",
+      "invalid-chars": "Само слова, бројеви и доње црте су дозвољени",
+      "all-numbers": "Корисничко име мора садржати слова"
    }
 }

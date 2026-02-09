@@ -75,7 +75,7 @@ function CommentInput({ article, commentLength }) {
 
          const params = new URLSearchParams(searchParams);
          params.delete('sort');
-         router.replace(`?${params.toString()}`, { scroll: false });
+         router.push(`?${params.toString()}`, { scroll: false });
       }
    }, [state, t]); // eslint-disable-line
 

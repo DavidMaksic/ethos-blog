@@ -1,19 +1,23 @@
 'use server';
 
 import { revalidatePath, updateTag } from 'next/cache';
+import { getTranslations } from 'next-intl/server';
 import { usernameSchema } from '@/src/utils/helpers';
 import { supabase } from '@/src/lib/supabase';
 import { headers } from 'next/headers';
 import { auth } from '@/src/lib/auth';
 
 export async function updateUser(previousState, formData) {
+   const t = await getTranslations('UsernameErrors');
+
    const session = await auth.api.getSession({
       headers: await headers(),
    });
    if (!session) throw new Error('You must be logged in');
 
    const rawUsername = formData.get('username');
-   const parsed = usernameSchema.safeParse({ username: rawUsername });
+   const schema = usernameSchema(t);
+   const parsed = schema.safeParse({ username: rawUsername });
 
    if (!parsed.success) {
       const usernameError = parsed.error.issues.find(

@@ -41,12 +41,12 @@ function LanguageFilterButton({
 
       if (pathname.startsWith('/archive')) {
          params.set('lang', langCode);
-         router.replace(`?${params.toString()}`, { scroll: false });
+         router.push(`?${params.toString()}`, { scroll: false });
       }
 
       params.delete('category');
       params.delete('sort');
-      router.replace(`?${params.toString()}`, { scroll: false });
+      router.push(`?${params.toString()}`, { scroll: false });
    }
 
    return (

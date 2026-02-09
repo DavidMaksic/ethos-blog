@@ -112,7 +112,7 @@
       "sign-in": "Sign in",
       "google": "Continue with Google",
       "close": "Close",
-      "img-credit": "Artwork by Creative Assembly"
+      "img-credit": "Artwork by "
    },
    "Error": {
       "message": "Something went wrong...",
@@ -137,5 +137,11 @@
       "profile-page-comments": "Profile ─ Comments",
       "profile-page-bookmarks": "Profile ─ Bookmarks",
       "profile-page-settings": "Profile ─ Settings"
+   },
+   "UsernameErrors": {
+      "min": "Minimum of 2 characters",
+      "max": "Maximum of 25 characters",
+      "invalid-chars": "Use only letters, numbers, or underscores",
+      "all-numbers": "The username must contain letters"
    }
 }
