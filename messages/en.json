@@ -89,11 +89,7 @@
       "edited-comment": "Comment successfully updated",
       "edited-reply": "Reply successfully updated"
    },
-   "CommentErrors": {
-      "empty": "Comment cannot be empty",
-      "min": "Comment must have at least {count} characters",
-      "max": "Comment must be less than {count} characters"
-   },
+
    "Sort": {
       "latest": "Latest",
       "oldest": "Oldest",
@@ -141,6 +137,11 @@
       "profile-page-comments": "Profile ─ Comments",
       "profile-page-bookmarks": "Profile ─ Bookmarks",
       "profile-page-settings": "Profile ─ Settings"
+   },
+   "CommentErrors": {
+      "empty": "Comment cannot be empty",
+      "min": "Comment must have at least {count} characters",
+      "max": "Comment must be less than {count} characters"
    },
    "UsernameErrors": {
       "min": "Minimum of 2 characters",
