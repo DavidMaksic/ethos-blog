@@ -98,8 +98,6 @@
    --color-text: #5d6673;
    --color-toast: #fff;
    --color-skeleton: #e5e7eb;
-   --color-autofill-bg: #fff;
-   --color-autofill-text: #374151;
    --color-scrollbar: var(--color-primary-300);
 
    --shadow-modal: 0 0 40px 0px #e5e7eba4;
@@ -114,6 +112,7 @@
    --shadow-delete-btn: 0 0 1rem var(--color-red-100);
    --shadow-category: 0 0.2rem 1rem var(--color-accent-50);
    --shadow-filter: 0 0 0.5rem var(--color-accent-300);
+   --shadow-form-submit: 0 0 1.6rem var(--color-accent-300);
 
    --color-editor-bg: #fff;
    --color-editor-text: #374151;
@@ -178,8 +177,6 @@
       --color-text: #99a2ad;
       --color-skeleton: #222a33e5;
       --color-toast: rgba(70, 83, 94, 0.25);
-      --color-autofill-bg: var(--color-primary-200);
-      --color-autofill-text: #cbd5e1;
       --color-scrollbar: #313a42;
       --shadow-toast-btn: none;
 
@@ -440,6 +437,13 @@
          radial-gradient(circle at bottom, #f5f5f5, transparent);
    }
 
+   .auth-background-gradient {
+      background-image:
+         radial-gradient(600px 600px at 0 0, #ffeab5 0, #0000 85%),
+         radial-gradient(1200px 1300px at 900px 160%, #da90ff 0, #0000 85%),
+         radial-gradient(circle at bottom, #f5f5f5, #0000);
+   }
+
    [data-theme='dark'] .background-gradient {
       background-image:
          radial-gradient(
@@ -458,6 +462,12 @@
             transparent 50%
          ),
          radial-gradient(circle at bottom, var(--color-primary), transparent);
+   }
+
+   [data-theme='dark'] .auth-background-gradient {
+      background-image:
+         radial-gradient(1700px 1000px at -350px -80px, #3b2e1a 0, #0000 78%),
+         radial-gradient(2000px 2303px at 1350px 200%, #443649 0, #0000 78%);
    }
 }
 
@@ -808,7 +818,7 @@
 }
 
 .alert[data-alert-type='references'] {
-   @apply text-text border border-primary-300/80 dark:border-primary-300/40 text-start pl-12 pr-10 xs:px-9 py-6;
+   @apply text-text border border-primary-300/80 dark:border-primary-300/40 pl-12 pr-10 xs:px-9 py-6;
 
    .alert-icon-wrapper {
       display: none !important;
@@ -1183,10 +1193,6 @@ h3 {
       display: none !important;
    }
 
-   /* .bn-block-group .bn-block-group {
-      margin-left: 0 !important;
-   } */
-
    .bn-file-caption {
       font-size: 1.5rem !important;
    }
@@ -1352,4 +1358,23 @@ h3 {
 
 strong {
    @apply text-primary-600/90 dark:text-primary-600/73;
+}
+
+/* Remove autofill */
+input:-webkit-autofill {
+   -webkit-box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0) inset !important;
+   -webkit-text-fill-color: #374151e6 !important;
+   transition: background-color 9999s ease-in-out 0s;
+}
+
+[data-theme='dark'] input:-webkit-autofill {
+   -webkit-text-fill-color: #e2e8f0cc !important;
+}
+
+/* Make middle column wider */
+.bn-block-column-list:has(> .bn-block-column:nth-child(3):last-child):has(
+      > .bn-block-column:first-child p.bn-inline-content:empty
+   ):has(> .bn-block-column:last-child p.bn-inline-content:empty)
+   > .bn-block-column:nth-child(2) {
+   flex: 4 1 0% !important;
 }

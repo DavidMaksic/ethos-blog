@@ -46,6 +46,7 @@ function LanguageFilterButton({
 
       params.delete('category');
       params.delete('sort');
+      params.delete('search');
       router.push(`?${params.toString()}`, { scroll: false });
    }
 

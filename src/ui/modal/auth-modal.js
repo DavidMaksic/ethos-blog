@@ -36,7 +36,7 @@ function AuthModal({ onClose, string }) {
                className="flex items-center gap-2 text-accent hover:bg-accent-400/80 dark:hover:bg-accent-300/55 hover:text-white dark:hover:text-accent-100 hover:shadow-link-btn dark:hover:shadow-none rounded-full p-2 px-4 pl-5 cursor-pointer transition"
             >
                <span className="font-semibold tracking-wide">
-                  {t('Auth.sign-in')}
+                  {t('Auth.generic-sign-in')}
                </span>
                <LuLogIn className="size-5.5" />
             </Link>

@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useSetParams } from '@/src/hooks/use-set-params';
 import { CgSearch } from 'react-icons/cg';
@@ -11,33 +11,12 @@ function Search({ isArchive = false }) {
    const t = useTranslations();
    const locale = useLocale();
 
-   const [open, setOpen] = useState(false);
-   const inputRef = useRef(null);
-
    const searchParams = useSearchParams();
    const handler = useSetParams();
-
-   const lang = searchParams.get('lang') || '';
-   const langString = lang.charAt(0).toLowerCase() + lang.slice(1);
-
-   // - When language is switched, remove input
-   useEffect(() => setInputValue(''), [langString]);
 
    const initialQuery = searchParams.get('search') || '';
    const [inputValue, setInputValue] = useState(initialQuery);
    const debouncedInput = useDebounce(inputValue, 200);
-
-   // - Open search if there's an existing query
-   useEffect(() => {
-      if (initialQuery) setOpen(true);
-   }, []); // eslint-disable-line
-
-   // - Set focus when search opens
-   useEffect(() => {
-      if (open && inputRef.current) {
-         inputRef.current.focus();
-      }
-   }, [open]);
 
    // - Update URL param only when debounced input changes
    useEffect(() => {
@@ -47,65 +26,31 @@ function Search({ isArchive = false }) {
       if (trimmed === current) return;
 
       handler('search', trimmed || null);
-   }, [debouncedInput, handler, searchParams]);
+   }, [debouncedInput]); // eslint-disable-line
 
-   // - Toggle open on Enter key
+   // Sync input with URL changes (browser navigation)
    useEffect(() => {
-      const handleEnter = ({ key }) => {
-         if (key === 'Enter') {
-            setOpen((isOpen) => !isOpen);
-         }
-      };
-      document.addEventListener('keydown', handleEnter, true);
-
-      return () => {
-         document.removeEventListener('keydown', handleEnter, true);
-      };
-   }, []);
+      if (initialQuery !== inputValue) {
+         setInputValue(initialQuery);
+      }
+   }, [initialQuery]); // eslint-disable-line
 
    return (
       <div className="flex items-center z-10">
          <label htmlFor="search">
-            <CgSearch
-               className={`md:hidden size-11 text-accent-600/85 dark:text-accent-200/90 p-2 pt-2.5 pr-2.5 bg-white dark:bg-primary-300/18 shadow-2xs border border-tertiary dark:border-transparent rounded-full transition-bg_border cursor-pointer ${
-                  open && 'rounded-r-none border-r-transparent'
-               }`}
-               onClick={() => setOpen((isOpen) => !isOpen)}
-            />
-
-            <CgSearch className="hidden md:block size-12 text-accent-600/85 dark:text-accent-200/90 p-2 pt-2.5 pr-2.5 bg-white dark:bg-primary-300/18 shadow-2xs border border-tertiary dark:border-transparent rounded-full transition-bg_border cursor-pointer rounded-r-none border-r-transparent" />
+            <CgSearch className="size-11 md:size-12 text-accent-600/85 dark:text-accent-200/90 p-2 pt-2.5 pr-2.5 bg-white dark:bg-primary-300/18 shadow-2xs border border-tertiary dark:border-transparent rounded-full rounded-tr-none rounded-br-none transition-bg_border select-none" />
          </label>
 
-         {open && (
-            <input
-               ref={inputRef}
-               id="search"
-               type="text"
-               value={inputValue}
-               placeholder={t('Search-placeholder')}
-               autoComplete="one-time-code"
-               onChange={(e) => setInputValue(e.target.value)}
-               className={`md:hidden h-11 py-4 px-1 w-[22rem] lg:w-[14rem] bg-white dark:bg-primary-300/18 shadow-2xs border border-tertiary dark:border-transparent rounded-full text-xl font-medium outline-none transition-bg_border ${
-                  open && 'rounded-l-none border-l-transparent'
-               } ${
-                  isArchive
-                     ? `md:w-[18rem] sm:w-[10.5rem]`
-                     : 'lg:w-[20rem] md:w-[9.5rem] sm:w-[7rem]'
-               }`}
-            />
-         )}
-
          <input
-            ref={inputRef}
             id="search"
             type="text"
             value={inputValue}
             placeholder={t('Search-placeholder')}
             autoComplete="one-time-code"
             onChange={(e) => setInputValue(e.target.value)}
-            className={`hidden md:block h-12 py-4 px-1 3xs:w-[11rem] bg-white dark:bg-primary-300/18 shadow-2xs border border-tertiary dark:border-transparent rounded-full text-2xl font-medium outline-none transition-bg_border rounded-l-none border-l-transparent ${
-               locale === 'en' ? 'w-[14rem]' : 'w-[12.5rem]'
-            } ${isArchive ? `w-[10.5rem]` : 'w-[7rem]'}`}
+            className={`h-11 py-4 px-1 md:h-12 md:py-4 md:px-1 3xs:w-[11rem] w-[22rem] lg:w-[14rem] bg-white dark:bg-primary-300/18 shadow-2xs border border-tertiary dark:border-transparent rounded-full rounded-tl-none rounded-bl-none text-xl md:text-2xl font-medium outline-none transition-bg_border ${
+               locale === 'en' ? 'md:w-[14rem]' : 'md:w-[12.5rem]'
+            } ${isArchive ? `md:w-[10.5rem]` : 'md:w-[7rem]'}`}
          />
       </div>
    );

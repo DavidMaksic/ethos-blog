@@ -12,6 +12,7 @@ import { Link } from '@/src/i18n/navigation';
 
 import LanguageButton from '@/src/ui/buttons/language-button';
 import HeaderButton from '@/src/ui/buttons/header-button';
+import defaultPfp from '@/public/default-pfp.png';
 import MobileMenu from '@/src/ui/mobile-menu';
 import Image from 'next/image';
 
@@ -23,6 +24,12 @@ function HeaderOptions() {
    const { session, user, extendedUser, loading } = useAuth();
 
    useEffect(() => setMounted(true), []);
+
+   const profileImage = extendedUser?.image
+      ? extendedUser.image
+      : user?.image
+        ? user.image
+        : defaultPfp;
 
    return (
       <div className="flex items-center gap-2 md:gap-1 sm:gap-1.5">
@@ -66,9 +73,9 @@ function HeaderOptions() {
                <div className="relative size-7.5!">
                   <Image
                      className={`rounded-full block aspect-square object-cover object-center border border-primary-300 transition-200 ${
-                        loaded ? 'dark:opacity-90' : 'opacity-0'
-                     }`}
-                     src={extendedUser.image ? extendedUser.image : user.image}
+                        loaded ? 'opacity-90' : 'opacity-0'
+                     } ${profileImage === defaultPfp ? 'dark:opacity-55!' : ''}`}
+                     src={profileImage}
                      alt="Profile image"
                      onLoad={() => setLoaded(true)}
                      unoptimized

@@ -34,7 +34,7 @@ export async function updateUser(previousState, formData) {
 
    const { error } = await supabase
       .from('users')
-      .update({ username })
+      .update({ name: username })
       .eq('id', session.user.userID);
 
    if (error) throw new Error('Username could not be updated');

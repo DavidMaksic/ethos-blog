@@ -7,6 +7,7 @@ import { ThemeProvider } from 'next-themes';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/src/i18n/routing';
+import { Toaster } from 'react-hot-toast';
 
 /* Main font */
 const cormorantGaramond = Cormorant_Garamond({
@@ -51,6 +52,34 @@ async function Layout({ children, params }) {
                      enableSystem
                   >
                      {children}
+
+                     <Toaster
+                        position="top-center"
+                        gutter={12}
+                        containerStyle={{ margin: '-4px' }}
+                        toastOptions={{
+                           success: {
+                              duration: 4000,
+                           },
+                           error: {
+                              duration: 6000,
+                           },
+                           style: {
+                              fontSize: '20px',
+                              maxWidth: '500px',
+                              color: 'var(--color-primary-500)',
+                              backgroundColor: 'var(--color-toast)',
+                              backdropFilter: 'blur(80px)',
+                              borderRadius: '14px',
+                              boxShadow: 'var(--shadow-toast-btn)',
+                              padding: '10px 20px',
+                              textAlign: 'center',
+                           },
+                           iconTheme: {
+                              primary: 'var(--color-accent-400)',
+                           },
+                        }}
+                     />
                   </ThemeProvider>{' '}
                </LanguageProvider>
             </NextIntlClientProvider>

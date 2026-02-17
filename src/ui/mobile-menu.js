@@ -12,6 +12,7 @@ import { useAuth } from '@/src/context/auth-context';
 import { Link } from '@/src/i18n/navigation';
 
 import LanguageFilterButton from '@/src/ui/buttons/language-filter-button';
+import defaultPfp from '@/public/default-pfp.png';
 import Modal from '@/src/ui/modal/modal';
 import Image from 'next/image';
 
@@ -21,6 +22,12 @@ function MobileMenu() {
 
    const { session, user, extendedUser, loading } = useAuth();
    const t = useTranslations();
+
+   const profileImage = extendedUser?.image
+      ? extendedUser.image
+      : user?.image
+        ? user.image
+        : defaultPfp;
 
    return (
       <>
@@ -108,12 +115,8 @@ function MobileMenu() {
                                           loaded
                                              ? 'dark:opacity-90'
                                              : 'opacity-0'
-                                       }`}
-                                       src={
-                                          extendedUser?.image
-                                             ? extendedUser?.image
-                                             : user?.image
-                                       }
+                                       } ${profileImage === defaultPfp ? 'dark:opacity-40!' : ''}`}
+                                       src={profileImage}
                                        onLoad={() => setLoaded(true)}
                                        alt="Profile image"
                                        unoptimized
@@ -126,11 +129,9 @@ function MobileMenu() {
                                        loaded ? 'opacity-100' : 'opacity-0'
                                     }`}
                                  >
-                                    {extendedUser?.username
-                                       ? extendedUser?.username
-                                            .split(' ')[0]
-                                            .slice(0, 10)
-                                       : user?.name.split(' ')[0].slice(0, 10)}
+                                    {extendedUser?.name
+                                       .split(' ')[0]
+                                       .slice(0, 10)}
                                  </span>
                               </>
                            ) : (
@@ -142,7 +143,7 @@ function MobileMenu() {
                                  }
                               >
                                  <span className="text-3xl">
-                                    {t('Auth.sign-in')}
+                                    {t('Auth.generic-sign-in')}
                                  </span>
                                  <LuLogIn className="size-7 text-accent/90 dark:text-accent-200" />
                               </Link>

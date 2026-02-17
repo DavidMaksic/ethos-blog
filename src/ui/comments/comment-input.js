@@ -11,11 +11,12 @@ import { useRouter } from '@/src/i18n/navigation';
 import { useAuth } from '@/src/context/auth-context';
 
 import TextareaAutosize from 'react-textarea-autosize';
+import ErrorValidation from '@/src/ui/error-validation';
+import defaultPfp from '@/public/default-pfp.png';
 import AuthModal from '@/src/ui/modal/auth-modal';
 import Modal from '@/src/ui/modal/modal';
 import toast from 'react-hot-toast';
 import Image from 'next/image';
-import ErrorValidation from '@/src/ui/error-validation';
 
 function CommentInput({ article, commentLength }) {
    const [isOpen, setIsOpen] = useState(false);
@@ -87,6 +88,12 @@ function CommentInput({ article, commentLength }) {
       }, 2000);
    }, []);
 
+   const profileImage = extendedUser?.image
+      ? extendedUser.image
+      : user?.image
+        ? user.image
+        : defaultPfp;
+
    return (
       <div className="comment-section scroll-mt-20! flex flex-col gap-1.5 mt-20 font-secondary">
          <div className="flex gap-4">
@@ -94,10 +101,8 @@ function CommentInput({ article, commentLength }) {
                {extendedUser ? (
                   <div className="relative block size-16">
                      <Image
-                        className="rounded-full block aspect-square object-cover object-center dark:opacity-90 border border-primary-300 transition-200"
-                        src={
-                           extendedUser.image ? extendedUser.image : user.image
-                        }
+                        className={`rounded-full block aspect-square object-cover object-center dark:opacity-90 border border-primary-300 transition-200 ${profileImage === defaultPfp ? 'dark:opacity-40!' : ''}`}
+                        src={profileImage}
                         alt="Profile image"
                         unoptimized
                         fill

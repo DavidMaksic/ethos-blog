@@ -132,25 +132,15 @@ const Comment = forwardRef(
                >
                   <div className="flex items-center justify-between">
                      <div className="flex items-center gap-4">
-                        {currentUser?.image && (
-                           <div className="relative size-10 md:size-11 sm:size-9 select-none">
-                              <UserImage url={currentUser.image} />
-                           </div>
-                        )}
+                        <div className="relative size-10 md:size-11 sm:size-9 select-none">
+                           <UserImage url={currentUser.image} />
+                        </div>
 
                         <div className="flex xs:flex-wrap items-center gap-2 3xs:gap-y-0.5! md:text-2xl sm:text-[1.4rem]">
                            <span className="font-semibold">
-                              {currentUser.username
-                                 ? !isMobile
-                                    ? currentUser.username
-                                    : currentUser.username
-                                         .split(' ')[0]
-                                         .slice(0, 10)
-                                 : !isMobile
-                                   ? currentUser.name
-                                   : currentUser.name
-                                        .split(' ')[0]
-                                        .slice(0, 10)}
+                              {!isMobile
+                                 ? currentUser.name
+                                 : currentUser.name.split(' ')[0].slice(0, 10)}
                            </span>
                            {isAuthor && (
                               <span className="px-2.5 py-0.5 bg-accent-400/20 dark:bg-accent-300/40 text-accent-600 dark:text-accent-50/70 rounded-xl font-semibold dark:font-medium">

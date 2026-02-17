@@ -19,7 +19,7 @@ async function Page() {
    });
    if (!session) redirect('/login');
 
-   const { username, image } = await getUser(session.user.email);
+   const { name, image } = await getUser(session.user.email);
 
    return (
       <div className="space-y-4 md:flex md:flex-col md:gap-4">
@@ -31,9 +31,7 @@ async function Page() {
                   <label className="text-sm uppercase font-semibold text-primary-400 tracking-wider">
                      {t('Profile.username')}
                   </label>
-                  <span className="text-3xl xs:text-4xl">
-                     {username ? username : session.user.name}
-                  </span>
+                  <span className="text-3xl xs:text-4xl">{name}</span>
                </div>
 
                <UsernameInput />

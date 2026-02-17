@@ -7,6 +7,7 @@ import { ImSpinner2 } from 'react-icons/im';
 import { LuPencil } from 'react-icons/lu';
 
 import RemoteImage from '@/src/ui/image/remote-image';
+import defaultPfp from '@/public/default-pfp.png';
 import toast from 'react-hot-toast';
 
 function ProfileImage({ user, image }) {
@@ -45,6 +46,8 @@ function ProfileImage({ user, image }) {
       }
    }, [state, t]);
 
+   const profileImage = image ? image : user?.image ? user.image : defaultPfp;
+
    return (
       <form
          className="size-fit flex flex-col items-center gap-4 bg-white dark:bg-primary-300/10 rounded-3xl border border-quaternary dark:border-primary-300/15 text-lg text-[#4d525c] dark:text-slate-300/80 font-medium px-20 lg:px-18 md:px-22 py-6 box-shadow transition-200"
@@ -60,9 +63,9 @@ function ProfileImage({ user, image }) {
          >
             <RemoteImage
                imageRef={imageRef}
-               imageUrl={image ? image : user.image}
+               imageUrl={profileImage}
                alt="User profile image"
-               styles="block aspect-square object-cover object-center rounded-full dark:opacity-90 border border-quaternary"
+               styles={`block aspect-square object-cover object-center rounded-full dark:opacity-90 border border-quaternary ${profileImage === defaultPfp ? 'dark:opacity-40!' : ''}`}
                priority
             />
 
@@ -83,7 +86,7 @@ function ProfileImage({ user, image }) {
          <button
             className={`hover:bg-accent-400 dark:hover:bg-accent-300/60 border border-quaternary hover:border-transparent hover:text-white rounded-full p-1 px-4 cursor-pointer hover:shadow-link-btn dark:hover:shadow-link-btn-dark transition ${
                !currentImage || isPending || state.success
-                  ? 'opacity-50 pointer-events-none'
+                  ? 'opacity-40 pointer-events-none'
                   : ''
             }`}
          >

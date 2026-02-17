@@ -10,7 +10,6 @@ export async function getArticles() {
       .order('id', { ascending: false });
 
    if (error) throw new Error('Articles could not be loaded');
-
    return data;
 }
 
@@ -41,7 +40,6 @@ export async function getMainArticles() {
       .order('index');
 
    if (error) throw new Error('Articles could not be loaded');
-
    return data;
 }
 
@@ -62,7 +60,13 @@ export async function getAuthors() {
       .order('id', { ascending: true });
 
    if (error) throw new Error('Authors could not be loaded');
+   return data;
+}
 
+export async function createUser(newUser) {
+   const { data, error } = await supabase.from('users').insert([newUser]);
+
+   if (error) throw new Error('User could not be created');
    return data;
 }
 
@@ -76,23 +80,24 @@ export async function getUser(email) {
       .maybeSingle();
 
    if (error) throw new Error('User could not be loaded');
+   return data;
+}
 
+export async function getUserID(email) {
+   const { data, error } = await supabase
+      .from('users')
+      .select('id')
+      .eq('email', email)
+      .maybeSingle();
+
+   if (error) throw new Error('User could not be loaded');
    return data;
 }
 
 export async function getUsers() {
    const { data, error } = await supabase.from('users').select();
 
-   if (error) throw new Error('User could not be created');
-
-   return data;
-}
-
-export async function createUser(newUser) {
-   const { data, error } = await supabase.from('users').insert([newUser]);
-
-   if (error) throw new Error('User could not be created');
-
+   if (error) throw new Error('Users could not be loaded');
    return data;
 }
 
@@ -100,7 +105,6 @@ export async function getBookmarks() {
    const { data, error } = await supabase.from('bookmarks').select();
 
    if (error) throw new Error('Bookmarks could not be loaded');
-
    return data;
 }
 
@@ -113,7 +117,6 @@ export async function getBookmarksByID(userID) {
       .eq('user_id', userID);
 
    if (error) throw new Error('Bookmarks could not be loaded');
-
    return data;
 }
 
@@ -121,6 +124,5 @@ export async function getSettings() {
    const { data, error } = await supabase.from('settings').select().single();
 
    if (error) throw new Error('Setting could not be loaded');
-
    return data;
 }

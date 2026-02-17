@@ -9,7 +9,7 @@ async function UserComment({ comment, users, extendedUser }) {
    const { id, comment_id, created_at, articles, content } = comment;
 
    const repliedTo = users.find(
-      (item) => item.id === comment.comments?.user_id
+      (item) => item.id === comment.comments?.user_id,
    );
    const date = CommentDate(created_at, locale);
 
@@ -24,11 +24,7 @@ async function UserComment({ comment, users, extendedUser }) {
       >
          <div className="flex items-center gap-4">
             <div className="flex items-center xs:grid xs:grid-cols-1 gap-2 xs:gap-y-px lg:text-[1.1rem] md:text-xl">
-               <span className="font-bold md:hidden">
-                  {extendedUser.username
-                     ? extendedUser.username
-                     : extendedUser.name}
-               </span>
+               <span className="font-bold md:hidden">{extendedUser?.name}</span>
                <p className="text-primary-400 md:hidden">
                   {comment_id ? t('user-replied') : t('user-commented')}{' '}
                   {repliedTo ? (
@@ -39,9 +35,7 @@ async function UserComment({ comment, users, extendedUser }) {
                            <>
                               <span className="mr-1.5">{t('user-to')}</span>
                               <span className="font-bold text-text mr-1.5">
-                                 {repliedTo.username
-                                    ? repliedTo.username
-                                    : repliedTo.name}
+                                 {repliedTo.name}
                               </span>
                               <span>{t('user-on')}</span>
                            </>
