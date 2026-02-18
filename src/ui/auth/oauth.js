@@ -21,7 +21,7 @@ function OAuth({ mode, onToggleMode }) {
       <>
          <div className="flex items-center w-full gap-3 select-none">
             <span className="h-px flex-1 bg-gradient-to-r from-transparent via-primary-600/20 dark:via-primary-600/15 to-primary-600/25 dark:to-primary-600/35" />
-            <span className="text-xl text-current/90 -translate-y-[2px]">
+            <span className="text-xl md:text-2xl text-current/90 -translate-y-[2px]">
                {t('oauth-label')}
             </span>
             <span className="h-px flex-1 bg-gradient-to-l from-transparent via-primary-600/20 dark:via-primary-600/15 to-primary-600/25 dark:to-primary-600/35" />
@@ -29,7 +29,7 @@ function OAuth({ mode, onToggleMode }) {
 
          <div className="grid grid-cols-2 w-full gap-3">
             <button
-               className="flex items-center gap-3 w-full justify-center text-xl bg-white/40 md:bg-primary-300/40 dark:bg-primary-300/30 md:dark:bg-primary-300/30 hover:bg-white/55 dark:hover:bg-primary-300/20 border border-primary-400/10 dark:border-primary-300/15 py-3 font-medium rounded-xl cursor-pointer transition-bg_border"
+               className="flex items-center gap-3 w-full justify-center text-xl md:text-2xl bg-white/40 md:bg-primary-300/40 dark:bg-primary-300/30 md:dark:bg-primary-300/30 hover:bg-white/55 dark:hover:bg-primary-300/20 border border-primary-400/10 dark:border-primary-300/15 py-3 sm:py-2.5 font-medium rounded-xl cursor-pointer transition-bg_border"
                onClick={() => login('google')}
             >
                <div className="relative size-5 md:size-5.5 opacity-90">
@@ -46,7 +46,7 @@ function OAuth({ mode, onToggleMode }) {
             </button>
 
             <button
-               className="flex items-center gap-3 w-full justify-center text-xl bg-white/40 md:bg-primary-300/40 dark:bg-primary-300/30 md:dark:bg-primary-300/30 hover:bg-white/55 dark:hover:bg-primary-300/20 border border-primary-400/10 dark:border-primary-300/15 py-3 font-medium rounded-xl cursor-pointer transition-bg_border"
+               className="flex items-center gap-3 w-full justify-center text-xl md:text-2xl bg-white/40 md:bg-primary-300/40 dark:bg-primary-300/30 md:dark:bg-primary-300/30 hover:bg-white/55 dark:hover:bg-primary-300/20 border border-primary-400/10 dark:border-primary-300/15 py-3 sm:py-2.5 font-medium rounded-xl cursor-pointer transition-bg_border"
                onClick={() => login('github')}
             >
                <div className="relative size-6 opacity-50">
@@ -64,7 +64,7 @@ function OAuth({ mode, onToggleMode }) {
             </button>
          </div>
 
-         <p className="text-center">
+         <p className="text-center md:text-2xl">
             {mode === 'signin' ? (
                <>
                   {t('new-profile-label')}{' '}

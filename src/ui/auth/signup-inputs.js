@@ -59,7 +59,7 @@ function SignUpInputs() {
       >
          <div className="flex flex-col gap-3">
             <div className="flex flex-col gap-0.5">
-               <label htmlFor="name" className="text-lg">
+               <label htmlFor="name" className="text-lg md:text-xl">
                   {t('name')}
                </label>
                <input
@@ -73,7 +73,7 @@ function SignUpInputs() {
             </div>
 
             <div className="flex flex-col gap-0.5">
-               <label htmlFor="email" className="text-lg">
+               <label htmlFor="email" className="text-lg md:text-xl">
                   {t('email')}
                </label>
                <input
@@ -86,7 +86,7 @@ function SignUpInputs() {
             </div>
 
             <div className="flex flex-col gap-0.5">
-               <label htmlFor="password" className="text-lg">
+               <label htmlFor="password" className="text-lg md:text-xl">
                   {t('password')}
                </label>
                <input
@@ -100,7 +100,7 @@ function SignUpInputs() {
             </div>
 
             <div className="flex flex-col gap-0.5">
-               <label htmlFor="confirm-password" className="text-lg">
+               <label htmlFor="confirm-password" className="text-lg md:text-xl">
                   {t('confirm-password')}
                </label>
                <input
@@ -117,7 +117,7 @@ function SignUpInputs() {
          <button
             type="submit"
             disabled={loading}
-            className={`bg-accent-500/80 dark:bg-accent/60 text-white dark:text-accent-100 font-logo text-3xl rounded-2xl py-2.5 w-full hover:bg-accent-500/65 dark:hover:bg-accent/50 transition cursor-pointer mt-4 mb-2 disabled:opacity-65 disabled:hover:bg-accent-500/80 disabled:dark:hover:bg-accent/60 disabled:cursor-auto ${
+            className={`bg-accent-500/80 dark:bg-accent/60 text-white dark:text-accent-100 font-logo text-3xl md:text-4xl rounded-2xl py-2.5 w-full hover:bg-accent-500/65 dark:hover:bg-accent/50 transition cursor-pointer mt-4 mb-2 disabled:opacity-65 disabled:hover:bg-accent-500/80 disabled:dark:hover:bg-accent/60 disabled:cursor-auto ${
                locale === 'sr' ? `font-logo-sr` : 'font-logo'
             }`}
          >

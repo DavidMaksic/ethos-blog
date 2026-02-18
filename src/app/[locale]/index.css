@@ -1185,8 +1185,11 @@ h3 {
    }
 
    .alert {
-      text-align: center;
       @apply px-9 py-6;
+   }
+
+   .alert:not([data-alert-type='references']) {
+      text-align: center;
    }
 
    .alert-icon-wrapper {

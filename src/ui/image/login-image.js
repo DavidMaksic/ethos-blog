@@ -1,6 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { useTheme } from 'next-themes';
+import { motion } from 'motion/react';
+
 import RemoteImage from '@/src/ui/image/remote-image';
 import image1 from '@/public/image-1.webp';
 import image2 from '@/public/image-2.webp';
@@ -11,8 +15,6 @@ import image6 from '@/public/image-6.jpg';
 import image7 from '@/public/image-7.jpg';
 import image8 from '@/public/image-8.webp';
 import image9 from '@/public/image-9.webp';
-import { useTheme } from 'next-themes';
-import { useMediaQuery } from 'react-responsive';
 
 const images = [
    {
@@ -117,11 +119,15 @@ function LoginImage() {
                priority
             />
             <div className="absolute inset-0" />
-            <p
-               className={`absolute right-4 bottom-2 text-lg lg:text-base text-white/80 dark:text-white/60 ${mounted ? 'opacity-100' : 'opacity-0'} transition-opacity duration-700`}
+            <motion.p
+               className="absolute right-4 bottom-2 text-lg lg:text-base  text-white/80 dark:text-white/60"
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
+               transition={{ duration: 0.7 }}
             >
                <span className="italic">{image.title}</span>, {image.credit}
-            </p>
+            </motion.p>
          </div>
       </section>
    );
