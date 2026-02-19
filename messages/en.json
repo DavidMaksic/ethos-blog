@@ -122,9 +122,21 @@
       "create-account": "Create an account",
       "oauth-label": "or continue with",
       "name": "Name",
+      "name-min": "*Minimum of {count} characters",
+      "name-max": "*Maximum of {count} characters",
       "email": "Email",
+      "email-invalid": "*Please enter a valid email address",
+      "email-max": "Email address is too long",
       "password": "Password",
-      "confirm-password": "Confirm password"
+      "confirm-password": "Confirm password",
+      "password-min": "*Minimum of {count} characters",
+      "password-max": "*Maxiumum of {count} characters",
+      "passwords-dont-match": "*Passwords do not match",
+      "password-number": "*Must contain at least one number",
+      "consecutive-underscores": "*Cannot contain consecutive underscores",
+      "edge-underscores": "*Cannot start or end with an underscore",
+      "invalid-chars": "*Use only letters, numbers, or underscores",
+      "all-numbers": "*The username must contain letters"
    },
    "Error": {
       "message": "Something went wrong...",
@@ -154,11 +166,5 @@
       "empty": "Comment cannot be empty",
       "min": "Comment must have at least {count} characters",
       "max": "Comment must be less than {count} characters"
-   },
-   "UsernameErrors": {
-      "min": "Minimum of 2 characters",
-      "max": "Maximum of 25 characters",
-      "invalid-chars": "Use only letters, numbers, or underscores",
-      "all-numbers": "The username must contain letters"
    }
 }

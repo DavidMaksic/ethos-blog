@@ -3,7 +3,6 @@ import {
    getArticles,
    getSettings,
    getArticle,
-   getUsers,
 } from '@/src/lib/data-service';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { WEBSITE_URL } from '@/src/utils/config';
@@ -12,7 +11,7 @@ import { format } from 'date-fns';
 
 import OtherArticleOptions from '@/src/ui/articles/other-article-options';
 import ArticleAuthorInfo from '@/src/ui/articles/article-author-info';
-import CommentListHeader from '@/src/ui/comment-list-header';
+import CommentListHeader from '@/src/ui/header/comment-list-header';
 import AnimationWrapper from '@/src/ui/articles/animation-wrapper';
 import RelatedArticles from '@/src/ui/articles/related-articles';
 import ArticleOptions from '@/src/ui/articles/article-options';
@@ -81,14 +80,12 @@ export async function generateMetadata({ params }) {
 }
 
 async function Page({ params }) {
-   const [param, articles, allUsers, bookmarks, comment_length] =
-      await Promise.all([
-         params,
-         getArticles(),
-         getUsers(),
-         getBookmarks(),
-         getSettings(),
-      ]);
+   const [param, articles, bookmarks, comment_length] = await Promise.all([
+      params,
+      getArticles(),
+      getBookmarks(),
+      getSettings(),
+   ]);
    const { slug, locale } = param;
    setRequestLocale(locale);
 
@@ -182,7 +179,6 @@ async function Page({ params }) {
                <CommentList
                   comments={comments}
                   article={article}
-                  users={allUsers}
                   commentLength={comment_length.comment_length}
                   author={author}
                />

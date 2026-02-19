@@ -15,7 +15,7 @@ import {
 import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
-import { useAuth } from '@/src/context/auth-context';
+import { authClient } from '@/src/lib/auth-client';
 
 import BackButton from '@/src/ui/buttons/back-button';
 import LikeButton from '@/src/ui/buttons/like-button';
@@ -28,28 +28,30 @@ function ArticleOptions({ article, bookmarks, comments }) {
    const t = useTranslations('Article');
    const [isOpen, setIsOpen] = useState();
    const { slug, id: articleID, likes } = article;
-   const { session, extendedUser, loading } = useAuth();
+
+   const { data, isPending } = authClient.useSession();
+   const session = data?.session;
+   const user = data?.user;
 
    // - Like logic
    let hasLiked;
    const articleLikeIDs = likes
       .filter((item) => item.type === 'article')
       .map((item) => item.user_id);
-   hasLiked = !!articleLikeIDs.find((item) => item === extendedUser?.id);
+   hasLiked = !!articleLikeIDs.find((item) => item === user?.id);
 
    // - Comment logic
    let hasCommented;
-   hasCommented = !!comments.find((item) => item.user_id === extendedUser?.id);
+   hasCommented = !!comments.find((item) => item.user_id === user?.id);
 
    // - Reply logic
    let hasReplied;
    const replies = comments.map((item) => item.replies).flat();
-   hasReplied = !!replies.find((item) => item.user_id === extendedUser?.id);
+   hasReplied = !!replies.find((item) => item.user_id === user?.id);
 
    // - Bookmark logic
    const hasBookmarked = !!bookmarks.find(
-      (item) =>
-         item.user_id === extendedUser?.id && item.article_id === articleID,
+      (item) => item.user_id === user?.id && item.article_id === articleID,
    );
    const [isBookmarked, setIsBookmarked] = useState(hasBookmarked);
 
@@ -104,7 +106,7 @@ function ArticleOptions({ article, bookmarks, comments }) {
 
          <div
             className={`flex items-center gap-1.5 md:gap-3 sm:gap-1.5 ${
-               loading && 'pointer-events-none'
+               isPending && 'pointer-events-none'
             }`}
          >
             <Button handler={handleLike} styles="md:hidden">

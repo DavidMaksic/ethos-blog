@@ -1,6 +1,6 @@
 'use server';
 
-import { commentSchema, usernameSchema } from '@/src/utils/helpers';
+import { usernameSchema, commentSchema } from '@/src/lib/schemas';
 import { revalidatePath, updateTag } from 'next/cache';
 import { getTranslations } from 'next-intl/server';
 import { supabase } from '@/src/lib/supabase';
@@ -8,12 +8,7 @@ import { headers } from 'next/headers';
 import { auth } from '@/src/lib/auth';
 
 export async function updateUser(previousState, formData) {
-   const t = await getTranslations('UsernameErrors');
-
-   const session = await auth.api.getSession({
-      headers: await headers(),
-   });
-   if (!session) throw new Error('You must be logged in');
+   const t = await getTranslations('Auth');
 
    const rawUsername = formData.get('username');
    const schema = usernameSchema(t);
@@ -32,10 +27,10 @@ export async function updateUser(previousState, formData) {
 
    const { username } = parsed.data;
 
-   const { error } = await supabase
-      .from('users')
-      .update({ name: username })
-      .eq('id', session.user.userID);
+   const { error } = await auth.api.updateUser({
+      headers: await headers(),
+      body: { name: username },
+   });
 
    if (error) throw new Error('Username could not be updated');
 
@@ -49,7 +44,7 @@ export async function updateImage(previousState, formData) {
    });
    if (!session) throw new Error('You must be logged in');
 
-   const userID = session.user.userID;
+   const userID = session.user.id;
    const newImage = formData.get('newImage');
    const oldImage = formData.get('oldImage');
 
@@ -67,13 +62,12 @@ export async function updateImage(previousState, formData) {
    if (imageUploadError) throw new Error(imageUploadError.message);
 
    // 2. Update image field in user
-   const { error: profileImageError } = await supabase
-      .from('users')
-      .update({
-         image: `${process.env.SUPABASE_URL}/storage/v1/object/public/user-images/${fileName}`,
-      })
-      .eq('id', userID)
-      .select();
+   const imageUrl = `${process.env.SUPABASE_URL}/storage/v1/object/public/user-images/${fileName}`;
+
+   const { error: profileImageError } = await auth.api.updateUser({
+      headers: await headers(),
+      body: { image: imageUrl },
+   });
 
    if (profileImageError) throw new Error(profileImageError.message);
 
@@ -98,7 +92,7 @@ export async function addBookmark(articleID, slug) {
    });
 
    if (!session) throw new Error('You must be logged in');
-   const userID = session.user.userID;
+   const userID = session.user.id;
 
    const { error } = await supabase.from('bookmarks').insert([
       {
@@ -117,7 +111,7 @@ export async function removeBookmark(articleID, slug) {
    });
 
    if (!session) throw new Error('You must be logged in');
-   const userID = session.user.userID;
+   const userID = session.user.id;
 
    const { error } = await supabase
       .from('bookmarks')
@@ -137,7 +131,7 @@ export async function addComment(previousState, formData, commentLength) {
    });
    if (!session) throw new Error('You must be logged in');
 
-   const userID = session.user.userID;
+   const userID = session.user.id;
    const rawContent = formData.get('content');
    const articleID = formData.get('articleID');
    const slug = formData.get('slug');
@@ -185,7 +179,7 @@ export async function editComment(commentID, text, slug, commentLength) {
    });
    if (!session) throw new Error('You must be logged in');
 
-   const userID = session.user.userID;
+   const userID = session.user.id;
    const schema = commentSchema(t, commentLength);
    const parsed = schema.safeParse({ content: text });
 
@@ -221,7 +215,7 @@ export async function deleteComment(commentID, slug) {
    });
    if (!session) throw new Error('You must be logged in');
 
-   const userID = session.user.userID;
+   const userID = session.user.id;
    const { error } = await supabase
       .from('comments')
       .delete()
@@ -242,7 +236,7 @@ export async function addReply(previousState, formData, commentLength) {
    });
    if (!session) throw new Error('You must be logged in');
 
-   const userID = session.user.userID;
+   const userID = session.user.id;
    const rawContent = formData.get('content');
    const articleID = formData.get('articleID');
    const commentID = formData.get('commentID');
@@ -293,7 +287,7 @@ export async function editReply(replyID, text, slug, commentLength) {
    });
    if (!session) throw new Error('You must be logged in');
 
-   const userID = session.user.userID;
+   const userID = session.user.id;
    const schema = commentSchema(t, commentLength);
    const parsed = schema.safeParse({ content: text });
 
@@ -329,7 +323,7 @@ export async function deleteReply(replyID, slug) {
    });
    if (!session) throw new Error('You must be logged in');
 
-   const userID = session.user.userID;
+   const userID = session.user.id;
    const { error } = await supabase
       .from('replies')
       .delete()
@@ -348,7 +342,7 @@ export async function addLiked(articleID, type, slug, targetID) {
    });
 
    if (!session) throw new Error('You must be logged in');
-   const userID = session.user.userID;
+   const userID = session.user.id;
 
    if (type === 'article') {
       const { error } = await supabase.from('likes').insert([
@@ -386,7 +380,7 @@ export async function removeLiked(articleID, type, slug) {
    });
 
    if (!session) throw new Error('You must be logged in');
-   const userID = session.user.userID;
+   const userID = session.user.id;
 
    const { error } = await supabase
       .from('likes')

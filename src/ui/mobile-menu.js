@@ -4,11 +4,11 @@ import { IoDocumentOutline } from 'react-icons/io5';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 import { useTranslations } from 'next-intl';
 import { HiOutlineUser } from 'react-icons/hi2';
+import { authClient } from '@/src/lib/auth-client';
 import { ImSpinner2 } from 'react-icons/im';
 import { BiHomeAlt2 } from 'react-icons/bi';
 import { LANGUAGES } from '@/src/utils/config';
 import { useState } from 'react';
-import { useAuth } from '@/src/context/auth-context';
 import { Link } from '@/src/i18n/navigation';
 
 import LanguageFilterButton from '@/src/ui/buttons/language-filter-button';
@@ -17,17 +17,14 @@ import Modal from '@/src/ui/modal/modal';
 import Image from 'next/image';
 
 function MobileMenu() {
+   const t = useTranslations();
    const [openMenu, setOpenMenu] = useState(false);
    const [loaded, setLoaded] = useState(false);
 
-   const { session, user, extendedUser, loading } = useAuth();
-   const t = useTranslations();
-
-   const profileImage = extendedUser?.image
-      ? extendedUser.image
-      : user?.image
-        ? user.image
-        : defaultPfp;
+   const { data, isPending } = authClient.useSession();
+   const session = data?.session;
+   const user = data?.user;
+   const profileImage = user?.image ?? defaultPfp;
 
    return (
       <>
@@ -92,7 +89,7 @@ function MobileMenu() {
 
                      <div className="flex flex-col gap-2 items-center">
                         <div className="min-w-50 min-h-39.5 3xs:min-h-[10.6rem] xs:min-w-full flex flex-col gap-3 items-center justify-center mx-4 xs:mx-0 py-2 3xs:pt-5 pb-6 border-b border-b-primary-300 dark:border-b-primary-300/40">
-                           {loading ? (
+                           {isPending ? (
                               <motion.span
                                  initial={{ opacity: 0 }}
                                  animate={{ opacity: 1 }}
@@ -101,7 +98,7 @@ function MobileMenu() {
                               >
                                  <ImSpinner2 className="size-14 text-accent/80 animate-spin" />
                               </motion.span>
-                           ) : extendedUser ? (
+                           ) : user ? (
                               <>
                                  <Link
                                     href={session ? '/user/home' : '/login'}
@@ -129,9 +126,7 @@ function MobileMenu() {
                                        loaded ? 'opacity-100' : 'opacity-0'
                                     }`}
                                  >
-                                    {extendedUser?.name
-                                       .split(' ')[0]
-                                       .slice(0, 10)}
+                                    {user?.name.split(' ')[0].slice(0, 10)}
                                  </span>
                               </>
                            ) : (

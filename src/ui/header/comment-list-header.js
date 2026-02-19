@@ -1,8 +1,8 @@
 'use client';
 
-import SortBy from '@/src/ui/operations/sort-by';
 import { useTranslations } from 'next-intl';
 import { usePrevious } from '@/src/hooks/use-previous';
+import SortBy from '@/src/ui/operations/sort-by';
 
 function CommentListHeader({ comments, commentsNum }) {
    const t = useTranslations();

@@ -15,6 +15,7 @@ const cormorantGaramond = Cormorant_Garamond({
    style: ['normal', 'italic'],
    weight: ['300', '400', '500', '600', '700'],
    variable: '--font-cormorantGaramond',
+   adjustFontFallback: true,
 });
 
 /* Logo font (en) */
@@ -68,7 +69,7 @@ async function Layout({ children, params }) {
                               fontSize: '20px',
                               maxWidth: '500px',
                               color: 'var(--color-primary-500)',
-                              backgroundColor: 'var(--color-toast)',
+                              backgroundColor: 'var(--color-toast-login)',
                               backdropFilter: 'blur(80px)',
                               borderRadius: '14px',
                               boxShadow: 'var(--shadow-toast-btn)',

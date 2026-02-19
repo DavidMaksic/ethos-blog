@@ -1,6 +1,6 @@
 import { useTranslations } from 'use-intl';
+import { authClient } from '@/src/lib/auth-client';
 import { useLocale } from 'next-intl';
-import { useAuth } from '@/src/context/auth-context';
 import { LuLogIn } from 'react-icons/lu';
 import { motion } from 'motion/react';
 import { Link } from '@/src/i18n/navigation';
@@ -8,7 +8,9 @@ import { Link } from '@/src/i18n/navigation';
 function AuthModal({ onClose, string }) {
    const t = useTranslations();
    const locale = useLocale();
-   const { session } = useAuth();
+
+   const { data } = authClient.useSession();
+   const session = data?.session;
 
    return (
       <motion.div

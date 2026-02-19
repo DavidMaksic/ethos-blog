@@ -1,6 +1,6 @@
 import { useLocale, useTranslations } from 'next-intl';
 import { TYPE_STYLES } from '@/src/utils/config';
-import { useAuth } from '@/src/context/auth-context';
+import { authClient } from '@/src/lib/auth-client';
 import { motion } from 'motion/react';
 import clsx from 'clsx';
 
@@ -16,7 +16,6 @@ function ArticleOptionItem({
 }) {
    const t = useTranslations('Article');
    const locale = useLocale();
-   const { loading } = useAuth();
 
    const isActive =
       (type === 'like' && isLiked) ||
@@ -24,7 +23,9 @@ function ArticleOptionItem({
       (type === 'comment' && (hasCommented || hasReplied));
 
    const styles = TYPE_STYLES[type] ?? {};
-   const isDisabled = type !== 'link' && loading;
+
+   const { isPending } = authClient.useSession();
+   const isDisabled = type !== 'link' && isPending;
 
    return (
       <motion.div
@@ -39,7 +40,7 @@ function ArticleOptionItem({
             locale === 'en' && 'px-8!',
             styles.hover,
             isActive && styles.activeBorder,
-            isDisabled && 'pointer-events-none'
+            isDisabled && 'pointer-events-none',
          )}
       >
          {children}
@@ -54,7 +55,7 @@ function ArticleOptionItem({
                   className={clsx(
                      'font-secondary tabular-nums transition-color',
                      isActive && styles.text,
-                     styles.hoverText
+                     styles.hoverText,
                   )}
                >
                   {count}
@@ -63,7 +64,7 @@ function ArticleOptionItem({
                <span
                   className={clsx(
                      'text-base font-sans font-bold md:text-2xl sm:text-lg transition-200',
-                     styles.hoverText
+                     styles.hoverText,
                   )}
                >
                   --

@@ -6,7 +6,7 @@ import { getSortedItems } from '@/src/utils/helpers';
 import { useState } from 'react';
 import Comment from '@/src/ui/comments/comment';
 
-function CommentList({ comments, article, users, commentLength, author }) {
+function CommentList({ comments, article, commentLength, author }) {
    const [openReplyID, setOpenReplyID] = useState(null);
    const searchParams = useSearchParams();
    const sort = searchParams.get('sort');
@@ -38,7 +38,6 @@ function CommentList({ comments, article, users, commentLength, author }) {
                               commentLength={commentLength}
                               isFirst={index === 0}
                               prevHasReplyOpen={prevHasReplyOpen}
-                              users={users}
                               article={article}
                               author={author}
                               openReplyID={openReplyID}

@@ -7,7 +7,7 @@ import { useMediaQuery } from 'react-responsive';
 import { usePathname } from '@/src/i18n/navigation';
 import { CommentDate } from '@/src/utils/helpers';
 import { RxChevronUp } from 'react-icons/rx';
-import { useAuth } from '@/src/context/auth-context';
+import { authClient } from '@/src/lib/auth-client';
 import { LuReply } from 'react-icons/lu';
 
 import CommentOptions from '@/src/ui/comments/comment-options';
@@ -24,7 +24,6 @@ const Comment = forwardRef(
          commentLength,
          isFirst,
          prevHasReplyOpen,
-         users,
          article,
          author,
          openReplyID,
@@ -35,7 +34,10 @@ const Comment = forwardRef(
       const [isOpen, setIsOpen] = useState(false);
       const [showReplies, setShowReplies] = useState(true);
 
-      const { session, user, loading } = useAuth();
+      const { data, isPending } = authClient.useSession();
+      const session = data?.session;
+      const user = data?.user;
+
       const t = useTranslations('Comment');
 
       const locale = useLocale();
@@ -44,8 +46,7 @@ const Comment = forwardRef(
       const date = CommentDate(comment.created_at, locale);
       const isMobile = useMediaQuery({ maxWidth: 768 });
 
-      const currentUser = users.find((item) => item.id === comment.user_id);
-      const isAuthor = currentUser.email === author.email;
+      const isAuthor = user.email === author.email;
       const articleID = article.id;
 
       // - Copy link logic
@@ -89,10 +90,10 @@ const Comment = forwardRef(
 
          if (isLiked) {
             setLikesCount((i) => i - 1);
-            removeLiked(user.userID, articleID, 'comment', slug);
+            removeLiked(articleID, 'comment', slug);
          } else {
             setLikesCount((i) => i + 1);
-            addLiked(user.userID, articleID, 'comment', slug, commentID);
+            addLiked(articleID, 'comment', slug, commentID);
          }
 
          setIsLiked(!isLiked);
@@ -127,20 +128,20 @@ const Comment = forwardRef(
                <div
                   id={`comment-${commentID}`}
                   className={`flex flex-col gap-5 xs:gap-4 bg-secondary dark:bg-primary-200 md:dark:bg-primary-300/15 box-shadow rounded-3xl px-14 sm:px-12 xs:px-10 py-10 sm:py-8 xs:py-5.5 scroll-mt-28! transition duration-300 ${
-                     loading && 'pointer-events-none'
+                     isPending && 'pointer-events-none'
                   }`}
                >
                   <div className="flex items-center justify-between">
                      <div className="flex items-center gap-4">
                         <div className="relative size-10 md:size-11 sm:size-9 select-none">
-                           <UserImage url={currentUser.image} />
+                           <UserImage url={user.image} />
                         </div>
 
                         <div className="flex xs:flex-wrap items-center gap-2 3xs:gap-y-0.5! md:text-2xl sm:text-[1.4rem]">
                            <span className="font-semibold">
                               {!isMobile
-                                 ? currentUser.name
-                                 : currentUser.name.split(' ')[0].slice(0, 10)}
+                                 ? user.name
+                                 : user.name.split(' ')[0].slice(0, 10)}
                            </span>
                            {isAuthor && (
                               <span className="px-2.5 py-0.5 bg-accent-400/20 dark:bg-accent-300/40 text-accent-600 dark:text-accent-50/70 rounded-xl font-semibold dark:font-medium">
@@ -189,11 +190,9 @@ const Comment = forwardRef(
                         className="flex items-center gap-2 h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-3 md:px-4 py-1.5 bg-primary-300/20 dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75"
                         role="button"
                         onClick={() => {
-                           if (!session) setIsOpen(true);
-                           if (session) {
-                              setOpenReplyID(isReplyOpen ? null : commentID);
-                              if (!showReplies) setShowReplies(true);
-                           }
+                           if (!session) return setIsOpen(true);
+                           setOpenReplyID(isReplyOpen ? null : commentID);
+                           if (!showReplies) setShowReplies(true);
                         }}
                      >
                         <LuReply className="size-4 md:size-6 xs:size-[1.35rem]" />
@@ -202,21 +201,27 @@ const Comment = forwardRef(
                         </span>
                      </div>
 
-                     {replies?.length ? (
-                        <div
-                           className="flex items-center justify-center h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-2 py-1.5 bg-primary-300/20 dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75"
-                           role="button"
-                           onClick={() =>
-                              setShowReplies((areShown) => !areShown)
-                           }
-                        >
-                           <RxChevronUp
-                              className={`size-5 md:size-7 xs:size-[1.55rem] xs:stroke-[0.1px] transition-200 ${
-                                 showReplies && 'rotate-180'
-                              }`}
-                           />
-                        </div>
-                     ) : null}
+                     <AnimatePresence>
+                        {replies?.length && (
+                           <motion.div
+                              className="flex items-center justify-center h-9 md:h-11 xs:h-10.5 w-fit rounded-xl px-2 py-1.5 bg-primary-300/20 dark:bg-primary-400/12 text-primary-500/80 hover:bg-primary-200/60 dark:hover:bg-primary-400/20 cursor-pointer transition-75"
+                              role="button"
+                              onClick={() =>
+                                 setShowReplies((areShown) => !areShown)
+                              }
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              exit={{ opacity: 0 }}
+                              transition={{ duration: 0.2 }}
+                           >
+                              <RxChevronUp
+                                 className={`size-5 md:size-7 xs:size-[1.55rem] xs:stroke-[0.1px] transition-200 ${
+                                    showReplies && 'rotate-180'
+                                 }`}
+                              />
+                           </motion.div>
+                        )}
+                     </AnimatePresence>
                   </div>
 
                   <AnimatePresence>
@@ -252,7 +257,6 @@ const Comment = forwardRef(
                      commentID={commentID}
                      articleID={articleID}
                      slug={slug}
-                     users={users}
                      article={article}
                      commentLength={commentLength}
                      author={author}

@@ -5,10 +5,10 @@ import { useLocale, useTranslations } from 'next-intl';
 import { HiOutlineUserCircle } from 'react-icons/hi2';
 import { useSearchParams } from 'next/navigation';
 import { AnimatePresence } from 'motion/react';
+import { authClient } from '@/src/lib/auth-client';
 import { addComment } from '@/src/lib/actions';
 import { ImSpinner2 } from 'react-icons/im';
 import { useRouter } from '@/src/i18n/navigation';
-import { useAuth } from '@/src/context/auth-context';
 
 import TextareaAutosize from 'react-textarea-autosize';
 import ErrorValidation from '@/src/ui/error-validation';
@@ -21,7 +21,10 @@ import Image from 'next/image';
 function CommentInput({ article, commentLength }) {
    const [isOpen, setIsOpen] = useState(false);
    const [text, setText] = useState('');
-   const { session, user, extendedUser, loading } = useAuth();
+
+   const { data, isPending: loading } = authClient.useSession();
+   const session = data?.session;
+   const user = data?.user;
 
    const locale = useLocale();
    const t = useTranslations('Comment');
@@ -88,17 +91,13 @@ function CommentInput({ article, commentLength }) {
       }, 2000);
    }, []);
 
-   const profileImage = extendedUser?.image
-      ? extendedUser.image
-      : user?.image
-        ? user.image
-        : defaultPfp;
+   const profileImage = user?.image ?? defaultPfp;
 
    return (
       <div className="comment-section scroll-mt-20! flex flex-col gap-1.5 mt-20 font-secondary">
          <div className="flex gap-4">
             <div className="py-3 px-2 sm:hidden">
-               {extendedUser ? (
+               {user ? (
                   <div className="relative block size-16">
                      <Image
                         className={`rounded-full block aspect-square object-cover object-center dark:opacity-90 border border-primary-300 transition-200 ${profileImage === defaultPfp ? 'dark:opacity-40!' : ''}`}

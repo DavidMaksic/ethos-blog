@@ -3,10 +3,10 @@
 import { forwardRef, useActionState, useEffect, useState } from 'react';
 import { AnimatePresence } from 'motion/react';
 import { useTranslations } from 'use-intl';
+import { authClient } from '@/src/lib/auth-client';
 import { ImSpinner2 } from 'react-icons/im';
 import { useLocale } from 'next-intl';
 import { addReply } from '@/src/lib/actions';
-import { useAuth } from '@/src/context/auth-context';
 
 import TextareaAutosize from 'react-textarea-autosize';
 import ErrorValidation from '@/src/ui/error-validation';
@@ -18,7 +18,7 @@ const ReplyInput = forwardRef(
    ({ slug, articleID, commentID, commentLength, setReplyIsOpen }, ref) => {
       const [isOpen, setIsOpen] = useState(false);
       const [text, setText] = useState('');
-      const { loading } = useAuth();
+      const { isPending: loading } = authClient.useSession();
 
       const locale = useLocale();
       const t = useTranslations('Comment');

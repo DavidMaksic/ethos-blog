@@ -9,7 +9,6 @@ function RepliesList({
    commentID,
    articleID,
    slug,
-   users,
    article,
    commentLength,
    author,
@@ -65,7 +64,6 @@ function RepliesList({
                         isLast={isLast}
                         showReplies={showReplies}
                         reply={reply}
-                        users={users}
                         article={article}
                         commentID={commentID}
                         commentLength={commentLength}

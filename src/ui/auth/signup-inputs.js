@@ -1,49 +1,59 @@
 'use client';
 
 import { useLocale, useTranslations } from 'use-intl';
+import { signUpSchema } from '@/src/lib/schemas';
 import { authClient } from '@/src/lib/auth-client';
 import { ImSpinner2 } from 'react-icons/im';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+
+import FormField from '@/src/ui/form-field';
 import toast from 'react-hot-toast';
 
 function SignUpInputs() {
    const t = useTranslations('Auth');
    const router = useRouter();
    const locale = useLocale();
+
    const [loading, setLoading] = useState(false);
+   const [errors, setErrors] = useState({});
+
+   const clearError = (field) =>
+      setErrors((prev) => ({ ...prev, [field]: undefined }));
 
    const handleSubmit = async (e) => {
       e.preventDefault();
 
       const formData = new FormData(e.target);
-      const name = formData.get('name');
-      const email = formData.get('email');
-      const password = formData.get('password');
-      const confirmPassword = formData.get('confirm-password');
+      const parsed = signUpSchema(t).safeParse({
+         name: formData.get('name'),
+         email: formData.get('email'),
+         password: formData.get('password'),
+         confirmPassword: formData.get('confirm-password'),
+      });
 
-      // Validation
-      if (password !== confirmPassword) {
-         return toast.error('Passwords do not match');
+      if (!parsed.success) {
+         const fieldErrors = {};
+         for (const issue of parsed.error.issues) {
+            const field = issue.path[0];
+            if (!fieldErrors[field]) fieldErrors[field] = issue.message;
+         }
+         setErrors(fieldErrors);
+         return;
       }
 
-      if (password.length < 8) {
-         return toast.error('Password must be at least 8 characters');
-      }
-
+      setErrors({});
       setLoading(true);
 
       await authClient.signUp.email(
          {
-            email,
-            password,
-            name,
+            email: parsed.data.email,
+            password: parsed.data.password,
+            name: parsed.data.name,
             callbackURL: '/user/home',
          },
          {
-            onSuccess: () => {
-               router.push('/user/home');
-            },
+            onSuccess: () => router.push('/user/home'),
             onError: (ctx) => {
                toast.error(ctx.error.message);
                setLoading(false);
@@ -56,69 +66,45 @@ function SignUpInputs() {
       <form
          className="w-full space-y-5 lg:space-y-3 md:space-y-5"
          onSubmit={handleSubmit}
+         noValidate
       >
          <div className="flex flex-col gap-3">
-            <div className="flex flex-col gap-0.5">
-               <label htmlFor="name" className="text-lg md:text-xl">
-                  {t('name')}
-               </label>
-               <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  required
-                  autoComplete="one-time-code"
-                  className="py-1 bg-transparent border-b border-primary-600/25 text-primary-700/90 dark:text-primary-600/80 focus:outline-none w-full text-[1.75rem]"
-               />
-            </div>
-
-            <div className="flex flex-col gap-0.5">
-               <label htmlFor="email" className="text-lg md:text-xl">
-                  {t('email')}
-               </label>
-               <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  className="py-1 bg-transparent border-b border-primary-600/25 text-primary-700/90 dark:text-primary-600/80 focus:outline-none w-full text-[1.75rem]"
-               />
-            </div>
-
-            <div className="flex flex-col gap-0.5">
-               <label htmlFor="password" className="text-lg md:text-xl">
-                  {t('password')}
-               </label>
-               <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  required
-                  minLength={8}
-                  className="py-1 bg-transparent border-b border-primary-600/25 text-primary-700/90 dark:text-primary-600/80 focus:outline-none w-full text-[1.75rem]"
-               />
-            </div>
-
-            <div className="flex flex-col gap-0.5">
-               <label htmlFor="confirm-password" className="text-lg md:text-xl">
-                  {t('confirm-password')}
-               </label>
-               <input
-                  id="confirm-password"
-                  name="confirm-password"
-                  type="password"
-                  required
-                  minLength={8}
-                  className="py-1 bg-transparent border-b border-primary-600/25 text-primary-700/90 dark:text-primary-600/80 focus:outline-none w-full text-[1.75rem]"
-               />
-            </div>
+            <FormField
+               id="name"
+               label={t('name')}
+               type="text"
+               error={errors.name}
+               onChange={() => clearError('name')}
+               autoComplete="one-time-code"
+            />
+            <FormField
+               id="email"
+               label={t('email')}
+               type="email"
+               error={errors.email}
+               onChange={() => clearError('email')}
+            />
+            <FormField
+               id="password"
+               label={t('password')}
+               type="password"
+               error={errors.password}
+               onChange={() => clearError('password')}
+            />
+            <FormField
+               id="confirm-password"
+               label={t('confirm-password')}
+               type="password"
+               error={errors.confirmPassword}
+               onChange={() => clearError('confirmPassword')}
+            />
          </div>
 
          <button
             type="submit"
             disabled={loading}
-            className={`bg-accent-500/80 dark:bg-accent/60 text-white dark:text-accent-100 font-logo text-3xl md:text-4xl rounded-2xl py-2.5 w-full hover:bg-accent-500/65 dark:hover:bg-accent/50 transition cursor-pointer mt-4 mb-2 disabled:opacity-65 disabled:hover:bg-accent-500/80 disabled:dark:hover:bg-accent/60 disabled:cursor-auto ${
-               locale === 'sr' ? `font-logo-sr` : 'font-logo'
+            className={`bg-accent-500/80 dark:bg-accent/60 text-white dark:text-accent-100 text-3xl md:text-4xl rounded-2xl py-2.5 w-full hover:bg-accent-500/65 dark:hover:bg-accent/50 transition cursor-pointer mt-4 mb-2 disabled:opacity-65 disabled:hover:bg-accent-500/80 disabled:dark:hover:bg-accent/60 disabled:cursor-auto ${
+               locale === 'sr' ? 'font-logo-sr' : 'font-logo'
             }`}
          >
             {loading ? (

@@ -10,6 +10,7 @@ function PageAnimation({ children }) {
    const [isFirstLoad, setIsFirstLoad] = useState(true);
 
    const centerLayout = pathname === '/about';
+   console.log('centerLayout: ', centerLayout);
    const isUserRoute = pathname.startsWith('/user');
 
    useThemeColor();
@@ -18,7 +19,9 @@ function PageAnimation({ children }) {
    return (
       <motion.main
          className={`md:pt-5 w-7xl min-h-[91vh] 2xl:w-full mx-auto ${
-            centerLayout ? 'flex items-center sm:items-start' : 'py-[4.7dvh]'
+            centerLayout
+               ? 'flex items-center sm:items-start 2xl:py-[4.7dvh]'
+               : 'py-[4.7dvh]'
          }`}
          key={isUserRoute ? '/user' : pathname}
          initial={isFirstLoad ? false : { opacity: 0 }}

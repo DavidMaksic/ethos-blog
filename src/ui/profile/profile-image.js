@@ -3,6 +3,7 @@
 import { useActionState, useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { updateImage } from '@/src/lib/actions';
+import { authClient } from '@/src/lib/auth-client';
 import { ImSpinner2 } from 'react-icons/im';
 import { LuPencil } from 'react-icons/lu';
 
@@ -12,6 +13,8 @@ import toast from 'react-hot-toast';
 
 function ProfileImage({ user, image }) {
    const t = useTranslations('Profile');
+   const { refetch } = authClient.useSession();
+
    const imageRef = useRef(null);
    const [currentImage, setCurrentImage] = useState();
    const [state, action, isPending] = useActionState(updateImage, {
@@ -43,10 +46,11 @@ function ProfileImage({ user, image }) {
       if (state.success) {
          toast.success(t('pfp-updated'));
          state.success = false;
+         refetch();
       }
-   }, [state, t]);
+   }, [state, t, refetch]);
 
-   const profileImage = image ? image : user?.image ? user.image : defaultPfp;
+   const profileImage = user?.image ?? defaultPfp;
 
    return (
       <form

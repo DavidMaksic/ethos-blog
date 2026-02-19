@@ -12,7 +12,6 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { LanguageProvider } from '@/src/context/language-context';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
-import { AuthProvider } from '@/src/context/auth-context';
 import { WEBSITE_URL } from '@/src/utils/config';
 import { Analytics } from '@vercel/analytics/next';
 import { notFound } from 'next/navigation';
@@ -44,6 +43,7 @@ const cormorantGaramond = Cormorant_Garamond({
    style: ['normal', 'italic'],
    weight: ['300', '400', '500', '600', '700'],
    variable: '--font-cormorantGaramond',
+   adjustFontFallback: true,
 });
 
 /* Secondary font */
@@ -52,6 +52,7 @@ const ebGaramond = EB_Garamond({
    style: ['normal', 'italic'],
    weight: ['400', '500', '600', '700', '800'],
    variable: '--font-ebGaramond',
+   adjustFontFallback: true,
 });
 
 /* Tertiary font */
@@ -59,6 +60,7 @@ const cormorantSC = Cormorant_SC({
    subsets: ['latin'],
    weight: ['400', '500', '600', '700'],
    variable: '--font-cormorantSC',
+   adjustFontFallback: true,
 });
 
 export async function generateMetadata({ params }) {
@@ -173,55 +175,53 @@ export default async function RootLayout({ children, params }) {
          <body
             className={`relative min-h-screen flex flex-col text-xl 2xl:px-60 xl:px-26 inter-padding font-main text-text selection:bg-accent-400/90 dark:selection:bg-accent-200/50 selection:text-white caret-primary-400 antialiased bg-primary transition-200 background-gradient ${cormorantGaramond.variable} ${ebGaramond.variable} ${parisienne.variable} ${greatVibes.variable} ${cormorantSC.variable}`}
          >
-            <AuthProvider>
-               <NextIntlClientProvider locale={locale}>
-                  <LanguageProvider>
-                     <ThemeProvider
-                        attribute="data-theme"
-                        defaultTheme="system"
-                        enableSystem
-                     >
-                        <Header />
+            <NextIntlClientProvider locale={locale}>
+               <LanguageProvider>
+                  <ThemeProvider
+                     attribute="data-theme"
+                     defaultTheme="system"
+                     enableSystem
+                  >
+                     <Header />
 
-                        <PageAnimation>
-                           {children}
-                           <SpeedInsights />
-                           <Analytics />
-                        </PageAnimation>
+                     <PageAnimation>
+                        {children}
+                        <SpeedInsights />
+                        <Analytics />
+                     </PageAnimation>
 
-                        <Footer />
+                     <Footer />
 
-                        <Toaster
-                           position="top-center"
-                           gutter={12}
-                           containerStyle={{ margin: '-4px' }}
-                           toastOptions={{
-                              success: {
-                                 duration: 4000,
-                              },
-                              error: {
-                                 duration: 6000,
-                              },
-                              style: {
-                                 fontSize: '20px',
-                                 maxWidth: '500px',
-                                 color: 'var(--color-primary-500)',
-                                 backgroundColor: 'var(--color-toast)',
-                                 backdropFilter: 'blur(80px)',
-                                 borderRadius: '14px',
-                                 boxShadow: 'var(--shadow-toast-btn)',
-                                 padding: '10px 20px',
-                                 textAlign: 'center',
-                              },
-                              iconTheme: {
-                                 primary: 'var(--color-accent-400)',
-                              },
-                           }}
-                        />
-                     </ThemeProvider>
-                  </LanguageProvider>
-               </NextIntlClientProvider>
-            </AuthProvider>
+                     <Toaster
+                        position="top-center"
+                        gutter={12}
+                        containerStyle={{ margin: '-4px' }}
+                        toastOptions={{
+                           success: {
+                              duration: 4000,
+                           },
+                           error: {
+                              duration: 6000,
+                           },
+                           style: {
+                              fontSize: '20px',
+                              maxWidth: '500px',
+                              color: 'var(--color-primary-500)',
+                              backgroundColor: 'var(--color-toast)',
+                              backdropFilter: 'blur(80px)',
+                              borderRadius: '14px',
+                              boxShadow: 'var(--shadow-toast-btn)',
+                              padding: '10px 20px',
+                              textAlign: 'center',
+                           },
+                           iconTheme: {
+                              primary: 'var(--color-accent-400)',
+                           },
+                        }}
+                     />
+                  </ThemeProvider>
+               </LanguageProvider>
+            </NextIntlClientProvider>
          </body>
       </html>
    );

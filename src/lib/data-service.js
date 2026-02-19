@@ -63,13 +63,6 @@ export async function getAuthors() {
    return data;
 }
 
-export async function createUser(newUser) {
-   const { data, error } = await supabase.from('users').insert([newUser]);
-
-   if (error) throw new Error('User could not be created');
-   return data;
-}
-
 export async function getUser(email) {
    const { data, error } = await supabase
       .from('users')
@@ -83,19 +76,8 @@ export async function getUser(email) {
    return data;
 }
 
-export async function getUserID(email) {
-   const { data, error } = await supabase
-      .from('users')
-      .select('id')
-      .eq('email', email)
-      .maybeSingle();
-
-   if (error) throw new Error('User could not be loaded');
-   return data;
-}
-
 export async function getUsers() {
-   const { data, error } = await supabase.from('users').select();
+   const { data, error } = await supabase.from('users').select('id');
 
    if (error) throw new Error('Users could not be loaded');
    return data;

@@ -23,7 +23,7 @@ async function Page({ searchParams }) {
    });
    if (!session) redirect('/login');
 
-   const usersBookmarks = await getBookmarksByID(session.user.userID);
+   const usersBookmarks = await getBookmarksByID(session.user.id);
 
    return (
       <div className="grid grid-rows-[0.1fr_2fr_0.1fr] sm:flex sm:flex-col gap-8 lg:gap-6 h-full">

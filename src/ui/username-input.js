@@ -63,7 +63,7 @@ function UsernameInput() {
                      transition={{ duration: 0.075 }}
                      className="absolute top-11 xs:top-12.5 left-0 text-red-600/50 dark:text-red-300/80 text-md md:text-lg xs:text-xl font-medium select-none pointer-events-none font-secondary leading-5"
                   >
-                     *{error}
+                     {error}
                   </motion.p>
                )}
             </AnimatePresence>

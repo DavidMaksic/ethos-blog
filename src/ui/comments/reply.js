@@ -5,7 +5,7 @@ import { BiLike, BiSolidLike } from 'react-icons/bi';
 import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { CommentDate } from '@/src/utils/helpers';
-import { useAuth } from '@/src/context/auth-context';
+import { authClient } from '@/src/lib/auth-client';
 import { LuReply } from 'react-icons/lu';
 
 import CommentOptions from '@/src/ui/comments/comment-options';
@@ -18,7 +18,6 @@ import Modal from '@/src/ui/modal/modal';
 function Reply({
    reply,
    showReplies,
-   users,
    article,
    commentID,
    commentLength,
@@ -27,15 +26,16 @@ function Reply({
    openReplyID,
    setOpenReplyID,
 }) {
+   const t = useTranslations('Comment');
    const [isOpen, setIsOpen] = useState(false);
    const { id: articleID, slug } = article;
-   const { session, user } = useAuth();
+
+   const { data } = authClient.useSession();
+   const session = data?.session;
+   const user = data?.user;
 
    const replyID = reply.id;
-   const t = useTranslations('Comment');
-
-   const currentUser = users.find((item) => item.id === reply.user_id);
-   const isAuthor = currentUser.email === author.email;
+   const isAuthor = user.email === author.email;
 
    const isMobile = useMediaQuery({ maxWidth: 768 });
    const locale = useLocale();
@@ -59,10 +59,10 @@ function Reply({
 
       if (isLiked) {
          setLikesCount((i) => i - 1);
-         removeLiked(user.userID, articleID, 'reply', slug);
+         removeLiked(articleID, 'reply', slug);
       } else {
          setLikesCount((i) => i + 1);
-         addLiked(user.userID, articleID, 'reply', slug, replyID);
+         addLiked(articleID, 'reply', slug, replyID);
       }
 
       setIsLiked(!isLiked);
@@ -101,14 +101,14 @@ function Reply({
                <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
                      <div className="relative size-10 md:size-11 sm:size-9">
-                        <UserImage url={currentUser.image} />
+                        <UserImage url={user.image} />
                      </div>
 
                      <div className="flex xs:flex-wrap items-center gap-x-2 md:text-2xl sm:text-[1.4rem]">
                         <span className="font-semibold">
                            {!isMobile
-                              ? currentUser.name
-                              : currentUser.name.split(' ')[0].slice(0, 10)}
+                              ? user.name
+                              : user.name.split(' ')[0].slice(0, 10)}
                         </span>
                         {isAuthor && (
                            <span className="px-2.5 pt-px pb-0.5 bg-accent-400/20 dark:bg-accent-300/40 text-accent-600 dark:text-accent-50/70 rounded-xl font-semibold dark:font-medium">

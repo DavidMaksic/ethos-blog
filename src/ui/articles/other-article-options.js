@@ -15,7 +15,7 @@ import {
 import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
-import { useAuth } from '@/src/context/auth-context';
+import { authClient } from '@/src/lib/auth-client';
 import { FiLink } from 'react-icons/fi';
 
 import ArticleOptionItem from '@/src/ui/articles/article-option-item';
@@ -28,39 +28,37 @@ function OtherArticleOptions({ article, comments, bookmarks, commentsNum }) {
    const t = useTranslations();
    const [isOpen, setIsOpen] = useState();
    const { slug, id: articleID, likes } = article;
-   const { session, extendedUser } = useAuth();
+
+   const { data } = authClient.useSession();
+   const session = data?.session;
+   const user = data?.user;
 
    // - Like logic
-   let hasLiked;
    const articleLikeIDs = likes
       .filter((item) => item.type === 'article')
       .map((item) => item.user_id);
-   hasLiked = !!articleLikeIDs.find((item) => item === extendedUser?.id);
+   const hasLiked = !!articleLikeIDs.find((item) => item === user?.id);
 
    // - Comment logic
-   let hasCommented;
-   hasCommented = !!comments.find((item) => item.user_id === extendedUser?.id);
+   const hasCommented = !!comments.find((item) => item.user_id === user?.id);
 
    // - Reply logic
-   let hasReplied;
    const replies = comments.map((item) => item.replies).flat();
-   hasReplied = !!replies.find((item) => item.user_id === extendedUser?.id);
+   const hasReplied = !!replies.find((item) => item.user_id === user?.id);
 
    // - Bookmark logic
    const hasBookmarked = !!bookmarks.find(
-      (item) =>
-         item.user_id === extendedUser?.id && item.article_id === articleID,
+      (item) => item.user_id === user?.id && item.article_id === articleID,
    );
-   const [isBookmarked, setIsBookmarked] = useState(hasBookmarked);
 
    const bookmarkLength = bookmarks.filter(
       (item) => item.article_id === articleID,
    ).length;
    const [bookmarksCount, setBookmarksCount] = useState(bookmarkLength);
+   const [isBookmarked, setIsBookmarked] = useState(false);
 
    const handleBookmark = () => {
       if (!session) return setIsOpen(true);
-
       if (isBookmarked) {
          setBookmarksCount((i) => i - 1);
          removeBookmark(articleID, slug);
@@ -70,26 +68,19 @@ function OtherArticleOptions({ article, comments, bookmarks, commentsNum }) {
          addBookmark(articleID, slug);
          toast.success(t('Article.bookmark-added'));
       }
-
       setIsBookmarked(!isBookmarked);
    };
 
-   useEffect(() => {
-      setIsBookmarked(hasBookmarked);
-   }, [hasBookmarked]);
-
-   useEffect(() => {
-      setBookmarksCount(bookmarkLength);
-   }, [bookmarkLength]);
+   useEffect(() => setIsBookmarked(hasBookmarked), [hasBookmarked]);
+   useEffect(() => setBookmarksCount(bookmarkLength), [bookmarkLength]);
 
    // - Like logic
    const likeCount = articleLikeIDs.length;
    const [likesCount, setLikesCount] = useState(likeCount);
-   const [isLiked, setIsLiked] = useState(hasLiked);
+   const [isLiked, setIsLiked] = useState(false);
 
    function handleLike() {
       if (!session) return setIsOpen(true);
-
       if (isLiked) {
          setLikesCount((i) => i - 1);
          removeLiked(articleID, 'article', slug);
@@ -97,17 +88,11 @@ function OtherArticleOptions({ article, comments, bookmarks, commentsNum }) {
          setLikesCount((i) => i + 1);
          addLiked(articleID, 'article', slug);
       }
-
       setIsLiked(!isLiked);
    }
 
-   useEffect(() => {
-      setIsLiked(hasLiked);
-   }, [hasLiked]);
-
-   useEffect(() => {
-      setLikesCount(likeCount);
-   }, [likeCount]);
+   useEffect(() => setIsLiked(hasLiked), [hasLiked]);
+   useEffect(() => setLikesCount(likeCount), [likeCount]);
 
    return (
       <div className="grid grid-rows-4 md:grid-rows-1 md:grid-cols-4 gap-3">

@@ -37,7 +37,7 @@ async function Page() {
          <h1 className="sr-only">{t('H1.profile-page-overview')}</h1>
 
          <div className="space-y-4">
-            <ProfileInfo oldUser={user} newUser={extendedUser} />
+            <ProfileInfo user={user} />
             <JoinedDate user={user} />
          </div>
 

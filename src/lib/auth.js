@@ -1,5 +1,3 @@
-import { createAuthMiddleware, customSession } from 'better-auth/plugins';
-import { createUser, getUser, getUserID } from '@/src/lib/data-service';
 import { nextCookies } from 'better-auth/next-js';
 import { betterAuth } from 'better-auth';
 import { Pool } from 'pg';
@@ -50,10 +48,11 @@ export const auth = betterAuth({
          ipAddress: 'ip_address',
          userAgent: 'user_agent',
       },
-      expiresIn: 60 * 60 * 24 * 180, // 6-months-long session
+      expiresIn: 60 * 60 * 24 * 365, // 1-year session lifetime
+      updateAge: 60 * 60 * 24,
       cookieCache: {
          enabled: true,
-         maxAge: 60 * 60 * 24 * 180, // 6-months-long cookie
+         maxAge: 60 * 15,
          strategy: 'jwe',
       },
    },
@@ -77,47 +76,5 @@ export const auth = betterAuth({
          enabled: true,
       },
    },
-   hooks: {
-      after: createAuthMiddleware(async (ctx) => {
-         const newSession = ctx.context.newSession;
-
-         if (newSession) {
-            try {
-               const existingUser = await getUser(newSession.user.email);
-
-               if (!existingUser) {
-                  // Create new user in DB
-                  await createUser({
-                     email: newSession.user.email,
-                     name: newSession.user.name,
-                     image: newSession.user.image,
-                  });
-               }
-            } catch (err) {
-               console.error('Better Auth after sign-in error', err);
-            }
-         }
-      }),
-   },
-   plugins: [
-      customSession(async ({ user, session }) => {
-         if (user.userID) {
-            return { user, session };
-         }
-
-         try {
-            const dbUser = await getUserID(user.email);
-            return {
-               user: {
-                  ...user,
-                  userID: dbUser?.id ?? null,
-               },
-               session,
-            };
-         } catch {
-            return { user, session };
-         }
-      }),
-      nextCookies(),
-   ],
+   plugins: [nextCookies()],
 });

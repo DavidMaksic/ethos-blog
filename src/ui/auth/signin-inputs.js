@@ -1,20 +1,25 @@
 'use client';
 
 import { useLocale, useTranslations } from 'next-intl';
+import { signInSchema } from '@/src/lib/schemas';
 import { authClient } from '@/src/lib/auth-client';
 import { ImSpinner2 } from 'react-icons/im';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import toast from 'react-hot-toast';
 
-// TODO: Update validation
-// TODO: Add password reset
+import FormField from '@/src/ui/form-field';
+import toast from 'react-hot-toast';
 
 function SignInInputs() {
    const t = useTranslations('Auth');
    const router = useRouter();
    const locale = useLocale();
+
    const [loading, setLoading] = useState(false);
+   const [errors, setErrors] = useState({});
+
+   const clearError = (field) =>
+      setErrors((prev) => ({ ...prev, [field]: undefined }));
 
    const handleSubmit = async (e) => {
       e.preventDefault();
@@ -23,12 +28,27 @@ function SignInInputs() {
       const email = formData.get('email');
       const password = formData.get('password');
 
+      // Zod validation
+      const schema = signInSchema(t);
+      const parsed = schema.safeParse({ email, password });
+
+      if (!parsed.success) {
+         const fieldErrors = {};
+         for (const issue of parsed.error.issues) {
+            const field = issue.path[0];
+            if (!fieldErrors[field]) fieldErrors[field] = issue.message;
+         }
+         setErrors(fieldErrors);
+         return;
+      }
+
+      setErrors({});
       setLoading(true);
 
       await authClient.signIn.email(
          {
-            email,
-            password,
+            email: parsed.data.email,
+            password: parsed.data.password,
             callbackURL: '/user/home',
          },
          {
@@ -47,40 +67,30 @@ function SignInInputs() {
       <form
          className="w-full space-y-5 lg:space-y-3 md:space-y-5"
          onSubmit={handleSubmit}
+         noValidate
       >
          <div className="flex flex-col gap-3">
-            <div className="flex flex-col gap-0.5">
-               <label htmlFor="email" className="text-lg md:text-xl">
-                  {t('email')}
-               </label>
-               <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  className="py-1 bg-transparent border-b border-primary-600/25 text-primary-700/90 dark:text-primary-600/80 focus:outline-none w-full text-[1.75rem]"
-               />
-            </div>
-
-            <div className="flex flex-col gap-0.5">
-               <label htmlFor="password" className="text-lg md:text-xl">
-                  {t('password')}
-               </label>
-               <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  required
-                  className="py-1 bg-transparent border-b border-primary-600/25 text-primary-700/90 dark:text-primary-600/80 focus:outline-none w-full text-[1.75rem]"
-               />
-            </div>
+            <FormField
+               id="email"
+               label={t('email')}
+               type="email"
+               error={errors.email}
+               onChange={() => clearError('email')}
+            />
+            <FormField
+               id="password"
+               label={t('password')}
+               type="password"
+               error={errors.password}
+               onChange={() => clearError('password')}
+            />
          </div>
 
          <button
             type="submit"
             disabled={loading}
             className={`bg-accent-500/80 dark:bg-accent/60 text-white dark:text-accent-100 text-3xl md:text-4xl rounded-2xl py-2.5 w-full hover:bg-accent-500/65 dark:hover:bg-accent/50 transition cursor-pointer mt-4 mb-2 disabled:opacity-65 disabled:hover:bg-accent-500/80 disabled:dark:hover:bg-accent/60 disabled:cursor-auto ${
-               locale === 'sr' ? `font-logo-sr` : 'font-logo'
+               locale === 'sr' ? 'font-logo-sr' : 'font-logo'
             }`}
          >
             {loading ? (

@@ -97,6 +97,7 @@
    --color-table: #f3f4f6;
    --color-text: #5d6673;
    --color-toast: #fff;
+   --color-toast-login: #fff;
    --color-skeleton: #e5e7eb;
    --color-scrollbar: var(--color-primary-300);
 
@@ -177,6 +178,7 @@
       --color-text: #99a2ad;
       --color-skeleton: #222a33e5;
       --color-toast: rgba(70, 83, 94, 0.25);
+      --color-toast-login: rgba(19, 28, 36, 0.6);
       --color-scrollbar: #313a42;
       --shadow-toast-btn: none;
 

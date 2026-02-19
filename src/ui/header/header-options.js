@@ -4,32 +4,22 @@ import { useEffect, useState } from 'react';
 import { IoMoonOutline } from 'react-icons/io5';
 import { HiOutlineUser } from 'react-icons/hi2';
 import { LuSunMedium } from 'react-icons/lu';
-import { ImSpinner2 } from 'react-icons/im';
+import { authClient } from '@/src/lib/auth-client';
 import { useTheme } from 'next-themes';
-import { useAuth } from '@/src/context/auth-context';
-import { motion } from 'motion/react';
 import { Link } from '@/src/i18n/navigation';
 
 import LanguageButton from '@/src/ui/buttons/language-button';
+import ProfileButton from '@/src/ui/image/profile-button';
 import HeaderButton from '@/src/ui/buttons/header-button';
-import defaultPfp from '@/public/default-pfp.png';
 import MobileMenu from '@/src/ui/mobile-menu';
-import Image from 'next/image';
 
 function HeaderOptions() {
-   const [mounted, setMounted] = useState(false);
-   const [loaded, setLoaded] = useState(false);
-
    const { resolvedTheme, setTheme } = useTheme();
-   const { session, user, extendedUser, loading } = useAuth();
+   const { data } = authClient.useSession();
+   const session = data?.session;
 
+   const [mounted, setMounted] = useState(false);
    useEffect(() => setMounted(true), []);
-
-   const profileImage = extendedUser?.image
-      ? extendedUser.image
-      : user?.image
-        ? user.image
-        : defaultPfp;
 
    return (
       <div className="flex items-center gap-2 md:gap-1 sm:gap-1.5">
@@ -55,44 +45,14 @@ function HeaderOptions() {
             </HeaderButton>
          )}
 
-         {loading ? (
-            <motion.span
-               className="md:hidden"
-               initial={{ opacity: 0 }}
-               animate={{ opacity: 1 }}
-               exit={{ opacity: 0 }}
-               transition={{ duration: 0.2 }}
-            >
-               <ImSpinner2 className="size-7! mx-[0.43rem] p-0.5 text-accent animate-spin" />
-            </motion.span>
-         ) : extendedUser ? (
-            <Link
-               href={session ? '/user/home' : '/login'}
-               className="mx-[-2px] block hover:text-accent bg-none border-none p-2 rounded-xl transition-200 hover:bg-primary-200/40 dark:hover:bg-primary-300/30 [&_svg]:size-6 [&_svg]:text-accent cursor-pointer select-none md:hidden"
-            >
-               <div className="relative size-7.5!">
-                  <Image
-                     className={`rounded-full block aspect-square object-cover object-center border border-primary-300 transition-200 ${
-                        loaded ? 'opacity-90' : 'opacity-0'
-                     } ${profileImage === defaultPfp ? 'dark:opacity-55!' : ''}`}
-                     src={profileImage}
-                     alt="Profile image"
-                     onLoad={() => setLoaded(true)}
-                     unoptimized
-                     priority
-                     fill
-                  />
-               </div>
-            </Link>
-         ) : (
+         {!mounted || !session ? (
             <HeaderButton styles="md:hidden">
-               <Link
-                  href={session ? '/user/home' : '/login'}
-                  className="hover:text-accent"
-               >
+               <Link href="/login" className="hover:text-accent">
                   <HiOutlineUser className="size-6.5! stroke-[1.7px]" />
                </Link>
             </HeaderButton>
+         ) : (
+            <ProfileButton />
          )}
 
          <LanguageButton />
