@@ -1,4 +1,5 @@
 import { authClient } from '@/src/lib/auth-client';
+import { useRef } from 'react';
 import { Link } from '@/src/i18n/navigation';
 
 import defaultPfp from '@/public/default-pfp.png';
@@ -7,7 +8,10 @@ import Image from 'next/image';
 function ProfileButton() {
    const { data } = authClient.useSession();
    const user = data?.user;
-   const profileImage = user?.image ?? defaultPfp;
+
+   const lastImage = useRef(defaultPfp);
+   if (user?.image) lastImage.current = user.image;
+   const profileImage = lastImage.current;
 
    return (
       <Link
@@ -16,7 +20,7 @@ function ProfileButton() {
       >
          <div className="relative size-7.5!">
             <Image
-               className={`rounded-full block aspect-square object-cover object-center border border-primary-300 opacity-90' ${profileImage === defaultPfp ? 'dark:opacity-55!' : ''}`}
+               className={`rounded-full block aspect-square object-cover object-center border border-primary-300 transition-200 opacity-90 ${profileImage === defaultPfp ? 'dark:opacity-55!' : ''}`}
                src={profileImage}
                alt="Profile image"
                unoptimized

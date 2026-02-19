@@ -58,19 +58,11 @@ function HeaderOptions() {
 
          <AnimatePresence mode="wait" initial={false}>
             {!mounted || !session ? (
-               <motion.div
-                  key="login"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.1 }}
-               >
-                  <HeaderButton styles="md:hidden">
-                     <Link href="/login" className="hover:text-accent">
-                        <HiOutlineUser className="size-6.5! stroke-[1.7px]" />
-                     </Link>
-                  </HeaderButton>
-               </motion.div>
+               <HeaderButton styles="md:hidden">
+                  <Link href="/login" className="hover:text-accent">
+                     <HiOutlineUser className="size-6.5! stroke-[1.7px]" />
+                  </Link>
+               </HeaderButton>
             ) : (
                <motion.div
                   key="profile"
@@ -79,7 +71,7 @@ function HeaderOptions() {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.1 }}
                >
-                  <ProfileButton key="profile" />
+                  <ProfileButton />
                </motion.div>
             )}
          </AnimatePresence>
