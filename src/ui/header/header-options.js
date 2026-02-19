@@ -63,7 +63,7 @@ function HeaderOptions() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.1 }}
                >
                   <HeaderButton styles="md:hidden">
                      <Link href="/login" className="hover:text-accent">
@@ -72,7 +72,15 @@ function HeaderOptions() {
                   </HeaderButton>
                </motion.div>
             ) : (
-               <ProfileButton key="profile" />
+               <motion.div
+                  key="profile"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.1 }}
+               >
+                  <ProfileButton key="profile" />
+               </motion.div>
             )}
          </AnimatePresence>
 

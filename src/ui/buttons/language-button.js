@@ -37,7 +37,7 @@ function LanguageButton() {
             <RemoteImage
                imageUrl={language.flag}
                alt="Language flag"
-               styles="rounded-full transition-[opacity]! duration-200!"
+               styles="rounded-full transition-[opacity]! duration-300!"
                opacity="opacity-80 dark:opacity-70"
                unoptimized
                priority
