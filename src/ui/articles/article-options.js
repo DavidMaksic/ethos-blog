@@ -33,6 +33,9 @@ function ArticleOptions({ article, bookmarks, comments }) {
    const session = data?.session;
    const user = data?.user;
 
+   const [mounted, setMounted] = useState(false);
+   useEffect(() => setMounted(true), []);
+
    // - Like logic
    let hasLiked;
    const articleLikeIDs = likes
@@ -106,7 +109,7 @@ function ArticleOptions({ article, bookmarks, comments }) {
 
          <div
             className={`flex items-center gap-1.5 md:gap-3 sm:gap-1.5 ${
-               isPending && 'pointer-events-none'
+               mounted && isPending ? 'pointer-events-none' : ''
             }`}
          >
             <Button handler={handleLike} styles="md:hidden">

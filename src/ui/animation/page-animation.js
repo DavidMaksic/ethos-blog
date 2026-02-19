@@ -10,7 +10,6 @@ function PageAnimation({ children }) {
    const [isFirstLoad, setIsFirstLoad] = useState(true);
 
    const centerLayout = pathname === '/about';
-   console.log('centerLayout: ', centerLayout);
    const isUserRoute = pathname.startsWith('/user');
 
    useThemeColor();

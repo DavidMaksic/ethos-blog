@@ -5,7 +5,6 @@ import {
    getAuthors,
 } from '@/src/lib/data-service';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { filterCategories } from '@/src/utils/helpers';
 
 import FeaturedArticles from '@/src/ui/articles/featured-articles';
 import LatestArticles from '@/src/ui/articles/latest-articles';

@@ -1,6 +1,5 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { getArticles, getCategories } from '@/src/lib/data-service';
-import { filterCategories } from '@/src/utils/helpers';
 import { WEBSITE_URL } from '@/src/utils/config';
 
 import ArchiveHeading from '@/src/ui/header/archive-heading';

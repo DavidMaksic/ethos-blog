@@ -22,6 +22,9 @@ function CommentInput({ article, commentLength }) {
    const [isOpen, setIsOpen] = useState(false);
    const [text, setText] = useState('');
 
+   const [mounted, setMounted] = useState(false);
+   useEffect(() => setMounted(true), []);
+
    const { data, isPending: loading } = authClient.useSession();
    const session = data?.session;
    const user = data?.user;
@@ -115,7 +118,9 @@ function CommentInput({ article, commentLength }) {
             <form
                action={handleAction}
                className={`w-full transition duration-75 ${
-                  loading || isPending ? 'pointer-events-none opacity-60' : ''
+                  mounted && (loading || isPending)
+                     ? 'pointer-events-none opacity-60'
+                     : ''
                }`}
                onClick={() => {
                   if (!session) setIsOpen(true);

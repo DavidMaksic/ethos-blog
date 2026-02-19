@@ -1,4 +1,5 @@
 import { useLocale, useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react';
 import { TYPE_STYLES } from '@/src/utils/config';
 import { authClient } from '@/src/lib/auth-client';
 import { motion } from 'motion/react';
@@ -24,8 +25,11 @@ function ArticleOptionItem({
 
    const styles = TYPE_STYLES[type] ?? {};
 
+   const [mounted, setMounted] = useState(false);
+   useEffect(() => setMounted(true), []);
+
    const { isPending } = authClient.useSession();
-   const isDisabled = type !== 'link' && isPending;
+   const isDisabled = type !== 'link' && isPending && mounted;
 
    return (
       <motion.div

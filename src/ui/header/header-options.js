@@ -1,5 +1,6 @@
 'use client';
 
+import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { IoMoonOutline } from 'react-icons/io5';
 import { HiOutlineUser } from 'react-icons/hi2';
@@ -27,33 +28,53 @@ function HeaderOptions() {
             |
          </span>
 
-         {!mounted ? (
-            <HeaderButton>
-               <LuSunMedium className="size-7! sm:size-8.5! stroke-[1.5px]" />
-            </HeaderButton>
-         ) : (
-            <HeaderButton
-               handler={() =>
-                  setTheme(resolvedTheme === 'light' ? 'dark' : 'light')
-               }
-            >
-               {resolvedTheme === 'dark' ? (
-                  <IoMoonOutline className="size-7! md:size-8.5! p-0.5" />
-               ) : (
-                  <LuSunMedium className="size-7! md:size-8.5! stroke-[1.7px]" />
-               )}
-            </HeaderButton>
-         )}
+         <AnimatePresence mode="wait" initial={false}>
+            {!mounted ? (
+               <HeaderButton>
+                  <LuSunMedium className="size-7! sm:size-8.5! stroke-[1.5px]" />
+               </HeaderButton>
+            ) : (
+               <motion.div
+                  key="theme"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+               >
+                  <HeaderButton
+                     handler={() =>
+                        setTheme(resolvedTheme === 'light' ? 'dark' : 'light')
+                     }
+                  >
+                     {resolvedTheme === 'dark' ? (
+                        <IoMoonOutline className="size-7! md:size-8.5! p-0.5" />
+                     ) : (
+                        <LuSunMedium className="size-7! md:size-8.5! stroke-[1.7px]" />
+                     )}
+                  </HeaderButton>
+               </motion.div>
+            )}
+         </AnimatePresence>
 
-         {!mounted || !session ? (
-            <HeaderButton styles="md:hidden">
-               <Link href="/login" className="hover:text-accent">
-                  <HiOutlineUser className="size-6.5! stroke-[1.7px]" />
-               </Link>
-            </HeaderButton>
-         ) : (
-            <ProfileButton />
-         )}
+         <AnimatePresence mode="wait" initial={false}>
+            {!mounted || !session ? (
+               <motion.div
+                  key="login"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+               >
+                  <HeaderButton styles="md:hidden">
+                     <Link href="/login" className="hover:text-accent">
+                        <HiOutlineUser className="size-6.5! stroke-[1.7px]" />
+                     </Link>
+                  </HeaderButton>
+               </motion.div>
+            ) : (
+               <ProfileButton key="profile" />
+            )}
+         </AnimatePresence>
 
          <LanguageButton />
 
