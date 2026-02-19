@@ -1,8 +1,8 @@
+import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { LuPencilLine } from 'react-icons/lu';
 import { authClient } from '@/src/lib/auth-client';
-import { useState } from 'react';
 import { CgClose } from 'react-icons/cg';
 import { FiLink } from 'react-icons/fi';
 
@@ -15,8 +15,12 @@ import toast from 'react-hot-toast';
 function CommentOptions({ comment, commentLength, userID, replyID, slug }) {
    const [openDelete, setOpenDelete] = useState();
    const [openEdit, setOpenEdit] = useState();
+
    const { data } = authClient.useSession();
    const session = data?.session;
+
+   const [mounted, setMounted] = useState(false);
+   useEffect(() => setMounted(true), []);
 
    const t = useTranslations('Comment');
    const commentID = comment.id;
@@ -41,7 +45,7 @@ function CommentOptions({ comment, commentLength, userID, replyID, slug }) {
                   {t('copy-link-btn')}
                </Menus.Button>
 
-               {session?.userId === userID && (
+               {mounted && session?.userId === userID && (
                   <>
                      <Menus.Button
                         icon={<LuPencilLine className="stroke-[1.7px]" />}

@@ -18,7 +18,7 @@ async function ArticleImage({ article, author, date, children }) {
                <div className="relative size-12 2xl:size-10 md:size-12 sm:size-11">
                   {author?.profile_image ? (
                      <Image
-                        className="block aspect-square object-cover object-center rounded-full duration-200"
+                        className="block aspect-square object-cover object-center rounded-full duration-200 opacity-90 dark:opacity-80"
                         src={author.profile_image}
                         alt="Author image"
                         unoptimized

@@ -17,6 +17,9 @@ function Options() {
    const t = useTranslations('Article');
    const { theme, setTheme } = useTheme();
 
+   const [mounted, setMounted] = useState(false);
+   useEffect(() => setMounted(true), []);
+
    // - Scroll
    const { setScroll: setTopScroll, ref: topRef } = useScroll();
    const { setScroll: setBottomScroll, ref: bottomRef } = useScroll();
@@ -141,7 +144,7 @@ function Options() {
                         setTheme(theme === 'light' ? 'dark' : 'light');
                      }}
                   >
-                     {theme === 'dark' ? (
+                     {mounted && theme === 'dark' ? (
                         <IoMoonOutline className="py-1 px-3.5 size-13.5 md:size-15" />
                      ) : (
                         <LuSunMedium className="py-1 px-3.5 size-13.5 md:size-15" />

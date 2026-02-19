@@ -100,10 +100,10 @@ function CommentInput({ article, commentLength }) {
       <div className="comment-section scroll-mt-20! flex flex-col gap-1.5 mt-20 font-secondary">
          <div className="flex gap-4">
             <div className="py-3 px-2 sm:hidden">
-               {user ? (
+               {mounted && user ? (
                   <div className="relative block size-16">
                      <Image
-                        className={`rounded-full block aspect-square object-cover object-center dark:opacity-90 border border-primary-300 transition-200 ${profileImage === defaultPfp ? 'dark:opacity-40!' : ''}`}
+                        className={`rounded-full block aspect-square object-cover object-center opacity-90 border border-primary-300 transition-200 ${profileImage === defaultPfp ? 'dark:opacity-40!' : ''}`}
                         src={profileImage}
                         alt="Profile image"
                         unoptimized
@@ -132,9 +132,7 @@ function CommentInput({ article, commentLength }) {
                   maxLength={commentLength}
                   value={text}
                   name="content"
-                  className={`w-full h-auto min-h-fit border text-primary-600 dark:text-text rounded-3xl px-10 pb-18 py-7 pr-11 text-[1.4rem] 2xl:text-[1.3rem] md:text-[1.6rem] xs:text-[1.5rem] md:leading-9 xs:leading-[1.4]  transition-bg_border flex-grow outline-none scrollbar transition-200 md:placeholder:text-[1.6rem] ${
-                     !session && 'pointer-events-none'
-                  } ${
+                  className={`w-full h-auto min-h-fit border text-primary-600 dark:text-text rounded-3xl px-10 pb-18 py-7 pr-11 text-[1.4rem] 2xl:text-[1.3rem] md:text-[1.6rem] xs:text-[1.5rem] md:leading-9 xs:leading-[1.4]  transition-bg_border flex-grow outline-none scrollbar transition-200 md:placeholder:text-[1.6rem] ${!mounted || !session ? 'pointer-events-none' : ''} ${
                      text.length > commentLength || error
                         ? 'border-red-400 dark:border-red-400/60'
                         : ' border-primary-300 dark:border-primary-300/50'
@@ -149,9 +147,10 @@ function CommentInput({ article, commentLength }) {
                <div className="relative">
                   <button
                      className={`absolute right-6 bottom-6 rounded-full bg-gradient-to-r from-accent-300/90 dark:from-accent-300/80 to-accent-600/70 dark:to-accent-600/80 hover:from-primary hover:to-primary border-2 border-transparent hover:border-accent/80 shadow-md hover:shadow-none dark:shadow-none transition-[box-shadow,opacity,border,--tw-gradient-from,--tw-gradient-to] duration-300 bg-origin-border group cursor-pointer ${
-                        isPending &&
-                        'from-primary to-primary border-accent/80! shadow-none bg-none!'
-                     } ${!session && 'pointer-events-none'}`}
+                        mounted && isPending
+                           ? 'from-primary to-primary border-accent/80! shadow-none bg-none!'
+                           : ''
+                     } ${!mounted || !session ? 'pointer-events-none' : ''}`}
                   >
                      <div
                         className={`flex articles-center gap-5 text-3xl md:text-4xl px-3.5 pr-4.5 py-0.5 pt-1 text-white group-hover:text-accent group-hover:drop-shadow-xs dark:group-hover:text-accent/90 transition-[color] duration-300 cursor-pointer ${

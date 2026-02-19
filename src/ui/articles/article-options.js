@@ -36,27 +36,25 @@ function ArticleOptions({ article, bookmarks, comments }) {
    const [mounted, setMounted] = useState(false);
    useEffect(() => setMounted(true), []);
 
-   // - Like logic
-   let hasLiked;
    const articleLikeIDs = likes
       .filter((item) => item.type === 'article')
       .map((item) => item.user_id);
-   hasLiked = !!articleLikeIDs.find((item) => item === user?.id);
 
-   // - Comment logic
-   let hasCommented;
-   hasCommented = !!comments.find((item) => item.user_id === user?.id);
-
-   // - Reply logic
-   let hasReplied;
    const replies = comments.map((item) => item.replies).flat();
-   hasReplied = !!replies.find((item) => item.user_id === user?.id);
 
-   // - Bookmark logic
-   const hasBookmarked = !!bookmarks.find(
-      (item) => item.user_id === user?.id && item.article_id === articleID,
-   );
-   const [isBookmarked, setIsBookmarked] = useState(hasBookmarked);
+   const hasLiked = mounted && articleLikeIDs.includes(user?.id);
+   const hasCommented =
+      mounted && !!comments.find((item) => item.user_id === user?.id);
+   const hasReplied =
+      mounted && !!replies.find((item) => item.user_id === user?.id);
+   const hasBookmarked =
+      mounted &&
+      !!bookmarks.find(
+         (item) => item.user_id === user?.id && item.article_id === articleID,
+      );
+
+   const [isBookmarked, setIsBookmarked] = useState(false);
+   useEffect(() => setIsBookmarked(hasBookmarked), [hasBookmarked]);
 
    function handleBookmarkClick() {
       if (!session) return setIsOpen(true);
@@ -72,12 +70,9 @@ function ArticleOptions({ article, bookmarks, comments }) {
       setIsBookmarked(!isBookmarked);
    }
 
-   useEffect(() => {
-      setIsBookmarked(hasBookmarked);
-   }, [hasBookmarked]);
-
    // - Like logic
-   const [isLiked, setIsLiked] = useState(hasLiked);
+   const [isLiked, setIsLiked] = useState(false);
+   useEffect(() => setIsLiked(hasLiked), [hasLiked]);
 
    function handleLike() {
       if (!session) return setIsOpen(true);
@@ -90,10 +85,6 @@ function ArticleOptions({ article, bookmarks, comments }) {
 
       setIsLiked(!isLiked);
    }
-
-   useEffect(() => {
-      setIsLiked(hasLiked);
-   }, [hasLiked]);
 
    return (
       <>

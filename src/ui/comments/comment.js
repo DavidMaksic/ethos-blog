@@ -34,6 +34,9 @@ const Comment = forwardRef(
       const [isOpen, setIsOpen] = useState(false);
       const [showReplies, setShowReplies] = useState(true);
 
+      const [mounted, setMounted] = useState(false);
+      useEffect(() => setMounted(true), []);
+
       const { data, isPending } = authClient.useSession();
       const session = data?.session;
       const user = data?.user;
@@ -46,7 +49,7 @@ const Comment = forwardRef(
       const date = CommentDate(comment.created_at, locale);
       const isMobile = useMediaQuery({ maxWidth: 768 });
 
-      const isAuthor = user.email === author.email;
+      const isAuthor = mounted && user?.email === author.email;
       const articleID = article.id;
 
       // - Copy link logic
@@ -72,15 +75,16 @@ const Comment = forwardRef(
       const slug = article.slug;
 
       // - Like logic
-      let hasLiked;
+
       const commentLikeIDs = article.likes.filter(
          (item) => item.type === 'comment' && item.target_id === commentID,
       );
-      hasLiked = commentLikeIDs.length;
+      const hasLiked =
+         mounted && commentLikeIDs.some((item) => item.user_id === user?.id);
 
-      const commentCount = commentLikeIDs.length;
-      const [likesCount, setLikesCount] = useState(commentCount);
-      const [isLiked, setIsLiked] = useState(hasLiked);
+      const commentLikeCount = commentLikeIDs.length;
+      const [likesCount, setLikesCount] = useState(commentLikeCount);
+      const [isLiked, setIsLiked] = useState(false);
 
       function handleLike() {
          if (!session) {
@@ -127,22 +131,22 @@ const Comment = forwardRef(
             >
                <div
                   id={`comment-${commentID}`}
-                  className={`flex flex-col gap-5 xs:gap-4 bg-secondary dark:bg-primary-200 md:dark:bg-primary-300/15 box-shadow rounded-3xl px-14 sm:px-12 xs:px-10 py-10 sm:py-8 xs:py-5.5 scroll-mt-28! transition duration-300 ${
-                     isPending && 'pointer-events-none'
-                  }`}
+                  className={`flex flex-col gap-5 xs:gap-4 bg-secondary dark:bg-primary-200 md:dark:bg-primary-300/15 box-shadow rounded-3xl px-14 sm:px-12 xs:px-10 py-10 sm:py-8 xs:py-5.5 scroll-mt-28! transition duration-300 ${mounted && isPending ? 'pointer-events-none' : ''}`}
                >
                   <div className="flex items-center justify-between">
                      <div className="flex items-center gap-4">
                         <div className="relative size-10 md:size-11 sm:size-9 select-none">
-                           <UserImage url={user.image} />
+                           <UserImage url={mounted ? user?.image : undefined} />
                         </div>
 
                         <div className="flex xs:flex-wrap items-center gap-2 3xs:gap-y-0.5! md:text-2xl sm:text-[1.4rem]">
-                           <span className="font-semibold">
-                              {!isMobile
-                                 ? user.name
-                                 : user.name.split(' ')[0].slice(0, 10)}
-                           </span>
+                           {mounted && (
+                              <span className="font-semibold">
+                                 {!isMobile
+                                    ? user?.name
+                                    : user?.name?.split(' ')[0].slice(0, 10)}
+                              </span>
+                           )}
                            {isAuthor && (
                               <span className="px-2.5 py-0.5 bg-accent-400/20 dark:bg-accent-300/40 text-accent-600 dark:text-accent-50/70 rounded-xl font-semibold dark:font-medium">
                                  {t('author')}

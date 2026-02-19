@@ -6,7 +6,7 @@ function UserImage({ url }) {
 
    return (
       <Image
-         className={`block aspect-square object-cover object-center rounded-full dark:opacity-90 ${profileImage === defaultPfp ? 'dark:opacity-40!' : ''}`}
+         className={`block aspect-square object-cover object-center rounded-full opacity-90 ${profileImage === defaultPfp ? 'dark:opacity-40!' : ''}`}
          src={profileImage}
          alt="User image"
          unoptimized

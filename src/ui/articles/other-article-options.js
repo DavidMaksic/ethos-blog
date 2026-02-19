@@ -33,23 +33,24 @@ function OtherArticleOptions({ article, comments, bookmarks, commentsNum }) {
    const session = data?.session;
    const user = data?.user;
 
-   // - Like logic
+   const [mounted, setMounted] = useState(false);
+   useEffect(() => setMounted(true), []);
+
    const articleLikeIDs = likes
       .filter((item) => item.type === 'article')
       .map((item) => item.user_id);
-   const hasLiked = !!articleLikeIDs.find((item) => item === user?.id);
-
-   // - Comment logic
-   const hasCommented = !!comments.find((item) => item.user_id === user?.id);
-
-   // - Reply logic
    const replies = comments.map((item) => item.replies).flat();
-   const hasReplied = !!replies.find((item) => item.user_id === user?.id);
 
-   // - Bookmark logic
-   const hasBookmarked = !!bookmarks.find(
-      (item) => item.user_id === user?.id && item.article_id === articleID,
-   );
+   const hasLiked = mounted && articleLikeIDs.includes(user?.id);
+   const hasCommented =
+      mounted && !!comments.find((item) => item.user_id === user?.id);
+   const hasReplied =
+      mounted && !!replies.find((item) => item.user_id === user?.id);
+   const hasBookmarked =
+      mounted &&
+      !!bookmarks.find(
+         (item) => item.user_id === user?.id && item.article_id === articleID,
+      );
 
    const bookmarkLength = bookmarks.filter(
       (item) => item.article_id === articleID,

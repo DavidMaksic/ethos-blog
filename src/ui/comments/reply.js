@@ -30,26 +30,31 @@ function Reply({
    const [isOpen, setIsOpen] = useState(false);
    const { id: articleID, slug } = article;
 
+   const [mounted, setMounted] = useState(false);
+   useEffect(() => setMounted(true), []);
+
    const { data } = authClient.useSession();
    const session = data?.session;
    const user = data?.user;
 
    const replyID = reply.id;
-   const isAuthor = user.email === author.email;
+   const isAuthor = mounted && user?.email === author.email;
 
    const isMobile = useMediaQuery({ maxWidth: 768 });
    const locale = useLocale();
    const date = CommentDate(reply.created_at, locale);
 
    // - Like logic
-   let hasLiked;
    const replyLikeIDs = article.likes.filter(
       (item) => item.type === 'reply' && item.target_id === replyID,
    );
-   hasLiked = replyLikeIDs.length;
+   const hasLiked =
+      mounted && replyLikeIDs.some((item) => item.user_id === user?.id);
    const replyCount = replyLikeIDs.length;
+
    const [likesCount, setLikesCount] = useState(replyCount);
-   const [isLiked, setIsLiked] = useState(hasLiked);
+   const [isLiked, setIsLiked] = useState(false);
+   useEffect(() => setIsLiked(hasLiked), [hasLiked]);
 
    function handleLike() {
       if (!session) {
@@ -67,10 +72,6 @@ function Reply({
 
       setIsLiked(!isLiked);
    }
-
-   useEffect(() => {
-      setIsLiked(hasLiked);
-   }, [hasLiked]);
 
    // - Add focus to reply input when it's opened
    const isReplyOpen = openReplyID === reply.id;
@@ -105,11 +106,13 @@ function Reply({
                      </div>
 
                      <div className="flex xs:flex-wrap items-center gap-x-2 md:text-2xl sm:text-[1.4rem]">
-                        <span className="font-semibold">
-                           {!isMobile
-                              ? user.name
-                              : user.name.split(' ')[0].slice(0, 10)}
-                        </span>
+                        {mounted && (
+                           <span className="font-semibold">
+                              {!isMobile
+                                 ? user?.name
+                                 : user?.name?.split(' ')[0].slice(0, 10)}
+                           </span>
+                        )}
                         {isAuthor && (
                            <span className="px-2.5 pt-px pb-0.5 bg-accent-400/20 dark:bg-accent-300/40 text-accent-600 dark:text-accent-50/70 rounded-xl font-semibold dark:font-medium">
                               {t('author')}

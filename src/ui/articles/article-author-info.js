@@ -1,5 +1,5 @@
-import { HiOutlineUserCircle } from 'react-icons/hi2';
 import { useLocale, useTranslations } from 'next-intl';
+import { HiOutlineUserCircle } from 'react-icons/hi2';
 import UserImage from '@/src/ui/image/user-image';
 
 function ArticleAuthorInfo({ author, date, children }) {
