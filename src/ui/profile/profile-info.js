@@ -5,7 +5,7 @@ function ProfileInfo({ user }) {
    const profileImage = user?.image ?? defaultPfp;
 
    return (
-      <div className="self-start w-fit md:w-full flex flex-col items-center gap-6 bg-white dark:bg-primary-300/10 border border-quaternary dark:border-primary-300/15 rounded-3xl px-28 2xl:px-20 md:px-10 py-20 2xl:py-16 text-3xl box-shadow transition-bg_border">
+      <div className="self-start min-w-123 lg:min-w-110 max-w-130 lg:max-w-110 md:min-w-full md:max-w-full flex flex-col items-center gap-6 bg-white dark:bg-primary-300/10 border border-quaternary dark:border-primary-300/15 rounded-3xl px-20 md:px-10 py-20 2xl:py-16 text-3xl box-shadow transition-bg_border">
          <div className="relative size-30 lg:size-26 md:size-30">
             <RemoteImage
                imageUrl={profileImage}
