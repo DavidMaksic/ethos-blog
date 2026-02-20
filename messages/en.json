@@ -136,7 +136,8 @@
       "consecutive-underscores": "*Cannot contain consecutive underscores",
       "edge-underscores": "*Cannot start or end with an underscore",
       "invalid-chars": "*Use only letters, numbers, or underscores",
-      "all-numbers": "*The username must contain letters"
+      "all-numbers": "*The username must contain letters",
+      "remember-me": "Remember me"
    },
    "Error": {
       "message": "Something went wrong...",

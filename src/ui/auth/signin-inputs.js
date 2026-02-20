@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import FormField from '@/src/ui/form-field';
+import Checkbox from '@/src/ui/checkbox';
 import toast from 'react-hot-toast';
 
 function SignInInputs() {
@@ -17,6 +18,7 @@ function SignInInputs() {
 
    const [loading, setLoading] = useState(false);
    const [errors, setErrors] = useState({});
+   const [rememberMe, setRememberMe] = useState(false);
 
    const clearError = (field) =>
       setErrors((prev) => ({ ...prev, [field]: undefined }));
@@ -49,6 +51,7 @@ function SignInInputs() {
          {
             email: parsed.data.email,
             password: parsed.data.password,
+            rememberMe,
             callbackURL: '/user/home',
          },
          {
@@ -86,10 +89,16 @@ function SignInInputs() {
             />
          </div>
 
+         <Checkbox
+            checked={rememberMe}
+            onChange={(e) => setRememberMe(e.target.checked)}
+            label={t('remember-me')}
+         />
+
          <button
             type="submit"
             disabled={loading}
-            className={`bg-accent-500/80 dark:bg-accent/60 text-white dark:text-accent-100 text-3xl md:text-4xl rounded-2xl py-2.5 w-full hover:bg-accent-500/65 dark:hover:bg-accent/50 transition cursor-pointer mt-4 mb-2 disabled:opacity-65 disabled:hover:bg-accent-500/80 disabled:dark:hover:bg-accent/60 disabled:cursor-auto ${
+            className={`bg-accent-500/80 dark:bg-accent/60 text-white dark:text-accent-100 text-3xl md:text-4xl rounded-2xl py-2.5 w-full hover:bg-accent-500/65 dark:hover:bg-accent/50 transition cursor-pointer disabled:opacity-65 disabled:hover:bg-accent-500/80 disabled:dark:hover:bg-accent/60 disabled:cursor-auto ${
                locale === 'sr' ? 'font-logo-sr' : 'font-logo'
             }`}
          >
