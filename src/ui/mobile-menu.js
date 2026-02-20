@@ -5,7 +5,6 @@ import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 import { useTranslations } from 'next-intl';
 import { HiOutlineUser } from 'react-icons/hi2';
 import { authClient } from '@/src/lib/auth-client';
-import { ImSpinner2 } from 'react-icons/im';
 import { BiHomeAlt2 } from 'react-icons/bi';
 import { LANGUAGES } from '@/src/utils/config';
 import { useState } from 'react';
@@ -21,10 +20,13 @@ function MobileMenu() {
    const [openMenu, setOpenMenu] = useState(false);
    const [loaded, setLoaded] = useState(false);
 
-   const { data, isPending } = authClient.useSession();
+   const { data } = authClient.useSession();
    const session = data?.session;
    const user = data?.user;
    const profileImage = user?.image ?? defaultPfp;
+
+   const open = () => setOpenMenu(true);
+   const close = () => setOpenMenu(false);
 
    return (
       <>
@@ -33,7 +35,7 @@ function MobileMenu() {
             onClick={(e) => {
                e.stopPropagation();
                e.nativeEvent.stopImmediatePropagation();
-               setOpenMenu((isOpen) => !isOpen);
+               open();
             }}
          />
 
@@ -41,7 +43,7 @@ function MobileMenu() {
             {openMenu && (
                <Modal
                   styles="py-8! xs:py-6! 3xs:py-4! pb-8.5! xs:pb-6.5! 3xs:pb-4.5! pr-6! xs:pr-5! 3xs:pr-8! pl-4! xs:pl-4! 3xs:pl-8!"
-                  closeModal={() => setOpenMenu(false)}
+                  closeModal={close}
                >
                   <motion.div className="flex 3xs:flex-col gap-2 xs:gap-0 3xs:gap-2 text-2xl">
                      <div className="pl-10 xs:pl-6 pr-16 xs:pr-12 py-2 xs:pt-2.5 pb-4 xs:pb-0 3xs:pb-12 space-y-7 3xs:border-b 3xs:border-b-primary-300 3xs:dark:border-b-primary-300/40">
@@ -53,7 +55,7 @@ function MobileMenu() {
                            <Link
                               href="/"
                               className="flex items-center gap-3.5"
-                              onClick={() => setOpenMenu((isOpen) => !isOpen)}
+                              onClick={close}
                            >
                               <BiHomeAlt2 className="size-7" />
                               <span>{t('HomePage.nav-link-1')}</span>
@@ -61,7 +63,7 @@ function MobileMenu() {
                            <Link
                               href="/archive"
                               className="flex items-center gap-3.5"
-                              onClick={() => setOpenMenu((isOpen) => !isOpen)}
+                              onClick={close}
                            >
                               <LuLibrary className="size-7" />
                               <span>{t('HomePage.nav-link-2')}</span>
@@ -69,7 +71,7 @@ function MobileMenu() {
                            <Link
                               href="/about"
                               className="flex items-center gap-3.5"
-                              onClick={() => setOpenMenu((isOpen) => !isOpen)}
+                              onClick={close}
                            >
                               <IoDocumentOutline className="size-7" />
                               <span>{t('HomePage.nav-link-3')}</span>
@@ -77,7 +79,7 @@ function MobileMenu() {
                            <Link
                               href={session ? '/user/home' : '/login'}
                               className="flex items-center gap-3.5"
-                              onClick={() => setOpenMenu((isOpen) => !isOpen)}
+                              onClick={close}
                            >
                               <HiOutlineUser className="size-7" />
                               <span>{t('HomePage.nav-link-4')}</span>
@@ -89,23 +91,23 @@ function MobileMenu() {
 
                      <div className="flex flex-col gap-2 items-center">
                         <div className="min-w-50 min-h-39.5 3xs:min-h-[10.6rem] xs:min-w-full flex flex-col gap-3 items-center justify-center mx-4 xs:mx-0 py-2 3xs:pt-5 pb-6 border-b border-b-primary-300 dark:border-b-primary-300/40">
-                           {isPending ? (
-                              <motion.span
-                                 initial={{ opacity: 0 }}
-                                 animate={{ opacity: 1 }}
-                                 exit={{ opacity: 0 }}
-                                 transition={{ duration: 0.2 }}
+                           {!session ? (
+                              <Link
+                                 href={session ? '/user/home' : '/login'}
+                                 className="flex gap-2 items-center justify-center transition-200"
+                                 onClick={open}
                               >
-                                 <ImSpinner2 className="size-14 text-accent/80 animate-spin" />
-                              </motion.span>
-                           ) : user ? (
+                                 <span className="text-3xl">
+                                    {t('Auth.generic-sign-in')}
+                                 </span>
+                                 <LuLogIn className="size-7 text-accent/90 dark:text-accent-200" />
+                              </Link>
+                           ) : (
                               <>
                                  <Link
                                     href={session ? '/user/home' : '/login'}
                                     className="relative size-18"
-                                    onClick={() =>
-                                       setOpenMenu((isOpen) => !isOpen)
-                                    }
+                                    onClick={close}
                                  >
                                     <Image
                                        className={`rounded-full block aspect-square object-cover object-center border border-primary-300 transition-200 ${
@@ -129,19 +131,6 @@ function MobileMenu() {
                                     {user?.name.split(' ')[0].slice(0, 10)}
                                  </span>
                               </>
-                           ) : (
-                              <Link
-                                 href={session ? '/user/home' : '/login'}
-                                 className="flex gap-2 items-center justify-center transition-200"
-                                 onClick={() =>
-                                    setOpenMenu((isOpen) => !isOpen)
-                                 }
-                              >
-                                 <span className="text-3xl">
-                                    {t('Auth.generic-sign-in')}
-                                 </span>
-                                 <LuLogIn className="size-7 text-accent/90 dark:text-accent-200" />
-                              </Link>
                            )}
                         </div>
 
