@@ -37,8 +37,11 @@ const usernameField = (t) =>
             .refine((val) => !/__/.test(val), {
                message: t('consecutive-underscores'),
             })
-            .refine((val) => !/^_|_$/.test(val), {
-               message: t('edge-underscores'),
+            .refine((val) => !/^_/.test(val), {
+               message: t('leading-underscore'),
+            })
+            .refine((val) => !/_$/.test(val), {
+               message: t('trailing-underscore'),
             }),
       );
 

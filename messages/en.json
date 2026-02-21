@@ -133,9 +133,10 @@
       "password-max": "*Maxiumum of {count} characters",
       "passwords-dont-match": "*Passwords do not match",
       "password-number": "*Must contain at least one number",
-      "consecutive-underscores": "*Cannot contain consecutive underscores",
-      "edge-underscores": "*Cannot start or end with an underscore",
-      "invalid-chars": "*Use only letters, numbers, or underscores",
+      "consecutive-underscores": "*Can't contain consecutive underscores",
+      "leading-underscore": "*Can't start with an underscore",
+      "trailing-underscore": "*Can't end with an underscore",
+      "invalid-chars": "*Only letters, numbers and underscores",
       "all-numbers": "*The username must contain letters",
       "remember-me": "Remember me"
    },

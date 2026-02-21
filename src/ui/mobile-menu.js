@@ -42,11 +42,11 @@ function MobileMenu() {
          <AnimatePresence>
             {openMenu && (
                <Modal
-                  styles="py-8! xs:py-6! 3xs:py-4! pb-8.5! xs:pb-6.5! 3xs:pb-4.5! pr-6! xs:pr-5! 3xs:pr-8! pl-4! xs:pl-4! 3xs:pl-8!"
+                  styles="py-8! xs:py-6! 3xs:py-4! pb-8.5! xs:pb-6.5! 3xs:pb-4.5! pr-6! xs:pr-5! 3xs:pr-8! pl-4! 3xs:pl-8!"
                   closeModal={close}
                >
                   <motion.div className="flex 3xs:flex-col gap-2 xs:gap-0 3xs:gap-2 text-2xl">
-                     <div className="pl-10 xs:pl-6 pr-16 xs:pr-12 py-2 xs:pt-2.5 pb-4 xs:pb-0 3xs:pb-12 space-y-7 3xs:border-b 3xs:border-b-primary-300 3xs:dark:border-b-primary-300/40">
+                     <div className="pl-10 xs:pl-6 pr-16 xs:pr-10 py-2 xs:pt-2.5 pb-4 xs:pb-0 3xs:pb-12 space-y-7 3xs:border-b 3xs:border-b-primary-300 3xs:dark:border-b-primary-300/40">
                         <h2 className="uppercase tracking-wide font-semibold text-accent dark:text-accent-200">
                            {t('HomePage.pages-label')}
                         </h2>
@@ -89,7 +89,7 @@ function MobileMenu() {
 
                      <span className="w-px bg-primary-300 dark:bg-primary-300/40 3xs:hidden" />
 
-                     <div className="flex flex-col gap-2 items-center">
+                     <div className="flex flex-col gap-2 items-center xs:pl-3 xs:pr-1">
                         <div className="min-w-50 min-h-39.5 3xs:min-h-[10.6rem] xs:min-w-full flex flex-col gap-3 items-center justify-center mx-4 xs:mx-0 py-2 3xs:pt-5 pb-6 border-b border-b-primary-300 dark:border-b-primary-300/40">
                            {!session ? (
                               <Link
@@ -97,10 +97,10 @@ function MobileMenu() {
                                  className="flex gap-2 items-center justify-center transition-200"
                                  onClick={open}
                               >
-                                 <span className="text-3xl">
+                                 <span className="text-3xl md:text-4xl">
                                     {t('Auth.generic-sign-in')}
                                  </span>
-                                 <LuLogIn className="size-7 text-accent/90 dark:text-accent-200" />
+                                 <LuLogIn className="size-7 md:text-size-8 text-accent/90 dark:text-accent-200" />
                               </Link>
                            ) : (
                               <>
@@ -139,9 +139,9 @@ function MobileMenu() {
                               <LanguageFilterButton
                                  key={item.code}
                                  lang={item.code}
-                                 styles="md:text-[2rem]! ml-1!"
+                                 styles="md:text-4xl! ml-1!"
                                  imageStyle="size-10!"
-                                 activeStyle="py-1.5! pl-3.5! pr-4! rounded-2xl!"
+                                 activeStyle="py-2! pl-3.5! pr-4! rounded-2xl!"
                                  isMobile={true}
                               >
                                  {item.lang}

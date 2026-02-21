@@ -1,14 +1,10 @@
 import { useLocale, useTranslations } from 'next-intl';
-import { useEffect, useState } from 'react';
 import { Link } from '@/src/i18n/navigation';
 import RemoteImage from '@/src/ui/image/remote-image';
 
 function MainArticle({ article }) {
    const t = useTranslations('HomePage');
    const locale = useLocale();
-   const [mounted, setMounted] = useState(false);
-
-   useEffect(() => setMounted(true), []);
 
    return (
       <div className="grid grid-cols-2 md:flex! md:flex-col! gap-10 md:gap-4 mt-24 2xl:mt-22 lg:mt-24 sm:mt-14 xs:mt-10 mb-38 2xl:mb-33 sm:mb-20 overflow-visible">

@@ -30,11 +30,11 @@ function UsernameInput() {
       }
    }, [state.error]);
 
-   useEffect(() => {
-      if (!input.length || input.length < 2 || input.length > 24) {
-         setError(null);
-      }
-   }, [input]);
+   // useEffect(() => {
+   //    if (!input.length || input.length < 2 || input.length > 24) {
+   //       setError(null);
+   //    }
+   // }, [input]);
 
    return (
       <form action={action} className="flex flex-col gap-2 relative">
