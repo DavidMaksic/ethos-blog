@@ -1,8 +1,8 @@
+import { useLocale, useTranslations } from 'next-intl';
 import { AnimatePresence, motion } from 'motion/react';
 import { LuLibrary, LuLogIn } from 'react-icons/lu';
 import { IoDocumentOutline } from 'react-icons/io5';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
-import { useTranslations } from 'next-intl';
 import { HiOutlineUser } from 'react-icons/hi2';
 import { authClient } from '@/src/lib/auth-client';
 import { BiHomeAlt2 } from 'react-icons/bi';
@@ -19,6 +19,7 @@ function MobileMenu() {
    const t = useTranslations();
    const [openMenu, setOpenMenu] = useState(false);
    const [loaded, setLoaded] = useState(false);
+   const locale = useLocale();
 
    const { data } = authClient.useSession();
    const session = data?.session;
@@ -46,7 +47,9 @@ function MobileMenu() {
                   closeModal={close}
                >
                   <motion.div className="flex 3xs:flex-col gap-2 xs:gap-0 3xs:gap-2 text-2xl">
-                     <div className="pl-10 xs:pl-6 pr-16 xs:pr-10 py-2 xs:pt-2.5 pb-4 xs:pb-0 3xs:pb-12 space-y-7 3xs:border-b 3xs:border-b-primary-300 3xs:dark:border-b-primary-300/40">
+                     <div
+                        className={`pl-10 xs:pl-6 pr-16 ${locale === 'en' ? 'xs:pr-12' : 'xs:pr-10'} py-2 xs:pt-2.5 pb-4 xs:pb-0 3xs:pb-12 space-y-7 3xs:border-b 3xs:border-b-primary-300 3xs:dark:border-b-primary-300/40`}
+                     >
                         <h2 className="uppercase tracking-wide font-semibold text-accent dark:text-accent-200">
                            {t('HomePage.pages-label')}
                         </h2>

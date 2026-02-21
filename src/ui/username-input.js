@@ -30,20 +30,36 @@ function UsernameInput() {
       }
    }, [state.error]);
 
-   // useEffect(() => {
-   //    if (!input.length || input.length < 2 || input.length > 24) {
-   //       setError(null);
-   //    }
-   // }, [input]);
+   useEffect(() => {
+      if (!input.length || input.length < 2 || input.length > 24) {
+         setError(null);
+      }
+   }, [input]);
 
    return (
       <form action={action} className="flex flex-col gap-2 relative">
-         <label
-            className="text-sm uppercase font-semibold text-primary-400 tracking-wider"
-            htmlFor="username"
-         >
-            {t('new-username')}
-         </label>
+         <div className="flex gap-3 items-center min-h-6">
+            <label
+               className="text-sm uppercase font-semibold text-primary-400 tracking-wider"
+               htmlFor="username"
+            >
+               {t('new-username')}
+            </label>
+            <AnimatePresence>
+               {error && (
+                  <motion.p
+                     key="username-error"
+                     initial={{ opacity: 0 }}
+                     animate={{ opacity: 1 }}
+                     exit={{ opacity: 0 }}
+                     transition={{ duration: 0.075 }}
+                     className="text-red-600/50 dark:text-red-300/80 text-md md:text-lg xs:text-xl font-medium select-none pointer-events-none font-secondary leading-6"
+                  >
+                     {error}
+                  </motion.p>
+               )}
+            </AnimatePresence>
+         </div>
 
          <div className="relative">
             <input
@@ -53,20 +69,6 @@ function UsernameInput() {
                autoComplete="one-time-code"
                onChange={(e) => setInput(e.target.value)}
             />
-            <AnimatePresence>
-               {error && (
-                  <motion.p
-                     key="username-error"
-                     initial={{ opacity: 0 }}
-                     animate={{ opacity: 1 }}
-                     exit={{ opacity: 0 }}
-                     transition={{ duration: 0.075 }}
-                     className="absolute top-11 xs:top-12.5 left-0 text-red-600/50 dark:text-red-300/80 text-md md:text-lg xs:text-xl font-medium select-none pointer-events-none font-secondary leading-5"
-                  >
-                     {error}
-                  </motion.p>
-               )}
-            </AnimatePresence>
 
             <AnimatePresence>
                {!isPending ? (

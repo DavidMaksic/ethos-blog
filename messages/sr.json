@@ -46,9 +46,9 @@
       "user-stat-3": "Сачувано",
       "bookmark-label": "Сачувано",
       "joined-label": "Придружио се",
-      "username": "Корисничко име",
-      "new-username": "Ново корисничко име",
-      "username-updated": "Корисничко име успешно ажурирано",
+      "username": "Име",
+      "new-username": "Ново име",
+      "username-updated": "Име успешно ажурирано",
       "pfp": "Профилна слика",
       "update": "Потврди",
       "pfp-updated": "Профилна слика успешно ажурирана",
@@ -137,7 +137,7 @@
       "leading-underscore": "*Не може почети доњом цртом",
       "trailing-underscore": "*Не може се завршити доњом цртом",
       "invalid-chars": "*Само слова, бројеви и доње црте",
-      "all-numbers": "*Корисничко име мора садржати слова",
+      "all-numbers": "*Мора садржати слова",
       "remember-me": "Запамти ме"
    },
    "Error": {

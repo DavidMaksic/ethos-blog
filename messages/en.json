@@ -46,9 +46,9 @@
       "user-stat-3": "Bookmarks",
       "bookmark-label": "Bookmarks",
       "joined-label": "Joined",
-      "username": "Current username",
-      "new-username": "New username",
-      "username-updated": "Username successfully updated",
+      "username": "Current name",
+      "new-username": "New name",
+      "username-updated": "Name successfully updated",
       "pfp": "Profile image",
       "update": "Update",
       "pfp-updated": "Profile image successfully updated",
@@ -137,7 +137,7 @@
       "leading-underscore": "*Can't start with an underscore",
       "trailing-underscore": "*Can't end with an underscore",
       "invalid-chars": "*Only letters, numbers and underscores",
-      "all-numbers": "*The username must contain letters",
+      "all-numbers": "*Must contain letters",
       "remember-me": "Remember me"
    },
    "Error": {

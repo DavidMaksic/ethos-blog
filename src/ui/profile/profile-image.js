@@ -89,8 +89,10 @@ function ProfileImage({ user, image }) {
 
          <button
             className={`hover:bg-accent-400 dark:hover:bg-accent-300/60 border border-quaternary hover:border-transparent hover:text-white rounded-full p-1 px-4 cursor-pointer hover:shadow-link-btn dark:hover:shadow-link-btn-dark transition ${
-               !currentImage || isPending || state.success
-                  ? 'opacity-40 pointer-events-none'
+               !currentImage && 'opacity-40 pointer-events-none'
+            } ${
+               isPending || state.success
+                  ? 'opacity-70 pointer-events-none'
                   : ''
             }`}
          >
