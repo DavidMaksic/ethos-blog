@@ -69,7 +69,7 @@ function OAuth({ mode, onToggleMode }) {
                <>
                   {t('new-profile-label')}{' '}
                   <span
-                     className="underline underline-offset-2 cursor-pointer hover:opacity-75 transition-opacity"
+                     className="underline underline-offset-2 sm:decoration-primary-600/60 cursor-pointer hover:opacity-75 transition-opacity"
                      onClick={onToggleMode}
                   >
                      {t('create-account')}
@@ -79,7 +79,7 @@ function OAuth({ mode, onToggleMode }) {
                <>
                   {t('old-profile-label')}{' '}
                   <span
-                     className="underline underline-offset-2 cursor-pointer hover:opacity-80 transition-opacity"
+                     className="underline underline-offset-2 sm:decoration-primary-600/60 cursor-pointer hover:opacity-80 transition-opacity"
                      onClick={onToggleMode}
                   >
                      {t('generic-sign-in')}

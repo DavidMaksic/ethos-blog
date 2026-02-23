@@ -98,7 +98,7 @@ function SignInInputs() {
          <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-2xl py-2 bg-gradient-to-r from-accent-400/80 dark:from-accent/60 to-accent-600/70 dark:to-accent-400/50 hover:from-transparent hover:to-transparent border-2 border-transparent hover:border-accent/80 shadow-link-btn hover:shadow-none dark:shadow-none transition-[box-shadow,border,--tw-gradient-from,--tw-gradient-to] duration-300 bg-origin-border group disabled:cursor-auto disabled:opacity-65 text-center"
+            className="w-full rounded-2xl py-2 bg-gradient-to-r from-accent-400/80 dark:from-accent/60 to-accent-600/70 dark:to-accent-400/50 hover:from-transparent hover:to-transparent border-2 border-transparent hover:border-accent/80 transition-[border,--tw-gradient-from,--tw-gradient-to] duration-300 bg-origin-border group disabled:cursor-auto disabled:opacity-65 text-center"
          >
             <div
                className={`text-3xl md:text-4xl text-white dark:text-accent-100/90 group-hover:text-accent group-hover:drop-shadow-xs dark:group-hover:text-accent/90 transition-[color] duration-300 cursor-pointer ${
