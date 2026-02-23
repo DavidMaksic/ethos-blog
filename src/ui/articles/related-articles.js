@@ -1,22 +1,10 @@
+import { getRelatedArticles } from '@/src/utils/helpers';
 import { getTranslations } from 'next-intl/server';
 import RelatedArticle from '@/src/ui/articles/related-article';
 
-async function RelatedArticles({
-   articles,
-   category,
-   title,
-   author,
-   commentsNum,
-}) {
+async function RelatedArticles({ article, articles, author, commentsNum }) {
    const t = await getTranslations('Article');
-
-   const array = articles.filter(
-      (item) => Number(item.category_id) === Number(category.id),
-   );
-
-   const relatedArticles = array
-      .filter((item) => item.title !== title)
-      .slice(0, 2);
+   const relatedArticles = getRelatedArticles(articles, article);
 
    if (!relatedArticles.length) return null;
 

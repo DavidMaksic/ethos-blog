@@ -101,7 +101,6 @@ async function Page({ params }) {
       image,
       title,
       description,
-      categories: category,
       authors: author,
       created_at,
       updated_at,
@@ -186,9 +185,8 @@ async function Page({ params }) {
 
             <AnimationWrapper type="other">
                <RelatedArticles
+                  article={article}
                   articles={articles}
-                  category={category}
-                  title={article.title}
                   author={author}
                   commentsNum={commentsNum}
                />

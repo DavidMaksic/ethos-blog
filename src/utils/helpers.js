@@ -1,4 +1,5 @@
 import { differenceInDays, format, formatDistanceToNow } from 'date-fns';
+import { STOP_WORDS } from '@/src/utils/config';
 import { enUS, sr } from 'date-fns/locale';
 import sanitizeHtml from 'sanitize-html';
 
@@ -115,4 +116,46 @@ export function switchLocale(lang) {
 
    // Navigate to the new URL
    window.location.href = url.toString();
+}
+
+// - Filter related articles
+const tokenize = (str = '') =>
+   (str.toLowerCase().match(/\b\w{4,}\b/g) ?? []).filter(
+      (word) => !STOP_WORDS.has(word),
+   );
+
+function scoreArticle(item, currentTitleWords, currentDescWords) {
+   const titleScore =
+      tokenize(item.title).filter((w) => currentTitleWords.has(w)).length * 3;
+   const descToTitle =
+      tokenize(item.description).filter((w) => currentTitleWords.has(w))
+         .length * 2;
+   const titleToDesc =
+      tokenize(item.title).filter((w) => currentDescWords.has(w)).length * 2;
+   const descScore = tokenize(item.description).filter((w) =>
+      currentDescWords.has(w),
+   ).length;
+   return titleScore + descToTitle + titleToDesc + descScore;
+}
+
+export function getRelatedArticles(articles, article, limit = 2) {
+   const { title, description, code } = article;
+
+   const currentTitleWords = new Set(tokenize(title));
+   const currentDescWords = new Set(tokenize(description));
+
+   const scored = [...articles]
+      .filter((item) => item.code === code && item.title !== title)
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+      .map((item) => ({
+         ...item,
+         score: scoreArticle(item, currentTitleWords, currentDescWords),
+      }))
+      .sort((a, b) => b.score - a.score);
+
+   const hasMatches = scored.some((item) => item.score > 0);
+
+   return hasMatches
+      ? scored.filter((item) => item.score > 0).slice(0, limit)
+      : scored.slice(0, limit);
 }
