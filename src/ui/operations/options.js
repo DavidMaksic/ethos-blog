@@ -59,7 +59,8 @@ function Options() {
    }, []);
 
    useIntersectionObserver(setActiveId, activeId);
-   const isBellowMd = useMediaQuery({ maxWidth: 768 });
+   const isBellowMdRaw = useMediaQuery({ maxWidth: 768 });
+   const isBellowMd = mounted && isBellowMdRaw;
 
    return (
       <>

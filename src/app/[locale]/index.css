@@ -1169,6 +1169,10 @@ h3 {
    .bn-block-column-list > .bn-block-column:last-child:has(p:empty) {
       display: none !important;
    }
+
+   [data-type='references'] .bn-block-content {
+      padding: 8px 0 !important;
+   }
 }
 
 @media (max-width: 640px) {
