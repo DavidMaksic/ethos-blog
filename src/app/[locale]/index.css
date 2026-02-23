@@ -1387,3 +1387,7 @@ input:-webkit-autofill {
    > .bn-block-column:nth-child(2) {
    flex: 4 1 0% !important;
 }
+
+input[type='password']::-ms-reveal {
+   display: none !important;
+}

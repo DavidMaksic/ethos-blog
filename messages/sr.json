@@ -128,7 +128,6 @@
       "email-invalid": "*Унесите исправну адресу",
       "email-max": "*Адреса је предугачка",
       "password": "Лозинка",
-      "confirm-password": "Потврди лозинку",
       "password-min": "*Минимум {count} карактера",
       "password-max": "*Максимум {count} карактера",
       "passwords-dont-match": "*Лозинке се не поклапају",

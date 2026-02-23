@@ -29,7 +29,6 @@ function SignUpInputs() {
          name: formData.get('name'),
          email: formData.get('email'),
          password: formData.get('password'),
-         confirmPassword: formData.get('confirm-password'),
       });
 
       if (!parsed.success) {
@@ -90,13 +89,6 @@ function SignUpInputs() {
                type="password"
                error={errors.password}
                onChange={() => clearError('password')}
-            />
-            <FormField
-               id="confirm-password"
-               label={t('confirm-password')}
-               type="password"
-               error={errors.confirmPassword}
-               onChange={() => clearError('confirmPassword')}
             />
          </div>
 

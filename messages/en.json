@@ -128,7 +128,6 @@
       "email-invalid": "*Please enter a valid email address",
       "email-max": "Email address is too long",
       "password": "Password",
-      "confirm-password": "Confirm password",
       "password-min": "*Minimum of {count} characters",
       "password-max": "*Maxiumum of {count} characters",
       "passwords-dont-match": "*Passwords do not match",

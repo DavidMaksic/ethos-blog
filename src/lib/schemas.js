@@ -61,26 +61,20 @@ export const signInSchema = (t) =>
    });
 
 export const signUpSchema = (t) =>
-   z
-      .object({
-         name: usernameField(t),
-         email: z
-            .string()
-            .trim()
-            .min(1, '*')
-            .max(254, t('email-max'))
-            .check(z.email({ error: t('email-invalid') })),
-         password: z
-            .string()
-            .min(1, '*')
-            .min(8, t('password-min', { count: 8 }))
-            .max(72, t('password-max', { count: 72 }))
-            .refine((val) => /[0-9]/.test(val), {
-               message: t('password-number'),
-            }),
-         confirmPassword: z.string().min(1, '*'),
-      })
-      .refine((data) => data.password === data.confirmPassword, {
-         message: t('passwords-dont-match'),
-         path: ['confirmPassword'],
-      });
+   z.object({
+      name: usernameField(t),
+      email: z
+         .string()
+         .trim()
+         .min(1, '*')
+         .max(254, t('email-max'))
+         .check(z.email({ error: t('email-invalid') })),
+      password: z
+         .string()
+         .min(1, '*')
+         .min(8, t('password-min', { count: 8 }))
+         .max(72, t('password-max', { count: 72 }))
+         .refine((val) => /[0-9]/.test(val), {
+            message: t('password-number'),
+         }),
+   });
