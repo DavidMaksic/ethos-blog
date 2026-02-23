@@ -18,7 +18,7 @@ function SignInInputs() {
 
    const [loading, setLoading] = useState(false);
    const [errors, setErrors] = useState({});
-   const [rememberMe, setRememberMe] = useState(false);
+   const [rememberMe, setRememberMe] = useState(true);
 
    const clearError = (field) =>
       setErrors((prev) => ({ ...prev, [field]: undefined }));
