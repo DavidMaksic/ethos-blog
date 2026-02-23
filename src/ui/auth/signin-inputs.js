@@ -98,18 +98,22 @@ function SignInInputs() {
          <button
             type="submit"
             disabled={loading}
-            className={`bg-accent-500/80 dark:bg-accent/60 text-white dark:text-accent-100 text-3xl md:text-4xl rounded-2xl py-2.5 w-full hover:bg-accent-500/65 dark:hover:bg-accent/50 transition cursor-pointer disabled:opacity-65 disabled:hover:bg-accent-500/80 disabled:dark:hover:bg-accent/60 disabled:cursor-auto ${
-               locale === 'sr' ? 'font-logo-sr' : 'font-logo'
-            }`}
+            className="w-full rounded-2xl py-2 bg-gradient-to-r from-accent-400/80 dark:from-accent/60 to-accent-600/70 dark:to-accent-400/45 hover:from-transparent hover:to-transparent border-2 border-transparent hover:border-accent/80 shadow-link-btn hover:shadow-none dark:shadow-none transition-[box-shadow,border,--tw-gradient-from,--tw-gradient-to] duration-300 bg-origin-border group disabled:cursor-auto text-center"
          >
-            {loading ? (
-               <div className="flex items-center gap-4 justify-center">
-                  <ImSpinner2 className="size-6 text-inherit animate-spin" />
-                  <span>{t('signing-in')}</span>
-               </div>
-            ) : (
-               <span>{t('generic-sign-in')}</span>
-            )}
+            <div
+               className={`text-3xl md:text-4xl text-white dark:text-accent-100/90 group-hover:text-accent group-hover:drop-shadow-xs dark:group-hover:text-accent/90 transition-[color] duration-300 cursor-pointer ${
+                  locale === 'en' ? 'font-logo' : 'font-logo-sr'
+               }`}
+            >
+               {loading ? (
+                  <div className="flex items-center gap-4 justify-center">
+                     <ImSpinner2 className="size-6 text-inherit animate-spin" />
+                     <span>{t('signing-in')}</span>
+                  </div>
+               ) : (
+                  <span>{t('generic-sign-in')}</span>
+               )}
+            </div>
          </button>
       </form>
    );
