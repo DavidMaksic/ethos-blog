@@ -32,7 +32,7 @@ function AuthModal({ onClose, string }) {
             {t(`Auth.${string}`)}
          </div>
 
-         <div className="flex items-center gap-2 text-[1.7rem] md:text-3xl">
+         <div className="flex items-center gap-2 text-3xl">
             <Link
                href={session ? '/user/home' : '/login'}
                className="flex items-center gap-2 text-accent hover:bg-accent-400/80 dark:hover:bg-accent-300/55 hover:text-white dark:hover:text-accent-100 hover:shadow-link-btn dark:hover:shadow-none rounded-full p-2 px-4 pl-5 cursor-pointer transition"
