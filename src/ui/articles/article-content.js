@@ -60,7 +60,9 @@ function ArticleContent({ content, article }) {
             const Tag = domNode.name;
 
             const hashSize =
-               domNode.name === 'h2' ? 'size-6.5 ml-2.5' : 'size-5.5 ml-2';
+               domNode.name === 'h2'
+                  ? 'size-6.5 -right-9 top-1/2 -translate-y-1/2'
+                  : 'size-5.5 -right-7.5 top-1/2 -translate-y-1/2';
 
             return (
                <Tag id={slug} className="group scroll-mt-20 relative">
@@ -70,7 +72,7 @@ function ArticleContent({ content, article }) {
                   >
                      {textContent}
                      <FiLink
-                        className={`${hashSize} stroke-[2.2px] opacity-0 group-hover:opacity-100 text-primary-500/60 transition-opacity`}
+                        className={`${hashSize} absolute stroke-[2.2px] opacity-0 group-hover:opacity-100 text-primary-500/60 transition-opacity`}
                      />
                   </a>
                </Tag>
