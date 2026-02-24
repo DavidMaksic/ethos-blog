@@ -6,6 +6,7 @@ import { IoMoonOutline, IoOptions } from 'react-icons/io5';
 import { AnimatePresence, motion } from 'motion/react';
 import { useIntersectionObserver } from '@/src/hooks/use-intersection-observer';
 import { useEffect, useState } from 'react';
+import { EXCLUDED_HEADINGS } from '@/src/utils/config';
 import { useOutsideClick } from '@/src/hooks/use-outside-click';
 import { useTranslations } from 'next-intl';
 import { useMediaQuery } from 'react-responsive';
@@ -32,6 +33,7 @@ function Options() {
 
    // - Headings
    const [headings, setHeadings] = useState([]);
+   console.log('headings: ', headings);
    const [activeId, setActiveId] = useState();
 
    useEffect(() => {
@@ -39,21 +41,26 @@ function Options() {
          document.querySelectorAll('h2, h3'),
       ).slice(1);
 
-      const headingElements = headingElementsRaw.map((item, index) => {
-         const slug = item.innerText
-            .toLowerCase()
-            .replace(/\s+/g, '-')
-            .replace(/[^\w\-]+/g, '');
+      const headingElements = headingElementsRaw
+         .filter((item) => {
+            const text = item.innerText.trim().toLowerCase();
+            return !EXCLUDED_HEADINGS.some((word) => text.includes(word));
+         })
+         .map((item, index) => {
+            const slug = item.innerText
+               .toLowerCase()
+               .replace(/\s+/g, '-')
+               .replace(/[^\w\-]+/g, '');
 
-         const id = `${slug}-${index}`;
-         item.setAttribute('id', id);
+            const id = `${slug}-${index}`;
+            item.setAttribute('id', id);
 
-         return {
-            id,
-            innerText: item.innerText,
-            localName: item.localName,
-         };
-      });
+            return {
+               id,
+               innerText: item.innerText,
+               localName: item.localName,
+            };
+         });
 
       setHeadings(headingElements);
    }, []);

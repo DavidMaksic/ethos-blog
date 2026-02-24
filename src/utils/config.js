@@ -85,3 +85,5 @@ export const STOP_WORDS = new Set([
    'then',
    'its',
 ]);
+
+export const EXCLUDED_HEADINGS = ['песма', 'тропар', 'кондак'];
