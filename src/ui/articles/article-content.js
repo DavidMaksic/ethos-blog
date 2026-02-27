@@ -2,8 +2,8 @@ import { Crimson_Text, Gentium_Book_Plus } from 'next/font/google';
 import { sanitizeHTML } from '@/src/utils/helpers';
 import { FiLink } from 'react-icons/fi';
 
+import parse, { domToReact } from 'html-react-parser';
 import slugify from 'slugify';
-import parse from 'html-react-parser';
 import Image from 'next/image';
 
 import '@blocknote/core/fonts/inter.css';
@@ -64,13 +64,21 @@ function ArticleContent({ content, article }) {
                   ? 'size-6.5 -right-9 top-1/2 -translate-y-1/2'
                   : 'size-5.5 -right-7.5 top-1/2 -translate-y-1/2';
 
+            const headingOptions = {
+               replace: (node) => {
+                  if (node.name === 'strong') {
+                     return <>{domToReact(node.children, headingOptions)}</>;
+                  }
+               },
+            };
+
             return (
                <Tag id={slug} className="group scroll-mt-20 relative">
                   <a
                      className="cursor-pointer flex items-center"
                      href={`#${slug}`}
                   >
-                     {textContent}
+                     {domToReact(domNode.children, headingOptions)}{' '}
                      <FiLink
                         className={`${hashSize} absolute stroke-[2.2px] opacity-0 group-hover:opacity-100 text-primary-500/60 transition-opacity`}
                      />

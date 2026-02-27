@@ -894,11 +894,6 @@ article .bn-file-block-content-wrapper {
    opacity: 80% !important;
 }
 
-.bn-block-group h2 > strong,
-.bn-block-group h3 > strong {
-   color: var(--color-editor-header);
-}
-
 [data-theme='dark'] .bn-block-group h2 > strong,
 [data-theme='dark'] .bn-block-group h3 > strong {
    color: var(--color-accent-200) !important;
@@ -1365,10 +1360,6 @@ h3 {
    gap: 0.6em !important;
 }
 
-strong {
-   @apply text-primary-600/90 dark:text-primary-600/73;
-}
-
 /* Remove autofill */
 input:-webkit-autofill {
    -webkit-box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0) inset !important;
@@ -1386,6 +1377,10 @@ input:-webkit-autofill {
    ):has(> .bn-block-column:last-child p.bn-inline-content:empty)
    > .bn-block-column:nth-child(2) {
    flex: 4 1 0% !important;
+}
+
+strong {
+   @apply text-primary-600/90 dark:text-primary-600/73;
 }
 
 input[type='password']::-ms-reveal {

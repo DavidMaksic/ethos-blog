@@ -9,6 +9,7 @@ import SignUpInputs from '@/src/ui/auth/signup-inputs';
 import SignInInputs from '@/src/ui/auth/signin-inputs';
 import LoginHeader from '@/src/ui/header/login-header';
 import OAuth from '@/src/ui/auth/oauth';
+import ForgotInputs from '@/src/ui/auth/forgot-inputs';
 
 function AuthForm() {
    const [mode, setMode] = useState('signin');
@@ -34,18 +35,26 @@ function AuthForm() {
                   opacity: { duration: 0.2 },
                   layout: { duration: 0.25, ease: 'easeInOut' },
                }}
-               className="flex flex-col gap-5 lg:gap-3 md:gap-5 px-18 lg:px-14 md:px-18 sm:px-14 3xs:px-10 py-12 lg:py-10 md:py-12 sm:py-11 3xs:py-10 pb-13 lg:pb-11 md:pb-13 sm:pb-12 3xs:pb-11 items-center bg-primary/80 dark:bg-primary/70 md:bg-primary/40 md:dark:bg-primary-300/15 backdrop-blur-lg dark:backdrop-blur-xl md:backdrop-blur-none border border-primary/15 dark:border-primary-400/10 rounded-3xl transition-bg_border shadow-2xl md:dark:shadow-none text-primary-600/90 dark:text-primary-600/60 -translate-y-[18px] lg:translate-y-0"
+               className={`flex flex-col px-18 lg:px-14 md:px-18 sm:px-14 3xs:px-10 py-12 lg:py-10 md:py-12 sm:py-11 3xs:py-10 pb-13 lg:pb-11 md:pb-13 sm:pb-12 3xs:pb-11 items-center bg-primary/80 dark:bg-primary/70 md:bg-primary/40 md:dark:bg-primary-300/15 backdrop-blur-lg dark:backdrop-blur-xl md:backdrop-blur-none border border-primary/15 dark:border-primary-400/10 rounded-3xl transition-bg_border shadow-2xl md:dark:shadow-none text-primary-600/90 dark:text-primary-600/60 -translate-y-[18px] lg:translate-y-0 font-secondary ${mode === 'forgot' ? 'gap-8' : 'gap-5'}`}
             >
                <LoginHeader mode={mode} />
 
-               {mode === 'signin' ? <SignInInputs /> : <SignUpInputs />}
+               {mode === 'signin' && (
+                  <SignInInputs onForgot={() => setMode('forgot')} />
+               )}
+               {mode === 'signup' && <SignUpInputs />}
+               {mode === 'forgot' && (
+                  <ForgotInputs onBack={() => setMode('signin')} />
+               )}
 
-               <OAuth
-                  mode={mode}
-                  onToggleMode={() =>
-                     setMode(mode === 'signin' ? 'signup' : 'signin')
-                  }
-               />
+               {mode !== 'forgot' && (
+                  <OAuth
+                     mode={mode}
+                     onToggleMode={() =>
+                        setMode(mode === 'signin' ? 'signup' : 'signin')
+                     }
+                  />
+               )}
             </motion.div>
          </AnimatePresence>
       </motion.div>

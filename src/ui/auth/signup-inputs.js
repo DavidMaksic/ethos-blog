@@ -9,6 +9,7 @@ import { useState } from 'react';
 
 import FormField from '@/src/ui/form-field';
 import toast from 'react-hot-toast';
+import AuthButton from '@/src/ui/buttons/auth-button';
 
 function SignUpInputs() {
    const t = useTranslations('Auth');
@@ -63,7 +64,7 @@ function SignUpInputs() {
 
    return (
       <form
-         className="w-full space-y-5 lg:space-y-3 md:space-y-5"
+         className="w-full space-y-5 sm:space-y-6"
          onSubmit={handleSubmit}
          noValidate
       >
@@ -92,26 +93,12 @@ function SignUpInputs() {
             />
          </div>
 
-         <button
-            type="submit"
-            disabled={loading}
-            className="w-full rounded-2xl py-2 bg-gradient-to-r from-accent-400/80 dark:from-accent/60 to-accent-600/70 dark:to-accent-400/50 hover:from-transparent hover:to-transparent border-2 border-transparent hover:border-accent/80 transition-[border,--tw-gradient-from,--tw-gradient-to] duration-300 bg-origin-border group disabled:cursor-auto disabled:opacity-65 text-center mt-4"
-         >
-            <div
-               className={`text-3xl md:text-4xl text-white dark:text-accent-100/90 group-hover:text-accent group-hover:drop-shadow-xs dark:group-hover:text-accent/90 transition-[color] duration-300 cursor-pointer ${
-                  locale === 'en' ? 'font-logo' : 'font-logo-sr'
-               }`}
-            >
-               {loading ? (
-                  <div className="flex items-center gap-4 justify-center">
-                     <ImSpinner2 className="size-6 text-inherit animate-spin" />
-                     <span>{t('signing-in')}</span>
-                  </div>
-               ) : (
-                  <span>{t('generic-sign-in')}</span>
-               )}
-            </div>
-         </button>
+         <AuthButton
+            loading={loading}
+            label={t('generic-sign-up')}
+            loadingLabel={t('signing-up')}
+            style="mt-4"
+         />
       </form>
    );
 }

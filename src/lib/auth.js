@@ -1,6 +1,10 @@
+import { resetPasswordTemplate } from '@/src/ui/reset-password-template';
 import { nextCookies } from 'better-auth/next-js';
 import { betterAuth } from 'better-auth';
+import { Resend } from 'resend';
 import { Pool } from 'pg';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const auth = betterAuth({
    baseURL: process.env.BETTER_AUTH_URL,
@@ -17,6 +21,24 @@ export const auth = betterAuth({
       minPasswordLength: 8,
       maxPasswordLength: 128,
       autoSignIn: true,
+      sendResetPassword: async ({ user, url }) => {
+         if (process.env.NODE_ENV === 'development') {
+            console.log('Reset URL:', url);
+            return;
+         }
+
+         const { subject, html } = resetPasswordTemplate({
+            url,
+            user,
+         });
+
+         await resend.emails.send({
+            from: 'Ethos <noreply@updates.ethos-blog.com>',
+            to: user.email,
+            subject,
+            html,
+         });
+      },
    },
    socialProviders: {
       google: {
@@ -74,6 +96,14 @@ export const auth = betterAuth({
       storeAccountCookie: true,
       accountLinking: {
          enabled: true,
+      },
+   },
+   verification: {
+      modelName: 'verification',
+      fields: {
+         createdAt: 'created_at',
+         expiresAt: 'expires_at',
+         updatedAt: 'updated_at',
       },
    },
    plugins: [nextCookies()],

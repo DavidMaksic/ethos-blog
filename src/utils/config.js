@@ -1,7 +1,7 @@
 import srbFlag from '@/public/srb-flag.png';
 import enFlag from '@/public/en-flag.png';
 
-export const WEBSITE_URL = 'https://ethos-blog.vercel.app';
+export const WEBSITE_URL = 'https://ethos-blog.com';
 export const FUSE_ARTICLES = {
    keys: ['title'],
    includeScore: true,

@@ -15,7 +15,9 @@ function LoginHeader({ mode }) {
          </span>
 
          <h2 className="text-2xl md:text-3xl sm:text-[1.6rem] text-primary-500 dark:text-white/60 font-semibold">
-            {mode === 'signin' ? t('Auth.label-1') : t('Auth.label-2')}
+            {mode === 'signin' && t('Auth.label-1')}
+            {mode === 'signup' && t('Auth.label-2')}
+            {mode === 'forgot' && t('Auth.label-3')}
          </h2>
       </div>
    );

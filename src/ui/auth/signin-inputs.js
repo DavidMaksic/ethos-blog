@@ -1,20 +1,19 @@
 'use client';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { signInSchema } from '@/src/lib/schemas';
 import { authClient } from '@/src/lib/auth-client';
-import { ImSpinner2 } from 'react-icons/im';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
+import AuthButton from '@/src/ui/buttons/auth-button';
 import FormField from '@/src/ui/form-field';
 import Checkbox from '@/src/ui/checkbox';
 import toast from 'react-hot-toast';
 
-function SignInInputs() {
+function SignInInputs({ onForgot }) {
    const t = useTranslations('Auth');
    const router = useRouter();
-   const locale = useLocale();
 
    const [loading, setLoading] = useState(false);
    const [errors, setErrors] = useState({});
@@ -68,7 +67,7 @@ function SignInInputs() {
 
    return (
       <form
-         className="w-full space-y-5 lg:space-y-3 md:space-y-5"
+         className="w-full space-y-5 sm:space-y-6"
          onSubmit={handleSubmit}
          noValidate
       >
@@ -89,32 +88,26 @@ function SignInInputs() {
             />
          </div>
 
-         <Checkbox
-            checked={rememberMe}
-            onChange={(e) => setRememberMe(e.target.checked)}
-            label={t('remember-me')}
-         />
+         <div className="flex items-center justify-between">
+            <Checkbox
+               checked={rememberMe}
+               onChange={(e) => setRememberMe(e.target.checked)}
+               label={t('remember-me')}
+            />
 
-         <button
-            type="submit"
-            disabled={loading}
-            className="w-full rounded-2xl py-2 bg-gradient-to-r from-accent-400/80 dark:from-accent/60 to-accent-600/70 dark:to-accent-400/50 hover:from-transparent hover:to-transparent border-2 border-transparent hover:border-accent/80 transition-[border,--tw-gradient-from,--tw-gradient-to] duration-300 bg-origin-border group disabled:cursor-auto disabled:opacity-65 text-center"
-         >
-            <div
-               className={`text-3xl md:text-4xl text-white dark:text-accent-100/90 group-hover:text-accent group-hover:drop-shadow-xs dark:group-hover:text-accent/90 transition-[color] duration-300 cursor-pointer ${
-                  locale === 'en' ? 'font-logo' : 'font-logo-sr'
-               }`}
+            <span
+               className="text-center text-lg md:text-xl cursor-pointer hover:opacity-75 transition-opacity"
+               onClick={onForgot}
             >
-               {loading ? (
-                  <div className="flex items-center gap-4 justify-center">
-                     <ImSpinner2 className="size-6 text-inherit animate-spin" />
-                     <span>{t('signing-in')}</span>
-                  </div>
-               ) : (
-                  <span>{t('generic-sign-in')}</span>
-               )}
-            </div>
-         </button>
+               {t('forgot-password')}
+            </span>
+         </div>
+
+         <AuthButton
+            loading={loading}
+            label={t('generic-sign-in')}
+            loadingLabel={t('signing-in')}
+         />
       </form>
    );
 }

@@ -71,9 +71,7 @@ function LanguageFilterButton({
             />
          </div>
 
-         <p className={`text-2xl md:text-2xl 2xs:text-[1.65rem] ${styles}`}>
-            {children}
-         </p>
+         <p className={`text-2xl md:text-[1.65rem] ${styles}`}>{children}</p>
       </div>
    );
 }

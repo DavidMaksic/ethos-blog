@@ -30,7 +30,7 @@ function Checkbox({ checked, onChange, label }) {
             </svg>
          </div>
 
-         {label && <span className="text-lg xs:text-xl">{label}</span>}
+         {label && <span className="text-lg md:text-xl">{label}</span>}
       </label>
    );
 }

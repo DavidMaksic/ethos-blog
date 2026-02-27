@@ -1,6 +1,11 @@
 import '@/src/app/[locale]/index.css';
 
-import { Cormorant_Garamond, Great_Vibes, Parisienne } from 'next/font/google';
+import {
+   Cormorant_Garamond,
+   EB_Garamond,
+   Great_Vibes,
+   Parisienne,
+} from 'next/font/google';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { LanguageProvider } from '@/src/context/language-context';
 import { ThemeProvider } from 'next-themes';
@@ -15,6 +20,15 @@ const cormorantGaramond = Cormorant_Garamond({
    style: ['normal', 'italic'],
    weight: ['300', '400', '500', '600', '700'],
    variable: '--font-cormorantGaramond',
+   adjustFontFallback: true,
+});
+
+/* Secondary font */
+const ebGaramond = EB_Garamond({
+   subsets: ['latin'],
+   style: ['normal', 'italic'],
+   weight: ['400', '500', '600', '700', '800'],
+   variable: '--font-ebGaramond',
    adjustFontFallback: true,
 });
 
@@ -43,7 +57,7 @@ async function Layout({ children, params }) {
    return (
       <html lang={locale} suppressHydrationWarning>
          <body
-            className={`h-screen grid grid-cols-[1fr_1fr] md:grid-cols-1 md:grid-rows-1 text-xl font-main text-text selection:bg-accent-400/90 dark:selection:bg-accent-200/50 selection:text-white caret-primary-400 antialiased bg-primary transition-200 ${cormorantGaramond.variable} ${parisienne.variable} ${greatVibes.variable}`}
+            className={`h-screen grid grid-cols-[1fr_1fr] md:grid-cols-1 md:grid-rows-1 text-xl font-main text-text selection:bg-accent-400/90 dark:selection:bg-accent-200/50 selection:text-white caret-primary-400 antialiased bg-primary transition-200 ${cormorantGaramond.variable} ${parisienne.variable} ${greatVibes.variable} ${ebGaramond.variable}`}
          >
             <NextIntlClientProvider locale={locale} messages={messages}>
                <LanguageProvider>

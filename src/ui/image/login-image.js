@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { useMediaQuery } from 'react-responsive';
 import { useTheme } from 'next-themes';
 import { motion } from 'motion/react';
@@ -10,71 +11,139 @@ import image1 from '@/public/image-1.webp';
 import image2 from '@/public/image-2.webp';
 import image3 from '@/public/image-3.jpg';
 import image4 from '@/public/image-4.jpg';
-import image5 from '@/public/image-5.webp';
-import image6 from '@/public/image-6.jpg';
+import image5 from '@/public/image-5.jpg';
+import image6 from '@/public/image-6.webp';
 import image7 from '@/public/image-7.jpg';
 import image8 from '@/public/image-8.webp';
 import image9 from '@/public/image-9.webp';
+import image10 from '@/public/image-10.webp';
+import image11 from '@/public/image-11.webp';
+import image12 from '@/public/image-12.webp';
+import image13 from '@/public/image-13.webp';
+import image14 from '@/public/image-14.webp';
+import image15 from '@/public/image-15.webp';
+import image16 from '@/public/image-16.webp';
+import image17 from '@/public/image-17.webp';
+import image18 from '@/public/image-18.webp';
+import image19 from '@/public/image-19.webp';
+import image20 from '@/public/image-20.webp';
+import image21 from '@/public/image-21.webp';
 
 const images = [
    {
       id: 1,
       url: image1,
-      title: 'Queen Matilda of England',
       credit: 'Creative Assembly',
       lightMode: true,
    },
    {
       id: 2,
       url: image2,
-      title: 'Order of the Dragon',
       credit: 'Creative Assembly',
    },
    {
       id: 3,
       url: image3,
-      title: 'Fall of Constantinople',
       credit: 'Creative Assembly',
    },
    {
       id: 4,
       url: image4,
-      title: 'A Roman Triumph',
-      credit: 'Andrew Carrick Gow',
+      credit: 'Creative Assembly',
       lightMode: true,
    },
    {
       id: 5,
       url: image5,
-      title: 'Roman Legionaries',
       credit: 'Creative Assembly',
    },
    {
       id: 6,
       url: image6,
-      title: 'Hagia Sophia',
       credit: 'Creative Assembly',
       lightMode: true,
    },
    {
       id: 7,
       url: image7,
-      title: 'Lighthouse of Alexandria',
       credit: 'Creative Assembly',
    },
    {
       id: 8,
       url: image8,
-      title: 'Mongol Warriors',
       credit: 'Creative Assembly',
       lightMode: true,
    },
    {
       id: 9,
       url: image9,
-      title: 'British Longbowmen',
       credit: 'Creative Assembly',
       lightMode: true,
+   },
+   {
+      id: 10,
+      url: image10,
+      credit: 'Creative Assembly',
+      lightMode: true,
+   },
+   {
+      id: 11,
+      url: image11,
+      credit: 'Creative Assembly',
+      lightMode: true,
+   },
+   {
+      id: 12,
+      url: image12,
+      credit: 'Creative Assembly',
+   },
+   {
+      id: 13,
+      url: image13,
+      credit: 'Creative Assembly',
+      lightMode: true,
+   },
+   {
+      id: 14,
+      url: image14,
+      credit: 'Creative Assembly',
+      lightMode: true,
+   },
+   {
+      id: 15,
+      url: image15,
+      credit: 'Creative Assembly',
+      lightMode: true,
+   },
+   {
+      id: 16,
+      url: image16,
+      credit: 'Creative Assembly',
+   },
+   {
+      id: 17,
+      url: image17,
+      credit: 'Creative Assembly',
+   },
+   {
+      id: 18,
+      url: image18,
+      credit: 'Creative Assembly',
+   },
+   {
+      id: 19,
+      url: image19,
+      credit: 'Creative Assembly',
+   },
+   {
+      id: 20,
+      url: image20,
+      credit: 'Creative Assembly',
+   },
+   {
+      id: 21,
+      url: image21,
+      credit: 'Creative Assembly',
    },
 ];
 
@@ -82,6 +151,7 @@ function LoginImage() {
    const { resolvedTheme } = useTheme();
    const [image, setImage] = useState(null);
    const isMobile = useMediaQuery({ maxWidth: 768 });
+   const t = useTranslations('Auth');
 
    const [mounted, setMounted] = useState(false);
    useEffect(() => setMounted(true), []);
@@ -126,7 +196,8 @@ function LoginImage() {
                exit={{ opacity: 0 }}
                transition={{ duration: 0.7 }}
             >
-               <span className="italic">{image.title}</span>, {image.credit}
+               {t('credit')}
+               {image.credit}
             </motion.p>
          </div>
       </section>

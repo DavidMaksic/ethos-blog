@@ -33,7 +33,6 @@ function Options() {
 
    // - Headings
    const [headings, setHeadings] = useState([]);
-   console.log('headings: ', headings);
    const [activeId, setActiveId] = useState();
 
    useEffect(() => {

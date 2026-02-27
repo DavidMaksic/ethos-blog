@@ -50,11 +50,11 @@ function MobileMenu() {
                      <div
                         className={`pl-10 xs:pl-6 pr-16 ${locale === 'en' ? 'xs:pr-12' : 'xs:pr-10'} py-2 xs:pt-2.5 pb-4 xs:pb-0 3xs:pb-12 space-y-7 3xs:border-b 3xs:border-b-primary-300 3xs:dark:border-b-primary-300/40`}
                      >
-                        <h2 className="uppercase tracking-wide font-semibold text-accent dark:text-accent-200">
+                        <h2 className="uppercase tracking-wide font-semibold text-accent dark:text-accent-200 xs:mb-6">
                            {t('HomePage.pages-label')}
                         </h2>
 
-                        <div className="space-y-7 xs:space-y-6 text-4xl">
+                        <div className="space-y-7 text-4xl">
                            <Link
                               href="/"
                               className="flex items-center gap-3.5"

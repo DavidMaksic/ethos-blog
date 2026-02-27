@@ -78,3 +78,32 @@ export const signUpSchema = (t) =>
             message: t('password-number'),
          }),
    });
+
+export const forgotPasswordSchema = (t) =>
+   z.object({
+      email: z
+         .string()
+         .trim()
+         .min(1, '*')
+         .check(z.email({ error: t('email-invalid') })),
+   });
+
+export const resetPasswordSchema = (t) =>
+   z
+      .object({
+         password: z
+            .string()
+            .min(1, '*')
+            .min(8, t('password-min', { count: 8 }))
+            .max(72, t('password-max', { count: 72 })),
+         confirmPassword: z.string().min(1, '*'),
+      })
+      .superRefine((data, ctx) => {
+         if (data.password !== data.confirmPassword) {
+            ctx.addIssue({
+               code: 'custom',
+               message: t('passwords-dont-match'),
+               path: ['confirmPassword'],
+            });
+         }
+      });
