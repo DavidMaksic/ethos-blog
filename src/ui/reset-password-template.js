@@ -2,7 +2,7 @@ import { WEBSITE_URL } from '@/src/utils/config';
 
 export function resetPasswordTemplate({ url, user }) {
    const locale = url.includes('/sr/') ? 'sr' : 'en';
-   const imageUrl = `${WEBSITE_URL}/${locale}/email-logo.png`;
+   const imageUrl = `${WEBSITE_URL}/email-logo.png`;
 
    const content = {
       en: {
