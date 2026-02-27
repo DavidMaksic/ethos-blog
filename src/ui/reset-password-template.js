@@ -10,7 +10,7 @@ export function resetPasswordTemplate({ url, user }) {
          name: 'Hi',
          body: 'Click the button below to reset your password.',
          expires: 'This link expires in 1 hour.',
-         button: 'Reset',
+         button: 'Reset password',
          footer:
             "If you didn't request this, you can safely ignore this email.",
       },
@@ -19,7 +19,7 @@ export function resetPasswordTemplate({ url, user }) {
          name: 'Здраво',
          body: 'Кликните дугме испод да ресетујете лозинку.',
          expires: 'Овај линк истиче за 1 сат.',
-         button: 'Ресетуј',
+         button: 'Ресетуј лозинку',
          footer: 'Ако нисте тражили ово, можете игнорисати овај мејл.',
       },
    }[locale];
@@ -95,8 +95,8 @@ export function resetPasswordTemplate({ url, user }) {
                      color: #fff;
                      text-decoration: none;
                      font-weight: 600;
-                     font-size: 18px;
-                     padding: 10px 28px;
+                     font-size: 20px;
+                     padding: 12px 26px;
                      border-radius: 50px;
                      display: inline-block;
                      box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
