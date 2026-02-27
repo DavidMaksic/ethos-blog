@@ -96,7 +96,7 @@ export function resetPasswordTemplate({ url, user }) {
                      text-decoration: none;
                      font-weight: 600;
                      font-size: 20px;
-                     padding: 10px 24px;
+                     padding: 12px 26px;
                      border-radius: 50px;
                      display: inline-block;
                      box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
