@@ -24,7 +24,9 @@ export function resetPasswordTemplate({ url, user }) {
       },
    }[locale];
 
-   return `<!DOCTYPE html>
+   return {
+      subject: content.subject,
+      html: `<!DOCTYPE html>
 <html lang="${locale}">
   <head>
     <meta charset="UTF-8" />
@@ -118,5 +120,6 @@ export function resetPasswordTemplate({ url, user }) {
     </table>
 
   </body>
-</html>`;
+</html>`,
+   };
 }
