@@ -55,9 +55,19 @@ function BookmarkList({ usersBookmarks, param }) {
                   displayedBookmarks.map((item) => (
                      <BookmarkItem bookmark={item} key={item.id} />
                   ))
+               ) : usersBookmarks.length ? (
+                  <motion.span
+                     className="self-center justify-self-center sm:mt-60 sm:mb-44 text-primary-500/80 dark:text-primary-400 text-3xl border border-quaternary dark:border-primary-300/15 rounded-3xl py-8 px-12 bg-white dark:bg-primary-300/15 box-shadow -translate-y-[50%] text-center"
+                     initial={{ opacity: 0 }}
+                     animate={{ opacity: 1 }}
+                     exit={{ opacity: 0 }}
+                     transition={{ duration: 0.3 }}
+                  >
+                     {t('no-bookmark-results')}
+                  </motion.span>
                ) : (
                   <motion.span
-                     className="self-center justify-self-center sm:mt-60 sm:mb-44 text-primary-500/80 dark:text-primary-400 text-3xl border border-quaternary dark:border-primary-300/15 rounded-3xl py-8 px-12 bg-white dark:bg-primary-300/15 box-shadow -translate-y-[20%]"
+                     className="self-center justify-self-center sm:mt-60 sm:mb-44 text-primary-500/80 dark:text-primary-400 text-3xl border border-quaternary dark:border-primary-300/15 rounded-3xl py-8 px-12 bg-white dark:bg-primary-300/15 box-shadow -translate-y-[50%] text-center"
                      initial={{ opacity: 0 }}
                      animate={{ opacity: 1 }}
                      exit={{ opacity: 0 }}

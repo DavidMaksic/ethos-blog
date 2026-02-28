@@ -30,7 +30,7 @@ async function Page({ searchParams }) {
          <h1 className="sr-only">{t('profile-page-bookmarks')}</h1>
 
          <div className="flex justify-between">
-            <BookmarkOptions param={searchParam} />
+            <BookmarkOptions bookmarksExist={!!usersBookmarks.length} />
          </div>
 
          <BookmarkList usersBookmarks={usersBookmarks} param={searchParam} />

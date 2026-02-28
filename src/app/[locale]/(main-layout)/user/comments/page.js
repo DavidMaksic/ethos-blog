@@ -35,7 +35,7 @@ async function Page({ searchParams }) {
          <h1 className="sr-only">{t('H1.profile-page-comments')}</h1>
 
          <div className="flex items-center justify-between">
-            <UserCommentLabel />
+            <UserCommentLabel noComments={!!userComments.length} />
 
             <div
                className={`${
@@ -74,7 +74,7 @@ async function Page({ searchParams }) {
             </div>
          ) : (
             <div className="flex flex-1 items-center justify-center">
-               <span className="text-primary-500/80 dark:text-primary-400 text-3xl border border-quaternary dark:border-primary-300/15 rounded-3xl py-8 px-12 bg-white dark:bg-primary-300/15 w-fit md:w-[80%] text-center box-shadow -translate-y-[80%]">
+               <span className="text-primary-500/80 dark:text-primary-400 text-3xl border border-quaternary dark:border-primary-300/15 rounded-3xl py-8 px-12 bg-white dark:bg-primary-300/15 w-fit md:w-full text-center box-shadow -translate-y-[80%]">
                   {t('Comment.no-comments')}
                </span>
             </div>

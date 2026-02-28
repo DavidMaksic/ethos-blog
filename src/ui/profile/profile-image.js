@@ -46,6 +46,7 @@ function ProfileImage({ user, image }) {
       if (state.success) {
          toast.success(t('pfp-updated'));
          state.success = false;
+         setCurrentImage(undefined);
          refetch();
       }
    }, [state, t, refetch]);

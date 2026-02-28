@@ -1,11 +1,10 @@
 'use client';
 
-import { useActionState, useEffect, useState } from 'react';
-import { AnimatePresence, motion } from 'motion/react';
+import { useActionState, useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { GiCheckMark } from 'react-icons/gi';
 import { updateUser } from '@/src/lib/actions';
 import { ImSpinner2 } from 'react-icons/im';
+import { AnimatePresence, motion } from 'motion/react';
 import toast from 'react-hot-toast';
 
 function UsernameInput() {
@@ -16,6 +15,7 @@ function UsernameInput() {
    });
 
    const [error, setError] = useState(state.error);
+   const formRef = useRef(null);
 
    useEffect(() => {
       if (state.success) {
@@ -25,19 +25,26 @@ function UsernameInput() {
    }, [state.success, t]);
 
    useEffect(() => {
-      if (state.error) {
-         setError(state.error);
-      }
+      if (state.error) setError(state.error);
    }, [state.error]);
 
    useEffect(() => {
-      if (!input.length || input.length < 2 || input.length > 24) {
+      if (!input.length || input.length < 2 || input.length > 24)
          setError(null);
-      }
    }, [input]);
 
+   function handleBlur() {
+      if (input.length > 2 && input.length < 25) {
+         formRef.current?.requestSubmit();
+      }
+   }
+
    return (
-      <form action={action} className="flex flex-col gap-2 relative">
+      <form
+         ref={formRef}
+         action={action}
+         className="flex flex-col gap-2 relative"
+      >
          <div className="flex gap-3 items-center min-h-6">
             <label
                className="text-sm uppercase font-semibold text-primary-400 tracking-wider"
@@ -65,25 +72,15 @@ function UsernameInput() {
             <input
                className="w-[90%] mr-1 text-3xl xs:text-4xl border-b border-b-quaternary outline-none"
                value={input}
+               id="username"
                name="username"
                autoComplete="one-time-code"
                onChange={(e) => setInput(e.target.value)}
+               onBlur={handleBlur}
             />
 
             <AnimatePresence>
-               {!isPending ? (
-                  input?.length > 2 && input?.length < 25 ? (
-                     <motion.button
-                        className="absolute bottom-0 -right-4 md:-right-6.5"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.075 }}
-                     >
-                        <GiCheckMark className="opacity-80 size-9 md:size-12 px-[0.5rem] md:px-3 pt-0.5 rounded-full text-primary-500 dark:text-primary-500 hover:text-green-900/80 dark:hover:text-green-900 bg-white dark:bg-primary-300/40 hover:bg-green-200/60 border border-primary-300/70 dark:border-quaternary hover:border-green-700/30 transition-bg_color_border cursor-pointer" />
-                     </motion.button>
-                  ) : null
-               ) : (
+               {isPending && (
                   <motion.span
                      className="absolute bottom-0 -right-3.5 md:-right-5.5"
                      initial={{ opacity: 0 }}

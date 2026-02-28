@@ -54,7 +54,8 @@
       "pfp-updated": "Профилна слика успешно ажурирана",
       "pfp-warning": "Само слике су дозвољене",
       "email": "Email адреса",
-      "no-bookmarks": "Нема сачуваних чланака"
+      "no-bookmarks": "Још увек нисте сачували ниједан чланак",
+      "no-bookmark-results": "Нема сачуваних чланака"
    },
    "Comment": {
       "label": "Коментари",
@@ -81,7 +82,7 @@
       "delete": "Избриши",
       "deleting": "Избриши",
       "cancel": "Откажи",
-      "no-comments": "Нема постављених коментара!",
+      "no-comments": "Нема постављених коментара",
       "edit": "Измени",
       "editing": "Измени",
       "edit-label-comment": "Измени свој коментар",
@@ -145,9 +146,9 @@
       "password-min": "*Минимум {count} карактера",
       "password-max": "*Максимум {count} карактера",
       "password-number": "*Мора садржати барем један број",
-      "consecutive-underscores": "*Не може садржати узастопне доње црте",
+      "consecutive-underscores": "*Без узастопних доњих црта",
       "leading-underscore": "*Не може почети доњом цртом",
-      "trailing-underscore": "*Не може се завршити доњом цртом",
+      "trailing-underscore": "*Без доње црте на крају",
       "invalid-chars": "*Само слова, бројеви и доње црте",
       "all-numbers": "*Мора садржати слова",
       "remember-me": "Запамти ме",

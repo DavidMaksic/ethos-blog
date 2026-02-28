@@ -54,7 +54,8 @@
       "pfp-updated": "Profile image successfully updated",
       "pfp-warning": "Only images are allowed",
       "email": "Email address",
-      "no-bookmarks": "No bookmarks found"
+      "no-bookmarks": "You haven't bookmarked any article yet",
+      "no-bookmark-results": "No bookmarks found"
    },
    "Comment": {
       "label": "Comments",
@@ -81,7 +82,7 @@
       "deleting": "Deleting",
       "deleted": "Comment deleted",
       "cancel": "Cancel",
-      "no-comments": "You haven't commented yet, join the discussion!",
+      "no-comments": "You haven't commented yet",
       "edit": "Confirm",
       "editing": "Confirming",
       "edit-label-comment": "Edit your comment",
@@ -145,7 +146,7 @@
       "password-min": "*Minimum of {count} characters",
       "password-max": "*Maxiumum of {count} characters",
       "password-number": "*Must contain at least one number",
-      "consecutive-underscores": "*Can't contain consecutive underscores",
+      "consecutive-underscores": "*No consecutive underscores",
       "leading-underscore": "*Can't start with an underscore",
       "trailing-underscore": "*Can't end with an underscore",
       "invalid-chars": "*Only letters, numbers and underscores",
