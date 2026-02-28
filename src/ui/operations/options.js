@@ -74,7 +74,7 @@ function Options() {
          <div className="absolute bottom-0 left-0" ref={bottomRef} />
 
          <IoOptions
-            className={`fixed bottom-13 2xl:bottom-11 lg:bottom-11.5 md:bottom-9 right-24 2xl:right-13 lg:right-15 md:right-9 xs:right-7.5 2xs:right-7 size-16 md:size-20.5 bg-white dark:bg-transparent lg:dark:bg-primary/40 md:dark:bg-primary-200/80 backdrop-blur-3xl border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/25 p-3.5 md:p-4.5 rounded-full box-shadow md:shadow-menu transition-bg_border cursor-pointer z-20 ${
+            className={`fixed bottom-13 2xl:bottom-11 lg:bottom-11.5 md:bottom-9 right-24 2xl:right-12 lg:right-15 md:right-9 xs:right-7.5 2xs:right-7 size-16 md:size-20.5 bg-white dark:bg-transparent lg:dark:bg-primary/40 md:dark:bg-primary-200/80 backdrop-blur-3xl border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/25 p-3.5 md:p-4.5 rounded-full box-shadow md:shadow-menu transition-bg_border cursor-pointer z-20 ${
                !isBellowMd
                   ? 'hover:bg-white/20 dark:hover:bg-primary-400/10'
                   : ''
@@ -96,7 +96,7 @@ function Options() {
          <AnimatePresence>
             {openMenu && (
                <motion.ul
-                  className={`fixed bottom-32 2xl:bottom-30 lg:bottom-30.5 md:bottom-33 right-24 2xl:right-13 lg:right-15 md:right-9 xs:right-7.5 2xs:right-7 px-1 md:px-2 flex flex-col items-center bg-white lg:bg-white dark:bg-transparent lg:dark:bg-primary/40 md:dark:bg-primary-200/80 backdrop-blur-3xl border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/25 rounded-3xl [&_svg]:cursor-pointer box-shadow md:shadow-menu will-change-transform z-20 ${
+                  className={`fixed bottom-32 2xl:bottom-30 lg:bottom-30.5 md:bottom-33 right-24 2xl:right-12 lg:right-15 md:right-9 xs:right-7.5 2xs:right-7 px-1 md:px-2 flex flex-col items-center bg-white lg:bg-white dark:bg-transparent lg:dark:bg-primary/40 md:dark:bg-primary-200/80 backdrop-blur-3xl border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/25 rounded-3xl [&_svg]:cursor-pointer box-shadow md:shadow-menu will-change-transform z-20 ${
                      openTable
                         ? 'md:dark:shadow-none lg:dark:bg-primary/90!'
                         : 'md:dark:shadow-menu-dark'
