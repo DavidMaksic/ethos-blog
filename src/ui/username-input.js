@@ -43,7 +43,7 @@ function UsernameInput() {
       <form
          ref={formRef}
          action={action}
-         className="flex flex-col gap-2 relative"
+         className="flex flex-col gap-2 relative md:order-1"
       >
          <div className="flex gap-3 items-center min-h-6">
             <label

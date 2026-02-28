@@ -10,9 +10,9 @@ function Stats({ title, value, icon, color, order }) {
          </span>
 
          <div className="flex flex-col self-center gap-1.5">
-            <span className="text-xs uppercase font-bold text-primary-400 tracking-wider">
+            <label className="text-xs uppercase font-bold text-primary-400 tracking-wider">
                {title}
-            </span>
+            </label>
 
             <span className="text-3xl xs:font-bold! text-primary-600 xs:text-primary-500 dark:text-primary-600/90 xs:dark:text-primary-600/75 transition-color pl-0.5 font-logo">
                {value || '--'}

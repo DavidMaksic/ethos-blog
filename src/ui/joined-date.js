@@ -9,9 +9,9 @@ async function JoinedDate({ user }) {
 
    return (
       <div className="w-fit md:w-full flex flex-col gap-2 px-8 py-4 pb-5 bg-white dark:bg-primary-300/10 border border-quaternary dark:border-primary-300/15 rounded-3xl box-shadow transition-bg_border">
-         <span className="text-xs md:text-center uppercase font-bold text-primary-400 tracking-wider">
+         <label className="text-xs md:text-center uppercase font-bold text-primary-400 tracking-wider">
             {t('joined-label')}
-         </span>
+         </label>
          <span className="text-[1.3rem] xs:text-2xl md:text-center font-semibold">
             {date}
          </span>

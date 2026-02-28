@@ -54,8 +54,7 @@
       "pfp-updated": "Profile image successfully updated",
       "pfp-warning": "Only images are allowed",
       "email": "Email address",
-      "no-bookmarks": "You haven't bookmarked any article yet",
-      "no-bookmark-results": "No bookmarks found"
+      "no-bookmarks": "No bookmarks found"
    },
    "Comment": {
       "label": "Comments",
@@ -82,7 +81,7 @@
       "deleting": "Deleting",
       "deleted": "Comment deleted",
       "cancel": "Cancel",
-      "no-comments": "You haven't commented yet",
+      "no-comments": "You haven't commented yet, join the discussion!",
       "edit": "Confirm",
       "editing": "Confirming",
       "edit-label-comment": "Edit your comment",
@@ -119,6 +118,7 @@
       "label-1": "Sign in to your account",
       "label-2": "Create your account",
       "label-3": "Reset your password",
+      "label-4": "Password reset",
       "new-profile-label": "Are you new?",
       "old-profile-label": "Already have an account?",
       "create-account": "Create an account",
@@ -154,7 +154,9 @@
       "remember-me": "Remember me",
       "credit": "Artwork by ",
       "changed-your-mind": "Changed your mind?",
-      "return": "Return"
+      "return": "Return",
+      "password-reset-description": "We'll send a reset link to your email.",
+      "reset-email-sent-short": "Email successfully sent!"
    },
    "Error": {
       "message": "Something went wrong...",

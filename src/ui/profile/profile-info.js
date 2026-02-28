@@ -22,7 +22,9 @@ function ProfileInfo({ user }) {
                </h2>
             </div>
 
-            <p className="text-lg xs:text-xl">{user.email}</p>
+            <p className="text-[1.2rem] xs:text-xl text-text font-secondary">
+               {user.email}
+            </p>
          </div>
       </div>
    );

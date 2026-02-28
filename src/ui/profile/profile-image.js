@@ -55,7 +55,7 @@ function ProfileImage({ user, image }) {
 
    return (
       <form
-         className="size-fit flex flex-col items-center gap-4 bg-white dark:bg-primary-300/10 rounded-3xl border border-quaternary dark:border-primary-300/15 text-lg text-[#4d525c] dark:text-slate-300/80 font-medium px-20 lg:px-18 md:px-22 py-6 box-shadow transition-200"
+         className="size-fit sm:w-full flex flex-col items-center gap-4 bg-white dark:bg-primary-300/10 rounded-3xl border border-quaternary dark:border-primary-300/15 text-lg text-[#4d525c] dark:text-slate-300/80 font-medium px-20 lg:px-18 md:px-22 py-6 box-shadow transition-200"
          action={handleImageUpdate}
       >
          <span className="text-sm uppercase font-semibold text-primary-400 tracking-wider">
