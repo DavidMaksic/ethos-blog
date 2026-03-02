@@ -19,7 +19,7 @@ function LoginImage({ url }) {
          />
 
          <Image
-            className={`object-cover transition-opacity duration-700 ease-in-out ${
+            className={`object-cover transition-opacity duration-500 ease-in-out ${
                loaded ? 'opacity-100' : 'opacity-0'
             }`}
             src={url}
