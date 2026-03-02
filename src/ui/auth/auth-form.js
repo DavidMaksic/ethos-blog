@@ -1,29 +1,19 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { useThemeColor } from '@/src/hooks/use-theme-color';
-import { useMediaQuery } from 'react-responsive';
 import { useState } from 'react';
 
 import SignUpInputs from '@/src/ui/auth/signup-inputs';
 import SignInInputs from '@/src/ui/auth/signin-inputs';
+import ForgotInputs from '@/src/ui/auth/forgot-inputs';
 import LoginHeader from '@/src/ui/header/login-header';
 import OAuth from '@/src/ui/auth/oauth';
-import ForgotInputs from '@/src/ui/auth/forgot-inputs';
 
 function AuthForm() {
    const [mode, setMode] = useState('signin');
-   const isMobile = useMediaQuery({ maxWidth: 768 });
-   useThemeColor();
 
    return (
-      <motion.div
-         className="w-[55%] 2xl:w-[67%] xl:w-[80%] lg:w-[85%] md:w-[70%] sm:w-[80%] xs:w-[90%]"
-         initial={{ opacity: 0 }}
-         animate={{ opacity: 1 }}
-         exit={{ opacity: 0 }}
-         transition={{ duration: isMobile ? 0.3 : 0 }}
-      >
+      <div className="w-[55%] 2xl:w-[67%] xl:w-[80%] lg:w-[85%] md:w-[70%] sm:w-[80%] xs:w-[90%]">
          <AnimatePresence mode="wait" initial={false}>
             <motion.div
                layout
@@ -57,7 +47,7 @@ function AuthForm() {
                )}
             </motion.div>
          </AnimatePresence>
-      </motion.div>
+      </div>
    );
 }
 

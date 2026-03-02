@@ -42,7 +42,7 @@ function OAuth({ mode, onToggleMode }) {
                   />
                </div>
 
-               <span className="font-semibold">Google</span>
+               <span className="font-medium dark:font-semibold">Google</span>
             </button>
 
             <button
@@ -60,7 +60,7 @@ function OAuth({ mode, onToggleMode }) {
                   />
                </div>
 
-               <span className="font-semibold">Github</span>
+               <span className="font-medium dark:font-semibold">Github</span>
             </button>
          </div>
 
@@ -79,7 +79,7 @@ function OAuth({ mode, onToggleMode }) {
                <>
                   {t('old-profile-label')}{' '}
                   <span
-                     className="underline underline-offset-2 sm:decoration-primary-600/60 cursor-pointer hover:opacity-80 transition-opacity"
+                     className="underline underline-offset-2 sm:decoration-primary-600/60 cursor-pointer hover:opacity-75 transition-opacity"
                      onClick={onToggleMode}
                   >
                      {t('generic-sign-in')}

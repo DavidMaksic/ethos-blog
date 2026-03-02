@@ -7,8 +7,12 @@ export function useThemeColor() {
    const { resolvedTheme } = useTheme();
 
    useEffect(() => {
-      if (typeof window === 'undefined') return;
+      if (!resolvedTheme) return;
 
+      // - Sync cookie for SSR
+      document.cookie = `theme=${resolvedTheme}; path=/; max-age=31536000`;
+
+      // - Update browser theme color
       const color = resolvedTheme === 'dark' ? '#27251F' : '#fafafa';
       const meta = document.querySelector('meta[name="theme-color"]');
 

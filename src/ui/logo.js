@@ -5,7 +5,7 @@ import { useMediaQuery } from 'react-responsive';
 import { useState } from 'react';
 import { Link } from '@/src/i18n/navigation';
 
-function Logo() {
+function Logo({ className }) {
    const [isHovered, setIsHovered] = useState(false);
 
    const locale = useLocale();
@@ -25,7 +25,7 @@ function Logo() {
          href="/"
          className={`${locale === 'en' && `pt-1 font-logo`} ${
             locale === 'sr' && `pt-2 text-[2.7rem] font-logo-sr`
-         }  styled_text text-center text-5xl bg-gradient-to-r from-accent-800/75 to-accent-600 dark:from-accent-800 dark:to-accent pr-1 pl-0.5 transition-75 outline-none ${
+         }  styled_text text-center text-5xl bg-gradient-to-r from-accent-800/75 to-accent-600 dark:from-accent-800 dark:to-accent pr-1 pl-0.5 transition-75 outline-none ${className} ${
             isHovered && !isMobile
                ? 'hover:from-accent-700 hover:to-accent-700 dark:hover:from-white dark:hover:to-white'
                : ''

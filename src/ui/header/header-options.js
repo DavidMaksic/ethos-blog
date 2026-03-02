@@ -22,6 +22,11 @@ function HeaderOptions() {
    const [mounted, setMounted] = useState(false);
    useEffect(() => setMounted(true), []);
 
+   const changeTheme = (newTheme) => {
+      setTheme(newTheme);
+      document.cookie = `theme=${newTheme}; path=/; max-age=31536000`;
+   };
+
    return (
       <div className="flex items-center gap-2 md:gap-1 sm:gap-1.5">
          <span className="text-primary-400/80 dark:text-primary-500/80 text-2xl mr-4 lg:ml-2 font-extralight select-none md:hidden">
@@ -43,7 +48,9 @@ function HeaderOptions() {
                >
                   <HeaderButton
                      handler={() =>
-                        setTheme(resolvedTheme === 'light' ? 'dark' : 'light')
+                        changeTheme(
+                           resolvedTheme === 'light' ? 'dark' : 'light',
+                        )
                      }
                   >
                      {resolvedTheme === 'dark' ? (

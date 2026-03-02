@@ -55,7 +55,7 @@ function ProfileImage({ user, image }) {
 
    return (
       <form
-         className="size-fit sm:w-full flex flex-col items-center gap-4 bg-white dark:bg-primary-300/10 rounded-3xl border border-quaternary dark:border-primary-300/15 text-lg text-[#4d525c] dark:text-slate-300/80 font-medium px-20 lg:px-18 md:px-22 py-6 box-shadow transition-200"
+         className="size-fit sm:w-full flex flex-col items-center gap-4 bg-white dark:bg-primary-300/10 rounded-3xl border border-quaternary dark:border-primary-300/15 text-lg text-text font-medium px-20 lg:px-18 md:px-22 py-6 box-shadow transition-200"
          action={handleImageUpdate}
       >
          <span className="text-sm uppercase font-semibold text-primary-400 tracking-wider">
@@ -63,14 +63,14 @@ function ProfileImage({ user, image }) {
          </span>
 
          <label
-            className="relative size-24 lg:size-22 md:size-30 hover:opacity-80 cursor-pointer transition-[opacity_0.2s]"
+            className="relative size-24 lg:size-22 md:size-30 cursor-pointer group"
             htmlFor="image"
          >
             <RemoteImage
                imageRef={imageRef}
                imageUrl={profileImage}
                alt="User profile image"
-               styles={`block aspect-square object-cover object-center rounded-full dark:opacity-90 border border-quaternary ${profileImage === defaultPfp ? 'dark:opacity-40!' : ''}`}
+               styles={`block aspect-square object-cover object-center rounded-full dark:opacity-90 border border-primary-300 dark:border-primary-300/40 group-hover:opacity-80 duration-200! ${profileImage === defaultPfp ? 'dark:opacity-40!' : ''}`}
                priority
             />
 
@@ -83,7 +83,7 @@ function ProfileImage({ user, image }) {
                onChange={handlePreviewImage}
             />
 
-            <LuPencil className="absolute right-0 bottom-0 size-7 md:size-9 px-[0.4rem] pt-px rounded-full text-primary-500/80 dark:text-primary-400 bg-white dark:bg-primary-200 border border-primary-300 dark:border-quaternary transition-200" />
+            <LuPencil className="absolute right-0 bottom-0 size-7 md:size-8.5 sm:size-9 px-[0.4rem] pt-px rounded-full text-primary-500/80 dark:text-primary-400 bg-white dark:bg-primary/60 backdrop-blur-3xl border border-primary-300 dark:border-primary-300/40 transition-200" />
          </label>
 
          <input hidden name="oldImage" type="text" defaultValue={image} />

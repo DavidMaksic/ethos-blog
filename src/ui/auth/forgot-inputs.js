@@ -96,7 +96,7 @@ function ForgotInputs({ onBack }) {
 
             <span
                onClick={onBack}
-               className="block text-center mt-2 md:text-2xl underline underline-offset-2 cursor-pointer hover:opacity-75 transition-opacity"
+               className="block text-center mt-2 md:text-2xl underline underline-offset-2 sm:decoration-primary-600/60 cursor-pointer hover:opacity-75 transition-opacity"
             >
                {t('back-to-sign-in')}
             </span>
