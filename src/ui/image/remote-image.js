@@ -1,11 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
 function RemoteImage({
    imageRef = null,
    imageUrl,
+   imageBlur = null,
+   round,
    styles,
    opacity,
    alt,
@@ -13,25 +15,40 @@ function RemoteImage({
 }) {
    const [loaded, setLoaded] = useState(false);
    const opacitySetting = opacity ? opacity : 'opacity-95 dark:opacity-80';
-
    const [mounted, setMounted] = useState(false);
+   const ref = useRef(null);
+
    useEffect(() => setMounted(true), []);
+   useEffect(() => {
+      if (ref.current?.complete) setTimeout(() => setLoaded(true), 50);
+   }, [mounted]);
 
    return (
       <>
          {mounted ? (
-            <Image
-               ref={imageRef}
-               className={`${styles} transition-opacity duration-700 ease-in-out ${
-                  loaded ? opacitySetting : 'opacity-0'
-               }`}
-               src={imageUrl}
-               alt={alt ? alt : 'Image'}
-               onLoad={() => setLoaded(true)}
-               {...props}
-               unoptimized
-               fill
-            />
+            <div className={`absolute inset-0 overflow-hidden ${round}`}>
+               {imageBlur && (
+                  <div
+                     className={`absolute inset-0 scale-110 transition-opacity duration-300 ${loaded ? 'opacity-0' : opacitySetting}`}
+                     style={{
+                        backgroundImage: `url(${imageBlur})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        filter: 'blur(20px)',
+                     }}
+                  />
+               )}
+               <Image
+                  ref={imageRef || ref}
+                  className={`${styles} ${round} transition-opacity duration-300 ease-in-out ${loaded ? opacitySetting : 'opacity-0'}`}
+                  src={imageUrl}
+                  alt={alt ?? 'Image'}
+                  onLoad={() => setTimeout(() => setLoaded(true), 50)}
+                  {...props}
+                  unoptimized
+                  fill
+               />
+            </div>
          ) : (
             <div
                className={`bg-primary-300/10 animate-pulse size-full ${styles}`}

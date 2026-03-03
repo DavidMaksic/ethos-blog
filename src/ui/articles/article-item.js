@@ -43,6 +43,7 @@ const ArticleItem = forwardRef(({ article, style }, ref) => {
             <div className="relative h-50 2xl:h-54 lg:h-52 md:h-auto md:min-w-32">
                <RemoteImage
                   imageUrl={article.image}
+                  imageBlur={article.image_blur}
                   alt="Article image"
                   styles="object-cover border-r border-r-primary-100 dark:border-r-primary-300/5"
                   opacity="opacity-90 dark:opacity-75"

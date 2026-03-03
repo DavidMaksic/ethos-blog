@@ -7,11 +7,10 @@ import Image from 'next/image';
 
 async function ArticleImage({ article, author, date, children }) {
    const locale = await getLocale();
-   const { image, categories } = article;
 
    return (
       <div className="flex flex-col border bg-white/50 dark:bg-primary-300/5 border-primary-300/70 dark:border-primary-300/15 rounded-3xl mt-3 shadow-dashboard dark:shadow-menu-dark transition-bg_border">
-         <MainImage url={image} />
+         <MainImage article={article} />
 
          <div className="flex items-center justify-between gap-6 px-6 py-4 2xl:py-3 font-title">
             <div className="flex gap-4 2xl:gap-3.5 items-center">
@@ -49,7 +48,7 @@ async function ArticleImage({ article, author, date, children }) {
 
                <div className="pointer-events-none">
                   <Category
-                     category={categories}
+                     category={article.categories}
                      customStyles="text-xl! md:text-[1.4rem]! sm:text-[1.2rem]! !font-bold pb-[8px]! sm:pb-[6px]!"
                   />
                </div>

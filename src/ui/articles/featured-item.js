@@ -16,8 +16,10 @@ function FeaturedItem({ article, authors }) {
 
          <RemoteImage
             imageUrl={article.image}
+            imageBlur={article.image_blur}
             alt="Article image"
-            styles="rounded-xl md:rounded-2xl absolute inset-0 h-full w-full object-cover"
+            round="rounded-xl! md:rounded-2xl!"
+            styles="absolute inset-0 h-full w-full object-cover"
          />
 
          <span />

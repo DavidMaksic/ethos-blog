@@ -3,8 +3,8 @@ import { sanitizeHTML } from '@/src/utils/helpers';
 import { FiLink } from 'react-icons/fi';
 
 import parse, { domToReact } from 'html-react-parser';
+import RemoteArticleImage from '@/src/ui/articles/remote-article-image';
 import slugify from 'slugify';
-import Image from 'next/image';
 
 import '@blocknote/core/fonts/inter.css';
 import '@blocknote/mantine/style.css';
@@ -31,16 +31,17 @@ function ArticleContent({ content, article }) {
    const options = {
       replace: (domNode) => {
          if (domNode.name === 'img' && domNode.attribs?.src) {
+            const src = domNode.attribs.src;
+            const url = new URL(src);
+            const width = Number(url.searchParams.get('w')) || 1920;
+            const height = Number(url.searchParams.get('h')) || 1080;
+
             return (
-               <Image
-                  className={domNode.attribs.class}
+               <RemoteArticleImage
                   src={domNode.attribs.src}
-                  alt="Article image"
-                  width={1920}
-                  height={1080}
-                  quality={60}
-                  priority
-                  // sizes="(max-width: 768px) 100vw, 1920px"
+                  className={domNode.attribs.class}
+                  width={width}
+                  height={height}
                />
             );
          }
