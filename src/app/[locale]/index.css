@@ -1110,11 +1110,11 @@ h3 {
    z-index: 40;
 }
 
-/* [data-theme='dark'] .medium-zoom-image--opened {
+[data-theme='dark'] .medium-zoom-image--opened {
    opacity: 55% !important;
 }
 
-.main-image.medium-zoom-image--opened {
+/* .main-image.medium-zoom-image--opened {
    opacity: 75% !important;
 }
 
