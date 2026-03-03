@@ -18,7 +18,7 @@ function FeaturedItem({ article, authors }) {
             imageUrl={article.image}
             imageBlur={article.image_blur}
             alt="Article image"
-            round="rounded-xl! md:rounded-2xl!"
+            round="rounded-xl md:rounded-2xl"
             styles="absolute inset-0 h-full w-full object-cover"
          />
 

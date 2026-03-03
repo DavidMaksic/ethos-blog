@@ -35,8 +35,10 @@ function MainArticle({ article }) {
          <div className="relative md:order-1 h-[26rem] 2xl:h-[23rem] lg:h-[20rem] xs:h-[20rem]">
             <RemoteImage
                imageUrl={article.image}
+               imageBlur={article.image_blur}
                alt="Slider article image"
-               styles="rounded-3xl object-cover border border-primary-200"
+               round="rounded-3xl"
+               styles="object-cover border border-primary-200"
                opacity="opacity-90 dark:opacity-75"
                fetchPriority="high"
                priority
