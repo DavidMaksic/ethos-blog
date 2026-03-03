@@ -4,7 +4,6 @@ import { getCategoriesByLanguage } from '@/src/utils/helpers';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { AnimatePresence } from 'motion/react';
-
 import FeaturedItem from '@/src/ui/articles/featured-item';
 
 function FeaturedArticles({ articles, categories, authors, locale }) {
