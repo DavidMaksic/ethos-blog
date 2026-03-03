@@ -55,7 +55,7 @@ function RemoteArticleImage({
          )}
          <Image
             ref={imgRef}
-            className={`${loaded ? className : ''} transition-opacity duration-700 ${
+            className={`${loaded ? className : ''} article-image transition-opacity duration-700 ${
                loaded ? 'opacity-90 dark:opacity-75' : 'opacity-0'
             }`}
             src={src}

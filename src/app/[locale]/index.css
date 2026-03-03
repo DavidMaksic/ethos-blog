@@ -893,11 +893,6 @@ article .bn-file-block-content-wrapper {
 
 [data-file-block] .bn-visual-media {
    border-radius: 1.6rem !important;
-   opacity: 95% !important;
-}
-
-[data-theme='dark'] [data-file-block] .bn-visual-media {
-   opacity: 80% !important;
 }
 
 [data-theme='dark'] .bn-block-group h2 > strong,
@@ -1109,8 +1104,12 @@ h3 {
    z-index: 40;
 }
 
-.medium-zoom-image--opened {
+.main-image.medium-zoom-image--opened {
    @apply opacity-90! dark:opacity-75!;
+}
+
+.article-image.medium-zoom-image--opened {
+   @apply opacity-70! dark:opacity-55!;
 }
 
 /* .main-image.medium-zoom-image--opened {
