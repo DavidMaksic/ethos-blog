@@ -1,5 +1,6 @@
 import { Crimson_Text, Gentium_Book_Plus } from 'next/font/google';
 import { sanitizeHTML } from '@/src/utils/helpers';
+import { getBlurData } from '@/src/lib/get-blur-data';
 import { FiLink } from 'react-icons/fi';
 
 import parse, { domToReact } from 'html-react-parser';
@@ -8,7 +9,6 @@ import slugify from 'slugify';
 
 import '@blocknote/core/fonts/inter.css';
 import '@blocknote/mantine/style.css';
-import { getBlurData } from '@/src/lib/get-blur-data';
 
 /* English font */
 const crimsonText = Crimson_Text({

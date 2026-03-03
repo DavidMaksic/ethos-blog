@@ -20,7 +20,6 @@ import ArticleHeading from '@/src/ui/articles/article-heading';
 import CommentInput from '@/src/ui/comments/comment-input';
 import ArticleImage from '@/src/ui/articles/article-image';
 import CommentList from '@/src/ui/comments/comment-list';
-import ImageZoom from '@/src/ui/image/image-zoom';
 import Options from '@/src/ui/operations/options';
 
 export const dynamic = 'force-static';
@@ -150,7 +149,6 @@ async function Page({ params }) {
                />
             </ArticleImage>
 
-            <ImageZoom />
             <ArticleContent content={article?.content} article={article} />
 
             <ArticleAuthorInfo author={author} date={date}>

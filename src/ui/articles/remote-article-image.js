@@ -1,6 +1,9 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { useMediaQuery } from 'react-responsive';
+
+import mediumZoom from 'medium-zoom';
 import Image from 'next/image';
 
 function RemoteArticleImage({
@@ -13,16 +16,30 @@ function RemoteArticleImage({
 }) {
    const [loaded, setLoaded] = useState(false);
    const imgRef = useRef(null);
+   const zoomRef = useRef(null);
+   const isMobile = useMediaQuery({ maxWidth: 768 });
 
    useEffect(() => {
       if (imgRef.current?.complete) setTimeout(() => setLoaded(true), 50);
    }, []);
 
+   useEffect(() => {
+      if (!loaded || !imgRef.current) return;
+
+      const timer = setTimeout(() => {
+         zoomRef.current = mediumZoom(imgRef.current, {
+            margin: isMobile ? 22 : 60,
+         });
+      }, 300);
+
+      return () => {
+         clearTimeout(timer);
+         zoomRef.current?.detach();
+      };
+   }, [loaded, isMobile]);
+
    return (
-      <span
-         className={`block w-full relative overflow-hidden ${className}`}
-         style={{ aspectRatio: `${width} / ${height}` }}
-      >
+      <span className={`block w-full relative overflow-hidden ${className}`}>
          {blurDataURL && (
             <span
                className={`absolute inset-0 transition-opacity duration-300 ${isTransparent ? 'scale-80' : 'scale-110'} ${
