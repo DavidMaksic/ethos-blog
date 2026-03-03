@@ -1106,12 +1106,11 @@ h3 {
 
 .medium-zoom-image--opened {
    border-radius: 1.35rem;
-   opacity: 75%;
    z-index: 40;
 }
 
-[data-theme='dark'] .medium-zoom-image--opened {
-   opacity: 55% !important;
+.medium-zoom-image--opened {
+   @apply opacity-90! dark:opacity-75!;
 }
 
 /* .main-image.medium-zoom-image--opened {
