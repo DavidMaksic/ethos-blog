@@ -42,7 +42,7 @@ function RemoteArticleImage({
       <span className={`block w-full relative overflow-hidden ${className}`}>
          {blurDataURL && (
             <span
-               className={`absolute inset-0 transition-opacity duration-700 ${isTransparent ? 'scale-70' : 'scale-110'} ${
+               className={`absolute inset-0 transition-opacity duration-700 ${isTransparent ? 'scale-80' : 'scale-110'} ${
                   loaded ? 'opacity-0' : 'opacity-90 dark:opacity-75'
                }`}
                style={{
