@@ -1,6 +1,5 @@
 import { Crimson_Text, Gentium_Book_Plus } from 'next/font/google';
 import { sanitizeHTML } from '@/src/utils/helpers';
-import { getBlurData } from '@/src/lib/get-blur-data';
 import { FiLink } from 'react-icons/fi';
 
 import parse, { domToReact } from 'html-react-parser';
@@ -29,15 +28,6 @@ const gentium = Gentium_Book_Plus({
 async function ArticleContent({ content, article }) {
    const cleanContent = sanitizeHTML(content);
 
-   const imgSrcs = [...cleanContent.matchAll(/<img[^>]+src="([^"]+)"/g)].map(
-      (m) => m[1].replaceAll('&amp;', '&'),
-   );
-   const blurMap = Object.fromEntries(
-      await Promise.all(
-         imgSrcs.map(async (src) => [src, await getBlurData(src)]),
-      ),
-   );
-
    const options = {
       replace: (domNode) => {
          if (domNode.name === 'img' && domNode.attribs?.src) {
@@ -45,16 +35,20 @@ async function ArticleContent({ content, article }) {
             const url = new URL(src);
             const width = Number(url.searchParams.get('w')) || 1920;
             const height = Number(url.searchParams.get('h')) || 1080;
-            const { base64: blurDataURL, isTransparent } = blurMap[src] ?? {};
 
             return (
                <RemoteArticleImage
                   src={src}
                   className={domNode.attribs.class}
-                  blurDataURL={blurDataURL}
-                  isTransparent={isTransparent}
                   width={width}
                   height={height}
+                  blurDataURL={
+                     article.content_blur_map?.[src.split('?')[0]]?.blurDataURL
+                  }
+                  isTransparent={
+                     article.content_blur_map?.[src.split('?')[0]]
+                        ?.isTransparent
+                  }
                />
             );
          }
