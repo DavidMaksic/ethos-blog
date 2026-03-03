@@ -8,6 +8,7 @@ import slugify from 'slugify';
 
 import '@blocknote/core/fonts/inter.css';
 import '@blocknote/mantine/style.css';
+import { getBlurData } from '@/src/lib/get-blur-data';
 
 /* English font */
 const crimsonText = Crimson_Text({
@@ -25,8 +26,17 @@ const gentium = Gentium_Book_Plus({
    variable: '--font-gentium',
 });
 
-function ArticleContent({ content, article }) {
+async function ArticleContent({ content, article }) {
    const cleanContent = sanitizeHTML(content);
+
+   const imgSrcs = [...cleanContent.matchAll(/<img[^>]+src="([^"]+)"/g)].map(
+      (m) => m[1].replaceAll('&amp;', '&'),
+   );
+   const blurMap = Object.fromEntries(
+      await Promise.all(
+         imgSrcs.map(async (src) => [src, await getBlurData(src)]),
+      ),
+   );
 
    const options = {
       replace: (domNode) => {
@@ -35,11 +45,14 @@ function ArticleContent({ content, article }) {
             const url = new URL(src);
             const width = Number(url.searchParams.get('w')) || 1920;
             const height = Number(url.searchParams.get('h')) || 1080;
+            const { base64: blurDataURL, isTransparent } = blurMap[src] ?? {};
 
             return (
                <RemoteArticleImage
-                  src={domNode.attribs.src}
+                  src={src}
                   className={domNode.attribs.class}
+                  blurDataURL={blurDataURL}
+                  isTransparent={isTransparent}
                   width={width}
                   height={height}
                />
