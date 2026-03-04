@@ -1109,16 +1109,8 @@ h3 {
 }
 
 .article-image.medium-zoom-image--opened {
-   @apply opacity-70! dark:opacity-55!;
+   @apply opacity-70! dark:opacity-50!;
 }
-
-/* .main-image.medium-zoom-image--opened {
-   opacity: 75% !important;
-}
-
-[data-theme='dark'] .main-image.medium-zoom-image--opened {
-   opacity: 75% !important;
-} */
 
 /* Highlighted comment */
 
