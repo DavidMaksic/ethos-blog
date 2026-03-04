@@ -21,16 +21,20 @@ export async function GET(request) {
          });
 
       const arrayBuffer = await response.arrayBuffer();
+      const contentType =
+         response.headers.get('content-type')?.split(';')[0].trim() ||
+         'image/jpeg';
+      const isPng = contentType === 'image/png';
 
       const resized = await sharp(Buffer.from(arrayBuffer))
          .resize(200, 200, { fit: 'inside' })
-         .toFormat('jpeg')
+         .toFormat(isPng ? 'png' : 'jpeg')
          .toBuffer();
 
       return new Response(resized, {
          headers: {
             ...corsHeaders,
-            'Content-Type': 'image/jpeg',
+            'Content-Type': isPng ? 'image/png' : 'image/jpeg',
          },
       });
    } catch (err) {
