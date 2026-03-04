@@ -36,19 +36,19 @@ async function ArticleContent({ content, article }) {
             const width = Number(url.searchParams.get('w')) || 1920;
             const height = Number(url.searchParams.get('h')) || 1080;
 
+            const blurDataURL =
+               article.content_blur_map?.[src.split('?')[0]]?.blurDataURL;
+            const isTransparent =
+               article.content_blur_map?.[src.split('?')[0]]?.isTransparent;
+
             return (
                <RemoteArticleImage
                   src={src}
                   className={domNode.attribs.class}
                   width={width}
                   height={height}
-                  blurDataURL={
-                     article.content_blur_map?.[src.split('?')[0]]?.blurDataURL
-                  }
-                  isTransparent={
-                     article.content_blur_map?.[src.split('?')[0]]
-                        ?.isTransparent
-                  }
+                  blurDataURL={blurDataURL}
+                  isTransparent={isTransparent}
                />
             );
          }
@@ -100,7 +100,6 @@ async function ArticleContent({ content, article }) {
    return (
       <div
          lang={article.code}
-         suppressHydrationWarning
          className={`container text-text my-3 [&_:is(h2,h3)]:font-secondary ${
             crimsonText.variable
          }  ${gentium.variable} ${

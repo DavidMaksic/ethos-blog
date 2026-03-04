@@ -40,19 +40,17 @@ function RemoteArticleImage({
 
    return (
       <span className={`block w-full relative overflow-hidden ${className}`}>
-         {blurDataURL && (
-            <span
-               className={`absolute inset-0 transition-opacity duration-700 ${isTransparent ? 'scale-80' : 'scale-110'} ${
-                  loaded ? 'opacity-0' : 'opacity-90 dark:opacity-75'
-               }`}
-               style={{
-                  backgroundImage: `url(${blurDataURL})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  filter: 'blur(20px)',
-               }}
-            />
-         )}
+         <span
+            className={`absolute inset-0 transition-opacity duration-700 ${isTransparent ? 'scale-85' : 'scale-110'} ${
+               loaded ? 'opacity-0' : 'opacity-90 dark:opacity-75'
+            }`}
+            style={{
+               backgroundImage: blurDataURL ? `url(${blurDataURL})` : undefined,
+               backgroundSize: 'cover',
+               backgroundPosition: 'center',
+               filter: 'blur(20px)',
+            }}
+         />
          <Image
             ref={imgRef}
             className={`${loaded ? className : ''} article-image transition-opacity duration-700 ${
