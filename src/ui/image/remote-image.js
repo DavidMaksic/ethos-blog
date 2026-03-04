@@ -51,7 +51,7 @@ function RemoteImage({
             </div>
          ) : (
             <div
-               className={`bg-primary-300/10 animate-pulse size-full ${styles}`}
+               className={`bg-primary-300/10 animate-pulse size-full ${round} ${styles}`}
             />
          )}
       </>
