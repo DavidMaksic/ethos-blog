@@ -40,7 +40,7 @@ function LanguageButton() {
                styles="rounded-full transition-[opacity]! duration-300!"
                opacity="opacity-80 dark:opacity-70"
                unoptimized
-               priority
+               preload
             />
          </div>
 
@@ -83,7 +83,7 @@ function LanguageButton() {
                               alt={item.lang}
                               onLoad={() => setLoaded(true)}
                               unoptimized
-                              priority
+                              preload
                               fill
                            />
                         </div>

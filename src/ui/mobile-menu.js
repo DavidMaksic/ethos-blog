@@ -124,7 +124,7 @@ function MobileMenu() {
                                        onLoad={() => setLoaded(true)}
                                        alt="Profile image"
                                        unoptimized
-                                       priority
+                                       preload
                                        fill
                                     />
                                  </Link>

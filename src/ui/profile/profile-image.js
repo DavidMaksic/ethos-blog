@@ -71,7 +71,7 @@ function ProfileImage({ user, image }) {
                imageUrl={profileImage}
                alt="User profile image"
                styles={`block aspect-square object-cover object-center rounded-full dark:opacity-90 border border-primary-300 dark:border-primary-300/40 group-hover:opacity-80 duration-200! ${profileImage === defaultPfp ? 'dark:opacity-40!' : ''}`}
-               priority
+               preload
             />
 
             <input

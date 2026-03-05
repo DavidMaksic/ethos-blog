@@ -26,7 +26,7 @@ function LoginImage({ url }) {
             alt="Login image"
             onLoad={() => setLoaded(true)}
             unoptimized
-            priority
+            preload
             fill
          />
 

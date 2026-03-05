@@ -53,7 +53,7 @@ function MainImage({ article }) {
             fetchPriority="high"
             onLoad={() => setTimeout(() => setLoaded(true), 50)}
             unoptimized
-            priority
+            preload
             fill
          />
       </div>

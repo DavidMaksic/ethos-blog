@@ -11,7 +11,7 @@ function ProfileInfo({ user }) {
                imageUrl={profileImage}
                alt="User profile image"
                styles={`block aspect-square object-cover object-center rounded-full border border-quaternary dark:opacity-90 ${profileImage === defaultPfp ? 'dark:opacity-40!' : ''}`}
-               priority
+               preload
             />
          </div>
 

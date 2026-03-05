@@ -41,7 +41,7 @@ function MainArticle({ article }) {
                styles="object-cover border border-primary-200"
                opacity="opacity-90 dark:opacity-75"
                fetchPriority="high"
-               priority
+               preload
             />
          </div>
       </div>

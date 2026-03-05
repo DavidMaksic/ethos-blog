@@ -24,7 +24,7 @@ function ProfileButton() {
                src={profileImage}
                alt="Profile image"
                unoptimized
-               priority
+               preload
                fill
             />
          </div>

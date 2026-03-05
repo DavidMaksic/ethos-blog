@@ -21,7 +21,7 @@ async function ArticleImage({ article, author, date, children }) {
                         src={author.profile_image}
                         alt="Author image"
                         unoptimized
-                        priority
+                        preload
                         fill
                      />
                   ) : (

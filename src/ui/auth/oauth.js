@@ -37,7 +37,7 @@ function OAuth({ mode, onToggleMode }) {
                      src="https://authjs.dev/img/providers/google.svg"
                      alt="Google logo"
                      unoptimized
-                     priority
+                     preload
                      fill
                   />
                </div>
@@ -54,7 +54,7 @@ function OAuth({ mode, onToggleMode }) {
                      src="https://authjs.dev/img/providers/github.svg"
                      alt="Github logo"
                      unoptimized
-                     priority
+                     preload
                      fill
                      className="dark:invert"
                   />
