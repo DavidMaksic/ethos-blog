@@ -31,6 +31,22 @@ export async function getArticle(slug) {
    return data[0];
 }
 
+export async function getArticleMetadata(slug) {
+   const { data, error } = await supabase
+      .from('articles')
+      .select('id, title, image, description, authors(full_name)')
+      .eq('slug', slug)
+      .single();
+
+   if (error) throw new Error('Failed to fetch article');
+   return data;
+}
+
+export async function getArticleSlugs() {
+   const { data } = await supabase.from('articles').select('slug');
+   return data;
+}
+
 export async function getMainArticles() {
    const { data, error } = await supabase
       .from('articles')

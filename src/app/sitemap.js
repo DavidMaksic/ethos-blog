@@ -1,7 +1,7 @@
 import { LOCALES, WEBSITE_URL, DEFAULT_LOCALE } from '@/src/utils/config';
 import { getArticles } from '@/src/lib/data-service';
 
-export const revalidate = 86400; // Revalidate once a day
+export const revalidate = 604800; // Revalidate once a week
 
 function createAlternates(path) {
    return LOCALES.reduce((acc, locale) => {
@@ -29,8 +29,8 @@ export default async function sitemap() {
                path === ''
                   ? 'daily'
                   : path === '/archive'
-                  ? 'weekly'
-                  : 'monthly',
+                    ? 'weekly'
+                    : 'monthly',
             priority: path === '' ? 1.0 : path === '/archive' ? 0.6 : 0.5,
             alternates: createAlternates(path),
          });

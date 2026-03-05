@@ -1,7 +1,7 @@
 import {
-   getArticles,
    getMainArticles,
    getCategories,
+   getArticles,
    getAuthors,
 } from '@/src/lib/data-service';
 import { getTranslations, setRequestLocale } from 'next-intl/server';

@@ -1,4 +1,6 @@
 import {
+   getArticleMetadata,
+   getArticleSlugs,
    getBookmarks,
    getArticles,
    getSettings,
@@ -34,7 +36,7 @@ export async function generateMetadata({ params }) {
       description,
       image,
       authors: { full_name },
-   } = await getArticle(slug);
+   } = await getArticleMetadata(slug);
 
    const prefix = locale === 'en' ? '' : `/${locale}`;
 
@@ -78,18 +80,21 @@ export async function generateMetadata({ params }) {
    };
 }
 
+export async function generateStaticParams() {
+   const articles = await getArticleSlugs();
+   return articles.map((article) => ({ slug: article.slug }));
+}
+
 async function Page({ params }) {
-   const [param, articles, bookmarks, comment_length] = await Promise.all([
-      params,
+   const { slug, locale } = await params;
+   setRequestLocale(locale);
+
+   const [article, articles, bookmarks, comment_length] = await Promise.all([
+      getArticle(slug),
       getArticles(),
       getBookmarks(),
       getSettings(),
    ]);
-   const { slug, locale } = param;
-   setRequestLocale(locale);
-
-   // - Article logic
-   const article = await getArticle(slug);
 
    if (!article) {
       notFound();
