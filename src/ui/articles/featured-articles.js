@@ -7,6 +7,7 @@ import { AnimatePresence } from 'motion/react';
 import FeaturedItem from '@/src/ui/articles/featured-item';
 
 function FeaturedArticles({ articles, categories, authors, locale }) {
+   const t = useTranslations('HomePage');
    const [index, setIndex] = useState(0);
    const [currentCategory, setCurrentCategory] = useState(categories?.at(0));
 
@@ -42,13 +43,6 @@ function FeaturedArticles({ articles, categories, authors, locale }) {
       (item) => Number(item.category_id) === currentCategory?.id,
    );
 
-   const t = useTranslations('HomePage');
-   const [loading, setLoading] = useState(true);
-
-   useEffect(() => {
-      setLoading(false);
-   }, []);
-
    return (
       <div className="flex flex-col gap-10 my-14">
          <h2 className="flex items-center gap-2 self-center text-4xl lg:text-3xl md:text-4xl">
@@ -60,21 +54,13 @@ function FeaturedArticles({ articles, categories, authors, locale }) {
 
          <div className="grid grid-cols-3 md:flex md:flex-col gap-6 lg:gap-4 md:gap-6">
             <AnimatePresence mode="wait">
-               {!loading ? (
-                  featuredArticles.map((item) => (
-                     <FeaturedItem
-                        article={item}
-                        authors={authors}
-                        key={item.id}
-                     />
-                  ))
-               ) : (
-                  <>
-                     <div className="h-[30rem] lg:h-[25rem] md:h-[20rem] bg-primary-300/45 dark:bg-primary-300/18 rounded-2xl animate-skeleton" />
-                     <div className="h-[30rem] lg:h-[25rem] md:h-[20rem] bg-primary-300/45 dark:bg-primary-300/18 rounded-2xl animate-skeleton" />
-                     <div className="h-[30rem] lg:h-[25rem] md:h-[20rem] bg-primary-300/45 dark:bg-primary-300/18 rounded-2xl animate-skeleton" />
-                  </>
-               )}
+               {featuredArticles.map((item) => (
+                  <FeaturedItem
+                     article={item}
+                     authors={authors}
+                     key={item.id}
+                  />
+               ))}
             </AnimatePresence>
          </div>
       </div>
