@@ -1,14 +1,16 @@
 'use client';
 
+import { applyPagination, getSortedItems } from '@/src/utils/helpers';
 import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { FilterArticles } from '@/src/utils/filter-articles';
+import { FUSE_ARTICLES } from '@/src/utils/config';
 import { useLanguage } from '@/src/context/language-context';
 
 import ArticleItem from '@/src/ui/articles/article-item';
 import Pagination from '@/src/ui/operations/pagination';
+import Fuse from 'fuse.js';
 
 function Articles({ isArchive = false, articles, categories, style }) {
    const { language } = useLanguage();
@@ -16,7 +18,6 @@ function Articles({ isArchive = false, articles, categories, style }) {
    const searchParams = useSearchParams();
 
    const [loading, setLoading] = useState(true);
-   useEffect(() => setLoading(false), []);
 
    // Extract client-side params
    const sort = searchParams.get('sort');
@@ -25,30 +26,69 @@ function Articles({ isArchive = false, articles, categories, style }) {
    const category = searchParams.get('category');
    const page = Number(searchParams.get('page') || 1);
 
-   const { filteredArticles, paginatedArticles } = useMemo(
-      () =>
-         FilterArticles(articles, {
-            isArchive,
-            search,
-            lang,
-            category,
-            sort,
-            page,
-            language,
-            categories,
-         }),
-      [
-         articles,
-         isArchive,
-         sort,
-         search,
-         lang,
-         page,
-         category,
-         language,
-         categories,
-      ],
+   useEffect(() => setLoading(false), []);
+
+   // Find active category
+   const currentCategory = categories.find(
+      (item) =>
+         item.category ===
+         category?.charAt(0).toUpperCase() + category?.slice(1),
    );
+
+   const fuse = useMemo(
+      () => (search ? new Fuse(articles, FUSE_ARTICLES) : null),
+      [articles, search],
+   );
+
+   // Sort, search, filter, pagination
+   const { filteredArticles, paginatedArticles } = useMemo(() => {
+      if (!isArchive) {
+         return {
+            filteredArticles: articles,
+            paginatedArticles: articles?.slice(0, 3),
+         };
+      }
+
+      let result = [...articles];
+
+      // 1. Search (Fuse.js)
+      if (fuse && search) result = fuse.search(search).map(({ item }) => item);
+
+      // 2. Filter language + category
+      const category_id = currentCategory?.id;
+
+      result = result.filter((item) => {
+         const matchesCategory =
+            !currentCategory || item.category_id === category_id;
+
+         const matchesLanguage = lang
+            ? item.code === lang
+            : item.code === language.code;
+
+         return matchesCategory && matchesLanguage;
+      });
+
+      // 3. Sort
+      if (sort) result = getSortedItems(sort, result);
+
+      // 4. Pagination
+      const paginatedResult = applyPagination(page, result);
+
+      return {
+         filteredArticles: result,
+         paginatedArticles: paginatedResult,
+      };
+   }, [
+      articles,
+      sort,
+      search,
+      lang,
+      page,
+      currentCategory,
+      language,
+      isArchive,
+      fuse,
+   ]);
 
    const arr = isArchive ? [...Array(6)] : [...Array(3)];
 

@@ -3,6 +3,35 @@ import { STOP_WORDS } from '@/src/utils/config';
 import { enUS, sr } from 'date-fns/locale';
 import sanitizeHtml from 'sanitize-html';
 
+export function getSortedItems(param, items) {
+   if (!items?.length) return items;
+
+   const sort = param ?? 'created_at-asc';
+   const [field, direction] = sort.split('-');
+
+   const modifier = direction === 'asc' ? 1 : -1;
+   const dateModifier = direction === 'asc' ? -1 : 1;
+
+   return [...items].sort((a, b) => {
+      // 1. Title
+      if (field === 'title') {
+         if (a.articles) {
+            return a.articles.title.localeCompare(b.articles.title) * modifier;
+         } else {
+            return a.title.localeCompare(b.title) * modifier;
+         }
+      }
+
+      // 2. Dates (created_at, bookmarked_at)
+      if (typeof a[field] === 'string') {
+         return (new Date(a[field]) - new Date(b[field])) * dateModifier;
+      }
+
+      // 3. Numbers
+      return (a[field] - b[field]) * modifier;
+   });
+}
+
 export function getMainArticles(array) {
    const englishArticles = array.filter((item) => item.code === 'en').reverse();
    const serbianArticles = array.filter((item) => item.code === 'sr').reverse();
@@ -21,6 +50,16 @@ export function getCategoriesByLanguage(array) {
    );
 
    return { englishCategories, serbianCategories };
+}
+
+export function applyPagination(page, result) {
+   const pageSize = Number(process.env.NEXT_PUBLIC_PAGE_SIZE || 10);
+   const maxPage = Math.ceil(result.length / pageSize) || 1;
+   const safePage = page > maxPage ? 1 : page;
+
+   const from = (safePage - 1) * pageSize;
+   const to = from + pageSize;
+   return result.slice(from, to);
 }
 
 const localeMap = {
@@ -119,43 +158,4 @@ export function getRelatedArticles(articles, article, limit = 2) {
    return hasMatches
       ? scored.filter((item) => item.score > 0).slice(0, limit)
       : scored.slice(0, limit);
-}
-
-export function getSortedItems(param, items) {
-   if (!items?.length) return items;
-
-   const sort = param ?? 'created_at-asc';
-   const [field, direction] = sort.split('-');
-
-   const modifier = direction === 'asc' ? 1 : -1;
-   const dateModifier = direction === 'asc' ? -1 : 1;
-
-   return [...items].sort((a, b) => {
-      // 1. Title
-      if (field === 'title') {
-         if (a.articles) {
-            return a.articles.title.localeCompare(b.articles.title) * modifier;
-         } else {
-            return a.title.localeCompare(b.title) * modifier;
-         }
-      }
-
-      // 2. Dates (created_at, bookmarked_at)
-      if (typeof a[field] === 'string') {
-         return (new Date(a[field]) - new Date(b[field])) * dateModifier;
-      }
-
-      // 3. Numbers
-      return (a[field] - b[field]) * modifier;
-   });
-}
-
-export function applyPagination(page, result) {
-   const pageSize = Number(process.env.NEXT_PUBLIC_PAGE_SIZE || 10);
-   const maxPage = Math.ceil(result.length / pageSize) || 1;
-   const safePage = page > maxPage ? 1 : page;
-
-   const from = (safePage - 1) * pageSize;
-   const to = from + pageSize;
-   return result.slice(from, to);
 }
