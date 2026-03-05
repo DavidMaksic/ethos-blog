@@ -10,15 +10,26 @@ export async function POST(req) {
    try {
       const { slug, changes } = await req.json();
 
-      // 1. Handle creation or deletion
-      if (changes?.action === 'delete' || changes?.action === 'create') {
+      // 1. Handle featuring
+      if (changes?.action === 'feature-update') {
+         LOCALES.forEach((locale) => {
+            revalidatePath(`/${locale}`);
+         });
+      }
+
+      // 2. Handle creation or deletion
+      if (
+         changes?.action === 'delete' ||
+         changes?.action === 'create' ||
+         changes?.action === 'misc'
+      ) {
          LOCALES.forEach((locale) => {
             revalidatePath(`/${locale}`);
             revalidatePath(`/${locale}/archive`);
          });
       }
 
-      // 2. Handle update
+      // 3. Handle update
       if (changes?.action === 'update') {
          if (changes?.content || changes?.metadata) {
             revalidateTag(`article-${slug}`, 'max');

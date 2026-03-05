@@ -23,7 +23,7 @@ import CommentList from '@/src/ui/comments/comment-list';
 import Options from '@/src/ui/operations/options';
 
 export const dynamic = 'force-static';
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
