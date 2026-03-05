@@ -7,7 +7,7 @@ import { authClient } from '@/src/lib/auth-client';
 import { ImSpinner2 } from 'react-icons/im';
 import { LuPencil } from 'react-icons/lu';
 
-import RemoteImage from '@/src/ui/image/remote-image';
+import RemoteProfileImage from '@/src/ui/image/remote-profile-image';
 import defaultPfp from '@/public/default-pfp.png';
 import toast from 'react-hot-toast';
 
@@ -66,7 +66,7 @@ function ProfileImage({ user, image }) {
             className="relative size-24 lg:size-22 md:size-30 cursor-pointer group"
             htmlFor="image"
          >
-            <RemoteImage
+            <RemoteProfileImage
                imageRef={imageRef}
                imageUrl={profileImage}
                alt="User profile image"

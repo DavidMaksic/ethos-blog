@@ -61,10 +61,13 @@ const BookmarkItem = forwardRef(({ bookmark }, ref) => {
 
             <RemoteImage
                imageUrl={bookmark.image}
+               imageBlur={bookmark.image_blur}
+               round="rounded-xl"
+               styles="absolute translate-x-[30%] xs:translate-x-[45%] object-cover [mask-image:linear-gradient(to_right,transparent,black)] [mask-mode:alpha] [mask-size:100%_100%] [mask-repeat:no-repeat]"
+               opacity="opacity-100 dark:opacity-70"
                alt="bookmark image"
-               styles="rounded-xl opacity-100 dark:opacity-70 absolute translate-x-[30%] xs:translate-x-[45%] object-cover [mask-image:linear-gradient(to_right,transparent,black)] [mask-mode:alpha] [mask-size:100%_100%] [mask-repeat:no-repeat]"
-               priority
-            />
+               isBookmark={true}
+               />
          </Link>
       </motion.div>
    );

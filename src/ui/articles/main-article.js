@@ -40,8 +40,8 @@ function MainArticle({ article }) {
                round="rounded-3xl"
                styles="object-cover border border-primary-200"
                opacity="opacity-90 dark:opacity-75"
-               fetchPriority="high"
-               priority
+               // fetchPriority="high"
+               // priority
             />
          </div>
       </div>

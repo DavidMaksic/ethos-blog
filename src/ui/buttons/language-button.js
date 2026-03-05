@@ -5,7 +5,7 @@ import { useLanguage } from '@/src/context/language-context';
 import { LANGUAGES } from '@/src/utils/config';
 import { useState } from 'react';
 
-import RemoteImage from '@/src/ui/image/remote-image';
+import RemoteProfileImage from '@/src/ui/image/remote-profile-image';
 import Image from 'next/image';
 
 function LanguageButton() {
@@ -34,7 +34,7 @@ function LanguageButton() {
          }}
       >
          <div className="relative size-7 sm:size-[2.05rem]! rounded-full border border-primary-300 dark:border-primary-300/50">
-            <RemoteImage
+            <RemoteProfileImage
                imageUrl={language.flag}
                alt="Language flag"
                styles="rounded-full transition-[opacity]! duration-300!"

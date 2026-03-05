@@ -1,4 +1,4 @@
-import RemoteImage from '@/src/ui/image/remote-image';
+import RemoteProfileImage from '@/src/ui/image/remote-profile-image';
 import defaultPfp from '@/public/default-pfp.png';
 
 function ProfileInfo({ user }) {
@@ -7,7 +7,7 @@ function ProfileInfo({ user }) {
    return (
       <div className="self-start min-w-123 lg:min-w-110 max-w-130 lg:max-w-110 md:min-w-full md:max-w-full flex flex-col items-center gap-6 bg-white dark:bg-primary-300/10 border border-quaternary dark:border-primary-300/15 rounded-3xl px-20 md:px-10 py-20 2xl:py-16 text-3xl box-shadow transition-bg_border">
          <div className="relative size-30 lg:size-26 md:size-30">
-            <RemoteImage
+            <RemoteProfileImage
                imageUrl={profileImage}
                alt="User profile image"
                styles={`block aspect-square object-cover object-center rounded-full border border-quaternary dark:opacity-90 ${profileImage === defaultPfp ? 'dark:opacity-40!' : ''}`}

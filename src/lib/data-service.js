@@ -34,7 +34,7 @@ export async function getArticle(slug) {
 export async function getMainArticles() {
    const { data, error } = await supabase
       .from('articles')
-      .select('id, title, image, description, slug, code')
+      .select('id, title, image, image_blur, description, slug, code')
       .eq('status', 'published')
       .eq('main_feature', 'true')
       .order('index');
@@ -95,7 +95,7 @@ export async function getBookmarksByID(userID) {
    const { data, error } = await supabase
       .from('bookmarks')
       .select(
-         '*, articles (id, created_at, title, image, category_id, slug, categories(*))',
+         '*, articles (id, created_at, title, image, image_blur, category_id, slug, categories(*))',
       )
       .eq('user_id', userID);
 

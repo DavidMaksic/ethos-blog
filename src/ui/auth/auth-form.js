@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
+import { useThemeColor } from '@/src/hooks/use-theme-color';
 import { useState } from 'react';
 
 import SignUpInputs from '@/src/ui/auth/signup-inputs';
@@ -11,6 +12,7 @@ import OAuth from '@/src/ui/auth/oauth';
 
 function AuthForm() {
    const [mode, setMode] = useState('signin');
+   useThemeColor();
 
    return (
       <div className="w-[55%] 2xl:w-[67%] xl:w-[80%] lg:w-[85%] md:w-[70%] sm:w-[80%] xs:w-[90%]">
