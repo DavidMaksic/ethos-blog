@@ -43,7 +43,7 @@ export async function getArticleMetadata(slug) {
 }
 
 export async function getArticleSlugs() {
-   const { data } = await supabase.from('articles').select('slug');
+   const { data } = await supabase.from('articles').select('slug, code');
    return data;
 }
 

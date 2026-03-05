@@ -82,7 +82,11 @@ export async function generateMetadata({ params }) {
 
 export async function generateStaticParams() {
    const articles = await getArticleSlugs();
-   return articles.map((article) => ({ slug: article.slug }));
+
+   return articles.map((article) => ({
+      locale: article.code,
+      slug: article.slug,
+   }));
 }
 
 async function Page({ params }) {
