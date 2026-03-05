@@ -24,109 +24,137 @@ import image19 from '@/public/image-19.webp';
 import image20 from '@/public/image-20.webp';
 import image21 from '@/public/image-21.webp';
 import image22 from '@/public/image-22.webp';
+import image23 from '@/public/image-23.jpg';
 
 const images = [
    {
       id: 1,
       url: image1,
       lightMode: true,
+      credit: 'Relic Entertainment',
    },
    {
       id: 2,
       url: image2,
+      credit: 'Relic Entertainment',
    },
    {
       id: 3,
       url: image3,
+      credit: 'Relic Entertainment',
    },
    {
       id: 4,
       url: image4,
+      credit: 'Relic Entertainment',
    },
    {
       id: 5,
       url: image5,
+      credit: 'Mohawk Games',
    },
    {
       id: 6,
       url: image6,
+      credit: 'Relic Entertainment',
       lightMode: true,
    },
    {
       id: 7,
       url: image7,
+      credit: 'Relic Entertainment',
    },
    {
       id: 8,
       url: image8,
+      credit: 'Paradox Interactive',
       lightMode: true,
    },
    {
       id: 9,
       url: image9,
+      credit: 'Relic Entertainment',
       lightMode: true,
    },
    {
       id: 10,
       url: image10,
+      credit: 'Relic Entertainment',
       lightMode: true,
    },
    {
       id: 11,
       url: image11,
+      credit: 'Relic Entertainment',
       lightMode: true,
    },
    {
       id: 12,
       url: image12,
+      credit: 'Relic Entertainment',
       lightMode: true,
    },
    {
       id: 13,
       url: image13,
+      credit: 'Paradox Interactive',
       lightMode: true,
    },
    {
       id: 14,
       url: image14,
+      credit: 'Paradox Interactive',
    },
    {
       id: 15,
       url: image15,
+      credit: 'Paradox Interactive',
       lightMode: true,
    },
    {
       id: 16,
       url: image16,
+      credit: 'Paradox Interactive',
       lightMode: true,
    },
    {
       id: 17,
       url: image17,
+      credit: 'Paradox Interactive',
       lightMode: true,
    },
    {
       id: 18,
       url: image18,
+      credit: 'Paradox Interactive',
       lightMode: true,
    },
    {
       id: 19,
       url: image19,
+      credit: 'Paradox Interactive',
       lightMode: true,
    },
    {
       id: 20,
       url: image20,
+      credit: 'Paradox Interactive',
       lightMode: true,
    },
    {
       id: 21,
       url: image21,
+      credit: 'Paradox Interactive',
    },
    {
       id: 22,
       url: image22,
+      credit: 'Paradox Interactive',
+   },
+   {
+      id: 23,
+      url: image23,
+      credit: 'Paradox Interactive',
    },
 ];
 
@@ -149,9 +177,9 @@ async function LoginBackground() {
                <LoginImage url={image.url} />
             </div>
 
-            <p className="absolute right-4 bottom-2 text-lg lg:text-base  text-white/80 dark:text-white/60">
+            <p className="absolute right-4 bottom-2 text-lg lg:text-base  text-white/80 dark:text-white/60 md:hidden">
                {t('Auth.credit')}
-               Paradox Interactive
+               {image.credit}
             </p>
          </div>
       </section>
