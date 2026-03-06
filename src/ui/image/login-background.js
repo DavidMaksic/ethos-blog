@@ -4,11 +4,11 @@ import LoginImage from '@/src/ui/image/login-image';
 
 import image1 from '@/public/image-1.webp';
 import image2 from '@/public/image-2.webp';
-import image3 from '@/public/image-3.jpg';
-import image4 from '@/public/image-4.jpg';
-import image5 from '@/public/image-5.jpg';
+import image3 from '@/public/image-3.webp';
+import image4 from '@/public/image-4.webp';
+import image5 from '@/public/image-5.webp';
 import image6 from '@/public/image-6.webp';
-import image7 from '@/public/image-7.jpg';
+import image7 from '@/public/image-7.webp';
 import image8 from '@/public/image-8.webp';
 import image9 from '@/public/image-9.webp';
 import image10 from '@/public/image-10.webp';
@@ -17,14 +17,14 @@ import image12 from '@/public/image-12.webp';
 import image13 from '@/public/image-13.webp';
 import image14 from '@/public/image-14.webp';
 import image15 from '@/public/image-15.webp';
-import image16 from '@/public/image-16.jpg';
-import image17 from '@/public/image-17.jpg';
-import image18 from '@/public/image-18.jpg';
+import image16 from '@/public/image-16.webp';
+import image17 from '@/public/image-17.webp';
+import image18 from '@/public/image-18.webp';
 import image19 from '@/public/image-19.webp';
 import image20 from '@/public/image-20.webp';
 import image21 from '@/public/image-21.webp';
 import image22 from '@/public/image-22.webp';
-import image23 from '@/public/image-23.jpg';
+import image23 from '@/public/image-23.webp';
 
 const images = [
    {
@@ -154,7 +154,8 @@ const images = [
    {
       id: 23,
       url: image23,
-      credit: 'Paradox Interactive',
+      credit: 'Crytek',
+      lightMode: true,
    },
 ];
 
