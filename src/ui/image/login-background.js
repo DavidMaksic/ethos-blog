@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { cookies } from 'next/headers';
-import LoginImage from '@/src/ui/image/login-image';
+import MobileLoginImage from './mobile-login-image';
 
 import image1 from '@/public/image-1.webp';
 import image2 from '@/public/image-2.webp';
@@ -25,6 +25,7 @@ import image20 from '@/public/image-20.webp';
 import image21 from '@/public/image-21.webp';
 import image22 from '@/public/image-22.webp';
 import image23 from '@/public/image-23.webp';
+import image24 from '@/public/image-24.webp';
 
 const images = [
    {
@@ -157,6 +158,12 @@ const images = [
       credit: 'Crytek',
       lightMode: true,
    },
+   {
+      id: 24,
+      url: image24,
+      credit: 'Warhorse Studios',
+      lightMode: true,
+   },
 ];
 
 async function LoginBackground() {
@@ -174,14 +181,11 @@ async function LoginBackground() {
          <div className="relative size-full">
             <div className="absolute inset-0 hidden md:block auth-background-gradient" />
 
-            <div className="absolute inset-0 md:hidden">
-               <LoginImage url={image.url} />
-            </div>
-
-            <p className="absolute right-4 bottom-2 text-lg lg:text-base  text-white/80 dark:text-white/60 md:hidden">
-               {t('Auth.credit')}
-               {image.credit}
-            </p>
+            <MobileLoginImage
+               url={image.url}
+               credit={image.credit}
+               creditLabel={t('Auth.credit')}
+            />
          </div>
       </section>
    );
