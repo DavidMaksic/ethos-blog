@@ -1,6 +1,8 @@
 import { getTranslations } from 'next-intl/server';
 import { cookies } from 'next/headers';
+
 import MobileLoginImage from './mobile-login-image';
+import ReactDOM from 'react-dom';
 
 import image1 from '@/public/image-1.webp';
 import image2 from '@/public/image-2.webp';
@@ -175,6 +177,12 @@ async function LoginBackground() {
 
    const image =
       eligibleImages[Math.floor(Math.random() * eligibleImages.length)];
+
+   ReactDOM.preload(image.url.src, {
+      as: 'image',
+      fetchPriority: 'high',
+      type: 'image/webp',
+   });
 
    return (
       <section className="fixed inset-0 -z-10">
