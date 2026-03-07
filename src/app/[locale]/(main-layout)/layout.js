@@ -13,7 +13,6 @@ import { LanguageProvider } from '@/src/context/language-context';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
 import { WEBSITE_URL } from '@/src/utils/config';
-import { Analytics } from '@vercel/analytics/next';
 import { notFound } from 'next/navigation';
 import { routing } from '@/src/i18n/routing';
 import { Toaster } from 'react-hot-toast';
@@ -188,7 +187,6 @@ export default async function RootLayout({ children, params }) {
                      <PageAnimation>
                         {children}
                         <SpeedInsights />
-                        <Analytics />
                      </PageAnimation>
 
                      <Footer />
