@@ -1,11 +1,10 @@
 import { LOCALES, WEBSITE_URL, DEFAULT_LOCALE } from '@/src/utils/config';
 import { getArticles } from '@/src/lib/data-service';
 
-export const revalidate = 604800; // Revalidate once a week
+export const revalidate = 604800;
 
 function createAlternates(path) {
    return LOCALES.reduce((acc, locale) => {
-      // Only add locale prefix if it's not the default locale
       const prefix = locale === DEFAULT_LOCALE ? '' : `/${locale}`;
       acc[locale] = `${WEBSITE_URL}${prefix}${path}`;
       return acc;
@@ -17,7 +16,7 @@ export default async function sitemap() {
    const now = new Date().toISOString();
    const urls = [];
 
-   // Static pages
+   // - Static pages
    const staticPages = ['', '/archive', '/about'];
    staticPages.forEach((path) => {
       LOCALES.forEach((locale) => {
@@ -37,20 +36,18 @@ export default async function sitemap() {
       });
    });
 
-   // Article pages
+   // - Article pages
    articles.forEach((article) => {
-      LOCALES.forEach((locale) => {
-         const prefix = locale === DEFAULT_LOCALE ? '' : `/${locale}`;
-         urls.push({
-            url: `${WEBSITE_URL}${prefix}/${article.slug}`,
-            lastModified: article.updatedAt
-               ? new Date(article.updatedAt).toISOString()
-               : now,
-            changeFrequency: 'weekly',
-            priority: 0.8,
-            images: article.image ? [article.image] : undefined,
-            alternates: createAlternates(`/${article.slug}`),
-         });
+      const locale = article.code ?? DEFAULT_LOCALE;
+      const prefix = locale === DEFAULT_LOCALE ? '' : `/${locale}`;
+      urls.push({
+         url: `${WEBSITE_URL}${prefix}/${article.slug}`,
+         lastModified: article.updatedAt
+            ? new Date(article.updatedAt).toISOString()
+            : now,
+         changeFrequency: 'weekly',
+         priority: 0.8,
+         images: article.image ? [article.image] : undefined,
       });
    });
 

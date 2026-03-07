@@ -25,7 +25,7 @@ import CommentList from '@/src/ui/comments/comment-list';
 import Options from '@/src/ui/operations/options';
 
 export const dynamic = 'force-static';
-export const revalidate = 86400;
+export const revalidate = 604800;
 
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
@@ -45,10 +45,6 @@ export async function generateMetadata({ params }) {
       description: description ? description : t('Page-descriptions.article'),
       alternates: {
          canonical: `${WEBSITE_URL}${prefix}/${slug}`,
-         languages: {
-            en: `${WEBSITE_URL}/${slug}`,
-            sr: `${WEBSITE_URL}/sr/${slug}`,
-         },
       },
       creator: full_name,
       openGraph: {

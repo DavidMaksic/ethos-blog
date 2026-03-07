@@ -11,7 +11,7 @@ import LatestArticles from '@/src/ui/articles/latest-articles';
 import MainArticles from '@/src/ui/articles/main-articles';
 
 export const dynamic = 'force-static';
-export const revalidate = 86400;
+export const revalidate = 604800;
 
 export default async function Home({ params }) {
    const [param, articles, categories, mainArticles, authors] =
