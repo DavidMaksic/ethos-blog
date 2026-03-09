@@ -2,7 +2,7 @@ export async function GET(request) {
    const { searchParams } = new URL(request.url);
 
    const res = await fetch(
-      `https://api.umami.is/v1/websites/${process.env.UMAMI_WEBSITE_ID}/stats?${searchParams}`,
+      `https://api.umami.is/v1/websites/${process.env.UMAMI_WEBSITE_ID}/metrics?${searchParams}`,
       { headers: { 'x-umami-api-key': process.env.UMAMI_API_KEY } },
    );
 
