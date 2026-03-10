@@ -62,8 +62,6 @@ const cormorantSC = Cormorant_SC({
    adjustFontFallback: true,
 });
 
-// TODO: Fix /login mobile page ugly load
-
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
    const { locale } = param;

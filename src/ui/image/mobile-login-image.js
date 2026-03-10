@@ -1,15 +1,8 @@
-'use client';
-
-import { useMediaQuery } from 'react-responsive';
 import LoginImage from '@/src/ui/image/login-image';
 
 function MobileLoginImage({ url, credit, creditLabel }) {
-   const isMobile = useMediaQuery({ maxWidth: 768 });
-
-   if (isMobile) return null;
-
    return (
-      <>
+      <div className="md:hidden">
          <div className="absolute inset-0">
             <LoginImage url={url} />
          </div>
@@ -17,7 +10,7 @@ function MobileLoginImage({ url, credit, creditLabel }) {
             {creditLabel}
             {credit}
          </p>
-      </>
+      </div>
    );
 }
 
