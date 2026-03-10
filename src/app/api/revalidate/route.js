@@ -1,5 +1,5 @@
 import { revalidatePath, revalidateTag } from 'next/cache';
-import { LOCALES } from '@/src/utils/config';
+import { LOCALES_ALT } from '@/src/utils/config';
 
 export async function POST(req) {
    const auth = req.headers.get('authorization');
@@ -12,18 +12,14 @@ export async function POST(req) {
 
       // 1. Handle featuring
       if (changes?.action === 'feature-update') {
-         LOCALES.forEach((locale) => {
+         LOCALES_ALT.forEach((locale) => {
             revalidatePath(`/${locale}`);
          });
       }
 
       // 2. Handle creation or deletion
-      if (
-         changes?.action === 'delete' ||
-         changes?.action === 'create' ||
-         changes?.action === 'misc'
-      ) {
-         LOCALES.forEach((locale) => {
+      if (changes?.action === 'delete' || changes?.action === 'create') {
+         LOCALES_ALT.forEach((locale) => {
             revalidatePath(`/${locale}`);
             revalidatePath(`/${locale}/archive`);
          });
@@ -36,7 +32,7 @@ export async function POST(req) {
          }
 
          if (changes?.metadata) {
-            LOCALES.forEach((locale) => {
+            LOCALES_ALT.forEach((locale) => {
                revalidatePath(`/${locale}`);
                revalidatePath(`/${locale}/archive`);
             });
