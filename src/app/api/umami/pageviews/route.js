@@ -10,7 +10,7 @@ export async function GET(request) {
 
    const corsHeaders = {
       'Access-Control-Allow-Origin': process.env.CMS_URL,
-      'Cache-Control': 's-maxage=3600',
+      'Cache-Control': 's-maxage=86400',
       'Access-Control-Allow-Methods': 'GET, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
    };

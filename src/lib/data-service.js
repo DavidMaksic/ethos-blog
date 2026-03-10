@@ -1,4 +1,5 @@
 import { supabase } from '@/src/lib/supabase';
+import { notFound } from 'next/navigation';
 
 export async function getArticles() {
    const { data, error } = await supabase
@@ -16,19 +17,25 @@ export async function getArticles() {
 export async function getArticle(slug) {
    const url = `${process.env.SUPABASE_URL}/rest/v1/articles?select=*,categories(*),authors(*),likes(*),comments(*,replies(*))&comments.order=created_at.asc&comments.replies.order=created_at.asc&slug=eq.${slug}`;
 
-   const res = await fetch(url, {
-      headers: {
-         apikey: process.env.SUPABASE_KEY,
-         Authorization: `Bearer ${process.env.SUPABASE_KEY}`,
-      },
-      next: {
-         tags: [`article-${slug}`],
-      },
-   });
+   try {
+      const res = await fetch(url, {
+         headers: {
+            apikey: process.env.SUPABASE_KEY,
+            Authorization: `Bearer ${process.env.SUPABASE_KEY}`,
+         },
+         next: {
+            tags: [`article-${slug}`],
+         },
+      });
 
-   if (!res.ok) throw new Error('Failed to fetch article');
-   const data = await res.json();
-   return data[0];
+      if (!res.ok) throw new Error('Failed to fetch article');
+      const data = await res.json();
+
+      if (!data[0]) return notFound();
+      return data[0];
+   } catch {
+      return notFound();
+   }
 }
 
 export async function getArticleMetadata(slug) {
