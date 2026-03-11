@@ -160,6 +160,7 @@
    },
    "Error": {
       "message": "Something went wrong...",
+      "not-found": "Page not found",
       "back-btn": "Go back"
    },
    "Search-placeholder": "Search...",
