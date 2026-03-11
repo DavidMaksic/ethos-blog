@@ -42,7 +42,7 @@ export async function getArticleMetadata(slug) {
       .eq('slug', slug)
       .single();
 
-   if (error || !data) notFound();
+   if (error) notFound();
 
    return data;
 }

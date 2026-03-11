@@ -8,12 +8,12 @@ export default async function NotFound() {
 
    return (
       <div className="flex items-center justify-center bg-transparent mt-55 2xl:mt-46 md:mt-72 mb-45 md:mb-56">
-         <div className="max-w-7xl px-24 pt-8 pb-12 flex flex-col gap-8 rounded-3xl bg-white/60 dark:bg-primary-300/15 border border-quaternary dark:border-primary-300/15 translate-y-[-20%] box-shadow">
-            <div className="flex flex-col">
-               <TbError404 className="size-18 self-center stroke-[1.5px]" />
-               <p className="text-4xl font-bold text-center">
-                  {t('not-found')}
-               </p>
+         <div className="max-w-7xl px-20 py-12 flex flex-col gap-8 rounded-3xl bg-white/60 dark:bg-primary-300/15 border border-quaternary dark:border-primary-300/15 box-shadow">
+            <div className="flex items-center gap-4 text-4xl">
+               <span className="font-secondary font-semibold border-r border-r-primary-300 pr-5">
+                  404
+               </span>
+               <span className="font-bold">{t('not-found')}</span>
             </div>
 
             <Link
