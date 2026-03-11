@@ -42,7 +42,8 @@ export async function getArticleMetadata(slug) {
       .eq('slug', slug)
       .single();
 
-   if (error) throw new Error('Failed to fetch article');
+   if (error || !data) notFound();
+
    return data;
 }
 
