@@ -1,0 +1,9 @@
+{
+   "redirects": [
+      {
+         "source": "/:path*",
+         "destination": "https://ethos-blog.com/:path*",
+         "permanent": true
+      }
+   ]
+}

@@ -14,16 +14,16 @@ const nextConfig = {
          },
       ],
    },
-   async redirects() {
-      return [
-         {
-            source: '/:path*',
-            has: [{ type: 'host', value: 'www.ethos-blog.com' }],
-            destination: 'https://ethos-blog.com/:path*',
-            permanent: true,
-         },
-      ];
-   },
+   // async redirects() {
+   //    return [
+   //       {
+   //          source: '/:path*',
+   //          has: [{ type: 'host', value: 'www.ethos-blog.com' }],
+   //          destination: 'https://ethos-blog.com/:path*',
+   //          permanent: true,
+   //       },
+   //    ];
+   // },
 };
 
 const withNextIntl = createNextIntlPlugin();
