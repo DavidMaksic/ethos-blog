@@ -20,7 +20,7 @@ function Modal({ closeModal, styles, children }) {
             {children}
          </div>
       </motion.div>,
-      document.body
+      document.body,
    );
 }
 

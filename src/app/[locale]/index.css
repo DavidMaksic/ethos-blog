@@ -116,7 +116,7 @@
    --shadow-toast-btn: 0 0 40px 0px #e5e7eb;
    --shadow-link-btn: 0 0 1rem var(--color-accent-200);
    --shadow-link-btn-dark: 0 0 1rem var(--color-accent-900);
-   --shadow-delete-btn: 0 0 1rem var(--color-red-100);
+   --shadow-delete-btn: 0 0 1rem var(--color-red-200);
    --shadow-category: 0 0.2rem 1rem var(--color-accent-50);
    --shadow-filter: 0 0 0.5rem var(--color-accent-300);
    --shadow-form-submit: 0 0 1.6rem var(--color-accent-300);
@@ -1381,4 +1381,16 @@ strong {
 
 input[type='password']::-ms-reveal {
    display: none !important;
+}
+
+@property --angle {
+   syntax: '<angle>';
+   inherits: false;
+   initial-value: 0deg;
+}
+
+@keyframes rotate-border {
+   to {
+      --angle: 360deg;
+   }
 }

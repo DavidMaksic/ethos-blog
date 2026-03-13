@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { IoMoonOutline } from 'react-icons/io5';
 import { HiOutlineUser } from 'react-icons/hi2';
-import { LuSunMedium } from 'react-icons/lu';
+import { LuLogIn, LuSunMedium } from 'react-icons/lu';
 import { authClient } from '@/src/lib/auth-client';
 import { useTheme } from 'next-themes';
 import { Link } from '@/src/i18n/navigation';
@@ -13,6 +13,7 @@ import LanguageButton from '@/src/ui/buttons/language-button';
 import ProfileButton from '@/src/ui/image/profile-button';
 import HeaderButton from '@/src/ui/buttons/header-button';
 import MobileMenu from '@/src/ui/mobile-menu';
+import { CgLogIn } from 'react-icons/cg';
 
 function HeaderOptions() {
    const { resolvedTheme, setTheme } = useTheme();
@@ -65,9 +66,9 @@ function HeaderOptions() {
 
          <AnimatePresence mode="wait" initial={false}>
             {!mounted || !session ? (
-               <HeaderButton styles="md:hidden">
+               <HeaderButton styles="md:hidden pl-1.5!">
                   <Link href="/login" className="hover:text-accent">
-                     <HiOutlineUser className="size-6.5! stroke-[1.7px]" />
+                     <LuLogIn className="size-7! stroke-[1.4px]" />
                   </Link>
                </HeaderButton>
             ) : (
