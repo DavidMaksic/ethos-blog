@@ -9,6 +9,8 @@ export async function POST(req) {
 
    try {
       const { slug, changes } = await req.json();
+      console.log('Revalidate called with:', { slug, changes });
+      s;
 
       // 1. Handle featuring
       if (changes?.action === 'feature-update') {
