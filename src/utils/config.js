@@ -15,7 +15,6 @@ export const FUSE_BOOKMARKS = {
 
 export const DEFAULT_LOCALE = 'en';
 export const LOCALES = ['en', 'sr'];
-export const LOCALES_ALT = ['', 'sr'];
 export const LANGUAGES = [
    {
       code: 'sr',
