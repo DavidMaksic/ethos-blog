@@ -27,16 +27,11 @@ export const auth = betterAuth({
             return;
          }
 
-         const { subject, html } = resetPasswordTemplate({
-            url,
-            user,
-         });
-
          await resend.emails.send({
             from: 'Ethos <noreply@updates.ethos-blog.com>',
             to: user.email,
-            subject,
-            html,
+            subject: getResetPasswordSubject(url),
+            react: ResetPasswordEmail({ url, user }),
          });
       },
    },
