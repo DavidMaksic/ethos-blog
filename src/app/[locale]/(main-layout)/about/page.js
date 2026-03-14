@@ -17,6 +17,7 @@ export async function generateMetadata({ params }) {
 
    return {
       title: t('about-name'),
+      description: t('about'),
       alternates: {
          canonical: `${WEBSITE_URL}${prefix}/about`,
          languages: {
@@ -43,16 +44,6 @@ async function Page({ params }) {
       description: t('Page-descriptions.about'),
       url: `${WEBSITE_URL}${prefix}/about`,
       inLanguage: locale,
-      keywords: [
-         'Ethos Blog',
-         'About',
-         'Authors',
-         'History',
-         'Theology',
-         'Christian Philosophy',
-         'Moral Ethics',
-         'Culture',
-      ],
       mainEntityOfPage: {
          '@type': 'WebPage',
          '@id': `${WEBSITE_URL}${prefix}/about`,

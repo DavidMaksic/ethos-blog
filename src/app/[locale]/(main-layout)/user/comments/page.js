@@ -11,7 +11,12 @@ import SortBy from '@/src/ui/operations/sort-by';
 
 export async function generateMetadata({ params }) {
    const { locale } = await params;
-   return { title: locale === 'en' ? 'Profile' : 'Профил' };
+   return {
+      title: locale === 'en' ? 'Profile' : 'Профил',
+      robots: {
+         index: false,
+      },
+   };
 }
 
 async function Page({ searchParams }) {

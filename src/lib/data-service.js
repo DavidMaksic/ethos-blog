@@ -38,7 +38,9 @@ export async function getArticle(slug) {
 export async function getArticleMetadata(slug) {
    const { data, error } = await supabase
       .from('articles')
-      .select('id, title, image, description, authors(full_name)')
+      .select(
+         'id, created_at, updated_at, title, image, description, authors(full_name)',
+      )
       .eq('slug', slug)
       .single();
 

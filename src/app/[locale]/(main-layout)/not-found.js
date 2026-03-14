@@ -1,6 +1,5 @@
 import { getTranslations } from 'next-intl/server';
 import { LuArrowLeft } from 'react-icons/lu';
-import { TbError404 } from 'react-icons/tb';
 import { Link } from '@/src/i18n/navigation';
 
 export default async function NotFound() {

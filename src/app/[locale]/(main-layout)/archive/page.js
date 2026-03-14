@@ -18,6 +18,7 @@ export async function generateMetadata({ params }) {
 
    return {
       title: t('Page-descriptions.archive-name'),
+      description: t('Page-descriptions.archive'),
       alternates: {
          canonical: `${WEBSITE_URL}${prefix}/archive`,
          languages: {
@@ -47,7 +48,6 @@ async function Page({ params }) {
       description: t('Page-descriptions.archive'),
       url: `${WEBSITE_URL}${prefix}/archive`,
       inLanguage: locale,
-      keywords: ['Ethos Blog', 'Archive', 'Blog posts', 'Articles'],
       mainEntityOfPage: {
          '@type': 'WebPage',
          '@id': `${WEBSITE_URL}${prefix}/archive`,

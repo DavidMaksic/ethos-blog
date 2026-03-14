@@ -13,11 +13,11 @@ import { LanguageProvider } from '@/src/context/language-context';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
 import { WEBSITE_URL } from '@/src/utils/config';
-import { notFound } from 'next/navigation';
 import { routing } from '@/src/i18n/routing';
 import { Toaster } from 'react-hot-toast';
 
 import PageAnimation from '@/src/ui/animation/page-animation';
+import NotFound from '@/src/app/[locale]/(main-layout)/not-found';
 import Header from '@/src/ui/header/header';
 import Footer from '@/src/ui/footer';
 import Script from 'next/script';
@@ -125,22 +125,27 @@ export default async function RootLayout({ children, params }) {
       name: t('Logo'),
       description: t('Page-descriptions.about'),
       inLanguage: locale,
+   };
+
+   const orgJsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: t('Logo'),
+      url: WEBSITE_URL,
+      logo: {
+         '@type': 'ImageObject',
+         url: `${WEBSITE_URL}/logo.png`,
+         width: 512,
+         height: 512,
+      },
       sameAs: [
          'https://www.instagram.com/ethos.blog/',
          'https://x.com/EthosBlogging',
       ],
-      keywords: [
-         'Ethos Blog',
-         'History',
-         'Theology',
-         'Christian Philosophy',
-         'Moral Ethics',
-         'Culture',
-      ],
    };
 
    if (!hasLocale(routing.locales, locale)) {
-      notFound();
+      NotFound();
    }
 
    return (
@@ -168,6 +173,12 @@ export default async function RootLayout({ children, params }) {
                type="application/ld+json"
                dangerouslySetInnerHTML={{
                   __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
+               }}
+            />
+            <script
+               type="application/ld+json"
+               dangerouslySetInnerHTML={{
+                  __html: JSON.stringify(orgJsonLd).replace(/</g, '\\u003c'),
                }}
             />
          </head>

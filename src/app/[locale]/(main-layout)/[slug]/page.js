@@ -8,7 +8,6 @@ import {
 } from '@/src/lib/data-service';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { WEBSITE_URL } from '@/src/utils/config';
-import { notFound } from 'next/navigation';
 import { format } from 'date-fns';
 
 import OtherArticleOptions from '@/src/ui/articles/other-article-options';
@@ -23,6 +22,7 @@ import CommentInput from '@/src/ui/comments/comment-input';
 import ArticleImage from '@/src/ui/articles/article-image';
 import CommentList from '@/src/ui/comments/comment-list';
 import Options from '@/src/ui/operations/options';
+import NotFound from '@/src/app/[locale]/(main-layout)/not-found';
 
 export const dynamic = 'force-static';
 export const revalidate = 604800;
@@ -35,6 +35,8 @@ export async function generateMetadata({ params }) {
       title,
       description,
       image,
+      created_at,
+      updated_at,
       authors: { full_name },
    } = await getArticleMetadata(slug);
 
@@ -55,7 +57,10 @@ export async function generateMetadata({ params }) {
          url: `${WEBSITE_URL}${prefix}/${slug}`,
          siteName: t('Logo'),
          locale: locale,
-         type: 'website',
+         type: 'article',
+         publishedTime: created_at,
+         modifiedTime: updated_at,
+         authors: [full_name],
          images: [
             {
                url: image,
@@ -89,16 +94,15 @@ async function Page({ params }) {
    const { slug, locale } = await params;
    setRequestLocale(locale);
 
-   const [article, articles, bookmarks, comment_length] = await Promise.all([
+   const [article, articles, bookmarks, comment_length, t] = await Promise.all([
       getArticle(slug),
       getArticles(),
       getBookmarks(),
       getSettings(),
+      getTranslations(),
    ]);
 
-   if (!article) {
-      notFound();
-   }
+   if (!article) return NotFound();
 
    const {
       comments,
@@ -108,11 +112,12 @@ async function Page({ params }) {
       authors: author,
       created_at,
       updated_at,
+      categories,
    } = article;
 
    // - Other logic
    const date = format(new Date(article.created_at), 'MMM dd, yyyy');
-   const prefix = locale === `en` ? '' : `/${locale}`;
+   const prefix = locale === 'en' ? '' : `/${locale}`;
    const replies = comments.map((item) => item.replies).flat();
    const commentsNum = replies?.length + comments?.length;
 
@@ -122,6 +127,11 @@ async function Page({ params }) {
       url: `${WEBSITE_URL}${prefix}/${slug}`,
       headline: title,
       description: description,
+      publisher: {
+         '@type': 'Organization',
+         name: t('Logo'),
+         url: WEBSITE_URL,
+      },
       author: {
          '@type': 'Person',
          name: author.full_name,
@@ -134,7 +144,7 @@ async function Page({ params }) {
          width: 1200,
          height: 628,
       },
-      keywords: ['Ethos Blog', 'Blog post', 'Article'],
+      keywords: [categories.category, 'Ethos Blog'],
       mainEntityOfPage: {
          '@type': 'WebPage',
          '@id': `${WEBSITE_URL}${prefix}/${slug}`,

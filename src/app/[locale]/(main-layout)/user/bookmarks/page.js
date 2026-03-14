@@ -9,7 +9,12 @@ import BookmarkList from '@/src/ui/bookmarks/bookmark-list';
 
 export async function generateMetadata({ params }) {
    const { locale } = await params;
-   return { title: locale === 'en' ? 'Profile' : 'Профил' };
+   return {
+      title: locale === 'en' ? 'Profile' : 'Профил',
+      robots: {
+         index: false,
+      },
+   };
 }
 
 async function Page({ searchParams }) {
