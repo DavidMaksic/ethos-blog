@@ -135,6 +135,7 @@ async function Page({ params }) {
       author: {
          '@type': 'Person',
          name: author.full_name,
+         url: `${WEBSITE_URL}${prefix}/about`,
       },
       datePublished: created_at,
       dateModified: updated_at,
