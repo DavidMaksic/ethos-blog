@@ -1,4 +1,7 @@
-import { resetPasswordTemplate } from '@/src/ui/reset-password-template';
+import {
+   getResetPasswordSubject,
+   ResetPasswordEmail,
+} from '@/src/ui/reset-password-template';
 import { nextCookies } from 'better-auth/next-js';
 import { betterAuth } from 'better-auth';
 import { Resend } from 'resend';
