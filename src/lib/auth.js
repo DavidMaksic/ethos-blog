@@ -31,7 +31,7 @@ export const auth = betterAuth({
          }
 
          await resend.emails.send({
-            from: 'Ethos <noreply@updates.ethos-blog.com>',
+            from: 'Ethos <support@updates.ethos-blog.com>',
             to: user.email,
             subject: getResetPasswordSubject(url),
             react: ResetPasswordEmail({ url, user }),
