@@ -7,8 +7,8 @@ import {
    Great_Vibes,
    Parisienne,
 } from 'next/font/google';
-import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { LanguageProvider } from '@/src/context/language-context';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
