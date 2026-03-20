@@ -66,6 +66,12 @@ const cormorantSC = Cormorant_SC({
 // TODO: Add more pt to logo in /login in /sr
 // TODO: Message for comment input form: javascript:throw new Error('A React form was unexpectedly submitted. If you called form.submit() manually, consider using form.requestSubmit() instead. If you\'re trying to use event.stopPropagation() in a submit event handler, consider also calling event.preventDefault().')
 
+// TODO: Fix 'subscribing'
+// TODO: Fix where newsletter component appears
+// TODO: Fix mobile look of templates
+// TODO: Style unsubsrcibed page
+// TODO: Sqoosh newsletter images
+
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
    const { locale } = param;
