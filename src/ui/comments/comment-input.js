@@ -132,7 +132,7 @@ function CommentInput({ article, commentLength }) {
                   maxLength={commentLength}
                   value={text}
                   name="content"
-                  className={`w-full h-auto min-h-fit border text-primary-600 dark:text-text rounded-3xl px-10 pb-18 py-7 pr-11 text-[1.4rem] 2xl:text-[1.3rem] md:text-[1.6rem] xs:text-[1.5rem] md:leading-9 xs:leading-[1.4]  transition-bg_border flex-grow outline-none scrollbar transition-200 md:placeholder:text-[1.6rem] ${!mounted || !session ? 'pointer-events-none' : ''} ${
+                  className={`w-full h-auto min-h-fit border text-primary-600 dark:text-text rounded-3xl px-10 pb-18 py-7 pr-11 text-[1.4rem] 2xl:text-[1.3rem] md:text-[1.6rem] xs:text-[1.5rem] md:leading-9 xs:leading-[1.4] transition-bg_border flex-grow outline-none scrollbar transition-200 md:placeholder:text-[1.6rem] ${!mounted || !session ? 'pointer-events-none' : ''} ${
                      text.length > commentLength || error
                         ? 'border-red-400 dark:border-red-400/60'
                         : ' border-primary-300 dark:border-primary-300/50'

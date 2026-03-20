@@ -107,3 +107,8 @@ export const resetPasswordSchema = (t) =>
             });
          }
       });
+
+export const subscribeSchema = z.object({
+   email: z.string().trim().min(1).max(254).check(z.email()),
+   locale: z.enum(['en', 'sr']),
+});

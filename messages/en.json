@@ -187,5 +187,15 @@
       "empty": "Comment cannot be empty",
       "min": "Comment must have at least {count} characters",
       "max": "Comment must be less than {count} characters"
+   },
+   "Newsletter": {
+      "eyebrow": "The Ethos Letter",
+      "heading": "History, philosophy & theology",
+      "body": "Enjoy reading our articles? Get new pieces delivered to your inbox.",
+      "placeholder": "Your email address",
+      "button": "Subscribe",
+      "loading": "Subscribing...",
+      "success": "You were successfully subscribed",
+      "error": "Something went wrong. Please try again."
    }
 }

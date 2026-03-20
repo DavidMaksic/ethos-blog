@@ -84,7 +84,7 @@ function Footer() {
             </Link>
          </div>
 
-         <div className="flex text-center gap-1 text-xl font-secondary opacity-90">
+         <div className="text-center space-y-2 text-xl font-secondary opacity-90">
             {t('HomePage.copyright-1')}
             <span>
                {'©'}
@@ -92,7 +92,6 @@ function Footer() {
                <span className="font-bold">−</span>
                {currentYear}
             </span>
-
             {t('HomePage.copyright-2')}
          </div>
       </footer>

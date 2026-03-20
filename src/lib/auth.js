@@ -1,13 +1,11 @@
 import {
    getResetPasswordSubject,
-   ResetPasswordEmail,
-} from '@/src/ui/reset-password-template';
+   ResetPasswordTemplate,
+} from '@/src/ui/email/reset-password-template';
 import { nextCookies } from 'better-auth/next-js';
 import { betterAuth } from 'better-auth';
-import { Resend } from 'resend';
+import { resend } from '@/src/lib/resend';
 import { Pool } from 'pg';
-
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const auth = betterAuth({
    baseURL: process.env.BETTER_AUTH_URL,
@@ -34,7 +32,7 @@ export const auth = betterAuth({
             from: 'Ethos <support@updates.ethos-blog.com>',
             to: user.email,
             subject: getResetPasswordSubject(url),
-            react: ResetPasswordEmail({ url, user }),
+            react: ResetPasswordTemplate({ url, user }),
          });
       },
    },

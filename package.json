@@ -6,7 +6,8 @@
       "dev": "next dev",
       "build": "next build",
       "start": "next start",
-      "lint": "next lint"
+      "lint": "next lint",
+      "email:dev": "email dev"
    },
    "dependencies": {
       "@blocknote/core": "^0.29.1",
@@ -28,6 +29,7 @@
       "pg": "^8.18.0",
       "react": "^19.2.1",
       "react-dom": "^19.2.1",
+      "react-email": "^5.2.9",
       "react-hot-toast": "^2.5.2",
       "react-icons": "^5.5.0",
       "react-responsive": "^10.0.1",
@@ -41,6 +43,7 @@
    },
    "devDependencies": {
       "@eslint/eslintrc": "^3",
+      "@react-email/preview-server": "^5.2.9",
       "@tailwindcss/postcss": "^4",
       "babel-plugin-react-compiler": "^1.0.0",
       "eslint": "^9",

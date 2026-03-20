@@ -65,9 +65,9 @@ const BookmarkItem = forwardRef(({ bookmark }, ref) => {
                round="rounded-xl"
                styles="absolute translate-x-[30%] xs:translate-x-[45%] object-cover [mask-image:linear-gradient(to_right,transparent,black)] [mask-mode:alpha] [mask-size:100%_100%] [mask-repeat:no-repeat]"
                opacity="opacity-100 dark:opacity-70"
-               alt="bookmark image"
+               alt="Bookmark image"
                isBookmark={true}
-               />
+            />
          </Link>
       </motion.div>
    );

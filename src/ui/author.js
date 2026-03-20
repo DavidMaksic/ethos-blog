@@ -33,7 +33,7 @@ function Author({ author }) {
                </div>
 
                {author?.description_en || author?.description_srb ? (
-                  <p className="text-[1.35rem] leading-7.5 md:text-2xl font-secondary">
+                  <p className="text-[1.35rem] leading-7.5 md:leading-8 md:text-2xl font-secondary">
                      {locale === 'en'
                         ? author.description_en
                         : author.description_srb}

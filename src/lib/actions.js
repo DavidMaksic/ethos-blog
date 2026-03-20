@@ -1,10 +1,21 @@
 'use server';
 
-import { usernameSchema, commentSchema } from '@/src/lib/schemas';
+import {
+   usernameSchema,
+   commentSchema,
+   subscribeSchema,
+} from '@/src/lib/schemas';
+import WelcomeEmail, {
+   getWelcomeSubject,
+} from '@/src/ui/email/welcome-template';
+
 import { revalidatePath, updateTag } from 'next/cache';
 import { getTranslations } from 'next-intl/server';
+import { supabaseAdmin } from './supabase-admin';
+import { randomUUID } from 'crypto';
 import { supabase } from '@/src/lib/supabase';
 import { headers } from 'next/headers';
+import { resend } from '@/src/lib/resend';
 import { auth } from '@/src/lib/auth';
 
 export async function updateUser(previousState, formData) {
@@ -391,4 +402,60 @@ export async function removeLiked(articleID, type, slug) {
 
    if (error) throw new Error('Article could not be disliked');
    updateTag(`article-${slug}`);
+}
+
+export async function subscribeToNewsletter(prevState, formData) {
+   const parsed = subscribeSchema.safeParse({
+      email: formData.get('email'),
+      locale: formData.get('locale'),
+   });
+
+   if (!parsed.success) {
+      return { success: false, error: 'Invalid email', id: Date.now() };
+   }
+
+   const { email, locale } = parsed.data;
+
+   try {
+      const unsubscribe_token = randomUUID();
+
+      const { data, error } = await supabase
+         .from('subscribers')
+         .insert({ email, locale, unsubscribe_token })
+         .select('id')
+         .single();
+
+      // Ignore duplicate email conflict
+      if (error && error.code !== '23505') throw error;
+
+      if (data) {
+         await resend.emails.send({
+            from: `${locale === 'sr' ? 'Етос' : 'Ethos'} <support@updates.ethos-blog.com>`,
+            to: email,
+            subject: getWelcomeSubject(locale),
+            react: WelcomeEmail({
+               locale,
+               unsubscribeUrl: `https://ethos-blog.com/unsubscribe?token=${unsubscribe_token}`,
+            }),
+         });
+      }
+
+      return { success: true };
+   } catch (err) {
+      console.error(err);
+      return { success: false, error: 'Something went wrong', id: Date.now() };
+   }
+}
+
+export async function unsubscribe(token) {
+   const parsed = z.string().uuid().safeParse(token);
+   if (!parsed.success) return { success: false };
+
+   const { error } = await supabaseAdmin
+      .from('subscribers')
+      .delete()
+      .eq('unsubscribe_token', token);
+
+   if (error) return { success: false };
+   return { success: true };
 }

@@ -16,6 +16,7 @@ import { WEBSITE_URL } from '@/src/utils/config';
 import { routing } from '@/src/i18n/routing';
 import { Toaster } from 'react-hot-toast';
 
+import NewsletterSignup from '@/src/ui/email/newsletter-signup';
 import PageAnimation from '@/src/ui/animation/page-animation';
 import NotFound from '@/src/app/[locale]/(main-layout)/not-found';
 import Header from '@/src/ui/header/header';
@@ -61,6 +62,9 @@ const cormorantSC = Cormorant_SC({
    variable: '--font-cormorantSC',
    adjustFontFallback: true,
 });
+
+// TODO: Add more pt to logo in /login in /sr
+// TODO: Message for comment input form: javascript:throw new Error('A React form was unexpectedly submitted. If you called form.submit() manually, consider using form.requestSubmit() instead. If you\'re trying to use event.stopPropagation() in a submit event handler, consider also calling event.preventDefault().')
 
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
@@ -199,6 +203,8 @@ export default async function RootLayout({ children, params }) {
                         {children}
                         <SpeedInsights />
                      </PageAnimation>
+
+                     <NewsletterSignup />
 
                      <Footer />
 

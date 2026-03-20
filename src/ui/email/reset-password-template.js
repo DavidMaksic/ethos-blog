@@ -1,3 +1,4 @@
+import { WEBSITE_URL } from '@/src/utils/config';
 import {
    Body,
    Button,
@@ -10,7 +11,6 @@ import {
    Section,
    Text,
 } from '@react-email/components';
-import { WEBSITE_URL } from '@/src/utils/config';
 
 const content = {
    en: {
@@ -31,26 +31,40 @@ const content = {
    },
 };
 
-export function ResetPasswordEmail({ url, user }) {
+export default function ResetPasswordTemplate({ url, user }) {
    const locale = url.includes('/sr/') ? 'sr' : 'en';
    const imageUrl = `${WEBSITE_URL}/email-logo.png`;
 
    const t = content[locale];
    const firstName = user.name.split(' ')[0].slice(0, 10) ?? user.email;
 
+   const fontFamily =
+      locale === 'sr'
+         ? "'Gentium Book Plus', 'Gentium Book Plus Fallback', serif"
+         : "'Crimson Text', 'EB Garamond', Helvetica, Arial, serif";
+
+   const buttonFontFamily =
+      locale === 'sr'
+         ? "'Great Vibes', 'Cormorant Garamond', Helvetica, Arial, serif"
+         : "'Parisienne', 'Cormorant Garamond', Helvetica, Arial, serif";
+
    return (
       <Html lang={locale}>
          <Head>
             <style>
-               {`@media only screen and (max-width: 600px) {
-               body { background-color: transparent !important; }
-               table[role="presentation"] { background-color: transparent !important; padding: 0px 0px !important; }
+               {`@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Cormorant+SC:wght@600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&display=swap');
+
+               body { padding: 100px 0 }
+
+               @media only screen and (max-width: 600px) {
+                  body {  margin: 0px 8px !important; padding: 40px 0 !important }
+                  .container { padding: 30px 24px !important }
                }`}
             </style>
          </Head>
          <Preview>{t.subject}</Preview>
-         <Body style={styles.body}>
-            <Container style={styles.container}>
+         <Body style={{ ...styles.body, fontFamily }}>
+            <Container className="container" style={styles.container}>
                <Section style={styles.logoSection}>
                   <Img
                      src={imageUrl}
@@ -65,7 +79,7 @@ export function ResetPasswordEmail({ url, user }) {
                <Hr style={styles.divider} />
 
                <Text style={styles.text}>
-                  {t.name} {firstName},
+                  {t.name} {firstName}!
                </Text>
 
                <Text style={styles.text}>{t.body}</Text>
@@ -73,10 +87,15 @@ export function ResetPasswordEmail({ url, user }) {
                <Text style={styles.text}>{t.expires}</Text>
 
                <Section style={styles.buttonSection}>
-                  <Button href={url} style={styles.button}>
+                  <Button
+                     href={url}
+                     style={{ ...styles.button, fontFamily: buttonFontFamily }}
+                  >
                      {t.button}
                   </Button>
                </Section>
+
+               <Hr style={styles.divider} />
 
                <Text style={styles.footer}>{t.footer}</Text>
             </Container>
@@ -94,7 +113,6 @@ export function getResetPasswordSubject(url) {
 const styles = {
    body: {
       margin: 0,
-      padding: '100px 0',
       backgroundColor: '#f4f5f6',
       fontFamily: 'Helvetica, Arial, sans-serif',
    },
@@ -117,39 +135,42 @@ const styles = {
       margin: '0 auto',
    },
    heading: {
-      fontWeight: 600,
-      color: '#374151',
-      fontSize: '24px',
+      fontFamily:
+         "'Cormorant SC', 'Cormorant Garamond', Helvetica, Arial, serif",
+      fontWeight: 700,
+      color: '#4b5563',
+      lineHeight: 1.1,
+      fontSize: '32px',
       textAlign: 'center',
-      margin: '0 0 18px 0',
+      margin: '0 0 26px 0',
    },
    divider: {
       border: 'none',
       borderTop: '1px solid #6b7280',
       opacity: 0.2,
-      margin: '0 0 18px 0',
+      margin: '0 0 26px 0',
    },
    text: {
       fontSize: '16px',
-      color: '#1f2937',
+      color: '#5d6673',
       lineHeight: 1.3,
       textAlign: 'center',
       margin: '0 0 6px 0',
    },
    buttonSection: {
       textAlign: 'center',
-      margin: '16px 0 0 0',
+      margin: '16px 0 24px 0',
    },
    button: {
-      backgroundColor: '#ddc2a2',
+      backgroundColor: '#d7b892',
+      boxShadow: '0 0 1rem #e8d6bf',
       color: '#ffffff',
       textDecoration: 'none',
-      fontWeight: 600,
-      fontSize: '20px',
-      padding: '12px 26px',
+      fontSize: '28px',
+      padding: '10px 22px',
+      margin: '0 0 6px 0',
       borderRadius: '50px',
       display: 'inline-block',
-      boxShadow: '0 1px 10px rgba(0, 0, 0, 0.1)',
       border: '2px solid transparent',
    },
    footer: {

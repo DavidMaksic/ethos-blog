@@ -26,6 +26,7 @@ import image21 from '@/public/image-21.webp';
 import image22 from '@/public/image-22.webp';
 import image23 from '@/public/image-23.webp';
 import image24 from '@/public/image-24.webp';
+import image25 from '@/public/image-25.webp';
 
 const images = [
    {
@@ -162,6 +163,12 @@ const images = [
       id: 24,
       url: image24,
       credit: 'Warhorse Studios',
+      lightMode: true,
+   },
+   {
+      id: 25,
+      url: image25,
+      credit: 'Relic Entertainment',
       lightMode: true,
    },
 ];
