@@ -32,7 +32,7 @@ export async function POST(request) {
          return resend.emails.send({
             from: `${subscriber.locale === 'sr' ? 'Етос' : 'Ethos'} <support@updates.ethos-blog.com>`,
             to: subscriber.email,
-            subject: getArticleSubject(article.title, subscriber.locale),
+            subject: article.title,
             react: ArticleTemplate({
                article: { ...article, created_at: formattedDate },
                locale: subscriber.locale,

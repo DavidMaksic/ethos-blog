@@ -14,8 +14,6 @@ import {
 
 const content = {
    en: {
-      subject: (title) => `New article: ${title}`,
-      preview: (title) => `A new article has been published: ${title}`,
       badge: 'New Article',
       by: 'By',
       button: 'Read more',
@@ -24,8 +22,6 @@ const content = {
       unsubscribe: 'click here',
    },
    sr: {
-      subject: (title) => `Нови чланак: ${title}`,
-      preview: (title) => `Објављен је нови чланак: ${title}`,
       badge: 'Нови чланак',
       by: 'Аутор',
       button: 'Прочитај чланак',
@@ -69,7 +65,7 @@ export default function ArticleTemplate({
                }`}
             </style>
          </Head>
-         <Preview>{t.preview(article.title)}</Preview>
+         <Preview>{article.description}</Preview>
          <Body style={{ ...styles.body, fontFamily }}>
             <Section className="outer" style={styles.outerSection}>
                <Container className="container" style={styles.container}>
@@ -144,10 +140,6 @@ export default function ArticleTemplate({
          </Body>
       </Html>
    );
-}
-
-export function getArticleSubject(title, locale = 'en') {
-   return content[locale].subject(title);
 }
 
 const styles = {
