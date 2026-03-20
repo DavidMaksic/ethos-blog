@@ -17,6 +17,7 @@ import { supabase } from '@/src/lib/supabase';
 import { headers } from 'next/headers';
 import { resend } from '@/src/lib/resend';
 import { auth } from '@/src/lib/auth';
+import { z } from 'zod';
 
 export async function updateUser(previousState, formData) {
    const t = await getTranslations('Auth');
