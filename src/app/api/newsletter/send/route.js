@@ -29,7 +29,7 @@ export async function POST(request) {
             { year: 'numeric', month: 'long', day: 'numeric' },
          );
 
-         resend.emails.send({
+         return resend.emails.send({
             from: `${subscriber.locale === 'sr' ? 'Етос' : 'Ethos'} <support@updates.ethos-blog.com>`,
             to: subscriber.email,
             subject: getArticleSubject(article.title, subscriber.locale),
