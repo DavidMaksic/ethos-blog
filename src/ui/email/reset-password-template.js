@@ -51,54 +51,61 @@ export default function ResetPasswordTemplate({ url, user }) {
    return (
       <Html lang={locale}>
          <Head>
+            {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+            <link
+               rel="stylesheet"
+               href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Cormorant+SC:wght@600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&display=swap"
+            />
             <style>
-               {`@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Cormorant+SC:wght@600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&display=swap');
-
-               body { padding: 100px 0 }
-
-               @media only screen and (max-width: 600px) {
-                  body {  margin: 0px 8px !important; padding: 40px 0 !important }
+               {`@media only screen and (max-width: 600px) {
+                  body { margin: 0px 8px !important }
+                  .outer { padding: 40px 0 !important }
                   .container { padding: 30px 24px !important }
                }`}
             </style>
          </Head>
          <Preview>{t.subject}</Preview>
          <Body style={{ ...styles.body, fontFamily }}>
-            <Container className="container" style={styles.container}>
-               <Section style={styles.logoSection}>
-                  <Img
-                     src={imageUrl}
-                     alt="Logo"
-                     width={90}
-                     style={styles.logo}
-                  />
-               </Section>
+            <Section className="outer" style={styles.outerSection}>
+               <Container className="container" style={styles.container}>
+                  <Section style={styles.logoSection}>
+                     <Img
+                        src={imageUrl}
+                        alt="Logo"
+                        width={90}
+                        style={styles.logo}
+                     />
+                  </Section>
 
-               <Text style={styles.heading}>{t.subject}</Text>
+                  <Text style={styles.heading}>{t.subject}</Text>
 
-               <Hr style={styles.divider} />
+                  <Hr style={styles.divider} />
 
-               <Text style={styles.text}>
-                  {t.name} {firstName}!
-               </Text>
+                  <Text style={styles.text}>
+                     {t.name} {firstName}!
+                  </Text>
 
-               <Text style={styles.text}>{t.body}</Text>
+                  <Text style={styles.text}>{t.body}</Text>
 
-               <Text style={styles.text}>{t.expires}</Text>
+                  <Text style={styles.text}>{t.expires}</Text>
 
-               <Section style={styles.buttonSection}>
-                  <Button
-                     href={url}
-                     style={{ ...styles.button, fontFamily: buttonFontFamily }}
-                  >
-                     {t.button}
-                  </Button>
-               </Section>
+                  <Section style={styles.buttonSection}>
+                     <Button
+                        href={url}
+                        style={{
+                           ...styles.button,
+                           fontFamily: buttonFontFamily,
+                        }}
+                     >
+                        {t.button}
+                     </Button>
+                  </Section>
 
-               <Hr style={styles.divider} />
+                  <Hr style={styles.divider} />
 
-               <Text style={styles.footer}>{t.footer}</Text>
-            </Container>
+                  <Text style={styles.footer}>{t.footer}</Text>
+               </Container>
+            </Section>
          </Body>
       </Html>
    );
@@ -115,6 +122,9 @@ const styles = {
       margin: 0,
       backgroundColor: '#f4f5f6',
       fontFamily: 'Helvetica, Arial, sans-serif',
+   },
+   outerSection: {
+      padding: '100px 0',
    },
    container: {
       backgroundColor: '#ffffff',

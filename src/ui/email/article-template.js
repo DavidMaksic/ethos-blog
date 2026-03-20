@@ -56,84 +56,93 @@ export default function ArticleTemplate({
    return (
       <Html lang={locale}>
          <Head>
-            <style>{`
-               @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Cormorant+SC:wght@600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&display=swap');
-
-               body { padding: 100px 0 }
-
-               @media only screen and (max-width: 600px) {
-                  body {  margin: 0px 8px !important; padding: 40px 0 !important }
+            {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+            <link
+               rel="stylesheet"
+               href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Cormorant+SC:wght@600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&display=swap"
+            />
+            <style>
+               {`@media only screen and (max-width: 600px) {
+                  body { margin: 0px 8px !important }
+                  .outer { padding: 40px 0 !important }
                   .container { padding: 30px 24px !important }
-               }
-            `}</style>
+               }`}
+            </style>
          </Head>
          <Preview>{t.preview(article.title)}</Preview>
          <Body style={{ ...styles.body, fontFamily }}>
-            <Container className="container" style={styles.container}>
-               {/* Logo */}
-               <Section style={styles.logoSection}>
-                  <Img
-                     src={imageUrl}
-                     alt="Logo"
-                     width={90}
-                     style={styles.logo}
-                  />
-               </Section>
-
-               {/* Badge */}
-               <Section style={styles.badgeSection}>
-                  <Text style={styles.badge}>{t.badge}</Text>
-               </Section>
-
-               {/* <Hr style={styles.divider} /> */}
-
-               {/* Cover image */}
-               {article.image && (
-                  <Section style={styles.coverSection}>
+            <Section className="outer" style={styles.outerSection}>
+               <Container className="container" style={styles.container}>
+                  {/* Logo */}
+                  <Section style={styles.logoSection}>
                      <Img
-                        src={article.image}
-                        alt={article.title}
-                        width="100%"
-                        style={styles.cover}
+                        src={imageUrl}
+                        alt="Logo"
+                        width={90}
+                        style={styles.logo}
                      />
                   </Section>
-               )}
 
-               {/* Title */}
-               <Text style={styles.title}>{article.title}</Text>
+                  {/* Badge */}
+                  <Section style={styles.badgeSection}>
+                     <Text style={styles.badge}>{t.badge}</Text>
+                  </Section>
 
-               {/* Author + date */}
-               <Text style={styles.meta}>
-                  {t.by} {article.authors.full_name}
-                  {article.created_at ? ` · ${article.created_at}` : ''}
-               </Text>
+                  {/* <Hr style={styles.divider} /> */}
 
-               {/* Excerpt */}
-               {article.description && (
-                  <Text style={styles.description}>{article.description}</Text>
-               )}
+                  {/* Cover image */}
+                  {article.image && (
+                     <Section style={styles.coverSection}>
+                        <Img
+                           src={article.image}
+                           alt={article.title}
+                           width="100%"
+                           style={styles.cover}
+                        />
+                     </Section>
+                  )}
 
-               {/* CTA */}
-               <Section style={styles.buttonSection}>
-                  <Button
-                     href={`${WEBSITE_URL}${prefix}/${article.slug}`}
-                     style={{ ...styles.button, fontFamily: buttonFontFamily }}
-                  >
-                     {t.button}
-                  </Button>
-               </Section>
+                  {/* Title */}
+                  <Text style={styles.title}>{article.title}</Text>
 
-               <Hr style={styles.divider} />
+                  {/* Author + date */}
+                  <Text style={styles.meta}>
+                     {t.by} {article.authors.full_name}
+                     {article.created_at ? ` · ${article.created_at}` : ''}
+                  </Text>
 
-               {/* Footer */}
-               <Text style={styles.footer}>
-                  {t.footer}{' '}
-                  <a href={unsubscribeUrl} style={styles.unsubscribeLink}>
-                     {t.unsubscribe}
-                  </a>
-                  .
-               </Text>
-            </Container>
+                  {/* Excerpt */}
+                  {article.description && (
+                     <Text style={styles.description}>
+                        {article.description}
+                     </Text>
+                  )}
+
+                  {/* CTA */}
+                  <Section style={styles.buttonSection}>
+                     <Button
+                        href={`${WEBSITE_URL}${prefix}/${article.slug}`}
+                        style={{
+                           ...styles.button,
+                           fontFamily: buttonFontFamily,
+                        }}
+                     >
+                        {t.button}
+                     </Button>
+                  </Section>
+
+                  <Hr style={styles.divider} />
+
+                  {/* Footer */}
+                  <Text style={styles.footer}>
+                     {t.footer}{' '}
+                     <a href={unsubscribeUrl} style={styles.unsubscribeLink}>
+                        {t.unsubscribe}
+                     </a>
+                     .
+                  </Text>
+               </Container>
+            </Section>
          </Body>
       </Html>
    );
@@ -148,6 +157,9 @@ const styles = {
       margin: 0,
       backgroundColor: '#f4f5f6',
       fontFamily: 'Helvetica, Arial, sans-serif',
+   },
+   outerSection: {
+      padding: '100px 0',
    },
    container: {
       backgroundColor: '#ffffff',
