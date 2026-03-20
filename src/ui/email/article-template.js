@@ -112,10 +112,8 @@ export default function ArticleTemplate({
                   </Text>
 
                   {/* Excerpt */}
-                  {article.description && (
-                     <Text style={styles.description}>
-                        {article.description}
-                     </Text>
+                  {article.excerpt && (
+                     <Text style={styles.excerpt}>{article.excerpt}</Text>
                   )}
 
                   {/* CTA */}
@@ -225,7 +223,7 @@ const styles = {
       textAlign: 'center',
       margin: '0 0 16px 0',
    },
-   description: {
+   excerpt: {
       fontSize: '15px',
       color: '#5d6673',
       lineHeight: 1.6,
