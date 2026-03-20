@@ -36,7 +36,7 @@ export async function POST(request) {
             react: ArticleTemplate({
                article: { ...article, created_at: formattedDate },
                locale: subscriber.locale,
-               unsubscribeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/unsubscribe?token=${subscriber.unsubscribe_token}`,
+               unsubscribeUrl: `${process.env.WEBSITE_URL}/unsubscribe?token=${subscriber.unsubscribe_token}`,
             }),
          });
       }),
