@@ -23,18 +23,23 @@ export async function POST(request) {
 
    // Send to each subscriber
    const results = await Promise.allSettled(
-      subscribers.map((subscriber) =>
+      subscribers.map((subscriber) => {
+         const formattedDate = new Date(article.created_at).toLocaleDateString(
+            subscriber.locale === 'sr' ? 'sr-Latn-RS' : 'en-US',
+            { year: 'numeric', month: 'long', day: 'numeric' },
+         );
+
          resend.emails.send({
             from: `${subscriber.locale === 'sr' ? 'Етос' : 'Ethos'} <support@updates.ethos-blog.com>`,
             to: subscriber.email,
             subject: getArticleSubject(article.title, subscriber.locale),
             react: ArticleTemplate({
-               article,
+               article: { ...article, created_at: formattedDate },
                locale: subscriber.locale,
                unsubscribeUrl: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/unsubscribe?token=${subscriber.unsubscribe_token}`,
             }),
-         }),
-      ),
+         });
+      }),
    );
 
    const failed = results.filter((r) => r.status === 'rejected').length;
