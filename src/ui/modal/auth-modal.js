@@ -22,9 +22,7 @@ function AuthModal({ onClose, string }) {
          <div className="text-primary-600 dark:text-primary-500 w-[75%] md:w-[34rem] xs:w-[25rem] 3xs:w-[23rem] md:px-12 xs:px-8 text-center text-[2.2rem] leading-11 border-b border-b-quaternary pb-10">
             {t('Auth.join')}
             <span
-               className={`px-3 text-accent ${locale === 'en' && 'font-logo'} ${
-                  locale === 'sr' && 'font-logo-sr'
-               }`}
+               className={`px-3 text-accent ${locale === 'en' ? 'font-logo' : 'font-logo-sr'}`}
             >
                {t('Logo')}
             </span>
@@ -34,7 +32,7 @@ function AuthModal({ onClose, string }) {
          <div className="flex items-center gap-2 text-3xl">
             <Link
                href={session ? '/user/home' : '/login'}
-               className="flex items-center gap-2 text-accent hover:bg-accent-400/80 dark:hover:bg-accent-300/55 hover:text-white dark:hover:text-accent-100 hover:shadow-link-btn dark:hover:shadow-link-btn-dark rounded-full py-3.5 pl-6 pr-5.5 cursor-pointer transition font-logo text-4xl tracking-wide"
+               className={`flex items-center gap-2 text-accent hover:bg-accent-400/80 dark:hover:bg-accent-300/55 hover:text-white dark:hover:text-accent-100 hover:shadow-link-btn dark:hover:shadow-link-btn-dark rounded-full py-3.5 pl-6 pr-5.5 cursor-pointer transition text-4xl tracking-wide ${locale === 'en' ? 'font-logo' : 'font-logo-sr'}`}
             >
                {t('Auth.generic-sign-in')}
             </Link>

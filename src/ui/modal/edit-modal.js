@@ -1,5 +1,5 @@
+import { useLocale, useTranslations } from 'next-intl';
 import { editComment, editReply } from '@/src/lib/actions';
-import { useTranslations } from 'next-intl';
 import { ImSpinner2 } from 'react-icons/im';
 import { useState } from 'react';
 
@@ -10,6 +10,7 @@ import toast from 'react-hot-toast';
 function EditModal({ comment, commentLength, replyID, slug, onClose }) {
    const [text, setText] = useState(comment.content);
    const [error, setError] = useState(null);
+   const locale = useLocale();
 
    const [isPending, setIsPending] = useState(false);
    const t = useTranslations('Comment');
@@ -80,7 +81,7 @@ function EditModal({ comment, commentLength, replyID, slug, onClose }) {
 
          <div className="flex items-center gap-2 text-3xl">
             <button
-               className={`relative font-logo text-4xl rounded-full py-3.5 pl-6 pr-5.5 cursor-pointer text-accent hover:bg-accent-400/80 dark:hover:bg-accent-300/55 hover:text-white dark:hover:text-accent-100 hover:shadow-link-btn dark:hover:shadow-none transition tracking-wide ${
+               className={`relative text-4xl rounded-full py-3.5 pl-6 pr-5.5 cursor-pointer text-accent hover:bg-accent-400/80 dark:hover:bg-accent-300/55 hover:text-white dark:hover:text-accent-100 hover:shadow-link-btn dark:hover:shadow-none transition tracking-wide ${locale === 'en' ? 'font-logo' : 'font-logo-sr'} ${
                   isPending || comment.content === text
                      ? 'pointer-events-none opacity-50'
                      : ''
