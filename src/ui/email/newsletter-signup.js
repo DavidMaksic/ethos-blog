@@ -8,31 +8,31 @@ import image2 from '@/public/newsletter-2.webp';
 import image3 from '@/public/newsletter-3.webp';
 import image4 from '@/public/newsletter-4.webp';
 import image5 from '@/public/newsletter-5.webp';
-import image7 from '@/public/newsletter-7.webp';
-import image8 from '@/public/image-8.webp';
+import image6 from '@/public/newsletter-6.webp';
+import image7 from '@/public/image-7.webp';
+import image8 from '@/public/newsletter-8.webp';
 import image9 from '@/public/newsletter-9.webp';
 import image10 from '@/public/newsletter-10.webp';
-import image11 from '@/public/newsletter-11.webp';
-import image12 from '@/public/image-12.webp';
-import image13 from '@/public/newsletter-13.webp';
-import image14 from '@/public/image-14.webp';
+import image11 from '@/public/image-11.webp';
+import image12 from '@/public/newsletter-12.webp';
+import image13 from '@/public/image-13.webp';
+import image14 from '@/public/newsletter-14.webp';
 import image15 from '@/public/newsletter-15.webp';
-import image17 from '@/public/newsletter-17.webp';
+import image16 from '@/public/newsletter-16.webp';
+import image17 from '@/public/image-17.webp';
 import image18 from '@/public/newsletter-18.webp';
-import image19 from '@/public/image-19.webp';
-import image20 from '@/public/newsletter-20.webp';
+import image19 from '@/public/newsletter-19.webp';
+import image20 from '@/public/image-20.webp';
 import image21 from '@/public/newsletter-21.webp';
-import image23 from '@/public/image-23.webp';
-import image24 from '@/public/newsletter-24.webp';
-import image25 from '@/public/newsletter-25.webp';
+import image22 from '@/public/newsletter-22.webp';
+import image23 from '@/public/newsletter-23.jpg';
+import image24 from '@/public/newsletter-24.jpg';
+import image25 from '@/public/newsletter-25.jpg';
 import image26 from '@/public/newsletter-26.jpg';
 import image27 from '@/public/newsletter-27.jpg';
 import image28 from '@/public/newsletter-28.jpg';
 import image29 from '@/public/newsletter-29.jpg';
-import image31 from '@/public/newsletter-31.jpg';
-import image32 from '@/public/newsletter-32.jpg';
-import image33 from '@/public/newsletter-33.jpg';
-import image34 from '@/public/newsletter-34.jpg';
+import image30 from '@/public/newsletter-30.jpg';
 
 const images = [
    {
@@ -61,14 +61,19 @@ const images = [
       credit: 'Mohawk Games',
    },
    {
+      id: 6,
+      url: image6,
+      credit: 'Relic Entertainment',
+   },
+   {
       id: 7,
       url: image7,
-      credit: 'Relic Entertainment',
+      credit: 'Paradox Interactive',
    },
    {
       id: 8,
       url: image8,
-      credit: 'Paradox Interactive',
+      credit: 'Relic Entertainment',
    },
    {
       id: 9,
@@ -106,6 +111,11 @@ const images = [
       credit: 'Paradox Interactive',
    },
    {
+      id: 16,
+      url: image16,
+      credit: 'Paradox Interactive',
+   },
+   {
       id: 17,
       url: image17,
       credit: 'Paradox Interactive',
@@ -123,67 +133,57 @@ const images = [
    {
       id: 20,
       url: image20,
-      credit: 'Paradox Interactive',
+      credit: 'Crytek',
    },
    {
       id: 21,
       url: image21,
-      credit: 'Paradox Interactive',
+      credit: 'Warhorse Studios',
+   },
+   {
+      id: 22,
+      url: image22,
+      credit: 'Relic Entertainment',
    },
    {
       id: 23,
       url: image23,
-      credit: 'Crytek',
+      credit: 'Mohawk Games',
    },
    {
       id: 24,
       url: image24,
-      credit: 'Warhorse Studios',
+      credit: 'Mohawk Games',
    },
    {
       id: 25,
       url: image25,
-      credit: 'Relic Entertainment',
+      credit: 'Mohawk Games',
    },
    {
       id: 26,
       url: image26,
-      credit: 'Relic Entertainment',
+      credit: 'Mohawk Games',
    },
    {
       id: 27,
       url: image27,
-      credit: 'Relic Entertainment',
+      credit: 'Ubisoft',
    },
    {
       id: 28,
       url: image28,
-      credit: 'Relic Entertainment',
+      credit: 'Ubisoft',
    },
    {
       id: 29,
       url: image29,
-      credit: 'Relic Entertainment',
+      credit: 'Ubisoft',
    },
    {
-      id: 31,
-      url: image31,
-      credit: 'Relic Entertainment',
-   },
-   {
-      id: 32,
-      url: image32,
-      credit: 'Relic Entertainment',
-   },
-   {
-      id: 33,
-      url: image33,
-      credit: 'Relic Entertainment',
-   },
-   {
-      id: 34,
-      url: image34,
-      credit: 'Relic Entertainment',
+      id: 30,
+      url: image30,
+      credit: 'Ubisoft',
    },
 ];
 
