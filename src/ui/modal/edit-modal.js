@@ -53,12 +53,12 @@ function EditModal({ comment, commentLength, replyID, slug, onClose }) {
    }
 
    return (
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center w-[45rem] md:w-[85vw] xs:w-[80vw]">
          <span className="text-primary-600 dark:text-primary-500 w-4/5 md:w-[28rem] xs:w-[25rem] 3xs:w-[23rem] md:px-12 xs:px-0 text-center text-[2.2rem] leading-11 pb-8">
             {replyID ? t('edit-label-reply') : t('edit-label-comment')}
          </span>
 
-         <div className="font-secondary w-[45rem] md:w-[85vw] xs:w-[80vw] px-10 sm:px-6 xs:px-0">
+         <div className="font-secondary w-full px-10 sm:px-6 xs:px-0">
             <TextareaAutosize
                minRows={1}
                maxRows={11}
@@ -90,7 +90,9 @@ function EditModal({ comment, commentLength, replyID, slug, onClose }) {
             >
                {isPending ? (
                   <>
-                     <ImSpinner2 className="size-7 animate-spin absolute right-48 top-4.5 text-accent-500 dark:text-accent-300/90" />
+                     <ImSpinner2
+                        className={`size-7 animate-spin absolute top-4.5 text-accent-500 dark:text-accent-300/90 ${locale === 'en' ? 'right-48' : 'right-36'}`}
+                     />
                      <span>{t('editing')}</span>
                   </>
                ) : (

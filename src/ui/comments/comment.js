@@ -148,7 +148,9 @@ const Comment = forwardRef(
                               </span>
                            )}
                            {isAuthor && (
-                              <span className="px-2.5 py-0.5 bg-accent-400/20 dark:bg-accent-300/40 text-accent-600 dark:text-accent-50/70 rounded-xl font-semibold dark:font-medium">
+                              <span
+                                 className={`px-2.5 py-0.5 bg-accent-400/20 dark:bg-accent-300/40 text-accent-600 dark:text-accent-50/70 rounded-xl font-semibold dark:font-medium ${locale === 'sr' && 'pb-1 pt-px!'}`}
+                              >
                                  {t('author')}
                               </span>
                            )}

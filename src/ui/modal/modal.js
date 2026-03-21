@@ -1,9 +1,11 @@
 import { createPortal } from 'react-dom';
 import { useModal } from '@/src/hooks/use-modal';
 import { motion } from 'motion/react';
+import { useLocale } from 'next-intl';
 
 function Modal({ closeModal, styles, children }) {
    const ref = useModal(closeModal);
+   const locale = useLocale();
 
    return createPortal(
       <motion.div
@@ -14,7 +16,7 @@ function Modal({ closeModal, styles, children }) {
          transition={{ duration: 0.1 }}
       >
          <div
-            className={`fixed top-[45%] left-1/2 px-4 xs:px-8 py-12 pt-14 translate-x-[-50%] translate-y-[-50%] shadow-modal dark:shadow-none flex flex-col gap-4 items-center bg-white/90 dark:bg-primary/90 border border-quaternary dark:border-tertiary rounded-4xl overflow-hidden ${styles}`}
+            className={`fixed top-[45%] left-1/2 min-w-[35%] px-4 xs:px-8 py-12 pt-14 translate-x-[-50%] translate-y-[-50%] shadow-modal dark:shadow-none flex flex-col gap-4 items-center bg-white/90 dark:bg-primary/90 border border-quaternary dark:border-tertiary rounded-4xl overflow-hidden ${styles}`}
             ref={ref}
          >
             {children}

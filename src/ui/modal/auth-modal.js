@@ -13,13 +13,13 @@ function AuthModal({ onClose, string }) {
 
    return (
       <motion.div
-         className="flex flex-col items-center gap-10"
+         className="flex flex-col items-center gap-10 px-8 xs:px-4"
          initial={{ opacity: 0 }}
          animate={{ opacity: 1 }}
          exit={{ opacity: 0 }}
          transition={{ duration: 0.1 }}
       >
-         <div className="text-primary-600 dark:text-primary-500 w-[75%] md:w-[34rem] xs:w-[25rem] 3xs:w-[23rem] md:px-12 xs:px-8 text-center text-[2.2rem] leading-11 border-b border-b-quaternary pb-10">
+         <div className="text-primary-600 dark:text-primary-500 w-[40rem] xl:w-[36rem] md:w-[34rem] sm:w-[30rem] xs:w-[25rem] 3xs:w-[22rem] text-center text-[2.2rem] leading-11 border-b border-b-quaternary px-8 md:px-0 pb-10">
             {t('Auth.join')}
             <span
                className={`px-3 text-accent ${locale === 'en' ? 'font-logo' : 'font-logo-sr'}`}
