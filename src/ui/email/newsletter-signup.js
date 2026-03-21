@@ -192,7 +192,7 @@ export default async function NewsletterSignup() {
    const image = images[Math.floor(Math.random() * images.length)];
 
    return (
-      <section className="relative w-7xl 2xl:w-full rounded-4xl mb-14 self-center py-50 lg:py-30 md:py-26 xs:py-30 px-24 md:px-20 sm:px-16 xs:px-10 3xs:px-8 border border-quaternary dark:border-primary-300/20 bg-white dark:bg-primary-300/10 lg:shadow-dashboard lg:dark:shadow-none">
+      <section className="relative w-7xl 2xl:w-full rounded-4xl mb-14 self-center py-50 lg:py-30 md:py-26 xs:py-30 px-24 md:px-20 sm:px-14 xs:px-10 3xs:px-8 border border-quaternary dark:border-primary-300/20 bg-white dark:bg-primary-300/10 lg:shadow-dashboard lg:dark:shadow-none">
          <OrnamentalDivider />
          <NewsletterForm locale={locale} credit={image.credit} />
          <RemoteImage

@@ -61,7 +61,7 @@ function Footer() {
             {t('Logo')}
          </Link>
 
-         <div className="flex sm:flex-col items-center gap-10 md:gap-6 sm:gap-2 py-3 sm:py-10 px-12 sm:px-14 sm:text-3xl border-t border-t-primary-600/50 border-b border-b-primary-600/50 [&_span]:text-base [&_a]:hover:text-primary-500/80 [&_a]:dark:hover:text-primary-800/80 [&_a]:transition duration-75">
+         <div className="flex sm:flex-col items-center gap-10 md:gap-6 sm:gap-2 py-3 sm:py-10 px-12 md:px-6 sm:px-14 sm:text-3xl border-t border-t-primary-600/50 border-b border-b-primary-600/50 [&_span]:text-base [&_a]:hover:text-primary-500/80 [&_a]:dark:hover:text-primary-800/80 [&_a]:transition duration-75">
             {navLinks.map((link, i) => (
                <React.Fragment key={i}>
                   <Link href={link.href} onClick={handleNavClick(link.href)}>

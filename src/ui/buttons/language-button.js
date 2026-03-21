@@ -56,12 +56,7 @@ function LanguageButton() {
                   initial={{ opacity: 0, y: -8, scale: 0.97 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -8, scale: 0.97 }}
-                  transition={{
-                     type: 'spring',
-                     stiffness: 500,
-                     damping: 30,
-                     duration: 0.12,
-                  }}
+                  transition={{ duration: 0.12 }}
                >
                   {LANGUAGES.map((item) => (
                      <li
