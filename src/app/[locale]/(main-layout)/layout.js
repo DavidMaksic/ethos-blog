@@ -63,13 +63,13 @@ const cormorantSC = Cormorant_SC({
    adjustFontFallback: true,
 });
 
-// TODO: Message for comment input form: javascript:throw new Error('A React form was unexpectedly submitted. If you called form.submit() manually, consider using form.requestSubmit() instead. If you\'re trying to use event.stopPropagation() in a submit event handler, consider also calling event.preventDefault().')
+// TODO: Message on all input forms: javascript:throw new Error('A React form was unexpectedly submitted. If you called form.submit() manually, consider using form.requestSubmit() instead. If you\'re trying to use event.stopPropagation() in a submit event handler, consider also calling event.preventDefault().')
 
-// TODO: Remove newsletter component from some routes
-// TODO: Style unsubscribed page
 // TODO: Sqoosh newsletter images
+
 // TODO: Fix mobile look of templates
-// TODO: In CMS, in article edit, add newsletter update on article publish
+// TODO: Locally load fonts for emails
+// TODO: In CMS, in article edit, add newsletter update on article publish, but only if it wasnt published before
 
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);

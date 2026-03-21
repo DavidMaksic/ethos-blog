@@ -197,5 +197,10 @@
       "loading": "Subscribing...",
       "success": "You were successfully subscribed",
       "error": "Something went wrong. Please try again."
+   },
+   "Unsubscribe": {
+      "success": "You have been unsubscribed.",
+      "invalid": "Invalid or expired unsubscribe link.",
+      "back": "Back to main page"
    }
 }
