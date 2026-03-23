@@ -76,6 +76,8 @@ export default function ArticleTemplate({
                      .outer { padding: 0px 0px !important; }
                      .container { padding: 10px 0px !important; width: 100% !important; border-color: #fff !important; border-width: 0px !important; }
                      .article-image { height: 180px !important; width: 100% !important; }
+                     .footer { font-size: 10px !imporant }
+                     .author-date { font-size: 10px !imporant }
                   }
                `}
             </style>
@@ -124,7 +126,7 @@ export default function ArticleTemplate({
                   <h2 style={styles.title}>{article.title}</h2>
 
                   {/* Author + date */}
-                  <Text style={styles.meta}>
+                  <Text className="author-date" style={styles.meta}>
                      {t.by} {article.authors.full_name}
                      {article.created_at ? ` · ${article.created_at}` : ''}
                   </Text>
@@ -158,7 +160,7 @@ export default function ArticleTemplate({
                   <Hr style={styles.divider} />
 
                   {/* Footer */}
-                  <Text style={styles.footer}>
+                  <Text className="footer" style={styles.footer}>
                      {t.footer}{' '}
                      <a href={unsubscribeUrl} style={styles.unsubscribeLink}>
                         {t.unsubscribe}
@@ -183,6 +185,7 @@ const styles = {
    container: {
       border: '1px solid #6b728033',
       borderRadius: '20px',
+      width: '100%',
       boxShadow: '0 0 40px rgba(229, 231, 235, 1)',
       padding: '40px 60px',
       margin: '0 auto',
