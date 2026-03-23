@@ -72,11 +72,13 @@ export default function ArticleTemplate({
                      body { margin: 0px 0px !important; }
                      .outer { padding: 0px 0px !important; }
                      .container { padding: 30px 14px !important; width: 100% !important; }
-                     .title { font-size: 32px !important; }
-                     .button { font-size: 26px !important; }
-                     .excerpt { font-size: 16px !important; }
-                     .footer { font-size: 13px !important; }
-                     .badge { font-size: 12px !important; }
+                     p { font-size: 14px !important; line-height: 1.4 !important; }
+
+   /* Title — override the generic p rule */
+   p[style*="font-size:36px"], p[style*="font-size: 36px"] { font-size: 28px !important; }
+
+   /* Button renders as <a> inside a <td> */
+   a[style*="font-size:28px"], a[style*="font-size: 28px"] { font-size: 22px !important; }
                   }
                `}
             </style>
