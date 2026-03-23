@@ -245,7 +245,7 @@ const styles = {
    },
    button: {
       backgroundColor: '#d7b892',
-      boxShadow: '0 0 1rem #e8d6bf',
+      boxShadow: '0 0 16px #e8d6bf',
       color: '#ffffff',
       textDecoration: 'none',
       fontSize: '28px',
