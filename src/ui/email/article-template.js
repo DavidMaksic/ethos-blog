@@ -174,14 +174,12 @@ export default function ArticleTemplate({
 const styles = {
    body: {
       margin: 0,
-      backgroundColor: '#f4f5f6',
       fontFamily: 'Times New Roman, sans-serif',
    },
    outerSection: {
       padding: '40px 0',
    },
    container: {
-      backgroundColor: '#ffffff',
       border: '1px solid #eaebed',
       borderRadius: '16px',
       boxShadow: '0 0 40px rgba(229, 231, 235, 1)',
@@ -205,7 +203,6 @@ const styles = {
    },
    badge: {
       display: 'inline-block',
-      backgroundColor: '#fdf4ec',
       color: '#b07d52',
       fontSize: '14px',
       fontWeight: 600,
