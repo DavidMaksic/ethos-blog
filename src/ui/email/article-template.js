@@ -23,7 +23,7 @@ const content = {
    },
    sr: {
       badge: 'Нови чланак',
-      by: 'Аутор',
+      by: 'Аутор:',
       button: 'Прочитај чланак',
       footer: 'Добијате ово јер сте претплаћени на Етос. За одјаву,',
       unsubscribe: 'кликните овде',
@@ -69,12 +69,13 @@ export default function ArticleTemplate({
                   @media only screen and (max-width: 600px) {
                      body { margin: 0px 0px !important; }
                      p { font-size: 13px !important; line-height: 1.5 !important; }
-                     h2 { font-size: 26px !important; }
+                     h2 { font-size: 22px !important; }
                      a { font-size: 13px !important; }
                      span { font-size: 21px !important; }
 
                      .outer { padding: 0px 0px !important; }
-                     .container { padding: 30px 14px !important; width: 100% !important; }
+                     .container { padding: 10px 0px !important; width: 100% !important; border-color: #fff; border-width: 0px; }
+                     image { height: 180px !important; }
                   }
                `}
             </style>
@@ -203,7 +204,6 @@ const styles = {
       backgroundColor: '#fdf4ec',
       color: '#b07d52',
       fontSize: '14px',
-      fontWeight: 600,
       letterSpacing: '0.08em',
       textTransform: 'uppercase',
       padding: '4px 14px',
