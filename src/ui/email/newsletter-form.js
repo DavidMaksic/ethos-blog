@@ -72,12 +72,14 @@ function NewsletterForm({ locale }) {
              placeholder:text-primary-400 focus:outline-none font-secondary
                transition-shadow duration-200"
             />
+
             <div className="md:relative md:w-full md:mt-2 absolute right-0">
                <AuthButton
                   loading={isPending}
                   label={t('button')}
                   loadingLabel={t('loading')}
-                  style="py-[8px]! lg:py-3! md:py-3! xs:py-2.5! px-6! w-fit! md:w-full! md:mt-2 rounded-full from-accent-300! to-accent-400/80! dark:from-accent/60! dark:to-accent-400/50! hover:from-transparent! hover:to-transparent! backdrop-blur-sm shadow-link-btn dark:shadow-none cursor-pointer"
+                  font="md:text-[2.4rem]!"
+                  style="pt-[9px]! pb-[7px]! lg:pt-3! lg:pb-2.5 md:py-3! md:pb-[11px]! xs:pb-[7.5px]! px-6! w-fit! md:w-full! md:mt-2 rounded-full from-accent-300! to-accent-400/80! dark:from-accent/60! dark:to-accent-400/50! hover:from-transparent! hover:to-transparent! backdrop-blur-sm shadow-link-btn dark:shadow-none cursor-pointer"
                />
             </div>
          </form>

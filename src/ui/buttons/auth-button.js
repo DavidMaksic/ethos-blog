@@ -1,7 +1,7 @@
 import { ImSpinner2 } from 'react-icons/im';
 import { useLocale } from 'next-intl';
 
-function AuthButton({ loading, label, loadingLabel, style }) {
+function AuthButton({ loading, label, loadingLabel, font, style }) {
    const locale = useLocale();
 
    return (
@@ -13,7 +13,7 @@ function AuthButton({ loading, label, loadingLabel, style }) {
          <div
             className={`text-3xl md:text-4xl text-white dark:text-accent-100/90 group-hover:text-accent group-hover:drop-shadow-xs dark:group-hover:text-accent/90 transition-[color] duration-300 cursor-pointer ${
                locale === 'en' ? 'font-logo' : 'font-logo-sr'
-            }`}
+            } ${font}`}
          >
             {loading ? (
                <div className="flex items-center gap-4 justify-center">
