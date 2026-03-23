@@ -87,10 +87,7 @@ export default function ArticleTemplate({
          <Preview>{article.description}</Preview>
          <Body style={{ ...styles.body, fontFamily }}>
             <Section className="outer" style={styles.outerSection}>
-               <Container
-                  className="container"
-                  style={{ ...styles.container, maxWidth: '620px' }}
-               >
+               <Container className="container" style={styles.container}>
                   {/* Logo */}
                   <Section style={styles.logoSection}>
                      <Img
@@ -183,6 +180,7 @@ const styles = {
    container: {
       border: '1px solid #6b728033',
       borderRadius: '20px',
+      maxWidth: '820px',
       boxShadow: '0 0 40px rgba(229, 231, 235, 1)',
       padding: '40px 60px',
       margin: '0 auto',
