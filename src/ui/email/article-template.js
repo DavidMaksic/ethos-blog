@@ -25,7 +25,7 @@ const content = {
       badge: 'Нови чланак',
       by: 'Аутор',
       button: 'Прочитај чланак',
-      footer: 'Добијате ово јер сте претплаћени на Ethos. За одјаву,',
+      footer: 'Добијате ово јер сте претплаћени на Етос. За одјаву,',
       unsubscribe: 'кликните овде',
    },
 };
@@ -35,19 +35,26 @@ export default function ArticleTemplate({
    locale = 'en',
    unsubscribeUrl,
 }) {
-   const imageUrl = `${WEBSITE_URL}/email-logo.png`;
+   const imageUrl =
+      locale === 'en'
+         ? `${WEBSITE_URL}/email-logo.png`
+         : `${WEBSITE_URL}/email-logo-sr.png`;
+
    const prefix = locale === 'en' ? '' : `/${locale}`;
    const t = content[locale];
 
    const fontFamily =
       locale === 'sr'
-         ? "'Gentium Book Plus', 'Gentium Book Plus Fallback', serif"
-         : "'Crimson Text', 'EB Garamond', Helvetica, Arial, serif";
+         ? "'Gentium Book Plus', 'Gentium Book Plus Fallback', Times New Roman, serif"
+         : "'Crimson Text', 'EB Garamond', Times New Roman, serif";
 
    const buttonFontFamily =
       locale === 'sr'
-         ? "'Great Vibes', 'Cormorant Garamond', Helvetica, Arial, serif"
-         : "'Parisienne', 'Cormorant Garamond', Helvetica, Arial, serif";
+         ? "'Great Vibes', 'Cormorant Garamond', Times New Roman, serif"
+         : "'Parisienne', 'Cormorant Garamond', Times New Roman, serif";
+
+   const excerptSize = locale === 'sr' ? '18px' : '19px';
+   const excerptLineHeight = locale === 'sr' ? '1.45' : '1.4';
 
    return (
       <Html lang={locale}>
@@ -74,7 +81,7 @@ export default function ArticleTemplate({
                      <Img
                         src={imageUrl}
                         alt="Logo"
-                        width={90}
+                        width={95}
                         style={styles.logo}
                      />
                   </Section>
@@ -93,6 +100,7 @@ export default function ArticleTemplate({
                            src={article.image}
                            alt={article.title}
                            width="100%"
+                           height={250}
                            style={styles.cover}
                         />
                      </Section>
@@ -109,7 +117,15 @@ export default function ArticleTemplate({
 
                   {/* Excerpt */}
                   {article.excerpt && (
-                     <Text style={styles.excerpt}>{article.excerpt}</Text>
+                     <Text
+                        style={{
+                           ...styles.excerpt,
+                           fontSize: excerptSize,
+                           lineHeight: excerptLineHeight,
+                        }}
+                     >
+                        {article.excerpt}
+                     </Text>
                   )}
 
                   {/* CTA */}
@@ -146,18 +162,18 @@ const styles = {
    body: {
       margin: 0,
       backgroundColor: '#f4f5f6',
-      fontFamily: 'Helvetica, Arial, sans-serif',
+      fontFamily: 'Times New Roman, sans-serif',
    },
    outerSection: {
-      padding: '100px 0',
+      padding: '40px 0',
    },
    container: {
       backgroundColor: '#ffffff',
       border: '1px solid #eaebed',
       borderRadius: '16px',
       boxShadow: '0 0 40px rgba(229, 231, 235, 1)',
-      padding: '40px 50px',
-      maxWidth: '600px',
+      padding: '40px 60px',
+      maxWidth: '620px',
       margin: '0 auto',
    },
    logoSection: {
@@ -177,7 +193,7 @@ const styles = {
       display: 'inline-block',
       backgroundColor: '#fdf4ec',
       color: '#b07d52',
-      fontSize: '12px',
+      fontSize: '14px',
       fontWeight: 600,
       letterSpacing: '0.08em',
       textTransform: 'uppercase',
@@ -203,24 +219,22 @@ const styles = {
    },
    title: {
       fontFamily:
-         "'Cormorant SC', 'Cormorant Garamond', Helvetica, Arial, serif",
+         "'Cormorant SC', 'Cormorant Garamond', Times New Roman, serif",
       fontWeight: 700,
       color: '#4b5563',
-      fontSize: '32px',
+      fontSize: '36px',
       lineHeight: 1.1,
       textAlign: 'center',
       margin: '0 0 8px 0',
    },
    meta: {
-      fontSize: '13px',
+      fontSize: '15px',
       color: '#9ca3af',
       textAlign: 'center',
       margin: '0 0 16px 0',
    },
    excerpt: {
-      fontSize: '15px',
-      color: '#5d6673',
-      lineHeight: 1.6,
+      color: '#757d88',
       textAlign: 'center',
       fontWeight: 500,
       margin: '0 0 24px 0',
@@ -241,7 +255,7 @@ const styles = {
       border: '2px solid transparent',
    },
    footer: {
-      fontSize: '13px',
+      fontSize: '15px',
       color: '#9ca3af',
       textAlign: 'center',
       margin: '18px 0 0 0',
