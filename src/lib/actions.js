@@ -427,7 +427,16 @@ export async function subscribeToNewsletter(prevState, formData) {
          .single();
 
       // Ignore duplicate email conflict
-      if (error && error.code !== '23505') throw error;
+      if (error) {
+         if (error.code === '23505') {
+            return {
+               success: false,
+               error: 'already_subscribed',
+               id: Date.now(),
+            };
+         }
+         throw error;
+      }
 
       if (data) {
          await resend.emails.send({

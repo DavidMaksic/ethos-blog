@@ -17,7 +17,8 @@ export async function POST(request) {
    // Fetch all subscribers
    const { data: subscribers, error } = await supabaseAdmin
       .from('subscribers')
-      .select('email, locale, unsubscribe_token');
+      .select('email, locale, unsubscribe_token')
+      .eq('locale', article.code);
 
    if (error) return Response.json({ error: 'DB error' }, { status: 500 });
 

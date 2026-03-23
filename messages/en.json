@@ -196,7 +196,8 @@
       "button": "Subscribe",
       "loading": "Subscribing...",
       "success": "You were successfully subscribed",
-      "error": "Something went wrong. Please try again."
+      "error": "Something went wrong. Please try again",
+      "already_subscribed": "You're already subscribed"
    },
    "Unsubscribe": {
       "success": "You have been unsubscribed.",

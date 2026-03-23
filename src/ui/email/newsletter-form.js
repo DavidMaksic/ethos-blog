@@ -18,9 +18,13 @@ function NewsletterForm({ locale }) {
    // Handle server-side errors
    useEffect(() => {
       if (state.error) {
-         toast.error(state.error);
+         toast.error(
+            state.error === 'already_subscribed'
+               ? t('already_subscribed')
+               : state.error,
+         );
       }
-   }, [state.error, state.id]);
+   }, [state.error, state.id, t]);
 
    // Success handling
    useEffect(() => {
