@@ -11,7 +11,6 @@ import { useOutsideClick } from '@/src/hooks/use-outside-click';
 import { useTranslations } from 'next-intl';
 import { useMediaQuery } from 'react-responsive';
 import { FaRegComment } from 'react-icons/fa6';
-import { useScroll } from '@/src/hooks/use-scroll';
 import { useTheme } from 'next-themes';
 
 function Options() {
@@ -20,10 +19,6 @@ function Options() {
 
    const [mounted, setMounted] = useState(false);
    useEffect(() => setMounted(true), []);
-
-   // - Scroll
-   const { setScroll: setTopScroll, ref: topRef } = useScroll();
-   const { setScroll: setBottomScroll, ref: bottomRef } = useScroll();
 
    // - Table and menu
    const [openTable, setOpenTable] = useState(false);
@@ -38,7 +33,7 @@ function Options() {
    useEffect(() => {
       const headingElementsRaw = Array.from(
          document.querySelectorAll('h2, h3'),
-      ).slice(1);
+      ).slice(1, -1);
 
       const headingElements = headingElementsRaw
          .filter((item) => {
@@ -70,11 +65,8 @@ function Options() {
 
    return (
       <>
-         <div className="absolute top-[-12rem] left-0" ref={topRef} />
-         <div className="absolute bottom-0 left-0" ref={bottomRef} />
-
          <IoOptions
-            className={`fixed bottom-13 2xl:bottom-11 lg:bottom-11.5 md:bottom-9 right-24 2xl:right-12 lg:right-15 md:right-9 xs:right-7.5 2xs:right-7 size-16 md:size-20.5 bg-white dark:bg-transparent lg:dark:bg-primary/40 md:dark:bg-primary-200/80 backdrop-blur-3xl border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/25 p-3.5 md:p-4.5 rounded-full box-shadow md:shadow-menu transition-bg_border cursor-pointer z-20 ${
+            className={`fixed bottom-13 2xl:bottom-11 lg:bottom-11.5 md:bottom-9 right-24 2xl:right-12 lg:right-15 md:right-9 xs:right-7.5 2xs:right-7 size-16 md:size-20.5 bg-white dark:bg-transparent lg:dark:bg-primary/40 md:dark:bg-primary-200/80 backdrop-blur-3xl border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/25 p-3.5 md:p-4.5 rounded-full box-shadow md:shadow-menu transition-bg_border cursor-pointer z-30 ${
                !isBellowMd
                   ? 'hover:bg-white/20 dark:hover:bg-primary-400/10'
                   : ''
@@ -96,7 +88,7 @@ function Options() {
          <AnimatePresence>
             {openMenu && (
                <motion.ul
-                  className={`fixed bottom-32 2xl:bottom-30 lg:bottom-30.5 md:bottom-33 right-24 2xl:right-12 lg:right-15 md:right-9 xs:right-7.5 2xs:right-7 px-1 md:px-2 flex flex-col items-center bg-white lg:bg-white dark:bg-transparent lg:dark:bg-primary/40 md:dark:bg-primary-200/80 backdrop-blur-3xl border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/25 rounded-3xl [&_svg]:cursor-pointer box-shadow md:shadow-menu will-change-transform z-20 ${
+                  className={`fixed bottom-32 2xl:bottom-30 lg:bottom-30.5 md:bottom-33 right-24 2xl:right-12 lg:right-15 md:right-9 xs:right-7.5 2xs:right-7 px-1 md:px-2 flex flex-col items-center bg-white lg:bg-white dark:bg-transparent lg:dark:bg-primary/40 md:dark:bg-primary-200/80 backdrop-blur-3xl border border-quaternary dark:border-primary-300/35 md:dark:border-primary-300/25 rounded-3xl [&_svg]:cursor-pointer box-shadow md:shadow-menu will-change-transform z-30 ${
                      openTable
                         ? 'md:dark:shadow-none lg:dark:bg-primary/90!'
                         : 'md:dark:shadow-menu-dark'
@@ -111,7 +103,7 @@ function Options() {
                   <FiChevronUp
                      className="py-3 size-13.5 md:size-16 stroke-[1.8px] md:stroke-[1.6px] hover:bg-primary-100/80 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-t-[20px] mt-1 rounded-2xl transition-bg"
                      onClick={() => {
-                        setTopScroll(true);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
                         setOpenTable(false);
                         setOpenMenu(false);
                      }}
@@ -216,7 +208,10 @@ function Options() {
                      <FiChevronDown
                         className="py-3 size-13.5 md:size-16 stroke-[1.8px] md:stroke-[1.6px] hover:bg-primary-100/80 dark:bg-transparent dark:hover:bg-primary-400/10 rounded-b-[20px] mt-0.5 mb-1 rounded-2xl transition-bg"
                         onClick={() => {
-                           setBottomScroll(true);
+                           window.scrollTo({
+                              top: document.body.scrollHeight,
+                              behavior: 'smooth',
+                           });
                            setOpenTable(false);
                            setOpenMenu(false);
                         }}
@@ -227,7 +222,7 @@ function Options() {
          </AnimatePresence>
 
          <span
-            className={`fixed top-0 left-0 h-screen w-full z-10 dark:bg-[#41455334] backdrop-blur-2xl transition-opacity  hidden lg:block ${
+            className={`fixed top-0 left-0 h-screen w-full z-20 dark:bg-[#41455334] backdrop-blur-2xl transition-opacity  hidden lg:block ${
                openTable
                   ? 'opacity-100 pointer-events-auto'
                   : 'opacity-0 pointer-events-none'

@@ -198,6 +198,8 @@ const styles = {
       borderRadius: '20px',
       display: 'block',
       objectFit: 'cover',
+      opacity: 0.9,
+      border: '1px solid #d1d5dbb3',
    },
    title: {
       fontFamily:

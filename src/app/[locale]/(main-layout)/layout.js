@@ -63,11 +63,6 @@ const cormorantSC = Cormorant_SC({
    adjustFontFallback: true,
 });
 
-// TODO: Fix mobile look of templates
-// TODO: Locally load fonts for emails
-
-// TODO: In CMS, in article edit, add newsletter update on article publish, but only if it wasnt published before
-
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
    const { locale } = param;
