@@ -89,7 +89,7 @@ export default function ArticleTemplate({
             <Section className="outer" style={styles.outerSection}>
                <Container
                   className="container"
-                  style={{ ...styles.container, maxWidth: '620px' }}
+                  style={{ ...styles.container, maxWidth: '680px' }}
                >
                   {/* Logo */}
                   <Section style={styles.logoSection}>
@@ -223,7 +223,6 @@ const styles = {
    cover: {
       borderRadius: '20px',
       display: 'block',
-      width: '100%',
       objectFit: 'cover',
       opacity: 0.9,
       border: '1px solid #d1d5dbb3',
@@ -263,6 +262,7 @@ const styles = {
       padding: '10px 22px',
       borderRadius: '50px',
       textAlign: 'center',
+      display: 'inline-block',
       border: '2px solid transparent',
    },
    footer: {
