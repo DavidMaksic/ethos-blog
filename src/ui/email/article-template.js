@@ -74,8 +74,8 @@ export default function ArticleTemplate({
                      span { font-size: 21px !important; }
 
                      .outer { padding: 0px 0px !important; }
-                     .container { padding: 10px 0px !important; max-width: 800px !important; border-color: #fff !important; border-width: 0px !important; }
-                     .article-image { height: 180px !important; width: 100% !important; }
+                     .container { padding: 10px 0px !important; border-color: #fff !important; border-width: 0px !important; }
+                     .article-image { height: 200px !important; max-width: 800px !important; }
                   }
                `}
             </style>
@@ -180,7 +180,7 @@ const styles = {
    container: {
       border: '1px solid #6b728033',
       borderRadius: '20px',
-      maxWidth: '820px',
+      maxWidth: '620px',
       boxShadow: '0 0 40px rgba(229, 231, 235, 1)',
       padding: '40px 60px',
       margin: '0 auto',
