@@ -74,10 +74,7 @@ export default function ArticleTemplate({
                   }
                   body { margin: 0px 0px !important; }
                   .outer { padding: 0px 0px !important; }
-                  .container { padding: 30px 14px !important; border-radius: 0; }
-                  body, .outer, .container {
-                  background: #ffffff !important;
-                  }
+                  .container { padding: 30px 14px !important; }
                }`}
             </style>
             <meta
