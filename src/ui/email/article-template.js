@@ -12,6 +12,8 @@ import {
    Text,
 } from '@react-email/components';
 
+// TODO: Fix scroll in options for CMS
+
 const content = {
    en: {
       badge: 'New Article',
@@ -66,9 +68,9 @@ export default function ArticleTemplate({
             />
             <style>
                {`@media only screen and (max-width: 600px) {
-                  body { margin: 0 8px !important, background-color: transparent !important; }
-                  .outer { padding: 0 0 !important, background-color: transparent !important; }
-                  .container { padding: 30px 24px !important, background-color: transparent !important; }
+                  body { margin: 0px 0px !important; background-color: transparent !important; }
+                  .outer { padding: 0px 0px !important; background-color: transparent !important; }
+                  .container { padding: 30px 14px !important; background-color: transparent !important; }
                }`}
             </style>
          </Head>
