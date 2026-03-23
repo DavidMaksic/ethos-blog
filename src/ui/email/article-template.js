@@ -12,8 +12,6 @@ import {
    Text,
 } from '@react-email/components';
 
-// TODO: Fix scroll in options for CMS
-
 const content = {
    en: {
       badge: 'New Article',
@@ -44,19 +42,15 @@ export default function ArticleTemplate({
 
    const prefix = locale === 'en' ? '' : `/${locale}`;
    const t = content[locale];
+   const isSr = locale === 'sr';
 
-   const fontFamily =
-      locale === 'sr'
-         ? "'Gentium Book Plus', 'Gentium Book Plus Fallback', Times New Roman, serif"
-         : "'Crimson Text', 'EB Garamond', Times New Roman, serif";
+   const fontFamily = isSr
+      ? "'Gentium Book Plus', 'Gentium Book Plus Fallback', Times New Roman, serif"
+      : "'Crimson Text', 'EB Garamond', Times New Roman, serif";
 
-   const buttonFontFamily =
-      locale === 'sr'
-         ? "'Great Vibes', 'Cormorant Garamond', Times New Roman, serif"
-         : "'Parisienne', 'Cormorant Garamond', Times New Roman, serif";
-
-   const excerptSize = locale === 'sr' ? '18px' : '19px';
-   const excerptLineHeight = locale === 'sr' ? '1.45' : '1.4';
+   const buttonFontFamily = isSr
+      ? "'Great Vibes', 'Cormorant Garamond', Times New Roman, serif"
+      : "'Parisienne', 'Cormorant Garamond', Times New Roman, serif";
 
    return (
       <Html lang={locale}>
@@ -71,9 +65,7 @@ export default function ArticleTemplate({
                   @media only screen and (max-width: 600px) {
                      body { margin: 0px 0px !important; }
                      .outer { padding: 0px 0px !important; }
-                     .container { padding: 30px 14px !important; width: 100% !important; }
-                     p { font-size: 14px !important; line-height: 1.4 !important; }
-                     h1, h2 { font-size: 24px !important; }
+                     .container { padding: 30px 14px !important; width: 100% !important; background-color: #fff; }
                   }
                `}
             </style>
@@ -87,7 +79,7 @@ export default function ArticleTemplate({
             <Section className="outer" style={styles.outerSection}>
                <Container
                   className="container"
-                  style={{ ...styles.container, width: '620px' }}
+                  style={{ ...styles.container, maxWidth: '620px' }}
                >
                   {/* Logo */}
                   <Section style={styles.logoSection}>
@@ -103,8 +95,6 @@ export default function ArticleTemplate({
                   <Section style={styles.badgeSection}>
                      <Text style={styles.badge}>{t.badge}</Text>
                   </Section>
-
-                  {/* <Hr style={styles.divider} /> */}
 
                   {/* Cover image */}
                   {article.image && (
@@ -133,8 +123,8 @@ export default function ArticleTemplate({
                      <Text
                         style={{
                            ...styles.excerpt,
-                           fontSize: excerptSize,
-                           lineHeight: excerptLineHeight,
+                           fontSize: isSr ? '16px' : '17px',
+                           lineHeight: isSr ? '1.45' : '1.4',
                         }}
                      >
                         {article.excerpt}
@@ -174,21 +164,26 @@ export default function ArticleTemplate({
 const styles = {
    body: {
       margin: 0,
-      fontFamily: 'Times New Roman, sans-serif',
+      fontSize: '16px',
+      fontFamily: 'Times New Roman, serif',
    },
    outerSection: {
       padding: '40px 0',
+      fontSize: '16px',
    },
    container: {
       border: '1px solid #eaebed',
+      backgroundColor: '#fff',
       borderRadius: '20px',
       boxShadow: '0 0 40px rgba(229, 231, 235, 1)',
       padding: '40px 60px',
       margin: '0 auto',
+      fontSize: '16px',
    },
    logoSection: {
       textAlign: 'center',
       paddingBottom: '20px',
+      fontSize: '16px',
    },
    logo: {
       display: 'block',
@@ -198,6 +193,7 @@ const styles = {
    badgeSection: {
       textAlign: 'center',
       paddingBottom: '18px',
+      fontSize: '14px',
    },
    badge: {
       display: 'inline-block',
@@ -219,6 +215,7 @@ const styles = {
    },
    coverSection: {
       paddingBottom: '20px',
+      fontSize: '16px',
    },
    cover: {
       borderRadius: '20px',
@@ -232,16 +229,17 @@ const styles = {
          "'Cormorant SC', 'Cormorant Garamond', Times New Roman, serif",
       fontWeight: 700,
       color: '#4b5563',
-      fontSize: '36px',
+      fontSize: '32px',
       lineHeight: 1.1,
       textAlign: 'center',
       margin: '0 0 8px 0',
    },
    meta: {
-      fontSize: '15px',
+      fontSize: '14px',
       color: '#9ca3af',
       textAlign: 'center',
       margin: '0 0 16px 0',
+      lineHeight: '1.4',
    },
    excerpt: {
       color: '#757d88',
@@ -252,26 +250,29 @@ const styles = {
    buttonSection: {
       textAlign: 'center',
       margin: '0 0 24px 0',
+      fontSize: '16px',
    },
    button: {
       backgroundColor: '#d7b892',
       boxShadow: '0 0 16px #e8d6bf',
       color: '#ffffff',
       textDecoration: 'none',
-      fontSize: '28px',
+      fontSize: '26px',
       padding: '10px 22px',
       borderRadius: '50px',
       display: 'inline-block',
       border: '2px solid transparent',
    },
    footer: {
-      fontSize: '15px',
+      fontSize: '13px',
       color: '#9ca3af',
       textAlign: 'center',
       margin: '18px 0 0 0',
+      lineHeight: '1.4',
    },
    unsubscribeLink: {
       color: '#9ca3af',
       textDecoration: 'underline',
+      fontSize: '13px',
    },
 };
