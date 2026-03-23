@@ -69,8 +69,9 @@ export default function ArticleTemplate({
                   @media only screen and (max-width: 600px) {
                      body { margin: 0px 0px !important; }
                      p { font-size: 13px !important; line-height: 1.5 !important; }
-                     h2 { font-size: 36px !important; }
-                     span { font-size: 20px !important; }
+                     h2 { font-size: 26px !important; }
+                     a { font-size: 13px !important; }
+                     span { font-size: 21px !important; }
 
                      .outer { padding: 0px 0px !important; }
                      .container { padding: 30px 14px !important; width: 100% !important; }
@@ -178,7 +179,7 @@ const styles = {
       padding: '40px 0',
    },
    container: {
-      border: '1px solid #eaebed',
+      border: '1px solid #6b728033',
       borderRadius: '20px',
       boxShadow: '0 0 40px rgba(229, 231, 235, 1)',
       padding: '40px 60px',
