@@ -67,15 +67,17 @@ export default function ArticleTemplate({
                href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Cormorant+SC:wght@600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&display=swap"
             />
             <style>
-               {`@media only screen and (max-width: 600px) {
-                  html, body {
-                  -webkit-text-size-adjust: 100%;
-                  -ms-text-size-adjust: 100%;
+               {`
+                  u + .body .gmail-fix { display: block; }
+
+                  @media only screen and (max-width: 600px) {
+                     body { margin: 0px 0px !important; background-color: #fff !important; }
+                     .outer { padding: 0px 0px !important; }
+                     .container { padding: 30px 14px !important; }
+
+                     * { -webkit-text-size-adjust: none !important; text-size-adjust: none !important; }
                   }
-                  body { margin: 0px 0px !important; }
-                  .outer { padding: 0px 0px !important; }
-                  .container { padding: 30px 14px !important; }
-               }`}
+               `}
             </style>
             <meta
                name="viewport"
@@ -172,6 +174,7 @@ const styles = {
    body: {
       margin: 0,
       fontFamily: 'Times New Roman, sans-serif',
+      backgroundColor: '#f4f5f6',
    },
    outerSection: {
       padding: '40px 0',
@@ -179,6 +182,7 @@ const styles = {
    container: {
       border: '1px solid #eaebed',
       borderRadius: '20px',
+      backgroundColor: '#fff',
       boxShadow: '0 0 40px rgba(229, 231, 235, 1)',
       padding: '40px 60px',
       width: '100%',
