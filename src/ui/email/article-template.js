@@ -12,8 +12,6 @@ import {
    Text,
 } from '@react-email/components';
 
-// TODO: Fix scroll in options for CMS
-
 const content = {
    en: {
       badge: 'New Article',
@@ -70,15 +68,12 @@ export default function ArticleTemplate({
                {`
                   @media only screen and (max-width: 600px) {
                      body { margin: 0px 0px !important; }
+                     p { font-size: 13px !important; line-height: 1.5 !important; }
+                     h2 { font-size: 36px !important; }
+                     span { font-size: 20px !important; }
+
                      .outer { padding: 0px 0px !important; }
                      .container { padding: 30px 14px !important; width: 100% !important; }
-                     p { font-size: 14px !important; line-height: 1.4 !important; }
-
-   /* Title — override the generic p rule */
-   p[style*="font-size:36px"], p[style*="font-size: 36px"] { font-size: 28px !important; }
-
-   /* Button renders as <a> inside a <td> */
-   a[style*="font-size:28px"], a[style*="font-size: 28px"] { font-size: 22px !important; }
                   }
                `}
             </style>
@@ -106,12 +101,8 @@ export default function ArticleTemplate({
 
                   {/* Badge */}
                   <Section style={styles.badgeSection}>
-                     <Text className="badge" style={styles.badge}>
-                        {t.badge}
-                     </Text>
+                     <Text style={styles.badge}>{t.badge}</Text>
                   </Section>
-
-                  {/* <Hr style={styles.divider} /> */}
 
                   {/* Cover image */}
                   {article.image && (
@@ -127,9 +118,7 @@ export default function ArticleTemplate({
                   )}
 
                   {/* Title */}
-                  <Text className="title" style={styles.title}>
-                     {article.title}
-                  </Text>
+                  <h2 style={styles.title}>{article.title}</h2>
 
                   {/* Author + date */}
                   <Text style={styles.meta}>
@@ -140,7 +129,6 @@ export default function ArticleTemplate({
                   {/* Excerpt */}
                   {article.excerpt && (
                      <Text
-                        className="excerpt"
                         style={{
                            ...styles.excerpt,
                            fontSize: excerptSize,
@@ -154,7 +142,6 @@ export default function ArticleTemplate({
                   {/* CTA */}
                   <Section style={styles.buttonSection}>
                      <Button
-                        className="button"
                         href={`${WEBSITE_URL}${prefix}/${article.slug}`}
                         style={{
                            ...styles.button,
@@ -168,7 +155,7 @@ export default function ArticleTemplate({
                   <Hr style={styles.divider} />
 
                   {/* Footer */}
-                  <Text className="footer" style={styles.footer}>
+                  <Text style={styles.footer}>
                      {t.footer}{' '}
                      <a href={unsubscribeUrl} style={styles.unsubscribeLink}>
                         {t.unsubscribe}
