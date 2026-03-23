@@ -181,7 +181,7 @@ const styles = {
    },
    container: {
       border: '1px solid #eaebed',
-      borderRadius: '16px',
+      borderRadius: '20px',
       boxShadow: '0 0 40px rgba(229, 231, 235, 1)',
       padding: '40px 60px',
       width: '100%',
@@ -203,6 +203,7 @@ const styles = {
    },
    badge: {
       display: 'inline-block',
+      backgroundColor: '#fdf4ec',
       color: '#b07d52',
       fontSize: '14px',
       fontWeight: 600,
