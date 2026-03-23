@@ -183,7 +183,6 @@ const styles = {
    container: {
       border: '1px solid #6b728033',
       borderRadius: '20px',
-      width: '100%',
       boxShadow: '0 0 40px rgba(229, 231, 235, 1)',
       padding: '40px 60px',
       margin: '0 auto',
@@ -224,6 +223,7 @@ const styles = {
    cover: {
       borderRadius: '20px',
       display: 'block',
+      width: '100%',
       objectFit: 'cover',
       opacity: 0.9,
       border: '1px solid #d1d5dbb3',
