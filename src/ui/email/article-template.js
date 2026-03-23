@@ -69,13 +69,13 @@ export default function ArticleTemplate({
                   @media only screen and (max-width: 600px) {
                      body { margin: 0px 0px !important; }
                      p { font-size: 13px !important; line-height: 1.5 !important; }
-                     h2 { font-size: 22px !important; }
+                     h2 { font-size: 20px !important; }
                      a { font-size: 13px !important; }
                      span { font-size: 21px !important; }
 
                      .outer { padding: 0px 0px !important; }
                      .container { padding: 10px 0px !important; width: 100% !important; border-color: #fff !important; border-width: 0px !important; }
-                     .article-image { height: 180px !important; }
+                     .article-image { height: 180px !important; width: 100% !important; }
                   }
                `}
             </style>
@@ -261,7 +261,7 @@ const styles = {
       fontSize: '28px',
       padding: '10px 22px',
       borderRadius: '50px',
-      display: 'inline-block',
+      textAlign: 'center',
       border: '2px solid transparent',
    },
    footer: {
