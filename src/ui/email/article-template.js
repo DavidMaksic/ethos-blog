@@ -68,15 +68,15 @@ export default function ArticleTemplate({
             />
             <style>
                {`@media only screen and (max-width: 600px) {
+                  html, body {
+                  -webkit-text-size-adjust: 100%;
+                  -ms-text-size-adjust: 100%;
+                  }
                   body { margin: 0px 0px !important; }
                   .outer { padding: 0px 0px !important; }
                   .container { padding: 30px 14px !important; border-radius: 0; }
                   body, .outer, .container {
                   background: #ffffff !important;
-                  }
-                  body, table, td, a {
-                  -webkit-text-size-adjust: 100% !important;
-                  -ms-text-size-adjust: 100% !important;
                   }
                }`}
             </style>
@@ -186,6 +186,7 @@ const styles = {
       borderRadius: '16px',
       boxShadow: '0 0 40px rgba(229, 231, 235, 1)',
       padding: '40px 60px',
+      width: '100%',
       maxWidth: '620px',
       margin: '0 auto',
    },
