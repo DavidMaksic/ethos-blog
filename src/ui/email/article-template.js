@@ -74,7 +74,7 @@ export default function ArticleTemplate({
                      span { font-size: 21px !important; }
 
                      .outer { padding: 0px 0px !important; }
-                     .container { padding: 10px 0px !important; width: 100% !important; border-color: #fff !important; border-width: 0px !important; }
+                     .container { padding: 10px 0px !important; max-width: 800px !important; border-color: #fff !important; border-width: 0px !important; }
                      .article-image { height: 180px !important; width: 100% !important; }
                   }
                `}
@@ -89,7 +89,7 @@ export default function ArticleTemplate({
             <Section className="outer" style={styles.outerSection}>
                <Container
                   className="container"
-                  style={{ ...styles.container, maxWidth: '680px' }}
+                  style={{ ...styles.container, maxWidth: '620px' }}
                >
                   {/* Logo */}
                   <Section style={styles.logoSection}>
