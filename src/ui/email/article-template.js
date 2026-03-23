@@ -74,8 +74,8 @@ export default function ArticleTemplate({
                      span { font-size: 21px !important; }
 
                      .outer { padding: 0px 0px !important; }
-                     .container { padding: 10px 0px !important; width: 100% !important; border-color: #fff; border-width: 0px; }
-                     image { height: 180px !important; }
+                     .container { padding: 10px 0px !important; width: 100% !important; border-color: #fff !important; border-width: 0px !important; }
+                     .article-image { height: 180px !important; }
                   }
                `}
             </style>
@@ -110,6 +110,7 @@ export default function ArticleTemplate({
                   {article.image && (
                      <Section style={styles.coverSection}>
                         <Img
+                           className="article-image"
                            src={article.image}
                            alt={article.title}
                            width="100%"
