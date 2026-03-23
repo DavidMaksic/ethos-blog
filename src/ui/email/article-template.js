@@ -68,14 +68,12 @@ export default function ArticleTemplate({
             />
             <style>
                {`
-                  u + .body .gmail-fix { display: block; }
-
                   @media only screen and (max-width: 600px) {
-                     body { margin: 0px 0px !important; background-color: #fff !important; }
+                     body { margin: 0px 0px !important; }
                      .outer { padding: 0px 0px !important; }
-                     .container { padding: 30px 14px !important; }
-
-                     * { -webkit-text-size-adjust: none !important; text-size-adjust: none !important; }
+                     .container { padding: 30px 14px !important; width: 100% !important; }
+                     p { font-size: 14px !important; line-height: 1.4 !important; }
+                     h1, h2 { font-size: 24px !important; }
                   }
                `}
             </style>
@@ -87,7 +85,10 @@ export default function ArticleTemplate({
          <Preview>{article.description}</Preview>
          <Body style={{ ...styles.body, fontFamily }}>
             <Section className="outer" style={styles.outerSection}>
-               <Container className="container" style={styles.container}>
+               <Container
+                  className="container"
+                  style={{ ...styles.container, width: '620px' }}
+               >
                   {/* Logo */}
                   <Section style={styles.logoSection}>
                      <Img
@@ -174,7 +175,6 @@ const styles = {
    body: {
       margin: 0,
       fontFamily: 'Times New Roman, sans-serif',
-      backgroundColor: '#f4f5f6',
    },
    outerSection: {
       padding: '40px 0',
@@ -182,11 +182,8 @@ const styles = {
    container: {
       border: '1px solid #eaebed',
       borderRadius: '20px',
-      backgroundColor: '#fff',
       boxShadow: '0 0 40px rgba(229, 231, 235, 1)',
       padding: '40px 60px',
-      width: '100%',
-      maxWidth: '620px',
       margin: '0 auto',
    },
    logoSection: {
