@@ -68,9 +68,29 @@ export default function ArticleTemplate({
             />
             <style>
                {`@media only screen and (max-width: 600px) {
-                  body { margin: 0px 0px !important; background-color: transparent !important; }
-                  .outer { padding: 0px 0px !important; background-color: transparent !important; }
-                  .container { padding: 30px 14px !important; background-color: transparent !important; }
+                  body { margin: 0px 0px !important; }
+                  .outer { padding: 0px 0px !important; }
+                  .container { padding: 30px 14px !important; }
+                  body, .outer, .container {
+                  background: #ffffff !important;
+                  }
+                  .title {
+    font-size: 26px !important;
+    line-height: 1.2 !important;
+  }
+
+  .excerpt {
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+  }
+
+  .meta {
+    font-size: 14px !important;
+  }
+
+  .button {
+    font-size: 22px !important;
+  }
                }`}
             </style>
          </Head>
