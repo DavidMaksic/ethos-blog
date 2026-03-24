@@ -70,12 +70,14 @@ export default function ArticleTemplate({
                      body { margin: 0px 0px !important; }
                      p { font-size: 13px !important; line-height: 1.5 !important; }
                      h2 { font-size: 20px !important; }
-                     button a { font-size: 20px !important; }
+                     td a { font-size: 20px !important; }
+                     p a { font-size: 10px !important; }
                      span { font-size: 10px !important; }
 
                      .outer { padding: 0px 0px !important; }
                      .container { padding: 10px 0px !important; border-color: #fff !important; border-width: 0px !important; border-radius: 0px !important }
                      .article-image { height: 200px !important; max-width: 800px !important; }
+                     .buttonSection td { text-align: center !important; }
                   }
                `}
             </style>
@@ -100,7 +102,7 @@ export default function ArticleTemplate({
 
                   {/* Badge */}
                   <Section style={styles.badgeSection}>
-                     <Text style={styles.badge}>{t.badge}</Text>
+                     <p style={styles.badge}>{t.badge}</p>
                   </Section>
 
                   {/* Cover image */}
@@ -143,7 +145,10 @@ export default function ArticleTemplate({
                   )}
 
                   {/* CTA */}
-                  <Section style={styles.buttonSection}>
+                  <Section
+                     className="buttonSection"
+                     style={styles.buttonSection}
+                  >
                      <Button
                         href={`${WEBSITE_URL}${prefix}/${article.slug}`}
                         style={{
@@ -264,7 +269,7 @@ const styles = {
       padding: '10px 22px',
       borderRadius: '50px',
       margin: '0 auto',
-      display: 'inline-block',
+      display: 'block',
       border: '2px solid transparent',
    },
    footer: {
