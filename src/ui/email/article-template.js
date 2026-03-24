@@ -74,9 +74,9 @@ export default function ArticleTemplate({
                      p a { font-size: 10px !important; }
                      span { font-size: 10px !important; }
 
-                     .outer { padding: 0px 0px !important; }
+                     .outer { padding: 10px 10px !important; }
                      .container { padding: 0 0 !important; border-color: #fff !important; border-width: 0px !important; }
-                     .article-image { height: 200px !important; width: 100% !important;  }
+                     .article-image { height: 200px !important; }
                   }
                `}
             </style>
@@ -107,9 +107,14 @@ export default function ArticleTemplate({
                            className="article-image"
                            src={article.image}
                            alt={article.title}
-                           width="100%"
-                           height={250}
-                           style={styles.cover}
+                           width={600}
+                           style={{
+                              ...styles.cover,
+                              width: '100%',
+                              maxWidth: '100%',
+                              height: 'auto',
+                              display: 'block',
+                           }}
                         />
                      </Section>
                   )}
