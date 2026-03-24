@@ -70,8 +70,8 @@ export default function ResetPasswordTemplate({ url, user }) {
                   p a { font-size: 10px !important; }
                   span { font-size: 10px !important; }
 
-                  .outer { padding: 10px 10px !important; }
-                  .container { padding: 0 0 !important; }
+                  .outer { padding: 10px 0px !important; }
+                  .container { padding: 20px 10px !important; }
                   .cta-button { padding: 3px 26px 7px 26px !important; }
                }`}
             </style>
@@ -146,7 +146,7 @@ const styles = {
       padding: '20px 0',
    },
    container: {
-      border: '1px solid #eaebed',
+      border: '1px solid #6b728033',
       borderRadius: '20px',
       boxShadow: '0 0 40px rgba(229, 231, 235, 1)',
       padding: '40px 50px',
