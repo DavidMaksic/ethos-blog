@@ -84,8 +84,14 @@ export default function ArticleTemplate({
          </Head>
          <Preview>{article.description}</Preview>
          <Body style={{ ...styles.body, fontFamily }}>
-            <Section className="outer" style={styles.outerSection}>
-               <Container className="container" style={styles.container}>
+            <Section
+               className="outer"
+               style={{ backgroundColor: '#f4f5f6', padding: '80px 0' }}
+            >
+               <Container
+                  className="container"
+                  style={{ ...styles.container, backgroundColor: '#fff' }}
+               >
                   {/* Logo */}
                   <Section style={styles.logoSection}>
                      <Img
@@ -113,7 +119,7 @@ export default function ArticleTemplate({
                               ...styles.cover,
                               width: '100%',
                               maxWidth: '100%',
-                              height: '280px',
+                              height: '250px',
                               display: 'block',
                            }}
                         />
@@ -185,9 +191,6 @@ const styles = {
    body: {
       margin: 0,
       fontFamily: 'Times New Roman, sans-serif',
-   },
-   outerSection: {
-      padding: '0 0',
    },
    container: {
       border: '1px solid #6b728033',

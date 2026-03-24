@@ -69,6 +69,7 @@ export default function WelcomeTemplate({ locale = 'en', unsubscribeUrl }) {
                   p a { font-size: 10px !important; line-height: 1.5 !important; }
                   span { font-size: 10px !important; line-height: 1.5 !important; }
 
+                  .outer { background-color: transparent !important; padding: 40px 0 !important; }
                   .container { padding: 40px 30px 30px 30px !important; }
                   .cta-button { padding: 3px 26px 7px 26px !important; }
                }`}
@@ -76,8 +77,14 @@ export default function WelcomeTemplate({ locale = 'en', unsubscribeUrl }) {
          </Head>
          <Preview>{t.subject}</Preview>
          <Body style={{ ...styles.body, fontFamily }}>
-            <Section>
-               <Container className="container" style={styles.container}>
+            <Section
+               className="outer"
+               style={{ backgroundColor: '#f4f5f6', padding: '80px 0' }}
+            >
+               <Container
+                  className="container"
+                  style={{ ...styles.container, backgroundColor: '#fff' }}
+               >
                   <Section style={styles.logoSection}>
                      <Img
                         src={imageUrl}
