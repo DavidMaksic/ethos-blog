@@ -76,7 +76,7 @@ export default function ArticleTemplate({
 
                      .outer { padding: 0px 0px !important; }
                      .container { padding: 0 0 !important; border-color: #fff !important; border-width: 0px !important; }
-                     .article-image { height: 200px !important; width: max-content !important; }
+                     .article-image { height: 200px !important; width: 100% !important;  }
                   }
                `}
             </style>
@@ -102,7 +102,7 @@ export default function ArticleTemplate({
 
                   {/* Cover image */}
                   {article.image && (
-                     <Section style={styles.coverSection}>
+                     <Section style={{ ...styles.coverSection, width: '100%' }}>
                         <Img
                            className="article-image"
                            src={article.image}
@@ -206,6 +206,7 @@ const styles = {
       display: 'inline-block',
       backgroundColor: '#fdf4ec',
       color: '#b07d52',
+      fontSize: '15px',
       letterSpacing: '0.08em',
       textTransform: 'uppercase',
       padding: '4px 14px',
@@ -223,7 +224,6 @@ const styles = {
    },
    cover: {
       borderRadius: '20px',
-      display: 'block',
       objectFit: 'cover',
       opacity: 0.9,
       border: '1px solid #d1d5dbb3',
