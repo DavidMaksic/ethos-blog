@@ -70,13 +70,14 @@ export default function ArticleTemplate({
                      body { min-width: 0 !important; }
                      p { font-size: 13px !important; line-height: 1.5 !important; }
                      h2 { font-size: 20px !important; }
-                     a span { font-size: 21px !important; }
+                     a span { font-size: 16px !important; }
                      p a { font-size: 10px !important; }
                      span { font-size: 10px !important; }
 
                      .outer { padding: 10px 10px !important; }
                      .container { padding: 0 0 !important; border-color: #fff !important; border-width: 0px !important; }
                      .article-image { height: 200px !important; }
+                     .cta-button { padding: 8px 22px !important; }
                   }
                `}
             </style>
@@ -112,7 +113,7 @@ export default function ArticleTemplate({
                               ...styles.cover,
                               width: '100%',
                               maxWidth: '100%',
-                              height: '250px',
+                              height: '280px',
                               display: 'block',
                            }}
                         />
@@ -149,10 +150,12 @@ export default function ArticleTemplate({
                      style={styles.buttonSection}
                   >
                      <Button
+                        className="cta-button"
                         href={`${WEBSITE_URL}${prefix}/${article.slug}`}
                         style={{
                            ...styles.button,
                            fontFamily: buttonFontFamily,
+                           padding: '10px 22px',
                         }}
                      >
                         {t.button}
@@ -265,7 +268,6 @@ const styles = {
       color: '#ffffff',
       textDecoration: 'none',
       fontSize: '28px',
-      padding: '10px 22px',
       borderRadius: '50px',
       border: '2px solid transparent',
    },
