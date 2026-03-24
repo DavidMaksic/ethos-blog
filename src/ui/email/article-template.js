@@ -67,7 +67,7 @@ export default function ArticleTemplate({
             <style>
                {`
                   @media only screen and (max-width: 600px) {
-                     body { margin: 1px 0px !important; }
+                     body { min-width: 0 !important; }
                      p { font-size: 13px !important; line-height: 1.5 !important; }
                      h2 { font-size: 20px !important; }
                      a span { font-size: 21px !important; }
@@ -143,15 +143,29 @@ export default function ArticleTemplate({
                      className="buttonSection"
                      style={styles.buttonSection}
                   >
-                     <Button
-                        href={`${WEBSITE_URL}${prefix}/${article.slug}`}
-                        style={{
-                           ...styles.button,
-                           fontFamily: buttonFontFamily,
-                        }}
+                     <table
+                        width="100%"
+                        border={0}
+                        cellPadding={0}
+                        cellSpacing={0}
+                        role="presentation"
                      >
-                        {t.button}
-                     </Button>
+                        <tbody>
+                           <tr>
+                              <td align="center">
+                                 <a
+                                    href={`${WEBSITE_URL}${prefix}/${article.slug}`}
+                                    style={{
+                                       ...styles.button,
+                                       fontFamily: buttonFontFamily,
+                                    }}
+                                 >
+                                    {t.button}
+                                 </a>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
                   </Section>
 
                   <Hr style={styles.divider} />
@@ -260,7 +274,7 @@ const styles = {
       color: '#ffffff',
       textDecoration: 'none',
       fontSize: '28px',
-      padding: '10px 22px',
+      padding: '6px 22px',
       borderRadius: '50px',
       border: '2px solid transparent',
    },
