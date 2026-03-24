@@ -71,8 +71,7 @@ export default function ResetPasswordTemplate({ url, user }) {
                   span { font-size: 10px !important; }
 
                   .outer { padding: 10px 10px !important; }
-                  .container { padding: 0 0 !important; border-color: #fff!important; border-width: 0px !important; }
-                  .article-image { height: 200px !important; }
+                  .container { padding: 0 0 !important; }
                   .cta-button { padding: 3px 26px 7px 26px !important; }
                }`}
             </style>
@@ -144,7 +143,7 @@ const styles = {
       fontFamily: 'Times New Roman, sans-serif',
    },
    outerSection: {
-      padding: '0 0',
+      padding: '20px 0',
    },
    container: {
       border: '1px solid #eaebed',
