@@ -169,6 +169,7 @@ export default async function RootLayout({ children, params }) {
                content="black-translucent"
             />
             <meta name="apple-mobile-web-app-title" content="Ethos Blog" />
+            <meta name="color-scheme" content="light dark" />
 
             <script
                type="application/ld+json"

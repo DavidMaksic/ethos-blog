@@ -70,10 +70,9 @@ export default function ArticleTemplate({
                      body { margin: 0px 0px !important; }
                      p { font-size: 13px !important; line-height: 1.5 !important; }
                      h2 { font-size: 20px !important; }
-                     a span { font-size: 18px !important; }
+                     a span { font-size: 17px !important; }
                      p a { font-size: 10px !important; }
                      span { font-size: 10px !important; }
-                     td { text-align: center !important; }
 
                      .outer { padding: 0px 0px !important; }
                      .container { padding: 10px 0px !important; border-color: #fff !important; border-width: 0px !important; }
@@ -81,10 +80,6 @@ export default function ArticleTemplate({
                   }
                `}
             </style>
-            <meta
-               name="viewport"
-               content="width=device-width, initial-scale=1.0"
-            />
          </Head>
          <Preview>{article.description}</Preview>
          <Body style={{ ...styles.body, fontFamily }}>
@@ -267,8 +262,9 @@ const styles = {
       fontSize: '28px',
       padding: '10px 22px',
       borderRadius: '50px',
+      display: 'block',
       margin: '0 auto',
-      display: 'inline-block',
+      width: 'fit-content',
       border: '2px solid transparent',
    },
    footer: {
