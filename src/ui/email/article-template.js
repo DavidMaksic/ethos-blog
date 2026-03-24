@@ -187,7 +187,7 @@ const styles = {
       fontFamily: 'Times New Roman, sans-serif',
    },
    outerSection: {
-      padding: '40px 0',
+      padding: '0 0',
    },
    container: {
       border: '1px solid #6b728033',

@@ -79,7 +79,7 @@ export default function ResetPasswordTemplate({ url, user }) {
          </Head>
          <Preview>{t.subject}</Preview>
          <Body style={{ ...styles.body, fontFamily }}>
-            <Section style={styles.outerSection}>
+            <Section className="outer" style={styles.outerSection}>
                <Container className="container" style={styles.container}>
                   <Section style={styles.logoSection}>
                      <Img
@@ -90,7 +90,7 @@ export default function ResetPasswordTemplate({ url, user }) {
                      />
                   </Section>
 
-                  <Text style={styles.heading}>{t.subject}</Text>
+                  <h2 style={styles.heading}>{t.subject}</h2>
 
                   <Hr style={styles.divider} />
 
@@ -122,7 +122,9 @@ export default function ResetPasswordTemplate({ url, user }) {
 
                   <Hr style={styles.divider} />
 
-                  <Text style={styles.footer}>{t.footer}</Text>
+                  <Text style={styles.footer}>
+                     <span style={{ fontSize: '15px' }}>{t.footer}</span>
+                  </Text>
                </Container>
             </Section>
          </Body>
@@ -142,11 +144,11 @@ const styles = {
       fontFamily: 'Times New Roman, sans-serif',
    },
    outerSection: {
-      padding: '40px 0',
+      padding: '0 0',
    },
    container: {
       border: '1px solid #eaebed',
-      borderRadius: '16px',
+      borderRadius: '20px',
       boxShadow: '0 0 40px rgba(229, 231, 235, 1)',
       padding: '40px 50px',
       maxWidth: '600px',
@@ -167,7 +169,7 @@ const styles = {
       fontWeight: 700,
       color: '#52525b',
       lineHeight: 1.1,
-      fontSize: '36px',
+      fontSize: '32px',
       textAlign: 'center',
       margin: '0 0 26px 0',
    },
