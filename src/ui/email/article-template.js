@@ -69,9 +69,12 @@ export default function ArticleTemplate({
                   @media only screen and (max-width: 600px) {
                      p { font-size: 13px !important; line-height: 1.5 !important; }
                      h2 { font-size: 20px !important; }
-                     a span { font-size: 16px !important; }
+                     a span { font-size: 21px !important; }
                      p a { font-size: 10px !important; }
                      span { font-size: 10px !important; }
+
+                     .outer { padding: 0px 0px !important; }
+                     .container { padding: 10px 0px !important; border-color: #fff !important; border-width: 0px !important; }
                      .article-image { height: 200px !important; max-width: 800px !important; }
                   }
                `}
