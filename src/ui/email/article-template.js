@@ -78,6 +78,7 @@ export default function ArticleTemplate({
                      .container { padding: 0 0 !important; border-color: #fff !important; border-width: 0px !important; background-color: transparent !important; }
                      .article-image { height: 200px !important; }
                      .cta-button { padding: 3px 26px 7px 26px !important; }
+                     .badge { font-size: 13px !important; }
                   }
                `}
             </style>
@@ -86,7 +87,7 @@ export default function ArticleTemplate({
          <Body style={{ ...styles.body, fontFamily }}>
             <Section
                className="outer"
-               style={{ backgroundColor: '#f4f5f6', padding: '80px 0' }}
+               style={{ backgroundColor: '#f4f5f6', padding: '60px 0' }}
             >
                <Container
                   className="container"
@@ -104,7 +105,12 @@ export default function ArticleTemplate({
 
                   {/* Badge */}
                   <Section style={styles.badgeSection}>
-                     <p style={styles.badge}>{t.badge}</p>
+                     <p
+                        className="badge"
+                        style={{ ...styles.badge, fontSize: '15px' }}
+                     >
+                        {t.badge}
+                     </p>
                   </Section>
 
                   {/* Cover image */}
@@ -217,7 +223,6 @@ const styles = {
       display: 'inline-block',
       backgroundColor: '#fdf4ec',
       color: '#b07d52',
-      fontSize: '15px',
       letterSpacing: '0.08em',
       textTransform: 'uppercase',
       padding: '4px 14px',
