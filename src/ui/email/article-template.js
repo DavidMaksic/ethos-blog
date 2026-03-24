@@ -112,7 +112,7 @@ export default function ArticleTemplate({
                               ...styles.cover,
                               width: '100%',
                               maxWidth: '100%',
-                              height: 'auto',
+                              height: '250px',
                               display: 'block',
                            }}
                         />
