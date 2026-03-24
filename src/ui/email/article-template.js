@@ -70,14 +70,14 @@ export default function ArticleTemplate({
                      body { min-width: 0 !important; }
                      p { font-size: 13px !important; line-height: 1.5 !important; }
                      h2 { font-size: 20px !important; }
-                     a span { font-size: 16px !important; }
+                     a span { font-size: 18px !important; padding: 6px 22px !important; }
                      p a { font-size: 10px !important; }
                      span { font-size: 10px !important; }
 
                      .outer { padding: 10px 10px !important; }
                      .container { padding: 0 0 !important; border-color: #fff !important; border-width: 0px !important; }
                      .article-image { height: 200px !important; }
-                     .cta-button { padding: 8px 22px !important; }
+                     .cta-button { padding: 6px 22px !important; }
                   }
                `}
             </style>
