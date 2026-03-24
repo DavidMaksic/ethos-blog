@@ -67,7 +67,7 @@ export default function WelcomeTemplate({ locale = 'en', unsubscribeUrl }) {
                   h2 { font-size: 20px !important; }
                   a span { font-size: 18px !important; }
                   p a { font-size: 10px !important; }
-                  span { font-size: 10px !important; line-height: 1.5 !important; }
+                  span { font-size: 10px !important; line-height: 1.3 !important; }
 
                   .outer { padding: 0 0 !important; background-color: transparent !important; }
                   .container { padding: 40px 30px 30px 30px !important; background-color: transparent !important; }
