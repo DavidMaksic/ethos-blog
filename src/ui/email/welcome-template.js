@@ -50,6 +50,8 @@ export default function WelcomeTemplate({ locale = 'en', unsubscribeUrl }) {
          ? "'Great Vibes', 'Cormorant Garamond', Times New Roman, serif"
          : "'Parisienne', 'Cormorant Garamond', Times New Roman, serif";
 
+   const textSize = locale === 'sr' ? '18px' : '19px';
+
    return (
       <Html lang={locale}>
          <Head>
@@ -88,9 +90,12 @@ export default function WelcomeTemplate({ locale = 'en', unsubscribeUrl }) {
                   <h2 style={styles.heading}>{t.subject}</h2>
 
                   <Hr style={styles.divider} />
-
-                  <Text style={styles.text}>{t.body}</Text>
-                  <Text style={styles.text}>{t.body2}</Text>
+                  <Text style={{ ...styles.text, fontSize: textSize }}>
+                     {t.body}
+                  </Text>
+                  <Text style={{ ...styles.text, fontSize: textSize }}>
+                     {t.body2}
+                  </Text>
 
                   <Section style={styles.buttonSection}>
                      <Button
@@ -108,18 +113,15 @@ export default function WelcomeTemplate({ locale = 'en', unsubscribeUrl }) {
 
                   <Hr style={styles.divider} />
 
-                  <Text style={styles.footer}>{t.unsubscribe}</Text>
+                  <Text style={styles.footer}>
+                     <span style={{ fontSize: '15px' }}>{t.unsubscribe}</span>
+                  </Text>
 
                   {unsubscribeUrl && (
                      <Text style={styles.footer}>
-                        <span style={{ fontSize: '15px' }}>
-                           <a
-                              href={unsubscribeUrl}
-                              style={styles.unsubscribeLink}
-                           >
-                              {locale === 'sr' ? 'Одјавите се' : 'Unsubscribe'}
-                           </a>
-                        </span>
+                        <a href={unsubscribeUrl} style={styles.unsubscribeLink}>
+                           {locale === 'sr' ? 'Одјавите се' : 'Unsubscribe'}
+                        </a>
                      </Text>
                   )}
                </Container>
