@@ -78,7 +78,7 @@ export default function ArticleTemplate({
                      .container { padding: 0 0 !important; border-color: #fff !important; border-width: 0px !important; background-color: transparent !important; }
                      .article-image { height: 200px !important; }
                      .cta-button { padding: 3px 26px 7px 26px !important; }
-                     .badge { font-size: 13px !important; }
+                     .badge-p { font-size: 11px !important; }
                   }
                `}
             </style>
@@ -106,7 +106,7 @@ export default function ArticleTemplate({
                   {/* Badge */}
                   <Section style={styles.badgeSection}>
                      <p
-                        className="badge"
+                        className="badge-p"
                         style={{ ...styles.badge, fontSize: '15px' }}
                      >
                         {t.badge}

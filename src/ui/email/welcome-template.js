@@ -65,12 +65,12 @@ export default function WelcomeTemplate({ locale = 'en', unsubscribeUrl }) {
                   body { min-width: 0 !important; }
                   p { font-size: 13px !important; line-height: 1.5 !important; }
                   h2 { font-size: 20px !important; }
-                  a span { font-size: 18px !important; line-height: 1.5 !important; }
-                  p a { font-size: 10px !important; line-height: 1.5 !important; }
+                  a span { font-size: 18px !important; }
+                  p a { font-size: 10px !important; }
                   span { font-size: 10px !important; line-height: 1.5 !important; }
 
-                  .outer { background-color: transparent !important; padding: 40px 0 !important; }
-                  .container { padding: 40px 30px 30px 30px !important; }
+                  .outer { padding: 0 0 !important; background-color: transparent !important; }
+                  .container { padding: 40px 30px 30px 30px !important; background-color: transparent !important; }
                   .cta-button { padding: 3px 26px 7px 26px !important; }
                }`}
             </style>
@@ -121,7 +121,9 @@ export default function WelcomeTemplate({ locale = 'en', unsubscribeUrl }) {
                   <Hr style={styles.divider} />
 
                   <Text style={styles.footer}>
-                     <span style={{ fontSize: '15px' }}>{t.unsubscribe}</span>
+                     <span style={{ fontSize: '15px', lineHeight: '1.5' }}>
+                        {t.unsubscribe}
+                     </span>
                   </Text>
 
                   {unsubscribeUrl && (
