@@ -70,15 +70,14 @@ export default function ResetPasswordTemplate({ url, user }) {
                   p a { font-size: 10px !important; }
                   span { font-size: 10px !important; }
 
-                  .outer { padding: 10px 0px !important; }
-                  .container { padding: 40px 30px !important; }
+                  .container { padding: 40px 30px 36px 30px !important; }
                   .cta-button { padding: 3px 26px 7px 26px !important; }
                }`}
             </style>
          </Head>
          <Preview>{t.subject}</Preview>
          <Body style={{ ...styles.body, fontFamily }}>
-            <Section className="outer" style={styles.outerSection}>
+            <Section>
                <Container className="container" style={styles.container}>
                   <Section style={styles.logoSection}>
                      <Img
@@ -141,9 +140,6 @@ const styles = {
    body: {
       margin: 0,
       fontFamily: 'Times New Roman, sans-serif',
-   },
-   outerSection: {
-      padding: '20px 0',
    },
    container: {
       border: '1px solid #6b728033',

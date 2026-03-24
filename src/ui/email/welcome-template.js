@@ -32,19 +32,23 @@ const content = {
 };
 
 export default function WelcomeTemplate({ locale = 'en', unsubscribeUrl }) {
-   const imageUrl = `${WEBSITE_URL}/email-logo.png`;
+   const imageUrl =
+      locale === 'en'
+         ? `${WEBSITE_URL}/email-logo.png`
+         : `${WEBSITE_URL}/email-logo-sr.png`;
+
    const t = content[locale];
    const prefix = locale === 'en' ? '' : `/${locale}`;
 
    const fontFamily =
       locale === 'sr'
-         ? "'Gentium Book Plus', 'Gentium Book Plus Fallback', serif"
-         : "'Crimson Text', 'EB Garamond', Helvetica, Arial, serif";
+         ? "'Gentium Book Plus', 'Gentium Book Plus Fallback', Times New Roman, serif"
+         : "'Crimson Text', 'EB Garamond', Times New Roman, serif";
 
    const buttonFontFamily =
       locale === 'sr'
-         ? "'Great Vibes', 'Cormorant Garamond', Helvetica, Arial, serif"
-         : "'Parisienne', 'Cormorant Garamond', Helvetica, Arial, serif";
+         ? "'Great Vibes', 'Cormorant Garamond', Times New Roman, serif"
+         : "'Parisienne', 'Cormorant Garamond', Times New Roman, serif";
 
    return (
       <Html lang={locale}>
@@ -56,26 +60,32 @@ export default function WelcomeTemplate({ locale = 'en', unsubscribeUrl }) {
             />
             <style>
                {`@media only screen and (max-width: 600px) {
-                  body { margin: 0px 8px !important }
-                  .outer { padding: 40px 0 !important }
-                  .container { padding: 30px 24px !important }
+                  body { min-width: 0 !important; }
+                  p { font-size: 13px !important; line-height: 1.5 !important; }
+                  h2 { font-size: 20px !important; }
+                  a span { font-size: 18px !important; }
+                  p a { font-size: 10px !important; }
+                  span { font-size: 10px !important; }
+
+                  .container { padding: 40px 30px !important; }
+                  .cta-button { padding: 3px 26px 7px 26px !important; }
                }`}
             </style>
          </Head>
          <Preview>{t.subject}</Preview>
          <Body style={{ ...styles.body, fontFamily }}>
-            <Section className="outer" style={styles.outerSection}>
+            <Section>
                <Container className="container" style={styles.container}>
                   <Section style={styles.logoSection}>
                      <Img
                         src={imageUrl}
                         alt="Logo"
-                        width={90}
+                        width={95}
                         style={styles.logo}
                      />
                   </Section>
 
-                  <Text style={styles.heading}>{t.subject}</Text>
+                  <h2 style={styles.heading}>{t.subject}</h2>
 
                   <Hr style={styles.divider} />
 
@@ -84,10 +94,12 @@ export default function WelcomeTemplate({ locale = 'en', unsubscribeUrl }) {
 
                   <Section style={styles.buttonSection}>
                      <Button
+                        className="cta-button"
                         href={`${WEBSITE_URL}${prefix}`}
                         style={{
                            ...styles.button,
                            fontFamily: buttonFontFamily,
+                           padding: '10px 24px',
                         }}
                      >
                         {t.button}
@@ -119,16 +131,11 @@ export function getWelcomeSubject(locale = 'en') {
 const styles = {
    body: {
       margin: 0,
-      backgroundColor: '#f4f5f6',
-      fontFamily: 'Helvetica, Arial, sans-serif',
-   },
-   outerSection: {
-      padding: '100px 0',
+      fontFamily: 'Times New Roman, sans-serif',
    },
    container: {
-      backgroundColor: '#ffffff',
-      border: '1px solid #eaebed',
-      borderRadius: '16px',
+      border: '1px solid #6b728033',
+      borderRadius: '20px',
       boxShadow: '0 0 40px rgba(229, 231, 235, 1)',
       padding: '40px 50px',
       maxWidth: '600px',
@@ -145,9 +152,9 @@ const styles = {
    },
    heading: {
       fontFamily:
-         "'Cormorant SC', 'Cormorant Garamond', Helvetica, Arial, serif",
+         "'Cormorant SC', 'Cormorant Garamond', Times New Roman, serif",
       fontWeight: 700,
-      color: '#4b5563',
+      color: '#52525b',
       lineHeight: 1.1,
       fontSize: '32px',
       textAlign: 'center',
@@ -161,8 +168,9 @@ const styles = {
    },
    text: {
       fontSize: '16px',
-      color: '#5d6673',
+      color: '#737373',
       lineHeight: 1.5,
+      fontWeight: 500,
       textAlign: 'center',
       margin: '0 0 8px 0',
    },
@@ -176,7 +184,6 @@ const styles = {
       color: '#ffffff',
       textDecoration: 'none',
       fontSize: '28px',
-      padding: '10px 22px',
       borderRadius: '50px',
       display: 'inline-block',
       border: '2px solid transparent',
