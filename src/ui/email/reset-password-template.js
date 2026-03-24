@@ -70,7 +70,7 @@ export default function ResetPasswordTemplate({ url, user }) {
                   p a { font-size: 10px !important; }
                   span { font-size: 10px !important; }
 
-                  .container { padding: 40px 30px 36px 30px !important; }
+                  .container { padding: 40px 30px 30px 30px !important; }
                   .cta-button { padding: 3px 26px 7px 26px !important; }
                }`}
             </style>

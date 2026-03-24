@@ -67,7 +67,7 @@ export default function WelcomeTemplate({ locale = 'en', unsubscribeUrl }) {
                   p a { font-size: 10px !important; }
                   span { font-size: 10px !important; }
 
-                  .container { padding: 40px 30px !important; }
+                  .container { padding: 40px 30px 30px 30px !important; }
                   .cta-button { padding: 3px 26px 7px 26px !important; }
                }`}
             </style>
@@ -112,9 +112,14 @@ export default function WelcomeTemplate({ locale = 'en', unsubscribeUrl }) {
 
                   {unsubscribeUrl && (
                      <Text style={styles.footer}>
-                        <a href={unsubscribeUrl} style={styles.unsubscribeLink}>
-                           {locale === 'sr' ? 'Одјавите се' : 'Unsubscribe'}
-                        </a>
+                        <span style={{ fontSize: '15px' }}>
+                           <a
+                              href={unsubscribeUrl}
+                              style={styles.unsubscribeLink}
+                           >
+                              {locale === 'sr' ? 'Одјавите се' : 'Unsubscribe'}
+                           </a>
+                        </span>
                      </Text>
                   )}
                </Container>
@@ -167,7 +172,6 @@ const styles = {
       margin: '0 0 26px 0',
    },
    text: {
-      fontSize: '16px',
       color: '#737373',
       lineHeight: 1.5,
       fontWeight: 500,
@@ -189,12 +193,13 @@ const styles = {
       border: '2px solid transparent',
    },
    footer: {
-      fontSize: '13px',
+      fontSize: '15px',
       color: '#9ca3af',
       textAlign: 'center',
       margin: '0',
    },
    unsubscribeLink: {
+      fontSize: '15px',
       color: '#9ca3af',
       textDecoration: 'underline',
    },
