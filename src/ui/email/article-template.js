@@ -68,11 +68,7 @@ export default function ArticleTemplate({
                {`
                   @media only screen and (max-width: 600px) {
                      body { min-width: 0 !important; }
-                     p { font-size: 13px !important; line-height: 1.5 !important; }
                      h2 { font-size: 20px !important; }
-                     a span { font-size: 21px !important; }
-                     p a { font-size: 10px !important; }
-                     span { font-size: 10px !important; }
 
                      .outer { padding: 0px 0px !important; }
                      .container { padding: 10px 0px !important; border-color: #fff !important; border-width: 0px !important; }
@@ -143,29 +139,15 @@ export default function ArticleTemplate({
                      className="buttonSection"
                      style={styles.buttonSection}
                   >
-                     <table
-                        width="100%"
-                        border={0}
-                        cellPadding={0}
-                        cellSpacing={0}
-                        role="presentation"
+                     <Button
+                        href={`${WEBSITE_URL}${prefix}/${article.slug}`}
+                        style={{
+                           ...styles.button,
+                           fontFamily: buttonFontFamily,
+                        }}
                      >
-                        <tbody>
-                           <tr>
-                              <td align="center">
-                                 <a
-                                    href={`${WEBSITE_URL}${prefix}/${article.slug}`}
-                                    style={{
-                                       ...styles.button,
-                                       fontFamily: buttonFontFamily,
-                                    }}
-                                 >
-                                    {t.button}
-                                 </a>
-                              </td>
-                           </tr>
-                        </tbody>
-                     </table>
+                        {t.button}
+                     </Button>
                   </Section>
 
                   <Hr style={styles.divider} />
@@ -274,7 +256,7 @@ const styles = {
       color: '#ffffff',
       textDecoration: 'none',
       fontSize: '28px',
-      padding: '6px 22px',
+      padding: '10px 22px',
       borderRadius: '50px',
       border: '2px solid transparent',
    },
