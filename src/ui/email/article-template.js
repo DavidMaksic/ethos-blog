@@ -70,12 +70,13 @@ export default function ArticleTemplate({
                      body { margin: 0px 0px !important; }
                      p { font-size: 13px !important; line-height: 1.5 !important; }
                      h2 { font-size: 20px !important; }
-                     a span { font-size: 20px !important; text-align: center !important; }
+                     a span { font-size: 18px !important; }
                      p a { font-size: 10px !important; }
                      span { font-size: 10px !important; }
+                     td { text-align: center !important; }
 
                      .outer { padding: 0px 0px !important; }
-                     .container { padding: 10px 0px !important; border-color: #fff !important; border-width: 0px !important; border-radius: 0px !important }
+                     .container { padding: 10px 0px !important; border-color: #fff !important; border-width: 0px !important; }
                      .article-image { height: 200px !important; max-width: 800px !important; }
                   }
                `}
@@ -236,7 +237,7 @@ const styles = {
       fontFamily:
          "'Cormorant SC', 'Cormorant Garamond', Times New Roman, serif",
       fontWeight: 700,
-      color: '#4b5563',
+      color: '#52525b',
       fontSize: '36px',
       lineHeight: 1.1,
       textAlign: 'center',
@@ -244,12 +245,12 @@ const styles = {
    },
    meta: {
       fontSize: '15px',
-      color: '#9ca3af',
+      color: '#a3a3a3',
       textAlign: 'center',
       margin: '0 0 16px 0',
    },
    excerpt: {
-      color: '#757d88',
+      color: '#737373',
       textAlign: 'center',
       fontWeight: 500,
       margin: '0 0 24px 0',
@@ -272,13 +273,13 @@ const styles = {
    },
    footer: {
       fontSize: '15px',
-      color: '#9ca3af',
+      color: '#a3a3a3',
       textAlign: 'center',
       margin: '18px 0 0 0',
    },
    unsubscribeLink: {
       fontSize: '15px',
-      color: '#9ca3af',
+      color: '#a3a3a3',
       textDecoration: 'underline',
    },
 };
