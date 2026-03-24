@@ -71,10 +71,10 @@ export default function ArticleTemplate({
                      p { font-size: 13px !important; line-height: 1.5 !important; }
                      h2 { font-size: 20px !important; }
                      a { font-size: 13px !important; }
-                     span { font-size: 21px !important; }
+                     span { font-size: 10px !important; }
 
                      .outer { padding: 0px 0px !important; }
-                     .container { padding: 10px 0px !important; border-color: #fff !important; border-width: 0px !important; }
+                     .container { padding: 10px 0px !important; border-color: #fff !important; border-width: 0px !important; border-radius: 0px !important }
                      .article-image { height: 200px !important; max-width: 800px !important; }
                   }
                `}
@@ -121,9 +121,12 @@ export default function ArticleTemplate({
                   <h2 style={styles.title}>{article.title}</h2>
 
                   {/* Author + date */}
+
                   <Text style={styles.meta}>
-                     {t.by} {article.authors.full_name}
-                     {article.created_at ? ` · ${article.created_at}` : ''}
+                     <span style={{ fontSize: '15px' }}>
+                        {t.by} {article.authors.full_name}
+                        {article.created_at ? ` · ${article.created_at}` : ''}
+                     </span>
                   </Text>
 
                   {/* Excerpt */}
@@ -156,11 +159,13 @@ export default function ArticleTemplate({
 
                   {/* Footer */}
                   <Text style={styles.footer}>
-                     {t.footer}{' '}
-                     <a href={unsubscribeUrl} style={styles.unsubscribeLink}>
-                        {t.unsubscribe}
-                     </a>
-                     .
+                     <span style={{ fontSize: '15px' }}>
+                        {t.footer}{' '}
+                        <a href={unsubscribeUrl} style={styles.unsubscribeLink}>
+                           {t.unsubscribe}
+                        </a>
+                        .
+                     </span>
                   </Text>
                </Container>
             </Section>
@@ -259,8 +264,8 @@ const styles = {
       fontSize: '28px',
       padding: '10px 22px',
       borderRadius: '50px',
-      textAlign: 'center',
-      display: 'inline-block',
+      margin: '0 auto',
+      display: 'block',
       border: '2px solid transparent',
    },
    footer: {
