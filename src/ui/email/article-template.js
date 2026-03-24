@@ -67,6 +67,7 @@ export default function ArticleTemplate({
             <style>
                {`
                   @media only screen and (max-width: 600px) {
+                     body { margin: 1px 0px !important; }
                      p { font-size: 13px !important; line-height: 1.5 !important; }
                      h2 { font-size: 20px !important; }
                      a span { font-size: 21px !important; }
