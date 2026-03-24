@@ -33,20 +33,25 @@ const content = {
 
 export default function ResetPasswordTemplate({ url, user }) {
    const locale = url.includes('/sr/') ? 'sr' : 'en';
-   const imageUrl = `${WEBSITE_URL}/email-logo.png`;
+   const imageUrl =
+      locale === 'en'
+         ? `${WEBSITE_URL}/email-logo.png`
+         : `${WEBSITE_URL}/email-logo-sr.png`;
 
    const t = content[locale];
    const firstName = user.name.split(' ')[0].slice(0, 10) ?? user.email;
 
    const fontFamily =
       locale === 'sr'
-         ? "'Gentium Book Plus', 'Gentium Book Plus Fallback', serif"
-         : "'Crimson Text', 'EB Garamond', Helvetica, Arial, serif";
+         ? "'Gentium Book Plus', 'Gentium Book Plus Fallback', Times New Roman, serif"
+         : "'Crimson Text', 'EB Garamond', Times New Roman, serif";
 
    const buttonFontFamily =
       locale === 'sr'
-         ? "'Great Vibes', 'Cormorant Garamond', Helvetica, Arial, serif"
-         : "'Parisienne', 'Cormorant Garamond', Helvetica, Arial, serif";
+         ? "'Great Vibes', 'Cormorant Garamond', Times New Roman, serif"
+         : "'Parisienne', 'Cormorant Garamond', Times New Roman, serif";
+
+   const textSize = locale === 'sr' ? '18px' : '19px';
 
    return (
       <Html lang={locale}>
@@ -58,21 +63,29 @@ export default function ResetPasswordTemplate({ url, user }) {
             />
             <style>
                {`@media only screen and (max-width: 600px) {
-                  body { margin: 0px 8px !important }
-                  .outer { padding: 40px 0 !important }
-                  .container { padding: 30px 24px !important }
+                  body { min-width: 0 !important; }
+                  p { font-size: 13px !important; line-height: 1.5 !important; }
+                  h2 { font-size: 20px !important; }
+                  a span { font-size: 18px !important; }
+                  p a { font-size: 10px !important; }
+                  span { font-size: 10px !important; }
+
+                  .outer { padding: 10px 10px !important; }
+                  .container { padding: 0 0 !important; border-color: #fff!important; border-width: 0px !important; }
+                  .article-image { height: 200px !important; }
+                  .cta-button { padding: 3px 26px 7px 26px !important; }
                }`}
             </style>
          </Head>
          <Preview>{t.subject}</Preview>
          <Body style={{ ...styles.body, fontFamily }}>
-            <Section className="outer" style={styles.outerSection}>
+            <Section style={styles.outerSection}>
                <Container className="container" style={styles.container}>
                   <Section style={styles.logoSection}>
                      <Img
                         src={imageUrl}
                         alt="Logo"
-                        width={90}
+                        width={95}
                         style={styles.logo}
                      />
                   </Section>
@@ -81,20 +94,26 @@ export default function ResetPasswordTemplate({ url, user }) {
 
                   <Hr style={styles.divider} />
 
-                  <Text style={styles.text}>
+                  <Text style={{ ...styles.text, fontSize: textSize }}>
                      {t.name} {firstName}!
                   </Text>
 
-                  <Text style={styles.text}>{t.body}</Text>
+                  <Text style={{ ...styles.text, fontSize: textSize }}>
+                     {t.body}
+                  </Text>
 
-                  <Text style={styles.text}>{t.expires}</Text>
+                  <Text style={{ ...styles.text, fontSize: textSize }}>
+                     {t.expires}
+                  </Text>
 
                   <Section style={styles.buttonSection}>
                      <Button
+                        className="cta-button"
                         href={url}
                         style={{
                            ...styles.button,
                            fontFamily: buttonFontFamily,
+                           padding: '10px 24px',
                         }}
                      >
                         {t.button}
@@ -120,14 +139,12 @@ export function getResetPasswordSubject(url) {
 const styles = {
    body: {
       margin: 0,
-      backgroundColor: '#f4f5f6',
-      fontFamily: 'Helvetica, Arial, sans-serif',
+      fontFamily: 'Times New Roman, sans-serif',
    },
    outerSection: {
-      padding: '100px 0',
+      padding: '40px 0',
    },
    container: {
-      backgroundColor: '#ffffff',
       border: '1px solid #eaebed',
       borderRadius: '16px',
       boxShadow: '0 0 40px rgba(229, 231, 235, 1)',
@@ -146,11 +163,11 @@ const styles = {
    },
    heading: {
       fontFamily:
-         "'Cormorant SC', 'Cormorant Garamond', Helvetica, Arial, serif",
+         "'Cormorant SC', 'Cormorant Garamond', Times New Roman, serif",
       fontWeight: 700,
-      color: '#4b5563',
+      color: '#52525b',
       lineHeight: 1.1,
-      fontSize: '32px',
+      fontSize: '36px',
       textAlign: 'center',
       margin: '0 0 26px 0',
    },
@@ -162,8 +179,9 @@ const styles = {
    },
    text: {
       fontSize: '16px',
-      color: '#5d6673',
+      color: '#737373',
       lineHeight: 1.3,
+      fontWeight: 500,
       textAlign: 'center',
       margin: '0 0 6px 0',
    },
@@ -177,15 +195,14 @@ const styles = {
       color: '#ffffff',
       textDecoration: 'none',
       fontSize: '28px',
-      padding: '10px 22px',
       margin: '0 0 6px 0',
       borderRadius: '50px',
       display: 'inline-block',
       border: '2px solid transparent',
    },
    footer: {
-      fontSize: '13px',
-      color: '#9ca3af',
+      fontSize: '15px',
+      color: '#a3a3a3',
       textAlign: 'center',
       margin: '24px 0 0 0',
    },
