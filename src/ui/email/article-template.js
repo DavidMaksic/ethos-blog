@@ -74,8 +74,8 @@ export default function ArticleTemplate({
                      p a { font-size: 10px !important; }
                      span { font-size: 10px !important; }
 
-                     .outer { padding: 10px 10px !important; }
-                     .container { padding: 0 0 !important; border-color: #fff !important; border-width: 0px !important; }
+                     .outer { padding: 10px 10px !important; background-color: transparent !important; }
+                     .container { padding: 0 0 !important; border-color: #fff !important; border-width: 0px !important; background-color: transparent !important; }
                      .article-image { height: 200px !important; }
                      .cta-button { padding: 3px 26px 7px 26px !important; }
                   }
