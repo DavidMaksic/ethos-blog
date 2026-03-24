@@ -74,6 +74,7 @@ export default function ArticleTemplate({
                      p a { font-size: 10px !important; }
                      span { font-size: 10px !important; }
 
+                     .container { padding: 10px 0px !important; border-color: #fff !important; border-width: 0px !important; }
                      .article-image { height: 200px !important; max-width: 800px !important; }
                   }
                `}
