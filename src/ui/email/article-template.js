@@ -75,8 +75,8 @@ export default function ArticleTemplate({
                      span { font-size: 10px !important; }
 
                      .outer { padding: 0px 0px !important; }
-                     .container { padding: 10px 0 !important; border-color: #fff !important; border-width: 0px !important; }
-                     .article-image { height: 200px !important; max-width: 800px !important; }
+                     .container { padding: 0 0 !important; border-color: #fff !important; border-width: 0px !important; }
+                     .article-image { height: 200px !important; width: 800px !important; }
                   }
                `}
             </style>
@@ -263,8 +263,6 @@ const styles = {
       padding: '10px 22px',
       borderRadius: '50px',
       border: '2px solid transparent',
-      display: 'block',
-      margin: '0 auto',
    },
    footer: {
       fontSize: '15px',
