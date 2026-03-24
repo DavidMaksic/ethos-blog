@@ -76,7 +76,7 @@ export default function ArticleTemplate({
 
                      .outer { padding: 0px 0px !important; }
                      .container { padding: 0 0 !important; border-color: #fff !important; border-width: 0px !important; }
-                     .article-image { height: 200px !important; width: 100% !important; }
+                     .article-image { height: 200px !important; width: max-content !important; }
                   }
                `}
             </style>
