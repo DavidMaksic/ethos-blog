@@ -70,14 +70,13 @@ export default function ArticleTemplate({
                      body { margin: 0px 0px !important; }
                      p { font-size: 13px !important; line-height: 1.5 !important; }
                      h2 { font-size: 20px !important; }
-                     td a { font-size: 20px !important; }
+                     a span { font-size: 20px !important; text-align: center !important; }
                      p a { font-size: 10px !important; }
                      span { font-size: 10px !important; }
 
                      .outer { padding: 0px 0px !important; }
                      .container { padding: 10px 0px !important; border-color: #fff !important; border-width: 0px !important; border-radius: 0px !important }
                      .article-image { height: 200px !important; max-width: 800px !important; }
-                     .buttonSection td { text-align: center !important; }
                   }
                `}
             </style>
@@ -123,7 +122,6 @@ export default function ArticleTemplate({
                   <h2 style={styles.title}>{article.title}</h2>
 
                   {/* Author + date */}
-
                   <Text style={styles.meta}>
                      <span style={{ fontSize: '15px' }}>
                         {t.by} {article.authors.full_name}
@@ -269,7 +267,7 @@ const styles = {
       padding: '10px 22px',
       borderRadius: '50px',
       margin: '0 auto',
-      display: 'block',
+      display: 'inline-block',
       border: '2px solid transparent',
    },
    footer: {
