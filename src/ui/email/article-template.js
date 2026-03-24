@@ -77,6 +77,7 @@ export default function ArticleTemplate({
                      .outer { padding: 10px 10px !important; }
                      .container { padding: 0 0 !important; border-color: #fff !important; border-width: 0px !important; }
                      .article-image { height: 200px !important; }
+                     .button { padding: 8px 22px !important, }
                   }
                `}
             </style>
@@ -149,6 +150,7 @@ export default function ArticleTemplate({
                      style={styles.buttonSection}
                   >
                      <Button
+                        className="button"
                         href={`${WEBSITE_URL}${prefix}/${article.slug}`}
                         style={{
                            ...styles.button,
