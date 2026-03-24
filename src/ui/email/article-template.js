@@ -68,7 +68,11 @@ export default function ArticleTemplate({
                {`
                   @media only screen and (max-width: 600px) {
                      body { min-width: 0 !important; }
+                     p { font-size: 13px !important; line-height: 1.5 !important; }
                      h2 { font-size: 20px !important; }
+                     a span { font-size: 21px !important; }
+                     p a { font-size: 10px !important; }
+                     span { font-size: 10px !important; }
 
                      .outer { padding: 0px 0px !important; }
                      .container { padding: 10px 0px !important; border-color: #fff !important; border-width: 0px !important; }
@@ -180,9 +184,9 @@ const styles = {
    container: {
       border: '1px solid #6b728033',
       borderRadius: '20px',
-      maxWidth: '620px',
+      maxWidth: '600px',
       boxShadow: '0 0 40px rgba(229, 231, 235, 1)',
-      padding: '40px 60px',
+      padding: '40px 50px',
       margin: '0 auto',
    },
    logoSection: {
