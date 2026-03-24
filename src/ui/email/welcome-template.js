@@ -65,9 +65,9 @@ export default function WelcomeTemplate({ locale = 'en', unsubscribeUrl }) {
                   body { min-width: 0 !important; }
                   p { font-size: 13px !important; line-height: 1.5 !important; }
                   h2 { font-size: 20px !important; }
-                  a span { font-size: 18px !important; }
-                  p a { font-size: 10px !important; }
-                  span { font-size: 10px !important; }
+                  a span { font-size: 18px !important; line-height: 1.5 !important; }
+                  p a { font-size: 10px !important; line-height: 1.5 !important; }
+                  span { font-size: 10px !important; line-height: 1.5 !important; }
 
                   .container { padding: 40px 30px 30px 30px !important; }
                   .cta-button { padding: 3px 26px 7px 26px !important; }

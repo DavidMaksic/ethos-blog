@@ -1,11 +1,14 @@
 import { render } from '@react-email/components';
-import WelcomeTemplate from '@/src/ui/email/welcome-template';
+import ResetPasswordTemplate from '@/src/ui/email/reset-password-template';
 
 export async function GET() {
    const html = await render(
-      WelcomeTemplate({
-         locale: 'en',
-         unsubscribeUrl: 'https://ethos-blog.com/unsubscribe?token=test',
+      ResetPasswordTemplate({
+         user: {
+            name: 'David',
+            email: 'david.maksic88@gmail.com',
+         },
+         url: 'https://ethos-blog.com/unsubscribe?token=test',
       }),
    );
 
