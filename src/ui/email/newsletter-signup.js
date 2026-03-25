@@ -25,14 +25,14 @@ import image19 from '@/public/newsletter-images/newsletter-19.webp';
 import image20 from '@/public/newsletter-images/newsletter-20.webp';
 import image21 from '@/public/newsletter-images/newsletter-21.webp';
 import image22 from '@/public/newsletter-images/newsletter-22.webp';
-import image23 from '@/public/newsletter-images/newsletter-23.jpg';
-import image24 from '@/public/newsletter-images/newsletter-24.jpg';
-import image25 from '@/public/newsletter-images/newsletter-25.jpg';
-import image26 from '@/public/newsletter-images/newsletter-26.jpg';
-import image27 from '@/public/newsletter-images/newsletter-27.jpg';
-import image28 from '@/public/newsletter-images/newsletter-28.jpg';
-import image29 from '@/public/newsletter-images/newsletter-29.jpg';
-import image30 from '@/public/newsletter-images/newsletter-30.jpg';
+import image23 from '@/public/newsletter-images/newsletter-23.webp';
+import image24 from '@/public/newsletter-images/newsletter-24.webp';
+import image25 from '@/public/newsletter-images/newsletter-25.webp';
+import image26 from '@/public/newsletter-images/newsletter-26.webp';
+import image27 from '@/public/newsletter-images/newsletter-27.webp';
+import image28 from '@/public/newsletter-images/newsletter-28.webp';
+import image29 from '@/public/newsletter-images/newsletter-29.webp';
+import image30 from '@/public/newsletter-images/newsletter-30.webp';
 
 const images = [
    {
