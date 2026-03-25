@@ -35,136 +35,136 @@ import image29 from '@/public/newsletter-images/newsletter-29.webp';
 import image30 from '@/public/newsletter-images/newsletter-30.webp';
 
 const images = [
-   // {
-   //    id: 1,
-   //    url: image1,
-   //    credit: 'Relic Entertainment',
-   // },
-   // {
-   //    id: 2,
-   //    url: image2,
-   //    credit: 'Relic Entertainment',
-   // },
-   // {
-   //    id: 3,
-   //    url: image3,
-   //    credit: 'Relic Entertainment',
-   // },
-   // {
-   //    id: 4,
-   //    url: image4,
-   //    credit: 'Relic Entertainment',
-   // },
-   // {
-   //    id: 5,
-   //    url: image5,
-   //    credit: 'Mohawk Games',
-   // },
-   // {
-   //    id: 6,
-   //    url: image6,
-   //    credit: 'Relic Entertainment',
-   // },
-   // {
-   //    id: 7,
-   //    url: image7,
-   //    credit: 'Paradox Interactive',
-   // },
-   // {
-   //    id: 8,
-   //    url: image8,
-   //    credit: 'Relic Entertainment',
-   // },
-   // {
-   //    id: 9,
-   //    url: image9,
-   //    credit: 'Relic Entertainment',
-   // },
-   // {
-   //    id: 10,
-   //    url: image10,
-   //    credit: 'Relic Entertainment',
-   // },
-   // {
-   //    id: 11,
-   //    url: image11,
-   //    credit: 'Relic Entertainment',
-   // },
-   // {
-   //    id: 12,
-   //    url: image12,
-   //    credit: 'Relic Entertainment',
-   // },
-   // {
-   //    id: 13,
-   //    url: image13,
-   //    credit: 'Paradox Interactive',
-   // },
-   // {
-   //    id: 14,
-   //    url: image14,
-   //    credit: 'Paradox Interactive',
-   // },
-   // {
-   //    id: 15,
-   //    url: image15,
-   //    credit: 'Paradox Interactive',
-   // },
-   // {
-   //    id: 16,
-   //    url: image16,
-   //    credit: 'Paradox Interactive',
-   // },
-   // {
-   //    id: 17,
-   //    url: image17,
-   //    credit: 'Paradox Interactive',
-   // },
-   // {
-   //    id: 18,
-   //    url: image18,
-   //    credit: 'Paradox Interactive',
-   // },
-   // {
-   //    id: 19,
-   //    url: image19,
-   //    credit: 'Paradox Interactive',
-   // },
-   // {
-   //    id: 20,
-   //    url: image20,
-   //    credit: 'Crytek',
-   // },
-   // {
-   //    id: 21,
-   //    url: image21,
-   //    credit: 'Warhorse Studios',
-   // },
-   // {
-   //    id: 22,
-   //    url: image22,
-   //    credit: 'Relic Entertainment',
-   // },
-   // {
-   //    id: 23,
-   //    url: image23,
-   //    credit: 'Mohawk Games',
-   // },
-   // {
-   //    id: 24,
-   //    url: image24,
-   //    credit: 'Mohawk Games',
-   // },
-   // {
-   //    id: 25,
-   //    url: image25,
-   //    credit: 'Mohawk Games',
-   // },
-   // {
-   //    id: 26,
-   //    url: image26,
-   //    credit: 'Mohawk Games',
-   // },
+   {
+      id: 1,
+      url: image1,
+      credit: 'Relic Entertainment',
+   },
+   {
+      id: 2,
+      url: image2,
+      credit: 'Relic Entertainment',
+   },
+   {
+      id: 3,
+      url: image3,
+      credit: 'Relic Entertainment',
+   },
+   {
+      id: 4,
+      url: image4,
+      credit: 'Relic Entertainment',
+   },
+   {
+      id: 5,
+      url: image5,
+      credit: 'Mohawk Games',
+   },
+   {
+      id: 6,
+      url: image6,
+      credit: 'Relic Entertainment',
+   },
+   {
+      id: 7,
+      url: image7,
+      credit: 'Paradox Interactive',
+   },
+   {
+      id: 8,
+      url: image8,
+      credit: 'Relic Entertainment',
+   },
+   {
+      id: 9,
+      url: image9,
+      credit: 'Relic Entertainment',
+   },
+   {
+      id: 10,
+      url: image10,
+      credit: 'Relic Entertainment',
+   },
+   {
+      id: 11,
+      url: image11,
+      credit: 'Relic Entertainment',
+   },
+   {
+      id: 12,
+      url: image12,
+      credit: 'Relic Entertainment',
+   },
+   {
+      id: 13,
+      url: image13,
+      credit: 'Paradox Interactive',
+   },
+   {
+      id: 14,
+      url: image14,
+      credit: 'Paradox Interactive',
+   },
+   {
+      id: 15,
+      url: image15,
+      credit: 'Paradox Interactive',
+   },
+   {
+      id: 16,
+      url: image16,
+      credit: 'Paradox Interactive',
+   },
+   {
+      id: 17,
+      url: image17,
+      credit: 'Paradox Interactive',
+   },
+   {
+      id: 18,
+      url: image18,
+      credit: 'Paradox Interactive',
+   },
+   {
+      id: 19,
+      url: image19,
+      credit: 'Paradox Interactive',
+   },
+   {
+      id: 20,
+      url: image20,
+      credit: 'Crytek',
+   },
+   {
+      id: 21,
+      url: image21,
+      credit: 'Warhorse Studios',
+   },
+   {
+      id: 22,
+      url: image22,
+      credit: 'Relic Entertainment',
+   },
+   {
+      id: 23,
+      url: image23,
+      credit: 'Mohawk Games',
+   },
+   {
+      id: 24,
+      url: image24,
+      credit: 'Mohawk Games',
+   },
+   {
+      id: 25,
+      url: image25,
+      credit: 'Mohawk Games',
+   },
+   {
+      id: 26,
+      url: image26,
+      credit: 'Mohawk Games',
+   },
    {
       id: 27,
       url: image27,
