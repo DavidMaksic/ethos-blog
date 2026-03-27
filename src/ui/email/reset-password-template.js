@@ -56,24 +56,23 @@ export default function ResetPasswordTemplate({ url, user }) {
    return (
       <Html lang={locale}>
          <Head>
-            {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-            <link
-               rel="stylesheet"
-               href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Cormorant+SC:wght@600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&display=swap"
-            />
             <style>
-               {`@media only screen and (max-width: 600px) {
-                  body { min-width: 0 !important; }
-                  p { font-size: 13px !important; line-height: 1.5 !important; }
-                  h2 { font-size: 20px !important; }
-                  a span { font-size: 18px !important; }
-                  p a { font-size: 10px !important; }
-                  span { font-size: 10px !important; }
+               {`
+                  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Cormorant+SC:wght@600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&display=swap');
 
-                  .outer { background-color: transparent !important; padding: 0 0 !important; }
-                  .container { padding: 40px 30px 30px 30px !important; background-color: transparent !important; }
-                  .cta-button { padding: 3px 26px 7px 26px !important; }
-               }`}
+                  @media only screen and (max-width: 600px) {
+                     body { min-width: 0 !important; }
+                     p { font-size: 13px !important; line-height: 1.5 !important; }
+                     h2 { font-size: 20px !important; }
+                     a span { font-size: 18px !important; }
+                     p a { font-size: 10px !important; }
+                     span { font-size: 10px !important; }
+
+                     .outer { background-color: transparent !important; padding: 0 0 !important; }
+                     .container { padding: 40px 30px 30px 30px !important;    background-color: transparent !important; box-shadow: none  !important; }
+                     .cta-button { padding: 3px 26px 7px 26px !important; }
+                  }
+               `}
             </style>
          </Head>
          <Preview>{t.subject}</Preview>
@@ -84,7 +83,11 @@ export default function ResetPasswordTemplate({ url, user }) {
             >
                <Container
                   className="container"
-                  style={{ ...styles.container, backgroundColor: '#fff' }}
+                  style={{
+                     ...styles.container,
+                     backgroundColor: '#fff',
+                     boxShadow: '0 0 40px rgba(229, 231, 235, 1)',
+                  }}
                >
                   <Section style={styles.logoSection}>
                      <Img
@@ -119,6 +122,7 @@ export default function ResetPasswordTemplate({ url, user }) {
                            ...styles.button,
                            fontFamily: buttonFontFamily,
                            padding: '10px 24px',
+                           boxShadow: '0 0 16px #e8d6bf',
                         }}
                      >
                         {t.button}
@@ -151,7 +155,6 @@ const styles = {
    container: {
       border: '1px solid #6b728033',
       borderRadius: '20px',
-      boxShadow: '0 0 40px rgba(229, 231, 235, 1)',
       padding: '40px 50px',
       maxWidth: '600px',
       margin: '0 auto',
@@ -195,7 +198,6 @@ const styles = {
    },
    button: {
       backgroundColor: '#d7b892',
-      boxShadow: '0 0 1rem #e8d6bf',
       color: '#ffffff',
       textDecoration: 'none',
       fontSize: '28px',

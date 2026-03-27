@@ -91,7 +91,7 @@ export default function ArticleTemplate({
                   style={{
                      ...styles.container,
                      backgroundColor: '#fff',
-                     boxShadow: '0 0 40px rgba(229, 231, 235, 1) !important',
+                     boxShadow: '0 0 40px rgba(229, 231, 235, 1)',
                   }}
                >
                   {/* Logo */}
@@ -169,7 +169,7 @@ export default function ArticleTemplate({
                            ...styles.button,
                            fontFamily: buttonFontFamily,
                            padding: '10px 24px',
-                           boxShadow: '0 0 16px #e8d6bf !important',
+                           boxShadow: '0 0 16px #e8d6bf',
                         }}
                      >
                         {t.button}
