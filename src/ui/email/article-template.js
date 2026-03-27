@@ -59,13 +59,13 @@ export default function ArticleTemplate({
    return (
       <Html lang={locale}>
          <Head>
-            {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-            <link
-               rel="stylesheet"
-               href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Cormorant+SC:wght@600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&display=swap"
-            />
             <style>
                {`
+                  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Cormorant+SC:wght@600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&display=swap');
+
+                  .container { box-shadow: 0 0 40px rgba(229, 231, 235, 1) !important; }
+                  .cta-button { box-shadow: 0 0 16px #e8d6bf !important; }
+
                   @media only screen and (max-width: 600px) {
                      body { min-width: 0 !important; }
                      p { font-size: 13px !important; line-height: 1.5 !important; }
@@ -75,7 +75,7 @@ export default function ArticleTemplate({
                      span { font-size: 10px !important; }
 
                      .outer { padding: 0 0 !important; background-color: transparent !important; }
-                     .container { padding: 10px 10px !important; border-color: #fff !important; border-width: 0px !important; background-color: transparent !important; }
+                     .container { padding: 10px 10px !important; border-color: #fff !important; border-width: 0px !important; background-color: transparent !important; box-shadow: none !important; }
                      .article-image { height: 200px !important; }
                      .cta-button { padding: 3px 26px 7px 26px !important; }
                      .badge-p { font-size: 11px !important; }
@@ -87,7 +87,7 @@ export default function ArticleTemplate({
          <Body style={{ ...styles.body, fontFamily }}>
             <Section
                className="outer"
-               style={{ backgroundColor: '#f4f5f6', padding: '60px 0' }}
+               style={{ backgroundColor: '#f4f5f6', padding: '260px 0' }}
             >
                <Container
                   className="container"
@@ -202,7 +202,6 @@ const styles = {
       border: '1px solid #6b728033',
       borderRadius: '20px',
       maxWidth: '600px',
-      boxShadow: '0 0 40px rgba(229, 231, 235, 1)',
       padding: '40px 50px',
       margin: '0 auto',
    },
@@ -272,7 +271,6 @@ const styles = {
    },
    button: {
       backgroundColor: '#d7b892',
-      boxShadow: '0 0 16px #e8d6bf',
       color: '#ffffff',
       textDecoration: 'none',
       fontSize: '28px',
