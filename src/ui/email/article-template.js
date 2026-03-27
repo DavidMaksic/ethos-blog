@@ -63,9 +63,6 @@ export default function ArticleTemplate({
                {`
                   @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Cormorant+SC:wght@600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&display=swap');
 
-                  .container { box-shadow: 0 0 40px rgba(229, 231, 235, 1) !important; }
-                  .cta-button { box-shadow: 0 0 16px #e8d6bf !important; }
-
                   @media only screen and (max-width: 600px) {
                      body { min-width: 0 !important; }
                      p { font-size: 13px !important; line-height: 1.5 !important; }
@@ -87,11 +84,15 @@ export default function ArticleTemplate({
          <Body style={{ ...styles.body, fontFamily }}>
             <Section
                className="outer"
-               style={{ backgroundColor: '#f4f5f6', padding: '260px 0' }}
+               style={{ backgroundColor: '#f4f5f6', padding: '60px 0' }}
             >
                <Container
                   className="container"
-                  style={{ ...styles.container, backgroundColor: '#fff' }}
+                  style={{
+                     ...styles.container,
+                     backgroundColor: '#fff',
+                     boxShadow: '0 0 40px rgba(229, 231, 235, 1) !important',
+                  }}
                >
                   {/* Logo */}
                   <Section style={styles.logoSection}>
@@ -168,6 +169,7 @@ export default function ArticleTemplate({
                            ...styles.button,
                            fontFamily: buttonFontFamily,
                            padding: '10px 24px',
+                           boxShadow: '0 0 16px #e8d6bf !important',
                         }}
                      >
                         {t.button}
