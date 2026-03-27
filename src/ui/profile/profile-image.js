@@ -70,7 +70,7 @@ function ProfileImage({ user, image }) {
                imageRef={imageRef}
                imageUrl={profileImage}
                alt="User profile image"
-               styles={`block aspect-square object-cover object-center rounded-full dark:opacity-90 border border-primary-300 dark:border-primary-300/40 group-hover:opacity-80 duration-200! ${profiluser?.image === defaultPfp ? 'dark:opacity-40!' : ''}`}
+               styles={`block aspect-square object-cover object-center rounded-full dark:opacity-90 border border-primary-300 dark:border-primary-300/40 group-hover:opacity-80 duration-200! ${user?.image === defaultPfp ? 'dark:opacity-40!' : ''}`}
                preload
             />
 
