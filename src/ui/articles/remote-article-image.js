@@ -8,7 +8,6 @@ import Image from 'next/image';
 
 function RemoteArticleImage({
    src,
-   className,
    width,
    height,
    blurDataURL,
@@ -39,7 +38,7 @@ function RemoteArticleImage({
    }, [loaded, isMobile]);
 
    return (
-      <span className={`block w-full relative overflow-hidden ${className}`}>
+      <span className={`block w-full relative overflow-hidden bn-visual-media`}>
          <span
             className={`absolute inset-0 transition-opacity duration-700 ${isTransparent ? 'scale-85' : 'scale-110'} ${
                loaded ? 'opacity-0' : 'opacity-90 dark:opacity-75'
@@ -53,7 +52,7 @@ function RemoteArticleImage({
          />
          <Image
             ref={imgRef}
-            className={`${loaded ? className : ''} article-image transition-opacity duration-700 ${
+            className={`bn-visual-media article-image transition-opacity duration-700 ${
                loaded ? 'opacity-90 dark:opacity-75' : 'opacity-0'
             }`}
             src={src}

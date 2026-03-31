@@ -44,7 +44,6 @@ async function ArticleContent({ content, article }) {
             return (
                <RemoteArticleImage
                   src={src}
-                  className={domNode.attribs.class}
                   width={width}
                   height={height}
                   blurDataURL={blurDataURL}
