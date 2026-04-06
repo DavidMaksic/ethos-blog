@@ -82,9 +82,9 @@ function EditModal({ comment, commentLength, replyID, slug, onClose }) {
          <div className="flex items-center gap-2 text-3xl">
             <button
                className={`relative text-4xl rounded-full py-3.5 pl-6 pr-5.5 cursor-pointer text-accent hover:bg-accent-400/80 dark:hover:bg-accent-300/55 hover:text-white dark:hover:text-accent-100 hover:shadow-link-btn dark:hover:shadow-none transition tracking-wide ${locale === 'en' ? 'font-logo' : 'font-logo-sr'} ${
-                  isPending || comment.content === text
-                     ? 'pointer-events-none opacity-50'
-                     : ''
+                  isPending && 'pointer-events-none opacity-60'
+               } ${
+                  comment.content === text && 'pointer-events-none opacity-50'
                }`}
                onClick={handleEdit}
             >

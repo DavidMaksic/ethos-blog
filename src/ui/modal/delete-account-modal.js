@@ -89,7 +89,7 @@ function DeleteAccountModal({ onClose, isOAuth }) {
                   } ${
                      !isPending && (isOAuth || password)
                         ? 'hover:bg-red-400/70 dark:hover:bg-red-400/45 hover:text-white dark:hover:text-red-100'
-                        : 'hover:shadow-none! pointer-events-none'
+                        : 'hover:shadow-none! pointer-events-none opacity-60'
                   } ${locale === 'en' ? 'font-logo' : 'font-logo-sr'}`}
                   onClick={handleDelete}
                   disabled={isPending || !(isOAuth || password)}

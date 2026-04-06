@@ -40,10 +40,10 @@ function DeleteModal({ slug, onClose, commentID, replyID }) {
 
          <div className="flex items-center gap-2 text-3xl">
             <button
-               className={`relative rounded-full pt-3.5 pb-2.5 pl-6 pr-5.5 cursor-pointer hover:shadow-delete-btn dark:hover:shadow-none transition tracking-wide text-4xl ${
+               className={`relative rounded-full pt-3.5 pb-2.5 pl-6 pr-5.5 cursor-pointer hover:shadow-delete-btn dark:hover:shadow-none transition tracking-wide text-4xl text-[#ca6565] dark:text-[#e78989] ${
                   !isPending
-                     ? 'hover:bg-red-400/70 dark:hover:bg-red-400/45 hover:text-white dark:hover:text-red-100 text-[#ca6565] dark:text-[#e78989] '
-                     : 'text-[#db7979] dark:text-[#cc7272] hover:shadow-none! pointer-events-none'
+                     ? 'hover:bg-red-400/70 dark:hover:bg-red-400/45 hover:text-white dark:hover:text-red-100'
+                     : 'hover:shadow-none! pointer-events-none opacity-60'
                } ${locale === 'en' ? 'font-logo' : 'font-logo-sr'}`}
                onClick={handleDelete}
             >

@@ -51,7 +51,7 @@ function CommentOptions({ comment, commentLength, userID, replyID, slug }) {
                         icon={<LuPencilLine className="stroke-[1.7px]" />}
                         handler={() => setOpenEdit(true)}
                      >
-                        Edit
+                        {t('edit-label')}
                      </Menus.Button>
 
                      <Menus.Button
