@@ -83,7 +83,7 @@ function NewsletterForm({ locale }) {
                   label={t('button')}
                   loadingLabel={t('loading')}
                   font="md:text-[2.4rem]!"
-                  style="pt-[9px]! pb-[7px]! lg:pt-3! lg:pb-2.5 md:py-3! md:pb-[11px]! xs:pb-[7.5px]! px-6! w-fit! md:w-full! md:mt-2 rounded-full from-accent-300! to-accent-400/80! dark:from-accent/60! dark:to-accent-400/50! hover:from-transparent! hover:to-transparent! backdrop-blur-sm shadow-link-btn dark:shadow-none cursor-pointer"
+                  style="pt-[9px]! pb-[7px]! lg:pt-3! lg:pb-2.5 md:py-3! md:pb-[11px]! xs:pb-[7.5px]! px-6! w-fit! md:w-full! md:mt-2 rounded-full from-accent-300! to-accent-400/80! dark:from-accent/60! dark:to-accent-400/50! hover:from-transparent! hover:to-transparent! backdrop-blur-sm shadow-link-btn dark:shadow-none hover:shadow-none cursor-pointer"
                />
             </div>
          </form>

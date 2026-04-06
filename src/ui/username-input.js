@@ -1,10 +1,10 @@
 'use client';
 
 import { useActionState, useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { updateUser } from '@/src/lib/actions';
 import { ImSpinner2 } from 'react-icons/im';
-import { AnimatePresence, motion } from 'motion/react';
 import toast from 'react-hot-toast';
 
 function UsernameInput() {

@@ -53,8 +53,15 @@
       "update": "Update",
       "pfp-updated": "Profile image successfully updated",
       "pfp-warning": "Only images are allowed",
-      "email": "Email address",
-      "no-bookmarks": "No bookmarks found"
+      "no-bookmarks": "No bookmarks found",
+      "delete-account-description": "Permanently delete your account and all associated data.",
+      "delete-account-label": "Are you sure you want to delete your account? This action cannot be undone.",
+      "enter-password": "Enter your password...",
+      "account-deleted": "Your account has been deleted.",
+      "wrong-password": "Incorrect password, please try again.",
+      "delete": "Delete",
+      "deleting": "Deleting",
+      "cancel": "Cancel"
    },
    "Comment": {
       "label": "Comments",
@@ -119,6 +126,7 @@
       "label-2": "Create your account",
       "label-3": "Reset your password",
       "label-4": "Password reset",
+      "label-5": "Delete account",
       "new-profile-label": "Are you new?",
       "old-profile-label": "Already have an account?",
       "create-account": "Create an account",
@@ -156,7 +164,11 @@
       "changed-your-mind": "Changed your mind?",
       "return": "Return",
       "password-reset-description": "We'll send a reset link to your email.",
-      "reset-email-sent-short": "Email successfully sent!"
+      "reset-email-sent-short": "Email successfully sent!",
+      "delete-account-description": "This action cannot be reversed.",
+      "delete-account-success": "Account successfully deleted",
+      "delete": "Delete",
+      "deleting": "Deleting"
    },
    "Error": {
       "message": "Something went wrong...",

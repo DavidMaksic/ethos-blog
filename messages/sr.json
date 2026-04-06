@@ -53,8 +53,15 @@
       "update": "Потврди",
       "pfp-updated": "Профилна слика успешно ажурирана",
       "pfp-warning": "Само слике су дозвољене",
-      "email": "Email адреса",
-      "no-bookmarks": "Нема сачуваних чланака"
+      "no-bookmarks": "Нема сачуваних чланака",
+      "delete-account-description": "Трајно обришите свој налог и све повезане податке.",
+      "delete-account-label": "Да ли сте сигурни да желите да обришете налог? Ова радња се не може поништити.",
+      "enter-password": "Унесите лозинку...",
+      "account-deleted": "Ваш налог је обрисан",
+      "wrong-password": "Погрешна лозинка, покушајте поново.",
+      "delete": "Избриши",
+      "deleting": "Избриши",
+      "cancel": "Откажи"
    },
    "Comment": {
       "label": "Коментари",
@@ -119,6 +126,7 @@
       "label-2": "Направи свој налог",
       "label-3": "Ресетуј своју лозинку",
       "label-4": "Ресет лозинке",
+      "label-5": "Брисање налога",
       "new-profile-label": "Немаш налог?",
       "old-profile-label": "Већ имаш налог?",
       "create-account": "Региструј се",
@@ -155,8 +163,12 @@
       "credit": "Илустрација компаније ",
       "changed-your-mind": "Предомислили сте се?",
       "return": "Назад",
-      "password-reset-description": "Послаћемо вам ресет линк на мејл.",
-      "reset-email-sent-short": "Мејл успешно послат!"
+      "password-reset-description": "Линк ће бити послат на имејл.",
+      "reset-email-sent-short": "Мејл успешно послат!",
+      "delete-account-description": "Ова радња је неповратна.",
+      "delete-account-success": "Налог успешно обрисан",
+      "delete": "Избриши",
+      "deleting": "Избриши"
    },
    "Error": {
       "message": "Дошло је до грешке...",

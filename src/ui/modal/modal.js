@@ -1,11 +1,9 @@
 import { createPortal } from 'react-dom';
 import { useModal } from '@/src/hooks/use-modal';
 import { motion } from 'motion/react';
-import { useLocale } from 'next-intl';
 
 function Modal({ closeModal, styles, children }) {
    const ref = useModal(closeModal);
-   const locale = useLocale();
 
    return createPortal(
       <motion.div

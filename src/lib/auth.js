@@ -54,6 +54,9 @@ export const auth = betterAuth({
          emailVerified: 'email_verified',
          updatedAt: 'updated_at',
       },
+      deleteUser: {
+         enabled: true,
+      },
    },
    session: {
       modelName: 'sessions',

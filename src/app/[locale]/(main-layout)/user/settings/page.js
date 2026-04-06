@@ -5,6 +5,7 @@ import { headers } from 'next/headers';
 import { auth } from '@/src/lib/auth';
 
 import ResetPasswordButton from '@/src/ui/buttons/reset-password-button';
+import DeleteAccountButton from '@/src/ui/buttons/delete-account-button';
 import UsernameInput from '@/src/ui/username-input';
 import ProfileImage from '@/src/ui/profile/profile-image';
 
@@ -30,23 +31,21 @@ async function Page() {
       <div className="space-y-4 md:space-y-0 md:flex md:flex-col md:gap-4 text-text font-secondary [&_label]:font-main">
          <h1 className="sr-only">{t('H1.profile-page-settings')}</h1>
 
-         <div className="flex md:flex-col 2xl:flex-wrap gap-4 md:order-1">
-            <div className="h-fit w-120 md:w-110 sm:w-full flex flex-col md:order-2 gap-10 bg-white dark:bg-primary-300/10 rounded-3xl border border-quaternary dark:border-primary-300/15 text-lg px-17 lg:px-14 py-12 pb-13 lg:pt-10 box-shadow transition-200">
+         <div className="flex items-stretch md:flex-col 2xl:flex-wrap gap-4 md:order-1">
+            <div className="h-fit w-120 md:w-full flex flex-col md:order-2 gap-10 bg-white dark:bg-primary-300/10 rounded-3xl border border-quaternary dark:border-primary-300/15 text-lg px-17 lg:px-14 py-12 pb-13 md:pb-9 lg:pt-10 md:pt-8 box-shadow transition-200">
                <div className="flex flex-col gap-2">
                   <label className="text-sm uppercase font-semibold text-primary-400 tracking-wider">
                      {t('Profile.username')}
                   </label>
                   <span className="text-3xl xs:text-4xl">{name}</span>
                </div>
-
                <UsernameInput />
             </div>
-
             <ProfileImage user={session.user} image={image} />
          </div>
 
          {hasPassword && (
-            <div className="size-fit md:order-2 md:w-full flex flex-col gap-3 bg-white dark:bg-primary-300/10 rounded-3xl border border-quaternary dark:border-primary-300/15 text-lg px-17 lg:px-14 py-8 pb-9 box-shadow transition-200">
+            <div className="size-fit md:order-2 md:w-full flex flex-col gap-4 bg-white dark:bg-primary-300/10 rounded-3xl border border-quaternary dark:border-primary-300/15 text-lg px-17 lg:px-14 py-8 pb-9 box-shadow transition-200">
                <label className="text-sm uppercase font-semibold text-primary-400 tracking-wider">
                   {t('Auth.label-4')}
                </label>
@@ -54,13 +53,14 @@ async function Page() {
             </div>
          )}
 
-         <div className="size-fit md:w-full flex flex-col gap-3 bg-white dark:bg-primary-300/10 rounded-3xl border border-quaternary dark:border-primary-300/15 text-lg px-17 lg:px-14 py-8 pb-9 box-shadow transition-200 md:hidden">
-            <label className="text-sm uppercase font-semibold text-primary-400 tracking-wider">
-               {t('Profile.email')}
+         <div className="size-fit md:order-2 md:w-full flex flex-col gap-4 bg-red-300/5 dark:bg-red-300/3 rounded-3xl border border-red-300/50 dark:border-red-300/5 text-lg px-17 lg:px-14 py-8 pb-9 transition-200">
+            <label className="text-sm uppercase font-semibold tracking-wider text-red-700/60 dark:text-red-200/60">
+               {t('Auth.label-5')}
             </label>
-            <span className="text-2xl xs:text-[1.7rem]">
-               {session.user.email}
-            </span>
+            <DeleteAccountButton
+               email={session.user.email}
+               isOAuth={!hasPassword}
+            />
          </div>
       </div>
    );

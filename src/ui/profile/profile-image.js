@@ -55,7 +55,7 @@ function ProfileImage({ user, image }) {
 
    return (
       <form
-         className="size-fit sm:w-full flex flex-col items-center gap-4 bg-white dark:bg-primary-300/10 rounded-3xl border border-quaternary dark:border-primary-300/15 text-lg text-text font-medium px-20 lg:px-18 md:px-22 py-6 box-shadow transition-200"
+         className="flex flex-col justify-center items-center min-w-80 sm:w-full gap-4 bg-white dark:bg-primary-300/10 rounded-3xl border border-quaternary dark:border-primary-300/15 text-lg text-text font-medium px-20 lg:px-18 md:px-22 py-6 box-shadow transition-200"
          action={handleImageUpdate}
       >
          <span className="text-sm uppercase font-semibold text-primary-400 tracking-wider">
@@ -63,7 +63,7 @@ function ProfileImage({ user, image }) {
          </span>
 
          <label
-            className="relative size-24 lg:size-22 md:size-30 cursor-pointer group"
+            className="relative size-28 md:size-28 sm:size-30 cursor-pointer group"
             htmlFor="image"
          >
             <RemoteProfileImage

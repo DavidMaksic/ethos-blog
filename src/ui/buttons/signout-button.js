@@ -5,7 +5,6 @@ import { LuLogOut } from 'react-icons/lu';
 
 function SignOutButton() {
    const t = useTranslations('Profile');
-
    const router = useRouter();
 
    async function logout() {
