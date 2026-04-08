@@ -66,7 +66,7 @@ export default function ArticleTemplate({
                   @media only screen and (max-width: 600px) {
                      body { min-width: 0 !important; }
                      p { font-size: 13px !important; line-height: 1.5 !important; }
-                     h2 { font-size: 20px !important; }
+                     h2 { font-size: 20px !important; line-height: 1.7 !important; }
                      a span { font-size: 18px !important; }
                      p a { font-size: 10px !important; }
                      span { font-size: 10px !important; }
