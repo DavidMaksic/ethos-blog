@@ -1,5 +1,6 @@
 import { supabase } from '@/src/lib/supabase';
 import { notFound } from 'next/navigation';
+import { supabaseAdmin } from './supabase-admin';
 
 export async function getArticles() {
    const { data, error } = await supabase
@@ -88,7 +89,7 @@ export async function getAuthors() {
 }
 
 export async function getUser(email) {
-   const { data, error } = await supabase
+   const { data, error } = await supabaseAdmin
       .from('users')
       .select(
          '*, likes(id, type), bookmarks(*), comments(*, articles (title, slug)), replies(*, articles (title, slug), comments(user_id))',
