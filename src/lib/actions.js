@@ -171,7 +171,7 @@ export async function addComment(previousState, formData, commentLength) {
    }
 
    const { content } = parsed.data;
-   const { error } = await supabase.from('comments').insert({
+   const { error } = await supabaseAdmin.from('comments').insert({
       content,
       article_id: articleID,
       user_id: userID,
@@ -209,7 +209,7 @@ export async function editComment(commentID, text, slug, commentLength) {
 
    const { content } = parsed.data;
 
-   const { error } = await supabase
+   const { error } = await supabaseAdmin
       .from('comments')
       .update({ content })
       .eq('id', commentID)
@@ -228,7 +228,7 @@ export async function deleteComment(commentID, slug) {
    if (!session) throw new Error('You must be logged in');
 
    const userID = session.user.id;
-   const { error } = await supabase
+   const { error } = await supabaseAdmin
       .from('comments')
       .delete()
       .eq('id', commentID)
