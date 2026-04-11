@@ -88,16 +88,53 @@ export async function updateImage(previousState, formData) {
 
    // 3. Delete the already present image
    if (oldImage) {
-      const image = oldImage.slice(78);
+      const image = oldImage.split('/user-images/')[1];
 
       const { error } = await supabaseAdmin.storage
          .from('user-images')
          .remove([image]);
 
-      if (error) throw new Error(error.message);
+      if (error) console.error('Old image cleanup failed:', error.message);
    }
 
    revalidatePath('/user/settings');
+   return { success: true };
+}
+
+export async function deleteUserAccount(previousState, formData) {
+   const session = await auth.api.getSession({
+      headers: await headers(),
+   });
+
+   if (!session) throw new Error('You must be logged in');
+
+   const password = formData.get('password');
+   const isOAuth = formData.get('isOAuth') === 'true';
+
+   // 1. Delete image from storage if one exists
+   const userImage = session.user.image;
+
+   if (userImage?.includes('/user-images/')) {
+      const imagePath = userImage.split('/user-images/')[1];
+
+      if (imagePath) {
+         const { error } = await supabaseAdmin.storage
+            .from('user-images')
+            .remove([imagePath]);
+
+         if (error) console.error('Image cleanup failed:', error.message);
+      }
+   }
+
+   // 2. Delete user account
+   const { error } = await auth.api.deleteUser({
+      headers: await headers(),
+      body: {
+         ...(!isOAuth && { password }),
+      },
+   });
+
+   if (error) throw new Error(error.message);
    return { success: true };
 }
 
@@ -461,7 +498,7 @@ export async function subscribeToNewsletter(prevState, formData) {
 }
 
 export async function unsubscribe(token) {
-   const parsed = z.string().uuid().safeParse(token);
+   const parsed = z.uuid().safeParse(token);
    if (!parsed.success) return { success: false };
 
    const { error } = await supabaseAdmin

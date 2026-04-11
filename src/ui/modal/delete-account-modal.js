@@ -3,6 +3,7 @@
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { useLocale, useTranslations } from 'next-intl';
 import { AnimatePresence, motion } from 'motion/react';
+import { deleteUserAccount } from '@/src/lib/actions';
 import { authClient } from '@/src/lib/auth-client';
 import { ImSpinner2 } from 'react-icons/im';
 import { useRouter } from '@/src/i18n/navigation';
@@ -22,16 +23,18 @@ function DeleteAccountModal({ onClose, isOAuth }) {
       if (!isOAuth && !password) return;
       setIsPending(true);
 
-      const { error } = await authClient.deleteUser({
-         ...(!isOAuth && { password }),
-      });
+      const formData = new FormData();
+      formData.set('isOAuth', String(isOAuth));
+      if (!isOAuth) formData.set('password', password);
 
-      if (error) {
-         setPassword('');
-         toast.error(t('wrong-password'));
-      } else {
+      try {
+         await deleteUserAccount(null, formData);
          router.push('/');
          toast.success(t('account-deleted'));
+         await authClient.signOut();
+      } catch (error) {
+         setPassword('');
+         toast.error(t('wrong-password'));
       }
 
       setIsPending(false);

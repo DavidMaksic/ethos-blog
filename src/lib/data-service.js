@@ -104,7 +104,7 @@ export async function getUser(email) {
 }
 
 export async function getUsers() {
-   const { data, error } = await supabase.from('users').select('id');
+   const { data, error } = await supabaseAdmin.from('users').select('id');
 
    if (error) throw new Error('Users could not be loaded');
    return data;
