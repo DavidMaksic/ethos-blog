@@ -39,10 +39,10 @@ function RemoteArticleImage({
 
    return (
       <span
-         className={`bn-visual-media block w-full relative overflow-hidden ${!isTransparent && `border border-primary-300/70 dark:border-primary-300/25 ${!loaded && `border-transparent!`}`}`}
+         className={`rounded-[1.6rem] block w-full relative overflow-hidden`}
       >
          <span
-            className={`absolute inset-0 transition-opacity duration-700 ${isTransparent ? 'scale-85' : 'scale-110'} ${
+            className={`bn-visual-media absolute inset-0 transition-opacity duration-700 ${isTransparent ? 'scale-85' : 'scale-110'} ${
                loaded ? 'opacity-0' : 'opacity-90 dark:opacity-75'
             }`}
             style={{
@@ -54,9 +54,9 @@ function RemoteArticleImage({
          />
          <Image
             ref={imgRef}
-            className={`article-image transition-opacity duration-700 ${
+            className={`bn-visual-media article-image transition-opacity duration-700 ${
                loaded ? 'opacity-90 dark:opacity-75' : 'opacity-0'
-            }`}
+            } ${!isTransparent && `border border-primary-300/70 dark:border-primary-300/25`}`}
             src={src}
             alt="Article image"
             width={width}

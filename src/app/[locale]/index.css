@@ -1096,11 +1096,11 @@ h3 {
 
 [data-theme='dark'] .medium-zoom-overlay {
    backdrop-filter: saturate(150%) blur(40px) !important;
-   background: rgba(255, 255, 255, 0.13) !important;
+   background: rgba(255, 255, 255, 0.1) !important;
 }
 
 .medium-zoom-image--opened {
-   border-radius: 1.35rem;
+   border-radius: 1.6rem !important;
    z-index: 40;
 }
 
