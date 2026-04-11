@@ -34,6 +34,7 @@
       "react-textarea-autosize": "^8.5.9",
       "resend": "^6.9.2",
       "sanitize-html": "^2.17.0",
+      "server-only": "^0.0.1",
       "sharp": "^0.34.5",
       "slugify": "^1.6.6",
       "swiper": "^12.1.2",
@@ -41,7 +42,6 @@
    },
    "devDependencies": {
       "@eslint/eslintrc": "^3",
-      "@react-email/preview-server": "^5.2.9",
       "@tailwindcss/postcss": "^4",
       "babel-plugin-react-compiler": "^1.0.0",
       "eslint": "^9",

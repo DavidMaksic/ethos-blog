@@ -13,15 +13,18 @@ import { revalidatePath, updateTag } from 'next/cache';
 import { getTranslations } from 'next-intl/server';
 import { supabaseAdmin } from './supabase-admin';
 import { randomUUID } from 'crypto';
-import { supabase } from '@/src/lib/supabase';
 import { headers } from 'next/headers';
 import { resend } from '@/src/lib/resend';
 import { auth } from '@/src/lib/auth';
 import { z } from 'zod';
 
 export async function updateUser(previousState, formData) {
-   const t = await getTranslations('Auth');
+   const session = await auth.api.getSession({
+      headers: await headers(),
+   });
+   if (!session) throw new Error('You must be logged in');
 
+   const t = await getTranslations('Auth');
    const rawUsername = formData.get('username');
    const schema = usernameSchema(t);
    const parsed = schema.safeParse({ username: rawUsername });
@@ -67,7 +70,7 @@ export async function updateImage(previousState, formData) {
    const fileName = `user_image-${userID}-${Math.random()}`;
 
    // 1. Upload user image
-   const { error: imageUploadError } = await supabase.storage
+   const { error: imageUploadError } = await supabaseAdmin.storage
       .from('user-images')
       .upload(fileName, newImage);
 
@@ -87,7 +90,7 @@ export async function updateImage(previousState, formData) {
    if (oldImage) {
       const image = oldImage.slice(78);
 
-      const { error } = await supabase.storage
+      const { error } = await supabaseAdmin.storage
          .from('user-images')
          .remove([image]);
 
@@ -106,7 +109,7 @@ export async function addBookmark(articleID, slug) {
    if (!session) throw new Error('You must be logged in');
    const userID = session.user.id;
 
-   const { error } = await supabase.from('bookmarks').insert([
+   const { error } = await supabaseAdmin.from('bookmarks').insert([
       {
          user_id: userID,
          article_id: articleID,
@@ -125,7 +128,7 @@ export async function removeBookmark(articleID, slug) {
    if (!session) throw new Error('You must be logged in');
    const userID = session.user.id;
 
-   const { error } = await supabase
+   const { error } = await supabaseAdmin
       .from('bookmarks')
       .delete()
       .eq('user_id', userID)
@@ -278,7 +281,7 @@ export async function addReply(previousState, formData, commentLength) {
 
    const { content } = parsed.data;
 
-   const { error } = await supabase.from('replies').insert({
+   const { error } = await supabaseAdmin.from('replies').insert({
       content,
       comment_id: commentID,
       article_id: articleID,
@@ -317,7 +320,7 @@ export async function editReply(replyID, text, slug, commentLength) {
 
    const { content } = parsed.data;
 
-   const { error } = await supabase
+   const { error } = await supabaseAdmin
       .from('replies')
       .update({ content })
       .eq('id', replyID)
@@ -336,7 +339,7 @@ export async function deleteReply(replyID, slug) {
    if (!session) throw new Error('You must be logged in');
 
    const userID = session.user.id;
-   const { error } = await supabase
+   const { error } = await supabaseAdmin
       .from('replies')
       .delete()
       .eq('id', replyID)
@@ -357,7 +360,7 @@ export async function addLiked(articleID, type, slug, targetID) {
    const userID = session.user.id;
 
    if (type === 'article') {
-      const { error } = await supabase.from('likes').insert([
+      const { error } = await supabaseAdmin.from('likes').insert([
          {
             user_id: userID,
             article_id: articleID,
@@ -372,7 +375,7 @@ export async function addLiked(articleID, type, slug, targetID) {
    }
 
    if (type === 'comment' || type === 'reply') {
-      const { error } = await supabase.from('likes').insert([
+      const { error } = await supabaseAdmin.from('likes').insert([
          {
             user_id: userID,
             article_id: articleID,
@@ -394,7 +397,7 @@ export async function removeLiked(articleID, type, slug) {
    if (!session) throw new Error('You must be logged in');
    const userID = session.user.id;
 
-   const { error } = await supabase
+   const { error } = await supabaseAdmin
       .from('likes')
       .delete()
       .eq('user_id', userID)
@@ -420,7 +423,7 @@ export async function subscribeToNewsletter(prevState, formData) {
    try {
       const unsubscribe_token = randomUUID();
 
-      const { data, error } = await supabase
+      const { data, error } = await supabaseAdmin
          .from('subscribers')
          .insert({ email, locale, unsubscribe_token })
          .select('id')

@@ -1,6 +1,8 @@
+import 'server-only';
+
+import { supabaseAdmin } from './supabase-admin';
 import { supabase } from '@/src/lib/supabase';
 import { notFound } from 'next/navigation';
-import { supabaseAdmin } from './supabase-admin';
 
 export async function getArticles() {
    const { data, error } = await supabase
