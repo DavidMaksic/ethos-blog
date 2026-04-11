@@ -38,7 +38,9 @@ function RemoteArticleImage({
    }, [loaded, isMobile]);
 
    return (
-      <span className="bn-visual-media block w-full relative overflow-hidden">
+      <span
+         className={`bn-visual-media block w-full relative overflow-hidden ${!isTransparent && `border border-primary-300/70 dark:border-primary-300/25 ${!loaded && `border-transparent!`}`}`}
+      >
          <span
             className={`absolute inset-0 transition-opacity duration-700 ${isTransparent ? 'scale-85' : 'scale-110'} ${
                loaded ? 'opacity-0' : 'opacity-90 dark:opacity-75'
@@ -60,6 +62,7 @@ function RemoteArticleImage({
             width={width}
             height={height}
             quality={60}
+            data-transparent={isTransparent ? 'true' : undefined}
             onLoad={() => setTimeout(() => setLoaded(true), 50)}
             style={{ width: '100%', height: 'auto' }}
          />
