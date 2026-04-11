@@ -108,6 +108,8 @@ export async function generateMetadata({ params }) {
    };
 }
 
+// TODO: When user deletes its profile, delete user profile image too
+
 export function generateStaticParams() {
    return routing.locales.map((locale) => ({ locale }));
 }
