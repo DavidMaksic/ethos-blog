@@ -1217,7 +1217,8 @@ h3 {
       background: var(--color-primary-500) !important;
    }
 
-   [data-file-block] .bn-visual-media {
+   [data-file-block] .bn-visual-media,
+   .medium-zoom-image--opened {
       border-radius: 1.35rem !important;
    }
 
