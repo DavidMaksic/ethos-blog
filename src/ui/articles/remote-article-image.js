@@ -39,7 +39,7 @@ function RemoteArticleImage({
 
    return (
       <span
-         className={`rounded-[1.6rem] block w-full relative overflow-hidden`}
+         className={`rounded-[1.6rem] sm:rounded-[1.35rem] block w-full relative overflow-hidden`}
       >
          <span
             className={`bn-visual-media absolute inset-0 transition-opacity duration-700 ${isTransparent ? 'scale-85' : 'scale-110'} ${

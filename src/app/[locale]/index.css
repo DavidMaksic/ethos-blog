@@ -1217,6 +1217,10 @@ h3 {
       background: var(--color-primary-500) !important;
    }
 
+   [data-file-block] .bn-visual-media {
+      border-radius: 1.35rem !important;
+   }
+
    .bn-block-column-list {
       display: flex !important;
       flex-direction: column !important;
