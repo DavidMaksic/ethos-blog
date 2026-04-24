@@ -117,7 +117,6 @@ const images = [
       id: 16,
       url: image16,
       credit: 'Paradox Interactive',
-      lightMode: true,
    },
    {
       id: 17,

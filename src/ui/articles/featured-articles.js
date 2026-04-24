@@ -3,7 +3,7 @@
 import { getCategoriesByLanguage } from '@/src/utils/helpers';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { AnimatePresence } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 import FeaturedItem from '@/src/ui/articles/featured-item';
 
 function FeaturedArticles({ articles, categories, authors, locale }) {
@@ -54,13 +54,21 @@ function FeaturedArticles({ articles, categories, authors, locale }) {
 
          <div className="grid grid-cols-3 md:flex md:flex-col gap-6 lg:gap-4 md:gap-6">
             <AnimatePresence mode="wait">
-               {featuredArticles.map((item) => (
-                  <FeaturedItem
-                     article={item}
-                     authors={authors}
-                     key={item.id}
-                  />
-               ))}
+               <motion.div
+                  key={featuredArticles.map((a) => a.id).join('-')}
+                  className="contents"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+               >
+                  {featuredArticles.map((item) => (
+                     <FeaturedItem
+                        article={item}
+                        authors={authors}
+                        key={item.id}
+                     />
+                  ))}
+               </motion.div>
             </AnimatePresence>
          </div>
       </div>

@@ -21,11 +21,11 @@ function RelatedArticle({ article, author }) {
          </div>
 
          <div className="self-center md:flex md:flex-col md:justify-self-center md:gap-1.5 sm:gap-1 px-10 md:px-6 sm:px-8 py-8 2xl:pt-7 md:py-9 md:pb-10 text-center">
-            <span className="text-primary-500 dark:text-primary-600/70 text-[1.7rem] md:text-[2.3rem] sm:text-[2.1rem] font-semibold md:dark:font-medium font-title leading-8.5 md:leading-9">
+            <span className="text-primary-500 dark:text-primary-600/70 text-[1.8rem] md:text-[2.3rem] sm:text-[2.1rem] font-semibold md:dark:font-medium font-title leading-8.5 md:leading-9">
                {article.title}
             </span>
 
-            <div className="mt-1.5 space-x-2 text-primary-400 dark:text-primary-600/45 mb-4 md:mb-0 text-lg md:text-[1.3rem]">
+            <div className="mt-1 space-x-2 text-primary-400 dark:text-primary-600/45 mb-3 md:mb-0 text-lg md:text-[1.3rem]">
                <span>{date}</span>
                <span className="text-lg">•</span>
                <span>{author.full_name}</span>

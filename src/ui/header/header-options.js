@@ -32,43 +32,41 @@ function HeaderOptions() {
             |
          </span>
 
-         <AnimatePresence mode="wait" initial={false}>
-            {!mounted ? (
-               <HeaderButton>
-                  <LuSunMedium className="size-7! sm:size-8.5! stroke-[1.5px]" />
-               </HeaderButton>
-            ) : (
-               <motion.div
-                  key="theme"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
+         {!mounted ? (
+            <HeaderButton>
+               <LuSunMedium className="size-7! sm:size-8.5! stroke-[1.5px]" />
+            </HeaderButton>
+         ) : (
+            <motion.div
+               key="theme"
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
+               transition={{ duration: 0.2 }}
+            >
+               <HeaderButton
+                  handler={() =>
+                     changeTheme(resolvedTheme === 'light' ? 'dark' : 'light')
+                  }
                >
-                  <HeaderButton
-                     handler={() =>
-                        changeTheme(
-                           resolvedTheme === 'light' ? 'dark' : 'light',
-                        )
-                     }
-                  >
-                     {resolvedTheme === 'dark' ? (
-                        <IoMoonOutline className="size-7! md:size-8.5! p-0.5" />
-                     ) : (
-                        <LuSunMedium className="size-7! md:size-8.5! stroke-[1.7px]" />
-                     )}
-                  </HeaderButton>
-               </motion.div>
-            )}
-         </AnimatePresence>
+                  {resolvedTheme === 'dark' ? (
+                     <IoMoonOutline className="size-7! md:size-8.5! p-0.5" />
+                  ) : (
+                     <LuSunMedium className="size-7! md:size-8.5! stroke-[1.7px]" />
+                  )}
+               </HeaderButton>
+            </motion.div>
+         )}
 
          <AnimatePresence mode="wait" initial={false}>
             {!mounted || !session ? (
-               <HeaderButton styles="md:hidden pl-1.5!">
-                  <Link href="/login" className="hover:text-accent">
-                     <LuLogIn className="size-7! stroke-[1.4px]" />
-                  </Link>
-               </HeaderButton>
+               <div key="profile-loading">
+                  <HeaderButton styles="md:hidden pl-1.5!">
+                     <Link href="/login" className="hover:text-accent">
+                        <LuLogIn className="size-7! stroke-[1.4px]" />
+                     </Link>
+                  </HeaderButton>
+               </div>
             ) : (
                <motion.div
                   key="profile"
