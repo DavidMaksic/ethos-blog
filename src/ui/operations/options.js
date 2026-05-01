@@ -153,7 +153,7 @@ function Options() {
                   <AnimatePresence>
                      {openTable && (
                         <motion.div
-                           className="absolute bottom-0 font-secondary max-h-[32rem] md:max-h-[37rem] xs:max-h-[41rem] short:max-h-[60rem] shorter:max-h-[16.5rem] right-20 md:right-24.5 flex flex-col py-4 pb-2 xs:pb-4 px-2 md:px-2.5 border border-primary-300/50 lg:border-primary-300/80 dark:border-primary-300/35 lg:dark:border-primary-300/35 rounded-2xl xs:rounded-3xl bg-white dark:bg-transparent lg:dark:bg-primary/90 backdrop-blur-3xl overflow-y-auto scrollbar shadow-dashboard 2xl:shadow-none md:shadow-menu dark:shadow-none md:dark:shadow-none md:text-2xl will-change-transform"
+                           className="absolute bottom-0 font-secondary max-h-[32rem] md:max-h-[37rem] xs:max-h-[41rem] short:max-h-[60rem] shorter:max-h-[16.5rem] right-20 md:right-24.5 flex flex-col py-4 pb-2 xs:pb-4 px-2 md:px-2.5 border border-primary-300/50 lg:border-primary-300/80 dark:border-primary-300/35 lg:dark:border-primary-300/35 rounded-2xl xs:rounded-3xl bg-white dark:bg-transparent lg:dark:bg-primary/90 backdrop-blur-3xl overflow-y-auto scrollbar shadow-dashboard 2xl:shadow-none md:shadow-menu dark:shadow-none md:dark:shadow-none md:text-2xl will-change-transform select-none"
                            ref={tableRef}
                            key="table-of-contents"
                            initial={{ opacity: 0, x: 8, scale: 0.97 }}
@@ -166,7 +166,7 @@ function Options() {
                               duration: 0.12,
                            }}
                         >
-                           <span className="pb-3 mb-2 mx-6 md:mx-8 md:pt-0.5 border-b border-b-primary-400/25 text-primary-400 select-none">
+                           <span className="pb-3 mb-2 mx-6 md:mx-8 md:pt-0.5 border-b border-b-primary-400/25 text-primary-400">
                               {t('toc')}
                            </span>
 
