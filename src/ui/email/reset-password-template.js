@@ -15,6 +15,7 @@ import {
 const content = {
    en: {
       subject: 'Reset your password',
+      description: 'Use the secure link to create a new password',
       name: 'Hi',
       body: 'Click the button below to reset your password.',
       expires: 'This link expires in 1 hour.',
@@ -23,6 +24,7 @@ const content = {
    },
    sr: {
       subject: 'Ресетујте лозинку',
+      description: 'Промените своју лозинку путем сигурног линка',
       name: 'Здраво',
       body: 'Кликните дугме испод да ресетујете лозинку.',
       expires: 'Овај линк истиче за 1 сат.',

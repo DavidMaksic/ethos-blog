@@ -15,6 +15,7 @@ import {
 const content = {
    en: {
       subject: 'Welcome to Ethos',
+      description: 'Enjoy reading our latest articles',
       body: "You're now subscribed to Ethos − a publication on history, philosophy & theology.",
       body2: 'Every new essay will land directly in your inbox.',
       button: 'Read latest articles',
@@ -23,6 +24,7 @@ const content = {
    },
    sr: {
       subject: 'Добродошли у Етос',
+      description: 'Уживајте у читању наших најновијих чланака',
       body: 'Претплатили сте се на Етос − публикацију о историји, филозофији и теологији.',
       body2: 'Сваки нови чланак ће стићи директно у ваше пријемно сандуче.',
       button: 'Посети Етос',
