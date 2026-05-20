@@ -29,6 +29,8 @@ function MainArticles({ articles }) {
             dynamicBullets: true,
          }}
          modules={[Autoplay, Pagination]}
+         preventClicks={false}
+         preventClicksPropagation={false}
          className="mySwiper size-full pl-3.5! md:px-0!"
       >
          {locale === 'en'
