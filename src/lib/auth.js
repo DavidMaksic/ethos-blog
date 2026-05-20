@@ -1,3 +1,5 @@
+import 'server-only';
+
 import ResetPasswordTemplate, {
    getResetPasswordSubject,
 } from '@/src/ui/email/reset-password-template';
