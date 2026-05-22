@@ -13,6 +13,7 @@ npm run dev
 <br />
 This application is powered by **Next.js**, which enables near-instant load times and navigation thanks to ISR (Incremental Static Generation).
 
+
 Authentication is implemented using **Better Auth**. Emails are styled with **React Email**, and sent by **Resend**. Internationalization is supported thanks to **`next-intl`** library. Site is styled with **Tailwind** and can be used on a variety of devices thanks to the responsive design.
 
 Light and dark mode are handled by **`next-themes`**. Dynamic metadata/OpenGraph/JSON-LD are implemented for SEO optimization. Complex layout animations are implemented thanks to **Motion** library. Data validation is implemented with **Zod**.
