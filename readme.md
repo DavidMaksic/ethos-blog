@@ -8,7 +8,7 @@ npm i
 npm run dev
 ```
 
-![main image](https://davidmaksic.vercel.app/assets/ethos-BxVz4v8U.png)
+![main image](https://davidmaksic.vercel.app/ethos.png)
 
 <br />
 
