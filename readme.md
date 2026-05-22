@@ -11,8 +11,7 @@ npm run dev
 ![main image](https://davidmaksic.vercel.app/ethos.png)
 
 <br />
-This application is powered by **Next.js**, which enables near-instant load times and navigation thanks to ISR (Incremental Static Generation).
-
+This application is powered by **Next.js**, which enables near-instant load times and navigation thanks to ISR (Incremental Static Generation)
 
 Authentication is implemented using **Better Auth**. Emails are styled with **React Email**, and sent by **Resend**. Internationalization is supported thanks to **`next-intl`** library. Site is styled with **Tailwind** and can be used on a variety of devices thanks to the responsive design.
 
