@@ -4,8 +4,7 @@ A Next.js blog website featuring internationalization, user authentication and a
 
 Installation:
 ```
-npm i
-npm run dev
+npm i && npm run dev
 ```
 
 ![main image](https://davidmaksic.vercel.app/ethos.png)
@@ -13,6 +12,7 @@ npm run dev
 <br />
 This application is powered by **Next.js**, which enables near-instant load times and navigation thanks to ISR (Incremental Static Generation).
 
+<br />
 <br />
 
 Authentication is implemented using **Better Auth**. Emails are styled with **React Email**, and sent by **Resend**. Internationalization is supported thanks to **`next-intl`** library. Site is styled with **Tailwind** and can be used on a variety of devices thanks to the responsive design.
