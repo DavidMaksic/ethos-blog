@@ -71,7 +71,7 @@ This part of the page displays all comments and replies, with sorting option. Us
 
 On this page, users can search, sort and filter all articles.
 
-![archive](https://davidmaksic.vercel.app/assets/ethos-7-5SZFYbGw.png)
+![archive](https://davidmaksic.vercel.app/ethos-7.png)
 
 <br />
 
