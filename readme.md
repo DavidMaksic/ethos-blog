@@ -1,6 +1,6 @@
 # Ethos Blog
 
-A Next.js blog website featuring internationalization, user authentication and a comment system. Designed for a comfy reading experience.
+A Next.js blog website featuring internationalization, user authentication and a comment system. Designed for comfy reading experience.
 
 Installation:
 ```
