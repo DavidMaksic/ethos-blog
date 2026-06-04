@@ -30,7 +30,7 @@ async function ArticleImage({ article, author, date, children }) {
                </div>
 
                <div className="font-secondary flex flex-col font-medium leading-6 self-center sm:gap-1">
-                  <div className="space-x-1.5">
+                  <div className="space-x-1">
                      {locale === 'en' && <span className="md:hidden">By</span>}
                      <span className="text-accent-500 dark:text-accent-200/90 font-semibold 2xl:text-[1.2rem] md:text-[1.3rem]">
                         {author.full_name}

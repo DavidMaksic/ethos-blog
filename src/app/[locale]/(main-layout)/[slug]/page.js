@@ -127,6 +127,7 @@ async function Page({ params }) {
       url: `${WEBSITE_URL}${prefix}/${slug}`,
       headline: title,
       description: description,
+      inLanguage: locale,
       publisher: {
          '@type': 'Organization',
          name: t('Logo'),
