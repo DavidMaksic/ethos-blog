@@ -1,8 +1,8 @@
 'use client';
 
 import { applyPagination, getSortedItems } from '@/src/utils/helpers';
-import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { FUSE_ARTICLES } from '@/src/utils/config';
@@ -19,7 +19,6 @@ function Articles({ isArchive = false, articles, categories, style }) {
 
    const [loading, setLoading] = useState(true);
 
-   // Extract client-side params
    const sort = searchParams.get('sort');
    const search = searchParams.get('search');
    const lang = searchParams.get('lang');
@@ -28,71 +27,9 @@ function Articles({ isArchive = false, articles, categories, style }) {
 
    useEffect(() => setLoading(false), []);
 
-   // Find active category
-   const currentCategory = categories.find(
-      (item) =>
-         item.category ===
-         category?.charAt(0).toUpperCase() + category?.slice(1),
-   );
-
-   const fuse = useMemo(
-      () => (search ? new Fuse(articles, FUSE_ARTICLES) : null),
-      [articles, search],
-   );
-
-   // Sort, search, filter, pagination
-   const { filteredArticles, paginatedArticles } = useMemo(() => {
-      if (!isArchive) {
-         return {
-            filteredArticles: articles,
-            paginatedArticles: articles?.slice(0, 3),
-         };
-      }
-
-      let result = [...articles];
-
-      // 1. Search (Fuse.js)
-      if (fuse && search) result = fuse.search(search).map(({ item }) => item);
-
-      // 2. Filter language + category
-      const category_id = currentCategory?.id;
-
-      result = result.filter((item) => {
-         const matchesCategory =
-            !currentCategory || item.category_id === category_id;
-
-         const matchesLanguage = lang
-            ? item.code === lang
-            : item.code === language.code;
-
-         return matchesCategory && matchesLanguage;
-      });
-
-      // 3. Sort
-      if (sort) result = getSortedItems(sort, result);
-
-      // 4. Pagination
-      const paginatedResult = applyPagination(page, result);
-
-      return {
-         filteredArticles: result,
-         paginatedArticles: paginatedResult,
-      };
-   }, [
-      articles,
-      sort,
-      search,
-      lang,
-      page,
-      currentCategory,
-      language,
-      isArchive,
-      fuse,
-   ]);
-
-   const arr = isArchive ? [...Array(6)] : [...Array(3)];
-
+   // Loading skeleton
    if (loading) {
+      const arr = [...Array(isArchive ? 6 : 3)];
       return (
          <div className="flex flex-col mt-[-1.2px] md:w-full animate-skeleton">
             <div className="space-y-6 lg:space-y-4">
@@ -106,6 +43,54 @@ function Articles({ isArchive = false, articles, categories, style }) {
          </div>
       );
    }
+
+   // Non-archive: simple preview of first 3 articles
+   if (!isArchive) {
+      return (
+         <motion.div
+            className="grid grid-rows-3 sm:flex sm:flex-col gap-6 lg:gap-4 md:gap-4 sm:gap-5 md:w-full"
+            layout="position"
+            transition={{ duration: 0.2 }}
+         >
+            <AnimatePresence mode="popLayout">
+               {articles.slice(0, 3).map((item) => (
+                  <ArticleItem article={item} key={item.id} style={style} />
+               ))}
+            </AnimatePresence>
+         </motion.div>
+      );
+   }
+
+   // Archive: search, filter, sort, paginate
+   let filteredArticles = [...articles];
+
+   // 1. Search (Fuse.js)
+   if (search) {
+      const fuse = new Fuse(articles, FUSE_ARTICLES);
+      filteredArticles = fuse.search(search).map(({ item }) => item);
+   }
+
+   // 2. Filter language + category
+   const current_category_id = categories.find(
+      (item) =>
+         item.category ===
+         category?.charAt(0).toUpperCase() + category?.slice(1),
+   )?.id;
+
+   filteredArticles = filteredArticles.filter((item) => {
+      const matchesCategory =
+         !current_category_id || item.category_id === current_category_id;
+      const matchesLanguage = lang
+         ? item.code === lang
+         : item.code === language.code;
+      return matchesCategory && matchesLanguage;
+   });
+
+   // 3. Sort
+   if (sort) filteredArticles = getSortedItems(sort, filteredArticles);
+
+   // 4. Pagination
+   const paginatedArticles = applyPagination(page, filteredArticles);
 
    return (
       <>
@@ -133,11 +118,10 @@ function Articles({ isArchive = false, articles, categories, style }) {
             </AnimatePresence>
          </motion.div>
 
-         {isArchive &&
-            filteredArticles.length >
-               Number(process.env.NEXT_PUBLIC_PAGE_SIZE || 10) && (
-               <Pagination count={filteredArticles.length} />
-            )}
+         {filteredArticles.length >
+            Number(process.env.NEXT_PUBLIC_PAGE_SIZE || 10) && (
+            <Pagination count={filteredArticles.length} />
+         )}
       </>
    );
 }

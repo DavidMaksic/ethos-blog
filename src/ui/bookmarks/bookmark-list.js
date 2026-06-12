@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { getSortedItems } from '@/src/utils/helpers';
 import { FUSE_BOOKMARKS } from '@/src/utils/config';
-import { useMemo } from 'react';
 
 import BookmarkItem from '@/src/ui/bookmarks/bookmark-item';
 import Pagination from '@/src/ui/operations/pagination';
@@ -13,15 +12,11 @@ import Fuse from 'fuse.js';
 function BookmarkList({ usersBookmarks, param }) {
    const t = useTranslations('Profile');
 
-   const fuse = useMemo(() => {
-      if (!param.search) return null;
-      return new Fuse(usersBookmarks, FUSE_BOOKMARKS);
-   }, [usersBookmarks, param.search]);
-
    // 1. Filter / Search Logic
    let filtered = [...usersBookmarks];
 
-   if (fuse && param.search) {
+   if (param.search) {
+      const fuse = new Fuse(usersBookmarks, FUSE_BOOKMARKS);
       filtered = fuse.search(param.search).map((r) => r.item);
    }
 
