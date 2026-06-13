@@ -87,7 +87,7 @@ function Articles({ isArchive = false, articles, categories, style }) {
    });
 
    // 3. Sort
-   if (sort) filteredArticles = getSortedItems(sort, filteredArticles);
+   if (sort) filteredArticles = getSortedItems(sort, filteredArticles, true);
 
    // 4. Pagination
    const paginatedArticles = applyPagination(page, filteredArticles);

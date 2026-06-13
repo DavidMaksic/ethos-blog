@@ -24,11 +24,11 @@ function BookmarkOptions({ bookmarksExist }) {
             <SortBy
                options={[
                   {
-                     value: 'first_published_at-asc',
+                     value: 'created_at-asc',
                      label: t('Sort.latest'),
                   },
                   {
-                     value: 'first_published_at-desc',
+                     value: 'created_at-desc',
                      label: t('Sort.oldest'),
                   },
                   {
