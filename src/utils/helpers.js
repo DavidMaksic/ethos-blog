@@ -3,8 +3,9 @@ import { STOP_WORDS } from '@/src/utils/config';
 import { enUS, sr } from 'date-fns/locale';
 import sanitizeHtml from 'sanitize-html';
 
-export function getSortedItems(param, items, isComments) {
+export function getSortedItems(param, items, isComments = false) {
    if (!items?.length) return items;
+   console.log('items: ', items);
 
    const sort = param ?? 'created_at-asc';
    const [rawField, direction] = sort.split('-');
@@ -27,8 +28,10 @@ export function getSortedItems(param, items, isComments) {
       }
 
       // 2. Dates (created_at, first_published_at, bookmarked_at)
-      if (typeof a[field] === 'string') {
-         return (new Date(a[field]) - new Date(b[field])) * dateModifier;
+      if (typeof a[field] === 'string' || a.articles?.[field]) {
+         const dateA = a.articles?.[field] ?? a[field];
+         const dateB = b.articles?.[field] ?? b[field];
+         return (new Date(dateA) - new Date(dateB)) * dateModifier;
       }
 
       // 3. Numbers

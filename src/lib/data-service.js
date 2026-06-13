@@ -121,7 +121,7 @@ export async function getBookmarksByID(userID) {
    const { data, error } = await supabase
       .from('bookmarks')
       .select(
-         '*, articles (id, created_at, title, image, image_blur, category_id, slug, categories(*))',
+         '*, articles (id, created_at, first_published_at, title, image, image_blur, category_id, slug, categories(*))',
       )
       .eq('user_id', userID);
 
