@@ -3,13 +3,15 @@ import { STOP_WORDS } from '@/src/utils/config';
 import { enUS, sr } from 'date-fns/locale';
 import sanitizeHtml from 'sanitize-html';
 
-export function getSortedItems(param, items, isArticles) {
+export function getSortedItems(param, items, isComments) {
    if (!items?.length) return items;
 
    const sort = param ?? 'created_at-asc';
    const [rawField, direction] = sort.split('-');
    const field =
-      isArticles && rawField === 'created_at' ? 'first_published_at' : rawField;
+      !isComments && rawField === 'created_at'
+         ? 'first_published_at'
+         : rawField;
 
    const modifier = direction === 'asc' ? 1 : -1;
    const dateModifier = direction === 'asc' ? -1 : 1;

@@ -33,7 +33,7 @@ async function Page({ searchParams }) {
 
    const extendedUser = await getUser(session?.user.email);
    const userComments = [...extendedUser.comments, ...extendedUser.replies];
-   const sortedComments = getSortedItems(searchParam?.sort, userComments);
+   const sortedComments = getSortedItems(searchParam?.sort, userComments, true);
 
    return (
       <div className="flex flex-col gap-8 lg:gap-6 h-full grow">

@@ -13,7 +13,7 @@ function CommentList({ comments, article, commentLength, author }) {
 
    const sortedComments = !sort
       ? [...comments].reverse()
-      : [...getSortedItems(sort, comments)];
+      : [...getSortedItems(sort, comments, true)];
 
    return (
       <>
