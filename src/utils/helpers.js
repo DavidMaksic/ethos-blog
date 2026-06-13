@@ -6,7 +6,7 @@ import sanitizeHtml from 'sanitize-html';
 export function getSortedItems(param, items) {
    if (!items?.length) return items;
 
-   const sort = param ?? 'created_at-asc';
+   const sort = param ?? 'first_published_at-asc';
    const [field, direction] = sort.split('-');
 
    const modifier = direction === 'asc' ? 1 : -1;
@@ -22,7 +22,7 @@ export function getSortedItems(param, items) {
          }
       }
 
-      // 2. Dates (created_at, bookmarked_at)
+      // 2. Dates (first_published_at, bookmarked_at)
       if (typeof a[field] === 'string') {
          return (new Date(a[field]) - new Date(b[field])) * dateModifier;
       }
@@ -146,7 +146,10 @@ export function getRelatedArticles(articles, article, limit = 2) {
 
    const scored = [...articles]
       .filter((item) => item.code === code && item.title !== title)
-      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+      .sort(
+         (a, b) =>
+            new Date(b.first_published_at) - new Date(a.first_published_at),
+      )
       .map((item) => ({
          ...item,
          score: scoreArticle(item, currentTitleWords, currentDescWords),

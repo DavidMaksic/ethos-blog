@@ -65,11 +65,11 @@ async function Page({ params }) {
                <SortBy
                   options={[
                      {
-                        value: 'created_at-asc',
+                        value: 'first_published_at-asc',
                         label: t('Sort.latest'),
                      },
                      {
-                        value: 'created_at-desc',
+                        value: 'first_published_at-desc',
                         label: t('Sort.oldest'),
                      },
                      {

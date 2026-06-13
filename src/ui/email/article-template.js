@@ -140,7 +140,7 @@ export default function ArticleTemplate({
                   <Text style={styles.meta}>
                      <span style={{ fontSize: '15px' }}>
                         {t.by} {article.authors.full_name}
-                        {article.created_at ? ` · ${article.created_at}` : ''}
+                        {` · ${article.first_published_at}`}
                      </span>
                   </Text>
 

@@ -3,7 +3,7 @@ import { Link } from '@/src/i18n/navigation';
 import Image from 'next/image';
 
 function RelatedArticle({ article, author }) {
-   const date = format(new Date(article.created_at), 'MMM dd, yyyy');
+   const date = format(new Date(article.first_published_at), 'MMM dd, yyyy');
 
    return (
       <Link

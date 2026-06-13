@@ -3,7 +3,7 @@ import { Link } from '@/src/i18n/navigation';
 import RemoteImage from '@/src/ui/image/remote-image';
 
 function FeaturedItem({ article, authors }) {
-   const date = format(new Date(article.created_at), 'MMM dd, yyyy');
+   const date = format(new Date(article.first_published_at), 'MMM dd, yyyy');
    const author = authors?.find((item) => item.id === article.author_id);
 
    return (

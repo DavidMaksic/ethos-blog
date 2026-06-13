@@ -35,7 +35,7 @@ export async function generateMetadata({ params }) {
       title,
       description,
       image,
-      created_at,
+      first_published_at,
       updated_at,
       authors: { full_name },
    } = await getArticleMetadata(slug);
@@ -58,7 +58,7 @@ export async function generateMetadata({ params }) {
          siteName: t('Logo'),
          locale: locale,
          type: 'article',
-         publishedTime: created_at,
+         publishedTime: first_published_at,
          modifiedTime: updated_at,
          authors: [full_name],
          images: [
@@ -110,13 +110,13 @@ async function Page({ params }) {
       title,
       description,
       authors: author,
-      created_at,
+      first_published_at,
       updated_at,
       categories,
    } = article;
 
    // - Other logic
-   const date = format(new Date(article.created_at), 'MMM dd, yyyy');
+   const date = format(new Date(first_published_at), 'MMM dd, yyyy');
    const prefix = locale === 'en' ? '' : `/${locale}`;
    const replies = comments.map((item) => item.replies).flat();
    const commentsNum = replies?.length + comments?.length;
@@ -138,7 +138,7 @@ async function Page({ params }) {
          name: author.full_name,
          url: `${WEBSITE_URL}${prefix}/about`,
       },
-      datePublished: created_at,
+      datePublished: first_published_at,
       dateModified: updated_at,
       image: {
          '@type': 'ImageObject',

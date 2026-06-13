@@ -28,7 +28,9 @@ export async function POST(request) {
    if (error) return Response.json({ error: 'DB error' }, { status: 500 });
 
    const emails = subscribers.map((subscriber) => {
-      const formattedDate = new Date(article.created_at).toLocaleDateString(
+      const formattedDate = new Date(
+         article.first_published_at,
+      ).toLocaleDateString(
          subscriber.locale === 'sr' ? 'sr-Latn-RS' : 'en-US',
          { year: 'numeric', month: 'long', day: 'numeric' },
       );
@@ -38,7 +40,7 @@ export async function POST(request) {
          to: subscriber.email,
          subject: article.title,
          react: ArticleTemplate({
-            article: { ...article, created_at: formattedDate },
+            article: { ...article, first_published_at: formattedDate },
             locale: subscriber.locale,
             unsubscribeUrl: `${process.env.WEBSITE_URL}/unsubscribe?token=${subscriber.unsubscribe_token}`,
          }),
