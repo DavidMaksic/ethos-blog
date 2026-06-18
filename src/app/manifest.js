@@ -1,6 +1,6 @@
 export default function manifest() {
    return {
-      name: 'Ethos Blog',
+      name: 'Ethos',
       short_name: 'Ethos',
       description:
          'Ethos blog features many authors from across the world, who write on various topics connected to the concept of ethos - culture, customs, values, ethics...',

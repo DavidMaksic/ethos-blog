@@ -117,21 +117,19 @@ export default async function RootLayout({ children, params }) {
    setRequestLocale(locale);
 
    const t = await getTranslations();
-   const prefix = locale === 'en' ? '' : `/${locale}`;
 
    const jsonLd = {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      url: `${WEBSITE_URL}${prefix}`,
-      name: t('Logo'),
+      url: WEBSITE_URL,
+      name: 'Ethos',
       description: t('Page-descriptions.about'),
-      inLanguage: locale,
    };
 
    const orgJsonLd = {
       '@context': 'https://schema.org',
       '@type': 'Organization',
-      name: t('Logo'),
+      name: 'Ethos',
       url: WEBSITE_URL,
       logo: {
          '@type': 'ImageObject',
