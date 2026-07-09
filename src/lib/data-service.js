@@ -18,7 +18,7 @@ export async function getArticles() {
 }
 
 export async function getArticle(slug) {
-   const url = `${process.env.SUPABASE_URL}/rest/v1/articles?select=*,categories(*),authors(*),likes(*),comments(*,replies(*))&comments.order=created_at.asc&comments.replies.order=created_at.asc&slug=eq.${slug}`;
+   const url = `${process.env.SUPABASE_URL}/rest/v1/articles?select=*,categories(*),authors(*),likes(*),comments(*,replies(*))&comments.order=created_at.asc&comments.replies.order=created_at.asc&slug=eq.${slug}&status=eq.published`;
 
    const res = await fetch(url, {
       headers: {
