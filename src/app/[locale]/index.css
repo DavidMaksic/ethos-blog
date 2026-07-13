@@ -1143,7 +1143,7 @@ h3 {
 }
 
 .bn-block-outer:has(
-      > .bn-block > [data-content-type='heading'] > .bn-block-content
+      > .bn-block > [data-content-type='heading'].bn-block-content
    )
    + .bn-block-column-list
    > .bn-block-column {
