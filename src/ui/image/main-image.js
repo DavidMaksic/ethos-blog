@@ -49,6 +49,7 @@ function MainImage({ article }) {
             ref={imgRef}
             className={`main-image absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${loaded ? 'opacity-90 dark:opacity-75' : 'opacity-0'}`}
             src={image}
+            loading="eager"
             alt="Main image"
             fetchPriority="high"
             onLoad={() => setTimeout(() => setLoaded(true), 50)}

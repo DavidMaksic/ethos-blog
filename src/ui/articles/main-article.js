@@ -12,7 +12,8 @@ function MainArticle({ article }) {
             <h2 className="relative md:text-center font-medium md:font-semibold styled_text font-title text-6xl 2xl:text-[3.3rem] lg:text-[3rem] md:text-[3rem] sm:text-[2.8rem] 2xl:leading-15.5 xs:leading-12.5 pb-2 2xl:pb-1 lg:pb-0 bg-gradient-to-r from-gray-600 to-gray-500/90 dark:from-slate-300/90 dark:to-slate-300/70 select-none leading-16 lg:leading-13">
                {article.title}
             </h2>
-            <h3 className="text-[1.6rem] lg:text-[1.2rem] md:text-[1.4rem] text-primary-500/85 dark:text-primary-500/80 xs:w-11/12 2xs:w-10/11 select-none md:text-center">
+
+            <h3 className="text-[1.6rem] lg:text-[1.2rem] md:text-[1.4rem] text-primary-500/85 dark:text-primary-500/80 xs:leading-7 xs:w-10/11 select-none md:text-center">
                {article.description}
             </h3>
 
