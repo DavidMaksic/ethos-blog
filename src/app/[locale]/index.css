@@ -1142,6 +1142,14 @@ h3 {
    }
 }
 
+.bn-block-outer:has(
+      > .bn-block > [data-content-type='heading'] > .bn-block-content
+   )
+   + .bn-block-column-list
+   > .bn-block-column {
+   @apply pt-0!;
+}
+
 @media (max-width: 768px) {
    .inter-padding {
       padding-inline: 96px;
