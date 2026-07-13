@@ -2,11 +2,6 @@
 
 A Next.js blog website featuring internationalization, user authentication and a comment system. Designed for comfy reading experience.
 
-Installation:
-```
-npm i && npm run dev
-```
-
 ![main image](https://davidmaksic.vercel.app/ethos.png)
 
 <br />
