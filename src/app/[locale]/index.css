@@ -907,7 +907,7 @@ article .bn-file-block-content-wrapper {
    @apply text-[#c9914d]! dark:text-accent-200!;
    padding: 0px 38px 0px 38px !important;
    margin-top: 8px !important;
-   margin-bottom: 11px !important;
+   margin-bottom: 8px !important;
 
    strong {
       @apply text-[#b47323]! dark:text-[#ddc8ad]!;
