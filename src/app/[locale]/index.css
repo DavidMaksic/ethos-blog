@@ -905,7 +905,7 @@ article .bn-file-block-content-wrapper {
 [data-content-type='quote'] blockquote {
    border-left: 2px solid #be8a4aa1 !important;
    @apply text-[#c9914d]! dark:text-accent-200!;
-   padding: 0px 38px 3px 38px !important;
+   padding: 0px 38px 0px 38px !important;
    margin-top: 8px !important;
    margin-bottom: 11px !important;
 
