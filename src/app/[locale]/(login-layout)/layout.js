@@ -57,7 +57,7 @@ async function Layout({ children, params }) {
    return (
       <html lang={locale} suppressHydrationWarning>
          <body
-            className={`h-screen grid grid-cols-[1fr_1fr] md:grid-cols-1 md:grid-rows-1 text-xl font-main text-text selection:bg-accent-400/90 dark:selection:bg-accent-200/50 selection:text-white caret-primary-400 antialiased bg-primary transition-200 ${cormorantGaramond.variable} ${parisienne.variable} ${greatVibes.variable} ${ebGaramond.variable}`}
+            className={`h-screen grid grid-cols-[1fr_1fr] md:grid-cols-1 md:grid-rows-1 text-xl font-main text-text selection:bg-accent-700/55 dark:selection:bg-accent-200/50 selection:text-white caret-primary-400 antialiased bg-primary transition-200 ${cormorantGaramond.variable} ${parisienne.variable} ${greatVibes.variable} ${ebGaramond.variable}`}
          >
             <NextIntlClientProvider locale={locale} messages={messages}>
                <LanguageProvider>
