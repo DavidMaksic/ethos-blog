@@ -955,6 +955,8 @@ article .bn-file-block-content-wrapper {
    outline: none;
 }
 
+/* Text colors */
+
 [data-value='gray'] {
    @apply text-[#a1a1a1]! dark:text-[#d2d2d2]!;
 }
@@ -991,16 +993,18 @@ article .bn-file-block-content-wrapper {
    @apply text-[#d36aa9]! dark:text-[#d383b3]!;
 }
 
-[data-background-color='gray'] {
-   @apply bg-[#dddddd]! dark:bg-[#3a4046]! text-[#525252]! dark:text-[#bcc8d4]!;
+/* Background colors */
+
+[data-style-type='backgroundColor'][data-value='gray'] {
+   @apply bg-primary-300 text-primary-600! dark:text-primary-600/80!;
 }
 
-[data-background-color='brown'] {
-   @apply bg-[#e7d4cc]! dark:bg-[#5f4c44]! text-[#53392a]! dark:text-[#e6c2b2]!;
+[data-style-type='backgroundColor'][data-value='brown'] {
+   @apply bg-[#e7d4cc] dark:bg-[#5f4c44] text-[#53392a]! dark:text-[#e6c2b2]!;
 }
 
-[data-background-color='red'] {
-   @apply bg-[#e9d1d1]! dark:bg-[#5f4040]! text-[#4e2626]! dark:text-[#dbb3b3]!;
+[data-style-type='backgroundColor'][data-value='red'] {
+   @apply bg-[#e9d1d1] dark:bg-[#5f4040] text-[#4e2626]! dark:text-[#dbb3b3]!;
 }
 
 [data-style-type='backgroundColor'][data-value='orange'] {
