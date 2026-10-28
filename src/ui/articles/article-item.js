@@ -44,7 +44,7 @@ const ArticleItem = forwardRef(({ article, style }, ref) => {
                   imageUrl={article.image}
                   imageBlur={article.image_blur}
                   alt="Article image"
-                  styles="object-cover border-r border-r-primary-100 dark:border-r-primary-300/5"
+                  styles="object-cover border-r border-r-primary-200 dark:border-r-primary-300/5"
                   opacity="opacity-90 dark:opacity-75"
                />
             </div>
