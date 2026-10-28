@@ -1180,12 +1180,15 @@ h3 {
    }
 
    [data-type='references'].bn-block-content {
-      padding: 10px 0 !important;
+      padding-top: 10px !important;
+   }
+
+   .bn-block-column-list .bn-block-column:has(.panel) {
+      padding-top: 10px !important;
    }
 
    .panel {
       padding: 1rem 1.5rem 1rem 2rem !important;
-      /* text-align: center; */
    }
 
    .bn-file-caption {
@@ -1209,7 +1212,7 @@ h3 {
    }
 
    .alert {
-      padding: 1.3rem 1.5rem;
+      padding: 1.2rem 1.5rem 1.3rem 1.5rem;
    }
 
    [lang='sr'] .alert {
@@ -1427,4 +1430,8 @@ input[type='password']::-ms-reveal {
    strong {
       @apply text-primary-600/90! dark:text-primary-600/73!;
    }
+}
+
+.panel .bn-block-outer:not(:last-child) > .bn-block {
+   margin-bottom: 0.65rem !important;
 }
