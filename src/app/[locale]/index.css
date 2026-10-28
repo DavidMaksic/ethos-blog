@@ -1170,13 +1170,12 @@ h3 {
       padding: 0 !important;
    }
 
-   /* Hide first child if its inner <p> is empty */
-   .bn-block-column-list > .bn-block-column:first-child:has(p:empty) {
-      display: none !important;
-   }
-
-   /* Hide last child if its inner <p> is empty */
-   .bn-block-column-list > .bn-block-column:last-child:has(p:empty) {
+   /* Hide first/last column if it holds only empty paragraphs */
+   .bn-block-column-list
+      > .bn-block-column:is(:first-child, :last-child):is(
+         :has(.ProseMirror-trailingBreak),
+         :has(p.bn-inline-content:empty)
+      ) {
       display: none !important;
    }
 
@@ -1279,8 +1278,9 @@ h3 {
 
    [data-content-type='quote'] blockquote {
       padding: 0 0 0 20px !important;
-      margin-top: 0 !important;
-      margin-bottom: 6px !important;
+      margin-top: 5px !important;
+      margin-bottom: 5px !important;
+      /* margin-bottom: 6px !important; */
    }
 
    .bn-block-content[data-content-type='bulletListItem'] {
