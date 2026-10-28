@@ -1435,3 +1435,7 @@ input[type='password']::-ms-reveal {
 .panel .bn-block-outer:not(:last-child) > .bn-block {
    margin-bottom: 0.65rem !important;
 }
+
+.bn-block-outer:has(> * > [data-content-type='image']) + .panel {
+   @apply mt-2;
+}
