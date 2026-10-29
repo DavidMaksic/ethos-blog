@@ -803,6 +803,11 @@
    color: #0000009c;
 }
 
+.panel .alert {
+   padding: 1.3rem 2rem 1.5rem 2.5rem !important;
+   margin: 0.5rem 0;
+}
+
 [data-theme='dark'] .alert {
    color: #ffffff9f;
 }
@@ -1326,7 +1331,7 @@ h3 {
    }
 
    .panel .alert {
-      padding: 1.5rem 1.7rem 1.5rem 2rem !important;
+      padding: 1rem 1.4rem 1rem 2rem !important;
    }
 }
 
