@@ -169,3 +169,12 @@ export function getRelatedArticles(articles, article, limit = 2) {
       ? scored.filter((item) => item.score > 0).slice(0, limit)
       : scored.slice(0, limit);
 }
+
+const THUMBNAIL_PREFIXES = { sm: 'thumb_sm_', lg: 'thumb_lg_' };
+
+export function getThumbnailUrl(imagePath, size = 'sm') {
+   if (!imagePath) return imagePath;
+   const parts = imagePath.split('/');
+   const fileName = parts.pop();
+   return [...parts, `${THUMBNAIL_PREFIXES[size]}${fileName}`].join('/');
+}

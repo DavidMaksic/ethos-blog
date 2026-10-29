@@ -1,6 +1,7 @@
 'use client';
 
 import { forwardRef, useEffect, useState } from 'react';
+import { getThumbnailUrl } from '@/src/utils/helpers';
 import { useTheme } from 'next-themes';
 import { motion } from 'motion/react';
 import { format } from 'date-fns';
@@ -41,7 +42,7 @@ const ArticleItem = forwardRef(({ article, style }, ref) => {
          >
             <div className="relative h-50 2xl:h-54 lg:h-52 md:h-auto md:min-w-32">
                <RemoteImage
-                  imageUrl={article.image}
+                  imageUrl={getThumbnailUrl(article.image, 'lg')}
                   imageBlur={article.image_blur}
                   alt="Article image"
                   styles="object-cover border-r border-r-primary-200 dark:border-r-primary-300/5"
