@@ -1172,9 +1172,14 @@ h3 {
 
    /* Hide first/last column if it holds only empty paragraphs */
    .bn-block-column-list
-      > .bn-block-column:is(:first-child, :last-child):is(
-         :has(.ProseMirror-trailingBreak),
-         :has(p.bn-inline-content:empty)
+      > .bn-block-column:is(:first-child, :last-child):has(
+         .ProseMirror-trailingBreak
+      ):not(
+         :has(
+            .bn-block-outer ~ .bn-block-outer,
+            .bn-block-outer .bn-block-outer,
+            .bn-block-content:not([data-content-type='paragraph'])
+         )
       ) {
       display: none !important;
    }
@@ -1189,6 +1194,10 @@ h3 {
 
    .panel {
       padding: 1rem 1.5rem 1rem 2rem !important;
+
+      &:has([data-text-alignment='center']) {
+         padding: 1rem 1.5rem 1rem 1.5rem !important;
+      }
    }
 
    .bn-file-caption {
@@ -1386,9 +1395,21 @@ h3 {
 }
 
 [data-content-type='numberedListItem'] {
+   gap: 0.3em !important;
    margin-top: 5px;
    margin-bottom: 5px;
-   gap: 0.6em !important;
+}
+
+[data-node-type='blockContainer']
+   > [data-content-type='numberedListItem']:only-child {
+   margin-top: 1px !important;
+   margin-bottom: 1px !important;
+}
+
+.bn-block-content[data-content-type='numberedListItem']:before {
+   min-width: 0 !important;
+   margin-right: 0.2rem !important;
+   margin-left: 0.4rem !important;
 }
 
 /* Remove autofill */
