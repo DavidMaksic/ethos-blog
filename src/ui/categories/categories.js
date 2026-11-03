@@ -1,7 +1,7 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
+import { useSearchParams } from 'next/navigation';
 import { TbCategory2 } from 'react-icons/tb';
 import Category from '@/src/ui/categories/category';
 
@@ -9,6 +9,7 @@ function Categories({ categories, isArchive = false }) {
    const searchParams = useSearchParams();
    const category = searchParams.get('category');
    const lang = searchParams.get('lang');
+
    const t = useTranslations('HomePage');
    const locale = useLocale();
 

@@ -5,7 +5,8 @@ import { useEffect, useState } from 'react';
 import { useSetParams } from '@/src/hooks/use-set-params';
 import { useTheme } from 'next-themes';
 
-function Category({ category, customStyles, currentCategory }) {
+function Category({ category, customStyles, isLink = false, currentCategory }) {
+   console.log('category: ', category);
    const currentTag = currentCategory?.category;
    const [bgColor, setBgColor] = useState();
    const [textColor, setTextColor] = useState();
@@ -32,14 +33,22 @@ function Category({ category, customStyles, currentCategory }) {
    }, [theme, category]);
 
    function handleClick() {
-      if (currentTag === category.category) {
-         const param = new URLSearchParams(params);
-         param.delete('category');
-         router.push(`?${param.toString()}`, {
-            scroll: false,
+      if (isLink) {
+         const query = new URLSearchParams({
+            lang: category.code === 'en' ? 'en' : 'sr',
+            category: category.category.toLowerCase(),
          });
+         router.push(`/archive?${query}`);
       } else {
-         handler('category', category.category.toLowerCase());
+         if (currentTag === category.category) {
+            const param = new URLSearchParams(params);
+            param.delete('category');
+            router.push(`?${param.toString()}`, {
+               scroll: false,
+            });
+         } else {
+            handler('category', category.category.toLowerCase());
+         }
       }
    }
 
@@ -49,9 +58,10 @@ function Category({ category, customStyles, currentCategory }) {
             currentTag !== category.category && currentTag
                ? `bg-white! text-primary-400! dark:text-primary-500/70! border-primary-200/70! xs:dark:border-primary-300/5! dark:bg-primary-300/20! xs:dark:bg-primary-300/15!`
                : ''
-         } ${customStyles}`}
+         } ${customStyles} ${isLink ? 'hover:bg-[color-mix(in_srgb,var(--cat-bg)_50%,transparent)]! dark:hover:bg-(--cat-bg)! dark:hover:opacity-85' : ''}`}
          style={{
-            backgroundColor: `${bgColor}`,
+            '--cat-bg': bgColor,
+            backgroundColor: 'var(--cat-bg)',
             color: `${textColor}`,
             borderColor: `color-mix(in srgb, currentColor ${theme === 'dark' ? '0' : '15'}%, transparent)`,
          }}

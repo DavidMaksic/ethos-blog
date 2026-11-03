@@ -827,7 +827,7 @@
    @apply bg-[#d8f7d8b4] dark:bg-[#608a6086] text-[#627262] dark:text-[#efffefb4];
 }
 
-.alert[data-alert-type='references'] {
+/* .alert[data-alert-type='references'] {
    @apply text-text border border-primary-300/80 dark:border-primary-300/40 pl-12 pr-10 xs:px-9 py-6;
 
    .alert-icon-wrapper {
@@ -837,7 +837,7 @@
    strong {
       @apply text-primary-600/90! dark:text-primary-600/73!;
    }
-}
+} */
 
 .alert-icon-wrapper {
    display: flex;
@@ -1185,9 +1185,9 @@ h3 {
       display: none !important;
    }
 
-   [data-type='references'].bn-block-content {
+   /* [data-type='references'].bn-block-content {
       padding-top: 8px !important;
-   }
+   } */
 
    .bn-block-column-list .bn-block-column:has(.panel) {
       padding-top: 8px !important;

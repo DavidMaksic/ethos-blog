@@ -10,6 +10,8 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { WEBSITE_URL } from '@/src/utils/config';
 import { format } from 'date-fns';
 
+// TODO: setRequestLocale is deprecated
+
 import OtherArticleOptions from '@/src/ui/articles/other-article-options';
 import ArticleAuthorInfo from '@/src/ui/articles/article-author-info';
 import CommentListHeader from '@/src/ui/header/comment-list-header';
