@@ -12,7 +12,7 @@ function RelatedArticle({ article, author }) {
       >
          <div className="relative h-80 sm:h-60">
             <Image
-               className="object-cover opacity-90 dark:opacity-75 group-hover:opacity-100! dark:group-hover:opacity-90! transition-200"
+               className="object-cover opacity-90 dark:opacity-75 group-hover:opacity-100! dark:group-hover:opacity-90! transition-200 border-b border-b-primary-200 dark:border-b-primary-300/5"
                src={article.image}
                alt="Article image"
                unoptimized
