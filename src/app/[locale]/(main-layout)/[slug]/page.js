@@ -24,8 +24,8 @@ import CommentList from '@/src/ui/comments/comment-list';
 import Options from '@/src/ui/operations/options';
 import NotFound from '@/src/app/[locale]/(main-layout)/not-found';
 
-// export const dynamic = 'force-static';
-// export const revalidate = 604800;
+export const dynamic = 'force-static';
+export const revalidate = 604800;
 
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);

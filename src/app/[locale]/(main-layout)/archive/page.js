@@ -8,8 +8,8 @@ import Categories from '@/src/ui/categories/categories';
 import Articles from '@/src/ui/articles/articles';
 import SortBy from '@/src/ui/operations/sort-by';
 
-// export const dynamic = 'force-static';
-// export const revalidate = 604800;
+export const dynamic = 'force-static';
+export const revalidate = 604800;
 
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
