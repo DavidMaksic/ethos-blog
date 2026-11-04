@@ -1,14 +1,16 @@
 'use client';
 
 import { useActionState, useEffect, useRef, useState } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
 import { AnimatePresence, motion } from 'motion/react';
-import { useTranslations } from 'next-intl';
 import { updateUser } from '@/src/lib/actions';
 import { ImSpinner2 } from 'react-icons/im';
 import toast from 'react-hot-toast';
 
 function UsernameInput() {
    const t = useTranslations('Profile');
+   const locale = useLocale();
+
    const [input, setInput] = useState('');
    const [state, action, isPending] = useActionState(updateUser, {
       success: false,
@@ -78,6 +80,7 @@ function UsernameInput() {
                onChange={(e) => setInput(e.target.value)}
                onBlur={handleBlur}
             />
+            <input hidden name="locale" defaultValue={locale} />
 
             <AnimatePresence>
                {isPending && (

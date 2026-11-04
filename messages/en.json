@@ -58,10 +58,11 @@
       "delete-account-label": "Are you sure you want to delete your account? This action cannot be undone.",
       "enter-password": "Enter your password...",
       "account-deleted": "Your account has been deleted",
-      "wrong-password": "Incorrect password, please try again.",
+      "wrong-password": "Incorrect password, please try again",
       "delete": "Delete",
       "deleting": "Deleting",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "pfp-too-large": "Image must be 2 MB or smaller"
    },
    "Comment": {
       "label": "Comments",

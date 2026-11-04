@@ -7,9 +7,9 @@ import {
    Great_Vibes,
    Parisienne,
 } from 'next/font/google';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { LanguageProvider } from '@/src/context/language-context';
+import { getTranslations } from 'next-intl/server';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
 import { WEBSITE_URL } from '@/src/utils/config';
@@ -114,7 +114,6 @@ export function generateStaticParams() {
 
 export default async function RootLayout({ children, params }) {
    const { locale } = await params;
-   setRequestLocale(locale);
 
    const t = await getTranslations();
 
@@ -185,7 +184,7 @@ export default async function RootLayout({ children, params }) {
          <body
             className={`relative min-h-screen flex flex-col text-xl 2xl:px-60 xl:px-26 inter-padding font-main text-text selection:bg-accent-700/55 dark:selection:bg-accent-200/50 selection:text-white caret-primary-400 antialiased bg-primary transition-200 background-gradient ${cormorantGaramond.variable} ${ebGaramond.variable} ${parisienne.variable} ${greatVibes.variable} ${cormorantSC.variable}`}
          >
-            <NextIntlClientProvider locale={locale}>
+            <NextIntlClientProvider>
                <LanguageProvider>
                   <ThemeProvider
                      attribute="data-theme"

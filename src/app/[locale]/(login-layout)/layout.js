@@ -9,7 +9,6 @@ import {
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { LanguageProvider } from '@/src/context/language-context';
 import { ThemeProvider } from 'next-themes';
-import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/src/i18n/routing';
 import { Toaster } from 'react-hot-toast';
@@ -48,7 +47,6 @@ const greatVibes = Great_Vibes({
 
 async function Layout({ children, params }) {
    const { locale } = await params;
-   const messages = await getMessages({ locale });
 
    if (!hasLocale(routing.locales, locale)) {
       notFound();
@@ -59,7 +57,7 @@ async function Layout({ children, params }) {
          <body
             className={`h-screen grid grid-cols-[1fr_1fr] md:grid-cols-1 md:grid-rows-1 text-xl font-main text-text selection:bg-accent-700/55 dark:selection:bg-accent-200/50 selection:text-white caret-primary-400 antialiased bg-primary transition-200 ${cormorantGaramond.variable} ${parisienne.variable} ${greatVibes.variable} ${ebGaramond.variable}`}
          >
-            <NextIntlClientProvider locale={locale} messages={messages}>
+            <NextIntlClientProvider>
                <LanguageProvider>
                   <ThemeProvider
                      attribute="data-theme"

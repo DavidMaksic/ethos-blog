@@ -14,6 +14,11 @@ const nextConfig = {
          },
       ],
    },
+   experimental: {
+      serverActions: {
+         bodySizeLimit: '3mb',
+      },
+   },
 };
 
 const withNextIntl = createNextIntlPlugin();

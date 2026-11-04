@@ -65,6 +65,9 @@ function CommentInput({ article, commentLength }) {
    // Handle form submission
    function handleAction(formData) {
       setError(null);
+      formData.set('locale', locale);
+      formData.set('slug', article.slug);
+      formData.set('articleID', article.id);
       action(formData, commentLength);
    }
 
@@ -140,9 +143,6 @@ function CommentInput({ article, commentLength }) {
                   placeholder={t('placeholder')}
                   onChange={handleChange}
                />
-
-               <input hidden name="slug" defaultValue={article.slug} />
-               <input hidden name="articleID" defaultValue={article.id} />
 
                <div className="relative">
                   <button

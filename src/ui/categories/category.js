@@ -6,7 +6,6 @@ import { useSetParams } from '@/src/hooks/use-set-params';
 import { useTheme } from 'next-themes';
 
 function Category({ category, customStyles, isLink = false, currentCategory }) {
-   console.log('category: ', category);
    const currentTag = currentCategory?.category;
    const [bgColor, setBgColor] = useState();
    const [textColor, setTextColor] = useState();

@@ -4,7 +4,7 @@ import {
    getArticles,
    getAuthors,
 } from '@/src/lib/data-service';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 
 import FeaturedArticles from '@/src/ui/articles/featured-articles';
 import LatestArticles from '@/src/ui/articles/latest-articles';
@@ -25,7 +25,6 @@ export default async function Home({ params }) {
 
    const t = await getTranslations('H1');
    const { locale } = param;
-   setRequestLocale(locale);
 
    return (
       <>

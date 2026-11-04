@@ -16,12 +16,13 @@ export async function generateMetadata({ params }) {
 
 async function Page() {
    const t = await getTranslations();
-   const session = await auth.api.getSession({
-      headers: await headers(),
-   });
+   const session = await auth.api.getSession({ headers: await headers() });
    if (!session) redirect('/login');
 
-   const { name, image } = await getUser(session.user.email);
+   const user = await getUser(session.user.email);
+   if (!user) redirect('/login');
+
+   const { name } = user;
    const accounts = await auth.api.listUserAccounts({
       headers: await headers(),
    });
@@ -41,7 +42,7 @@ async function Page() {
                </div>
                <UsernameInput />
             </div>
-            <ProfileImage user={session.user} image={image} />
+            <ProfileImage user={session.user} />
          </div>
 
          {hasPassword && (

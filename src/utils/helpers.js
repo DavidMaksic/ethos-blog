@@ -5,7 +5,6 @@ import sanitizeHtml from 'sanitize-html';
 
 export function getSortedItems(param, items, isComments = false) {
    if (!items?.length) return items;
-   console.log('items: ', items);
 
    const sort = param ?? 'created_at-asc';
    const [rawField, direction] = sort.split('-');
@@ -177,4 +176,31 @@ export function getThumbnailUrl(imagePath, size = 'sm') {
    const parts = imagePath.split('/');
    const fileName = parts.pop();
    return [...parts, `${THUMBNAIL_PREFIXES[size]}${fileName}`].join('/');
+}
+
+export async function resizeImage(file, size = 256) {
+   const bitmap = await createImageBitmap(file, {
+      imageOrientation: 'from-image',
+   });
+
+   const side = Math.min(bitmap.width, bitmap.height);
+   const sx = (bitmap.width - side) / 2;
+   const sy = (bitmap.height - side) / 2;
+
+   const canvas = document.createElement('canvas');
+   canvas.width = size;
+   canvas.height = size;
+
+   const ctx = canvas.getContext('2d');
+   ctx.imageSmoothingEnabled = true;
+   ctx.imageSmoothingQuality = 'high';
+   ctx.drawImage(bitmap, sx, sy, side, side, 0, 0, size, size);
+   bitmap.close();
+
+   const blob = await new Promise((resolve) =>
+      canvas.toBlob(resolve, 'image/webp', 0.85),
+   );
+   if (!blob) throw new Error('Resize failed');
+
+   return new File([blob], 'avatar.webp', { type: 'image/webp' });
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import { useActionState, useEffect, useRef, useState } from 'react';
+import { ALLOWED_TYPES, MAX_SIZE } from '@/src/utils/config';
 import { useTranslations } from 'next-intl';
 import { updateImage } from '@/src/lib/actions';
 import { authClient } from '@/src/lib/auth-client';
@@ -10,8 +11,9 @@ import { LuPencil } from 'react-icons/lu';
 import RemoteProfileImage from '@/src/ui/image/remote-profile-image';
 import defaultPfp from '@/public/default-pfp.png';
 import toast from 'react-hot-toast';
+import { resizeImage } from '@/src/utils/helpers';
 
-function ProfileImage({ user, image }) {
+function ProfileImage({ user }) {
    const t = useTranslations('Profile');
    const { refetch } = authClient.useSession();
 
@@ -21,25 +23,41 @@ function ProfileImage({ user, image }) {
       success: false,
    });
 
-   function handlePreviewImage(e) {
+   async function handlePreviewImage(e) {
       const img = e.target.files[0];
-      setCurrentImage(img);
-      imageRef.current.src = URL.createObjectURL(img);
-      imageRef.current.srcset = URL.createObjectURL(img);
+      if (!img) return;
+
+      try {
+         const resized = await resizeImage(img);
+         const url = URL.createObjectURL(resized);
+
+         setCurrentImage(resized);
+         imageRef.current.src = url;
+         imageRef.current.srcset = url;
+      } catch {
+         toast.error(t('pfp-warning'));
+      }
    }
 
    function handleImageUpdate(formData) {
-      const fileType = formData.get('newImage').type;
-      if (
-         fileType === 'image/jpeg' ||
-         fileType === 'image/png' ||
-         fileType === 'image/webp' ||
-         fileType === 'image/svg+xml'
-      ) {
-         action(formData);
-      } else {
+      const file = formData.get('newImage');
+
+      if (!(file instanceof File) || file.size === 0) {
          toast.error(t('pfp-warning'));
+         return;
       }
+
+      if (!ALLOWED_TYPES.includes(file.type)) {
+         toast.error(t('pfp-warning'));
+         return;
+      }
+
+      if (file.size > MAX_SIZE) {
+         toast.error(t('pfp-too-large'));
+         return;
+      }
+
+      action(formData);
    }
 
    useEffect(() => {
@@ -85,8 +103,6 @@ function ProfileImage({ user, image }) {
 
             <LuPencil className="absolute right-0 bottom-0 size-7 md:size-8.5 sm:size-9 px-[0.4rem] pt-px rounded-full text-primary-500/80 dark:text-primary-400 bg-white dark:bg-primary/60 backdrop-blur-3xl border border-primary-300 dark:border-primary-300/40 transition-200" />
          </label>
-
-         <input hidden name="oldImage" type="text" defaultValue={image} />
 
          <button
             className={`hover:bg-accent-400 dark:hover:bg-accent-300/60 border border-quaternary hover:border-transparent hover:text-white rounded-full p-1 px-4 cursor-pointer hover:shadow-link-btn dark:hover:shadow-link-btn-dark transition ${

@@ -1,5 +1,5 @@
-import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { getArticles, getCategories } from '@/src/lib/data-service';
+import { getTranslations } from 'next-intl/server';
 import { WEBSITE_URL } from '@/src/utils/config';
 
 import ArchiveHeading from '@/src/ui/header/archive-heading';
@@ -36,7 +36,6 @@ async function Page({ params }) {
       getCategories(),
    ]);
    const { locale } = param;
-   setRequestLocale(locale);
 
    const t = await getTranslations();
    const prefix = locale === 'en' ? '' : `/${locale}`;

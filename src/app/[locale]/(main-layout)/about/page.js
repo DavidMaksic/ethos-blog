@@ -1,4 +1,4 @@
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import { WEBSITE_URL } from '@/src/utils/config';
 import { getAuthors } from '@/src/lib/data-service';
 import Author from '@/src/ui/author';
@@ -32,7 +32,6 @@ export async function generateMetadata({ params }) {
 async function Page({ params }) {
    const [param, authors] = await Promise.all([params, getAuthors()]);
    const { locale } = param;
-   setRequestLocale(locale);
 
    const t = await getTranslations();
    const prefix = locale === 'en' ? '' : `/${locale}`;

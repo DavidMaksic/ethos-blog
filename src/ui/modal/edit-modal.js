@@ -27,7 +27,7 @@ function EditModal({ comment, commentLength, replyID, slug, onClose }) {
 
       if (replyID) {
          let result;
-         result = await editReply(replyID, text, slug, commentLength);
+         result = await editReply(replyID, text, slug, commentLength, locale);
 
          if (result?.success) {
             onClose();
@@ -40,7 +40,7 @@ function EditModal({ comment, commentLength, replyID, slug, onClose }) {
       }
 
       let result;
-      result = await editComment(comment.id, text, slug, commentLength);
+      result = await editComment(comment.id, text, slug, commentLength, locale);
 
       if (result?.success) {
          onClose();

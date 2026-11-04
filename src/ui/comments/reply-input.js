@@ -59,6 +59,10 @@ const ReplyInput = forwardRef(
       // Handle form submission
       function handleAction(formData) {
          setError(null);
+         formData.set('locale', locale);
+         formData.set('slug', slug);
+         formData.set('commentID', commentID);
+         formData.set('articleID', articleID);
          action(formData, commentLength);
       }
 
@@ -97,10 +101,6 @@ const ReplyInput = forwardRef(
                   placeholder={t('reply-placeholder')}
                   onChange={handleChange}
                />
-
-               <input hidden name="commentID" defaultValue={commentID} />
-               <input hidden name="articleID" defaultValue={articleID} />
-               <input hidden name="slug" defaultValue={slug} />
 
                <div className="relative">
                   <span
