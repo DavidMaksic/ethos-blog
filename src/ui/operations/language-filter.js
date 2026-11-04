@@ -9,7 +9,7 @@ import { useLanguage } from '@/src/context/language-context';
 import { LANGUAGES } from '@/src/utils/config';
 import LanguageFilterButton from '@/src/ui/buttons/language-filter-button';
 
-function LanguageFilter() {
+function LanguageFilter({ inDrawer = false }) {
    const t = useTranslations('Archive');
    const { language } = useLanguage();
    const searchParams = useSearchParams();
@@ -19,15 +19,15 @@ function LanguageFilter() {
    useEffect(() => setMounted(true), []);
 
    return (
-      <div className="space-y-6 md:order-2">
-         <div className="flex gap-3 items-center md:justify-center">
-            <IoLanguageOutline className="size-7.5 stroke-[0.2px]" />
-            <h2 className="text-4xl">{t('lang-label')}</h2>
+      <div className="space-y-6 md:order-2 md:self-start">
+         <div className="flex gap-3 items-center md:self-start md:text-primary-600 md:dark:text-primary-600/80 md:font-semibold">
+            <IoLanguageOutline className="size-7.5 md:size-5.5 stroke-[0.2px]" />
+            <h2 className="text-4xl md:text-[1.7rem]">{t('lang-label')}</h2>
          </div>
 
          <div className="flex items-center gap-4 text-[1.35rem] md:justify-center">
             <LayoutGroup>
-               <div className="relative flex gap-2 bg-white dark:bg-primary-300/15 py-2 px-3 border border-tertiary dark:border-primary-300/15 rounded-xl md:rounded-2xl shadow-2xs transition-bg_color_border">
+               <div className="relative flex gap-2 bg-white dark:bg-primary-300/15 md:dark:bg-primary-300/50 py-2 px-3 border border-tertiary dark:border-primary-300/15 rounded-xl md:rounded-2xl shadow-2xs transition-bg_color_border">
                   {LANGUAGES.map((item) => {
                      const active =
                         item.code === paramLang ||
@@ -37,7 +37,12 @@ function LanguageFilter() {
                         <div key={item.code} className="relative">
                            {mounted && active && (
                               <motion.div
-                                 layoutId="filter-pill"
+                                 layoutId={
+                                    inDrawer
+                                       ? 'filter-pill-drawer'
+                                       : 'filter-pill'
+                                 }
+                                 layoutDependency={paramLang}
                                  initial={false}
                                  className="absolute inset-0 bg-accent/20 dark:bg-accent-300/50 rounded-xl z-0"
                                  transition={{

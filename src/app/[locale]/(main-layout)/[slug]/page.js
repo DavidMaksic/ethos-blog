@@ -6,7 +6,7 @@ import {
    getSettings,
    getArticle,
 } from '@/src/lib/data-service';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import { WEBSITE_URL } from '@/src/utils/config';
 import { format } from 'date-fns';
 

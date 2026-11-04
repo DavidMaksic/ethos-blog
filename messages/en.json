@@ -98,7 +98,6 @@
       "edited-comment": "Comment successfully updated",
       "edited-reply": "Reply successfully updated"
    },
-
    "Sort": {
       "latest": "Latest",
       "oldest": "Oldest",
@@ -216,5 +215,11 @@
       "success": "You have been unsubscribed.",
       "invalid": "Invalid or expired unsubscribe link.",
       "back": "Back to main page"
+   },
+   "Filters": {
+      "label": "Filters",
+      "title": "Filters",
+      "clear-all": "Clear all",
+      "done": "Done"
    }
 }

@@ -22,6 +22,7 @@ function LanguageFilterButton({
    const { language } = useLanguage();
    const pathname = usePathname();
    const router = useRouter();
+
    const searchParams = useSearchParams();
    const paramLang = searchParams.get('lang');
    const active = isMobile && lang === language.code;
@@ -71,7 +72,7 @@ function LanguageFilterButton({
             />
          </div>
 
-         <p className={`text-2xl md:text-[1.65rem] ${styles}`}>{children}</p>
+         <p className={`text-2xl md:text-[1.8rem] ${styles}`}>{children}</p>
       </div>
    );
 }

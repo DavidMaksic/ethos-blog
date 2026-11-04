@@ -31,15 +31,15 @@ function Categories({ categories, isArchive = false }) {
       <div
          className={`md:flex md:flex-col md:items-center space-y-10 lg:space-y-7 md:order-1 md:mb-4 md:px-10 sm:px-6 ${
             isArchive &&
-            'space-y-[32px]! xs:space-y-6! 2xl:space-y-[29px]! 2xl:mb-15! md:mb-6! xs:mb-4!'
+            'space-y-[32px]! xs:space-y-6! 2xl:space-y-[29px]! 2xl:mb-15! md:mb-6! xs:mb-4! md:self-start md:px-0!'
          }`}
       >
-         <div className="flex items-center gap-3 text-4xl lg:text-3xl md:text-4xl">
-            <TbCategory2 className="text-3xl stroke-[1.4px]" />
+         <div className="flex items-center gap-3 text-4xl lg:text-3xl md:text-[1.7rem] md:self-start md:text-primary-600 md:dark:text-primary-600/80 md:font-semibold">
+            <TbCategory2 className="text-3xl md:size-5.5 stroke-[1.4px]" />
             <h2>{t('categories')}</h2>
          </div>
 
-         <div className="flex md:justify-center gap-4 2xl:gap-3 lg:gap-2.5 flex-wrap">
+         <div className="flex md:justify-center gap-4 2xl:gap-3 lg:gap-2.5 md:gap-3 flex-wrap">
             {filteredCategories?.map((item) => (
                <Category
                   category={item}
