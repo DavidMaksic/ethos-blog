@@ -73,7 +73,7 @@ async function Page({ params }) {
 
    return (
       <div
-         className={`grid grid-cols-[2fr_1fr] md:flex md:flex-col gap-10 xs:gap-14 2xl:mt-3 min-h-[152rem] md:min-h-[193.5rem] sm:min-h-[197.4rem] xs:min-h-[197.2rem] 2xs:min-h-[218rem] ${crimsonText.variable}`}
+         className={`grid grid-cols-[2fr_1fr] md:flex md:flex-col gap-10 xs:gap-14 2xl:mt-3 min-h-[152rem] md:min-h-[173rem] sm:min-h-[176rem] xs:min-h-[175rem] ${crimsonText.variable}`}
       >
          <h1 className="sr-only">{t('H1.archive-page')}</h1>
 

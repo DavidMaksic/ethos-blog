@@ -25,7 +25,7 @@ function DrawerOverlay({ className, ...props }) {
       <DrawerPrimitive.Overlay
          data-slot="drawer-overlay"
          className={cn(
-            'fixed inset-0 z-50 bg-black/10 supports-backdrop-filter:backdrop-blur-3xl data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0',
+            'fixed inset-0 z-50 bg-black/10 dark:bg-[#41455334] supports-backdrop-filter:backdrop-blur-2xl data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0',
             className,
          )}
          {...props}
@@ -40,12 +40,12 @@ function DrawerContent({ className, children, ...props }) {
          <DrawerPrimitive.Content
             data-slot="drawer-content"
             className={cn(
-               'group/drawer-content fixed z-50 flex h-auto flex-col bg-popover text-sm text-popover-foreground data-[vaul-drawer-direction=bottom]:inset-x-0 data-[vaul-drawer-direction=bottom]:bottom-0 data-[vaul-drawer-direction=bottom]:mt-24 data-[vaul-drawer-direction=bottom]:max-h-[80vh] data-[vaul-drawer-direction=bottom]:rounded-t-3xl data-[vaul-drawer-direction=left]:inset-y-0 data-[vaul-drawer-direction=left]:left-0 data-[vaul-drawer-direction=left]:w-3/4 data-[vaul-drawer-direction=left]:rounded-r-xl data-[vaul-drawer-direction=left]:border-r data-[vaul-drawer-direction=right]:inset-y-0 data-[vaul-drawer-direction=right]:right-0 data-[vaul-drawer-direction=right]:w-3/4 data-[vaul-drawer-direction=right]:rounded-l-xl data-[vaul-drawer-direction=right]:border-l data-[vaul-drawer-direction=top]:inset-x-0 data-[vaul-drawer-direction=top]:top-0 data-[vaul-drawer-direction=top]:mb-24 data-[vaul-drawer-direction=top]:max-h-[80vh] data-[vaul-drawer-direction=top]:rounded-b-xl data-[vaul-drawer-direction=top]:border-b data-[vaul-drawer-direction=left]:sm:max-w-sm data-[vaul-drawer-direction=right]:sm:max-w-sm',
+               'group/drawer-content fixed z-50 flex h-auto flex-col bg-popover text-sm text-popover-foreground data-[vaul-drawer-direction=bottom]:inset-x-0 data-[vaul-drawer-direction=bottom]:bottom-0 data-[vaul-drawer-direction=bottom]:mt-24 data-[vaul-drawer-direction=bottom]:max-h-[80vh] data-[vaul-drawer-direction=bottom]:rounded-t-[2.5rem] data-[vaul-drawer-direction=left]:inset-y-0 data-[vaul-drawer-direction=left]:left-0 data-[vaul-drawer-direction=left]:w-3/4 data-[vaul-drawer-direction=left]:rounded-r-xl data-[vaul-drawer-direction=left]:border-r data-[vaul-drawer-direction=right]:inset-y-0 data-[vaul-drawer-direction=right]:right-0 data-[vaul-drawer-direction=right]:w-3/4 data-[vaul-drawer-direction=right]:rounded-l-xl data-[vaul-drawer-direction=right]:border-l data-[vaul-drawer-direction=top]:inset-x-0 data-[vaul-drawer-direction=top]:top-0 data-[vaul-drawer-direction=top]:mb-24 data-[vaul-drawer-direction=top]:max-h-[80vh] data-[vaul-drawer-direction=top]:rounded-b-xl data-[vaul-drawer-direction=top]:border-b data-[vaul-drawer-direction=left]:sm:max-w-sm data-[vaul-drawer-direction=right]:sm:max-w-sm',
                className,
             )}
             {...props}
          >
-            <div className="mx-auto mt-4 hidden h-2.5 w-30 shrink-0 rounded-full bg-primary-300/40 dark:bg-primary-300/60 group-data-[vaul-drawer-direction=bottom]/drawer-content:block" />
+            <div className="mx-auto mt-4 hidden h-2.5 w-30 shrink-0 rounded-full bg-primary-300/40 dark:bg-primary-300/40 group-data-[vaul-drawer-direction=bottom]/drawer-content:block" />
             {children}
          </DrawerPrimitive.Content>
       </DrawerPortal>

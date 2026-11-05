@@ -20,14 +20,14 @@ function LanguageFilter({ inDrawer = false }) {
 
    return (
       <div className="space-y-6 md:order-2 md:self-start">
-         <div className="flex gap-3 items-center md:self-start md:text-primary-600 md:dark:text-primary-600/80 md:font-semibold">
+         <div className="flex gap-3 items-center md:self-start md:text-primary-500 md:dark:text-primary-600/70 md:font-semibold">
             <IoLanguageOutline className="size-7.5 md:size-5.5 stroke-[0.2px]" />
             <h2 className="text-4xl md:text-[1.7rem]">{t('lang-label')}</h2>
          </div>
 
          <div className="flex items-center gap-4 text-[1.35rem] md:justify-center">
             <LayoutGroup>
-               <div className="relative flex gap-2 bg-white dark:bg-primary-300/15 md:dark:bg-primary-300/50 py-2 px-3 border border-tertiary dark:border-primary-300/15 rounded-xl md:rounded-2xl shadow-2xs transition-bg_color_border">
+               <div className="relative flex gap-2 bg-white dark:bg-primary-300/15 md:dark:bg-primary-300/30 py-2 px-3 border border-tertiary dark:border-primary-300/15 rounded-xl md:rounded-2xl shadow-2xs transition-bg_color_border">
                   {LANGUAGES.map((item) => {
                      const active =
                         item.code === paramLang ||

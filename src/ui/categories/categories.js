@@ -35,7 +35,7 @@ function Categories({ categories, isArchive = false }) {
          }`}
       >
          <div
-            className={`flex items-center gap-3 text-4xl lg:text-3xl md:text-4xl  md:font-semibold ${isArchive && 'md:self-start md:text-[1.7rem] md:text-primary-600 md:dark:text-primary-600/80'}`}
+            className={`flex items-center gap-3 text-4xl lg:text-3xl md:text-4xl  md:font-semibold ${isArchive && 'md:self-start md:text-[1.7rem] md:text-primary-500 md:dark:text-primary-600/70'}`}
          >
             <TbCategory2
                className={`text-3xl stroke-[1.4px] ${isArchive && 'md:size-5.5'}`}

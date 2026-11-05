@@ -60,9 +60,9 @@ export default function FilterDrawer({ children }) {
 
          <DrawerContent
             aria-describedby={undefined}
-            className="rounded-t-3xl border-0 bg-white/92 backdrop-blur-xl dark:bg-[#3a434b85] dark:backdrop-blur-3xl text-text dark:text-primary-600/90 outline-none data-[vaul-drawer-direction=bottom]:max-h-[85dvh]"
+            className="rounded-t-3xl border-0 bg-white/92 backdrop-blur-xl dark:bg-primary/70 dark:backdrop-blur-3xl text-text dark:text-primary-600/90 outline-none data-[vaul-drawer-direction=bottom]:max-h-[85dvh]"
          >
-            <DrawerTitle className="pt-6 pb-4 text-3xl font-semibold text-primary-600 md:dark:text-primary-600/80 text-center">
+            <DrawerTitle className="pt-6 pb-1 text-3xl font-semibold text-primary-600 md:dark:text-primary-600/80 text-center">
                {t('Filters.title')}
             </DrawerTitle>
 
@@ -74,7 +74,7 @@ export default function FilterDrawer({ children }) {
                      type="button"
                      onClick={clearAll}
                      disabled={!hasActiveFilters}
-                     className={`w-full h-14 rounded-2xl items-center gap-2 bg-white dark:bg-primary-300/50 disabled:opacity-60 border border-primary-200 dark:border-primary-300/30 dark:text-primary-600 shadow-xs text-center cursor-pointer transition tracking-wide sm:pt-1 ${fontClass}`}
+                     className={`w-full h-14 rounded-2xl items-center gap-2 bg-white dark:bg-primary-300/30 disabled:opacity-60 border border-primary-200 dark:border-primary-300/30 dark:text-primary-600 shadow-xs text-center cursor-pointer transition tracking-wide sm:pt-1 ${fontClass}`}
                   >
                      {t('Filters.clear-all')}
                   </button>

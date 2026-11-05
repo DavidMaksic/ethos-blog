@@ -48,7 +48,7 @@ function MobileMenu() {
                >
                   <motion.div className="flex 3xs:flex-col gap-2 xs:gap-0 3xs:gap-2 text-2xl">
                      <div
-                        className={`pl-10 xs:pl-6 pr-16 ${locale === 'en' ? 'xs:pr-12' : 'xs:pr-10'} py-2 xs:pt-2.5 pb-4 xs:pb-0 3xs:pb-12 space-y-7 3xs:border-b 3xs:border-b-primary-300 3xs:dark:border-b-primary-300/40`}
+                        className={`pl-10 xs:pl-6 pr-16 ${locale === 'en' ? 'xs:pr-12' : 'xs:pr-10'} py-2 xs:pt-2.5 pb-4 xs:pb-0 3xs:pb-12 space-y-7 3xs:border-b 3xs:border-b-primary-200 3xs:dark:border-b-primary-300/30`}
                      >
                         <h2 className="uppercase tracking-wide font-semibold text-accent dark:text-accent-200 xs:mb-6">
                            {t('HomePage.pages-label')}
@@ -90,11 +90,11 @@ function MobileMenu() {
                         </div>
                      </div>
 
-                     <span className="w-px bg-primary-300 dark:bg-primary-300/40 3xs:hidden" />
+                     <span className="w-px bg-primary-200 dark:bg-primary-300/30 3xs:hidden" />
 
                      <div className="flex flex-col gap-2 items-center">
                         <div
-                           className={`${locale === 'en' ? 'min-w-50 xs:min-w-full' : 'min-w-60'} min-h-39.5 3xs:min-h-[10.6rem] flex flex-col gap-3 items-center justify-center mx-4 xs:mx-0 py-2 3xs:pt-5 pb-6 border-b border-b-primary-300 dark:border-b-primary-300/40`}
+                           className={`${locale === 'en' ? 'min-w-50 xs:min-w-full' : 'min-w-60'} min-h-39.5 3xs:min-h-[10.6rem] flex flex-col gap-3 items-center justify-center mx-4 xs:mx-0 py-2 3xs:pt-5 pb-6 border-b border-b-primary-200 dark:border-b-primary-300/30`}
                         >
                            {!session ? (
                               <Link
