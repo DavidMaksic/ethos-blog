@@ -46,7 +46,7 @@ export default function FilterDrawer({ children }) {
          <DrawerTrigger asChild>
             <button
                type="button"
-               className="relative flex items-center gap-2 rounded-full shadow-xs bg-white dark:bg-primary-300/18 pl-4 pr-4.5 py-2 text-2xl z-10"
+               className="relative flex items-center gap-2.5 rounded-full shadow-xs bg-white dark:bg-primary-300/18 pl-4.5 pr-5 py-2 text-2xl z-10"
             >
                <LuListFilter className="size-5 sm:size-5.5 text-accent dark:text-accent-200" />
                {t('Filters.label')}

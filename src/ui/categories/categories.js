@@ -31,7 +31,7 @@ function Categories({ categories, isArchive = false }) {
       <div
          className={`md:flex md:flex-col md:items-center space-y-10 lg:space-y-7 md:order-1 md:mb-4 md:px-10 sm:px-6 ${
             isArchive &&
-            'space-y-[32px]! xs:space-y-6! 2xl:space-y-[29px]! 2xl:mb-15! md:mb-6! xs:mb-4! md:self-start md:px-0!'
+            'space-y-[32px]! md:space-y-5! 2xl:space-y-[29px]! 2xl:mb-15! md:mb-6! xs:mb-4! md:self-start md:px-0!'
          }`}
       >
          <div

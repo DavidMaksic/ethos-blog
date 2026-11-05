@@ -19,7 +19,7 @@ function LanguageFilter({ inDrawer = false }) {
    useEffect(() => setMounted(true), []);
 
    return (
-      <div className="space-y-6 md:order-2 md:self-start">
+      <div className="space-y-6 md:space-y-5 md:order-2 md:self-start">
          <div className="flex gap-3 items-center md:self-start md:text-primary-500 md:dark:text-primary-600/70 md:font-semibold">
             <IoLanguageOutline className="size-7.5 md:size-5.5 stroke-[0.2px]" />
             <h2 className="text-4xl md:text-[1.7rem]">{t('lang-label')}</h2>

@@ -30,7 +30,7 @@ function SortBy({ options, isBookmarks = false }) {
    const handler = useSetParams();
 
    return (
-      <div className="flex items-center md:flex-col gap-2.5 select-none md:text-2xl md:order-3 md:self-start z-10 md:w-full md:mt-2">
+      <div className="flex items-center md:flex-col gap-2.5 md:gap-1 select-none md:text-2xl md:order-3 md:self-start z-10 md:w-full md:mt-2">
          <TbArrowsSort className="size-5 text-accent/80 dark:text-accent-200/90 md:hidden" />
 
          <div className="hidden text-4xl lg:text-3xl md:text-[1.7rem] md:self-start md:flex md:gap-3 md:items-center md:mb-3 md:text-primary-500 md:dark:text-primary-600/70 md:font-semibold">
