@@ -23,7 +23,7 @@ async function UserComment({ comment, users, extendedUser }) {
          className="flex flex-col gap-5 md:gap-4 last:border-b-transparent border-b border-b-quaternary dark:border-b-primary-300/23 lg:dark:border-b-primary-300/28 hover:bg-primary-300/10 dark:hover:bg-primary-300/7 px-14 lg:px-12 xs:px-10 pt-8 lg:pt-6 pb-11 lg:pb-8 scroll-mt-28! transition select-none cursor-pointer"
       >
          <div className="flex items-center gap-4">
-            <div className="flex items-center xs:grid xs:grid-cols-1 gap-2 xs:gap-y-px lg:text-[1.1rem] md:text-xl">
+            <div className="flex items-center gap-2 xs:gap-y-px lg:text-[1.1rem] md:text-xl md:flex-wrap">
                <span className="font-bold md:hidden">{extendedUser?.name}</span>
                <p className="text-primary-400 md:hidden">
                   {comment_id ? t('user-replied') : t('user-commented')}{' '}
@@ -48,10 +48,8 @@ async function UserComment({ comment, users, extendedUser }) {
                <span className="text-accent font-medium dark:font-normal text-nowrap">
                   {title.length > 40 ? `${title.slice(0, 40)}...` : title}
                </span>
-               <span className="text-primary-400 lg:hidden md:block xs:hidden">
-                  •
-               </span>
-               <span className="font-thin text-primary-400 lg:hidden md:block text-nowrap">
+               <span className="text-primary-400 md:block">•</span>
+               <span className="font-thin text-primary-400 md:block text-nowrap">
                   {date}
                </span>
             </div>

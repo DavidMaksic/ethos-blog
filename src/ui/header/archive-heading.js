@@ -9,7 +9,7 @@ async function ArchiveHeading() {
          <h2 className="text-4xl lg:text-3xl md:text-4xl dark:text-primary-600/65 md:hidden">
             {t('label')}
          </h2>
-         <Search isArchive={true} styles="md:hidden" />
+         <Search styles="md:hidden" />
       </div>
    );
 }

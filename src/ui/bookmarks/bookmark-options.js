@@ -6,15 +6,15 @@ function BookmarkOptions({ bookmarksExist }) {
    const t = useTranslations();
 
    return (
-      <>
+      <div className="flex justify-between items-center">
          <div className="flex items-center gap-4.5">
             <h2 className="text-4xl lg:text-3xl md:text-4xl text-primary-500 dark:text-primary-600/65 md:hidden">
                {t('Profile.bookmark-label')}
             </h2>
             <div
-               className={`${!bookmarksExist && 'invisible pointer-events-none'}`}
+               className={`z-10 flex-1 ${!bookmarksExist && 'invisible pointer-events-none'}`}
             >
-               <Search />
+               <Search inputStyles="md:h-13!" />
             </div>
          </div>
 
@@ -43,7 +43,7 @@ function BookmarkOptions({ bookmarksExist }) {
                isBookmarks={true}
             />
          </div>
-      </>
+      </div>
    );
 }
 

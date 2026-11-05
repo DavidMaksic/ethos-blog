@@ -80,18 +80,18 @@ async function Page({ params }) {
          <section className="space-y-7 lg:space-y-5 md:order-2 md:min-h-screen">
             <div className="flex justify-between md:hidden">
                <ArchiveHeading />
-               <SortBy options={sortOptions} />
+               <SortBy options={sortOptions} isArchive={true} />
             </div>
 
             {/* Mobile */}
             <div className="hidden md:flex items-center gap-3">
                <div className="flex-1 z-10">
-                  <Search isArchive={true} />
+                  <Search />
                </div>
                <FilterDrawer>
                   <Categories categories={categories} isArchive={true} />
                   <LanguageFilter inDrawer />
-                  <SortBy options={sortOptions} />
+                  <SortBy options={sortOptions} isArchive={true} />
                </FilterDrawer>
             </div>
 

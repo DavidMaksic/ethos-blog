@@ -46,7 +46,7 @@ const BookmarkItem = forwardRef(({ bookmark }, ref) => {
 
                <div className="space-x-3 text-primary-400 dark:text-primary-600/60">
                   <span
-                     className="bg-accent-400/15 text-accent/75 px-3 pl-3.5 py-1 pb-1.5 rounded-full font-semibold text-[1.2rem]"
+                     className="bg-accent-400/15 text-accent/75 px-3 pl-3.5 py-1 pb-1.5 rounded-full font-semibold text-[1.2rem] xs:text-[1.3rem]"
                      style={{
                         backgroundColor: `${bgColor}`,
                         color: `${textColor}`,
@@ -55,7 +55,7 @@ const BookmarkItem = forwardRef(({ bookmark }, ref) => {
                      {category.category}
                   </span>
                   <span className="text-lg">•</span>
-                  <span>{date}</span>
+                  <span className="xs:text-[1.3rem]">{date}</span>
                </div>
             </div>
 
