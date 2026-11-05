@@ -85,7 +85,7 @@ async function Page({ params }) {
 
             {/* Mobile */}
             <div className="hidden md:flex items-center gap-3">
-               <div className="flex-1">
+               <div className="flex-1 z-10">
                   <Search isArchive={true} />
                </div>
                <FilterDrawer>

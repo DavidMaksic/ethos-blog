@@ -222,7 +222,7 @@ function Options() {
          </AnimatePresence>
 
          <span
-            className={`fixed top-0 left-0 h-screen w-full z-20 dark:bg-[#41455334] backdrop-blur-2xl transition-opacity  hidden lg:block ${
+            className={`fixed top-0 left-0 h-screen w-full z-20 bg-black/10 dark:bg-[#41455334] backdrop-blur-2xl transition-opacity hidden lg:block ${
                openTable
                   ? 'opacity-100 pointer-events-auto'
                   : 'opacity-0 pointer-events-none'
