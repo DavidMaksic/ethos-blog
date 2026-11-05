@@ -4,15 +4,16 @@ import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { useOutsideClick } from '@/src/hooks/use-outside-click';
 import { useSearchParams } from 'next/navigation';
+import { useLocale, useTranslations } from 'next-intl';
 import { useSetParams } from '@/src/hooks/use-set-params';
 import { TbArrowsSort } from 'react-icons/tb';
 import { FaCaretDown } from 'react-icons/fa6';
-import { useLocale } from 'next-intl';
 
 function SortBy({ options, isBookmarks = false }) {
    const [open, setOpen] = useState(false);
    const ref = useOutsideClick(() => setOpen(false), false);
    const locale = useLocale();
+   const t = useTranslations('Filters');
 
    const searchParams = useSearchParams();
    const sort = searchParams.get('sort');
@@ -34,12 +35,12 @@ function SortBy({ options, isBookmarks = false }) {
 
          <div className="hidden text-4xl lg:text-3xl md:text-[1.7rem] md:self-start md:flex md:gap-3 md:items-center md:mb-3 md:text-primary-600 md:dark:text-primary-600/80 md:font-semibold">
             <TbArrowsSort className="text-3xl md:size-5.5 stroke-[1.4px]" />
-            <h2>Sort by</h2>
+            <h2>{t('sort')}</h2>
          </div>
 
          <div
-            className={`relative md:self-start ${
-               locale === 'en' ? 'w-32 md:w-full' : 'w-38 md:w-42'
+            className={`relative md:self-start md:w-full ${
+               locale === 'en' ? 'w-32' : 'w-38'
             }`}
          >
             <div

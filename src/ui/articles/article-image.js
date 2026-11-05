@@ -43,11 +43,11 @@ async function ArticleImage({ article, author, date, children }) {
                </div>
             </div>
 
-            <span className="flex items-center gap-6 md:gap-4.5">
+            <span className="flex items-center gap-6 md:gap-4.5 font-main">
                {children}
                <Category
                   category={article.categories}
-                  customStyles="text-xl! md:text-[1.4rem]! sm:text-[1.2rem]! !font-bold pb-[8px]! sm:pb-[6px]!"
+                  customStyles="!font-bold md:text-2xl! pb-1! pt-[3px]! md:pb-1! sm:pb-1.5!"
                   isLink={true}
                />
             </span>

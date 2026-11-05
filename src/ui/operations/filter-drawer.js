@@ -74,7 +74,7 @@ export default function FilterDrawer({ children }) {
                      type="button"
                      onClick={clearAll}
                      disabled={!hasActiveFilters}
-                     className={`w-full h-14 rounded-2xl items-center gap-2 bg-white dark:bg-primary-300/50 disabled:opacity-60 border border-primary-200 dark:border-primary-300/30 dark:text-primary-600 shadow-xs text-center cursor-pointer transition tracking-wide ${fontClass}`}
+                     className={`w-full h-14 rounded-2xl items-center gap-2 bg-white dark:bg-primary-300/50 disabled:opacity-60 border border-primary-200 dark:border-primary-300/30 dark:text-primary-600 shadow-xs text-center cursor-pointer transition tracking-wide sm:pt-1 ${fontClass}`}
                   >
                      {t('Filters.clear-all')}
                   </button>
@@ -82,7 +82,7 @@ export default function FilterDrawer({ children }) {
                   <DrawerClose asChild>
                      <button
                         type="button"
-                        className={`w-full h-14 rounded-2xl items-center gap-2 bg-accent-400 dark:bg-accent-300/55 text-white shadow-link-btn dark:shadow-none text-center cursor-pointer transition tracking-wide ${fontClass}`}
+                        className={`w-full h-14 rounded-2xl items-center gap-2 bg-accent-400 dark:bg-accent-300/55 text-white shadow-link-btn dark:shadow-none text-center cursor-pointer transition tracking-wide sm:pt-1 ${fontClass}`}
                      >
                         {t('Filters.done')}
                      </button>

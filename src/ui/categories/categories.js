@@ -34,8 +34,12 @@ function Categories({ categories, isArchive = false }) {
             'space-y-[32px]! xs:space-y-6! 2xl:space-y-[29px]! 2xl:mb-15! md:mb-6! xs:mb-4! md:self-start md:px-0!'
          }`}
       >
-         <div className="flex items-center gap-3 text-4xl lg:text-3xl md:text-[1.7rem] md:self-start md:text-primary-600 md:dark:text-primary-600/80 md:font-semibold">
-            <TbCategory2 className="text-3xl md:size-5.5 stroke-[1.4px]" />
+         <div
+            className={`flex items-center gap-3 text-4xl lg:text-3xl md:text-4xl  md:font-semibold ${isArchive && 'md:self-start md:text-[1.7rem] md:text-primary-600 md:dark:text-primary-600/80'}`}
+         >
+            <TbCategory2
+               className={`text-3xl stroke-[1.4px] ${isArchive && 'md:size-5.5'}`}
+            />
             <h2>{t('categories')}</h2>
          </div>
 

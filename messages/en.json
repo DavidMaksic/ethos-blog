@@ -220,6 +220,7 @@
       "label": "Filters",
       "title": "Filters",
       "clear-all": "Clear all",
-      "done": "Done"
+      "done": "Done",
+      "sort": "Sort by"
    }
 }
