@@ -39,6 +39,24 @@ export async function POST(req) {
          }
       }
 
+      // 4. Handle category creation
+      if (changes?.action === 'category-create') {
+         revalidateTag('categories', 'max');
+         LOCALES.forEach((locale) => {
+            revalidatePath(`/${locale}/archive`);
+         });
+      }
+
+      // 5. Handle category update
+      if (changes?.action === 'category-update') {
+         revalidateTag('categories', 'max');
+         LOCALES.forEach((locale) => {
+            revalidatePath(`/${locale}`);
+            revalidatePath(`/${locale}/archive`);
+            revalidatePath(`/${locale}/[slug]`, 'page');
+         });
+      }
+
       return new Response(JSON.stringify({ revalidated: true }), {
          status: 200,
          headers: { 'Content-Type': 'application/json' },
