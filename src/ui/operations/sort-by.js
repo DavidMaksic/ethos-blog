@@ -44,7 +44,7 @@ function SortBy({ options, isBookmarks = false, isArchive = false }) {
             className={`hidden text-4xl lg:text-3xl md:text-[1.7rem] md:self-start md:flex md:gap-3 md:items-center md:mb-3 md:text-primary-500 md:dark:text-primary-600/70 md:font-semibold ${isArchive ? 'block' : 'hidden!'}`}
          >
             <TbArrowsSort className="text-3xl md:size-5.5 stroke-[1.4px]" />
-            <h2>{t('sort')}</h2>
+            <span>{t('sort')}</span>
          </div>
 
          <div

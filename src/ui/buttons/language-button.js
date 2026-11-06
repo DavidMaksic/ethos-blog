@@ -47,7 +47,7 @@ function LanguageButton() {
          <AnimatePresence>
             {open && (
                <motion.ul
-                  className="absolute xl:right-8 z-30 space-y-1 p-1 mt-3 min-w-[10rem] md:min-w-[12rem] text-2xl md:text-3xl rounded-2xl bg-white dark:bg-primary-300/20 backdrop-blur-2xl border border-quaternary dark:border-primary-300/25 shadow-lg overflow-auto cursor-pointer transition-bg_border"
+                  className="absolute xl:right-8 z-30 p-0.5 mt-3 min-w-35.5 text-[1.35rem] rounded-2xl bg-white dark:bg-primary-300/20 backdrop-blur-2xl border border-quaternary dark:border-primary-300/25 shadow-lg overflow-auto cursor-pointer transition-bg_border"
                   ref={ref}
                   onClick={(e) => {
                      e.stopPropagation();
@@ -60,7 +60,7 @@ function LanguageButton() {
                >
                   {LANGUAGES.map((item) => (
                      <li
-                        className="flex justify-between items-center relative font-normal rounded-xl py-2 pr-4 pl-5  dark:text-primary-500 hover:bg-primary-100/50 dark:hover:bg-primary-300/18 duration-75 [&_img]:opacity-80 group"
+                        className="flex justify-between items-center relative font-medium rounded-xl py-2 pl-4.5 pr-4 text-primary-500 hover:bg-primary-100/50 dark:hover:bg-primary-300/18 duration-75 [&_img]:opacity-80 group"
                         key={item.code}
                         onClick={(e) => {
                            e.stopPropagation();
@@ -69,9 +69,9 @@ function LanguageButton() {
                         }}
                      >
                         {item.lang}
-                        <div className="relative size-7">
+                        <div className="relative size-6">
                            <Image
-                              className={`border border-primary-300 dark:border-primary-300/50 rounded-full group-hover:opacity-100 dark:group-hover:opacity-95 transition-[opacity] duration-200 ${
+                              className={`border border-primary-300 dark:border-primary-300/50 rounded-full group-hover:opacity-100 dark:group-hover:opacity-95 transition-opacity duration-200 ${
                                  loaded ? 'opacity-100' : 'opacity-0'
                               }`}
                               src={item.flag}
