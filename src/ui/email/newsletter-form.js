@@ -19,8 +19,8 @@ function NewsletterForm({ locale }) {
    useEffect(() => {
       if (state.error) {
          toast.error(
-            state.error === 'already_subscribed'
-               ? t('already_subscribed')
+            state.error === 'already-subscribed'
+               ? t('already-subscribed')
                : state.error,
          );
       }

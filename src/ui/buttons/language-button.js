@@ -1,93 +1,71 @@
-import { AnimatePresence, motion } from 'motion/react';
-import { useOutsideClick } from '@/src/hooks/use-outside-click';
+'use client';
+
 import { switchLocale } from '@/src/utils/helpers';
 import { useLanguage } from '@/src/context/language-context';
 import { LANGUAGES } from '@/src/utils/config';
-import { useState } from 'react';
+
+import {
+   DropdownMenu,
+   DropdownMenuContent,
+   DropdownMenuItem,
+   DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 import RemoteProfileImage from '@/src/ui/image/remote-profile-image';
 import Image from 'next/image';
 
 function LanguageButton() {
-   const [open, setOpen] = useState(false);
-   const [loaded, setLoaded] = useState(false);
-
    const { language } = useLanguage();
-   const ref = useOutsideClick(() => setOpen(false), false);
 
    function handleLang(item) {
       if (item.code === language.code) return;
-
-      const langCode =
-         LANGUAGES.find((lang) => lang.code === item.code).code || 'en';
-      switchLocale(langCode);
+      switchLocale(item.code);
    }
 
    return (
-      <div
-         className="md:hidden bg-none border-none p-2 rounded-xl transition-200 hover:bg-primary-200/40 dark:hover:bg-primary-300/30 [&_svg]:size-6 [&_svg]:text-accent cursor-pointer select-none"
-         role="button"
-         onClick={(e) => {
-            e.stopPropagation();
-            e.nativeEvent.stopImmediatePropagation();
-            setOpen((isOpen) => !isOpen);
-         }}
-      >
-         <div className="relative size-7 sm:size-[2.05rem]! rounded-full border border-primary-300 dark:border-primary-300/50">
-            <RemoteProfileImage
-               imageUrl={language.flag}
-               alt="Language flag"
-               styles="rounded-full transition-[opacity]! duration-300!"
-               opacity="opacity-80 dark:opacity-70"
-               unoptimized
-               preload
-            />
-         </div>
+      <DropdownMenu modal={false}>
+         <DropdownMenuTrigger
+            aria-label="Change language"
+            className="md:hidden block bg-none border-none p-2 rounded-xl transition-200 hover:bg-primary-200/40 dark:hover:bg-primary-300/30 cursor-pointer select-none outline-none"
+         >
+            <div className="relative size-7 rounded-full border border-primary-300 dark:border-primary-300/50">
+               <RemoteProfileImage
+                  imageUrl={language.flag}
+                  alt="Language flag"
+                  styles="rounded-full transition-[opacity]! duration-300!"
+                  opacity="opacity-80 dark:opacity-70"
+                  unoptimized
+                  preload
+               />
+            </div>
+         </DropdownMenuTrigger>
 
-         <AnimatePresence>
-            {open && (
-               <motion.ul
-                  className="absolute xl:right-8 z-30 p-0.5 mt-3 min-w-35.5 text-[1.35rem] rounded-2xl bg-white dark:bg-primary-300/20 backdrop-blur-2xl border border-quaternary dark:border-primary-300/25 shadow-lg overflow-auto cursor-pointer transition-bg_border"
-                  ref={ref}
-                  onClick={(e) => {
-                     e.stopPropagation();
-                     setOpen(false);
-                  }}
-                  initial={{ opacity: 0, y: -8, scale: 0.97 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -8, scale: 0.97 }}
-                  transition={{ duration: 0.12 }}
+         <DropdownMenuContent
+            align="end"
+            sideOffset={8}
+            className="w-auto min-w-36 ring-0 border border-quaternary dark:border-primary-300/25 bg-white dark:bg-primary-300/20 backdrop-blur-2xl transition-bg_border"
+         >
+            {LANGUAGES.map((item) => (
+               <DropdownMenuItem
+                  key={item.code}
+                  onSelect={() => handleLang(item)}
+                  className="group justify-between py-2 pl-4 pr-3.5 text-[1.35rem] font-medium hover:text-text!"
                >
-                  {LANGUAGES.map((item) => (
-                     <li
-                        className="flex justify-between items-center relative font-medium rounded-xl py-2 pl-4.5 pr-4 text-primary-500 hover:bg-primary-100/50 dark:hover:bg-primary-300/18 duration-75 [&_img]:opacity-80 group"
-                        key={item.code}
-                        onClick={(e) => {
-                           e.stopPropagation();
-                           setOpen(false);
-                           handleLang(item);
-                        }}
-                     >
-                        {item.lang}
-                        <div className="relative size-6">
-                           <Image
-                              className={`border border-primary-300 dark:border-primary-300/50 rounded-full group-hover:opacity-100 dark:group-hover:opacity-95 transition-opacity duration-200 ${
-                                 loaded ? 'opacity-100' : 'opacity-0'
-                              }`}
-                              src={item.flag}
-                              alt={item.lang}
-                              onLoad={() => setLoaded(true)}
-                              unoptimized
-                              preload
-                              fill
-                           />
-                        </div>
-                     </li>
-                  ))}
-               </motion.ul>
-            )}
-         </AnimatePresence>
-      </div>
+                  {item.lang}
+                  <div className="relative size-6 shrink-0">
+                     <Image
+                        className="border border-primary-300 dark:border-primary-300/50 rounded-full opacity-80 group-hover:opacity-100 dark:group-hover:opacity-80 transition-opacity duration-200"
+                        src={item.flag}
+                        alt={item.lang}
+                        unoptimized
+                        preload
+                        fill
+                     />
+                  </div>
+               </DropdownMenuItem>
+            ))}
+         </DropdownMenuContent>
+      </DropdownMenu>
    );
 }
 

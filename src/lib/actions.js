@@ -523,7 +523,7 @@ export async function subscribeToNewsletter(prevState, formData) {
          if (error.code === '23505') {
             return {
                success: false,
-               error: 'already_subscribed',
+               error: 'already-subscribed',
                id: Date.now(),
             };
          }

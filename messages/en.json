@@ -62,7 +62,8 @@
       "delete": "Delete",
       "deleting": "Deleting",
       "cancel": "Cancel",
-      "pfp-too-large": "Image must be 2 MB or smaller"
+      "pfp-too-large": "Image must be 2 MB or smaller",
+      "my-account": "My account"
    },
    "Comment": {
       "label": "Comments",
@@ -209,7 +210,7 @@
       "loading": "Subscribing...",
       "success": "You were successfully subscribed",
       "error": "Something went wrong. Please try again",
-      "already_subscribed": "You're already subscribed"
+      "already-subscribed": "You're already subscribed"
    },
    "Unsubscribe": {
       "success": "You have been unsubscribed.",

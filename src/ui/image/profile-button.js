@@ -7,6 +7,7 @@ import {
    DropdownMenuContent,
    DropdownMenuTrigger,
    DropdownMenuSeparator,
+   DropdownMenuLabel,
 } from '@/components/ui/dropdown-menu';
 
 import { LuBookmark, LuLogOut, LuUserRoundPen } from 'react-icons/lu';
@@ -81,16 +82,18 @@ function ProfileButton() {
 
          <DropdownMenuContent
             align="end"
-            className="w-40 text-primary-700 [&_svg]:text-primary-500 bg-white dark:bg-primary-300/20 backdrop-blur-2xl transition-bg_border"
+            className="w-46 text-primary-700 [&_svg]:text-primary-500 bg-white dark:bg-primary-300/20 backdrop-blur-2xl transition-bg_border"
          >
             <DropdownMenuGroup>
+               <DropdownMenuLabel className="cursor-default text-base text-primary-400 pl-3.5">
+                  {t('my-account')}
+               </DropdownMenuLabel>
                {links.map(({ name, href, icon }) => (
-                  <DropdownMenuItem key={href} className="py-0 pl-1">
+                  <DropdownMenuItem key={href} asChild className="py-0 pl-1">
                      <Link
                         prefetch
                         href={href}
-                        onClick={() => setOpen(false)}
-                        className="flex w-full items-center gap-2 px-2 py-1.5 font-medium"
+                        className="flex w-full items-center gap-2 px-2 py-1.5 font-medium hover:text-accent!  pl-3.5"
                      >
                         {icon}
                         {name}
@@ -104,7 +107,7 @@ function ProfileButton() {
             <DropdownMenuItem
                variant="destructive"
                onClick={handleLogout}
-               className="flex items-center gap-2 cursor-pointer py-1 pl-3 font-medium"
+               className="flex items-center gap-2 cursor-pointer py-1 pl-3.5 font-medium"
             >
                <LuLogOut className="size-4.5" />
                {t('nav-link-5')}
