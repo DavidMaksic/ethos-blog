@@ -1,5 +1,6 @@
 import 'server-only';
 
+import { unstable_cache } from 'next/cache';
 import { supabaseAdmin } from './supabase-admin';
 import { supabase } from '@/src/lib/supabase';
 import { notFound } from 'next/navigation';
@@ -69,16 +70,20 @@ export async function getMainArticles() {
    return data;
 }
 
-export async function getCategories() {
-   const { data, error } = await supabase
-      .from('categories')
-      .select('*, articles ( id )')
-      .eq('articles.status', 'published')
-      .order('id', { ascending: true });
+export const getCategories = unstable_cache(
+   async () => {
+      const { data, error } = await supabase
+         .from('categories')
+         .select('*, articles ( id )')
+         .eq('articles.status', 'published')
+         .order('id', { ascending: true });
 
-   if (error) throw new Error('Categories could not be loaded');
-   return data;
-}
+      if (error) throw new Error('Categories could not be loaded');
+      return data;
+   },
+   ['categories'],
+   { tags: ['categories'] },
+);
 
 export async function getAuthors() {
    const { data, error } = await supabase
