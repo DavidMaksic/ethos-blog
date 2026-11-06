@@ -54,7 +54,9 @@ function MobileMenu() {
                            {t('HomePage.pages-label')}
                         </h2>
 
-                        <div className="space-y-6 sm:space-y-5 text-4xl">
+                        <div
+                           className={`space-y-6 text-4xl ${locale !== 'en' ? 'sm:space-y-5' : ''}`}
+                        >
                            <Link
                               href="/"
                               className="flex items-center gap-3.5"

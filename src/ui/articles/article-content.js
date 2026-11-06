@@ -68,7 +68,7 @@ async function ArticleContent({ content, article }) {
 
             const hashSize =
                domNode.name === 'h2'
-                  ? 'size-6.5 -right-9 top-1/2 -translate-y-1/2'
+                  ? 'size-6.5 -right-9 md:-right-7.5 top-1/2 -translate-y-1/2'
                   : 'size-5.5 -right-7.5 top-1/2 -translate-y-1/2';
 
             const headingOptions = {
@@ -80,7 +80,7 @@ async function ArticleContent({ content, article }) {
             };
 
             return (
-               <Tag id={slug} className="group scroll-mt-20 relative md:hidden">
+               <Tag id={slug} className="group scroll-mt-20 relative">
                   <a className="cursor-pointer" href={`#${slug}`}>
                      {domToReact(domNode.children, headingOptions)}{' '}
                      <FiLink
