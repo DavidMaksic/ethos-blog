@@ -154,7 +154,7 @@ async function Page({ params }) {
 
    return (
       <article className="flex flex-col">
-         <div className="relative max-w-5xl 2xl:max-w-[46rem] md:max-w-full self-center flex flex-col gap-6 xs:gap-4 py-2 px-24 2xl:px-0 pb-22 2xl:pt-8 md:pt-6 sm:pt-4 transition-200">
+         <div className="relative max-w-5xl 2xl:max-w-[46rem] md:max-w-full self-center flex flex-col gap-6 xs:gap-4 py-2 px-24 2xl:px-0 pb-22 2xl:pt-8 md:pt-6 sm:pt-4 transition-200 ">
             <ArticleHeading article={article} />
 
             <ArticleImage article={article} author={author} date={date}>

@@ -48,13 +48,13 @@ function MobileMenu() {
                >
                   <motion.div className="flex 3xs:flex-col gap-2 xs:gap-0 3xs:gap-2 text-2xl">
                      <div
-                        className={`pl-10 xs:pl-6 pr-16 ${locale === 'en' ? 'xs:pr-12' : 'xs:pr-10'} py-2 xs:pt-2.5 pb-4 xs:pb-0 3xs:pb-12 space-y-7 3xs:border-b 3xs:border-b-primary-200 3xs:dark:border-b-primary-300/30`}
+                        className={`pl-10 xs:pl-6 pr-16 ${locale === 'en' ? 'xs:pr-12' : 'xs:pr-10'} my-auto space-y-7 3xs:border-b 3xs:border-b-primary-200 3xs:dark:border-b-primary-300/30`}
                      >
                         <h2 className="uppercase tracking-wide font-semibold text-accent dark:text-accent-200 xs:mb-6">
                            {t('HomePage.pages-label')}
                         </h2>
 
-                        <div className="space-y-7 text-4xl">
+                        <div className="space-y-6 sm:space-y-5 text-4xl">
                            <Link
                               href="/"
                               className="flex items-center gap-3.5"

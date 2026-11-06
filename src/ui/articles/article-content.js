@@ -80,7 +80,7 @@ async function ArticleContent({ content, article }) {
             };
 
             return (
-               <Tag id={slug} className="group scroll-mt-20 relative">
+               <Tag id={slug} className="group scroll-mt-20 relative md:hidden">
                   <a className="cursor-pointer" href={`#${slug}`}>
                      {domToReact(domNode.children, headingOptions)}{' '}
                      <FiLink
