@@ -1,9 +1,9 @@
 'use client';
 
 import { useLocale, useTranslations } from 'next-intl';
+import { LuCheck, LuChevronDown } from 'react-icons/lu';
 import { useSearchParams } from 'next/navigation';
 import { useMediaQuery } from 'react-responsive';
-import { LuCheck, LuChevronDown } from 'react-icons/lu';
 import { TbArrowsSort } from 'react-icons/tb';
 import { useSetParams } from '@/src/hooks/use-set-params';
 
@@ -70,7 +70,7 @@ function SortBy({ options, isBookmarks = false, isArchive = false }) {
                      >
                         {item.label}
                         {item.value === current.value && (
-                           <LuCheck className="size-4 md:size-5 shrink-0 text-accent dark:text-accent-200" />
+                           <LuCheck className="size-4 md:size-5 shrink-0 text-accent dark:text-accent-200 -mr-1" />
                         )}
                      </DropdownMenuItem>
                   ))}
