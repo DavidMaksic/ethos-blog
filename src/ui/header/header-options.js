@@ -61,11 +61,11 @@ function HeaderOptions() {
          <AnimatePresence mode="wait" initial={false}>
             {!mounted || !session ? (
                <div key="profile-loading">
-                  <HeaderButton styles="md:hidden pl-1.5!">
-                     <Link href="/login" className="hover:text-accent">
+                  <Link href="/login" className="hover:text-accent">
+                     <HeaderButton styles="md:hidden pl-1.5!">
                         <LuLogIn className="size-7! stroke-[1.4px]" />
-                     </Link>
-                  </HeaderButton>
+                     </HeaderButton>
+                  </Link>
                </div>
             ) : (
                <motion.div

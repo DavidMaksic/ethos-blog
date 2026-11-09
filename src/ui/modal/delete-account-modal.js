@@ -33,6 +33,7 @@ function DeleteAccountModal({ onClose, isOAuth }) {
          toast.success(t('account-deleted'));
          await authClient.signOut();
       } catch (error) {
+         console.err(error);
          setPassword('');
          toast.error(t('wrong-password'));
       }
