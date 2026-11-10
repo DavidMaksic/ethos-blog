@@ -1228,7 +1228,7 @@ h3 {
 }
 
 .medium-zoom-image--opened:not([data-transparent]) {
-   @apply border! border-primary-300/70! dark:border-primary-300/25!;
+   @apply outline-1! -outline-offset-1! outline-primary-300/70! dark:outline-primary-300/25!;
 }
 
 /* .main-image.medium-zoom-image--opened {

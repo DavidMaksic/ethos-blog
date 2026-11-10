@@ -22,7 +22,7 @@ function MainImage({ article }) {
 
       const timer = setTimeout(() => {
          zoomRef.current = mediumZoom(imgRef.current, {
-            margin: isMobile ? 22 : 60,
+            margin: isMobile ? 14 : 60,
          });
       }, 300);
 

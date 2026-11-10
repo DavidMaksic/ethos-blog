@@ -27,7 +27,7 @@ function RemoteImage({
    return (
       <div className={`absolute inset-0 overflow-hidden ${round}`}>
          <span
-            className={`absolute inset-0 scale-110 transition-opacity duration-300 ${loaded ? 'opacity-0' : opacitySetting} ${isBookmark && styles}`}
+            className={`absolute inset-0 scale-110 transition-opacity duration-500 ${loaded ? 'opacity-0' : opacitySetting} ${isBookmark && styles}`}
             style={{
                backgroundImage: imageBlur ? `url(${imageBlur})` : undefined,
                backgroundSize: 'cover',

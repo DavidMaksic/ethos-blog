@@ -2,9 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
-
+import { getImageProps } from 'next/image';
 import mediumZoom from 'medium-zoom';
-import Image, { getImageProps } from 'next/image';
 
 function RemoteArticleImage({
    src,
@@ -17,7 +16,7 @@ function RemoteArticleImage({
    const imgRef = useRef(null);
    const zoomRef = useRef(null);
    const isMobile = useMediaQuery({ maxWidth: 768 });
-   console.log(src);
+
    useEffect(() => {
       if (imgRef.current?.complete) setTimeout(() => setLoaded(true), 50);
    }, []);
@@ -27,7 +26,7 @@ function RemoteArticleImage({
 
       const timer = setTimeout(() => {
          zoomRef.current = mediumZoom(imgRef.current, {
-            margin: isMobile ? 22 : 60,
+            margin: isMobile ? 14 : 60,
          });
       }, 300);
 
@@ -44,7 +43,7 @@ function RemoteArticleImage({
       alt: 'Article image',
       quality: 60,
    });
-   const { srcSet, ...imgProps } = props; // discard srcset
+   const { srcSet, ...imgProps } = props;
 
    return (
       <span
@@ -63,11 +62,10 @@ function RemoteArticleImage({
          />
          <img
             ref={imgRef}
+            {...imgProps}
             className={`transition-opacity duration-300 ${
                loaded ? 'opacity-90 dark:opacity-75' : 'opacity-0'
             }`}
-            src={src}
-            {...imgProps}
             data-transparent={isTransparent ? 'true' : undefined}
             onLoad={() => setTimeout(() => setLoaded(true), 50)}
             style={{ width: '100%', height: 'auto' }}
