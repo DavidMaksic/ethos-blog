@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import { Link } from '@/src/i18n/navigation';
-import Image from 'next/image';
+import RemoteImage from '../image/remote-image';
 
 function RelatedArticle({ article, author }) {
    const date = format(new Date(article.first_published_at), 'MMM dd, yyyy');
@@ -11,12 +11,12 @@ function RelatedArticle({ article, author }) {
          className="relative grid grid-rows-[auto_1fr] rounded-2xl md:rounded-3xl group cursor-pointer overflow-hidden bg-secondary dark:bg-primary-200 border border-primary-200 hover:-translate-y-0.5 box-shadow hover:shadow-preview dark:hover:shadow-preview-dark transition-[translate,box-shadow] duration-200 select-none group"
       >
          <div className="relative h-80 sm:h-60">
-            <Image
-               className="object-cover opacity-90 dark:opacity-75 group-hover:opacity-100! dark:group-hover:opacity-90! transition-200 border-b border-b-primary-200 dark:border-b-primary-300/5"
-               src={article.image}
-               alt="Article image"
-               unoptimized
-               fill
+            <RemoteImage
+               imageUrl={article.image}
+               imageBlur={article.image_blur}
+               alt="Related article image"
+               styles="object-cover border-b border-b-primary-200 dark:border-b-primary-300/5 transition-200"
+               opacity="opacity-90 dark:opacity-75 group-hover:opacity-100! dark:group-hover:opacity-90!"
             />
          </div>
 
