@@ -36,7 +36,7 @@ function MainImage({ article }) {
       <div className="relative h-[24rem] 2xl:h-[21rem] sm:h-[17rem] overflow-hidden rounded-3xl shadow-xs">
          {image_blur && (
             <div
-               className={`absolute inset-0 scale-110 transition-opacity duration-300 ${loaded ? 'opacity-0' : 'opacity-90 dark:opacity-75'}`}
+               className={`absolute inset-0 scale-110 transition-opacity duration-500 ${loaded ? 'opacity-0' : 'opacity-90 dark:opacity-75'}`}
                style={{
                   backgroundImage: `url(${image_blur})`,
                   backgroundSize: 'cover',

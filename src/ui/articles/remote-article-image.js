@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 import mediumZoom from 'medium-zoom';
-import Image from 'next/image';
+import Image, { getImageProps } from 'next/image';
 
 function RemoteArticleImage({
    src,
@@ -17,7 +17,7 @@ function RemoteArticleImage({
    const imgRef = useRef(null);
    const zoomRef = useRef(null);
    const isMobile = useMediaQuery({ maxWidth: 768 });
-
+   console.log(src);
    useEffect(() => {
       if (imgRef.current?.complete) setTimeout(() => setLoaded(true), 50);
    }, []);
@@ -37,12 +37,21 @@ function RemoteArticleImage({
       };
    }, [loaded, isMobile]);
 
+   const { props } = getImageProps({
+      src,
+      width,
+      height,
+      alt: 'Article image',
+      quality: 60,
+   });
+   const { srcSet, ...imgProps } = props; // discard srcset
+
    return (
       <span
-         className={`rounded-[1.6rem] sm:rounded-[1.35rem] block w-full relative overflow-hidden`}
+         className={`bn-visual-media block w-full relative overflow-hidden rounded-[1.6rem] sm:rounded-[1.35rem] ${!isTransparent && `border border-primary-300/70 dark:border-primary-300/25 ${!loaded && `border-transparent!`}`}`}
       >
          <span
-            className={`bn-visual-media absolute inset-0 transition-opacity duration-700 ${isTransparent ? 'scale-85' : 'scale-110'} ${
+            className={`absolute inset-0 transition-opacity duration-500 ${isTransparent ? 'scale-85' : 'scale-110'} ${
                loaded ? 'opacity-0' : 'opacity-90 dark:opacity-75'
             }`}
             style={{
@@ -52,16 +61,13 @@ function RemoteArticleImage({
                filter: 'blur(20px)',
             }}
          />
-         <Image
+         <img
             ref={imgRef}
-            className={`bn-visual-media article-image transition-opacity duration-700 ${
+            className={`transition-opacity duration-300 ${
                loaded ? 'opacity-90 dark:opacity-75' : 'opacity-0'
-            } ${!isTransparent && `border border-primary-300/70 dark:border-primary-300/25`}`}
+            }`}
             src={src}
-            alt="Article image"
-            width={width}
-            height={height}
-            quality={60}
+            {...imgProps}
             data-transparent={isTransparent ? 'true' : undefined}
             onLoad={() => setTimeout(() => setLoaded(true), 50)}
             style={{ width: '100%', height: 'auto' }}

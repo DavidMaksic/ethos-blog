@@ -1223,7 +1223,7 @@ h3 {
 }
 
 .medium-zoom-image--opened {
-   border-radius: 1.6rem !important;
+   border-radius: 1.6rem;
    z-index: 40;
 }
 
@@ -1231,13 +1231,13 @@ h3 {
    @apply border! border-primary-300/70! dark:border-primary-300/25!;
 }
 
-.main-image.medium-zoom-image--opened {
+/* .main-image.medium-zoom-image--opened {
    @apply opacity-90! dark:opacity-75!;
-}
+} */
 
-.article-image.medium-zoom-image--opened {
+/* .medium-zoom-image--opened {
    @apply opacity-70! dark:opacity-50!;
-}
+} */
 
 /* Highlighted comment */
 

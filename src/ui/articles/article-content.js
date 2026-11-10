@@ -36,18 +36,21 @@ async function ArticleContent({ content, article }) {
             const width = Number(url.searchParams.get('w')) || 1920;
             const height = Number(url.searchParams.get('h')) || 1080;
 
-            const blurDataURL =
-               article.content_blur_map?.[src.split('?')[0]]?.blurDataURL;
-            const isTransparent =
-               article.content_blur_map?.[src.split('?')[0]]?.isTransparent;
+            // const blurDataURL =
+            //    article.content_blur_map?.[src.split('?')[0]]?.blurDataURL;
+            // const isTransparent =
+            //    article.content_blur_map?.[src.split('?')[0]]?.isTransparent;
+
+            const cleanSrc = src.split('?')[0];
+            const entry = article.content_blur_map?.[cleanSrc];
 
             return (
                <RemoteArticleImage
                   src={src}
                   width={width}
                   height={height}
-                  blurDataURL={blurDataURL}
-                  isTransparent={isTransparent}
+                  blurDataURL={entry?.blurDataURL}
+                  isTransparent={entry?.isTransparent}
                />
             );
          }
