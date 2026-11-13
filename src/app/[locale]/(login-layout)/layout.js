@@ -45,6 +45,10 @@ const greatVibes = Great_Vibes({
    variable: '--font-greatVibes',
 });
 
+export const viewport = {
+   viewportFit: 'cover',
+};
+
 async function Layout({ children, params }) {
    const { locale } = await params;
 

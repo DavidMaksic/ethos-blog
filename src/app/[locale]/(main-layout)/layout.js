@@ -63,6 +63,10 @@ const cormorantSC = Cormorant_SC({
    adjustFontFallback: true,
 });
 
+export const viewport = {
+   viewportFit: 'cover',
+};
+
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
    const { locale } = param;
@@ -104,6 +108,11 @@ export async function generateMetadata({ params }) {
          images: [
             'https://qjbihfajkucvfxqkvtxk.supabase.co/storage/v1/object/public/misc/ethos-banner-main.webp',
          ],
+      },
+      appleWebApp: {
+         capable: true,
+         title: t('Logo'),
+         statusBarStyle: 'black-translucent',
       },
    };
 }
@@ -154,19 +163,6 @@ export default async function RootLayout({ children, params }) {
                data-website-id="d90edcea-5d99-4e40-93f9-48e026866d66"
                strategy="lazyOnload"
             />
-            {/* Android PWA Support */}
-            <meta name="theme-color" content="#27251F" />
-            <meta name="navigationbar-color" content="#27251F" />
-
-            {/* Apple PWA Support */}
-            <meta name="apple-mobile-web-app-capable" content="yes" />
-            <meta name="mobile-web-app-capable" content="yes" />
-            <meta
-               name="apple-mobile-web-app-status-bar-style"
-               content="black-translucent"
-            />
-            <meta name="apple-mobile-web-app-title" content="Ethos Blog" />
-
             <script
                type="application/ld+json"
                dangerouslySetInnerHTML={{

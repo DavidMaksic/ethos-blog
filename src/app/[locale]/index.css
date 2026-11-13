@@ -269,7 +269,13 @@
       @apply bg-background text-foreground;
    }
    html {
-      @apply font-sans;
+      @apply font-sans bg-background;
+   }
+   html.dark {
+      color-scheme: dark;
+   }
+   html.light {
+      color-scheme: light;
    }
 }
 
