@@ -63,10 +63,6 @@ const cormorantSC = Cormorant_SC({
    adjustFontFallback: true,
 });
 
-export const viewport = {
-   viewportFit: 'cover',
-};
-
 export async function generateMetadata({ params }) {
    const [param, t] = await Promise.all([params, getTranslations()]);
    const { locale } = param;
