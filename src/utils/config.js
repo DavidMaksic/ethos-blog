@@ -28,10 +28,6 @@ export const LANGUAGES = [
    },
 ];
 
-export const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
-export const MAX_SIZE = 2 * 1024 * 1024;
-export const PFP_SIZE = 256;
-
 export const TYPE_STYLES = {
    like: {
       hover: 'hover:border-red-400/50! dark:hover:border-red-400/20! hover:bg-red-400/5!',
@@ -90,11 +86,4 @@ export const STOP_WORDS = new Set([
    'its',
 ]);
 
-export const EXCLUDED_HEADINGS = [
-   'песма',
-   'тропар',
-   'кондак',
-   'икос',
-   'заслуге',
-   'credits',
-];
+export const EXCLUDED_HEADINGS = ['песма', 'тропар', 'кондак', 'икос'];

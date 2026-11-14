@@ -13,8 +13,6 @@ import { revalidatePath, updateTag } from 'next/cache';
 import { getTranslations } from 'next-intl/server';
 import { supabaseAdmin } from './supabase-admin';
 import { randomUUID } from 'crypto';
-import { hasLocale } from 'next-intl';
-import { routing } from '../i18n/routing';
 import { headers } from 'next/headers';
 import { resend } from '@/src/lib/resend';
 import { auth } from '@/src/lib/auth';
@@ -26,11 +24,7 @@ export async function updateUser(previousState, formData) {
    });
    if (!session) throw new Error('You must be logged in');
 
-   const raw = formData.get('locale');
-   const locale = hasLocale(routing.locales, raw) ? raw : routing.defaultLocale;
-
-   const t = await getTranslations({ locale, namespace: 'Auth' });
-
+   const t = await getTranslations('Auth');
    const rawUsername = formData.get('username');
    const schema = usernameSchema(t);
    const parsed = schema.safeParse({ username: rawUsername });
@@ -54,6 +48,54 @@ export async function updateUser(previousState, formData) {
    });
 
    if (error) throw new Error('Username could not be updated');
+
+   revalidatePath('/user/settings');
+   return { success: true };
+}
+
+export async function updateImage(previousState, formData) {
+   const session = await auth.api.getSession({
+      headers: await headers(),
+   });
+   if (!session) throw new Error('You must be logged in');
+
+   const userID = session.user.id;
+   const newImage = formData.get('newImage');
+   const oldImage = formData.get('oldImage');
+
+   if (!newImage) {
+      throw new Error('No file uploaded or invalid type');
+   }
+
+   const fileName = `user_image-${userID}-${Math.random()}`;
+
+   // 1. Upload user image
+   const { error: imageUploadError } = await supabaseAdmin.storage
+      .from('user-images')
+      .upload(fileName, newImage);
+
+   if (imageUploadError) throw new Error(imageUploadError.message);
+
+   // 2. Update image field in user
+   const imageUrl = `${process.env.SUPABASE_URL}/storage/v1/object/public/user-images/${fileName}`;
+
+   const { error: profileImageError } = await auth.api.updateUser({
+      headers: await headers(),
+      body: { image: imageUrl },
+   });
+
+   if (profileImageError) throw new Error(profileImageError.message);
+
+   // 3. Delete the already present image
+   if (oldImage) {
+      const image = oldImage.split('/user-images/')[1];
+
+      const { error } = await supabaseAdmin.storage
+         .from('user-images')
+         .remove([image]);
+
+      if (error) console.error('Old image cleanup failed:', error.message);
+   }
 
    revalidatePath('/user/settings');
    return { success: true };
@@ -134,10 +176,7 @@ export async function removeBookmark(articleID, slug) {
 }
 
 export async function addComment(previousState, formData, commentLength) {
-   const raw = formData.get('locale');
-   const locale = hasLocale(routing.locales, raw) ? raw : routing.defaultLocale;
-
-   const t = await getTranslations({ locale, namespace: 'CommentErrors' });
+   const t = await getTranslations('CommentErrors');
 
    const session = await auth.api.getSession({
       headers: await headers(),
@@ -184,18 +223,8 @@ export async function addComment(previousState, formData, commentLength) {
    return { success: true };
 }
 
-export async function editComment(
-   commentID,
-   text,
-   slug,
-   commentLength,
-   rawLocale,
-) {
-   const locale = hasLocale(routing.locales, rawLocale)
-      ? rawLocale
-      : routing.defaultLocale;
-
-   const t = await getTranslations({ locale, namespace: 'CommentErrors' });
+export async function editComment(commentID, text, slug, commentLength) {
+   const t = await getTranslations('CommentErrors');
 
    const session = await auth.api.getSession({
       headers: await headers(),
@@ -252,10 +281,7 @@ export async function deleteComment(commentID, slug) {
 }
 
 export async function addReply(previousState, formData, commentLength) {
-   const raw = formData.get('locale');
-   const locale = hasLocale(routing.locales, raw) ? raw : routing.defaultLocale;
-
-   const t = await getTranslations({ locale, namespace: 'CommentErrors' });
+   const t = await getTranslations('CommentErrors');
 
    const session = await auth.api.getSession({
       headers: await headers(),
@@ -305,12 +331,8 @@ export async function addReply(previousState, formData, commentLength) {
    return { success: true };
 }
 
-export async function editReply(replyID, text, slug, commentLength, rawLocale) {
-   const locale = hasLocale(routing.locales, rawLocale)
-      ? rawLocale
-      : routing.defaultLocale;
-
-   const t = await getTranslations({ locale, namespace: 'CommentErrors' });
+export async function editReply(replyID, text, slug, commentLength) {
+   const t = await getTranslations('CommentErrors');
 
    const session = await auth.api.getSession({
       headers: await headers(),
@@ -449,7 +471,7 @@ export async function subscribeToNewsletter(prevState, formData) {
          if (error.code === '23505') {
             return {
                success: false,
-               error: 'already-subscribed',
+               error: 'already_subscribed',
                id: Date.now(),
             };
          }
