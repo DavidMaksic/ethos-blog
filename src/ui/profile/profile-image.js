@@ -3,7 +3,8 @@
 import { useActionState, useEffect, useRef, useState } from 'react';
 import { ALLOWED_TYPES, MAX_SIZE } from '@/src/utils/config';
 import { useTranslations } from 'next-intl';
-import { updateImage } from '@/src/lib/actions';
+import { updateImage } from '@/src/lib/image-actions';
+import { resizeImage } from '@/src/utils/helpers';
 import { authClient } from '@/src/lib/auth-client';
 import { ImSpinner2 } from 'react-icons/im';
 import { LuPencil } from 'react-icons/lu';
@@ -11,7 +12,6 @@ import { LuPencil } from 'react-icons/lu';
 import RemoteProfileImage from '@/src/ui/image/remote-profile-image';
 import defaultPfp from '@/public/default-pfp.png';
 import toast from 'react-hot-toast';
-import { resizeImage } from '@/src/utils/helpers';
 
 function ProfileImage({ user }) {
    const t = useTranslations('Profile');

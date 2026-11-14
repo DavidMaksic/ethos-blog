@@ -15,7 +15,7 @@ function AuthForm() {
    useThemeColor();
 
    return (
-      <div className="w-[55%] 2xl:w-[67%] xl:w-[80%] lg:w-[85%] md:w-[70%] sm:w-[80%] xs:w-[90%]">
+      <div className="w-[55%] 2xl:w-[67%] xl:w-[80%] lg:w-[85%] md:w-[70%] sm:w-[80%] xs:w-[90%] z-10">
          <AnimatePresence mode="wait" initial={false}>
             <motion.div
                layout

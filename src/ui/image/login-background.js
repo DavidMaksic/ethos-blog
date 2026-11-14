@@ -176,7 +176,7 @@ async function LoginBackground() {
       eligibleImages[Math.floor(Math.random() * eligibleImages.length)];
 
    return (
-      <section className="fixed inset-0 -z-10">
+      <section className="fixed inset-0 z-0">
          <div className="relative size-full">
             <div className="absolute inset-0 hidden md:block auth-background-gradient" />
 
