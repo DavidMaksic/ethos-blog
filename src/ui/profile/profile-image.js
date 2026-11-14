@@ -14,6 +14,7 @@ import defaultPfp from '@/public/default-pfp.png';
 import toast from 'react-hot-toast';
 
 function ProfileImage({ user }) {
+   console.log('test');
    const t = useTranslations('Profile');
    const { refetch } = authClient.useSession();
 
