@@ -2,7 +2,7 @@
 
 A Next.js blog website featuring internationalization, user authentication and a comment system. Designed for comfy reading experience.
 
-![main image](https://davidmaksic.vercel.app/ethos-blog)
+![main image](https://davidmaksic.vercel.app/ethos-blog/ethos.png)
 
 <br />
 
