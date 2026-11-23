@@ -20,19 +20,19 @@ Light and dark mode are handled by **`next-themes`**. Dynamic metadata/OpenGraph
 
 Upon entering the website, user will first see the slider with featured articles. On the top is the header with page navigation, theme toggle, user profile (or log-in) and language toggle. On mobile devices, this is abstracted into a modal.
 
-![landing page](https://davidmaksic.vercel.app/ethos-0.png)
+![landing page](https://davidmaksic.vercel.app/ethos-blog/ethos-0.png)
 
 <br />
 
 Bellow, user can see articles that are featured by category.
 
-![tag features](https://davidmaksic.vercel.app/ethos-1.png)
+![tag features](https://davidmaksic.vercel.app/ethos-blog/ethos-1.png)
 
 <br />
 
 Last segment of the landing page is the Latest articles section, where user has an option to filter the articles based on category.
 
-![latest articles](https://davidmaksic.vercel.app/ethos-2.png)
+![latest articles](https://davidmaksic.vercel.app/ethos-blog/ethos-2.png)
 
 <br />
 
@@ -40,25 +40,25 @@ Last segment of the landing page is the Latest articles section, where user has 
 
 This is the main part of the blog. Bellow title there is the main image card with basic information about the author and some options.
 
-![article](https://davidmaksic.vercel.app/ethos-3.png)
+![article](https://davidmaksic.vercel.app/ethos-blog/ethos-3.png)
 
 <br />
 
 All articles are made using a WYSIWYG text editor, which means they will be rich with special styles, images, videos, etc. Images can be smoothly zoomed in by clicking on them. On the right side there is a config button that has a few handy options (table of contents, theme toggle, etc).
 
-![article options](https://davidmaksic.vercel.app/ethos-4.png)
+![article options](https://davidmaksic.vercel.app/ethos-blog/ethos-4.png)
 
 <br />
 
 After the article content, user will see a card with author's information. On the left side are basic article options: like, comment, bookmark and share. Bellow, user can leave a comment (if they are logged-in).
 
-![article options 2](https://davidmaksic.vercel.app/ethos-5.png)
+![article options 2](https://davidmaksic.vercel.app/ethos-blog/ethos-5.png)
 
 <br />
 
 This part of the page displays all comments and replies, with sorting option. Users can like comments, and toggle replies.
 
-![comments](https://davidmaksic.vercel.app/ethos-6.png)
+![comments](https://davidmaksic.vercel.app/ethos-blog/ethos-6.png)
 
 <br />
 
@@ -66,7 +66,7 @@ This part of the page displays all comments and replies, with sorting option. Us
 
 On this page, users can search, sort and filter all articles.
 
-![archive](https://davidmaksic.vercel.app/ethos-7.png)
+![archive](https://davidmaksic.vercel.app/ethos-blog/ethos-7.png)
 
 <br />
 
@@ -74,7 +74,7 @@ On this page, users can search, sort and filter all articles.
 
 Here users can read the short description of this blog and etymology behind its name. There is also a list of all the authors.
 
-![about page](https://davidmaksic.vercel.app/ethos-7.png)
+![about page](https://davidmaksic.vercel.app/ethos-blog/ethos-7.png)
 
 <br />
 
@@ -82,19 +82,19 @@ Here users can read the short description of this blog and etymology behind its 
 
 At the end of each page there is a newsletter sign-up.
 
-![subscription flow](https://davidmaksic.vercel.app/newsletter-1.png)
+![subscription flow](https://davidmaksic.vercel.app/ethos-blog/newsletter-1.png)
 
 <br />
 
 After subscribing, user will get welcome email. Emails are sent using **Resend** library.
 
-![welcome email](https://davidmaksic.vercel.app/newsletter-2.png)
+![welcome email](https://davidmaksic.vercel.app/ethos-blog/newsletter-2.png)
 
 <br />
 
 Now, whenever a new article is published user will be notified by an email.
 
-![email notification](https://davidmaksic.vercel.app/newsletter-3.jpg)
+![email notification](https://davidmaksic.vercel.app/ethos-blog/newsletter-3.jpg)
 
 <br />
 
@@ -102,13 +102,13 @@ Now, whenever a new article is published user will be notified by an email.
 
 On this page user can sign in/up and reset their password. Aside from traditional credentials, users can also sign in using **OAuth**, like Google or Github.
 
-![authentication page](https://davidmaksic.vercel.app/auth-1.jpg)
+![authentication page](https://davidmaksic.vercel.app/ethos-blog/auth-1.jpg)
 
 <br />
 
 If user chooses to reset their password, they will get confirmation email with instructions for that.
 
-![confirmation email](https://davidmaksic.vercel.app/auth-2.png)
+![confirmation email](https://davidmaksic.vercel.app/ethos-blog/auth-2.png)
 
 <br />
 
@@ -120,25 +120,25 @@ If user chooses to reset their password, they will get confirmation email with i
 
 After singing up/logging in, user can access their profile. By default, they will see the Overview page, which showcases some profile statistics.
 
-![profile overview](https://davidmaksic.vercel.app/ethos-9.png)
+![profile overview](https://davidmaksic.vercel.app/ethos-blog/ethos-9.png)
 
 <br />
 
 After navigating to the Comments section, user will see all of their comments and replies. They can sort them, and navigate directly to them (to their position in the article) by a click.
 
-![user's comments](https://davidmaksic.vercel.app/ethos-10.png)
+![user's comments](https://davidmaksic.vercel.app/ethos-blog/ethos-10.png)
 
 <br />
 
 In the Bookmarks section, user can access all saved articles. Search, sorting, and pagination are available, just as in archive page.
 
-![user's bookmarks](https://davidmaksic.vercel.app/ethos-11.png)
+![user's bookmarks](https://davidmaksic.vercel.app/ethos-blog/ethos-11.png)
 
 <br />
 
 Finally, we come to the profile settings. Here user can change their username and profile image.
 
-![profile settings](https://davidmaksic.vercel.app/ethos-12.png)
+![profile settings](https://davidmaksic.vercel.app/ethos-blog/ethos-12.png)
 
 <br />
 
